@@ -1369,6 +1369,7 @@ fn check_storage() {
 
 /// Looks for a newer version; shows it in the menu, and tells the user once per version.
 fn check_for_update(handle: &ksni::blocking::Handle<Tray>) {
+    check_for_client_update();
     let latest = match crate::update::latest_version() {
         Ok(Some(v)) => v,
         // nothing to offer: look again tomorrow, as usual
@@ -1394,6 +1395,25 @@ fn check_for_update(handle: &ksni::blocking::Handle<Tray>) {
             ),
         );
     }
+}
+
+/// Tells once per release when the OneDrive Client for Linux has a newer version out.
+fn check_for_client_update() {
+    let Some((installed, latest)) = crate::update::client_news() else {
+        return;
+    };
+    let mut s = AppSettings::load();
+    if s.client_update_notified.as_deref() == Some(latest.as_str()) {
+        return;
+    }
+    s.client_update_notified = Some(latest.clone());
+    let _ = s.save();
+    share::notify(
+        "OneDrive: the sync engine has an update",
+        &format!(
+            "Version {latest} of the OneDrive Client for Linux is out (you have {installed}). Open Settings to update it."
+        ),
+    );
 }
 
 /// Set on the tray we start after an update, so it waits for this one to leave.

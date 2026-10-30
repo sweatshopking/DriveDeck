@@ -6,6 +6,8 @@ use std::time::Duration;
 
 pub const RELEASES_URL: &str = "https://github.com/sweatshopking/DriveDeck/releases/latest";
 const API_URL: &str = "https://api.github.com/repos/sweatshopking/DriveDeck/releases/latest";
+/// The OneDrive Client for Linux's own releases (abraunegg/onedrive)
+const CLIENT_API_URL: &str = "https://api.github.com/repos/abraunegg/onedrive/releases/latest";
 
 /// "1.2.3" or "v1.2.3" as numbers; anything else (a pre-release tag, say) is None.
 fn parse(v: &str) -> Option<(u64, u64, u64)> {
@@ -31,13 +33,45 @@ pub fn latest_version() -> Result<Option<String>, ()> {
     let url = std::env::var("LODG_TEST_RELEASES").unwrap_or_else(|_| API_URL.into());
     #[cfg(not(feature = "test-driver"))]
     let url = API_URL.to_string();
+    latest_release(&url)
+}
+
+/// The OneDrive Client for Linux's latest release, the same way as latest_version
+pub fn latest_client_version() -> Result<Option<String>, ()> {
+    #[cfg(feature = "test-driver")]
+    let url = std::env::var("LODG_TEST_CLIENT_RELEASES").unwrap_or_else(|_| CLIENT_API_URL.into());
+    #[cfg(not(feature = "test-driver"))]
+    let url = CLIENT_API_URL.to_string();
+    latest_release(&url)
+}
+
+/// A newer client release than the one installed: (installed, latest). None when it's current,
+/// not installed, or GitHub couldn't be asked.
+pub fn client_news() -> Option<(String, String)> {
+    let crate::core::ClientCheck::Ok { version, .. } = crate::core::check_client() else {
+        return None;
+    };
+    let latest = latest_client_version().ok().flatten()?;
+    client_is_older(&version, &latest).then_some((version, latest))
+}
+
+/// Compares the client's own version words ("2.5.12", "v2.5.12-1+np1") by their numbers
+fn client_is_older(installed: &str, latest: &str) -> bool {
+    use crate::core::parse_client_version;
+    matches!(
+        (parse_client_version(installed), parse_client_version(latest)),
+        (Some((i, _)), Some((l, _))) if i < l
+    )
+}
+
+fn latest_release(url: &str) -> Result<Option<String>, ()> {
     let agent: ureq::Agent = ureq::Agent::config_builder()
         .timeout_global(Some(Duration::from_secs(15)))
         .http_status_as_error(false)
         .build()
         .into();
     let mut resp = agent
-        .get(&url)
+        .get(url)
         // GitHub asks for one; the version tells nothing about the user
         .header("User-Agent", "drivedeck")
         .header("Accept", "application/vnd.github+json")
@@ -82,5 +116,14 @@ mod tests {
         assert!(!is_newer("v0.4.0-beta", "0.3.5"));
         assert!(!is_newer("nonsense", "0.3.5"));
         assert!(!is_newer("0.4", "0.3.5"));
+    }
+
+    #[test]
+    fn client_versions_compare_by_their_numbers() {
+        assert!(client_is_older("v2.5.11", "2.5.12"));
+        assert!(client_is_older("2.5.9-1+np1", "2.5.12"));
+        assert!(!client_is_older("v2.5.12", "2.5.12"));
+        assert!(!client_is_older("2.6.0", "2.5.12"));
+        assert!(!client_is_older("unknown", "2.5.12"));
     }
 }

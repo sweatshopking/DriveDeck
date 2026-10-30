@@ -428,6 +428,9 @@ pub struct AppSettings {
     /// The newest version the user was already told about
     #[serde(skip_serializing_if = "Option::is_none")]
     pub update_notified: Option<String>,
+    /// The newest OneDrive Client for Linux release the user was already told about
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub client_update_notified: Option<String>,
     /// Sync services started outside this app (see OutsideStart) the user chose to leave as they are
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub outside_start_kept: Vec<String>,

@@ -4958,23 +4958,58 @@ fn show_client_check(ctx: &Shared, check: &core::ClientCheck) {
 }
 
 /// On Arch, offers to update a client the AUR has a newer version of (pacman doesn't).
+/// What's newer than the installed client, and where it can come from
+enum ClientNews {
+    /// The AUR has it: we can build and install it
+    Aur(String, String),
+    /// The client's authors released it: (installed, latest, how to get it, can we install it)
+    Upstream(String, String, &'static str, bool),
+}
+
+fn client_news() -> Option<ClientNews> {
+    if let Some((installed, newest)) = clientinstall::aur_update() {
+        return Some(ClientNews::Aur(installed, newest));
+    }
+    let (installed, latest) = crate::update::client_news()?;
+    let (how, can) = match clientinstall::plan() {
+        Some(clientinstall::Plan::Aur) => (
+            "Its AUR package hasn't caught up yet; this offers it as soon as it has.",
+            false,
+        ),
+        Some(_) => (
+            "Updating gets it from the client's own package repository, which may take a few \
+             days to have it.",
+            true,
+        ),
+        None => ("Update it the way you installed it.", false),
+    };
+    Some(ClientNews::Upstream(installed, latest, how, can))
+}
+
 fn check_client_update() {
-    bg(clientinstall::aur_update, |ctx, newer| {
+    bg(client_news, |ctx, news| {
         let ui = ctx.borrow().ui();
-        let Some((installed, newest)) = newer else {
+        let Some(news) = news else {
             return;
         };
         if !ui.get_client_problem().is_empty() || ui.get_client_installing() {
             return;
         }
+        let (installed, newest, hint, can) = match news {
+            ClientNews::Aur(i, n) => (
+                i,
+                n,
+                "It came from the AUR, which your normal software updates don't cover.",
+                true,
+            ),
+            ClientNews::Upstream(i, n, how, can) => (i, n, how, can),
+        };
         ui.set_client_update(true);
         ui.set_client_problem(ss(format!(
             "A newer OneDrive Client for Linux is available ({newest}; you have {installed})"
         )));
-        ui.set_client_hint(ss(
-            "It came from the AUR, which your normal software updates don't cover.",
-        ));
-        ui.set_client_can_install(true);
+        ui.set_client_hint(ss(hint));
+        ui.set_client_can_install(can);
     });
 }
 
