@@ -917,7 +917,7 @@ fn adv_rows(acc: &AccountInfo, cfg: &ClientConfig) -> Vec<AdvRow> {
         .iter()
         .map(|s| {
             let value = advanced::current(s, cfg);
-            let (kind, _unit, placeholder, mut choices, choice, default_choice) = match &s.kind {
+            let (kind, unit, placeholder, mut choices, choice, default_choice) = match &s.kind {
                 Kind::Bool => (0, "", "", Vec::new(), 0, 0),
                 Kind::Number { unit, .. } => (1, *unit, s.default, Vec::new(), 0, 0),
                 Kind::Text { placeholder, .. } => (2, "", *placeholder, Vec::new(), 0, 0),
@@ -926,7 +926,7 @@ fn adv_rows(acc: &AccountInfo, cfg: &ClientConfig) -> Vec<AdvRow> {
                     "",
                     "",
                     list.iter()
-                        .map(|(_, _words)| ss(crate::tr!(*words)))
+                        .map(|(_, words)| ss(crate::tr!(*words)))
                         .collect(),
                     list.iter()
                         .position(|(v, _)| *v == value)
@@ -984,7 +984,7 @@ fn adv_groups(acc: &AccountInfo) -> Vec<SharedString> {
     }
     groups
         .into_iter()
-        .map(|_group| ss(crate::tr!(group)))
+        .map(|group| ss(crate::tr!(group)))
         .collect()
 }
 
@@ -1895,7 +1895,7 @@ fn save_options(ctx: &Shared) {
     if let Some(v) = big_delete {
         plain.push(("classify_as_big_delete".into(), v));
     }
-    let _signin_changed = adv.iter().any(|c| c.effect == Effect::SignIn);
+    let signin_changed = adv.iter().any(|c| c.effect == Effect::SignIn);
     for c in adv {
         let list = if c.effect == Effect::Resync {
             &mut resync

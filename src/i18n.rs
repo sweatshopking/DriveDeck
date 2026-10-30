@@ -177,7 +177,7 @@ macro_rules! tr {
         $crate::i18n::translate($message).to_string()
     };
     ($message:expr) => {
-        $crate::i18n::translate("Couldn't find where to save that version.").to_string()
+        $crate::i18n::translate(&$message).to_string()
     };
 }
 
@@ -367,5 +367,16 @@ mod tests {
         assert_eq!(language_from_values(["en_US:de"]), "en");
         assert_eq!(language_from_values(["C"]), "en");
         assert_eq!(language_from_values(["de_AT.UTF-8"]), "de");
+    }
+
+    #[test]
+    fn a_message_given_as_an_expression_is_what_comes_back() {
+        // tr!(expression) once returned a fixed sentence whatever it was given
+        let label = "Some label from a table";
+        assert_eq!(crate::tr!(label), "Some label from a table");
+        let words: &&str = &"Another one";
+        assert_eq!(crate::tr!(*words), "Another one");
+        assert_eq!(crate::tr!(String::from("Built text")), "Built text");
+        assert_eq!(crate::tr!(if label.is_empty() { "a" } else { "b" }), "b");
     }
 }

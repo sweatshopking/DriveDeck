@@ -878,7 +878,7 @@ pub fn download_version(
     static NEXT_DOWNLOAD: AtomicU64 = AtomicU64::new(0);
     let parent = dest
         .parent()
-        .ok_or_else(|| crate::tr!("Couldn't find where to save that version.".to_string()))?;
+        .ok_or_else(|| crate::tr!("Couldn't find where to save that version."))?;
     let mut temp = None;
     for _ in 0..32 {
         let n = NEXT_DOWNLOAD.fetch_add(1, Ordering::Relaxed);
