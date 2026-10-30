@@ -189,6 +189,27 @@ Clippy, and all 98 tests pass.
 nothing cut off (check the longest German strings in the settings window and popup), English is
 unchanged, and all checks pass.
 
+**Review of stage 1 (Claude, 2026-10-30):** the setup is good. Fixed in review: plural forms
+now follow each language's own rule (`i18n::plural_index`; the `.po` headers must use GNU
+gettext's standard `Plural-Forms` for the language), and "English first" in `LANGUAGE` wins.
+Form label columns were widened (150/170 px). German screenshots still showed:
+- cut-off labels: "Letzte Synchronisierung", "Geschwindigkeitsbegrenzung" don't fit. Labels in a
+  form's left column (next to a field) must stay short (about 22 characters); pick a shorter
+  wording in every language ("Zuletzt synchronisiert", "Tempolimit").
+- still English: the tab names (Status, Folders, Options, Activity), every dropdown's choices
+  (intervals, speed limits, direction, glass), "X of Y used", "this computer's copy from …",
+  the status texts in `core::Status::text`, and the remaining placeholder texts in
+  `ui/app.slint` (search box, site address, account name example; leave URL and folder-name
+  examples as they are).
+
+**Stage 2 (next):** wrap every remaining user-visible string, file by file: `src/ui.rs`,
+`src/core.rs` (status and error texts), `src/advanced.rs` (all setting labels, hints and
+choices), `src/backup.rs`, `src/conflict.rs`, `src/graph.rs` (the plain-words error messages),
+`src/clientinstall.rs`, `src/uninstall.rs`, `src/doctor.rs` (the checks, not the report's raw
+lines), `src/folderchecks.rs`, `src/share.rs`, `src/tray.rs`, `src/popup.rs`, `src/filewin.rs`.
+Then translate all 15 languages. Report in the Done notes how many strings each `.po` has and
+that the coverage test passes.
+
 **Done notes:**
 
 Stage 1 only: added bundled Slint translations, locale selection, a shared PO parser and generated
