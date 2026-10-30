@@ -4,7 +4,7 @@
 
 **Entirely unofficial — not endorsed by Microsoft at all.**
 
-**Languages:** Translations for all 15 languages are machine-drafted; corrections are welcome. See
+**Languages:** Translations into 11 languages are machine-drafted; corrections are welcome. See
 [po/README.md](po/README.md).
 
 ### [⬇ Download the latest version](https://github.com/sweatshopking/DriveDeck/releases/latest)
