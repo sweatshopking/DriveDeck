@@ -97,6 +97,21 @@ fn checks_named(names: bool) -> Vec<Check> {
                 info.name
             )));
         }
+        // a service somebody else wrote: after the client says "needs a full resync" (exit 78),
+        // systemd must not keep restarting it. Ours say so; this is only reported, never edited.
+        if let Some(u) = &info.unit
+            && !info.managed
+        {
+            let value = core::unit_props(u, "RestartPreventExitStatus")
+                .remove("RestartPreventExitStatus")
+                .unwrap_or_default();
+            if !exit_status_listed(&value, 78) {
+                out.push(Check::warn(crate::tr!(
+                    "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service.",
+                    info.name
+                )));
+            }
+        }
         match core::free_space(&info.sync_dir) {
             Some(free) if free < LOW_SPACE => out.push(Check::warn(crate::tr!(
                 "{}: only {} free on its drive.",
@@ -130,6 +145,13 @@ fn checks_named(names: bool) -> Vec<Check> {
         )));
     }
     out
+}
+
+/// Whether a RestartPreventExitStatus value ("78 126", "SIGTERM 78") names this exit status
+fn exit_status_listed(value: &str, code: u32) -> bool {
+    value
+        .split_whitespace()
+        .any(|word| word.parse::<u32>().ok() == Some(code))
 }
 
 /// Folders under `root`, counting up to `max`
@@ -444,5 +466,15 @@ mod tests {
             "onedrive v2.5.12 monitor_interval = 300"
         );
         assert_eq!(scrub_emails("a@b and x@y.org."), "a@b and <email>.");
+    }
+
+    #[test]
+    fn restart_prevention_is_read_from_the_units_value() {
+        assert!(exit_status_listed("78 126", 78));
+        assert!(exit_status_listed("126 78", 78));
+        assert!(exit_status_listed("78", 78));
+        assert!(!exit_status_listed("", 78));
+        assert!(!exit_status_listed("126", 78));
+        assert!(!exit_status_listed("780", 78));
     }
 }

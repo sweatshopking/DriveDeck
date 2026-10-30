@@ -3605,3 +3605,11 @@ msgstr ""
 #: ui/app.slint
 msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
 msgstr ""
+
+#: src/ui.rs
+msgid "From the client's authors: {}"
+msgstr ""
+
+#: src/doctor.rs
+msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
+msgstr ""
