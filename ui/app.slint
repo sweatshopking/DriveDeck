@@ -647,6 +647,8 @@ export component AppWindow inherits Window {
     in property <int> s-tone;
     in property <string> s-last;
     in property <string> s-error;
+    // things about the account's own folder worth knowing (folderchecks.rs); empty when none
+    in property <string> s-folder-notes;
     in property <string> s-quota;
     in property <float> s-quota-frac;
     in property <string> s-owner;
@@ -1304,6 +1306,11 @@ export component AppWindow inherits Window {
                                         if root.s-error != "": Text {
                                             text: root.s-error;
                                             color: Theme.problem;
+                                            wrap: word-wrap;
+                                        }
+                                        if root.s-folder-notes != "": Text {
+                                            text: root.s-folder-notes;
+                                            color: Theme.warn;
                                             wrap: word-wrap;
                                         }
                                         if root.s-big-delete: HorizontalLayout {

@@ -15,6 +15,7 @@ mod conflict;
 mod core;
 mod dbus;
 mod filewin;
+mod folderchecks;
 mod glass;
 mod graph;
 mod popup;

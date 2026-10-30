@@ -651,6 +651,7 @@ fn select(ctx: &Shared, i: i32) {
     load_options(ctx, &acc);
     load_backups(ctx, &acc);
     load_conflicts(ctx, &acc);
+    load_folder_notes(ctx, &acc);
     load_folders(ctx, &acc, false);
     load_activity(ctx, &acc);
     load_quota(ctx, &acc);
@@ -3584,6 +3585,23 @@ fn pick_folder(
 }
 
 // ---------------------------------------------------------------- conflicting copies
+
+fn load_folder_notes(ctx: &Shared, acc: &AccountInfo) {
+    let (key, root, confdir) = (acc.key(), acc.sync_dir.clone(), acc.confdir.clone());
+    ctx.borrow().ui().set_s_folder_notes(ss(""));
+    bg(
+        move || {
+            let cfg = ClientConfig::load(&confdir);
+            let skip_dirs = cfg.get_joined("skip_dir").unwrap_or_default();
+            crate::folderchecks::notes(&root, &skip_dirs, cfg.get_bool("skip_dotfiles"))
+        },
+        move |ctx, notes| {
+            if ctx.borrow().current.as_deref() == Some(key.as_str()) {
+                ctx.borrow().ui().set_s_folder_notes(ss(notes.join("\n\n")));
+            }
+        },
+    );
+}
 
 fn load_conflicts(ctx: &Shared, acc: &AccountInfo) {
     let (key, root) = (acc.key(), acc.sync_dir.clone());
