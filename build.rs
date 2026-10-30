@@ -59,22 +59,23 @@ fn main() {
     }
     generated.push_str("        _ => None,\n    }\n}\n");
     generated.push_str(
-        "pub fn lookup_plural(language: &str, message: &str, count: i64) -> Option<&'static str> {\n    match language {\n",
+        "pub fn lookup_plural_forms(language: &str, message: &str) -> Option<&'static [&'static str]> {\n    match language {\n",
     );
     for (locale, messages) in &catalogs {
         generated.push_str(&format!("        {locale:?} => match message {{\n"));
         for entry in messages {
-            if let Some(plural) = &entry.plural {
-                let translations: std::collections::BTreeMap<_, _> = entry
+            if entry.plural.is_some() && !entry.plural_translations.is_empty() {
+                // every form the language has, in msgstr[n] order; i18n::plural_index picks one
+                let forms: std::collections::BTreeMap<_, _> = entry
                     .plural_translations
                     .iter()
                     .map(|(i, s)| (*i, s))
                     .collect();
+                let forms: Vec<String> = forms.values().map(|s| format!("{s:?}")).collect();
                 generated.push_str(&format!(
-                    "            {:?} => Some(if count == 1 {{ {:?} }} else {{ {:?} }}),\n",
+                    "            {:?} => Some(&[{}]),\n",
                     entry.id,
-                    translations.get(&0).copied().unwrap_or(&entry.id),
-                    translations.get(&1).copied().unwrap_or(plural)
+                    forms.join(", ")
                 ));
             }
         }

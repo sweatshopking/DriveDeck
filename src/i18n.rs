@@ -16,6 +16,10 @@ fn language_from_values<'a>(values: impl IntoIterator<Item = &'a str>) -> &'stat
             let locale = preference.split(['.', '@']).next().unwrap_or_default();
             let mut candidate = locale.replace('-', "_");
             loop {
+                // English is the source text: wanted first, it beats any translation after it
+                if candidate == "en" || candidate == "C" || candidate == "POSIX" {
+                    return "en";
+                }
                 if AVAILABLE_LANGUAGES.contains(&candidate.as_str()) {
                     return AVAILABLE_LANGUAGES
                         .iter()
@@ -45,9 +49,54 @@ pub fn translate(message: &str) -> &str {
 }
 
 pub fn translate_plural(singular: &str, plural: &str, count: i64) -> String {
-    lookup_plural(language(), singular, count)
+    let language = language();
+    lookup_plural_forms(language, singular)
+        .and_then(|forms| {
+            let i = plural_index(language, count);
+            forms.get(i).or(forms.last()).copied()
+        })
         .unwrap_or(if count == 1 { singular } else { plural })
         .replace("{n}", &count.to_string())
+}
+
+/// Which msgstr[n] a count takes, by each language's own rule (the Plural-Forms the .po
+/// headers must state: GNU gettext's standard ones)
+fn plural_index(language: &str, n: i64) -> usize {
+    let n = n.unsigned_abs();
+    let (n10, n100) = (n % 10, n % 100);
+    let few = (2..=4).contains(&n10) && !(12..=14).contains(&n100);
+    match language.split('_').next().unwrap_or_default() {
+        // one form for every count
+        "ja" | "zh" | "ko" => 0,
+        // 0 counts as one
+        "fr" => usize::from(n > 1),
+        "pt" if language == "pt_BR" => usize::from(n > 1),
+        "pl" => {
+            if n == 1 {
+                0
+            } else if few {
+                1
+            } else {
+                2
+            }
+        }
+        "ru" | "uk" => {
+            if n10 == 1 && n100 != 11 {
+                0
+            } else if few {
+                1
+            } else {
+                2
+            }
+        }
+        "cs" => match n {
+            1 => 0,
+            2..=4 => 1,
+            _ => 2,
+        },
+        // de, es, it, nl, sv, tr, pt and English
+        _ => usize::from(n != 1),
+    }
 }
 
 pub fn format_plural(
@@ -236,7 +285,7 @@ mod tests {
     fn generated_german_lookup_includes_plural_forms() {
         assert_eq!(lookup("de", "Accounts"), Some("Konten"));
         assert_eq!(
-            lookup_plural("de", "1 account needs attention", 3),
+            lookup_plural_forms("de", "1 account needs attention").map(|f| f[1]),
             Some("{n} Konten benötigen Aufmerksamkeit")
         );
     }
@@ -248,5 +297,28 @@ mod tests {
             "{first } second"
         );
         assert_eq!(translate_plural("1 file", "{n} files", 4), "4 files");
+    }
+
+    #[test]
+    fn plural_forms_follow_each_language() {
+        let at = |lang: &str, ns: &[i64]| {
+            ns.iter()
+                .map(|&n| plural_index(lang, n))
+                .collect::<Vec<_>>()
+        };
+        assert_eq!(at("de", &[0, 1, 2, 5]), [1, 0, 1, 1]);
+        assert_eq!(at("fr", &[0, 1, 2]), [0, 0, 1]);
+        assert_eq!(at("pt_BR", &[0, 1, 2]), [0, 0, 1]);
+        assert_eq!(at("ja", &[0, 1, 7]), [0, 0, 0]);
+        assert_eq!(at("pl", &[1, 2, 5, 12, 22, 25]), [0, 1, 2, 2, 1, 2]);
+        assert_eq!(at("ru", &[1, 2, 5, 11, 21, 22, 111]), [0, 1, 2, 2, 0, 1, 2]);
+        assert_eq!(at("cs", &[1, 3, 5]), [0, 1, 2]);
+    }
+
+    #[test]
+    fn english_first_beats_a_later_translation() {
+        assert_eq!(language_from_values(["en_US:de"]), "en");
+        assert_eq!(language_from_values(["C"]), "en");
+        assert_eq!(language_from_values(["de_AT.UTF-8"]), "de");
     }
 }
