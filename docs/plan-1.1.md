@@ -175,7 +175,7 @@ Clippy, and all 98 tests pass.
 - **One catalog**: `po/drivedeck.pot` plus `po/<lang>.po` (or the layout Slint requires).
   Extract with `slint-tr-extractor` for `.slint` and a script for `tr!` in Rust. Add
   `po/README.md` explaining how to update and add a language.
-- **Languages to draft now:** de, es, fr, it, pt_BR, nl, pl, ja, zh_CN. Keep the same plain,
+- **Languages to draft now:** de, es, fr, it, pt_BR, nl, pl, ja, zh_CN, ru, tr, ko, cs, uk, sv (15). Keep the same plain,
   friendly tone; keep `{}`/`{n}` placeholders, `…`, and product names (OneDrive, SharePoint,
   Dolphin, DriveDeck) unchanged.
 - **Desktop files:** add `Name[xx]=`/`Comment[xx]=` lines to `packaging/drivedeck.desktop` and
