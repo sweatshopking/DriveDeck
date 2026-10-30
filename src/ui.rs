@@ -5628,30 +5628,43 @@ fn client_news() -> Option<ClientNews> {
 }
 
 fn check_client_update() {
-    bg(client_news, |ctx, news| {
-        let ui = ctx.borrow().ui();
-        let Some(news) = news else {
-            return;
-        };
-        if !ui.get_client_problem().is_empty() || ui.get_client_installing() {
-            return;
-        }
-        let (installed, newest, hint, can) = match news {
-            ClientNews::Aur(i, n) => (
-                i,
-                n,
-                "It came from the AUR, which your normal software updates don't cover.",
-                true,
-            ),
-            ClientNews::Upstream(i, n, how, can) => (i, n, how, can),
-        };
-        ui.set_client_update(true);
-        ui.set_client_problem(ss(format!(
-            "A newer OneDrive Client for Linux is available ({newest}; you have {installed})"
-        )));
-        ui.set_client_hint(ss(hint));
-        ui.set_client_can_install(can);
-    });
+    bg(
+        || {
+            // the authors' own warning (a rebuilt database that takes hours, say) is read here,
+            // off the window's thread, so it can be shown with the offer
+            client_news().map(|n| (n, crate::update::latest_client_notes()))
+        },
+        |ctx, news| {
+            let ui = ctx.borrow().ui();
+            let Some((news, notes)) = news else {
+                return;
+            };
+            if !ui.get_client_problem().is_empty() || ui.get_client_installing() {
+                return;
+            }
+            let (installed, newest, hint, can) = match news {
+                ClientNews::Aur(i, n) => (
+                    i,
+                    n,
+                    "It came from the AUR, which your normal software updates don't cover.",
+                    true,
+                ),
+                ClientNews::Upstream(i, n, how, can) => (i, n, how, can),
+            };
+            ui.set_client_update(true);
+            ui.set_client_problem(ss(format!(
+                "A newer OneDrive Client for Linux is available ({newest}; you have {installed})"
+            )));
+            ui.set_client_hint(ss(match notes {
+                Some(note) => format!(
+                    "{hint}\n\n{}",
+                    crate::tr!("From the client's authors: {}", note)
+                ),
+                None => hint.to_string(),
+            }));
+            ui.set_client_can_install(can);
+        },
+    );
 }
 
 /// The reason not to start something that needs the client, if there is one.

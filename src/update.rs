@@ -65,6 +65,60 @@ fn client_is_older(installed: &str, latest: &str) -> bool {
 }
 
 fn latest_release(url: &str) -> Result<Option<String>, ()> {
+    Ok(release_json(url)?.and_then(|v| {
+        v["tag_name"]
+            .as_str()
+            .and_then(parse)
+            .map(|(a, b, c)| format!("{a}.{b}.{c}"))
+    }))
+}
+
+/// The client authors' own "important" notes for their latest release, if they wrote any
+pub fn latest_client_notes() -> Option<String> {
+    #[cfg(feature = "test-driver")]
+    let url = std::env::var("LODG_TEST_CLIENT_RELEASES").unwrap_or_else(|_| CLIENT_API_URL.into());
+    #[cfg(not(feature = "test-driver"))]
+    let url = CLIENT_API_URL.to_string();
+    let release = release_json(&url).ok().flatten()?;
+    let notes = important_notes(release["body"].as_str()?);
+    (!notes.is_empty()).then_some(notes)
+}
+
+/// GitHub marks a release's warnings as quoted blocks starting "> [!IMPORTANT]" (or CAUTION,
+/// WARNING). The first IMPORTANT one, as plain text, cut short: for the update offer to say
+/// "this will take a while" before the user presses Update.
+fn important_notes(body: &str) -> String {
+    let mut lines = body.lines().skip_while(|l| !l.contains("[!IMPORTANT]"));
+    lines.next();
+    let text: Vec<&str> = lines
+        .take_while(|l| l.trim_start().starts_with('>'))
+        .map(|l| l.trim_start().trim_start_matches('>').trim())
+        .collect();
+    let text = text
+        .join(" ")
+        .replace("**", "")
+        .replace('`', "")
+        .split_whitespace()
+        .collect::<Vec<_>>()
+        .join(" ");
+    const MAX: usize = 520;
+    if text.chars().count() <= MAX {
+        return text;
+    }
+    // cut at the end of a sentence if there is one in reach, else at a word
+    let cut: String = text.chars().take(MAX).collect();
+    let end = cut.rfind(". ").map(|i| i + 1).or_else(|| cut.rfind(' '));
+    match end {
+        Some(i) if i > MAX / 2 => format!(
+            "{}{}",
+            cut[..i].trim_end(),
+            if cut[..i].ends_with('.') { "" } else { "…" }
+        ),
+        _ => format!("{cut}…"),
+    }
+}
+
+fn release_json(url: &str) -> Result<Option<serde_json::Value>, ()> {
     let agent: ureq::Agent = ureq::Agent::config_builder()
         .timeout_global(Some(Duration::from_secs(15)))
         .http_status_as_error(false)
@@ -88,10 +142,7 @@ fn latest_release(url: &str) -> Result<Option<String>, ()> {
     if v["draft"].as_bool() == Some(true) || v["prerelease"].as_bool() == Some(true) {
         return Ok(None);
     }
-    Ok(v["tag_name"]
-        .as_str()
-        .and_then(parse)
-        .map(|(a, b, c)| format!("{a}.{b}.{c}")))
+    Ok(Some(v))
 }
 
 /// The newer version, if there is one (None also when GitHub couldn't be asked).
@@ -125,5 +176,23 @@ mod tests {
         assert!(!client_is_older("v2.5.12", "2.5.12"));
         assert!(!client_is_older("2.6.0", "2.5.12"));
         assert!(!client_is_older("unknown", "2.5.12"));
+    }
+
+    #[test]
+    fn the_important_block_of_release_notes_is_read_as_plain_text() {
+        let body = "## What's new\n\n> [!IMPORTANT]\n> **Client v2.5.12 increments the item database version from 18 to 19.** \
+This change is intentional.\n>\n> When upgrading, the client will `recreate` the tables. This may take a long time.\n\n> [!CAUTION]\n> Not this one.\n";
+        assert_eq!(
+            important_notes(body),
+            "Client v2.5.12 increments the item database version from 18 to 19. This change is intentional. When upgrading, the client will recreate the tables. This may take a long time."
+        );
+        assert_eq!(important_notes("nothing special here"), "");
+        // long ones are cut at a sentence
+        let long = format!(
+            "> [!IMPORTANT]\n> {}",
+            "A sentence that goes on. ".repeat(40)
+        );
+        let cut = important_notes(&long);
+        assert!(cut.chars().count() <= 521 && cut.ends_with('.'), "{cut}");
     }
 }
