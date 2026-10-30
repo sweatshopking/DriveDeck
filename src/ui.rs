@@ -1447,7 +1447,10 @@ fn file_url(path: &Path) -> String {
 }
 
 fn screenshot_setting_message(program: &str) -> String {
-    format!("Changes {program}'s save folder. Turning this off puts it back.")
+    crate::tr!(
+        "Changes {}'s save folder. Turning this off puts it back.",
+        program
+    )
 }
 
 fn set_screenshot_saving(ctx: &Shared, enabled: bool) {
@@ -1911,11 +1914,11 @@ fn save_options(ctx: &Shared) {
             if !plain.is_empty() {
                 restart_if_running(acc.clone());
             }
-            ui.set_o_msg(ss("Saved, except the settings marked * — they need a full resync, which is turned off for this account."));
+            ui.set_o_msg(ss(crate::tr!("Saved, except the settings marked * — they need a full resync, which is turned off for this account.")));
             return;
         }
         // the direction can still change; the * settings stay as they were
-        ui.set_o_msg(ss("The settings marked * weren't saved: they need a full resync, which is turned off for this account. Check the preview for the new direction."));
+        ui.set_o_msg(ss(crate::tr!("The settings marked * weren't saved: they need a full resync, which is turned off for this account. Check the preview for the new direction.")));
         resync.clear();
     }
     if resync.is_empty() {
@@ -2069,7 +2072,7 @@ fn load_folders(ctx: &Shared, acc: &AccountInfo, force: bool) {
     if !acc.signed_in {
         ctx.borrow()
             .ui()
-            .set_f_msg(ss("Sign in to choose folders."));
+            .set_f_msg(ss(crate::tr!("Sign in to choose folders.")));
         return;
     }
     fetch_children(ctx, acc, "/".into());
@@ -2567,8 +2570,8 @@ fn start_preview(ctx: &Shared, acc: &AccountInfo, title: &str, change: PreviewCh
     ctx.borrow_mut().preview_starting = Some(cancelled.clone());
     let ui = ctx.borrow().ui();
     ui.set_p_title(ss(&title));
-    ui.set_p_text(ss("Preparing the preview…"));
-    ui.set_p_live(ss("Checking the sync service…"));
+    ui.set_p_text(ss(crate::tr!("Preparing the preview…")));
+    ui.set_p_live(ss(crate::tr!("Checking the sync service…")));
     ui.set_p_busy(true);
     ui.set_p_can_apply(false);
     ui.set_p_visible(true);
@@ -3054,7 +3057,7 @@ fn finish_cancel(ctx: &Shared) {
     let ui = ctx.borrow().ui();
     ui.set_p_busy(true);
     ui.set_p_can_apply(false);
-    ui.set_p_live(ss("Restoring the previous settings…"));
+    ui.set_p_live(ss(crate::tr!("Restoring the previous settings…")));
     bg(
         move || {
             let key = p.key.clone();
@@ -3135,7 +3138,7 @@ fn preview_cancel(ctx: &Shared) {
         p.running
     };
     if running {
-        ctx.borrow().ui().set_p_live(ss("Cancelling…"));
+        ctx.borrow().ui().set_p_live(ss(crate::tr!("Cancelling…")));
     } else {
         finish_cancel(ctx);
     }
@@ -3188,7 +3191,7 @@ fn preview_apply(ctx: &Shared) {
                     ui.set_s_msg(ss(msg));
                     ui.set_o_msg(ss(""));
                     if mode == PreviewMode::Resync {
-                        ui.set_f_msg(ss("Resync started."));
+                        ui.set_f_msg(ss(crate::tr!("Resync started.")));
                     }
                     load_folders(ctx, &account, true);
                     refresh(ctx);
@@ -3445,7 +3448,7 @@ fn sign_in(ctx: &Shared, acc: &AccountInfo, enable_after: Option<bool>) {
     let acc = acc.clone();
     ctx.borrow_mut().signin_starting = Some(cancelled.clone());
     let ui = ctx.borrow().ui();
-    ui.set_si_text(ss("Preparing sign-in…"));
+    ui.set_si_text(ss(crate::tr!("Preparing sign-in…")));
     ui.set_si_need_paste(false);
     ui.set_si_has_url(false);
     ui.set_si_done(false);
@@ -3469,7 +3472,7 @@ fn sign_in(ctx: &Shared, acc: &AccountInfo, enable_after: Option<bool>) {
             ctx.borrow_mut().signin_starting = None;
             match result {
                 SignInStart::Ready(si) if !cancelled.load(Ordering::Acquire) => {
-                    ctx.borrow().ui().set_si_text(ss("Opening the Microsoft sign-in page in your browser…\n\nLog in and approve access. This window updates by itself when you're done."));
+                    ctx.borrow().ui().set_si_text(ss(crate::tr!("Opening the Microsoft sign-in page in your browser…\n\nLog in and approve access. This window updates by itself when you're done.")));
                     ctx.borrow_mut().signin = Some(*si);
                 }
                 SignInStart::Ready(si) => close_sign_in(*si),
@@ -3683,7 +3686,7 @@ fn poll_signin(ctx: &Shared) {
     }
     if !ui.get_si_need_paste() && text.contains("Paste redirect URI here") {
         ui.set_si_need_paste(true);
-        ui.set_si_text(ss("Your browser couldn't hand the sign-in back automatically.\n\nAfter you log in you'll end up on a blank page. Copy that page's full address from the address bar and paste it below."));
+        ui.set_si_text(ss(crate::tr!("Your browser couldn't hand the sign-in back automatically.\n\nAfter you log in you'll end up on a blank page. Copy that page's full address from the address bar and paste it below.")));
     }
     let exited = si.child.try_wait().ok().flatten();
     if exited.is_none() {
@@ -3847,7 +3850,7 @@ fn signin_submit(ctx: &Shared) {
     let ui = c.ui();
     let url = ui.get_si_paste().trim().to_string();
     if !url.contains("code=") {
-        ui.set_si_text(ss("That doesn't look like the right address — it should contain \"code=\". Copy the whole address of the blank page you land on after logging in."));
+        ui.set_si_text(ss(crate::tr!("That doesn't look like the right address — it should contain \"code=\". Copy the whole address of the blank page you land on after logging in.")));
         return;
     }
     if let Some(si) = c.signin.as_mut() {
@@ -3855,7 +3858,7 @@ fn signin_submit(ctx: &Shared) {
             let _ = writeln!(stdin, "{url}");
             let _ = stdin.flush();
         }
-        ui.set_si_text(ss("Finishing sign-in…"));
+        ui.set_si_text(ss(crate::tr!("Finishing sign-in…")));
         ui.set_si_need_paste(false);
     }
 }
@@ -4106,7 +4109,7 @@ fn add_choose(ctx: &Shared, mode: i32) {
             ui.set_add_name(ss(""));
             ui.set_add_folder(ss(""));
             if business_accounts(&ctx.borrow()).is_empty() {
-                ui.set_add_msg(ss("Add and sign in to a work or school OneDrive account first. Its sign-in is reused to reach SharePoint."));
+                ui.set_add_msg(ss(crate::tr!("Add and sign in to a work or school OneDrive account first. Its sign-in is reused to reach SharePoint.")));
             }
         }
         _ => {}
@@ -4402,7 +4405,7 @@ fn backup_stop(ctx: &Shared, i: usize) {
     ui.set_bk_warn(ss(format!(
         "Nothing is moved back or deleted. To have the files here again, move them from {target} yourself."
     )));
-    ui.set_bk_action(ss("Stop backing up"));
+    ui.set_bk_action(ss(crate::tr!("Stop backing up")));
     ctx.borrow_mut().backup_ask = Some(BackupAsk::Stop(acc, known.key.to_string()));
     ui.set_bk_visible(true);
 }
@@ -4832,7 +4835,9 @@ fn add_search(ctx: &Shared) {
     }
     let accs = business_accounts(&c);
     let Some(from) = accs.get(ui.get_add_from_index().max(0) as usize).cloned() else {
-        ui.set_add_msg(ss("Add and sign in to a work or school account first."));
+        ui.set_add_msg(ss(crate::tr!(
+            "Add and sign in to a work or school account first."
+        )));
         return;
     };
     let query = ui.get_add_query().trim().to_string();
@@ -4932,7 +4937,7 @@ fn add_create(ctx: &Shared) {
     }
     ui.set_client_done(ss(""));
     ui.set_add_busy(true);
-    ui.set_add_msg(ss("Checking the OneDrive client…"));
+    ui.set_add_msg(ss(crate::tr!("Checking the OneDrive client…")));
     bg(core::check_client, |ctx, check| {
         if let Some(why) = client_blocker_for(check) {
             let ui = ctx.borrow().ui();
@@ -4952,7 +4957,9 @@ fn add_create_ready(ctx: &Shared) {
     let name = ui.get_add_name().trim().to_string();
     let folder = ui.get_add_folder().trim().to_string();
     if name.is_empty() || folder.is_empty() {
-        ui.set_add_msg(ss("Give the account a name and pick a local folder."));
+        ui.set_add_msg(ss(crate::tr!(
+            "Give the account a name and pick a local folder."
+        )));
         return;
     }
     // a national cloud has to be set before the first sign-in, and needs the tenant
@@ -5006,7 +5013,7 @@ fn add_create_ready(ctx: &Shared) {
             .get(ui.get_add_lib_index().max(-1) as usize)
             .cloned()
         else {
-            ui.set_add_msg(ss("Search for and pick a library first."));
+            ui.set_add_msg(ss(crate::tr!("Search for and pick a library first.")));
             return;
         };
         let Some(from) = business_accounts(&c)
@@ -5169,7 +5176,7 @@ fn prepare_app_page(ctx: &Shared) {
     ui.set_app_version(ss(env!("CARGO_PKG_VERSION")));
     ui.set_app_is_appimage(std::env::var("APPIMAGE").is_ok());
     ui.set_app_msg(ss(""));
-    ui.set_app_client(ss("Checking the sync engine…"));
+    ui.set_app_client(ss(crate::tr!("Checking the sync engine…")));
     bg(core::check_client, |ctx, check| {
         let client = match check {
             core::ClientCheck::Ok { path, version } => format!(
@@ -5527,7 +5534,7 @@ fn run_client_install(ctx: &Shared, plan: clientinstall::Plan) {
     let ui = ctx.borrow().ui();
     ui.set_ci_visible(false);
     ui.set_client_installing(true);
-    ui.set_client_install_msg(ss("Your computer will ask for your password…"));
+    ui.set_client_install_msg(ss(crate::tr!("Your computer will ask for your password…")));
     let out = Arc::new(Mutex::new(String::new()));
     ctx.borrow_mut().install_out = Some(out.clone());
     let was_update = ui.get_client_update();
@@ -5822,7 +5829,9 @@ pub(crate) fn use_startup_token() {
 }
 
 /// The settings window's title (as in app.slint), by which the panel finds it on KDE Plasma.
-pub const WINDOW_TITLE: &str = "DriveDeck for OneDrive";
+pub fn window_title() -> &'static str {
+    crate::i18n::translate("DriveDeck for OneDrive")
+}
 
 pub fn run(account: Option<String>) {
     if !claim_window(account.as_deref()) {
@@ -5855,6 +5864,7 @@ pub fn run(account: Option<String>) {
             std::process::exit(1);
         }
     };
+    crate::i18n::select_bundled();
     // Matches the .desktop file name, so desktops show our icon and group the window correctly.
     // Slint only accepts this once its backend exists (after AppWindow::new) and before the
     // window is first shown.
@@ -5985,7 +5995,7 @@ pub fn run(account: Option<String>) {
             refresh(c);
             return;
         }
-        c.borrow().ui().set_s_msg(ss("Renamed."));
+        c.borrow().ui().set_s_msg(ss(crate::tr!("Renamed.")));
         refresh(c);
     });
     on!(on_open_folder, |c| {
@@ -6007,7 +6017,7 @@ pub fn run(account: Option<String>) {
             |c, (result, blocked)| {
                 c.borrow().ui().set_s_busy(false);
                 match result {
-                    Ok(()) => c.borrow().ui().set_s_msg(ss("Syncing now…")),
+                    Ok(()) => c.borrow().ui().set_s_msg(ss(crate::tr!("Syncing now…"))),
                     Err(e) => c.borrow().ui().set_s_msg(ss(e)),
                 }
                 if blocked {
@@ -6222,7 +6232,7 @@ pub fn run(account: Option<String>) {
     on!(on_app_dolphin_install, |c| {
         let ui = c.borrow().ui();
         ui.set_app_dolphin_busy(true);
-        ui.set_app_badges_msg(ss("Your computer will ask for your password…"));
+        ui.set_app_badges_msg(ss(crate::tr!("Your computer will ask for your password…")));
         bg(crate::badges::install_dolphin_plugin, |ctx, r| {
             let ui = ctx.borrow().ui();
             ui.set_app_dolphin_busy(false);
@@ -6294,7 +6304,9 @@ pub fn run(account: Option<String>) {
     on!(on_ci_myself, |c| {
         let ui = c.borrow().ui();
         ui.set_ci_visible(false);
-        ui.set_client_install_msg(ss("Once it's installed, this note goes away by itself."));
+        ui.set_client_install_msg(ss(crate::tr!(
+            "Once it's installed, this note goes away by itself."
+        )));
         core::run_detached("xdg-open", &[clientinstall::instructions_url()]);
     });
     on!(on_client_done_ok, |c| c
@@ -6657,7 +6669,7 @@ mod tests {
     fn window_title_matches_the_ui() {
         // the panel finds the settings window by this title (popup::focus_settings_with_kwin)
         let slint = include_str!("../ui/app.slint");
-        assert!(slint.contains(&format!("title: \"{WINDOW_TITLE}\";")));
+        assert!(slint.contains("title: @tr(\"DriveDeck for OneDrive\");"));
     }
 
     #[test]

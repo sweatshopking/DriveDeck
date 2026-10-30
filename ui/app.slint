@@ -474,7 +474,7 @@ component ClientBanner inherits Rectangle {
             wrap: word-wrap;
         }
         if !root.update: Text {
-            text: "This app needs one more free program, the OneDrive Client for Linux (version 2.5 or newer). It does the actual syncing in the background; this app is the window and tray icon for it.";
+            text: @tr("This app needs one more free program, the OneDrive Client for Linux (version 2.5 or newer). It does the actual syncing in the background; this app is the window and tray icon for it.");
             wrap: word-wrap;
             font-size: 12px;
         }
@@ -485,7 +485,7 @@ component ClientBanner inherits Rectangle {
             alignment: start;
             spacing: 8px;
             if root.can-install: Button {
-                text: root.installing ? (root.update ? "Updating…" : "Installing…") : (root.update ? "Update it for me" : "Install it for me");
+                text: root.installing ? (root.update ? @tr("Updating…") : @tr("Installing…")) : (root.update ? @tr("Update it for me") : @tr("Install it for me"));
                 primary: true;
                 enabled: !root.installing;
                 clicked => {
@@ -493,20 +493,20 @@ component ClientBanner inherits Rectangle {
                 }
             }
             if !root.update: Button {
-                text: "Open installation instructions";
+                text: @tr("Open installation instructions");
                 clicked => {
                     root.instructions();
                 }
             }
             if !root.update: Button {
-                text: "Check again";
+                text: @tr("Check again");
                 enabled: !root.installing;
                 clicked => {
                     root.recheck();
                 }
             }
             if root.update: Button {
-                text: "Not now";
+                text: @tr("Not now");
                 enabled: !root.installing;
                 clicked => {
                     root.not-now();
@@ -534,7 +534,7 @@ component WatchLimitBanner inherits Rectangle {
         padding: 12px;
         spacing: 6px;
         Text {
-            text: "Some changes on this computer aren't being noticed";
+            text: @tr("Some changes on this computer aren't being noticed");
             font-weight: 600;
             wrap: word-wrap;
         }
@@ -547,7 +547,7 @@ component WatchLimitBanner inherits Rectangle {
             alignment: start;
             spacing: 8px;
             Button {
-                text: root.busy ? "Raising it…" : "Raise the limit";
+                text: root.busy ? @tr("Raising it…") : @tr("Raise the limit");
                 enabled: !root.busy;
                 clicked => {
                     root.raise();
@@ -579,7 +579,7 @@ component OutsideStartBanner inherits Rectangle {
         padding: 12px;
         spacing: 6px;
         Text {
-            text: "Syncing is also set up outside this app";
+            text: @tr("Syncing is also set up outside this app");
             font-weight: 600;
             wrap: word-wrap;
         }
@@ -592,14 +592,14 @@ component OutsideStartBanner inherits Rectangle {
             alignment: start;
             spacing: 8px;
             Button {
-                text: root.busy ? "Turning it off…" : "Turn it off";
+                text: root.busy ? @tr("Turning it off…") : @tr("Turn it off");
                 enabled: !root.busy;
                 clicked => {
                     root.turn-off();
                 }
             }
             Button {
-                text: "Leave it as it is";
+                text: @tr("Leave it as it is");
                 enabled: !root.busy;
                 clicked => {
                     root.keep();
@@ -618,7 +618,7 @@ component Overlay inherits Rectangle {
 }
 
 export component AppWindow inherits Window {
-    title: "DriveDeck for OneDrive";
+    title: @tr("DriveDeck for OneDrive");
     icon: @image-url("../assets/drivedeck.svg");
     preferred-width: 1020px;
     preferred-height: 700px;
@@ -917,7 +917,7 @@ export component AppWindow inherits Window {
                 padding-top: 14px;
                 spacing: 4px;
                 Text {
-                    text: "Accounts";
+                    text: @tr("Accounts");
                     x: 8px;
                     font-size: 12px;
                     font-weight: 600;
@@ -992,7 +992,7 @@ export component AppWindow inherits Window {
                     }
                 }
                 NavRow {
-                    text: "Add account";
+                    text: @tr("Add account");
                     icon: 0;
                     emphasised: root.accounts.length == 0;
                     selected: root.current == -1;
@@ -1004,7 +1004,7 @@ export component AppWindow inherits Window {
                     vertical-stretch: 1;
                 }
                 NavRow {
-                    text: "App settings";
+                    text: @tr("App settings");
                     icon: 1;
                     selected: root.current == -2;
                     clicked => {
@@ -1043,7 +1043,7 @@ export component AppWindow inherits Window {
                             horizontal-stretch: 1;
                         }
                         Button {
-                            text: "OK";
+                            text: @tr("OK");
                             clicked => {
                                 root.client-done-ok();
                             }
@@ -1185,15 +1185,15 @@ export component AppWindow inherits Window {
                                         padding: 14px;
                                         spacing: 8px;
                                         Heading {
-                                            text: "This account isn't signed in";
+                                            text: @tr("This account isn't signed in");
                                         }
                                         Hint {
-                                            text: "Sign in with your Microsoft account. Your browser will open so you can log in, then you'll come back here automatically.";
+                                            text: @tr("Sign in with your Microsoft account. Your browser will open so you can log in, then you'll come back here automatically.");
                                         }
                                         HorizontalLayout {
                                             alignment: start;
                                             Button {
-                                                text: "Sign in…";
+                                                text: @tr("Sign in…");
                                                 primary: true;
                                                 clicked => {
                                                     root.sign-in();
@@ -1210,19 +1210,19 @@ export component AppWindow inherits Window {
                                         HorizontalLayout {
                                             spacing: 8px;
                                             Text {
-                                                text: "Name";
+                                                text: @tr("Name");
                                                 width: 120px;
                                                 vertical-alignment: center;
                                             }
                                             LineEdit {
-                                                accessible-label: "Account name";
+                                                accessible-label: @tr("Account name");
                                                 text <=> root.s-name;
                                                 accepted => {
                                                     root.rename();
                                                 }
                                             }
                                             Button {
-                                                text: "Rename";
+                                                text: @tr("Rename");
                                                 clicked => {
                                                     root.rename();
                                                 }
@@ -1231,7 +1231,7 @@ export component AppWindow inherits Window {
                                         HorizontalLayout {
                                             spacing: 8px;
                                             Text {
-                                                text: "Type";
+                                                text: @tr("Type");
                                                 width: 120px;
                                             }
                                             Text {
@@ -1243,7 +1243,7 @@ export component AppWindow inherits Window {
                                         HorizontalLayout {
                                             spacing: 8px;
                                             Text {
-                                                text: "Folder";
+                                                text: @tr("Folder");
                                                 width: 120px;
                                                 vertical-alignment: center;
                                             }
@@ -1254,20 +1254,20 @@ export component AppWindow inherits Window {
                                                 vertical-alignment: center;
                                             }
                                             Button {
-                                                text: "Open";
+                                                text: @tr("Open");
                                                 clicked => {
                                                     root.open-folder();
                                                 }
                                             }
                                             Button {
-                                                text: "Move…";
+                                                text: @tr("Move…");
                                                 enabled: !root.p-visible;
                                                 clicked => {
                                                     root.mv-visible = true;
                                                 }
                                             }
                                             if root.s-signed-in: Button {
-                                                text: "Online ▾";
+                                                text: @tr("Online ▾");
                                                 clicked => {
                                                     online-pages.show({ x: self.absolute-position.x, y: self.absolute-position.y + self.height });
                                                 }
@@ -1277,19 +1277,19 @@ export component AppWindow inherits Window {
                                                 width: 0;
                                                 Menu {
                                                     MenuItem {
-                                                        title: "OneDrive website";
+                                                        title: @tr("OneDrive website");
                                                         activated => {
                                                             root.open-online-page(0);
                                                         }
                                                     }
                                                     MenuItem {
-                                                        title: "Recycle bin";
+                                                        title: @tr("Recycle bin");
                                                         activated => {
                                                             root.open-online-page(1);
                                                         }
                                                     }
                                                     if root.s-personal: MenuItem {
-                                                        title: "Restore your OneDrive";
+                                                        title: @tr("Restore your OneDrive");
                                                         activated => {
                                                             root.open-online-page(2);
                                                         }
@@ -1300,7 +1300,7 @@ export component AppWindow inherits Window {
                                         HorizontalLayout {
                                             spacing: 8px;
                                             Text {
-                                                text: "Last sync";
+                                                text: @tr("Last sync");
                                                 width: 120px;
                                             }
                                             Text {
@@ -1313,7 +1313,7 @@ export component AppWindow inherits Window {
                                             HorizontalLayout {
                                                 spacing: 8px;
                                                 Text {
-                                                    text: "Storage";
+                                                    text: @tr("Storage");
                                                     width: 120px;
                                                 }
                                                 Text {
@@ -1348,14 +1348,14 @@ export component AppWindow inherits Window {
                                             spacing: 8px;
                                             alignment: start;
                                             Button {
-                                                text: "Delete them online too…";
+                                                text: @tr("Delete them online too…");
                                                 enabled: !root.s-busy;
                                                 clicked => {
                                                     root.big-delete-online();
                                                 }
                                             }
                                             Button {
-                                                text: "Download them again…";
+                                                text: @tr("Download them again…");
                                                 enabled: !root.s-busy && root.s-allow-resync;
                                                 clicked => {
                                                     root.big-delete-restore();
@@ -1363,7 +1363,7 @@ export component AppWindow inherits Window {
                                             }
                                         }
                                         if root.s-big-delete && !root.s-allow-resync: Hint {
-                                            text: "Downloading them again needs a full resync, which is turned off for this account in Options.";
+                                            text: @tr("Downloading them again needs a full resync, which is turned off for this account in Options.");
                                         }
                                     }
                                 }
@@ -1377,14 +1377,14 @@ export component AppWindow inherits Window {
                                             VerticalLayout {
                                                 horizontal-stretch: 1;
                                                 Heading {
-                                                    text: "Background sync";
+                                                    text: @tr("Background sync");
                                                 }
                                                 Hint {
-                                                    text: "Keeps this folder in sync all the time, including after you restart.";
+                                                    text: @tr("Keeps this folder in sync all the time, including after you restart.");
                                                 }
                                             }
                                             Switch {
-                                                accessible-label: "Background sync";
+                                                accessible-label: @tr("Background sync");
                                                 checked: root.s-bg-enabled;
                                                 enabled: !root.s-busy;
                                                 toggled => {
@@ -1396,14 +1396,14 @@ export component AppWindow inherits Window {
                                             spacing: 8px;
                                             alignment: start;
                                             Button {
-                                                text: "Sync now";
+                                                text: @tr("Sync now");
                                                 enabled: !root.s-busy;
                                                 clicked => {
                                                     root.sync-now();
                                                 }
                                             }
                                             Button {
-                                                text: "Sign out";
+                                                text: @tr("Sign out");
                                                 enabled: !root.s-busy;
                                                 clicked => {
                                                     root.sign-out();
@@ -1420,7 +1420,7 @@ export component AppWindow inherits Window {
                                         HorizontalLayout {
                                             spacing: 8px;
                                             Heading {
-                                                text: "Files changed in two places";
+                                                text: @tr("Files changed in two places");
                                             }
                                             Badge {
                                                 text: root.c-rows.length;
@@ -1431,7 +1431,7 @@ export component AppWindow inherits Window {
                                             }
                                         }
                                         Hint {
-                                            text: "These files were changed here and online before they could sync, so both versions were kept. Compare them, then choose which to keep.";
+                                            text: @tr("These files were changed here and online before they could sync, so both versions were kept. Compare them, then choose which to keep.");
                                         }
                                         for c[i] in root.c-rows: Rectangle {
                                             height: 52px;
@@ -1478,13 +1478,13 @@ export component AppWindow inherits Window {
                                                     HorizontalLayout {
                                                         spacing: 8px;
                                                         Button {
-                                                            text: "Compare";
+                                                            text: @tr("Compare");
                                                             clicked => {
                                                                 root.c-open(i);
                                                             }
                                                         }
                                                         Button {
-                                                            text: "Keep… ▾";
+                                                            text: @tr("Keep… ▾");
                                                             primary: true;
                                                             clicked => {
                                                                 keep-menu.show({ x: self.absolute-position.x - 120px, y: self.absolute-position.y + self.height });
@@ -1497,19 +1497,19 @@ export component AppWindow inherits Window {
                                                     width: 0;
                                                     Menu {
                                                         MenuItem {
-                                                            title: "Keep this computer's version";
+                                                            title: @tr("Keep this computer's version");
                                                             activated => {
                                                                 root.c-settle(i, 0);
                                                             }
                                                         }
                                                         MenuItem {
-                                                            title: "Keep the OneDrive version";
+                                                            title: @tr("Keep the OneDrive version");
                                                             activated => {
                                                                 root.c-settle(i, 1);
                                                             }
                                                         }
                                                         MenuItem {
-                                                            title: "Keep both";
+                                                            title: @tr("Keep both");
                                                             activated => {
                                                                 root.c-settle(i, 2);
                                                             }
@@ -1526,10 +1526,10 @@ export component AppWindow inherits Window {
                                         padding: 14px;
                                         spacing: 6px;
                                         Heading {
-                                            text: "Back up this computer's folders";
+                                            text: @tr("Back up this computer's folders");
                                         }
                                         Hint {
-                                            text: "Keep your important folders in OneDrive, so they're backed up and on your other devices. They stay where your apps expect them.";
+                                            text: @tr("Keep your important folders in OneDrive, so they're backed up and on your other devices. They stay where your apps expect them.");
                                         }
                                         for b[i] in root.b-rows: Rectangle {
                                             height: 52px;
@@ -1565,7 +1565,7 @@ export component AppWindow inherits Window {
                                                             font-weight: 600;
                                                         }
                                                         if b.state == 1: Badge {
-                                                            text: "✓ Backed up";
+                                                            text: @tr("✓ Backed up");
                                                             tone: Theme.ok;
                                                         }
                                                         Rectangle {
@@ -1580,14 +1580,14 @@ export component AppWindow inherits Window {
                                                     }
                                                 }
                                                 if b.state == 0: Button {
-                                                    text: "Back up…";
+                                                    text: @tr("Back up…");
                                                     enabled: !root.b-busy;
                                                     clicked => {
                                                         root.b-start(i);
                                                     }
                                                 }
                                                 if b.state == 1: Button {
-                                                    text: "Stop…";
+                                                    text: @tr("Stop…");
                                                     enabled: !root.b-busy;
                                                     clicked => {
                                                         root.b-stop(i);
@@ -1602,7 +1602,7 @@ export component AppWindow inherits Window {
                                     alignment: start;
                                     spacing: 8px;
                                     Button {
-                                        text: "Remove account from this computer…";
+                                        text: @tr("Remove account from this computer…");
                                         enabled: !root.s-busy;
                                         clicked => {
                                             root.remove-account();
@@ -1626,17 +1626,17 @@ export component AppWindow inherits Window {
                             padding-bottom: 14px;
                             spacing: 8px;
                             CheckBox {
-                                text: "Sync everything";
+                                text: @tr("Sync everything");
                                 checked <=> root.f-sync-all;
                                 toggled => {
                                     root.f-sync-all-toggled();
                                 }
                             }
                             Hint {
-                                text: root.f-sync-all ? "Every folder in this account is kept on this computer. Untick to choose specific folders." : "Only the ticked folders (and everything inside them) are kept on this computer.";
+                                text: root.f-sync-all ? @tr("Every folder in this account is kept on this computer. Untick to choose specific folders.") : @tr("Only the ticked folders (and everything inside them) are kept on this computer.");
                             }
                             if !root.f-sync-all: CheckBox {
-                                text: "Also sync files that sit at the top level (outside any folder)";
+                                text: @tr("Also sync files that sit at the top level (outside any folder)");
                                 checked <=> root.f-root-files;
                                 toggled => {
                                     root.f-root-toggled();
@@ -1654,7 +1654,7 @@ export component AppWindow inherits Window {
                                             border-width: expand-focus.has-focus ? 2px : 0;
                                             border-color: Theme.accent;
                                             accessible-role: button;
-                                            accessible-label: row.loading ? "Loading subfolders for " + row.name : (row.expanded ? "Collapse " : "Expand ") + row.name;
+                                            accessible-label: row.loading ? @tr("Loading subfolders for ") + row.name : (row.expanded ? @tr("Collapse ") : @tr("Expand ")) + row.name;
                                             accessible-enabled: row.has-children && !row.loading;
                                             accessible-action-default => {
                                                 if (row.has-children && !row.loading) {
@@ -1729,13 +1729,13 @@ export component AppWindow inherits Window {
                                     vertical-alignment: center;
                                 }
                                 Button {
-                                    text: "Reload";
+                                    text: @tr("Reload");
                                     clicked => {
                                         root.f-reload();
                                     }
                                 }
                                 Button {
-                                    text: "Apply changes…";
+                                    text: @tr("Apply changes…");
                                     primary: true;
                                     enabled: root.f-dirty && root.f-allowed;
                                     clicked => {
@@ -1758,17 +1758,17 @@ export component AppWindow inherits Window {
                                         padding: 14px;
                                         spacing: 8px;
                                         Heading {
-                                            text: "When to sync";
+                                            text: @tr("When to sync");
                                         }
                                         HorizontalLayout {
                                             spacing: 8px;
                                             Text {
-                                                text: "Full check every";
+                                                text: @tr("Full check every");
                                                 vertical-alignment: center;
                                                 width: 150px;
                                             }
                                             ComboBox {
-                                                accessible-label: "How often to check for changes";
+                                                accessible-label: @tr("How often to check for changes");
                                                 model: ["5 minutes", "10 minutes", "15 minutes", "30 minutes", "1 hour", "2 hours"];
                                                 current-index <=> root.o-interval;
                                             }
@@ -1777,27 +1777,27 @@ export component AppWindow inherits Window {
                                             }
                                         }
                                         Hint {
-                                            text: "Changes on this computer are sent right away, and personal accounts also get online changes instantly. This sets how often a full check runs as well.";
+                                            text: @tr("Changes on this computer are sent right away, and personal accounts also get online changes instantly. This sets how often a full check runs as well.");
                                         }
                                         HorizontalLayout {
                                             spacing: 8px;
                                             CheckBox {
-                                                text: "Only sync between";
+                                                text: @tr("Only sync between");
                                                 checked <=> root.o-sched-on;
                                             }
                                             LineEdit {
-                                                accessible-label: "Schedule start time";
+                                                accessible-label: @tr("Schedule start time");
                                                 text <=> root.o-from;
                                                 enabled: root.o-sched-on;
                                                 width: 80px;
                                                 placeholder-text: "23:00";
                                             }
                                             Text {
-                                                text: "and";
+                                                text: @tr("and");
                                                 vertical-alignment: center;
                                             }
                                             LineEdit {
-                                                accessible-label: "Schedule end time";
+                                                accessible-label: @tr("Schedule end time");
                                                 text <=> root.o-to;
                                                 enabled: root.o-sched-on;
                                                 width: 80px;
@@ -1808,17 +1808,17 @@ export component AppWindow inherits Window {
                                             }
                                         }
                                         Hint {
-                                            text: "Use 24-hour times. The window can cross midnight (for example 23:00 to 07:00 for overnight only). \"Sync now\" still works outside it for an hour. Needs the tray icon running.";
+                                            text: @tr("Use 24-hour times. The window can cross midnight (for example 23:00 to 07:00 for overnight only). \"Sync now\" still works outside it for an hour. Needs the tray icon running.");
                                         }
                                         HorizontalLayout {
                                             spacing: 8px;
                                             Text {
-                                                text: "Speed limit";
+                                                text: @tr("Speed limit");
                                                 vertical-alignment: center;
                                                 width: 150px;
                                             }
                                             ComboBox {
-                                                accessible-label: "Sync speed limit";
+                                                accessible-label: @tr("Sync speed limit");
                                                 model: ["No limit", "1 MB/s", "2 MB/s", "5 MB/s", "10 MB/s", "25 MB/s", "50 MB/s"];
                                                 current-index <=> root.o-rate;
                                             }
@@ -1827,14 +1827,14 @@ export component AppWindow inherits Window {
                                             }
                                         }
                                         Hint {
-                                            text: "Applies to each file being transferred.";
+                                            text: @tr("Applies to each file being transferred.");
                                         }
                                         CheckBox {
-                                            text: "Connect over IPv4 only";
+                                            text: @tr("Connect over IPv4 only");
                                             checked <=> root.o-ipv4;
                                         }
                                         Hint {
-                                            text: "Can fix syncing that's slow to start or keeps timing out on some networks.";
+                                            text: @tr("Can fix syncing that's slow to start or keeps timing out on some networks.");
                                         }
                                     }
                                 }
@@ -1844,10 +1844,10 @@ export component AppWindow inherits Window {
                                         padding: 14px;
                                         spacing: 8px;
                                         Heading {
-                                            text: "Direction";
+                                            text: @tr("Direction");
                                         }
                                         ComboBox {
-                                            accessible-label: "Sync direction";
+                                            accessible-label: @tr("Sync direction");
                                             model: ["Both ways (normal)", "Download only", "Upload only"];
                                             current-index <=> root.o-direction;
                                             // chosen by the user (not loaded): a backup should survive
@@ -1859,24 +1859,24 @@ export component AppWindow inherits Window {
                                             }
                                         }
                                         Hint {
-                                            text: root.o-direction == 1 ? "Keeps this computer a copy of what's online. Changes you make here aren't sent to OneDrive." : root.o-direction == 2 ? "Sends what you change here to OneDrive, but doesn't download changes made online. Good for backing up this computer." : "Changes made here go to OneDrive, and changes made online come here.";
+                                            text: root.o-direction == 1 ? @tr("Keeps this computer a copy of what's online. Changes you make here aren't sent to OneDrive.") : root.o-direction == 2 ? @tr("Sends what you change here to OneDrive, but doesn't download changes made online. Good for backing up this computer.") : @tr("Changes made here go to OneDrive, and changes made online come here.");
                                         }
                                         if root.o-direction == 1: CheckBox {
-                                            text: "Also delete files here that aren't online";
+                                            text: @tr("Also delete files here that aren't online");
                                             checked <=> root.o-cleanup;
                                         }
                                         if root.o-direction == 1 && root.o-cleanup: Text {
-                                            text: "This deletes files you put in this folder yourself, since they aren't online. You'll see exactly what would be deleted before anything happens.";
+                                            text: @tr("This deletes files you put in this folder yourself, since they aren't online. You'll see exactly what would be deleted before anything happens.");
                                             color: Theme.problem;
                                             wrap: word-wrap;
                                             font-size: 12px;
                                         }
                                         if root.o-direction == 2: CheckBox {
-                                            text: "Keep files online when I delete them here";
+                                            text: @tr("Keep files online when I delete them here");
                                             checked <=> root.o-keep-online;
                                         }
                                         Hint {
-                                            text: "Changing the direction is checked first with a dry run, so you can see what would happen.";
+                                            text: @tr("Changing the direction is checked first with a dry run, so you can see what would happen.");
                                         }
                                     }
                                 }
@@ -1886,66 +1886,66 @@ export component AppWindow inherits Window {
                                         padding: 14px;
                                         spacing: 8px;
                                         Heading {
-                                            text: "Files";
+                                            text: @tr("Files");
                                         }
                                         CheckBox {
-                                            text: "When a file is deleted online, move it to this computer's Trash instead of deleting it";
+                                            text: @tr("When a file is deleted online, move it to this computer's Trash instead of deleting it");
                                             checked <=> root.o-recycle;
                                         }
                                         CheckBox {
-                                            text: "Show desktop notifications for synced files";
+                                            text: @tr("Show desktop notifications for synced files");
                                             checked <=> root.o-notify;
                                         }
                                         CheckBox {
-                                            text: "Don't sync hidden files and folders (names starting with a dot) *";
+                                            text: @tr("Don't sync hidden files and folders (names starting with a dot) *");
                                             checked <=> root.o-skip-hidden;
                                         }
                                         HorizontalLayout {
                                             spacing: 8px;
                                             Text {
-                                                text: "Never sync files named *";
+                                                text: @tr("Never sync files named *");
                                                 vertical-alignment: center;
                                             }
                                             LineEdit {
-                                                accessible-label: "File name patterns to skip";
+                                                accessible-label: @tr("File name patterns to skip");
                                                 text <=> root.o-skip-files;
                                                 placeholder-text: "~*|.~*|*.tmp|*.swp|*.partial";
                                             }
                                         }
                                         Hint {
-                                            text: "Separate patterns with | — for example  *.tmp|~*|Thumbs.db";
+                                            text: @tr("Separate patterns with | — for example  *.tmp|~*|Thumbs.db");
                                         }
                                         HorizontalLayout {
                                             spacing: 8px;
                                             Text {
-                                                text: "Never sync folders named *";
+                                                text: @tr("Never sync folders named *");
                                                 vertical-alignment: center;
                                             }
                                             LineEdit {
-                                                accessible-label: "Folder names or paths to skip";
+                                                accessible-label: @tr("Folder names or paths to skip");
                                                 text <=> root.o-skip-dirs;
                                                 placeholder-text: "node_modules|Temp|Cache";
                                             }
                                             Button {
-                                                text: "Add developer folders…";
+                                                text: @tr("Add developer folders…");
                                                 clicked => {
                                                     root.o-dev-open();
                                                 }
                                             }
                                         }
                                         Hint {
-                                            text: "A name skips every folder called that; a path like Projects/Old skips that folder.";
+                                            text: @tr("A name skips every folder called that; a path like Projects/Old skips that folder.");
                                         }
                                         CheckBox {
-                                            text: "Don't sync symbolic links *";
+                                            text: @tr("Don't sync symbolic links *");
                                             checked <=> root.o-skip-symlinks;
                                         }
                                         CheckBox {
-                                            text: "Skip any folder that holds a file named .nosync *";
+                                            text: @tr("Skip any folder that holds a file named .nosync *");
                                             checked <=> root.o-nosync;
                                         }
                                         if root.o-is-business: CheckBox {
-                                            text: "Sync shared folders I've added to My files *";
+                                            text: @tr("Sync shared folders I've added to My files *");
                                             checked <=> root.o-shared;
                                         }
                                     }
@@ -1956,30 +1956,30 @@ export component AppWindow inherits Window {
                                         padding: 14px;
                                         spacing: 8px;
                                         Heading {
-                                            text: "Safety";
+                                            text: @tr("Safety");
                                         }
                                         CheckBox {
-                                            text: "Allow full resyncs for this account";
+                                            text: @tr("Allow full resyncs for this account");
                                             checked <=> root.o-allow-resync;
                                         }
                                         Hint {
-                                            text: "Changing which folders sync, or the settings marked *, makes the sync engine rebuild its view of everything (a full resync). You always get a preview of what would be downloaded, uploaded or deleted before anything happens. Turn this off to lock those settings.";
+                                            text: @tr("Changing which folders sync, or the settings marked *, makes the sync engine rebuild its view of everything (a full resync). You always get a preview of what would be downloaded, uploaded or deleted before anything happens. Turn this off to lock those settings.");
                                         }
                                         HorizontalLayout {
                                             spacing: 8px;
                                             Text {
-                                                text: "Stop and ask when more than";
+                                                text: @tr("Stop and ask when more than");
                                                 vertical-alignment: center;
                                             }
                                             LineEdit {
-                                                accessible-label: "Number of deleted items that stops syncing";
+                                                accessible-label: @tr("Number of deleted items that stops syncing");
                                                 text <=> root.o-big-delete;
                                                 width: 90px;
                                                 placeholder-text: "1000";
                                                 input-type: number;
                                             }
                                             Text {
-                                                text: "items are deleted at once";
+                                                text: @tr("items are deleted at once");
                                                 vertical-alignment: center;
                                             }
                                             Rectangle {
@@ -1987,7 +1987,7 @@ export component AppWindow inherits Window {
                                             }
                                         }
                                         Hint {
-                                            text: "Protects against deleting a lot online by accident, for example when a folder is moved out of OneDrive or a drive goes missing. Items inside deleted folders count too. The client's default is 1000.";
+                                            text: @tr("Protects against deleting a lot online by accident, for example when a folder is moved out of OneDrive or a drive goes missing. Items inside deleted folders count too. The client's default is 1000.");
                                         }
                                     }
                                 }
@@ -2002,15 +2002,15 @@ export component AppWindow inherits Window {
                                                 horizontal-stretch: 1;
                                                 spacing: 2px;
                                                 Heading {
-                                                    text: "Advanced";
+                                                    text: @tr("Advanced");
                                                 }
                                                 Hint {
-                                                    text: "Fine-tune the sync engine. Most people never need these.";
+                                                    text: @tr("Fine-tune the sync engine. Most people never need these.");
                                                 }
                                             }
                                             Switch {
-                                                text: root.o-adv-open ? "Shown" : "Hidden";
-                                                accessible-label: "Show advanced settings";
+                                                text: root.o-adv-open ? @tr("Shown") : @tr("Hidden");
+                                                accessible-label: @tr("Show advanced settings");
                                                 checked <=> root.o-adv-open;
                                             }
                                         }
@@ -2019,7 +2019,7 @@ export component AppWindow inherits Window {
                                             HorizontalLayout {
                                                 spacing: 8px;
                                                 LineEdit {
-                                                    accessible-label: "Search advanced settings";
+                                                    accessible-label: @tr("Search advanced settings");
                                                     placeholder-text: "Search settings (threads, timeout, log…)";
                                                     text <=> root.o-adv-query;
                                                     edited(t) => {
@@ -2087,15 +2087,15 @@ export component AppWindow inherits Window {
                                                                         tone: Theme.off;
                                                                     }
                                                                     if row.risky: Badge {
-                                                                        text: "⚠ Can lose data";
+                                                                        text: @tr("⚠ Can lose data");
                                                                         tone: Theme.warn;
                                                                     }
                                                                     if row.effect == 1: Badge {
-                                                                        text: "Full resync";
+                                                                        text: @tr("Full resync");
                                                                         tone: Theme.accent;
                                                                     }
                                                                     if row.effect == 2: Badge {
-                                                                        text: "Sign in again";
+                                                                        text: @tr("Sign in again");
                                                                         tone: Theme.accent;
                                                                     }
                                                                     if changed: Rectangle {
@@ -2104,12 +2104,12 @@ export component AppWindow inherits Window {
                                                                         border-radius: 10px;
                                                                         background: reset-touch.has-hover ? Theme.hover : transparent;
                                                                         accessible-role: button;
-                                                                        accessible-label: "Reset " + row.label + " to the default";
+                                                                        accessible-label: @tr("Reset ") + row.label + @tr(" to the default");
                                                                         accessible-action-default => {
                                                                             reset-touch.clicked();
                                                                         }
                                                                         reset-text := Text {
-                                                                            text: "↺ Reset to default";
+                                                                            text: @tr("↺ Reset to default");
                                                                             font-size: 11px;
                                                                             color: Theme.accent;
                                                                             vertical-alignment: center;
@@ -2167,20 +2167,20 @@ export component AppWindow inherits Window {
                                                 }
                                             }
                                             if root.o-adv-query != "" && !root.o-adv-any-match: Hint {
-                                                text: "No setting matches \"" + root.o-adv-query + "\".";
+                                                text: @tr("No setting matches \"") + root.o-adv-query + "\".";
                                                 horizontal-alignment: center;
                                             }
                                         }
                                         HorizontalLayout {
                                             spacing: 8px;
                                             Button {
-                                                text: "Show all settings in use";
+                                                text: @tr("Show all settings in use");
                                                 clicked => {
                                                     root.o-show-config();
                                                 }
                                             }
                                             Button {
-                                                text: "Open log folder";
+                                                text: @tr("Open log folder");
                                                 clicked => {
                                                     root.o-open-logs();
                                                 }
@@ -2200,7 +2200,7 @@ export component AppWindow inherits Window {
                                         vertical-alignment: center;
                                     }
                                     Button {
-                                        text: "Save";
+                                        text: @tr("Save");
                                         primary: true;
                                         clicked => {
                                             root.o-save();
@@ -2224,19 +2224,19 @@ export component AppWindow inherits Window {
                             HorizontalLayout {
                                 spacing: 8px;
                                 Hint {
-                                    text: "Recent uploads, downloads and deletions from the sync log.";
+                                    text: @tr("Recent uploads, downloads and deletions from the sync log.");
                                     horizontal-stretch: 1;
                                     vertical-alignment: center;
                                 }
                                 Button {
-                                    text: "Show in folder";
+                                    text: @tr("Show in folder");
                                     enabled: root.a-current >= 0;
                                     clicked => {
                                         root.a-show(root.a-current);
                                     }
                                 }
                                 Button {
-                                    text: "Refresh";
+                                    text: @tr("Refresh");
                                     clicked => {
                                         root.a-refresh();
                                     }
@@ -2253,16 +2253,16 @@ export component AppWindow inherits Window {
                     spacing: 12px;
                     alignment: start;
                     Title {
-                        text: root.accounts.length == 0 ? "Welcome — let's add your OneDrive" : "Add an account";
+                        text: root.accounts.length == 0 ? @tr("Welcome — let's add your OneDrive") : @tr("Add an account");
                     }
                     if root.add-mode == 0: VerticalLayout {
                         spacing: 12px;
                         Hint {
-                            text: "What would you like to sync?";
+                            text: @tr("What would you like to sync?");
                             font-size: 14px;
                         }
                         ChoiceCard {
-                            title: "OneDrive";
+                            title: @tr("OneDrive");
                             detail: "A personal Microsoft account (Outlook, Hotmail, Live) or a work or school account.";
                             height: 86px;
                             clicked => {
@@ -2270,7 +2270,7 @@ export component AppWindow inherits Window {
                             }
                         }
                         ChoiceCard {
-                            title: "SharePoint library";
+                            title: @tr("SharePoint library");
                             detail: "A document library from a SharePoint or Teams site. You'll need a work or school account added first.";
                             height: 86px;
                             clicked => {
@@ -2285,17 +2285,17 @@ export component AppWindow inherits Window {
                                 padding: 14px;
                                 spacing: 8px;
                                 Heading {
-                                    text: "1. Find the library";
+                                    text: @tr("1. Find the library");
                                 }
                                 HorizontalLayout {
                                     spacing: 8px;
                                     Text {
-                                        text: "Using account";
+                                        text: @tr("Using account");
                                         width: 120px;
                                         vertical-alignment: center;
                                     }
                                     ComboBox {
-                                        accessible-label: "Work or school account for this library";
+                                        accessible-label: @tr("Work or school account for this library");
                                         model: root.add-from;
                                         current-index <=> root.add-from-index;
                                         enabled: !root.add-busy;
@@ -2305,12 +2305,12 @@ export component AppWindow inherits Window {
                                 HorizontalLayout {
                                     spacing: 8px;
                                     Text {
-                                        text: "Site";
+                                        text: @tr("Site");
                                         width: 120px;
                                         vertical-alignment: center;
                                     }
                                     LineEdit {
-                                        accessible-label: "SharePoint site address or name";
+                                        accessible-label: @tr("SharePoint site address or name");
                                         text <=> root.add-query;
                                         enabled: !root.add-busy;
                                         placeholder-text: "Paste the site's address, or type part of its name";
@@ -2319,7 +2319,7 @@ export component AppWindow inherits Window {
                                         }
                                     }
                                     Button {
-                                        text: "Find";
+                                        text: @tr("Find");
                                         enabled: !root.add-busy;
                                         clicked => {
                                             root.add-search();
@@ -2327,7 +2327,7 @@ export component AppWindow inherits Window {
                                     }
                                 }
                                 Hint {
-                                    text: "Copy the address from your browser while viewing the SharePoint site or library. Leave it empty to list the sites you belong to — only sites this account can already open appear.";
+                                    text: @tr("Copy the address from your browser while viewing the SharePoint site or library. Leave it empty to list the sites you belong to — only sites this account can already open appear.");
                                 }
                                 if root.add-libraries.length > 0: Rectangle {
                                     height: min(root.add-libraries.length * 30px + 8px, 220px);
@@ -2380,17 +2380,17 @@ export component AppWindow inherits Window {
                                 padding: 14px;
                                 spacing: 8px;
                                 Heading {
-                                    text: root.add-mode == 2 ? "2. Where to keep it" : "Name and folder";
+                                    text: root.add-mode == 2 ? @tr("2. Where to keep it") : @tr("Name and folder");
                                 }
                                 HorizontalLayout {
                                     spacing: 8px;
                                     Text {
-                                        text: "Name";
+                                        text: @tr("Name");
                                         width: 120px;
                                         vertical-alignment: center;
                                     }
                                     LineEdit {
-                                        accessible-label: "Account name";
+                                        accessible-label: @tr("Account name");
                                         text <=> root.add-name;
                                         placeholder-text: "e.g. Personal, Work";
                                     }
@@ -2398,33 +2398,33 @@ export component AppWindow inherits Window {
                                 HorizontalLayout {
                                     spacing: 8px;
                                     Text {
-                                        text: "Local folder";
+                                        text: @tr("Local folder");
                                         width: 120px;
                                         vertical-alignment: center;
                                     }
                                     LineEdit {
-                                        accessible-label: "Local folder for synced files";
+                                        accessible-label: @tr("Local folder for synced files");
                                         text <=> root.add-folder;
                                     }
                                     Button {
-                                        text: "Browse…";
+                                        text: @tr("Browse…");
                                         clicked => {
                                             root.add-browse();
                                         }
                                     }
                                 }
                                 Hint {
-                                    text: "Best to pick an empty or new folder. Anything already in it will be uploaded.";
+                                    text: @tr("Best to pick an empty or new folder. Anything already in it will be uploaded.");
                                 }
                                 if root.add-mode == 1: HorizontalLayout {
                                     spacing: 8px;
                                     Text {
-                                        text: "Microsoft cloud";
+                                        text: @tr("Microsoft cloud");
                                         width: 120px;
                                         vertical-alignment: center;
                                     }
                                     ComboBox {
-                                        accessible-label: "Microsoft cloud";
+                                        accessible-label: @tr("Microsoft cloud");
                                         model: ["Worldwide (normal)", "US Government (GCC High)", "US Government (DoD)", "Germany", "China (21Vianet)"];
                                         current-index <=> root.add-cloud;
                                     }
@@ -2435,18 +2435,18 @@ export component AppWindow inherits Window {
                                 if root.add-mode == 1 && root.add-cloud > 0: HorizontalLayout {
                                     spacing: 8px;
                                     Text {
-                                        text: "Tenant";
+                                        text: @tr("Tenant");
                                         width: 120px;
                                         vertical-alignment: center;
                                     }
                                     LineEdit {
-                                        accessible-label: "Organization tenant";
+                                        accessible-label: @tr("Organization tenant");
                                         text <=> root.add-tenant;
                                         placeholder-text: "contoso.onmicrosoft.us";
                                     }
                                 }
                                 if root.add-mode == 1 && root.add-cloud > 0: Hint {
-                                    text: "Only for government and national cloud accounts. Your IT team can tell you the tenant.";
+                                    text: @tr("Only for government and national cloud accounts. Your IT team can tell you the tenant.");
                                 }
                             }
                         }
@@ -2454,13 +2454,13 @@ export component AppWindow inherits Window {
                             spacing: 8px;
                             alignment: start;
                             Button {
-                                text: "Back";
+                                text: @tr("Back");
                                 clicked => {
                                     root.add-choose(0);
                                 }
                             }
                             Button {
-                                text: root.add-mode == 2 ? "Add library" : "Continue and sign in…";
+                                text: root.add-mode == 2 ? @tr("Add library") : @tr("Continue and sign in…");
                                 primary: true;
                                 enabled: !root.add-busy;
                                 clicked => {
@@ -2488,54 +2488,54 @@ export component AppWindow inherits Window {
                     spacing: 12px;
                     alignment: start;
                     Title {
-                        text: "App settings";
+                        text: @tr("App settings");
                     }
                     Card {
                         VerticalLayout {
                             padding: 14px;
                             spacing: 8px;
                             CheckBox {
-                                text: "Show the tray icon when I log in";
+                                text: @tr("Show the tray icon when I log in");
                                 checked <=> root.app-autostart;
                                 toggled => {
                                     root.app-autostart-toggled();
                                 }
                             }
                             Hint {
-                                text: "Syncing itself keeps running in the background either way. The tray icon shows status and runs sync schedules.";
+                                text: @tr("Syncing itself keeps running in the background either way. The tray icon shows status and runs sync schedules.");
                             }
                             CheckBox {
-                                text: "Stop syncing when I quit the tray icon";
+                                text: @tr("Stop syncing when I quit the tray icon");
                                 checked <=> root.app-stop-on-quit;
                                 toggled => {
                                     root.app-stop-on-quit-toggled();
                                 }
                             }
                             Hint {
-                                text: "\"Quit\" in the tray icon's menu then stops syncing too. It starts again the next time the app opens or you log in.";
+                                text: @tr("\"Quit\" in the tray icon's menu then stops syncing too. It starts again the next time the app opens or you log in.");
                             }
                             CheckBox {
-                                text: "Pause syncing on a metered network";
+                                text: @tr("Pause syncing on a metered network");
                                 checked <=> root.app-pause-metered;
                                 toggled => {
                                     root.app-pause-toggled();
                                 }
                             }
                             Hint {
-                                text: "Saves your data allowance on a phone hotspot or a connection you've marked as metered in your network settings.";
+                                text: @tr("Saves your data allowance on a phone hotspot or a connection you've marked as metered in your network settings.");
                             }
                             CheckBox {
-                                text: "Pause syncing while power saver is on";
+                                text: @tr("Pause syncing while power saver is on");
                                 checked <=> root.app-pause-saver;
                                 toggled => {
                                     root.app-pause-toggled();
                                 }
                             }
                             Hint {
-                                text: "Syncing carries on by itself afterwards. \"Sync now\" still syncs for an hour if you need it to.";
+                                text: @tr("Syncing carries on by itself afterwards. \"Sync now\" still syncs for an hour if you need it to.");
                             }
                             if root.app-screenshot-supported: CheckBox {
-                                text: "Save screenshots to OneDrive";
+                                text: @tr("Save screenshots to OneDrive");
                                 checked <=> root.app-screenshot-enabled;
                                 toggled => {
                                     root.app-screenshot-toggled();
@@ -2544,12 +2544,12 @@ export component AppWindow inherits Window {
                             if root.app-screenshot-supported && !root.app-screenshot-enabled && root.app-screenshot-accounts.length > 1: HorizontalLayout {
                                 spacing: 8px;
                                 Text {
-                                    text: "Save screenshots in";
+                                    text: @tr("Save screenshots in");
                                     vertical-alignment: center;
                                     width: 150px;
                                 }
                                 ComboBox {
-                                    accessible-label: "OneDrive account for screenshots";
+                                    accessible-label: @tr("OneDrive account for screenshots");
                                     model: root.app-screenshot-accounts;
                                     current-index <=> root.app-screenshot-account;
                                 }
@@ -2558,19 +2558,19 @@ export component AppWindow inherits Window {
                                 text: root.app-screenshot-hint;
                             }
                             CheckBox {
-                                text: "Show sync badges on files in Dolphin, Nemo and Caja";
+                                text: @tr("Show sync badges on files in Dolphin, Nemo and Caja");
                                 checked <=> root.app-badges;
                                 toggled => {
                                     root.app-badges-toggled();
                                 }
                             }
                             Hint {
-                                text: "A small tick, arrows or warning sign on the files in your OneDrive folders. File manager windows that are already open show them once they're reopened.";
+                                text: @tr("A small tick, arrows or warning sign on the files in your OneDrive folders. File manager windows that are already open show them once they're reopened.");
                             }
                             if root.app-badges && root.app-dolphin-offer: HorizontalLayout {
                                 alignment: start;
                                 Button {
-                                    text: root.app-dolphin-busy ? "Adding…" : "Add badges to Dolphin…";
+                                    text: root.app-dolphin-busy ? @tr("Adding…") : @tr("Add badges to Dolphin…");
                                     enabled: !root.app-dolphin-busy;
                                     clicked => {
                                         root.app-dolphin-install();
@@ -2578,31 +2578,31 @@ export component AppWindow inherits Window {
                                 }
                             }
                             if root.app-badges && root.app-dolphin-offer: Hint {
-                                text: "Dolphin needs a small plugin installed for everyone on this computer, so it asks for your password once.";
+                                text: @tr("Dolphin needs a small plugin installed for everyone on this computer, so it asks for your password once.");
                             }
                             if root.app-badges-msg != "": Hint {
                                 text: root.app-badges-msg;
                             }
                             CheckBox {
-                                text: "Tell me when a new version is out";
+                                text: @tr("Tell me when a new version is out");
                                 checked <=> root.app-check-updates;
                                 toggled => {
                                     root.app-check-updates-toggled();
                                 }
                             }
                             Hint {
-                                text: "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed by itself.";
+                                text: @tr("Looks at this app's page on GitHub once a day. Nothing is downloaded or installed by itself.");
                             }
                             if root.app-update != "": HorizontalLayout {
                                 spacing: 8px;
                                 alignment: start;
                                 Text {
-                                    text: "Version " + root.app-update + " is out.";
+                                    text: @tr("Version ") + root.app-update + @tr(" is out.");
                                     vertical-alignment: center;
                                     font-weight: 600;
                                 }
                                 Button {
-                                    text: "Get it";
+                                    text: @tr("Get it");
                                     primary: true;
                                     clicked => {
                                         root.app-get-update();
@@ -2613,7 +2613,7 @@ export component AppWindow inherits Window {
                                 alignment: start;
                                 spacing: 8px;
                                 Button {
-                                    text: "Add to my applications menu";
+                                    text: @tr("Add to my applications menu");
                                     clicked => {
                                         root.app-add-to-menu();
                                     }
@@ -2629,23 +2629,23 @@ export component AppWindow inherits Window {
                             padding: 14px;
                             spacing: 8px;
                             Heading {
-                                text: "Something not right?";
+                                text: @tr("Something not right?");
                             }
                             Hint {
-                                text: "Checks the sync engine, the tray icon and every account in one go. The report is for a bug report: it leaves out your file names, email address, user and computer names and sign-in details, and opens so you can read it before sharing.";
+                                text: @tr("Checks the sync engine, the tray icon and every account in one go. The report is for a bug report: it leaves out your file names, email address, user and computer names and sign-in details, and opens so you can read it before sharing.");
                             }
                             HorizontalLayout {
                                 alignment: start;
                                 spacing: 8px;
                                 Button {
-                                    text: root.app-doctor-busy ? "Checking…" : "Check for problems";
+                                    text: root.app-doctor-busy ? @tr("Checking…") : @tr("Check for problems");
                                     enabled: !root.app-doctor-busy;
                                     clicked => {
                                         root.app-doctor-check();
                                     }
                                 }
                                 Button {
-                                    text: "Make a problem report";
+                                    text: @tr("Make a problem report");
                                     enabled: !root.app-doctor-busy;
                                     clicked => {
                                         root.app-doctor-report();
@@ -2664,20 +2664,20 @@ export component AppWindow inherits Window {
                             padding: 14px;
                             spacing: 8px;
                             Heading {
-                                text: "Appearance";
+                                text: @tr("Appearance");
                             }
                             Hint {
-                                text: "Colours, light or dark mode, text size and animations follow your desktop's settings.";
+                                text: @tr("Colours, light or dark mode, text size and animations follow your desktop's settings.");
                             }
                             HorizontalLayout {
                                 spacing: 8px;
                                 Text {
-                                    text: "Glass effect";
+                                    text: @tr("Glass effect");
                                     vertical-alignment: center;
                                     width: 150px;
                                 }
                                 ComboBox {
-                                    accessible-label: "Glass effect";
+                                    accessible-label: @tr("Glass effect");
                                     model: ["Automatic", "On", "Off"];
                                     current-index <=> root.app-glass;
                                     selected => {
@@ -2698,14 +2698,14 @@ export component AppWindow inherits Window {
                             padding: 14px;
                             spacing: 6px;
                             Heading {
-                                text: "About";
+                                text: @tr("About");
                             }
                             Text {
-                                text: "DriveDeck for OneDrive " + root.app-version;
+                                text: @tr("DriveDeck for OneDrive ") + root.app-version;
                                 font-weight: 600;
                             }
                             Text {
-                                text: "The easiest, most complete way to use OneDrive on Linux.";
+                                text: @tr("The easiest, most complete way to use OneDrive on Linux.");
                                 wrap: word-wrap;
                             }
                             Text {
@@ -2713,19 +2713,19 @@ export component AppWindow inherits Window {
                                 wrap: word-wrap;
                             }
                             Hint {
-                                text: "Free software under the GNU GPL v3. Syncing is done by the OneDrive Client for Linux by abraunegg (GPL v3). Not made by or affiliated with Microsoft. OneDrive is a trademark of Microsoft.";
+                                text: @tr("Free software under the GNU GPL v3. Syncing is done by the OneDrive Client for Linux by abraunegg (GPL v3). Not made by or affiliated with Microsoft. OneDrive is a trademark of Microsoft.");
                             }
                             HorizontalLayout {
                                 alignment: start;
                                 spacing: 8px;
                                 Button {
-                                    text: "Project page";
+                                    text: @tr("Project page");
                                     clicked => {
                                         root.open-url("https://github.com/sweatshopking/DriveDeck");
                                     }
                                 }
                                 Button {
-                                    text: "Sync engine (abraunegg/onedrive)";
+                                    text: @tr("Sync engine (abraunegg/onedrive)");
                                     clicked => {
                                         root.open-url("https://github.com/abraunegg/onedrive");
                                     }
@@ -2738,15 +2738,15 @@ export component AppWindow inherits Window {
                             padding: 14px;
                             spacing: 6px;
                             Heading {
-                                text: "Uninstall";
+                                text: @tr("Uninstall");
                             }
                             Hint {
-                                text: "Remove this app, and choose whether to keep your OneDrive setup for the command-line client or remove that too. Your synced files always stay on this computer.";
+                                text: @tr("Remove this app, and choose whether to keep your OneDrive setup for the command-line client or remove that too. Your synced files always stay on this computer.");
                             }
                             HorizontalLayout {
                                 alignment: start;
                                 Button {
-                                    text: "Uninstall…";
+                                    text: @tr("Uninstall…");
                                     clicked => {
                                         root.app-uninstall();
                                     }
@@ -2777,7 +2777,7 @@ export component AppWindow inherits Window {
                 padding: 20px;
                 spacing: 10px;
                 Heading {
-                    text: "Sign in to Microsoft";
+                    text: @tr("Sign in to Microsoft");
                     font-size: 16px;
                 }
                 Text {
@@ -2785,7 +2785,7 @@ export component AppWindow inherits Window {
                     wrap: word-wrap;
                 }
                 if root.si-need-paste: LineEdit {
-                    accessible-label: "Address from the blank sign-in page";
+                    accessible-label: @tr("Address from the blank sign-in page");
                     text <=> root.si-paste;
                     placeholder-text: "https://login.microsoftonline.com/common/oauth2/nativeclient?code=…";
                     accepted => {
@@ -2796,26 +2796,26 @@ export component AppWindow inherits Window {
                     spacing: 8px;
                     alignment: end;
                     if root.si-has-url && !root.si-done: Button {
-                        text: "Copy link";
+                        text: @tr("Copy link");
                         clicked => {
                             root.si-copy-url();
                         }
                     }
                     if root.si-has-url && !root.si-done: Button {
-                        text: "Open sign-in page again";
+                        text: @tr("Open sign-in page again");
                         clicked => {
                             root.si-open-url();
                         }
                     }
                     if root.si-need-paste: Button {
-                        text: "Finish sign-in";
+                        text: @tr("Finish sign-in");
                         primary: true;
                         clicked => {
                             root.si-submit();
                         }
                     }
                     Button {
-                        text: root.si-done ? "Close" : "Cancel";
+                        text: root.si-done ? @tr("Close") : @tr("Cancel");
                         primary: root.si-done;
                         clicked => {
                             root.si-close();
@@ -2871,13 +2871,13 @@ export component AppWindow inherits Window {
                     spacing: 8px;
                     alignment: end;
                     Button {
-                        text: "Cancel";
+                        text: @tr("Cancel");
                         clicked => {
                             root.p-cancel();
                         }
                     }
                     Button {
-                        text: "Apply";
+                        text: @tr("Apply");
                         primary: true;
                         enabled: root.p-can-apply && !root.p-busy;
                         clicked => {
@@ -2904,17 +2904,17 @@ export component AppWindow inherits Window {
                 padding: 20px;
                 spacing: 10px;
                 Heading {
-                    text: "Uninstall";
+                    text: @tr("Uninstall");
                     font-size: 16px;
                 }
                 if root.u-result == "": VerticalLayout {
                     spacing: 10px;
                     Text {
-                        text: "What should happen to your OneDrive setup (sign-ins, chosen folders and options)? Your synced files stay on this computer either way.";
+                        text: @tr("What should happen to your OneDrive setup (sign-ins, chosen folders and options)? Your synced files stay on this computer either way.");
                         wrap: word-wrap;
                     }
                     UninstallChoice {
-                        title: "Keep my OneDrive setup";
+                        title: @tr("Keep my OneDrive setup");
                         detail: "Only this app is removed. Your accounts keep syncing in the background with the OneDrive Client for Linux, which you can keep using from the command line.";
                         selected: root.u-keep-setup;
                         enabled: !root.u-busy;
@@ -2923,7 +2923,7 @@ export component AppWindow inherits Window {
                         }
                     }
                     UninstallChoice {
-                        title: "Remove everything";
+                        title: @tr("Remove everything");
                         detail: "Also stop all background syncing, sign out, and delete every OneDrive sync configuration on this computer, including ones made with the command-line client.";
                         selected: !root.u-keep-setup;
                         enabled: !root.u-busy;
@@ -2943,14 +2943,14 @@ export component AppWindow inherits Window {
                             height: 22px;
                         }
                         Button {
-                            text: "Cancel";
+                            text: @tr("Cancel");
                             enabled: !root.u-busy;
                             clicked => {
                                 root.u-cancel();
                             }
                         }
                         Button {
-                            text: "Uninstall";
+                            text: @tr("Uninstall");
                             primary: true;
                             enabled: !root.u-busy;
                             clicked => {
@@ -2968,7 +2968,7 @@ export component AppWindow inherits Window {
                     HorizontalLayout {
                         alignment: end;
                         Button {
-                            text: "Close";
+                            text: @tr("Close");
                             primary: true;
                             clicked => {
                                 root.u-cancel();
@@ -2995,41 +2995,41 @@ export component AppWindow inherits Window {
                 padding: 20px;
                 spacing: 10px;
                 Heading {
-                    text: "Move your OneDrive folder";
+                    text: @tr("Move your OneDrive folder");
                     font-size: 16px;
                 }
                 Text {
-                    text: "This moves the folder that holds this account's files, now " + root.mv-from + ", to a new place — for example another hard drive with more space. Your files stay in OneDrive the whole time, and nothing is downloaded again.";
+                    text: @tr("This moves the folder that holds this account's files, now ") + root.mv-from + @tr(", to a new place — for example another hard drive with more space. Your files stay in OneDrive the whole time, and nothing is downloaded again.");
                     wrap: word-wrap;
                 }
                 Text {
-                    text: "What happens after you choose the new place:";
+                    text: @tr("What happens after you choose the new place:");
                     wrap: word-wrap;
                     font-weight: 600;
                 }
                 Text {
-                    text: "1. Syncing for this account pauses.\n2. The files go to the new place. On the same drive they're simply moved, which is instant. To another drive they're copied, which can take a while for a big folder.\n3. A check runs to confirm everything matches online (a dry run, nothing changes). Press Apply and syncing carries on from the new place.";
+                    text: @tr("1. Syncing for this account pauses.\n2. The files go to the new place. On the same drive they're simply moved, which is instant. To another drive they're copied, which can take a while for a big folder.\n3. A check runs to confirm everything matches online (a dry run, nothing changes). Press Apply and syncing carries on from the new place.");
                     wrap: word-wrap;
                 }
                 Text {
-                    text: "Moving to another drive leaves your old folder exactly as it was: nothing is ever deleted for you, so no files can be lost if the copy goes wrong. Once you've checked your files are in the new place, delete the old folder yourself to free up the space. Until then, it isn't synced any more and changes made in it won't reach OneDrive.";
+                    text: @tr("Moving to another drive leaves your old folder exactly as it was: nothing is ever deleted for you, so no files can be lost if the copy goes wrong. Once you've checked your files are in the new place, delete the old folder yourself to free up the space. Until then, it isn't synced any more and changes made in it won't reach OneDrive.");
                     wrap: word-wrap;
                     color: Theme.warn;
                 }
                 Hint {
-                    text: "Pick an empty folder to use it as the new OneDrive folder. Pick a folder that already has things in it (like the top of a drive) and a folder named like the current one is made inside it. Make sure the new drive has enough free space and is always connected (mounted automatically).";
+                    text: @tr("Pick an empty folder to use it as the new OneDrive folder. Pick a folder that already has things in it (like the top of a drive) and a folder named like the current one is made inside it. Make sure the new drive has enough free space and is always connected (mounted automatically).");
                 }
                 HorizontalLayout {
                     spacing: 8px;
                     alignment: end;
                     Button {
-                        text: "Cancel";
+                        text: @tr("Cancel");
                         clicked => {
                             root.mv-visible = false;
                         }
                     }
                     Button {
-                        text: "Choose new location…";
+                        text: @tr("Choose new location…");
                         primary: true;
                         clicked => {
                             root.mv-visible = false;
@@ -3077,7 +3077,7 @@ export component AppWindow inherits Window {
                         height: 22px;
                     }
                     Button {
-                        text: "Cancel";
+                        text: @tr("Cancel");
                         enabled: !root.b-busy;
                         clicked => {
                             root.bk-visible = false;
@@ -3111,11 +3111,11 @@ export component AppWindow inherits Window {
                 padding: 20px;
                 spacing: 10px;
                 Heading {
-                    text: "All settings in use";
+                    text: @tr("All settings in use");
                     font-size: 16px;
                 }
                 Hint {
-                    text: "What the sync engine reads from this account's config file, including the defaults for anything not set.";
+                    text: @tr("What the sync engine reads from this account's config file, including the defaults for anything not set.");
                 }
                 if root.cfg-busy: Spinner {
                     indeterminate: true;
@@ -3134,7 +3134,7 @@ export component AppWindow inherits Window {
                 HorizontalLayout {
                     alignment: end;
                     Button {
-                        text: "Close";
+                        text: @tr("Close");
                         primary: true;
                         clicked => {
                             root.cfg-visible = false;
@@ -3160,7 +3160,7 @@ export component AppWindow inherits Window {
                 padding: 20px;
                 spacing: 10px;
                 Heading {
-                    text: "Remove account";
+                    text: @tr("Remove account");
                     font-size: 16px;
                 }
                 Text {
@@ -3168,20 +3168,20 @@ export component AppWindow inherits Window {
                     wrap: word-wrap;
                 }
                 CheckBox {
-                    text: "Also sign out and delete this account's sync settings";
+                    text: @tr("Also sign out and delete this account's sync settings");
                     checked <=> root.r-delete-config;
                 }
                 HorizontalLayout {
                     spacing: 8px;
                     alignment: end;
                     Button {
-                        text: "Cancel";
+                        text: @tr("Cancel");
                         clicked => {
                             root.r-cancel();
                         }
                     }
                     Button {
-                        text: "Remove";
+                        text: @tr("Remove");
                         primary: true;
                         clicked => {
                             root.r-confirm();
@@ -3218,7 +3218,7 @@ export component AppWindow inherits Window {
                     spacing: 8px;
                     // installing by hand instead; the window notices the client by itself
                     if !root.client-update: Button {
-                        text: "I'll install it myself";
+                        text: @tr("I'll install it myself");
                         clicked => {
                             root.ci-myself();
                         }
@@ -3227,7 +3227,7 @@ export component AppWindow inherits Window {
                         horizontal-stretch: 1;
                     }
                     Button {
-                        text: "Cancel";
+                        text: @tr("Cancel");
                         clicked => {
                             root.ci-cancel();
                         }
@@ -3259,67 +3259,67 @@ export component AppWindow inherits Window {
                 padding: 20px;
                 spacing: 8px;
                 Heading {
-                    text: "Skip developer folders";
+                    text: @tr("Skip developer folders");
                     font-size: 16px;
                 }
                 CheckBox {
-                    text: ".git";
+                    text: @tr(".git");
                     checked <=> root.o-dev-git;
                 }
                 CheckBox {
-                    text: "node_modules";
+                    text: @tr("node_modules");
                     checked <=> root.o-dev-node-modules;
                 }
                 CheckBox {
-                    text: "target";
+                    text: @tr("target");
                     checked <=> root.o-dev-target;
                 }
                 CheckBox {
-                    text: "__pycache__";
+                    text: @tr("__pycache__");
                     checked <=> root.o-dev-pycache;
                 }
                 CheckBox {
-                    text: ".venv";
+                    text: @tr(".venv");
                     checked <=> root.o-dev-venv;
                 }
                 CheckBox {
-                    text: "venv";
+                    text: @tr("venv");
                     checked <=> root.o-dev-venv-alt;
                 }
                 CheckBox {
-                    text: ".gradle";
+                    text: @tr(".gradle");
                     checked <=> root.o-dev-gradle;
                 }
                 CheckBox {
-                    text: ".idea";
+                    text: @tr(".idea");
                     checked <=> root.o-dev-idea;
                 }
                 CheckBox {
-                    text: ".cache";
+                    text: @tr(".cache");
                     checked <=> root.o-dev-cache;
                 }
                 CheckBox {
-                    text: "build";
+                    text: @tr("build");
                     checked <=> root.o-dev-build;
                 }
                 CheckBox {
-                    text: "dist";
+                    text: @tr("dist");
                     checked <=> root.o-dev-dist;
                 }
                 Hint {
-                    text: "build and dist are common folder names too, so select them only if you mean to skip them.";
+                    text: @tr("build and dist are common folder names too, so select them only if you mean to skip them.");
                 }
                 HorizontalLayout {
                     spacing: 8px;
                     alignment: end;
                     Button {
-                        text: "Cancel";
+                        text: @tr("Cancel");
                         clicked => {
                             root.o-dev-cancel();
                         }
                     }
                     Button {
-                        text: "Add";
+                        text: @tr("Add");
                         primary: true;
                         clicked => {
                             root.o-dev-add();
@@ -3556,7 +3556,7 @@ component FileList inherits Rectangle {
                 IconButton {
                     y: (parent.height - self.height) / 2;
                     icon: @image-url("../assets/ui/reveal.svg");
-                    label: "Show " + row.name + " in its folder";
+                    label: @tr("Show ") + row.name + @tr(" in its folder");
                     opacity: ta.has-hover || (i == root.current && keys.has-focus) ? 1 : 0;
                     clicked => {
                         root.reveal(i);
@@ -3578,7 +3578,7 @@ component FileList inherits Rectangle {
 }
 
 export component PopupPanel inherits Window {
-    title: "OneDrive";
+    title: @tr("OneDrive");
     icon: @image-url("../assets/drivedeck.svg");
     no-frame: true;
     width: 380px;
@@ -3667,7 +3667,7 @@ export component PopupPanel inherits Window {
                         alignment: center;
                         spacing: 1px;
                         Text {
-                            text: "OneDrive";
+                            text: @tr("OneDrive");
                             font-size: 15px;
                             font-weight: 700;
                         }
@@ -3691,7 +3691,7 @@ export component PopupPanel inherits Window {
                     IconButton {
                         y: (parent.height - self.height) / 2;
                         icon: @image-url("../assets/ui/sync.svg");
-                        label: "Sync now";
+                        label: @tr("Sync now");
                         enabled: root.can-sync;
                         clicked => {
                             root.sync-now();
@@ -3700,7 +3700,7 @@ export component PopupPanel inherits Window {
                     pause-btn := IconButton {
                         y: (parent.height - self.height) / 2;
                         icon: @image-url("../assets/ui/pause.svg");
-                        label: "Pause syncing";
+                        label: @tr("Pause syncing");
                         clicked => {
                             pause-menu.show({ x: self.absolute-position.x - 160px, y: self.absolute-position.y + self.height + 4px });
                         }
@@ -3708,7 +3708,7 @@ export component PopupPanel inherits Window {
                     IconButton {
                         y: (parent.height - self.height) / 2;
                         icon: @image-url("../assets/ui/settings.svg");
-                        label: "Settings and accounts";
+                        label: @tr("Settings and accounts");
                         clicked => {
                             root.settings(-1);
                         }
@@ -3724,13 +3724,13 @@ export component PopupPanel inherits Window {
                         padding-left: 12px;
                         spacing: 8px;
                         Text {
-                            text: "Version " + root.update + " of this app is out.";
+                            text: @tr("Version ") + root.update + @tr(" of this app is out.");
                             vertical-alignment: center;
                             overflow: elide;
                             horizontal-stretch: 1;
                         }
                         Button {
-                            text: "Get it";
+                            text: @tr("Get it");
                             primary: true;
                             clicked => {
                                 root.get-update();
@@ -3747,7 +3747,7 @@ export component PopupPanel inherits Window {
                     border-width: acc-keys.has-focus ? 2px : 1px;
                     border-color: acc-keys.has-focus ? Theme.accent : Theme.card-border;
                     accessible-role: list;
-                    accessible-label: "Accounts";
+                    accessible-label: @tr("Accounts");
                     acc-lv := ListView {
                         x: 1px;
                         y: 1px;
@@ -3809,7 +3809,7 @@ export component PopupPanel inherits Window {
 
                 // ---- not synced (only when there are any)
                 if root.blocked.length > 0: SectionTitle {
-                    text: "Not synced (" + root.blocked.length + ")";
+                    text: @tr("Not synced (") + root.blocked.length + ")";
                     color: Theme.problem;
                 }
                 if root.blocked.length > 0: FileList {
@@ -3827,7 +3827,7 @@ export component PopupPanel inherits Window {
 
                 // ---- syncing now
                 SectionTitle {
-                    text: root.transfers.length == 0 ? "Syncing now" : "Syncing now (" + root.transfers.length + ")";
+                    text: root.transfers.length == 0 ? @tr("Syncing now") : @tr("Syncing now (") + root.transfers.length + ")";
                 }
                 tr := FileList {
                     height: root.transfers.length == 0 ? 40px : min(3, root.transfers.length) * 50px + 2px;
@@ -3846,12 +3846,12 @@ export component PopupPanel inherits Window {
                 HorizontalLayout {
                     spacing: 8px;
                     SectionTitle {
-                        text: "Recent files";
+                        text: @tr("Recent files");
                         vertical-alignment: center;
                         horizontal-stretch: 1;
                     }
                     if root.filters.length > 2: ComboBox {
-                        accessible-label: "Show recent files for account";
+                        accessible-label: @tr("Show recent files for account");
                         width: 170px;
                         model: root.filters;
                         current-index <=> root.filter;
@@ -3877,7 +3877,7 @@ export component PopupPanel inherits Window {
                 HorizontalLayout {
                     spacing: 8px;
                     folder-btn := Button {
-                        text: "Open folder";
+                        text: @tr("Open folder");
                         icon: @image-url("../assets/ui/folder.svg");
                         colorize-icon: true;
                         horizontal-stretch: 1;
@@ -3891,7 +3891,7 @@ export component PopupPanel inherits Window {
                         }
                     }
                     online-btn := Button {
-                        text: "View online";
+                        text: @tr("View online");
                         icon: @image-url("../assets/ui/globe.svg");
                         colorize-icon: true;
                         horizontal-stretch: 1;
@@ -3908,26 +3908,26 @@ export component PopupPanel inherits Window {
             enabled: false; // shown by the pause button only
             Menu {
                 MenuItem {
-                    title: "Pause for 1 hour";
+                    title: @tr("Pause for 1 hour");
                     activated => {
                         root.pause(3600);
                     }
                 }
                 MenuItem {
-                    title: "Pause for 4 hours";
+                    title: @tr("Pause for 4 hours");
                     activated => {
                         root.pause(4 * 3600);
                     }
                 }
                 MenuItem {
-                    title: "Pause until tomorrow morning";
+                    title: @tr("Pause until tomorrow morning");
                     activated => {
                         root.pause(-1);
                     }
                 }
                 if root.any-paused: MenuSeparator { }
                 if root.any-paused: MenuItem {
-                    title: "Resume syncing";
+                    title: @tr("Resume syncing");
                     activated => {
                         root.pause(0);
                     }
@@ -3950,25 +3950,25 @@ export component PopupPanel inherits Window {
             Menu {
                 // one account: its pages; several: a menu per account
                 if root.accounts.length == 1: MenuItem {
-                    title: "OneDrive website";
+                    title: @tr("OneDrive website");
                     activated => {
                         root.view-online(0, 0);
                     }
                 }
                 if root.accounts.length == 1: MenuItem {
-                    title: "Recycle bin";
+                    title: @tr("Recycle bin");
                     activated => {
                         root.view-online(0, 1);
                     }
                 }
                 if root.accounts.length == 1 && root.accounts[0].personal: MenuItem {
-                    title: "Restore your OneDrive";
+                    title: @tr("Restore your OneDrive");
                     activated => {
                         root.view-online(0, 2);
                     }
                 }
                 if root.accounts.length > 1: Menu {
-                    title: "OneDrive website";
+                    title: @tr("OneDrive website");
                     for a[i] in root.accounts: MenuItem {
                         title: a.name;
                         activated => {
@@ -3977,7 +3977,7 @@ export component PopupPanel inherits Window {
                     }
                 }
                 if root.accounts.length > 1: Menu {
-                    title: "Recycle bin";
+                    title: @tr("Recycle bin");
                     for a[i] in root.accounts: MenuItem {
                         title: a.name;
                         activated => {
@@ -3986,7 +3986,7 @@ export component PopupPanel inherits Window {
                     }
                 }
                 if root.accounts.length > 1: Menu {
-                    title: "Restore your OneDrive";
+                    title: @tr("Restore your OneDrive");
                     for a[i] in root.accounts: MenuItem {
                         title: a.name;
                         enabled: a.personal;
@@ -4016,7 +4016,7 @@ export struct AccessRow {
 }
 
 export component FileWindow inherits Window {
-    title: (root.mode == 0 ? "Version history — " : root.mode == 2 ? "Who has access — " : "Share — ") + root.file-name;
+    title: (root.mode == 0 ? @tr("Version history — ") : root.mode == 2 ? @tr("Who has access — ") : @tr("Share — ")) + root.file-name;
     icon: @image-url("../assets/drivedeck.svg");
     preferred-width: 520px;
     preferred-height: root.mode == 0 ? 560px : 500px;
@@ -4076,7 +4076,7 @@ export component FileWindow inherits Window {
                 alignment: center;
                 spacing: 2px;
                 Text {
-                    text: root.mode == 0 ? "Version history" : root.mode == 2 ? "Who has access" : "Share with people";
+                    text: root.mode == 0 ? @tr("Version history") : root.mode == 2 ? @tr("Who has access") : @tr("Share with people");
                     font-size: 18px;
                     font-weight: 700;
                 }
@@ -4102,7 +4102,7 @@ export component FileWindow inherits Window {
                         height: 20px;
                     }
                     Text {
-                        text: "Getting the saved versions…";
+                        text: @tr("Getting the saved versions…");
                         vertical-alignment: center;
                     }
                 }
@@ -4151,7 +4151,7 @@ export component FileWindow inherits Window {
                                         overflow: elide;
                                     }
                                     if i == 0: Badge {
-                                        text: "Current";
+                                        text: @tr("Current");
                                         tone: Theme.ok;
                                     }
                                 }
@@ -4168,14 +4168,14 @@ export component FileWindow inherits Window {
                                 HorizontalLayout {
                                     spacing: 8px;
                                     Button {
-                                        text: "Open";
+                                        text: @tr("Open");
                                         enabled: !root.busy;
                                         clicked => {
                                             root.open-version(i);
                                         }
                                     }
                                     if i > 0: Button {
-                                        text: "Restore";
+                                        text: @tr("Restore");
                                         enabled: !root.busy;
                                         clicked => {
                                             root.confirm = i;
@@ -4189,7 +4189,7 @@ export component FileWindow inherits Window {
             }
         }
         if root.mode == 0: Hint {
-            text: "\"Open\" saves a copy of that version and opens it, without changing anything. \"Restore\" makes it the current version everywhere; the version it replaces is kept here too, so nothing is lost.";
+            text: @tr("\"Open\" saves a copy of that version and opens it, without changing anything. \"Restore\" makes it the current version everywhere; the version it replaces is kept here too, so nothing is lost.");
         }
 
         // ---- share with people
@@ -4198,18 +4198,18 @@ export component FileWindow inherits Window {
                 padding: 14px;
                 spacing: 10px;
                 Text {
-                    text: "Invite people by email";
+                    text: @tr("Invite people by email");
                     font-weight: 600;
                 }
                 LineEdit {
-                    accessible-label: "Email addresses to invite";
+                    accessible-label: @tr("Email addresses to invite");
                     text <=> root.emails;
                     placeholder-text: "name@example.com, another@example.com";
                     input-type: text;
                     enabled: !root.busy;
                 }
                 Hint {
-                    text: root.is-work ? "Separate addresses with commas. Each person gets an email and signs in to open it. People outside your organization can only be added if your IT team allows it." : "Separate addresses with commas. Each person gets an email and signs in with a Microsoft account to open it.";
+                    text: root.is-work ? @tr("Separate addresses with commas. Each person gets an email and signs in to open it. People outside your organization can only be added if your IT team allows it.") : @tr("Separate addresses with commas. Each person gets an email and signs in with a Microsoft account to open it.");
                 }
                 HorizontalLayout {
                     spacing: 10px;
@@ -4217,25 +4217,25 @@ export component FileWindow inherits Window {
                         horizontal-stretch: 1;
                         alignment: center;
                         Text {
-                            text: "Can edit";
+                            text: @tr("Can edit");
                             font-weight: 600;
                         }
                         Hint {
-                            text: root.can-edit ? "They can change it (and add or delete files in a folder)." : "They can view and download it, but not change it.";
+                            text: root.can-edit ? @tr("They can change it (and add or delete files in a folder).") : @tr("They can view and download it, but not change it.");
                         }
                     }
                     Switch {
                         checked <=> root.can-edit;
                         enabled: !root.busy;
-                        accessible-label: "Can edit";
+                        accessible-label: @tr("Can edit");
                     }
                 }
                 Text {
-                    text: "Message (optional)";
+                    text: @tr("Message (optional)");
                     font-weight: 600;
                 }
                 TextEdit {
-                    accessible-label: "Invitation message";
+                    accessible-label: @tr("Invitation message");
                     text <=> root.message;
                     height: 90px;
                     wrap: word-wrap;
@@ -4284,16 +4284,16 @@ export component FileWindow inherits Window {
                                 HorizontalLayout {
                                     spacing: 8px;
                                     if root.confirm-remove == i: Button {
-                                        text: "Keep";
+                                        text: @tr("Keep");
                                         clicked => {
                                             root.confirm-remove = -1;
                                         }
                                     }
                                     Button {
-                                        text: root.confirm-remove == i ? "Stop it" : "Stop sharing";
+                                        text: root.confirm-remove == i ? @tr("Stop it") : @tr("Stop sharing");
                                         primary: root.confirm-remove == i;
                                         enabled: !root.busy && !a.inherited;
-                                        accessible-label: "Stop sharing with " + a.who;
+                                        accessible-label: @tr("Stop sharing with ") + a.who;
                                         clicked => {
                                             if (root.confirm-remove == i) {
                                                 root.confirm-remove = -1;
@@ -4311,7 +4311,7 @@ export component FileWindow inherits Window {
             }
         }
         if root.mode == 2: Hint {
-            text: "Stopping a link makes it stop working for everyone who has it. Stopping a person's access takes the file away from their \"Shared\" list. Access that comes from a folder above can only be changed on that folder.";
+            text: @tr("Stopping a link makes it stop working for everyone who has it. Stopping a person's access takes the file away from their \"Shared\" list. Access that comes from a folder above can only be changed on that folder.");
         }
 
         // ---- status and buttons
@@ -4330,7 +4330,7 @@ export component FileWindow inherits Window {
                 color: root.msg-tone == 0 ? Theme.ok : root.msg-tone == 2 ? Theme.problem : Theme.subtle-text;
             }
             if root.mode == 1: Button {
-                text: "Send invitation";
+                text: @tr("Send invitation");
                 primary: true;
                 enabled: !root.busy && root.emails != "";
                 clicked => {
@@ -4338,7 +4338,7 @@ export component FileWindow inherits Window {
                 }
             }
             Button {
-                text: "Close";
+                text: @tr("Close");
                 clicked => {
                     root.close-window();
                 }
@@ -4362,24 +4362,24 @@ export component FileWindow inherits Window {
                 padding: 20px;
                 spacing: 10px;
                 Heading {
-                    text: "Restore this version?";
+                    text: @tr("Restore this version?");
                     font-size: 16px;
                 }
                 Text {
-                    text: "The version from " + root.versions[root.confirm].when + " becomes the current one, online and on this computer. The current version is kept in the history, so you can switch back.";
+                    text: @tr("The version from ") + root.versions[root.confirm].when + @tr(" becomes the current one, online and on this computer. The current version is kept in the history, so you can switch back.");
                     wrap: word-wrap;
                 }
                 HorizontalLayout {
                     spacing: 8px;
                     alignment: end;
                     Button {
-                        text: "Cancel";
+                        text: @tr("Cancel");
                         clicked => {
                             root.confirm = -1;
                         }
                     }
                     Button {
-                        text: "Restore";
+                        text: @tr("Restore");
                         primary: true;
                         clicked => {
                             root.restore-version(root.confirm);

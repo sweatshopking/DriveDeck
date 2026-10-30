@@ -1,8 +1,11 @@
 [Desktop Entry]
 Type=Application
 Name=DriveDeck for OneDrive
+Name[de]=DriveDeck für OneDrive
 GenericName=OneDrive Sync
+GenericName[de]=OneDrive-Synchronisierung
 Comment=The easiest, most complete way to use OneDrive on Linux
+Comment[de]=OneDrive unter Linux einfach und umfassend nutzen
 Exec=drivedeck
 Icon=drivedeck
 Terminal=false

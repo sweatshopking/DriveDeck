@@ -86,14 +86,14 @@ fn eta_words(eta: &str) -> Option<String> {
     let (h, m, s) = (parts.next()??, parts.next()??, parts.next()??);
     let secs = h * 3600 + m * 60 + s;
     if secs < 60 {
-        return Some("less than a minute left".into());
+        return Some(crate::tr!("less than a minute left").into());
     }
     // rounded up to whole minutes, so 59:59 is "1 h left", not "60 min left"
     let mins = secs.div_ceil(60);
     Some(match (mins / 60, mins % 60) {
-        (0, m) => format!("{m} min left"),
-        (h, 0) => format!("{h} h left"),
-        (h, m) => format!("{h} h {m} min left"),
+        (0, m) => crate::tr!("1 min left" | "{n} min left" % m),
+        (h, 0) => crate::tr!("1 h left" | "{n} h left" % h),
+        (h, m) => crate::tr!("1 h {0} min left" | "{n} h {0} min left" % h, m),
     })
 }
 
@@ -147,37 +147,29 @@ fn apply(ui: &PopupPanel, data: Data) {
             .iter()
             .any(|s| matches!(s.phase, Phase::Syncing | Phase::Resyncing));
         let (summary, tone) = if data.infos.is_empty() {
-            ("No accounts yet".to_string(), 3)
+            (crate::tr!("No accounts yet").to_string(), 3)
         } else if problems == 1 && !many {
             (accounts_status(&data, 0), 2)
         } else if problems > 0 {
             (
-                if problems == 1 {
-                    "1 account needs attention".to_string()
-                } else {
-                    format!("{problems} accounts need attention")
-                },
+                crate::tr!("1 account needs attention" | "{n} accounts need attention" % problems),
                 2,
             )
         } else if transfers_now > 0 {
             (
-                if transfers_now == 1 {
-                    "Syncing 1 large file".to_string()
-                } else {
-                    format!("Syncing {transfers_now} large files")
-                },
+                crate::tr!("Syncing 1 large file" | "Syncing {n} large files" % transfers_now),
                 1,
             )
         } else if syncing {
-            ("Syncing…".to_string(), 1)
+            (crate::tr!("Syncing…").to_string(), 1)
         } else if data
             .statuses
             .iter()
             .all(|s| matches!(s.phase, Phase::Paused | Phase::Off | Phase::Stopped))
         {
-            ("Not syncing right now".to_string(), 3)
+            (crate::tr!("Not syncing right now").to_string(), 3)
         } else {
-            ("Up to date".to_string(), 0)
+            (crate::tr!("Up to date").to_string(), 0)
         };
         ui.set_summary(ss(summary));
         ui.set_summary_tone(tone);
@@ -208,7 +200,7 @@ fn apply(ui: &PopupPanel, data: Data) {
         );
 
         // the account picker for recent files: "All accounts", then each one
-        let mut filters = vec![ss("All accounts")];
+        let mut filters = vec![ss(crate::tr!("All accounts"))];
         filters.extend(data.infos.iter().map(|i| ss(&i.name)));
         let old_filters: Vec<SharedString> = ui.get_filters().iter().collect();
         if old_filters != filters {
@@ -264,7 +256,11 @@ fn apply(ui: &PopupPanel, data: Data) {
             for t in list {
                 let mut detail = vec![format!(
                     "{} · {}%",
-                    if t.up { "Uploading" } else { "Downloading" },
+                    if t.up {
+                        crate::tr!("Uploading")
+                    } else {
+                        crate::tr!("Downloading")
+                    },
                     t.percent
                 )];
                 if let Some(e) = t.eta.as_deref().and_then(eta_words) {
@@ -314,15 +310,15 @@ fn apply(ui: &PopupPanel, data: Data) {
                 let folder = r.kind == "+";
                 let deleted = r.kind == "✕";
                 let what = match r.kind {
-                    "↑" => "Uploaded",
-                    "↓" => "Downloaded",
-                    "✕" => "Deleted",
-                    _ => "New folder",
+                    "↑" => crate::tr!("Uploaded"),
+                    "↓" => crate::tr!("Downloaded"),
+                    "✕" => crate::tr!("Deleted"),
+                    _ => crate::tr!("New folder"),
                 };
-                let mut detail = vec![format!("{what} {}", core::short_time(r.when))];
+                let mut detail = vec![crate::tr!("{} {}", what, core::short_time(r.when))];
                 let dir = folder_of(&r.path);
                 if !dir.is_empty() {
-                    detail.push(format!("in {}", core::shown_path(dir)));
+                    detail.push(crate::tr!("in {}", core::shown_path(dir)));
                 }
                 if many && only.is_none() {
                     detail.push(data.infos[ai].name.clone());
@@ -700,7 +696,7 @@ fn focus_settings_with_kwin() {
 }})();
 "#,
         app = core::APP_ID,
-        title = crate::ui::WINDOW_TITLE,
+        title = crate::ui::window_title(),
     );
     let file = core::runtime_dir().join(format!("{NAME}.js"));
     if std::fs::write(&file, script).is_ok() {
@@ -868,6 +864,7 @@ pub fn run(at: Option<(i32, i32)>) {
             std::process::exit(1);
         }
     };
+    crate::i18n::select_bundled();
     if let Err(e) = slint::set_xdg_app_id(core::APP_ID) {
         eprintln!("couldn't set the application id: {e}");
     }

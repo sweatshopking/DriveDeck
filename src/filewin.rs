@@ -210,6 +210,7 @@ pub fn run(mode: Mode, path: &Path) {
             return;
         }
     };
+    crate::i18n::select_bundled();
     let _ = slint::set_xdg_app_id(core::APP_ID);
     {
         let (tx, rx) = std::sync::mpsc::channel();
@@ -267,12 +268,16 @@ thread_local! {
 }
 
 fn access_detail(a: &graph::Access) -> String {
-    let mut d = String::from(if a.can_edit { "Can edit" } else { "Can view" });
+    let mut d = String::from(if a.can_edit {
+        crate::tr!("Can edit")
+    } else {
+        crate::tr!("Can view")
+    });
     if let Some(e) = &a.expires {
-        d.push_str(&format!("  ·  until {}", when(e)));
+        d.push_str(&crate::tr!("  ·  until {}", when(e)));
     }
     if a.inherited {
-        d.push_str("  ·  from a folder above");
+        d.push_str(crate::tr!("  ·  from a folder above"));
     }
     d
 }
@@ -281,7 +286,7 @@ fn access_detail(a: &graph::Access) -> String {
 fn load_access(weak: &slint::Weak<FileWindow>, acc: &AccountInfo, rel: &str) {
     if let Some(ui) = weak.upgrade() {
         ui.set_busy(true);
-        say(&ui, 3, "Checking who has access…");
+        say(&ui, 3, crate::tr!("Checking who has access…"));
     }
     let (acc, rel) = (acc.clone(), rel.to_string());
     bg(
@@ -304,7 +309,7 @@ fn load_access(weak: &slint::Weak<FileWindow>, acc: &AccountInfo, rel: &str) {
                         .collect();
                     ui.set_access_rows(ModelRc::new(VecModel::from(rows)));
                     if list.is_empty() {
-                        say(ui, 3, "It isn't shared: only you can open it.");
+                        say(ui, 3, crate::tr!("It isn't shared: only you can open it."));
                     } else {
                         say(ui, 3, "");
                     }
@@ -384,7 +389,9 @@ fn load_versions(weak: &slint::Weak<FileWindow>, acc: &AccountInfo, rel: &str) {
                         say(
                             ui,
                             3,
-                            "There's only the current version so far. OneDrive keeps older ones as the file changes.",
+                            crate::tr!(
+                                "There's only the current version so far. OneDrive keeps older ones as the file changes."
+                            ),
                         );
                     }
                     VERSIONS.with(|l| *l.borrow_mut() = vs);
@@ -427,7 +434,7 @@ fn versions(
             };
             if let Some(ui) = weak.upgrade() {
                 ui.set_busy(true);
-                say(&ui, 3, "Downloading that version…");
+                say(&ui, 3, crate::tr!("Downloading that version…"));
             }
             let (acc, rel) = (acc.clone(), rel.clone());
             bg(
@@ -450,7 +457,7 @@ fn versions(
                     ui.set_busy(false);
                     match r {
                         Ok(dest) => {
-                            say(ui, 3, format!("Opened a copy: {}", dest.display()));
+                            say(ui, 3, crate::tr!("Opened a copy: {}", dest.display()));
                             core::open_path(&dest);
                         }
                         Err(e) => say(ui, 2, e),
@@ -465,7 +472,7 @@ fn versions(
             let Some(v) = version_at(i) else { return };
             if let Some(ui) = weak.upgrade() {
                 ui.set_busy(true);
-                say(&ui, 3, "Restoring…");
+                say(&ui, 3, crate::tr!("Restoring…"));
             }
             let (acc, rel, weak2) = (acc.clone(), rel.clone(), weak.clone());
             let (acc2, rel2) = (acc.clone(), rel.clone());
@@ -479,7 +486,13 @@ fn versions(
                     ui.set_busy(false);
                     match r {
                         Ok(()) => {
-                            say(ui, 0, "Restored. This computer gets it at the next sync (\"Sync now\" in the tray icon's menu does it right away).");
+                            say(
+                                ui,
+                                0,
+                                crate::tr!(
+                                    "Restored. This computer gets it at the next sync (\"Sync now\" in the tray icon's menu does it right away)."
+                                ),
+                            );
                             load_versions(&weak2, &acc2, &rel2);
                         }
                         Err(e) => say(ui, 2, e),
@@ -500,7 +513,7 @@ fn share(ui: &FileWindow, weak: &slint::Weak<FileWindow>, acc: AccountInfo, rel:
         };
         let (edit, message) = (ui.get_can_edit(), ui.get_message().to_string());
         ui.set_busy(true);
-        say(&ui, 3, "Sending…");
+        say(&ui, 3, crate::tr!("Sending…"));
         let (acc, rel) = (acc.clone(), rel.clone());
         let count = emails.len();
         bg(

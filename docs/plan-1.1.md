@@ -191,6 +191,15 @@ unchanged, and all checks pass.
 
 **Done notes:**
 
+Stage 1 only: added bundled Slint translations, locale selection, a shared PO parser and generated
+Rust lookup, the `tr!` macro, catalog extraction, and coverage/placeholder tests. Added a German
+catalog for the annotated Slint UI and the Rust status, popup, tray, and selected settings and
+file-window messages; added German desktop and service-menu labels. Changed `build.rs`,
+`build_support/po.rs`, `src/i18n.rs`, the annotated UI and Rust strings, `po/`, the translation
+scripts, packaging desktop files, `README.md`, and this plan. German visual checks for clipping
+were not run. `cargo fmt --check`, Clippy, and all 125 tests pass. The other requested languages
+and remaining Rust user-facing messages are deferred until review.
+
 ---
 
 ## Claude's tasks (Copilot: don't start these)

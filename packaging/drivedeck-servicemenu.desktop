@@ -1,37 +1,46 @@
 [Desktop Entry]
 Type=Service
+Comment=OneDrive actions for files
+Comment[de]=OneDrive-Aktionen für Dateien
 MimeType=application/octet-stream;inode/directory;
 Actions=sharePeople;manageAccess;copyLink;copyEditLink;versions;viewOnline;
 X-KDE-Submenu=OneDrive
+X-KDE-Submenu[de]=OneDrive
 X-KDE-Priority=TopLevel
 Icon=drivedeck
 
 [Desktop Action sharePeople]
 Name=Share with people…
+Name[de]=Für Personen freigeben…
 Icon=document-share
 Exec=drivedeck --share-people %f
 
 [Desktop Action manageAccess]
 Name=Who has access…
+Name[de]=Wer hat Zugriff…
 Icon=user-group-properties
 Exec=drivedeck --manage-access %f
 
 [Desktop Action copyLink]
 Name=Copy view-only link
+Name[de]=Link zum Ansehen kopieren
 Icon=edit-link
 Exec=drivedeck --share-link %f
 
 [Desktop Action copyEditLink]
 Name=Copy editing link
+Name[de]=Link zum Bearbeiten kopieren
 Icon=document-edit
 Exec=drivedeck --share-edit-link %f
 
 [Desktop Action versions]
 Name=Version history
+Name[de]=Versionsverlauf
 Icon=view-history
 Exec=drivedeck --versions %f
 
 [Desktop Action viewOnline]
 Name=View on the OneDrive website
+Name[de]=Auf der OneDrive-Website ansehen
 Icon=internet-web-browser
 Exec=drivedeck --view-online %f

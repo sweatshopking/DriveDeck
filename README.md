@@ -4,6 +4,9 @@
 
 **Entirely unofficial — not endorsed by Microsoft at all.**
 
+**Languages:** German translations are machine-drafted; corrections are welcome. See
+[po/README.md](po/README.md).
+
 ### [⬇ Download the latest version](https://github.com/sweatshopking/DriveDeck/releases/latest)
 
 ## Why this app

@@ -2731,41 +2731,41 @@ impl Status {
 
     pub fn text(&self, prefs: &AccountPrefs) -> String {
         match self.phase {
-            Phase::Syncing if self.unit.starting => "Starting…".into(),
-            Phase::Syncing => "Syncing…".into(),
-            Phase::UpToDate if self.unsynced_changes() > 0 => match self.unsynced_changes() {
-                1 => "1 file not synced".into(),
-                n => format!("{n} files not synced"),
-            },
+            Phase::Syncing if self.unit.starting => crate::tr!("Starting…").into(),
+            Phase::Syncing => crate::tr!("Syncing…").into(),
+            Phase::UpToDate if self.unsynced_changes() > 0 => {
+                let n = self.unsynced_changes();
+                crate::tr!("1 file not synced" | "{n} files not synced" % n)
+            }
             Phase::UpToDate => match self.last_complete {
-                Some(t) => format!("Up to date ({})", short_time(t)),
-                None => "Up to date".into(),
+                Some(t) => crate::tr!("Up to date ({})", short_time(t)),
+                None => crate::tr!("Up to date").into(),
             },
-            Phase::Error => "Error".into(),
-            Phase::Stopped => "Stopped".into(),
-            Phase::Off => "Background sync off".into(),
+            Phase::Error => crate::tr!("Error").into(),
+            Phase::Stopped => crate::tr!("Stopped").into(),
+            Phase::Off => crate::tr!("Background sync off").into(),
             Phase::Paused if prefs.paused() => {
                 match Local.timestamp_opt(prefs.pause_until, 0).single() {
-                    Some(t) => format!("Paused until {}", short_time(t)),
-                    None => "Paused".into(),
+                    Some(t) => crate::tr!("Paused until {}", short_time(t)),
+                    None => crate::tr!("Paused").into(),
                 }
             }
             Phase::Paused => match cached_device_hold() {
                 Some(h) if prefs.schedule.allows(Local::now().time()) => {
-                    format!("Paused: {}", h.words())
+                    crate::tr!("Paused: {}", h.words())
                 }
-                _ => format!("Paused by schedule until {}", prefs.schedule.from),
+                _ => crate::tr!("Paused by schedule until {}", prefs.schedule.from),
             },
             // a full resync, or the deletions the user approved after a big delete
-            Phase::Resyncing => "Applying changes…".into(),
-            Phase::SignedOut => "Signed out".into(),
-            Phase::NeedsResync => "Needs a full resync".into(),
-            Phase::BigDelete => "Stopped to protect your files".into(),
+            Phase::Resyncing => crate::tr!("Applying changes…").into(),
+            Phase::SignedOut => crate::tr!("Signed out").into(),
+            Phase::NeedsResync => crate::tr!("Needs a full resync").into(),
+            Phase::BigDelete => crate::tr!("Stopped to protect your files").into(),
             Phase::Stalled => match self.stalled_since {
-                Some(t) => format!("Not responding since {}", short_time(t)),
-                None => "Not responding".into(),
+                Some(t) => crate::tr!("Not responding since {}", short_time(t)),
+                None => crate::tr!("Not responding").into(),
             },
-            Phase::Unknown => "Waiting for first sync".into(),
+            Phase::Unknown => crate::tr!("Waiting for first sync").into(),
         }
     }
 }

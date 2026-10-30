@@ -349,9 +349,9 @@ impl ksni::Tray for Tray {
             .map(|a| format!("{}: {}", a.info.name, a.status().text(&a.prefs)))
             .collect();
         let description = if let Some(p) = &self.client_problem {
-            format!("{p}. Open Settings to fix it.")
+            crate::tr!("{}. Open Settings to fix it.", p)
         } else if lines.is_empty() {
-            "No accounts yet — open Settings to add one".into()
+            crate::tr!("No accounts yet — open Settings to add one").into()
         } else {
             lines.join("\n")
         };
@@ -366,7 +366,7 @@ impl ksni::Tray for Tray {
         if let Some(v) = &self.update {
             m.push(
                 StandardItem {
-                    label: format!("Version {v} is out — get it…"),
+                    label: crate::tr!("Version {} is out — get it…", v),
                     icon_name: "system-software-update".into(),
                     activate: Box::new(|_: &mut Self| {
                         core::run_detached("xdg-open", &[crate::update::RELEASES_URL])
@@ -388,7 +388,7 @@ impl ksni::Tray for Tray {
             );
             m.push(
                 StandardItem {
-                    label: "How to fix this…".into(),
+                    label: crate::tr!("How to fix this…").into(),
                     icon_name: "dialog-warning".into(),
                     activate: Box::new(|_: &mut Self| open_settings(None)),
                     ..Default::default()
@@ -401,7 +401,7 @@ impl ksni::Tray for Tray {
         if self.accs.is_empty() {
             m.push(
                 StandardItem {
-                    label: "No accounts yet".into(),
+                    label: crate::tr!("No accounts yet").into(),
                     enabled: false,
                     ..Default::default()
                 }
@@ -411,7 +411,7 @@ impl ksni::Tray for Tray {
         m.push(MenuItem::Separator);
         m.push(
             StandardItem {
-                label: "Show activity…".into(),
+                label: crate::tr!("Show activity…").into(),
                 icon_name: "view-list-details".into(),
                 activate: Box::new(|_: &mut Self| toggle_popup(None)),
                 ..Default::default()
@@ -428,7 +428,7 @@ impl ksni::Tray for Tray {
             let which = syncable.clone();
             m.push(
                 StandardItem {
-                    label: "Sync now".into(),
+                    label: crate::tr!("Sync now").into(),
                     icon_name: "view-refresh".into(),
                     enabled: !which.is_empty(),
                     activate: Box::new(move |t: &mut Self| {
@@ -455,7 +455,7 @@ impl ksni::Tray for Tray {
         if !paused.is_empty() {
             m.push(
                 StandardItem {
-                    label: "Resume syncing".into(),
+                    label: crate::tr!("Resume syncing").into(),
                     icon_name: "media-playback-start".into(),
                     activate: Box::new(move |t: &mut Self| {
                         for &i in &paused {
@@ -468,9 +468,9 @@ impl ksni::Tray for Tray {
             );
         } else if !pausable.is_empty() {
             let submenu = [
-                ("For 1 hour", 3600),
-                ("For 4 hours", 4 * 3600),
-                ("Until tomorrow morning", -1),
+                (crate::tr!("For 1 hour"), 3600),
+                (crate::tr!("For 4 hours"), 4 * 3600),
+                (crate::tr!("Until tomorrow morning"), -1),
             ]
             .into_iter()
             .map(|(label, secs)| {
@@ -489,7 +489,7 @@ impl ksni::Tray for Tray {
             .collect();
             m.push(
                 SubMenu {
-                    label: "Pause syncing".into(),
+                    label: crate::tr!("Pause syncing").into(),
                     icon_name: "media-playback-pause".into(),
                     submenu,
                     ..Default::default()
@@ -501,7 +501,7 @@ impl ksni::Tray for Tray {
             0 => {}
             1 => m.push(
                 StandardItem {
-                    label: "Open folder".into(),
+                    label: crate::tr!("Open folder").into(),
                     icon_name: "folder-open".into(),
                     activate: Box::new(|t: &mut Self| {
                         if let Some(a) = t.accs.first() {
@@ -529,7 +529,7 @@ impl ksni::Tray for Tray {
                     .collect();
                 m.push(
                     SubMenu {
-                        label: "Open folder".into(),
+                        label: crate::tr!("Open folder").into(),
                         icon_name: "folder-open".into(),
                         submenu,
                         ..Default::default()
@@ -541,7 +541,7 @@ impl ksni::Tray for Tray {
         m.push(MenuItem::Separator);
         m.push(
             StandardItem {
-                label: "Settings and accounts…".into(),
+                label: crate::tr!("Settings and accounts…").into(),
                 icon_name: "configure".into(),
                 activate: Box::new(|_: &mut Self| open_settings(None)),
                 ..Default::default()
@@ -551,9 +551,9 @@ impl ksni::Tray for Tray {
         m.push(
             StandardItem {
                 label: if self.stop_on_quit {
-                    "Quit and stop syncing".into()
+                    crate::tr!("Quit and stop syncing").into()
                 } else {
-                    "Quit tray icon".into()
+                    crate::tr!("Quit tray icon").into()
                 },
                 icon_name: "application-exit".into(),
                 activate: Box::new(|_| {

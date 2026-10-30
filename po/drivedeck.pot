@@ -1,0 +1,1483 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2026-10-30 04:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ui/app.slint:477
+msgid ""
+"This app needs one more free program, the OneDrive Client for Linux (version "
+"2.5 or newer). It does the actual syncing in the background; this app is the "
+"window and tray icon for it."
+msgstr ""
+
+#: ui/app.slint:488
+msgid "Updating…"
+msgstr ""
+
+#: ui/app.slint:488
+msgid "Installing…"
+msgstr ""
+
+#: ui/app.slint:488
+msgid "Update it for me"
+msgstr ""
+
+#: ui/app.slint:488
+msgid "Install it for me"
+msgstr ""
+
+#: ui/app.slint:496
+msgid "Open installation instructions"
+msgstr ""
+
+#: ui/app.slint:502
+msgid "Check again"
+msgstr ""
+
+#: ui/app.slint:509
+msgid "Not now"
+msgstr ""
+
+#: ui/app.slint:537
+msgid "Some changes on this computer aren't being noticed"
+msgstr ""
+
+#: ui/app.slint:550
+msgid "Raising it…"
+msgstr ""
+
+#: ui/app.slint:550
+msgid "Raise the limit"
+msgstr ""
+
+#: ui/app.slint:582
+msgid "Syncing is also set up outside this app"
+msgstr ""
+
+#: ui/app.slint:595
+msgid "Turning it off…"
+msgstr ""
+
+#: ui/app.slint:595
+msgid "Turn it off"
+msgstr ""
+
+#: ui/app.slint:602
+msgid "Leave it as it is"
+msgstr ""
+
+#: ui/app.slint:621
+msgid "DriveDeck for OneDrive"
+msgstr ""
+
+#: ui/app.slint:920 ui/app.slint:3750
+msgid "Accounts"
+msgstr ""
+
+#: ui/app.slint:995
+msgid "Add account"
+msgstr ""
+
+#: ui/app.slint:1007 ui/app.slint:2491
+msgid "App settings"
+msgstr ""
+
+#: ui/app.slint:1046
+msgid "OK"
+msgstr ""
+
+#: ui/app.slint:1188
+msgid "This account isn't signed in"
+msgstr ""
+
+#: ui/app.slint:1191
+msgid ""
+"Sign in with your Microsoft account. Your browser will open so you can log "
+"in, then you'll come back here automatically."
+msgstr ""
+
+#: ui/app.slint:1196
+msgid "Sign in…"
+msgstr ""
+
+#: ui/app.slint:1213 ui/app.slint:2388
+msgid "Name"
+msgstr ""
+
+#: ui/app.slint:1218 ui/app.slint:2393
+msgid "Account name"
+msgstr ""
+
+#: ui/app.slint:1225
+msgid "Rename"
+msgstr ""
+
+#: ui/app.slint:1234
+msgid "Type"
+msgstr ""
+
+#: ui/app.slint:1246
+msgid "Folder"
+msgstr ""
+
+#: ui/app.slint:1257 ui/app.slint:4171
+msgid "Open"
+msgstr ""
+
+#: ui/app.slint:1263
+msgid "Move…"
+msgstr ""
+
+#: ui/app.slint:1270
+msgid "Online ▾"
+msgstr ""
+
+#: ui/app.slint:1280 ui/app.slint:3953 ui/app.slint:3971
+msgid "OneDrive website"
+msgstr ""
+
+#: ui/app.slint:1286 ui/app.slint:3959 ui/app.slint:3980
+msgid "Recycle bin"
+msgstr ""
+
+#: ui/app.slint:1292 ui/app.slint:3965 ui/app.slint:3989
+msgid "Restore your OneDrive"
+msgstr ""
+
+#: ui/app.slint:1303
+msgid "Last sync"
+msgstr ""
+
+#: ui/app.slint:1316
+msgid "Storage"
+msgstr ""
+
+#: ui/app.slint:1351
+msgid "Delete them online too…"
+msgstr ""
+
+#: ui/app.slint:1358
+msgid "Download them again…"
+msgstr ""
+
+#: ui/app.slint:1366
+msgid ""
+"Downloading them again needs a full resync, which is turned off for this "
+"account in Options."
+msgstr ""
+
+#: ui/app.slint:1380 ui/app.slint:1387
+msgid "Background sync"
+msgstr ""
+
+#: ui/app.slint:1383
+msgid "Keeps this folder in sync all the time, including after you restart."
+msgstr ""
+
+#: ui/app.slint:1399 ui/app.slint:3694
+msgid "Sync now"
+msgstr ""
+
+#: ui/app.slint:1406
+msgid "Sign out"
+msgstr ""
+
+#: ui/app.slint:1423
+msgid "Files changed in two places"
+msgstr ""
+
+#: ui/app.slint:1434
+msgid ""
+"These files were changed here and online before they could sync, so both "
+"versions were kept. Compare them, then choose which to keep."
+msgstr ""
+
+#: ui/app.slint:1481
+msgid "Compare"
+msgstr ""
+
+#: ui/app.slint:1487
+msgid "Keep… ▾"
+msgstr ""
+
+#: ui/app.slint:1500
+msgid "Keep this computer's version"
+msgstr ""
+
+#: ui/app.slint:1506
+msgid "Keep the OneDrive version"
+msgstr ""
+
+#: ui/app.slint:1512
+msgid "Keep both"
+msgstr ""
+
+#: ui/app.slint:1529
+msgid "Back up this computer's folders"
+msgstr ""
+
+#: ui/app.slint:1532
+msgid ""
+"Keep your important folders in OneDrive, so they're backed up and on your "
+"other devices. They stay where your apps expect them."
+msgstr ""
+
+#: ui/app.slint:1568
+msgid "✓ Backed up"
+msgstr ""
+
+#: ui/app.slint:1583
+msgid "Back up…"
+msgstr ""
+
+#: ui/app.slint:1590
+msgid "Stop…"
+msgstr ""
+
+#: ui/app.slint:1605
+msgid "Remove account from this computer…"
+msgstr ""
+
+#: ui/app.slint:1629
+msgid "Sync everything"
+msgstr ""
+
+#: ui/app.slint:1636
+msgid ""
+"Every folder in this account is kept on this computer. Untick to choose "
+"specific folders."
+msgstr ""
+
+#: ui/app.slint:1636
+msgid ""
+"Only the ticked folders (and everything inside them) are kept on this "
+"computer."
+msgstr ""
+
+#: ui/app.slint:1639
+msgid "Also sync files that sit at the top level (outside any folder)"
+msgstr ""
+
+#: ui/app.slint:1657
+msgid "Loading subfolders for "
+msgstr ""
+
+#: ui/app.slint:1657
+msgid "Collapse "
+msgstr ""
+
+#: ui/app.slint:1657
+msgid "Expand "
+msgstr ""
+
+#: ui/app.slint:1732
+msgid "Reload"
+msgstr ""
+
+#: ui/app.slint:1738
+msgid "Apply changes…"
+msgstr ""
+
+#: ui/app.slint:1761
+msgid "When to sync"
+msgstr ""
+
+#: ui/app.slint:1766
+msgid "Full check every"
+msgstr ""
+
+#: ui/app.slint:1771
+msgid "How often to check for changes"
+msgstr ""
+
+#: ui/app.slint:1780
+msgid ""
+"Changes on this computer are sent right away, and personal accounts also get "
+"online changes instantly. This sets how often a full check runs as well."
+msgstr ""
+
+#: ui/app.slint:1785
+msgid "Only sync between"
+msgstr ""
+
+#: ui/app.slint:1789
+msgid "Schedule start time"
+msgstr ""
+
+#: ui/app.slint:1796
+msgid "and"
+msgstr ""
+
+#: ui/app.slint:1800
+msgid "Schedule end time"
+msgstr ""
+
+#: ui/app.slint:1811
+msgid ""
+"Use 24-hour times. The window can cross midnight (for example 23:00 to 07:00 "
+"for overnight only). \"Sync now\" still works outside it for an hour. Needs "
+"the tray icon running."
+msgstr ""
+
+#: ui/app.slint:1816
+msgid "Speed limit"
+msgstr ""
+
+#: ui/app.slint:1821
+msgid "Sync speed limit"
+msgstr ""
+
+#: ui/app.slint:1830
+msgid "Applies to each file being transferred."
+msgstr ""
+
+#: ui/app.slint:1833
+msgid "Connect over IPv4 only"
+msgstr ""
+
+#: ui/app.slint:1837
+msgid ""
+"Can fix syncing that's slow to start or keeps timing out on some networks."
+msgstr ""
+
+#: ui/app.slint:1847
+msgid "Direction"
+msgstr ""
+
+#: ui/app.slint:1850
+msgid "Sync direction"
+msgstr ""
+
+#: ui/app.slint:1862
+msgid ""
+"Keeps this computer a copy of what's online. Changes you make here aren't "
+"sent to OneDrive."
+msgstr ""
+
+#: ui/app.slint:1862
+msgid ""
+"Sends what you change here to OneDrive, but doesn't download changes made "
+"online. Good for backing up this computer."
+msgstr ""
+
+#: ui/app.slint:1862
+msgid "Changes made here go to OneDrive, and changes made online come here."
+msgstr ""
+
+#: ui/app.slint:1865
+msgid "Also delete files here that aren't online"
+msgstr ""
+
+#: ui/app.slint:1869
+msgid ""
+"This deletes files you put in this folder yourself, since they aren't "
+"online. You'll see exactly what would be deleted before anything happens."
+msgstr ""
+
+#: ui/app.slint:1875
+msgid "Keep files online when I delete them here"
+msgstr ""
+
+#: ui/app.slint:1879
+msgid ""
+"Changing the direction is checked first with a dry run, so you can see what "
+"would happen."
+msgstr ""
+
+#: ui/app.slint:1889
+msgid "Files"
+msgstr ""
+
+#: ui/app.slint:1892
+msgid ""
+"When a file is deleted online, move it to this computer's Trash instead of "
+"deleting it"
+msgstr ""
+
+#: ui/app.slint:1896
+msgid "Show desktop notifications for synced files"
+msgstr ""
+
+#: ui/app.slint:1900
+msgid "Don't sync hidden files and folders (names starting with a dot) *"
+msgstr ""
+
+#: ui/app.slint:1906
+msgid "Never sync files named *"
+msgstr ""
+
+#: ui/app.slint:1910
+msgid "File name patterns to skip"
+msgstr ""
+
+#: ui/app.slint:1916
+msgid "Separate patterns with | — for example  *.tmp|~*|Thumbs.db"
+msgstr ""
+
+#: ui/app.slint:1921
+msgid "Never sync folders named *"
+msgstr ""
+
+#: ui/app.slint:1925
+msgid "Folder names or paths to skip"
+msgstr ""
+
+#: ui/app.slint:1930
+msgid "Add developer folders…"
+msgstr ""
+
+#: ui/app.slint:1937
+msgid ""
+"A name skips every folder called that; a path like Projects/Old skips that "
+"folder."
+msgstr ""
+
+#: ui/app.slint:1940
+msgid "Don't sync symbolic links *"
+msgstr ""
+
+#: ui/app.slint:1944
+msgid "Skip any folder that holds a file named .nosync *"
+msgstr ""
+
+#: ui/app.slint:1948
+msgid "Sync shared folders I've added to My files *"
+msgstr ""
+
+#: ui/app.slint:1959
+msgid "Safety"
+msgstr ""
+
+#: ui/app.slint:1962
+msgid "Allow full resyncs for this account"
+msgstr ""
+
+#: ui/app.slint:1966
+msgid ""
+"Changing which folders sync, or the settings marked *, makes the sync engine "
+"rebuild its view of everything (a full resync). You always get a preview of "
+"what would be downloaded, uploaded or deleted before anything happens. Turn "
+"this off to lock those settings."
+msgstr ""
+
+#: ui/app.slint:1971
+msgid "Stop and ask when more than"
+msgstr ""
+
+#: ui/app.slint:1975
+msgid "Number of deleted items that stops syncing"
+msgstr ""
+
+#: ui/app.slint:1982
+msgid "items are deleted at once"
+msgstr ""
+
+#: ui/app.slint:1990
+msgid ""
+"Protects against deleting a lot online by accident, for example when a "
+"folder is moved out of OneDrive or a drive goes missing. Items inside "
+"deleted folders count too. The client's default is 1000."
+msgstr ""
+
+#: ui/app.slint:2005
+msgid "Advanced"
+msgstr ""
+
+#: ui/app.slint:2008
+msgid "Fine-tune the sync engine. Most people never need these."
+msgstr ""
+
+#: ui/app.slint:2012
+msgid "Shown"
+msgstr ""
+
+#: ui/app.slint:2012
+msgid "Hidden"
+msgstr ""
+
+#: ui/app.slint:2013
+msgid "Show advanced settings"
+msgstr ""
+
+#: ui/app.slint:2022
+msgid "Search advanced settings"
+msgstr ""
+
+#: ui/app.slint:2090
+msgid "⚠ Can lose data"
+msgstr ""
+
+#: ui/app.slint:2094
+msgid "Full resync"
+msgstr ""
+
+#: ui/app.slint:2098
+msgid "Sign in again"
+msgstr ""
+
+#: ui/app.slint:2107
+msgid "Reset "
+msgstr ""
+
+#: ui/app.slint:2107
+msgid " to the default"
+msgstr ""
+
+#: ui/app.slint:2112
+msgid "↺ Reset to default"
+msgstr ""
+
+#: ui/app.slint:2170
+msgid "No setting matches \""
+msgstr ""
+
+#: ui/app.slint:2177
+msgid "Show all settings in use"
+msgstr ""
+
+#: ui/app.slint:2183
+msgid "Open log folder"
+msgstr ""
+
+#: ui/app.slint:2203
+msgid "Save"
+msgstr ""
+
+#: ui/app.slint:2227
+msgid "Recent uploads, downloads and deletions from the sync log."
+msgstr ""
+
+#: ui/app.slint:2232
+msgid "Show in folder"
+msgstr ""
+
+#: ui/app.slint:2239
+msgid "Refresh"
+msgstr ""
+
+#: ui/app.slint:2256
+msgid "Welcome — let's add your OneDrive"
+msgstr ""
+
+#: ui/app.slint:2256
+msgid "Add an account"
+msgstr ""
+
+#: ui/app.slint:2261
+msgid "What would you like to sync?"
+msgstr ""
+
+#: ui/app.slint:2265 ui/app.slint:3581 ui/app.slint:3670
+msgid "OneDrive"
+msgstr ""
+
+#: ui/app.slint:2273
+msgid "SharePoint library"
+msgstr ""
+
+#: ui/app.slint:2288
+msgid "1. Find the library"
+msgstr ""
+
+#: ui/app.slint:2293
+msgid "Using account"
+msgstr ""
+
+#: ui/app.slint:2298
+msgid "Work or school account for this library"
+msgstr ""
+
+#: ui/app.slint:2308
+msgid "Site"
+msgstr ""
+
+#: ui/app.slint:2313
+msgid "SharePoint site address or name"
+msgstr ""
+
+#: ui/app.slint:2322
+msgid "Find"
+msgstr ""
+
+#: ui/app.slint:2330
+msgid ""
+"Copy the address from your browser while viewing the SharePoint site or "
+"library. Leave it empty to list the sites you belong to — only sites this "
+"account can already open appear."
+msgstr ""
+
+#: ui/app.slint:2383
+msgid "2. Where to keep it"
+msgstr ""
+
+#: ui/app.slint:2383
+msgid "Name and folder"
+msgstr ""
+
+#: ui/app.slint:2401
+msgid "Local folder"
+msgstr ""
+
+#: ui/app.slint:2406
+msgid "Local folder for synced files"
+msgstr ""
+
+#: ui/app.slint:2410
+msgid "Browse…"
+msgstr ""
+
+#: ui/app.slint:2417
+msgid ""
+"Best to pick an empty or new folder. Anything already in it will be uploaded."
+msgstr ""
+
+#: ui/app.slint:2422 ui/app.slint:2427
+msgid "Microsoft cloud"
+msgstr ""
+
+#: ui/app.slint:2438
+msgid "Tenant"
+msgstr ""
+
+#: ui/app.slint:2443
+msgid "Organization tenant"
+msgstr ""
+
+#: ui/app.slint:2449
+msgid ""
+"Only for government and national cloud accounts. Your IT team can tell you "
+"the tenant."
+msgstr ""
+
+#: ui/app.slint:2457
+msgid "Back"
+msgstr ""
+
+#: ui/app.slint:2463
+msgid "Add library"
+msgstr ""
+
+#: ui/app.slint:2463
+msgid "Continue and sign in…"
+msgstr ""
+
+#: ui/app.slint:2498
+msgid "Show the tray icon when I log in"
+msgstr ""
+
+#: ui/app.slint:2505
+msgid ""
+"Syncing itself keeps running in the background either way. The tray icon "
+"shows status and runs sync schedules."
+msgstr ""
+
+#: ui/app.slint:2508
+msgid "Stop syncing when I quit the tray icon"
+msgstr ""
+
+#: ui/app.slint:2515
+msgid ""
+"\"Quit\" in the tray icon's menu then stops syncing too. It starts again the "
+"next time the app opens or you log in."
+msgstr ""
+
+#: ui/app.slint:2518
+msgid "Pause syncing on a metered network"
+msgstr ""
+
+#: ui/app.slint:2525
+msgid ""
+"Saves your data allowance on a phone hotspot or a connection you've marked "
+"as metered in your network settings."
+msgstr ""
+
+#: ui/app.slint:2528
+msgid "Pause syncing while power saver is on"
+msgstr ""
+
+#: ui/app.slint:2535
+msgid ""
+"Syncing carries on by itself afterwards. \"Sync now\" still syncs for an "
+"hour if you need it to."
+msgstr ""
+
+#: ui/app.slint:2538
+msgid "Save screenshots to OneDrive"
+msgstr ""
+
+#: ui/app.slint:2547
+msgid "Save screenshots in"
+msgstr ""
+
+#: ui/app.slint:2552
+msgid "OneDrive account for screenshots"
+msgstr ""
+
+#: ui/app.slint:2561
+msgid "Show sync badges on files in Dolphin, Nemo and Caja"
+msgstr ""
+
+#: ui/app.slint:2568
+msgid ""
+"A small tick, arrows or warning sign on the files in your OneDrive folders. "
+"File manager windows that are already open show them once they're reopened."
+msgstr ""
+
+#: ui/app.slint:2573
+msgid "Adding…"
+msgstr ""
+
+#: ui/app.slint:2573
+msgid "Add badges to Dolphin…"
+msgstr ""
+
+#: ui/app.slint:2581
+msgid ""
+"Dolphin needs a small plugin installed for everyone on this computer, so it "
+"asks for your password once."
+msgstr ""
+
+#: ui/app.slint:2587
+msgid "Tell me when a new version is out"
+msgstr ""
+
+#: ui/app.slint:2594
+msgid ""
+"Looks at this app's page on GitHub once a day. Nothing is downloaded or "
+"installed by itself."
+msgstr ""
+
+#: ui/app.slint:2600 ui/app.slint:3727
+msgid "Version "
+msgstr ""
+
+#: ui/app.slint:2600
+msgid " is out."
+msgstr ""
+
+#: ui/app.slint:2605 ui/app.slint:3733
+msgid "Get it"
+msgstr ""
+
+#: ui/app.slint:2616
+msgid "Add to my applications menu"
+msgstr ""
+
+#: ui/app.slint:2632
+msgid "Something not right?"
+msgstr ""
+
+#: ui/app.slint:2635
+msgid ""
+"Checks the sync engine, the tray icon and every account in one go. The "
+"report is for a bug report: it leaves out your file names, email address, "
+"user and computer names and sign-in details, and opens so you can read it "
+"before sharing."
+msgstr ""
+
+#: ui/app.slint:2641
+msgid "Checking…"
+msgstr ""
+
+#: ui/app.slint:2641
+msgid "Check for problems"
+msgstr ""
+
+#: ui/app.slint:2648
+msgid "Make a problem report"
+msgstr ""
+
+#: ui/app.slint:2667
+msgid "Appearance"
+msgstr ""
+
+#: ui/app.slint:2670
+msgid ""
+"Colours, light or dark mode, text size and animations follow your desktop's "
+"settings."
+msgstr ""
+
+#: ui/app.slint:2675 ui/app.slint:2680
+msgid "Glass effect"
+msgstr ""
+
+#: ui/app.slint:2701
+msgid "About"
+msgstr ""
+
+#: ui/app.slint:2704
+msgid "DriveDeck for OneDrive "
+msgstr ""
+
+#: ui/app.slint:2708
+msgid "The easiest, most complete way to use OneDrive on Linux."
+msgstr ""
+
+#: ui/app.slint:2716
+msgid ""
+"Free software under the GNU GPL v3. Syncing is done by the OneDrive Client "
+"for Linux by abraunegg (GPL v3). Not made by or affiliated with Microsoft. "
+"OneDrive is a trademark of Microsoft."
+msgstr ""
+
+#: ui/app.slint:2722
+msgid "Project page"
+msgstr ""
+
+#: ui/app.slint:2728
+msgid "Sync engine (abraunegg/onedrive)"
+msgstr ""
+
+#: ui/app.slint:2741 ui/app.slint:2907 ui/app.slint:2953
+msgid "Uninstall"
+msgstr ""
+
+#: ui/app.slint:2744
+msgid ""
+"Remove this app, and choose whether to keep your OneDrive setup for the "
+"command-line client or remove that too. Your synced files always stay on "
+"this computer."
+msgstr ""
+
+#: ui/app.slint:2749
+msgid "Uninstall…"
+msgstr ""
+
+#: ui/app.slint:2780
+msgid "Sign in to Microsoft"
+msgstr ""
+
+#: ui/app.slint:2788
+msgid "Address from the blank sign-in page"
+msgstr ""
+
+#: ui/app.slint:2799
+msgid "Copy link"
+msgstr ""
+
+#: ui/app.slint:2805
+msgid "Open sign-in page again"
+msgstr ""
+
+#: ui/app.slint:2811
+msgid "Finish sign-in"
+msgstr ""
+
+#: ui/app.slint:2818 ui/app.slint:2971 ui/app.slint:3137 ui/app.slint:4341
+msgid "Close"
+msgstr ""
+
+#: ui/app.slint:2818 ui/app.slint:2874 ui/app.slint:2946 ui/app.slint:3026
+#: ui/app.slint:2818 ui/app.slint:2874 ui/app.slint:2946 ui/app.slint:3026 ui/app.slint:3178 ui/app.slint:3230 ui/app.slint:3316
+#: ui/app.slint:2818 ui/app.slint:2874 ui/app.slint:2946 ui/app.slint:3026 ui/app.slint:3178 ui/app.slint:3230 ui/app.slint:3316
+msgid "Cancel"
+msgstr ""
+
+#: ui/app.slint:2880
+msgid "Apply"
+msgstr ""
+
+#: ui/app.slint:2913
+msgid ""
+"What should happen to your OneDrive setup (sign-ins, chosen folders and "
+"options)? Your synced files stay on this computer either way."
+msgstr ""
+
+#: ui/app.slint:2917
+msgid "Keep my OneDrive setup"
+msgstr ""
+
+#: ui/app.slint:2926
+msgid "Remove everything"
+msgstr ""
+
+#: ui/app.slint:2998
+msgid "Move your OneDrive folder"
+msgstr ""
+
+#: ui/app.slint:3002
+msgid "This moves the folder that holds this account's files, now "
+msgstr ""
+
+#: ui/app.slint:3002
+msgid ""
+", to a new place — for example another hard drive with more space. Your "
+"files stay in OneDrive the whole time, and nothing is downloaded again."
+msgstr ""
+
+#: ui/app.slint:3006
+msgid "What happens after you choose the new place:"
+msgstr ""
+
+#: ui/app.slint:3011
+msgid ""
+"1. Syncing for this account pauses.\n2. The files go to the new place. On "
+"the same drive they're simply moved, which is instant. To another drive "
+"they're copied, which can take a while for a big folder.\n3. A check runs to "
+"confirm everything matches online (a dry run, nothing changes). Press Apply "
+"and syncing carries on from the new place."
+msgstr ""
+
+#: ui/app.slint:3015
+msgid ""
+"Moving to another drive leaves your old folder exactly as it was: nothing is "
+"ever deleted for you, so no files can be lost if the copy goes wrong. Once "
+"you've checked your files are in the new place, delete the old folder "
+"yourself to free up the space. Until then, it isn't synced any more and "
+"changes made in it won't reach OneDrive."
+msgstr ""
+
+#: ui/app.slint:3020
+msgid ""
+"Pick an empty folder to use it as the new OneDrive folder. Pick a folder "
+"that already has things in it (like the top of a drive) and a folder named "
+"like the current one is made inside it. Make sure the new drive has enough "
+"free space and is always connected (mounted automatically)."
+msgstr ""
+
+#: ui/app.slint:3032
+msgid "Choose new location…"
+msgstr ""
+
+#: ui/app.slint:3114
+msgid "All settings in use"
+msgstr ""
+
+#: ui/app.slint:3118
+msgid ""
+"What the sync engine reads from this account's config file, including the "
+"defaults for anything not set."
+msgstr ""
+
+#: ui/app.slint:3163
+msgid "Remove account"
+msgstr ""
+
+#: ui/app.slint:3171
+msgid "Also sign out and delete this account's sync settings"
+msgstr ""
+
+#: ui/app.slint:3184
+msgid "Remove"
+msgstr ""
+
+#: ui/app.slint:3221
+msgid "I'll install it myself"
+msgstr ""
+
+#: ui/app.slint:3262
+msgid "Skip developer folders"
+msgstr ""
+
+#: ui/app.slint:3266
+msgid ".git"
+msgstr ""
+
+#: ui/app.slint:3270
+msgid "node_modules"
+msgstr ""
+
+#: ui/app.slint:3274
+msgid "target"
+msgstr ""
+
+#: ui/app.slint:3278
+msgid "__pycache__"
+msgstr ""
+
+#: ui/app.slint:3282
+msgid ".venv"
+msgstr ""
+
+#: ui/app.slint:3286
+msgid "venv"
+msgstr ""
+
+#: ui/app.slint:3290
+msgid ".gradle"
+msgstr ""
+
+#: ui/app.slint:3294
+msgid ".idea"
+msgstr ""
+
+#: ui/app.slint:3298
+msgid ".cache"
+msgstr ""
+
+#: ui/app.slint:3302
+msgid "build"
+msgstr ""
+
+#: ui/app.slint:3306
+msgid "dist"
+msgstr ""
+
+#: ui/app.slint:3310
+msgid ""
+"build and dist are common folder names too, so select them only if you mean "
+"to skip them."
+msgstr ""
+
+#: ui/app.slint:3322
+msgid "Add"
+msgstr ""
+
+#: ui/app.slint:3559
+msgid "Show "
+msgstr ""
+
+#: ui/app.slint:3559
+msgid " in its folder"
+msgstr ""
+
+#: ui/app.slint:3703
+msgid "Pause syncing"
+msgstr ""
+
+#: ui/app.slint:3711
+msgid "Settings and accounts"
+msgstr ""
+
+#: ui/app.slint:3727
+msgid " of this app is out."
+msgstr ""
+
+#: ui/app.slint:3812
+msgid "Not synced ("
+msgstr ""
+
+#: ui/app.slint:3830
+msgid "Syncing now"
+msgstr ""
+
+#: ui/app.slint:3830
+msgid "Syncing now ("
+msgstr ""
+
+#: ui/app.slint:3849
+msgid "Recent files"
+msgstr ""
+
+#: ui/app.slint:3854
+msgid "Show recent files for account"
+msgstr ""
+
+#: ui/app.slint:3880
+msgid "Open folder"
+msgstr ""
+
+#: ui/app.slint:3894
+msgid "View online"
+msgstr ""
+
+#: ui/app.slint:3911
+msgid "Pause for 1 hour"
+msgstr ""
+
+#: ui/app.slint:3917
+msgid "Pause for 4 hours"
+msgstr ""
+
+#: ui/app.slint:3923
+msgid "Pause until tomorrow morning"
+msgstr ""
+
+#: ui/app.slint:3930
+msgid "Resume syncing"
+msgstr ""
+
+#: ui/app.slint:4019
+msgid "Version history — "
+msgstr ""
+
+#: ui/app.slint:4019
+msgid "Who has access — "
+msgstr ""
+
+#: ui/app.slint:4019
+msgid "Share — "
+msgstr ""
+
+#: ui/app.slint:4079
+msgid "Version history"
+msgstr ""
+
+#: ui/app.slint:4079
+msgid "Who has access"
+msgstr ""
+
+#: ui/app.slint:4079
+msgid "Share with people"
+msgstr ""
+
+#: ui/app.slint:4105
+msgid "Getting the saved versions…"
+msgstr ""
+
+#: ui/app.slint:4154
+msgid "Current"
+msgstr ""
+
+#: ui/app.slint:4178 ui/app.slint:4382
+msgid "Restore"
+msgstr ""
+
+#: ui/app.slint:4192
+msgid ""
+"\"Open\" saves a copy of that version and opens it, without changing "
+"anything. \"Restore\" makes it the current version everywhere; the version "
+"it replaces is kept here too, so nothing is lost."
+msgstr ""
+
+#: ui/app.slint:4201
+msgid "Invite people by email"
+msgstr ""
+
+#: ui/app.slint:4205
+msgid "Email addresses to invite"
+msgstr ""
+
+#: ui/app.slint:4212
+msgid ""
+"Separate addresses with commas. Each person gets an email and signs in to "
+"open it. People outside your organization can only be added if your IT team "
+"allows it."
+msgstr ""
+
+#: ui/app.slint:4212
+msgid ""
+"Separate addresses with commas. Each person gets an email and signs in with "
+"a Microsoft account to open it."
+msgstr ""
+
+#: ui/app.slint:4220 ui/app.slint:4230
+msgid "Can edit"
+msgstr ""
+
+#: ui/app.slint:4224
+msgid "They can change it (and add or delete files in a folder)."
+msgstr ""
+
+#: ui/app.slint:4224
+msgid "They can view and download it, but not change it."
+msgstr ""
+
+#: ui/app.slint:4234
+msgid "Message (optional)"
+msgstr ""
+
+#: ui/app.slint:4238
+msgid "Invitation message"
+msgstr ""
+
+#: ui/app.slint:4287
+msgid "Keep"
+msgstr ""
+
+#: ui/app.slint:4293
+msgid "Stop it"
+msgstr ""
+
+#: ui/app.slint:4293
+msgid "Stop sharing"
+msgstr ""
+
+#: ui/app.slint:4296
+msgid "Stop sharing with "
+msgstr ""
+
+#: ui/app.slint:4314
+msgid ""
+"Stopping a link makes it stop working for everyone who has it. Stopping a "
+"person's access takes the file away from their \"Shared\" list. Access that "
+"comes from a folder above can only be changed on that folder."
+msgstr ""
+
+#: ui/app.slint:4333
+msgid "Send invitation"
+msgstr ""
+
+#: ui/app.slint:4365
+msgid "Restore this version?"
+msgstr ""
+
+#: ui/app.slint:4369
+msgid "The version from "
+msgstr ""
+
+#: ui/app.slint:4369
+msgid ""
+" becomes the current one, online and on this computer. The current version "
+"is kept in the history, so you can switch back."
+msgstr ""
+
+msgid "Starting…"
+msgstr ""
+
+msgid "Syncing…"
+msgstr ""
+
+msgid "1 file not synced"
+msgid_plural "{n} files not synced"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Up to date ({})"
+msgstr ""
+
+msgid "Up to date"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Stopped"
+msgstr ""
+
+msgid "Background sync off"
+msgstr ""
+
+msgid "Paused until {}"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Paused: {}"
+msgstr ""
+
+msgid "Paused by schedule until {}"
+msgstr ""
+
+msgid "Applying changes…"
+msgstr ""
+
+msgid "Signed out"
+msgstr ""
+
+msgid "Needs a full resync"
+msgstr ""
+
+msgid "Stopped to protect your files"
+msgstr ""
+
+msgid "Not responding since {}"
+msgstr ""
+
+msgid "Not responding"
+msgstr ""
+
+msgid "Waiting for first sync"
+msgstr ""
+
+msgid "Can view"
+msgstr ""
+
+msgid "  ·  until {}"
+msgstr ""
+
+msgid "  ·  from a folder above"
+msgstr ""
+
+msgid "Checking who has access…"
+msgstr ""
+
+msgid "It isn't shared: only you can open it."
+msgstr ""
+
+msgid "There's only the current version so far. OneDrive keeps older ones as the file changes."
+msgstr ""
+
+msgid "Downloading that version…"
+msgstr ""
+
+msgid "Opened a copy: {}"
+msgstr ""
+
+msgid "Restoring…"
+msgstr ""
+
+msgid "Restored. This computer gets it at the next sync (\"Sync now\" in the tray icon's menu does it right away)."
+msgstr ""
+
+msgid "Sending…"
+msgstr ""
+
+msgid "less than a minute left"
+msgstr ""
+
+msgid "1 min left"
+msgid_plural "{n} min left"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "1 h left"
+msgid_plural "{n} h left"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "1 h {0} min left"
+msgid_plural "{n} h {0} min left"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No accounts yet"
+msgstr ""
+
+msgid "1 account needs attention"
+msgid_plural "{n} accounts need attention"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Syncing 1 large file"
+msgid_plural "Syncing {n} large files"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Not syncing right now"
+msgstr ""
+
+msgid "All accounts"
+msgstr ""
+
+msgid "Uploading"
+msgstr ""
+
+msgid "Downloading"
+msgstr ""
+
+msgid "Uploaded"
+msgstr ""
+
+msgid "Downloaded"
+msgstr ""
+
+msgid "Deleted"
+msgstr ""
+
+msgid "New folder"
+msgstr ""
+
+msgid "{} {}"
+msgstr ""
+
+msgid "in {}"
+msgstr ""
+
+msgid "{}. Open Settings to fix it."
+msgstr ""
+
+msgid "No accounts yet — open Settings to add one"
+msgstr ""
+
+msgid "Version {} is out — get it…"
+msgstr ""
+
+msgid "How to fix this…"
+msgstr ""
+
+msgid "Show activity…"
+msgstr ""
+
+msgid "For 1 hour"
+msgstr ""
+
+msgid "For 4 hours"
+msgstr ""
+
+msgid "Until tomorrow morning"
+msgstr ""
+
+msgid "Settings and accounts…"
+msgstr ""
+
+msgid "Quit and stop syncing"
+msgstr ""
+
+msgid "Quit tray icon"
+msgstr ""
+
+msgid "Changes {}'s save folder. Turning this off puts it back."
+msgstr ""
+
+msgid "Saved, except the settings marked * — they need a full resync, which is turned off for this account."
+msgstr ""
+
+msgid "The settings marked * weren't saved: they need a full resync, which is turned off for this account. Check the preview for the new direction."
+msgstr ""
+
+msgid "Sign in to choose folders."
+msgstr ""
+
+msgid "Preparing the preview…"
+msgstr ""
+
+msgid "Checking the sync service…"
+msgstr ""
+
+msgid "Restoring the previous settings…"
+msgstr ""
+
+msgid "Cancelling…"
+msgstr ""
+
+msgid "Resync started."
+msgstr ""
+
+msgid "Preparing sign-in…"
+msgstr ""
+
+msgid "Opening the Microsoft sign-in page in your browser…\n\nLog in and approve access. This window updates by itself when you're done."
+msgstr ""
+
+msgid "Your browser couldn't hand the sign-in back automatically.\n\nAfter you log in you'll end up on a blank page. Copy that page's full address from the address bar and paste it below."
+msgstr ""
+
+msgid "That doesn't look like the right address — it should contain \"code=\". Copy the whole address of the blank page you land on after logging in."
+msgstr ""
+
+msgid "Finishing sign-in…"
+msgstr ""
+
+msgid "Add and sign in to a work or school OneDrive account first. Its sign-in is reused to reach SharePoint."
+msgstr ""
+
+msgid "Stop backing up"
+msgstr ""
+
+msgid "Add and sign in to a work or school account first."
+msgstr ""
+
+msgid "Checking the OneDrive client…"
+msgstr ""
+
+msgid "Give the account a name and pick a local folder."
+msgstr ""
+
+msgid "Search for and pick a library first."
+msgstr ""
+
+msgid "Checking the sync engine…"
+msgstr ""
+
+msgid "Your computer will ask for your password…"
+msgstr ""
+
+msgid "Renamed."
+msgstr ""
+
+msgid "Syncing now…"
+msgstr ""
+
+msgid "Once it's installed, this note goes away by itself."
+msgstr ""
