@@ -1490,10 +1490,16 @@ fn disable_screenshot_saving(settings: &mut AppSettings) -> Result<Option<String
                     .map_err(|error| format!("Couldn't restore {}: {error}", path.display()))?;
                 None
             } else {
-                Some("The screenshot tool's save folder changed. I left it as it is.".to_string())
+                Some(
+                    "The screenshot tool's save folder was changed since, so it was left as it is."
+                        .to_string(),
+                )
             }
         }
-        None => Some("The screenshot tool's save folder changed. I left it as it is.".to_string()),
+        None => Some(
+            "The screenshot tool's save folder was changed since, so it was left as it is."
+                .to_string(),
+        ),
     };
     let mut next = settings.clone();
     next.screenshot_save = None;
@@ -1518,7 +1524,7 @@ fn write_ini_if_unchanged(path: &Path, expected: &str, updated: &str) -> Result<
     };
     if current != expected {
         return Err(format!(
-            "{} changed while DriveDeck was updating it. I left it as it is.",
+            "{} changed while DriveDeck was updating it, so it was left as it is.",
             path.display()
         ));
     }

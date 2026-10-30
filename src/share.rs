@@ -91,16 +91,8 @@ pub fn share_link(path: &Path, edit: bool) {
         .file_name()
         .map(|n| n.to_string_lossy().to_string())
         .unwrap_or_default();
-    let mut scope = None;
-    match create_share_link(path, edit, |actual| scope = Some(actual)) {
-        Ok(link) => {
-            let Some(scope) = scope else {
-                notify(
-                    "Couldn't create a link",
-                    "The link's access couldn't be checked.",
-                );
-                return;
-            };
+    match create_share_link(path, edit) {
+        Ok((link, scope)) => {
             let who = match scope {
                 graph::LinkScope::Anyone => "Anyone with the link",
                 graph::LinkScope::Organization => "People in your organization with the link",
@@ -121,11 +113,8 @@ pub fn share_link(path: &Path, edit: bool) {
     }
 }
 
-pub fn create_share_link(
-    path: &Path,
-    edit: bool,
-    on_scope: impl FnOnce(graph::LinkScope),
-) -> Result<String, String> {
+/// A new sharing link for `path`, and who it actually lets in (the service may narrow it).
+pub fn create_share_link(path: &Path, edit: bool) -> Result<(String, graph::LinkScope), String> {
     let (acc, rel) = locate(path)?;
     // a link to the top of an account would expose everything in it
     if rel.is_empty() {
@@ -135,14 +124,12 @@ pub fn create_share_link(
         ));
     }
     let t = graph::token(&acc.confdir)?;
-    let (link, scope) = graph::create_link(&t, acc.drive_id.as_deref(), &rel, &acc.kind, edit)?;
-    on_scope(scope);
-    Ok(link)
+    graph::create_link(&t, acc.drive_id.as_deref(), &rel, &acc.kind, edit)
 }
 
 pub fn print_share_link(path: &Path, edit: bool) -> i32 {
-    match create_share_link(path, edit, |_| {}) {
-        Ok(link) => {
+    match create_share_link(path, edit) {
+        Ok((link, _)) => {
             println!("{link}");
             0
         }
@@ -245,6 +232,11 @@ pub fn refresh_user_icons() {
 pub fn refresh_service_menu() {
     let data = core::data_home();
     let dir = data.join("kio/servicemenus");
+    // only a copy the user's app put there itself (an AppImage's); packages ship their own in
+    // /usr/share, and a second one in the home folder would show every entry twice
+    if !dir.join(format!("{}.desktop", core::APP_ID)).is_file() {
+        return;
+    }
     let menus = [
         (format!("{}.desktop", core::APP_ID), service_menu_body()),
         (
