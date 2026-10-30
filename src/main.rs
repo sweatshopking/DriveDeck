@@ -14,6 +14,7 @@ mod clientinstall;
 mod conflict;
 mod core;
 mod dbus;
+mod doctor;
 mod filewin;
 mod folderchecks;
 mod glass;
@@ -136,11 +137,24 @@ fn main() {
             .iter()
             .for_each(|p| share::view_online(std::path::Path::new(p))),
         Some("--version") => println!("{} {}", core::APP_NAME, env!("CARGO_PKG_VERSION")),
+        Some("--doctor") if args.get(1).map(String::as_str) == Some("--report") => {
+            print!("{}", doctor::report())
+        }
+        Some("--doctor") => {
+            let checks = doctor::checks();
+            for c in &checks {
+                println!("{}", doctor::line(c));
+            }
+            if checks.iter().any(|c| !c.ok) {
+                std::process::exit(1);
+            }
+        }
         Some("--help") | Some("-h") => {
             println!(
-                "{} {}\n\nUsage:\n  {} [--settings] [--account <config dir>]\n  {} --tray\n  {} --share-link <file>\n  {} --share-edit-link <file>\n  {} --share-people <file>\n  {} --versions <file>\n  {} --view-online <file>",
+                "{} {}\n\nUsage:\n  {} [--settings] [--account <config dir>]\n  {} --tray\n  {} --share-link <file>\n  {} --share-edit-link <file>\n  {} --share-people <file>\n  {} --versions <file>\n  {} --view-online <file>\n  {} --doctor [--report]",
                 core::APP_NAME,
                 env!("CARGO_PKG_VERSION"),
+                core::APP_ID,
                 core::APP_ID,
                 core::APP_ID,
                 core::APP_ID,

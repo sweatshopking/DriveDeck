@@ -5675,6 +5675,40 @@ pub fn run(account: Option<String>) {
         }
     });
     on!(on_app_add_to_menu, |c| add_to_menu(c));
+    on!(on_app_doctor_check, |c| {
+        c.borrow().ui().set_app_doctor_busy(true);
+        bg(
+            || {
+                crate::doctor::checks()
+                    .iter()
+                    .map(crate::doctor::line)
+                    .collect::<Vec<_>>()
+                    .join("\n")
+            },
+            |ctx, text| {
+                let ui = ctx.borrow().ui();
+                ui.set_app_doctor_busy(false);
+                ui.set_app_doctor(ss(text));
+            },
+        );
+    });
+    on!(on_app_doctor_report, |c| {
+        c.borrow().ui().set_app_doctor_busy(true);
+        bg(crate::doctor::save_report, |ctx, r| {
+            let ui = ctx.borrow().ui();
+            ui.set_app_doctor_busy(false);
+            match r {
+                Ok(file) => {
+                    ui.set_app_doctor(ss(format!(
+                        "Saved as {}. It opens now: read it before sharing it.",
+                        file.display()
+                    )));
+                    core::open_path(&file);
+                }
+                Err(e) => ui.set_app_doctor(ss(e)),
+            }
+        });
+    });
     on!(on_app_pause_toggled, |c| {
         let ui = c.borrow().ui();
         let mut s = AppSettings::load();

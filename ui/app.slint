@@ -808,6 +808,11 @@ export component AppWindow inherits Window {
     in property <string> app-client;
     in property <bool> app-is-appimage;
     in property <string> app-msg;
+    // "Check for problems" (doctor.rs): one finding per line; empty until asked
+    in property <string> app-doctor;
+    in property <bool> app-doctor-busy;
+    callback app-doctor-check();
+    callback app-doctor-report();
     // glass: 0 automatic, 1 on, 2 off
     in-out property <int> app-glass;
     in property <string> app-glass-note;
@@ -2566,6 +2571,41 @@ export component AppWindow inherits Window {
                             }
                             if root.app-msg != "": Hint {
                                 text: root.app-msg;
+                            }
+                        }
+                    }
+                    Card {
+                        VerticalLayout {
+                            padding: 14px;
+                            spacing: 8px;
+                            Heading {
+                                text: "Something not right?";
+                            }
+                            Hint {
+                                text: "Checks the sync engine, the tray icon and every account in one go. The report is for a bug report: it leaves out your file names, email address, user and computer names and sign-in details, and opens so you can read it before sharing.";
+                            }
+                            HorizontalLayout {
+                                alignment: start;
+                                spacing: 8px;
+                                Button {
+                                    text: root.app-doctor-busy ? "Checking…" : "Check for problems";
+                                    enabled: !root.app-doctor-busy;
+                                    clicked => {
+                                        root.app-doctor-check();
+                                    }
+                                }
+                                Button {
+                                    text: "Make a problem report";
+                                    enabled: !root.app-doctor-busy;
+                                    clicked => {
+                                        root.app-doctor-report();
+                                    }
+                                }
+                            }
+                            if root.app-doctor != "": Text {
+                                text: root.app-doctor;
+                                wrap: word-wrap;
+                                font-size: 12px;
                             }
                         }
                     }

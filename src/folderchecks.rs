@@ -9,6 +9,16 @@ use std::process::Command;
 const MAX_DIRS: usize = 20_000;
 
 pub fn notes(sync_dir: &Path, skip_dirs: &str, skip_dotfiles: bool) -> Vec<String> {
+    notes_named(sync_dir, skip_dirs, skip_dotfiles, true)
+}
+
+/// As `notes`; `names` false leaves the folders' names out (for a problem report)
+pub fn notes_named(
+    sync_dir: &Path,
+    skip_dirs: &str,
+    skip_dotfiles: bool,
+    names: bool,
+) -> Vec<String> {
     let mut notes = Vec::new();
     if let Some(note) = windows_drive_note(sync_dir) {
         notes.push(note);
@@ -16,7 +26,7 @@ pub fn notes(sync_dir: &Path, skip_dirs: &str, skip_dotfiles: bool) -> Vec<Strin
     if !skip_dotfiles && !skips_git(skip_dirs) {
         let found = git_repos(sync_dir, 3);
         if !found.is_empty() {
-            let names: Vec<String> = found
+            let names_list: Vec<String> = found
                 .iter()
                 .map(|p| {
                     let rel = p.strip_prefix(sync_dir).unwrap_or(p).display().to_string();
@@ -27,11 +37,18 @@ pub fn notes(sync_dir: &Path, skip_dirs: &str, skip_dotfiles: bool) -> Vec<Strin
                     }
                 })
                 .collect();
+            let which = if names {
+                names_list.join(", ")
+            } else {
+                match found.len() {
+                    n if n >= 3 => format!("{n} or more"),
+                    n => n.to_string(),
+                }
+            };
             notes.push(format!(
-                "There are Git repositories in this folder ({}). Syncing their .git folders can \
+                "There are Git repositories in this folder ({which}). Syncing their .git folders can \
                  damage them, because the files arrive one at a time and out of order. Skip .git \
-                 folders in Options, or keep repositories outside OneDrive.",
-                names.join(", ")
+                 folders in Options, or keep repositories outside OneDrive."
             ));
         }
     }
