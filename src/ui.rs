@@ -54,6 +54,7 @@ struct Node {
     expanded: bool,
     has_children: bool,
     loading: bool,
+    size: Option<u64>,
 }
 
 impl Tree {
@@ -91,6 +92,11 @@ impl Tree {
             }
         }
         false
+    }
+    /// Whether a folder above `path` is ticked (so `path` comes with it)
+    fn under_selected(&self, path: &str) -> bool {
+        path.rsplit_once('/')
+            .is_some_and(|(parent, _)| !parent.is_empty() && self.covered(parent))
     }
     fn inherited(&self, path: &str) -> bool {
         let prefix = format!("{path}/");
@@ -176,6 +182,8 @@ struct Ctx {
     backup_ask: Option<BackupAsk>,
     /// Conflicting copies found in the open account's folder
     conflicts: Vec<crate::conflict::Conflict>,
+    /// How much the open account holds online, once its quota has loaded
+    quota_used: Option<u64>,
 }
 
 enum BackupAsk {
@@ -643,7 +651,11 @@ fn select(ctx: &Shared, i: i32) {
     let Some(acc) = ctx.borrow().accounts.get(i as usize).cloned() else {
         return;
     };
-    ctx.borrow_mut().current = Some(acc.key());
+    {
+        let mut c = ctx.borrow_mut();
+        c.current = Some(acc.key());
+        c.quota_used = None;
+    }
     ui.set_s_name(ss(&acc.name));
     ui.set_s_quota(ss(""));
     ui.set_s_owner(ss(""));
@@ -655,6 +667,79 @@ fn select(ctx: &Shared, i: i32) {
     load_folders(ctx, &acc, false);
     load_activity(ctx, &acc);
     load_quota(ctx, &acc);
+}
+
+/// The open account, from an already borrowed context
+fn current_ctx(c: &Ctx) -> Option<AccountInfo> {
+    let key = c.current.as_deref()?;
+    c.accounts.iter().find(|a| a.key() == key).cloned()
+}
+
+/// What newly ticked folders add up to, against the free space where they'll go. Only the
+/// top of each new choice counts (a ticked folder inside another is already in it); folders
+/// whose size isn't known yet make it "at least". Turning on "Sync everything" counts the whole
+/// account. Returns the line to show and whether it won't fit.
+fn space_note(
+    t: &Tree,
+    sync_all: bool,
+    quota_used: Option<u64>,
+    sync_dir: &Path,
+) -> (String, bool) {
+    let (new, unknown) = if sync_all {
+        if t.sync_all_original {
+            return (String::new(), false);
+        }
+        match quota_used {
+            Some(used) => (used, false),
+            None => return (String::new(), false),
+        }
+    } else {
+        let size_of = |path: &str| t.rows.iter().find(|n| n.path == path).and_then(|n| n.size);
+        let fresh: Vec<&String> = t
+            .selected
+            .iter()
+            .filter(|p| !t.original.contains(*p) && !t.under_selected(p))
+            .collect();
+        if fresh.is_empty() {
+            return (String::new(), false);
+        }
+        let sizes: Vec<Option<u64>> = fresh.iter().map(|p| size_of(p)).collect();
+        (
+            sizes.iter().flatten().sum(),
+            sizes.iter().any(|s| s.is_none()),
+        )
+    };
+    let Some(free) = core::free_space(sync_dir) else {
+        return (String::new(), false);
+    };
+    let (what, comes) = if sync_all {
+        ("Everything in this account", "comes")
+    } else {
+        ("Newly ticked folders", "come")
+    };
+    let amount = if unknown {
+        format!("at least {}", graph::human_size(new))
+    } else {
+        graph::human_size(new)
+    };
+    if new > free {
+        (
+            format!(
+                "{what} {comes} to {amount}, more than the {} free on this drive. Some files won't \
+                 fit; free up space or tick less.",
+                graph::human_size(free)
+            ),
+            true,
+        )
+    } else {
+        (
+            format!(
+                "{what}: {amount}. Free on this drive: {}.",
+                graph::human_size(free)
+            ),
+            false,
+        )
+    }
 }
 
 fn load_quota(ctx: &Shared, acc: &AccountInfo) {
@@ -699,6 +784,7 @@ fn load_quota(ctx: &Shared, acc: &AccountInfo) {
                             graph::human_size(q.total)
                         )));
                         ui.set_s_quota_frac((q.used as f64 / q.total as f64) as f32);
+                        c.quota_used = Some(q.used);
                     } else if q.used > 0 {
                         // SharePoint libraries often report usage without a total
                         ui.set_s_quota(ss(format!("{} used", graph::human_size(q.used))));
@@ -1564,6 +1650,7 @@ fn fetch_children(ctx: &Shared, acc: &AccountInfo, path: String) {
                                     expanded: false,
                                     has_children: f.has_children,
                                     loading: false,
+                                    size: f.size,
                                 })
                                 .collect();
                         } else if let Some(i) = tree.rows.iter().position(|n| n.path == path) {
@@ -1580,6 +1667,7 @@ fn fetch_children(ctx: &Shared, acc: &AccountInfo, path: String) {
                                     expanded: false,
                                     has_children: f.has_children,
                                     loading: false,
+                                    size: f.size,
                                 })
                                 .collect();
                             tree.rows.splice(i + 1..i + 1, kids);
@@ -1613,10 +1701,17 @@ fn render_tree(ctx: &Shared) {
             loading: n.loading,
             checked: t.covered(&n.path),
             inherited: t.inherited(&n.path),
+            size: ss(n.size.map(graph::human_size).unwrap_or_default()),
         })
         .collect();
     c.rows.set_vec(rows);
     let ui = c.ui();
+    let (space, warn) = match current_ctx(&c) {
+        Some(acc) => space_note(t, ui.get_f_sync_all(), c.quota_used, &acc.sync_dir),
+        None => (String::new(), false),
+    };
+    ui.set_f_space(ss(space));
+    ui.set_f_space_warn(warn);
     let dirty = folder_changes(&c, &ui).is_some();
     ui.set_f_dirty(dirty);
     let msg = if !ui.get_f_allowed() {
@@ -1687,6 +1782,7 @@ fn folder_expand(ctx: &Shared, i: usize) {
                     expanded: false,
                     has_children: f.has_children,
                     loading: false,
+                    size: f.size,
                 })
                 .collect();
             c.tree.rows.splice(i + 1..i + 1, nodes);
@@ -5277,6 +5373,7 @@ pub fn run(account: Option<String>) {
         rows,
         backup_ask: None,
         conflicts: Vec::new(),
+        quota_used: None,
     }));
     CTX.with(|c| *c.borrow_mut() = Some(ctx.clone()));
     listen_for_hand_offs();
@@ -5815,6 +5912,52 @@ pub fn run(account: Option<String>) {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn space_note_counts_only_new_top_choices() {
+        let node = |path: &str, size: Option<u64>| Node {
+            path: path.into(),
+            name: path.rsplit('/').next().unwrap_or_default().into(),
+            depth: path.matches('/').count() - 1,
+            expanded: false,
+            has_children: true,
+            loading: false,
+            size,
+        };
+        let gb = 1 << 30;
+        let mut t = Tree {
+            rows: vec![
+                node("/Documents", Some(2 * gb)),
+                node("/Documents/Old", Some(gb)),
+                node("/Pictures", Some(5 * gb)),
+                node("/Music", None),
+            ],
+            ..Default::default()
+        };
+        t.original.insert("/Pictures".into());
+        let dir = std::env::temp_dir();
+        // nothing new
+        assert_eq!(space_note(&t, false, None, &dir).0, "");
+        // a new folder; one inside it adds nothing more
+        t.selected = ["/Pictures", "/Documents", "/Documents/Old"]
+            .map(String::from)
+            .into();
+        let (text, _) = space_note(&t, false, None, &dir);
+        assert!(text.starts_with("Newly ticked folders: 2.0 GB"), "{text}");
+        // a size not known yet
+        t.selected.insert("/Music".into());
+        assert!(
+            space_note(&t, false, None, &dir)
+                .0
+                .contains("at least 2.0 GB")
+        );
+        // everything, newly: the whole account; more than any drive has
+        let (text, warn) = space_note(&t, true, Some(u64::MAX / 2), &dir);
+        assert!(
+            warn && text.starts_with("Everything in this account comes to"),
+            "{text}"
+        );
+    }
+
     use super::*;
 
     #[test]

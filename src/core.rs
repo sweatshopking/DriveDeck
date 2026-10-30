@@ -2805,6 +2805,19 @@ echo "$1" >/proc/sys/fs/inotify/max_user_watches"#;
     }
 }
 
+/// Bytes free for you on the drive holding `path` (or its nearest existing parent: a sync
+/// folder may not exist yet).
+pub fn free_space(path: &Path) -> Option<u64> {
+    let existing = path.ancestors().find(|p| p.exists())?;
+    let c = std::ffi::CString::new(existing.as_os_str().as_encoded_bytes()).ok()?;
+    // SAFETY: c is a valid C string and st a writable statvfs for the call
+    let mut st: libc::statvfs = unsafe { std::mem::zeroed() };
+    if unsafe { libc::statvfs(c.as_ptr(), &mut st) } != 0 {
+        return None;
+    }
+    Some((st.f_bavail as u64).saturating_mul(st.f_frsize as u64))
+}
+
 /// How long a running client may stay silent before it counts as stuck. In --monitor mode it
 /// logs "Sync with Microsoft OneDrive is complete" after every pass (every monitor_interval,
 /// 300 s by default), and large transfers log their progress, so three missed passes, and never

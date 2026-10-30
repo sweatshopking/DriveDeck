@@ -747,6 +747,18 @@ fn fill_demo(ui: &AppWindow) {
                 loading: false,
                 checked,
                 inherited,
+                size: match name {
+                    "Desktop" => "1.2 GB",
+                    "Documents" => "18.4 GB",
+                    "Finances" => "640 MB",
+                    "School" => "3.1 GB",
+                    "Travel" => "212 MB",
+                    "Music" => "41.7 GB",
+                    "Pictures" => "96.3 GB",
+                    "Camera Roll" => "71.0 GB",
+                    _ => "",
+                }
+                .into(),
             }
         };
     ui.set_f_rows(ModelRc::new(VecModel::from(vec![

@@ -259,6 +259,8 @@ fn drive_base(tok: &Token, drive_id: Option<&str>) -> String {
 pub struct Folder {
     pub name: String,
     pub has_children: bool,
+    /// Everything inside it, in bytes, when OneDrive says
+    pub size: Option<u64>,
 }
 
 /// Lists the sub-folders of `path` ("/" for the top).
@@ -277,7 +279,7 @@ pub fn list_folders(
             p.split('/').map(enc).collect::<Vec<_>>().join("/")
         )
     };
-    let mut url = format!("{item}/children?$select=name,folder&$top=999");
+    let mut url = format!("{item}/children?$select=name,folder,size&$top=999");
     let mut out = Vec::new();
     for_each_page(tok, &mut url, |items| {
         out.extend(items.iter().filter_map(folder_from_item));
@@ -292,6 +294,7 @@ fn folder_from_item(item: &Value) -> Option<Folder> {
     Some(Folder {
         name: item["name"].as_str().unwrap_or("").to_string(),
         has_children: folder["childCount"].as_u64().unwrap_or(1) > 0,
+        size: item["size"].as_u64(),
     })
 }
 

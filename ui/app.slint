@@ -70,6 +70,8 @@ export struct FolderRow {
     loading: bool,
     checked: bool,
     inherited: bool,
+    // what's inside it, when OneDrive says ("" if not known)
+    size: string,
 }
 
 // The look, matched to the desktop: light/dark and the accent colour follow the desktop's own
@@ -706,6 +708,9 @@ export component AppWindow inherits Window {
     in-out property <bool> f-root-files;
     in property <[FolderRow]> f-rows;
     in property <string> f-msg;
+    // newly chosen folders against free space (empty when nothing new is ticked)
+    in property <string> f-space;
+    in property <bool> f-space-warn;
     in property <bool> f-loading;
     in property <bool> f-dirty;
     in property <bool> f-allowed;
@@ -1658,15 +1663,32 @@ export component AppWindow inherits Window {
                                             text: row.name;
                                             checked: row.checked;
                                             enabled: !row.inherited;
+                                            horizontal-stretch: 1;
                                             toggled => {
                                                 root.f-check(i);
                                             }
+                                        }
+                                        Text {
+                                            text: row.size;
+                                            font-size: 11px;
+                                            color: Theme.subtle-text;
+                                            vertical-alignment: center;
+                                            accessible-role: none;
+                                        }
+                                        Rectangle {
+                                            width: 6px;
                                         }
                                     }
                                 }
                             }
                             if root.f-sync-all: Rectangle {
                                 vertical-stretch: 1;
+                            }
+                            if root.f-space != "": Text {
+                                text: root.f-space;
+                                color: root.f-space-warn ? Theme.warn : Theme.subtle-text;
+                                wrap: word-wrap;
+                                font-size: 12px;
                             }
                             HorizontalLayout {
                                 spacing: 8px;
