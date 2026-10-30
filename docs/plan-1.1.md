@@ -207,8 +207,12 @@ Form label columns were widened (150/170 px). German screenshots still showed:
 choices), `src/backup.rs`, `src/conflict.rs`, `src/graph.rs` (the plain-words error messages),
 `src/clientinstall.rs`, `src/uninstall.rs`, `src/doctor.rs` (the checks, not the report's raw
 lines), `src/folderchecks.rs`, `src/share.rs`, `src/tray.rs`, `src/popup.rs`, `src/filewin.rs`.
-Then translate all 15 languages. Report in the Done notes how many strings each `.po` has and
-that the coverage test passes.
+Then translate all 15 languages (de es fr it pt_BR nl pl ja zh_CN ru tr ko cs uk sv), every
+string in each. **Do all of it in this stage: nothing is deferred to a later stage.** Don't stop
+after some files or some languages to ask; keep going until every string is wrapped and every
+`.po` is complete. Only if you truly can't continue (out of room or time), list exactly which
+files and languages are left in the Done notes. Report how many strings each `.po` has and that
+the coverage test passes.
 
 **Done notes:**
 
