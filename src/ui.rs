@@ -5608,6 +5608,9 @@ enum ClientNews {
 }
 
 fn client_news() -> Option<ClientNews> {
+    if !AppSettings::load().check_updates.unwrap_or(true) {
+        return None;
+    }
     if let Some((installed, newest)) = clientinstall::aur_update() {
         return Some(ClientNews::Aur(installed, newest));
     }
@@ -5617,10 +5620,15 @@ fn client_news() -> Option<ClientNews> {
             "Its AUR package hasn't caught up yet; this offers it as soon as it has.",
             false,
         ),
-        Some(_) => (
+        Some(clientinstall::Plan::AptSource { .. }) => (
             "Updating gets it from the client's own package repository, which may take a few \
              days to have it.",
             true,
+        ),
+        Some(_) => (
+            "Your distribution's own package will have it once the distribution ships it; it \
+             arrives with your normal system updates.",
+            false,
         ),
         None => ("Update it the way you installed it.", false),
     };

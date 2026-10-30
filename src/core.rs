@@ -2806,7 +2806,7 @@ pub fn watch_limit() -> Option<u64> {
 /// What to raise it to: double, at least the 524288 most desktops use now, at most 8 million
 /// (each watch costs about 1 KB of kernel memory, and only while it's in use).
 pub fn suggested_watch_limit(now: u64) -> u64 {
-    now.saturating_mul(2).clamp(524_288, 8_388_608)
+    now.saturating_mul(2).clamp(524_288, 8_388_608).max(now)
 }
 
 /// Whether the client running in `unit` hit the watch limit since it last started.
@@ -2871,14 +2871,20 @@ pub fn free_space(path: &Path) -> Option<u64> {
 /// How long a running client may stay silent before it counts as stuck. In --monitor mode it
 /// logs "Sync with Microsoft OneDrive is complete" after every pass (every monitor_interval,
 /// 300 s by default), and large transfers log their progress, so three missed passes, and never
-/// less than half an hour, is well past normal.
+/// less than half an hour, is well past normal. With monitor_log_frequency N the routine
+/// lines come only every Nth pass, so the limit is never below N + 1 passes.
 pub fn stall_limit(confdir: &Path) -> std::time::Duration {
     let interval = ClientConfig::load(confdir)
         .get("monitor_interval")
         .and_then(|v| v.trim().parse::<u64>().ok())
         .filter(|&v| v > 0)
         .unwrap_or(300);
-    std::time::Duration::from_secs(interval.saturating_mul(3).max(30 * 60))
+    let frequency = ClientConfig::load(confdir)
+        .get("monitor_log_frequency")
+        .and_then(|v| v.trim().parse::<u64>().ok())
+        .unwrap_or(12);
+    let quiet = interval.saturating_mul(frequency.saturating_add(1));
+    std::time::Duration::from_secs(interval.saturating_mul(3).max(30 * 60).max(quiet))
 }
 
 /// The phase to show once the tray has found the client stuck: only a state that claims all is
@@ -4117,11 +4123,14 @@ mod tests {
             fs::write(dir.join("config"), config).unwrap();
             stall_limit(&dir).as_secs()
         };
-        assert_eq!(limit(""), 1800);
-        assert_eq!(limit("monitor_interval = \"300\"\n"), 1800);
-        assert_eq!(limit("monitor_interval = \"1200\"\n"), 3600);
-        assert_eq!(limit("monitor_interval = \"soon\"\n"), 1800);
-        assert_eq!(limit("monitor_interval = \"0\"\n"), 1800);
+        // routine lines come only every monitor_log_frequency passes (12 by default)
+        assert_eq!(limit(""), 3900);
+        assert_eq!(limit("monitor_interval = \"300\"\n"), 3900);
+        assert_eq!(limit("monitor_interval = \"1200\"\n"), 15600);
+        assert_eq!(limit("monitor_interval = \"soon\"\n"), 3900);
+        assert_eq!(limit("monitor_interval = \"0\"\n"), 3900);
+        assert_eq!(limit("monitor_log_frequency = \"1\"\n"), 1800);
+        assert_eq!(limit("monitor_interval = \"1200\"\nmonitor_log_frequency = \"1\"\n"), 3600);
         let _ = fs::remove_dir_all(&dir);
     }
 
@@ -4155,6 +4164,8 @@ mod tests {
         ));
         assert_eq!(suggested_watch_limit(8192), 524_288);
         assert_eq!(suggested_watch_limit(524_288), 1_048_576);
-        assert_eq!(suggested_watch_limit(u64::MAX), 8_388_608);
+        assert_eq!(suggested_watch_limit(4_194_304), 8_388_608);
+        // never lower than it is now
+        assert_eq!(suggested_watch_limit(u64::MAX), u64::MAX);
     }
 }

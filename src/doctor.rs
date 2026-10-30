@@ -251,14 +251,15 @@ impl Private {
     }
 
     fn scrub(&self, text: &str) -> String {
-        let mut s = text.to_string();
+        // file names first: the path substitutions below would hide the ": /" they key on
+        let mut s = scrub_names(text);
         for (p, with) in &self.paths {
             s = s.replace(p.as_str(), with);
         }
         for (w, with) in &self.words {
             s = replace_word(&s, w, with);
         }
-        scrub_names(&scrub_tokens(&scrub_emails(&s)))
+        scrub_tokens(&scrub_emails(&s))
     }
 }
 
@@ -414,6 +415,24 @@ pub fn save_report() -> Result<PathBuf, String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn file_names_after_an_absolute_path_are_left_out() {
+        let p = Private {
+            paths: vec![
+                ("/home/ann/OneDrive".into(), "<OneDrive folder>"),
+                ("/home/ann".into(), "~"),
+            ],
+            words: vec![],
+        };
+        let s = p.scrub(
+            "ERROR: Unable to read: /home/ann/OneDrive/Taxes/2025 return.pdf\n\
+             ERROR: Unable to read: /home/ann/Documents/letter.docx",
+        );
+        assert!(!s.contains("Taxes"), "{s}");
+        assert!(!s.contains("letter"), "{s}");
+        assert!(!s.contains("2025"), "{s}");
+    }
 
     #[test]
     fn reports_leave_out_personal_details() {

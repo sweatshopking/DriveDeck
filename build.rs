@@ -47,7 +47,7 @@ fn main() {
     for (locale, messages) in &catalogs {
         generated.push_str(&format!("        {locale:?} => match message {{\n"));
         for entry in messages {
-            if let Some(translation) = entry.translation.as_ref().filter(|value| !value.is_empty())
+            if let Some(translation) = entry.translation.as_ref().filter(|value| !value.is_empty() && !entry.fuzzy)
             {
                 generated.push_str(&format!(
                     "            {:?} => Some({:?}),\n",
@@ -64,7 +64,10 @@ fn main() {
     for (locale, messages) in &catalogs {
         generated.push_str(&format!("        {locale:?} => match message {{\n"));
         for entry in messages {
-            if entry.plural.is_some() && !entry.plural_translations.is_empty() {
+            if entry.plural.is_some()
+                && !entry.plural_translations.is_empty()
+                && entry.plural_translations.iter().all(|(_, s)| !s.is_empty())
+                && !entry.fuzzy {
                 // every form the language has, in msgstr[n] order; i18n::plural_index picks one
                 let forms: std::collections::BTreeMap<_, _> = entry
                     .plural_translations

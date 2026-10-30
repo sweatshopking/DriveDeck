@@ -137,14 +137,21 @@ fn trim_version_cache(
     let mut files = Vec::new();
     for entry in std::fs::read_dir(dir)? {
         let path = entry?.path();
-        // hidden files are downloads still in progress (see download_version)
-        if path
+        let metadata = std::fs::symlink_metadata(&path)?;
+        // hidden files are downloads still in progress (see download_version); leave recent
+        // ones alone, but a stale one is an interrupted download and counts like any other
+        let hidden = path
             .file_name()
-            .is_some_and(|n| n.as_encoded_bytes().starts_with(b"."))
+            .is_some_and(|n| n.as_encoded_bytes().starts_with(b"."));
+        if hidden
+            && metadata
+                .modified()
+                .ok()
+                .and_then(|m| m.elapsed().ok())
+                .is_none_or(|age| age < std::time::Duration::from_secs(3600))
         {
             continue;
         }
-        let metadata = std::fs::symlink_metadata(&path)?;
         if metadata.file_type().is_file() {
             files.push((
                 metadata.modified().unwrap_or(std::time::UNIX_EPOCH),
@@ -616,6 +623,27 @@ mod tests {
             temp_download.exists(),
             "temporary in-progress download must not be removed by cache trimmer"
         );
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn trim_version_cache_removes_stale_temporary_files() {
+        let dir = std::env::temp_dir().join(format!("lodg-trim-stale-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::create_dir_all(&dir).unwrap();
+        let stale = dir.join(".lodg-version-1234-0.tmp");
+        std::fs::write(&stale, b"interrupted download").unwrap();
+        let day_ago = std::time::SystemTime::now() - std::time::Duration::from_secs(86_400);
+        std::fs::File::options()
+            .write(true)
+            .open(&stale)
+            .unwrap()
+            .set_modified(day_ago)
+            .unwrap();
+        let keep = dir.join("Report (v1).docx");
+        std::fs::write(&keep, b"version 1").unwrap();
+        trim_version_cache(&dir, &keep, 0, 0).unwrap();
+        assert!(!stale.exists(), "an interrupted download must be cleaned up");
         let _ = std::fs::remove_dir_all(&dir);
     }
 }
