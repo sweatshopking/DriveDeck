@@ -1115,6 +1115,471 @@ fn clean_skip_dirs(text: &str) -> Result<Option<String>, String> {
     Ok(Some(parts.join("|")))
 }
 
+fn append_developer_skip_dirs(existing: &str, selected: &[&str]) -> String {
+    let mut names = Vec::new();
+    for name in existing
+        .split('|')
+        .map(str::trim)
+        .chain(selected.iter().map(|name| name.trim()))
+    {
+        if !name.is_empty() && !names.iter().any(|existing| existing == name) {
+            names.push(name.to_string());
+        }
+    }
+    names.join("|")
+}
+
+#[derive(Clone)]
+struct ScreenshotToolConfig {
+    tool: core::ScreenshotTool,
+    program: &'static str,
+    group: &'static str,
+    key: &'static str,
+}
+
+fn screenshot_tool() -> Option<ScreenshotToolConfig> {
+    let spectacle = core::which("spectacle").is_some();
+    let flameshot = core::which("flameshot").is_some();
+    let spectacle_config = screenshot_config_path(&core::ScreenshotTool::Spectacle).is_file();
+    let flameshot_config = screenshot_config_path(&core::ScreenshotTool::Flameshot).is_file();
+    let tool = match (spectacle, flameshot, spectacle_config, flameshot_config) {
+        (true, true, false, true) => core::ScreenshotTool::Flameshot,
+        (true, _, _, _) => core::ScreenshotTool::Spectacle,
+        (false, true, _, _) => core::ScreenshotTool::Flameshot,
+        _ => return None,
+    };
+    Some(match tool {
+        core::ScreenshotTool::Spectacle => ScreenshotToolConfig {
+            tool,
+            program: "Spectacle",
+            group: "ImageSave",
+            key: "imageSaveLocation",
+        },
+        core::ScreenshotTool::Flameshot => ScreenshotToolConfig {
+            tool,
+            program: "Flameshot",
+            group: "General",
+            key: "savePath",
+        },
+    })
+}
+
+fn screenshot_config_path(tool: &core::ScreenshotTool) -> PathBuf {
+    match tool {
+        core::ScreenshotTool::Spectacle => core::config_home().join("spectaclerc"),
+        core::ScreenshotTool::Flameshot => core::config_home().join("flameshot/flameshot.ini"),
+    }
+}
+
+fn ini_value(text: &str, group: &str, key: &str) -> Option<String> {
+    let mut in_group = false;
+    for line in text.lines() {
+        let line = line.trim();
+        if line.starts_with('[') && line.ends_with(']') {
+            in_group = &line[1..line.len() - 1] == group;
+        } else if in_group
+            && !line.starts_with(['#', ';'])
+            && let Some((name, value)) = line.split_once('=')
+            && name.trim() == key
+        {
+            let value = value.trim();
+            let comment_at = value
+                .find([';', '#'])
+                .filter(|&comment| comment > 0 && value[..comment].ends_with(char::is_whitespace));
+            return Some(
+                comment_at
+                    .map_or(value, |comment| &value[..comment])
+                    .trim_end()
+                    .to_string(),
+            );
+        }
+    }
+    None
+}
+
+fn set_ini_value(text: &str, group: &str, key: &str, value: Option<&str>) -> String {
+    if value.is_none() {
+        let exists = ini_value(text, group, key).is_some();
+        if !exists {
+            return text.to_string();
+        }
+    }
+    let lines: Vec<&str> = text.split_inclusive('\n').collect();
+    let mut in_group = false;
+    let mut group_at = None;
+    let mut end_group_at = lines.len();
+
+    for (index, line) in lines.iter().enumerate() {
+        let body = line.trim_end_matches(['\n', '\r']).trim();
+        if body.starts_with('[') && body.ends_with(']') {
+            if in_group {
+                end_group_at = index;
+                break;
+            }
+            in_group = &body[1..body.len() - 1] == group;
+            if in_group {
+                group_at = Some(index);
+            }
+            continue;
+        }
+        if in_group
+            && !body.starts_with(['#', ';'])
+            && let Some((name, _)) = body.split_once('=')
+            && name.trim() == key
+        {
+            let Some(value) = value else {
+                return lines
+                    .iter()
+                    .enumerate()
+                    .filter_map(|(line_index, line)| (line_index != index).then_some(*line))
+                    .collect();
+            };
+            let ending = if line.ends_with("\r\n") {
+                "\r\n"
+            } else if line.ends_with('\n') {
+                "\n"
+            } else {
+                ""
+            };
+            let raw_body = line.trim_end_matches(['\n', '\r']);
+            let equals = raw_body.find('=').unwrap();
+            let prefix = &raw_body[..=equals];
+            let remainder = &raw_body[equals + 1..];
+            let leading_len = remainder.len() - remainder.trim_start().len();
+            let content = &remainder[leading_len..];
+            let comment_at = content.find([';', '#']).filter(|&comment| {
+                comment > 0 && content[..comment].ends_with(char::is_whitespace)
+            });
+            let (trailing, comment) = if let Some(comment_at) = comment_at {
+                let before_comment = &content[..comment_at];
+                let spacing_at = before_comment
+                    .rfind(|character: char| !character.is_whitespace())
+                    .map_or(0, |index| index + 1);
+                (&before_comment[spacing_at..], &content[comment_at..])
+            } else {
+                let trailing_at = content.trim_end().len();
+                (&content[trailing_at..], "")
+            };
+            let mut output = String::new();
+            for (line_index, existing) in lines.iter().enumerate() {
+                if line_index == index {
+                    output.push_str(prefix);
+                    output.push_str(&remainder[..leading_len]);
+                    output.push_str(value);
+                    output.push_str(trailing);
+                    output.push_str(comment);
+                    output.push_str(ending);
+                } else {
+                    output.push_str(existing);
+                }
+            }
+            return output;
+        }
+    }
+
+    let Some(group_at) = group_at else {
+        if value.is_none() {
+            return text.to_string();
+        }
+        let mut output = text.to_string();
+        if !output.is_empty() && !output.ends_with('\n') {
+            output.push('\n');
+        }
+        if !output.is_empty() && !output.ends_with("\n\n") {
+            output.push('\n');
+        }
+        output.push_str(&format!("[{group}]\n{key}={}\n", value.unwrap()));
+        return output;
+    };
+    if value.is_none() {
+        return text.to_string();
+    }
+    let newline = if lines[group_at].ends_with("\r\n") {
+        "\r\n"
+    } else {
+        "\n"
+    };
+    let mut insertion_at = end_group_at;
+    while insertion_at > group_at + 1
+        && lines[insertion_at - 1]
+            .trim_matches(['\r', '\n'])
+            .trim()
+            .is_empty()
+    {
+        insertion_at -= 1;
+    }
+    let mut output = String::new();
+    for (index, line) in lines.iter().enumerate() {
+        if index == insertion_at {
+            output.push_str(&format!("{key}={}{}", value.unwrap(), newline));
+        }
+        output.push_str(line);
+    }
+    if insertion_at == lines.len() {
+        if !lines.is_empty() && !lines.last().unwrap().ends_with('\n') {
+            output.push('\n');
+        }
+        output.push_str(&format!("{key}={}{}", value.unwrap(), newline));
+    }
+    output
+}
+
+fn restored_ini_value(
+    text: &str,
+    group: &str,
+    key: &str,
+    applied: &str,
+    previous: Option<&str>,
+) -> Option<String> {
+    (ini_value(text, group, key).as_deref() == Some(applied))
+        .then(|| set_ini_value(text, group, key, previous))
+}
+
+fn file_url(path: &Path) -> String {
+    use std::os::unix::ffi::OsStrExt;
+    let mut url = String::from("file://");
+    for byte in path.as_os_str().as_bytes() {
+        if byte.is_ascii_alphanumeric() || b"/-._~:".contains(byte) {
+            url.push(*byte as char);
+        } else {
+            url.push_str(&format!("%{byte:02X}"));
+        }
+    }
+    url
+}
+
+fn screenshot_setting_message(program: &str) -> String {
+    format!("Changes {program}'s save folder. Turning this off puts it back.")
+}
+
+fn set_screenshot_saving(ctx: &Shared, enabled: bool) {
+    let (accounts, selected_index, ui) = {
+        let c = ctx.borrow();
+        let ui = c.ui();
+        let selected_index = usize::try_from(ui.get_app_screenshot_account()).unwrap_or_default();
+        (c.accounts.clone(), selected_index, ui)
+    };
+    let mut settings = AppSettings::load();
+    let was_enabled = settings.screenshot_save.is_some();
+    let result = if enabled {
+        match (screenshot_tool(), accounts.get(selected_index)) {
+            (Some(tool), Some(account)) => enable_screenshot_saving(&mut settings, &tool, account),
+            (None, _) => Err("No supported screenshot tool was found.".into()),
+            (_, None) => Err("Add a OneDrive account before turning this on.".into()),
+        }
+    } else {
+        disable_screenshot_saving(&mut settings)
+    };
+    ui.set_app_screenshot_enabled(settings.screenshot_save.is_some());
+    ui.set_app_msg(ss(match result {
+        Ok(Some(message)) => message,
+        Ok(None) => String::new(),
+        Err(error) => {
+            ui.set_app_screenshot_enabled(was_enabled);
+            format!("Couldn't change the screenshot folder: {error}")
+        }
+    }));
+}
+
+fn prepare_screenshot_settings(ctx: &Shared, settings: &AppSettings) {
+    let c = ctx.borrow();
+    let ui = c.ui();
+    let accounts = &c.accounts;
+    let account_names: Vec<SharedString> =
+        accounts.iter().map(|account| ss(&account.name)).collect();
+    ui.set_app_screenshot_accounts(ModelRc::new(VecModel::from(account_names)));
+    let selected_account = settings
+        .screenshot_save
+        .as_ref()
+        .and_then(|saved| {
+            accounts
+                .iter()
+                .position(|account| account.key() == saved.account)
+        })
+        .or_else(|| {
+            c.current
+                .as_ref()
+                .and_then(|key| accounts.iter().position(|account| &account.key() == key))
+        })
+        .unwrap_or_default();
+    ui.set_app_screenshot_account(selected_account as i32);
+    let supported = settings.screenshot_save.is_some() || screenshot_tool().is_some();
+    ui.set_app_screenshot_supported(supported);
+    ui.set_app_screenshot_enabled(settings.screenshot_save.is_some());
+    let program = settings
+        .screenshot_save
+        .as_ref()
+        .map(|saved| match &saved.tool {
+            core::ScreenshotTool::Spectacle => "Spectacle",
+            core::ScreenshotTool::Flameshot => "Flameshot",
+        })
+        .or_else(|| screenshot_tool().map(|tool| tool.program))
+        .unwrap_or("screenshot tool");
+    ui.set_app_screenshot_hint(ss(screenshot_setting_message(program)));
+}
+
+fn enable_screenshot_saving(
+    settings: &mut AppSettings,
+    tool: &ScreenshotToolConfig,
+    account: &AccountInfo,
+) -> Result<Option<String>, String> {
+    let path = screenshot_config_path(&tool.tool);
+    let current = match fs::read_to_string(&path) {
+        Ok(text) => text,
+        Err(error) if error.kind() == std::io::ErrorKind::NotFound => String::new(),
+        Err(error) => return Err(format!("Couldn't read {}: {error}", path.display())),
+    };
+    let screenshots = account.sync_dir.join("Pictures/Screenshots");
+    fs::create_dir_all(&screenshots)
+        .map_err(|error| format!("Couldn't create {}: {error}", screenshots.display()))?;
+    let target = match tool.tool {
+        core::ScreenshotTool::Spectacle => file_url(&screenshots),
+        core::ScreenshotTool::Flameshot => screenshots.to_string_lossy().to_string(),
+    };
+    if target.chars().any(char::is_control) {
+        return Err("The screenshot folder path contains a character the tool can't save.".into());
+    }
+    let updated = set_ini_value(&current, tool.group, tool.key, Some(&target));
+    let mut next = settings.clone();
+    next.screenshot_save = Some(core::ScreenshotSave {
+        tool: tool.tool.clone(),
+        config_file: path.clone(),
+        account: account.key(),
+        previous_value: ini_value(&current, tool.group, tool.key),
+        applied_value: target,
+    });
+    next.save()
+        .map_err(|error| format!("Couldn't save the setting: {error}"))?;
+    if let Err(error) = write_ini_if_unchanged(&path, &current, &updated) {
+        next.screenshot_save = None;
+        if let Err(rollback) = next.save() {
+            return Err(format!(
+                "{error}. Couldn't clear the saved setting either: {rollback}"
+            ));
+        }
+        return Err(error);
+    }
+    *settings = next;
+    Ok(Some(format!(
+        "Screenshots will be saved in {}.",
+        screenshots.display()
+    )))
+}
+
+fn disable_screenshot_saving(settings: &mut AppSettings) -> Result<Option<String>, String> {
+    let Some(saved) = settings.screenshot_save.clone() else {
+        return Ok(None);
+    };
+    let path = saved.config_file;
+    let current = match fs::read_to_string(&path) {
+        Ok(text) => Some(text),
+        Err(error) if error.kind() == std::io::ErrorKind::NotFound => None,
+        Err(error) => return Err(format!("Couldn't read {}: {error}", path.display())),
+    };
+    let (group, key) = screenshot_tool_keys(&saved.tool);
+    let message = match current {
+        Some(current) => {
+            if let Some(updated) = restored_ini_value(
+                &current,
+                group,
+                key,
+                &saved.applied_value,
+                saved.previous_value.as_deref(),
+            ) {
+                write_ini_if_unchanged(&path, &current, &updated)
+                    .map_err(|error| format!("Couldn't restore {}: {error}", path.display()))?;
+                None
+            } else {
+                Some("The screenshot tool's save folder changed. I left it as it is.".to_string())
+            }
+        }
+        None => Some("The screenshot tool's save folder changed. I left it as it is.".to_string()),
+    };
+    let mut next = settings.clone();
+    next.screenshot_save = None;
+    next.save()
+        .map_err(|error| format!("Couldn't save the setting: {error}"))?;
+    *settings = next;
+    Ok(message)
+}
+
+fn screenshot_tool_keys(tool: &core::ScreenshotTool) -> (&'static str, &'static str) {
+    match tool {
+        core::ScreenshotTool::Spectacle => ("ImageSave", "imageSaveLocation"),
+        core::ScreenshotTool::Flameshot => ("General", "savePath"),
+    }
+}
+
+fn write_ini_if_unchanged(path: &Path, expected: &str, updated: &str) -> Result<(), String> {
+    let current = match fs::read_to_string(path) {
+        Ok(text) => text,
+        Err(error) if error.kind() == std::io::ErrorKind::NotFound => String::new(),
+        Err(error) => return Err(format!("Couldn't read {}: {error}", path.display())),
+    };
+    if current != expected {
+        return Err(format!(
+            "{} changed while DriveDeck was updating it. I left it as it is.",
+            path.display()
+        ));
+    }
+    if updated == current {
+        return Ok(());
+    }
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent)
+            .map_err(|error| format!("Couldn't create {}: {error}", parent.display()))?;
+    }
+    if let Ok(metadata) = fs::symlink_metadata(path)
+        && !metadata.file_type().is_file()
+    {
+        return Err(format!("{} isn't a regular file.", path.display()));
+    }
+    core::atomic_write(path, updated.as_bytes())
+        .map_err(|error| format!("Couldn't write {}: {error}", path.display()))
+}
+
+fn open_developer_skip_dirs(ctx: &Shared) {
+    let ui = ctx.borrow().ui();
+    ui.set_o_dev_git(true);
+    ui.set_o_dev_node_modules(true);
+    ui.set_o_dev_target(true);
+    ui.set_o_dev_pycache(true);
+    ui.set_o_dev_venv(true);
+    ui.set_o_dev_venv_alt(true);
+    ui.set_o_dev_gradle(true);
+    ui.set_o_dev_idea(true);
+    ui.set_o_dev_cache(true);
+    ui.set_o_dev_build(false);
+    ui.set_o_dev_dist(false);
+    ui.set_o_dev_visible(true);
+}
+
+fn add_developer_skip_dirs(ctx: &Shared) {
+    let ui = ctx.borrow().ui();
+    let selected = [
+        (ui.get_o_dev_git(), ".git"),
+        (ui.get_o_dev_node_modules(), "node_modules"),
+        (ui.get_o_dev_target(), "target"),
+        (ui.get_o_dev_pycache(), "__pycache__"),
+        (ui.get_o_dev_venv(), ".venv"),
+        (ui.get_o_dev_venv_alt(), "venv"),
+        (ui.get_o_dev_gradle(), ".gradle"),
+        (ui.get_o_dev_idea(), ".idea"),
+        (ui.get_o_dev_cache(), ".cache"),
+        (ui.get_o_dev_build(), "build"),
+        (ui.get_o_dev_dist(), "dist"),
+    ];
+    let selected: Vec<_> = selected
+        .into_iter()
+        .filter_map(|(checked, name)| checked.then_some(name))
+        .collect();
+    ui.set_o_skip_dirs(ss(append_developer_skip_dirs(
+        &ui.get_o_skip_dirs(),
+        &selected,
+    )));
+    ui.set_o_dev_visible(false);
+}
+
 fn save_options(ctx: &Shared) {
     let Some(acc) = current(ctx) else { return };
     let ui = ctx.borrow().ui();
@@ -4529,6 +4994,7 @@ fn start_tray() {
 fn prepare_app_page(ctx: &Shared) {
     let ui = ctx.borrow().ui();
     let settings = AppSettings::load();
+    prepare_screenshot_settings(ctx, &settings);
     ui.set_app_autostart(autostart_file().exists());
     ui.set_app_stop_on_quit(settings.stop_sync_on_quit);
     ui.set_app_pause_metered(settings.pause_on_metered.unwrap_or(true));
@@ -5369,6 +5835,12 @@ pub fn run(account: Option<String>) {
     });
     on!(on_f_apply, |c| folders_apply(c));
     on!(on_o_save, |c| save_options(c));
+    on!(on_o_dev_open, |c| open_developer_skip_dirs(c));
+    on!(on_o_dev_add, |c| add_developer_skip_dirs(c));
+    on!(on_o_dev_cancel, |c| c
+        .borrow()
+        .ui()
+        .set_o_dev_visible(false));
     on!(on_move_folder, |c| move_folder_start(c));
     on!(on_b_start, |c, i: i32| backup_start(c, i.max(0) as usize));
     on!(on_b_stop, |c, i: i32| backup_stop(c, i.max(0) as usize));
@@ -5491,6 +5963,10 @@ pub fn run(account: Option<String>) {
                 .ui()
                 .set_app_msg(ss(format!("Couldn't save the setting: {e}")));
         }
+    });
+    on!(on_app_screenshot_toggled, |c| {
+        let enabled = c.borrow().ui().get_app_screenshot_enabled();
+        set_screenshot_saving(c, enabled);
     });
     on!(on_app_glass_changed, |c| {
         let ui = c.borrow().ui();
@@ -5851,6 +6327,131 @@ mod tests {
         assert!(clean_skip_dirs("a||b").is_err());
         assert!(clean_skip_dirs("a|").is_err());
         assert!(clean_skip_dirs("Temp|.*").is_err());
+    }
+
+    #[test]
+    fn developer_skip_dirs_append_to_empty_and_existing_values_without_duplicates() {
+        let selected = [".git", "node_modules", "target"];
+        assert_eq!(
+            append_developer_skip_dirs("", &selected),
+            ".git|node_modules|target"
+        );
+        assert_eq!(
+            append_developer_skip_dirs("Temp|node_modules", &selected),
+            "Temp|node_modules|.git|target"
+        );
+        assert_eq!(
+            append_developer_skip_dirs(".git|.git", &[".git", ".git", "build"]),
+            ".git|build"
+        );
+    }
+
+    #[test]
+    fn ini_setting_updates_only_its_value_and_keeps_comments_and_blank_lines() {
+        let original = "# keep this comment\n\n[ImageSave]\n; keep this too\nimageSaveLocation=file:///old   # inline comment\n\n[Other]\nkey=value\n";
+        assert_eq!(
+            ini_value(original, "ImageSave", "imageSaveLocation").as_deref(),
+            Some("file:///old")
+        );
+        assert_eq!(
+            set_ini_value(
+                original,
+                "ImageSave",
+                "imageSaveLocation",
+                Some("file:///new")
+            ),
+            "# keep this comment\n\n[ImageSave]\n; keep this too\nimageSaveLocation=file:///new   # inline comment\n\n[Other]\nkey=value\n"
+        );
+    }
+
+    #[test]
+    fn ini_setting_is_inserted_when_key_or_group_is_missing() {
+        assert_eq!(
+            set_ini_value(
+                "[General]\nkeep=yes\n\n[Other]\nx=y\n",
+                "General",
+                "savePath",
+                Some("/shots")
+            ),
+            "[General]\nkeep=yes\nsavePath=/shots\n\n[Other]\nx=y\n"
+        );
+        assert_eq!(
+            set_ini_value(
+                "# keep\n",
+                "ImageSave",
+                "imageSaveLocation",
+                Some("file:///shots")
+            ),
+            "# keep\n\n[ImageSave]\nimageSaveLocation=file:///shots\n"
+        );
+    }
+
+    #[test]
+    fn ini_setting_can_be_removed_without_changing_other_lines() {
+        let original = "[General]\n; keep\nsavePath=/shots\n\n[Other]\nkeep=yes\n";
+        assert_eq!(
+            set_ini_value(original, "General", "savePath", None),
+            "[General]\n; keep\n\n[Other]\nkeep=yes\n"
+        );
+        assert_eq!(
+            set_ini_value("[General]\nkeep=yes\n", "General", "missing", None),
+            "[General]\nkeep=yes\n"
+        );
+    }
+
+    #[test]
+    fn ini_setting_round_trips_with_and_without_an_original_value() {
+        let original = "[General]\nkeep=yes\nsavePath=/old\n\n[Other]\nx=y\n";
+        let applied = set_ini_value(
+            original,
+            "General",
+            "savePath",
+            Some("/OneDrive/Pictures/Screenshots"),
+        );
+        assert_eq!(
+            set_ini_value(
+                &applied,
+                "General",
+                "savePath",
+                Some(ini_value(original, "General", "savePath").unwrap().as_str())
+            ),
+            original
+        );
+
+        let original = "[ImageSave]\nkeep=yes\n\n[Other]\nx=y\n";
+        let applied = set_ini_value(
+            original,
+            "ImageSave",
+            "imageSaveLocation",
+            Some("file:///OneDrive/Pictures/Screenshots"),
+        );
+        assert_eq!(
+            set_ini_value(&applied, "ImageSave", "imageSaveLocation", None),
+            original
+        );
+    }
+
+    #[test]
+    fn screenshot_restore_leaves_a_value_the_user_changed() {
+        let changed = "[General]\nsavePath=/my/new/folder\n";
+        assert_eq!(
+            restored_ini_value(
+                changed,
+                "General",
+                "savePath",
+                "/OneDrive/Pictures/Screenshots",
+                Some("/old"),
+            ),
+            None
+        );
+    }
+
+    #[test]
+    fn screenshot_paths_are_encoded_as_file_urls() {
+        assert_eq!(
+            file_url(Path::new("/home/test/OneDrive/Pictures/My shots")),
+            "file:///home/test/OneDrive/Pictures/My%20shots"
+        );
     }
 
     #[test]

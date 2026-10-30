@@ -440,9 +440,27 @@ pub struct AppSettings {
     /// Sync badges on files in Dolphin, Nemo and Caja (None: yes)
     #[serde(skip_serializing_if = "Option::is_none")]
     pub show_badges: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub screenshot_save: Option<ScreenshotSave>,
     /// Prevents a fallback/default value from overwriting settings that could not be loaded.
     #[serde(skip)]
     load_error: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+#[serde(rename_all = "lowercase")]
+pub enum ScreenshotTool {
+    Spectacle,
+    Flameshot,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct ScreenshotSave {
+    pub tool: ScreenshotTool,
+    pub config_file: PathBuf,
+    pub account: String,
+    pub previous_value: Option<String>,
+    pub applied_value: String,
 }
 
 impl AppSettings {

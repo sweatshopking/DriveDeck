@@ -134,12 +134,32 @@ fn main() {
             .get(1)
             .iter()
             .for_each(|p| share::view_online(std::path::Path::new(p))),
+        Some("--office-online") => args
+            .get(1)
+            .iter()
+            .for_each(|p| share::view_online(std::path::Path::new(p))),
+        Some("--status") => std::process::exit(run_status(args.iter().any(|a| a == "--json"))),
+        Some("--print-link") => {
+            let Some(path) = args.get(1) else {
+                eprintln!("Usage: {} --print-link <file> [--edit]", core::APP_ID);
+                std::process::exit(1);
+            };
+            std::process::exit(share::print_share_link(
+                std::path::Path::new(path),
+                args.iter().any(|a| a == "--edit"),
+            ));
+        }
+        Some("--sync-now") => std::process::exit(run_sync_now()),
         Some("--version") => println!("{} {}", core::APP_NAME, env!("CARGO_PKG_VERSION")),
         Some("--help") | Some("-h") => {
             println!(
-                "{} {}\n\nUsage:\n  {} [--settings] [--account <config dir>]\n  {} --tray\n  {} --share-link <file>\n  {} --share-edit-link <file>\n  {} --share-people <file>\n  {} --versions <file>\n  {} --view-online <file>",
+                "{} {}\n\nUsage:\n  {} [--settings] [--account <config dir>]\n  {} --tray\n  {} --share-link <file>\n  {} --share-edit-link <file>\n  {} --share-people <file>\n  {} --versions <file>\n  {} --view-online <file>\n  {} --office-online <file>\n  {} --status [--json]\n  {} --print-link <file> [--edit]\n  {} --sync-now",
                 core::APP_NAME,
                 env!("CARGO_PKG_VERSION"),
+                core::APP_ID,
+                core::APP_ID,
+                core::APP_ID,
+                core::APP_ID,
                 core::APP_ID,
                 core::APP_ID,
                 core::APP_ID,
@@ -163,6 +183,109 @@ fn main() {
     }
 }
 
+fn run_status(json: bool) -> i32 {
+    if core::client_binary().is_none() {
+        eprintln!(
+            "The OneDrive Client for Linux isn't installed. See {}",
+            core::CLIENT_INSTALL_URL
+        );
+        return 2;
+    }
+
+    let snapshot = ui::take_snapshot();
+    if json {
+        match status_json(&snapshot.infos, &snapshot.statuses, &snapshot.settings) {
+            Ok(output) => println!("{output}"),
+            Err(e) => {
+                eprintln!("Couldn't format account status: {e}");
+                return 1;
+            }
+        }
+    } else {
+        for (info, status) in snapshot.infos.iter().zip(&snapshot.statuses) {
+            let prefs = snapshot.settings.prefs(&info.confdir);
+            println!("{}: {}", info.name, status.text(&prefs));
+        }
+    }
+    status_exit_code(true, &snapshot.statuses)
+}
+
+fn status_json(
+    infos: &[core::AccountInfo],
+    statuses: &[core::Status],
+    settings: &core::AppSettings,
+) -> Result<String, serde_json::Error> {
+    let accounts: Vec<_> = infos
+        .iter()
+        .zip(statuses)
+        .map(|(info, status)| {
+            let prefs = settings.prefs(&info.confdir);
+            serde_json::json!({
+                "account": info.name,
+                "folder": info.sync_dir.display().to_string(),
+                "phase": format!("{:?}", status.phase).to_lowercase(),
+                "text": status.text(&prefs),
+                "last_complete": status.last_complete.as_ref().map(|time| time.to_rfc3339()),
+                "last_error": status.last_error.as_deref(),
+                "not_synced": status.unsynced_changes(),
+            })
+        })
+        .collect();
+    serde_json::to_string(&accounts)
+}
+
+fn status_exit_code(client_installed: bool, statuses: &[core::Status]) -> i32 {
+    if !client_installed {
+        return 2;
+    }
+    if statuses.iter().any(|status| {
+        matches!(
+            status.phase,
+            core::Phase::Error
+                | core::Phase::Stopped
+                | core::Phase::NeedsResync
+                | core::Phase::SignedOut
+                | core::Phase::BigDelete
+        ) || status.unsynced_changes() > 0
+    }) {
+        1
+    } else {
+        0
+    }
+}
+
+fn run_sync_now() -> i32 {
+    if core::client_binary().is_none() {
+        eprintln!(
+            "The OneDrive Client for Linux isn't installed. See {}",
+            core::CLIENT_INSTALL_URL
+        );
+        return 2;
+    }
+    let snapshot = ui::take_snapshot();
+    let mut started = 0;
+    let mut errors = Vec::new();
+    for (info, status) in snapshot.infos.iter().zip(&snapshot.statuses) {
+        if !info.signed_in || status.phase == core::Phase::Resyncing {
+            continue;
+        }
+        match core::sync_now(info) {
+            Ok(_) => {
+                println!("Requested a sync for {}.", info.name);
+                started += 1;
+            }
+            Err(e) => errors.push(format!("{}: {e}", info.name)),
+        }
+    }
+    if started == 0 && errors.is_empty() {
+        println!("No accounts are ready to sync.");
+    }
+    for error in &errors {
+        eprintln!("{error}");
+    }
+    if errors.is_empty() { 0 } else { 1 }
+}
+
 fn run_client(args: &[String]) {
     let Some(bin) = core::client_binary() else {
         eprintln!(
@@ -174,4 +297,108 @@ fn run_client(args: &[String]) {
     let err = std::process::Command::new(bin).args(args).exec();
     eprintln!("Couldn't start the onedrive client: {err}");
     std::process::exit(127);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use chrono::{Local, TimeZone};
+
+    fn account(name: &str) -> core::AccountInfo {
+        core::AccountInfo {
+            name: name.into(),
+            confdir: "/tmp/drivedeck-test-config".into(),
+            unit: Some("onedrive.service".into()),
+            managed: true,
+            sync_dir: "/home/test/OneDrive".into(),
+            drive_id: None,
+            kind: "personal".into(),
+            signed_in: true,
+        }
+    }
+
+    fn status(phase: core::Phase) -> core::Status {
+        core::Status {
+            phase,
+            last_complete: None,
+            last_error: None,
+            blocked: Vec::new(),
+            big_delete: None,
+            unit: core::UnitState::default(),
+        }
+    }
+
+    #[test]
+    fn status_json_has_the_documented_fields_and_values() {
+        let personal = account("Personal");
+        let completed = Local.with_ymd_and_hms(2025, 6, 12, 9, 30, 0).unwrap();
+        let mut current = status(core::Phase::UpToDate);
+        current.last_complete = Some(completed);
+        current.last_error = Some("Last run failed".into());
+        current.blocked.push(core::Blocked {
+            path: "Documents/report.docx".into(),
+            reason: core::BlockReason::ReadOnly,
+        });
+        let signed_out = status(core::Phase::SignedOut);
+        let settings = core::AppSettings::default();
+        let expected_text = current.text(&settings.prefs(&personal.confdir));
+
+        let value: serde_json::Value = serde_json::from_str(
+            &status_json(
+                &[personal, account("Work")],
+                &[current, signed_out],
+                &settings,
+            )
+            .unwrap(),
+        )
+        .unwrap();
+        let accounts = value.as_array().unwrap();
+        assert_eq!(accounts.len(), 2);
+        assert_eq!(
+            accounts[0]
+                .as_object()
+                .unwrap()
+                .keys()
+                .cloned()
+                .collect::<Vec<_>>(),
+            [
+                "account",
+                "folder",
+                "last_complete",
+                "last_error",
+                "not_synced",
+                "phase",
+                "text",
+            ]
+        );
+        assert_eq!(accounts[0]["account"], "Personal");
+        assert_eq!(accounts[0]["folder"], "/home/test/OneDrive");
+        assert_eq!(accounts[0]["phase"], "uptodate");
+        assert_eq!(accounts[0]["text"], expected_text);
+        assert_eq!(accounts[0]["last_complete"], completed.to_rfc3339());
+        assert_eq!(accounts[0]["last_error"], "Last run failed");
+        assert_eq!(accounts[0]["not_synced"], 1);
+        assert_eq!(accounts[1]["phase"], "signedout");
+        assert!(accounts[1]["last_complete"].is_null());
+        assert!(accounts[1]["last_error"].is_null());
+    }
+
+    #[test]
+    fn status_exit_code_reports_attention_and_missing_client() {
+        assert_eq!(status_exit_code(true, &[status(core::Phase::UpToDate)]), 0);
+        assert_eq!(status_exit_code(true, &[status(core::Phase::Error)]), 1);
+        assert_eq!(status_exit_code(true, &[status(core::Phase::Stopped)]), 1);
+        assert_eq!(
+            status_exit_code(true, &[status(core::Phase::NeedsResync)]),
+            1
+        );
+        assert_eq!(status_exit_code(false, &[status(core::Phase::UpToDate)]), 2);
+
+        let mut unsynced = status(core::Phase::UpToDate);
+        unsynced.blocked.push(core::Blocked {
+            path: "report.docx".into(),
+            reason: core::BlockReason::Locked,
+        });
+        assert_eq!(status_exit_code(true, &[unsynced]), 1);
+    }
 }

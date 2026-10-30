@@ -36,6 +36,14 @@ and the checks in the instructions pass.
 
 **Done notes:**
 
+Added `--office-online` using the existing `view_online`/`item_web_url` flow and an Office-only
+Dolphin action for Word, Excel, PowerPoint, and OpenDocument files. Added AppImage menu install,
+refresh, and removal support, plus deb/rpm packaging entries. Updated `src/main.rs`, `src/share.rs`,
+`src/uninstall.rs`, `packaging/drivedeck-servicemenu-office.desktop`,
+`packaging/build.sh`, and `packaging/drivedeck.spec.in`. CLI help was smoke-tested; formatting,
+Clippy, and all 89 tests pass. I couldn't verify a live personal or work account item because no
+signed-in test accounts were available.
+
 ---
 
 ## C2 · Copilot · Command-line status and links
@@ -65,6 +73,12 @@ the JSON output (build a fake `Status`) and the exit-code choice.
 
 **Done notes:**
 
+Added `--status` and JSON output with the popup's status text, `--print-link` for view or edit links,
+and `--sync-now` using the tray's account selection. Updated CLI help and added terminal examples
+in `README.md`. Changed `src/main.rs` and `src/share.rs`; added tests for the JSON shape and exit
+codes. CLI help and `--print-link` error handling were smoke-tested. `cargo fmt --check`, Clippy,
+and all 91 tests pass. Live sync and Microsoft link creation were not exercised against accounts.
+
 ---
 
 ## C3 · Copilot · "Skip developer folders" preset
@@ -90,6 +104,11 @@ of order), and `node_modules`/`target` folders are huge and pointless to sync.
 checks pass.
 
 **Done notes:**
+
+Added the developer-folder button and checkbox dialog to the Options page. Add appends selected
+names to the unsaved skip-folder field without duplicates; the normal Save action still runs its
+existing resync preview. Changed `ui/app.slint` and `src/ui.rs`, with tests for empty fields,
+overlapping entries, and duplicates. `cargo fmt --check`, Clippy, and all 92 tests pass.
 
 ---
 
@@ -123,6 +142,15 @@ value, with unit tests for the ini helper (key present, key missing, group missi
 and blank lines kept).
 
 **Done notes:**
+
+Added the screenshot switch and account picker, with opt-in folder setup and guarded restoration
+for Spectacle and Flameshot. The INI helper preserves unrelated lines and comments; tests cover
+missing keys/groups, round trips, and user edits. Changed `src/core.rs`, `src/ui.rs`, and
+`ui/app.slint`. On this machine, Spectacle 6.8.2 was installed and its current config was read:
+it contains `lastImageSaveLocation`, while the binary also contains `imageSaveLocation`; the
+implementation uses the task-specified `imageSaveLocation`. The existing config was not changed.
+Flameshot was unavailable, so its live behavior could not be checked. `cargo fmt --check`,
+Clippy, and all 98 tests pass.
 
 ---
 
