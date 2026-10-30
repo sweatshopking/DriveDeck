@@ -17,6 +17,7 @@ const DEFAULT_APP_ID: &str = "d50ca740-c83f-4d1b-b616-12c519384f0c";
 const SCOPE: &str = "Files.ReadWrite Files.ReadWrite.All Sites.ReadWrite.All offline_access";
 const GRAPH: &str = "https://graph.microsoft.com/v1.0";
 
+#[derive(Clone)]
 pub struct Token {
     pub access: String,
     pub expires: Instant,
@@ -287,6 +288,64 @@ fn drive_base(tok: &Token, drive_id: Option<&str>) -> String {
         Some(d) => format!("{}/drives/{}", tok.graph, enc(d)),
         None => format!("{}/me/drive", tok.graph),
     }
+}
+
+/// One file or folder a search found
+#[derive(Clone, Debug, PartialEq)]
+pub struct Hit {
+    pub name: String,
+    /// Where it opens on the OneDrive website
+    pub web_url: String,
+    pub folder: bool,
+    /// Its place in the drive, "Documents/Travel/Trip budget.xlsx" (empty if Microsoft didn't say)
+    pub path: String,
+    /// The folder it sits in, "Documents/Travel" (empty at the top)
+    pub parent: String,
+}
+
+/// Looks for `query` in the names and contents of everything in the drive (Microsoft's own
+/// search), best matches first.
+pub fn search(
+    tok: &Token,
+    drive_id: Option<&str>,
+    query: &str,
+    limit: usize,
+) -> Result<Vec<Hit>, String> {
+    let url = format!(
+        "{}/root/search(q='{}')?$select=name,webUrl,folder,parentReference&$top={limit}",
+        drive_base(tok, drive_id),
+        // a quote inside the query is written twice
+        enc(&query.replace('\'', "''"))
+    );
+    let v = get(tok, &url)?;
+    Ok(v["value"]
+        .as_array()
+        .map(|items| items.iter().filter_map(hit_from_item).take(limit).collect())
+        .unwrap_or_default())
+}
+
+fn hit_from_item(item: &Value) -> Option<Hit> {
+    let name = item["name"].as_str().filter(|n| !n.is_empty())?.to_string();
+    let web_url = item["webUrl"].as_str()?.to_string();
+    // "/drive/root:/Documents/Travel" (or "/drives/<id>/root:/…"): what follows "root:" is the
+    // folder's place in the drive
+    let parent = item["parentReference"]["path"]
+        .as_str()
+        .and_then(|p| p.split_once("root:"))
+        .map(|(_, rest)| rest.trim_matches('/').to_string())
+        .unwrap_or_default();
+    let path = if parent.is_empty() {
+        name.clone()
+    } else {
+        format!("{parent}/{name}")
+    };
+    Some(Hit {
+        name,
+        web_url,
+        folder: item["folder"].is_object(),
+        path,
+        parent,
+    })
 }
 
 #[derive(Clone, Debug)]
@@ -674,6 +733,23 @@ fn web_page_for(home: &str, page: WebPage) -> String {
 
 #[cfg(test)]
 mod page_tests {
+    #[test]
+    fn search_results_read_the_way_microsoft_sends_them() {
+        let personal = serde_json::json!({"name": "Trip budget.xlsx", "webUrl": "https://1drv.ms/x/abc",
+            "parentReference": {"path": "/drive/root:/Documents/Travel"}});
+        let h = hit_from_item(&personal).unwrap();
+        assert_eq!(h.path, "Documents/Travel/Trip budget.xlsx");
+        assert_eq!(h.parent, "Documents/Travel");
+        assert!(!h.folder);
+        let business = serde_json::json!({"name": "Plans", "webUrl": "https://x.sharepoint.com/Plans", "folder": {"childCount": 2},
+            "parentReference": {"path": "/drives/b!Ab12/root:"}});
+        let h = hit_from_item(&business).unwrap();
+        assert_eq!((h.path.as_str(), h.parent.as_str(), h.folder), ("Plans", "", true));
+        // no web address or no name: nothing to open or show
+        assert!(hit_from_item(&serde_json::json!({"name": "x"})).is_none());
+        assert!(hit_from_item(&serde_json::json!({"webUrl": "https://x"})).is_none());
+    }
+
 
     #[test]
     fn sharing_entries_read_the_way_microsoft_sends_them() {
