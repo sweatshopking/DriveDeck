@@ -1915,6 +1915,9 @@ pub enum LogEvent {
     },
     NeedsResync,
     NeedsLogin,
+    /// Linux's per-user limit on watched folders ran out: some folders' local changes go
+    /// unnoticed until the next full check
+    WatchLimit,
 }
 
 /// Why the client left one file alone.
@@ -2324,6 +2327,9 @@ pub fn parse_log(msg: &str) -> Option<LogEvent> {
     }
     if msg.starts_with("Reading configuration file: ") {
         return Some(LogEvent::ClientStart);
+    }
+    if msg.contains(WATCH_LIMIT_MSG) {
+        return Some(LogEvent::WatchLimit);
     }
     if msg.starts_with("ERROR") || msg.contains("ERROR:") || msg.starts_with("Unable to ") {
         return Some(LogEvent::Error(msg.to_string()));
@@ -2735,6 +2741,67 @@ impl Status {
             },
             Phase::Unknown => "Waiting for first sync".into(),
         }
+    }
+}
+
+/// What the client logs (once, while setting up its folder watches) when the limit runs out
+pub const WATCH_LIMIT_MSG: &str =
+    "The user limit on the total number of inotify watches has been reached";
+
+/// Linux's per-user limit on folders watched for changes (shared by every program you run)
+pub fn watch_limit() -> Option<u64> {
+    fs::read_to_string("/proc/sys/fs/inotify/max_user_watches")
+        .ok()?
+        .trim()
+        .parse()
+        .ok()
+}
+
+/// What to raise it to: double, at least the 524288 most desktops use now, at most 8 million
+/// (each watch costs about 1 KB of kernel memory, and only while it's in use).
+pub fn suggested_watch_limit(now: u64) -> u64 {
+    now.saturating_mul(2).clamp(524_288, 8_388_608)
+}
+
+/// Whether the client running in `unit` hit the watch limit since it last started.
+pub fn watch_limit_hit(unit: &str) -> bool {
+    let out = Command::new("journalctl")
+        .args([
+            "--user",
+            "-u",
+            unit,
+            "-n",
+            "1",
+            "-o",
+            "cat",
+            "--no-pager",
+            "-q",
+        ])
+        .args(["--reverse", "--grep"])
+        .arg(format!("Reading configuration file: |{WATCH_LIMIT_MSG}"))
+        .output();
+    out.is_ok_and(|o| String::from_utf8_lossy(&o.stdout).contains(WATCH_LIMIT_MSG))
+}
+
+/// Raises the watch limit now and for good, after the user asked to: one password prompt. Our
+/// own file in /etc/sysctl.d, so it's clear where it came from and simple to remove.
+pub fn raise_watch_limit(to: u64) -> Result<(), String> {
+    let script = r#"mkdir -p /etc/sysctl.d &&
+printf '# Written by DriveDeck when you chose "Raise the limit". Delete this file to undo.\nfs.inotify.max_user_watches = %s\n' "$1" >/etc/sysctl.d/90-drivedeck-inotify.conf &&
+echo "$1" >/proc/sys/fs/inotify/max_user_watches"#;
+    let out = Command::new(crate::clientinstall::elevate())
+        .args(["/bin/sh", "-c", script, "sh", &to.to_string()])
+        .stdin(Stdio::null())
+        .output()
+        .map_err(|e| format!("Couldn't ask for the password: {e}"))?;
+    match out.status.code() {
+        Some(0) => Ok(()),
+        Some(126) => Err("Nothing was changed (the password window was closed).".into()),
+        Some(127) => Err("Nothing was changed: your computer didn't allow it.".into()),
+        _ => Err(format!(
+            "That didn't work: {}",
+            String::from_utf8_lossy(&out.stderr).trim()
+        )),
     }
 }
 
@@ -4015,5 +4082,16 @@ mod tests {
         let got = parse_stalls(&text);
         assert_eq!(got.len(), 1);
         assert_eq!(got[&PathBuf::from("/home/u/.config/onedrive work")], a);
+    }
+
+    #[test]
+    fn the_watch_limit_message_is_recognised() {
+        assert!(matches!(
+            parse_log("The user limit on the total number of inotify watches has been reached."),
+            Some(LogEvent::WatchLimit)
+        ));
+        assert_eq!(suggested_watch_limit(8192), 524_288);
+        assert_eq!(suggested_watch_limit(524_288), 1_048_576);
+        assert_eq!(suggested_watch_limit(u64::MAX), 8_388_608);
     }
 }

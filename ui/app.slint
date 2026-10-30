@@ -517,6 +517,50 @@ component ClientBanner inherits Rectangle {
     }
 }
 
+// Shown while a client has run out of Linux's folder watches since it last started.
+component WatchLimitBanner inherits Rectangle {
+    in property <string> text;
+    in property <string> hint;
+    in property <bool> busy;
+    callback raise();
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: Theme.warn.with-alpha(0.6);
+    background: Theme.warn.with-alpha(0.13);
+    height: watch-layout.preferred-height;
+    watch-layout := VerticalLayout {
+        padding: 12px;
+        spacing: 6px;
+        Text {
+            text: "Some changes on this computer aren't being noticed";
+            font-weight: 600;
+            wrap: word-wrap;
+        }
+        Text {
+            text: root.text;
+            wrap: word-wrap;
+            font-size: 12px;
+        }
+        HorizontalLayout {
+            alignment: start;
+            spacing: 8px;
+            Button {
+                text: root.busy ? "Raising it…" : "Raise the limit";
+                enabled: !root.busy;
+                clicked => {
+                    root.raise();
+                }
+            }
+        }
+        if root.hint != "": Text {
+            text: root.hint;
+            wrap: word-wrap;
+            font-size: 11px;
+            opacity: 0.8;
+        }
+    }
+}
+
 // Shown while a sync service is switched on outside this app (for every user, or at boot).
 component OutsideStartBanner inherits Rectangle {
     in property <string> text;
@@ -810,6 +854,11 @@ export component AppWindow inherits Window {
     in property <bool> outside-start-busy;
     callback outside-start-off();
     callback outside-start-keep();
+    // ---------------- out of folder watches (empty when not)
+    in property <string> watch-limit;
+    in property <string> watch-limit-hint;
+    in property <bool> watch-limit-busy;
+    callback watch-limit-raise();
 
     // ---------------- "install the client" confirmation
     in property <bool> ci-visible;
@@ -990,6 +1039,18 @@ export component AppWindow inherits Window {
                     }
                     install => {
                         root.client-install();
+                    }
+                }
+            }
+            if root.watch-limit != "": VerticalLayout {
+                padding: 12px;
+                padding-bottom: 0px;
+                WatchLimitBanner {
+                    text: root.watch-limit;
+                    hint: root.watch-limit-hint;
+                    busy: root.watch-limit-busy;
+                    raise => {
+                        root.watch-limit-raise();
                     }
                 }
             }

@@ -4670,6 +4670,74 @@ fn show_outside_starts() {
     });
 }
 
+/// Accounts whose client ran out of folder watches since it last started (name, unit).
+fn out_of_watches() -> Vec<(String, String)> {
+    let settings = AppSettings::load();
+    core::discover_with_states(&settings)
+        .0
+        .into_iter()
+        .filter_map(|i| Some((i.name, i.unit?)))
+        .filter(|(_, unit)| core::watch_limit_hit(unit))
+        .collect()
+}
+
+fn watch_limit_text(names: &[String], now: Option<u64>) -> String {
+    if names.is_empty() {
+        return String::new();
+    }
+    let limit = match now {
+        Some(n) => format!(" (now {n})"),
+        None => String::new(),
+    };
+    format!(
+        "Linux limits how many folders your programs can watch for changes{limit}, and syncing \
+         for {} ran out while setting up. Changes in some folders won't sync until its next full \
+         check. Raising the limit fixes it; syncing then restarts.",
+        names.join(", ")
+    )
+}
+
+fn show_watch_limit() {
+    bg(out_of_watches, |ctx, hit| {
+        let ui = ctx.borrow().ui();
+        let names: Vec<String> = hit.into_iter().map(|(name, _)| name).collect();
+        ui.set_watch_limit(ss(watch_limit_text(&names, core::watch_limit())));
+        let to = core::suggested_watch_limit(core::watch_limit().unwrap_or(8192));
+        ui.set_watch_limit_hint(ss(format!(
+            "Asks for your password and sets it to {to} for this computer \
+             (in /etc/sysctl.d/90-drivedeck-inotify.conf; delete that file to undo)."
+        )));
+    });
+}
+
+/// Raises the limit after the user asked to, then restarts the accounts that ran out.
+fn raise_watch_limit(ctx: &Shared) {
+    let ui = ctx.borrow().ui();
+    ui.set_watch_limit_busy(true);
+    bg(
+        || {
+            let to = core::suggested_watch_limit(core::watch_limit().unwrap_or(8192));
+            core::raise_watch_limit(to)?;
+            for (_, unit) in out_of_watches() {
+                core::unit_action("restart", &unit);
+            }
+            Ok(())
+        },
+        |ctx, r: Result<(), String>| {
+            let ui = ctx.borrow().ui();
+            ui.set_watch_limit_busy(false);
+            match r {
+                // the restarted clients set up their watches again; their new start hides this
+                Ok(()) => {
+                    ui.set_watch_limit(ss(""));
+                    refresh(ctx);
+                }
+                Err(e) => ui.set_watch_limit_hint(ss(e)),
+            }
+        },
+    );
+}
+
 /// Switches off the outside starts after the user asked to: one password prompt for both kinds.
 fn turn_off_outside_starts(ctx: &Shared) {
     let ui = ctx.borrow().ui();
@@ -5195,6 +5263,7 @@ pub fn run(account: Option<String>) {
     CTX.with(|c| *c.borrow_mut() = Some(ctx.clone()));
     listen_for_hand_offs();
     show_outside_starts();
+    show_watch_limit();
     check_client();
     let initial_account = account.clone();
     let start_tray_after_load = recovery_error.is_none();
@@ -5548,6 +5617,7 @@ pub fn run(account: Option<String>) {
         ui.set_client_install_msg(ss(""));
     });
     on!(on_outside_start_off, |c| turn_off_outside_starts(c));
+    on!(on_watch_limit_raise, |c| raise_watch_limit(c));
     on!(on_outside_start_keep, |c| {
         let mut s = AppSettings::load();
         let ui = c.borrow().ui();

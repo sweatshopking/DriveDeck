@@ -44,6 +44,8 @@ struct Acc {
     /// We restarted the service once for being stuck; until a sync completes after this, a
     /// second stall is reported instead of restarting again
     stall_restart: Option<DateTime<Local>>,
+    /// The client just ran out of folder watches, waiting for a notification
+    fresh_watch_limit: bool,
 }
 
 impl Acc {
@@ -64,6 +66,7 @@ impl Acc {
             moving: HashSet::new(),
             stalled_since: None,
             stall_restart: None,
+            fresh_watch_limit: false,
         }
     }
     /// The phase from systemd, the log and settings, before any stall is taken into account
@@ -835,6 +838,10 @@ fn apply_one(a: &mut Acc, when: DateTime<Local>, ev: LogEvent) {
         LogEvent::BigDelete => a.log_phase = Phase::BigDelete,
         // a new run checks again; until it says otherwise, the old big delete no longer applies
         LogEvent::ClientStart if a.log_phase == Phase::BigDelete => a.log_phase = Phase::Unknown,
+        // news only when it happens while the tray watches (the window shows older ones)
+        LogEvent::WatchLimit => {
+            a.fresh_watch_limit |= when.timestamp() >= tray_started().timestamp();
+        }
         LogEvent::Blocked { .. } | LogEvent::ClientStart | LogEvent::Progress { .. } => {}
         LogEvent::File { .. } => {}
     }
@@ -1249,6 +1256,22 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
             .unwrap_or_default();
         for (name, list) in fresh {
             share::notify(&format!("OneDrive: {name}"), &core::blocked_text(&list));
+        }
+        let out_of_watches: Vec<String> = handle
+            .update(|t: &mut Tray| {
+                t.accs
+                    .iter_mut()
+                    .filter_map(|a| {
+                        std::mem::take(&mut a.fresh_watch_limit).then(|| a.info.name.clone())
+                    })
+                    .collect()
+            })
+            .unwrap_or_default();
+        for name in out_of_watches {
+            share::notify(
+                &format!("OneDrive: {name}"),
+                "Linux's limit on folders watched for changes ran out, so some changes on this computer won't sync right away. Open Settings to raise it.",
+            );
         }
         // after an update, hand over to the new version (once the new file has stayed put for a
         // whole round, so we don't catch an install half-way)
