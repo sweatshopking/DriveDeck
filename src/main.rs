@@ -132,6 +132,10 @@ fn main() {
             .get(1)
             .iter()
             .for_each(|p| filewin::run(filewin::Mode::Share, std::path::Path::new(p))),
+        Some("--manage-access") => args
+            .get(1)
+            .iter()
+            .for_each(|p| filewin::run(filewin::Mode::Access, std::path::Path::new(p))),
         Some("--view-online") => args
             .get(1)
             .iter()
@@ -151,9 +155,10 @@ fn main() {
         }
         Some("--help") | Some("-h") => {
             println!(
-                "{} {}\n\nUsage:\n  {} [--settings] [--account <config dir>]\n  {} --tray\n  {} --share-link <file>\n  {} --share-edit-link <file>\n  {} --share-people <file>\n  {} --versions <file>\n  {} --view-online <file>\n  {} --doctor [--report]",
+                "{} {}\n\nUsage:\n  {} [--settings] [--account <config dir>]\n  {} --tray\n  {} --share-link <file>\n  {} --share-edit-link <file>\n  {} --share-people <file>\n  {} --versions <file>\n  {} --manage-access <file>\n  {} --view-online <file>\n  {} --doctor [--report]",
                 core::APP_NAME,
                 env!("CARGO_PKG_VERSION"),
+                core::APP_ID,
                 core::APP_ID,
                 core::APP_ID,
                 core::APP_ID,

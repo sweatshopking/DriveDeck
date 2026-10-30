@@ -3872,8 +3872,15 @@ export struct VersionRow {
     detail: string, // size and who saved it
 }
 
+// One link or person that can open a file (FileWindow, "Who has access")
+export struct AccessRow {
+    who: string,
+    detail: string, // what they can do, and until when
+    inherited: bool, // from a folder above: changed there
+}
+
 export component FileWindow inherits Window {
-    title: root.mode == 0 ? "Version history — " + root.file-name : "Share — " + root.file-name;
+    title: (root.mode == 0 ? "Version history — " : root.mode == 2 ? "Who has access — " : "Share — ") + root.file-name;
     icon: @image-url("../assets/drivedeck.svg");
     preferred-width: 520px;
     preferred-height: root.mode == 0 ? 560px : 500px;
@@ -3889,7 +3896,7 @@ export component FileWindow inherits Window {
         Theme.dark = self.dark;
     }
 
-    in property <int> mode; // 0 version history, 1 share with people
+    in property <int> mode; // 0 version history, 1 share with people, 2 who has access
     in property <string> file-name;
     in property <string> account;
     in property <bool> busy;
@@ -3906,6 +3913,10 @@ export component FileWindow inherits Window {
     in-out property <bool> can-edit;
     in-out property <string> message;
     callback send();
+    // who has access
+    in property <[AccessRow]> access-rows;
+    in-out property <int> confirm-remove: -1; // the row whose "Stop sharing" was pressed once
+    callback remove-access(int);
     callback close-window();
 
     VerticalLayout {
@@ -3929,7 +3940,7 @@ export component FileWindow inherits Window {
                 alignment: center;
                 spacing: 2px;
                 Text {
-                    text: root.mode == 0 ? "Version history" : "Share with people";
+                    text: root.mode == 0 ? "Version history" : root.mode == 2 ? "Who has access" : "Share with people";
                     font-size: 18px;
                     font-weight: 700;
                 }
@@ -4098,6 +4109,73 @@ export component FileWindow inherits Window {
         }
         if root.mode == 1: Rectangle {
             vertical-stretch: 1;
+        }
+
+        // ---- who has access
+        if root.mode == 2: Card {
+            vertical-stretch: 1;
+            VerticalLayout {
+                padding: 6px;
+                ListView {
+                    vertical-stretch: 1;
+                    for a[i] in root.access-rows: Rectangle {
+                        height: 58px;
+                        border-radius: 10px;
+                        background: access-touch.has-hover ? Theme.hover : transparent;
+                        access-touch := TouchArea { }
+                        HorizontalLayout {
+                            padding-left: 12px;
+                            padding-right: 8px;
+                            spacing: 10px;
+                            VerticalLayout {
+                                horizontal-stretch: 1;
+                                alignment: center;
+                                spacing: 2px;
+                                Text {
+                                    text: a.who;
+                                    font-weight: 600;
+                                    overflow: elide;
+                                }
+                                Text {
+                                    text: a.detail;
+                                    font-size: 12px;
+                                    color: Theme.subtle-text;
+                                    overflow: elide;
+                                }
+                            }
+                            VerticalLayout {
+                                alignment: center;
+                                HorizontalLayout {
+                                    spacing: 8px;
+                                    if root.confirm-remove == i: Button {
+                                        text: "Keep";
+                                        clicked => {
+                                            root.confirm-remove = -1;
+                                        }
+                                    }
+                                    Button {
+                                        text: root.confirm-remove == i ? "Stop it" : "Stop sharing";
+                                        primary: root.confirm-remove == i;
+                                        enabled: !root.busy && !a.inherited;
+                                        accessible-label: "Stop sharing with " + a.who;
+                                        clicked => {
+                                            if (root.confirm-remove == i) {
+                                                root.confirm-remove = -1;
+                                                root.remove-access(i);
+                                            } else {
+                                                root.confirm-remove = i;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if root.mode == 2: Hint {
+            text: "Stopping a link makes it stop working for everyone who has it. Stopping a person's access takes the file away from their \"Shared\" list. Access that comes from a folder above can only be changed on that folder.";
         }
 
         // ---- status and buttons

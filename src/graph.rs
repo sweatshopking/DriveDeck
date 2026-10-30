@@ -633,6 +633,35 @@ fn web_page_for(home: &str, page: WebPage) -> String {
 
 #[cfg(test)]
 mod page_tests {
+
+    #[test]
+    fn sharing_entries_read_the_way_microsoft_sends_them() {
+        let list = serde_json::json!([
+            {"id": "o", "roles": ["owner"], "grantedToV2": {"user": {"displayName": "Me"}}},
+            {"id": "a", "roles": ["read"], "link": {"scope": "anonymous", "webUrl": "https://1drv.ms/x"},
+             "expirationDateTime": "2026-12-01T00:00:00Z"},
+            {"id": "b", "roles": ["write"], "grantedToV2": {"user": {"displayName": "Ann Lee", "email": "ann@example.com"}}},
+            {"id": "c", "roles": ["read"], "grantedToIdentitiesV2": [{"siteUser": {"displayName": "Bo"}}],
+             "inheritedFrom": {"path": "/drive/root:/Shared"}},
+            {"id": "d", "roles": ["read"], "invitation": {"email": "cy@example.com"}},
+            {"id": "", "roles": ["read"]}
+        ]);
+        let got: Vec<Access> = list
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter_map(access_from)
+            .collect();
+        let who: Vec<&str> = got.iter().map(|a| a.who.as_str()).collect();
+        assert_eq!(
+            who,
+            ["Anyone with the link", "Ann Lee", "Bo", "cy@example.com"]
+        );
+        assert!(!got[0].can_edit && got[1].can_edit);
+        assert_eq!(got[0].expires.as_deref(), Some("2026-12-01T00:00:00Z"));
+        assert!(got[2].inherited && !got[1].inherited);
+    }
+
     use super::*;
 
     #[test]
@@ -812,6 +841,94 @@ pub fn restore_version(
         None,
     )
     .map(|_| ())
+}
+
+/// One way a file or folder is shared: a link, or a person (or group) given access
+#[derive(Clone, Debug, PartialEq)]
+pub struct Access {
+    pub id: String,
+    /// "Anyone with the link", "People in your organization with the link", or who it is
+    pub who: String,
+    pub can_edit: bool,
+    /// When it stops working (RFC 3339), if it does
+    pub expires: Option<String>,
+    /// Comes from a folder above: can only be removed there
+    pub inherited: bool,
+}
+
+/// Everyone and every link that can open the item, except its owner.
+pub fn access(tok: &Token, drive_id: Option<&str>, rel: &str) -> Result<Vec<Access>, String> {
+    let items = get_all(tok, format!("{}/permissions", item_url(tok, drive_id, rel)))?;
+    Ok(items.iter().filter_map(access_from).collect())
+}
+
+fn access_from(p: &Value) -> Option<Access> {
+    let roles: Vec<&str> = p["roles"]
+        .as_array()
+        .map(|a| a.iter().filter_map(Value::as_str).collect())
+        .unwrap_or_default();
+    if roles.contains(&"owner") {
+        return None;
+    }
+    let link = &p["link"];
+    let who = if link.is_object() {
+        match link["scope"].as_str() {
+            Some("anonymous") => "Anyone with the link",
+            Some("organization") => "People in your organization with the link",
+            Some("users") => "Specific people with the link",
+            _ => "A sharing link",
+        }
+        .to_string()
+    } else {
+        let named = |v: &Value| {
+            ["user", "siteUser", "group", "siteGroup"]
+                .iter()
+                .find_map(|k| {
+                    v[k]["displayName"]
+                        .as_str()
+                        .or(v[k]["email"].as_str())
+                        .filter(|s| !s.is_empty())
+                        .map(String::from)
+                })
+        };
+        named(&p["grantedToV2"])
+            .or_else(|| named(&p["grantedTo"]))
+            .or_else(|| {
+                p["grantedToIdentitiesV2"]
+                    .as_array()
+                    .and_then(|a| a.iter().find_map(named))
+            })
+            .or_else(|| p["invitation"]["email"].as_str().map(String::from))
+            .unwrap_or_else(|| "Someone".into())
+    };
+    Some(Access {
+        id: p["id"].as_str().filter(|s| !s.is_empty())?.to_string(),
+        who,
+        can_edit: roles.contains(&"write"),
+        expires: p["expirationDateTime"].as_str().map(String::from),
+        inherited: p["inheritedFrom"].is_object(),
+    })
+}
+
+/// Stops one link or person's access to the item.
+pub fn remove_access(
+    tok: &Token,
+    drive_id: Option<&str>,
+    rel: &str,
+    id: &str,
+) -> Result<(), String> {
+    let url = format!("{}/permissions/{}", item_url(tok, drive_id, rel), enc(id));
+    let mut resp = agent()
+        .delete(at(&url))
+        .header("Authorization", &format!("Bearer {}", tok.access))
+        .call()
+        .map_err(unreachable)?;
+    let status = resp.status().as_u16();
+    if status < 400 {
+        return Ok(());
+    }
+    let v = read_reply(&mut resp).unwrap_or(Value::Null);
+    Err(problem(status, &v))
 }
 
 /// Shares a file or folder with particular people by email: they get an invitation and must

@@ -1,5 +1,6 @@
 //! A file's own small window, opened from the file manager's OneDrive menu: its version history
-//! (open or restore an older version), or sharing it with particular people by email.
+//! (open or restore an older version), sharing it with particular people by email, or who has
+//! access to it (and stopping that).
 
 use std::path::{Path, PathBuf};
 use std::time::Duration;
@@ -8,7 +9,7 @@ use slint::{ComponentHandle, ModelRc, SharedString, VecModel};
 
 use crate::core::{self, AccountInfo};
 use crate::graph::{self, Version};
-use crate::ui::{FileWindow, Theme, VersionRow};
+use crate::ui::{AccessRow, FileWindow, Theme, VersionRow};
 
 const VERSION_CACHE_FILES: usize = 50;
 const VERSION_CACHE_BYTES: u64 = 512 * 1024 * 1024;
@@ -17,6 +18,7 @@ const VERSION_CACHE_BYTES: u64 = 512 * 1024 * 1024;
 pub enum Mode {
     Versions,
     Share,
+    Access,
 }
 
 fn ss(s: impl AsRef<str>) -> SharedString {
@@ -191,7 +193,7 @@ pub fn run(mode: Mode, path: &Path) {
         );
         return;
     }
-    if mode == Mode::Share && rel.is_empty() {
+    if mode != Mode::Versions && rel.is_empty() {
         crate::share::notify(
             "Couldn't share it",
             &format!(
@@ -224,7 +226,11 @@ pub fn run(mode: Mode, path: &Path) {
         theme.set_contrast(a.high_contrast);
         theme.set_reduce_motion(a.reduce_motion);
     }
-    ui.set_mode(if mode == Mode::Versions { 0 } else { 1 });
+    ui.set_mode(match mode {
+        Mode::Versions => 0,
+        Mode::Share => 1,
+        Mode::Access => 2,
+    });
     ui.set_file_name(ss(&name));
     ui.set_account(ss(&acc.name));
     ui.set_is_work(acc.kind != "personal");
@@ -248,10 +254,95 @@ pub fn run(mode: Mode, path: &Path) {
     match mode {
         Mode::Versions => versions(&ui, &weak, acc, rel, path.to_path_buf()),
         Mode::Share => share(&ui, &weak, acc, rel),
+        Mode::Access => access(&ui, &weak, acc, rel),
     }
     #[cfg(feature = "test-driver")]
     let _driver = crate::testdrive::start(&ui);
     let _ = ui.run();
+}
+
+thread_local! {
+    /// The links and people shown in "Who has access" (the UI thread's own copy)
+    static ACCESS: std::cell::RefCell<Vec<graph::Access>> = const { std::cell::RefCell::new(Vec::new()) };
+}
+
+fn access_detail(a: &graph::Access) -> String {
+    let mut d = String::from(if a.can_edit { "Can edit" } else { "Can view" });
+    if let Some(e) = &a.expires {
+        d.push_str(&format!("  ·  until {}", when(e)));
+    }
+    if a.inherited {
+        d.push_str("  ·  from a folder above");
+    }
+    d
+}
+
+/// (Re)reads who has access and shows it.
+fn load_access(weak: &slint::Weak<FileWindow>, acc: &AccountInfo, rel: &str) {
+    if let Some(ui) = weak.upgrade() {
+        ui.set_busy(true);
+        say(&ui, 3, "Checking who has access…");
+    }
+    let (acc, rel) = (acc.clone(), rel.to_string());
+    bg(
+        weak,
+        move || {
+            graph::token(&acc.confdir)
+                .and_then(|t| graph::access(&t, acc.drive_id.as_deref(), &rel))
+        },
+        |ui, r| {
+            ui.set_busy(false);
+            match r {
+                Ok(list) => {
+                    let rows: Vec<AccessRow> = list
+                        .iter()
+                        .map(|a| AccessRow {
+                            who: ss(&a.who),
+                            detail: ss(access_detail(a)),
+                            inherited: a.inherited,
+                        })
+                        .collect();
+                    ui.set_access_rows(ModelRc::new(VecModel::from(rows)));
+                    if list.is_empty() {
+                        say(ui, 3, "It isn't shared: only you can open it.");
+                    } else {
+                        say(ui, 3, "");
+                    }
+                    ACCESS.with(|l| *l.borrow_mut() = list);
+                }
+                Err(e) => say(ui, 2, e),
+            }
+        },
+    );
+}
+
+fn access(ui: &FileWindow, weak: &slint::Weak<FileWindow>, acc: AccountInfo, rel: String) {
+    load_access(weak, &acc, &rel);
+    let weak = weak.clone();
+    ui.on_remove_access(move |i| {
+        let Some(a) = ACCESS.with(|l| l.borrow().get(usize::try_from(i).ok()?).cloned()) else {
+            return;
+        };
+        if let Some(ui) = weak.upgrade() {
+            ui.set_busy(true);
+        }
+        let (acc2, rel2) = (acc.clone(), rel.clone());
+        let (weak2, acc3, rel3) = (weak.clone(), acc.clone(), rel.clone());
+        bg(
+            &weak,
+            move || {
+                graph::token(&acc2.confdir)
+                    .and_then(|t| graph::remove_access(&t, acc2.drive_id.as_deref(), &rel2, &a.id))
+            },
+            move |ui, r| {
+                ui.set_busy(false);
+                match r {
+                    Ok(()) => load_access(&weak2, &acc3, &rel3),
+                    Err(e) => say(ui, 2, e),
+                }
+            },
+        );
+    });
 }
 
 thread_local! {
