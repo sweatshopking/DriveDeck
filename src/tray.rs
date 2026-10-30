@@ -1457,6 +1457,8 @@ pub fn run() {
     // an AppImage update doesn't touch the Dolphin actions it once added for this user
     share::refresh_service_menu();
     share::refresh_user_icons();
+    // answers KRunner's searches while the user has that switched on
+    crate::runner::start();
     core::repair_managed_units();
     if recovered.is_ok() {
         core::start_idle_units(&AppSettings::load());

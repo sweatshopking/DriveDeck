@@ -200,6 +200,10 @@ It covers what the OneDrive app on Windows does, and then some. In short:
   allows.
 - **Quick links** to the OneDrive website, its recycle bin and *Restore your OneDrive*.
 
+- **Search from KRunner** (Plasma's Alt+Space search): finds files in your OneDrive by name or
+  content, including ones that aren't on this computer, and opens the synced copy, or the file
+  on the OneDrive website. Off until you turn it on in *App settings*, because what you type
+  there is sent to Microsoft.
 ### Settings and control
 
 - **Every client setting, in plain words.** An *Advanced* section covers the rest of the client's

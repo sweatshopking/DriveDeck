@@ -744,12 +744,14 @@ mod page_tests {
         let business = serde_json::json!({"name": "Plans", "webUrl": "https://x.sharepoint.com/Plans", "folder": {"childCount": 2},
             "parentReference": {"path": "/drives/b!Ab12/root:"}});
         let h = hit_from_item(&business).unwrap();
-        assert_eq!((h.path.as_str(), h.parent.as_str(), h.folder), ("Plans", "", true));
+        assert_eq!(
+            (h.path.as_str(), h.parent.as_str(), h.folder),
+            ("Plans", "", true)
+        );
         // no web address or no name: nothing to open or show
         assert!(hit_from_item(&serde_json::json!({"name": "x"})).is_none());
         assert!(hit_from_item(&serde_json::json!({"webUrl": "https://x"})).is_none());
     }
-
 
     #[test]
     fn sharing_entries_read_the_way_microsoft_sends_them() {

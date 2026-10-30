@@ -22,6 +22,7 @@ mod graph;
 mod i18n;
 mod popup;
 mod rename;
+mod runner;
 mod share;
 #[cfg(feature = "test-driver")]
 mod testdrive;

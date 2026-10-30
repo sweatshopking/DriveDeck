@@ -846,6 +846,10 @@ export component AppWindow inherits Window {
     in property <string> app-screenshot-hint;
     callback app-screenshot-toggled();
     in-out property <bool> app-badges;
+    // search OneDrive from KRunner (shown only where KRunner is installed)
+    in-out property <bool> app-krunner;
+    in property <bool> app-krunner-supported;
+    callback app-krunner-toggled();
     in property <bool> app-dolphin-offer;
     in property <bool> app-dolphin-busy;
     in property <string> app-badges-msg;
@@ -2582,6 +2586,16 @@ export component AppWindow inherits Window {
                             }
                             if root.app-badges-msg != "": Hint {
                                 text: root.app-badges-msg;
+                            }
+                            if root.app-krunner-supported: CheckBox {
+                                text: @tr("Search OneDrive from KRunner (Alt+Space)");
+                                checked <=> root.app-krunner;
+                                toggled => {
+                                    root.app-krunner-toggled();
+                                }
+                            }
+                            if root.app-krunner-supported: Hint {
+                                text: @tr("Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches.");
                             }
                             CheckBox {
                                 text: @tr("Tell me when a new version is out");

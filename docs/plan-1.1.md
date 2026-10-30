@@ -211,6 +211,11 @@ Form label columns were widened (150/170 px). German screenshots still showed:
   436 on was blanked (falls back to English); translate it again, entry by entry, checking each
   `msgstr` belongs to the `msgid` above it. `scripts/fix-po-newlines.py` repairs raw line breaks
   inside a `msgstr`. Never put two plural forms in one `msgstr`: use `msgstr[0]`, `msgstr[1]`.
+- `scripts/update-translations.sh` is **lossy**: it rebuilds `po/drivedeck.pot` from scratch and
+  dropped about 135 existing entries (937 became 802: plural entries and some `format_plural`
+  strings are missed). Do not run it as it is. Fix it to keep every existing entry (and check
+  the count before and after) before using it, or add new strings to the `.pot` and each `.po`
+  by hand, as was done for the six KRunner strings (2026-10-30).
 - `cargo test -- --ignored` runs `every_language_is_complete`: it must pass when this task is done.
 - Polish, Czech, Ukrainian and Swedish are set aside in `po-later/` (finish later).
 

@@ -443,6 +443,9 @@ pub struct AppSettings {
     /// Sync badges on files in Dolphin, Nemo and Caja (None: yes)
     #[serde(skip_serializing_if = "Option::is_none")]
     pub show_badges: Option<bool>,
+    /// Search OneDrive from KRunner (None: off; what's typed there goes to Microsoft)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub krunner_search: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub screenshot_save: Option<ScreenshotSave>,
     /// Prevents a fallback/default value from overwriting settings that could not be loaded.

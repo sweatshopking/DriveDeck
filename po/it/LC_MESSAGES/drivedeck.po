@@ -3580,3 +3580,27 @@ msgstr ""
 
 msgid "seconds"
 msgstr ""
+
+#: src/runner.rs
+msgid "OneDrive files"
+msgstr ""
+
+#: src/runner.rs
+msgid "Search your OneDrive, including files that aren't on this computer"
+msgstr ""
+
+#: src/runner.rs
+msgid "Top of OneDrive"
+msgstr ""
+
+#: src/runner.rs
+msgid "Open on the OneDrive website"
+msgstr ""
+
+#: ui/app.slint
+msgid "Search OneDrive from KRunner (Alt+Space)"
+msgstr ""
+
+#: ui/app.slint
+msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
+msgstr ""
