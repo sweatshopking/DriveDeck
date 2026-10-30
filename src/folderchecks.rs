@@ -116,6 +116,77 @@ fn windows_onedrive_folder(dir: &Path) -> bool {
     bytes.windows(8).any(|w| w == b"OneDrive") || bytes.windows(16).any(|w| w == utf16)
 }
 
+/// Where safety copies of `sync_dir` go: beside it (reflinks only work within one drive), in
+/// a hidden folder, never inside it (that would sync)
+fn safety_dir(sync_dir: &Path) -> Option<PathBuf> {
+    Some(sync_dir.parent()?.join(".drivedeck-safety"))
+}
+
+/// Safety copies of one folder kept at a time; older ones are removed when a new one is made
+const SAFETY_KEEP: usize = 2;
+
+/// Before a full resync: a copy of `sync_dir` made with reflinks (btrfs, XFS), which share the
+/// files' data with the originals, so it's quick and takes no space until files change. Ok(None)
+/// when the drive can't do that (nothing is copied the slow way). `others` are the other
+/// accounts' folders: a copy is never put inside one of them.
+pub fn safety_copy(sync_dir: &Path, others: &[PathBuf]) -> Result<Option<PathBuf>, String> {
+    let Some(base) = safety_dir(sync_dir) else {
+        return Ok(None);
+    };
+    if others.iter().any(|o| base.starts_with(o)) || !sync_dir.is_dir() {
+        return Ok(None);
+    }
+    let name = sync_dir
+        .file_name()
+        .map(|n| n.to_string_lossy().into_owned())
+        .unwrap_or_else(|| "OneDrive".into());
+    std::fs::create_dir_all(&base).map_err(|e| format!("Couldn't make {}: {e}", base.display()))?;
+    let stamp = chrono::Local::now().format("%Y-%m-%d %H.%M.%S");
+    let dest = base.join(format!("{name} {stamp}"));
+    let ok = Command::new("cp")
+        .args(["-a", "--reflink=always", "-T", "--"])
+        .arg(sync_dir)
+        .arg(&dest)
+        .stdout(std::process::Stdio::null())
+        .stderr(std::process::Stdio::null())
+        .status()
+        .is_ok_and(|s| s.success());
+    if !ok {
+        // no reflinks here (or it went wrong part way): leave nothing half-made behind
+        let _ = std::fs::remove_dir_all(&dest);
+        let _ = std::fs::remove_dir(&base);
+        return Ok(None);
+    }
+    prune_safety_copies(&base, &name);
+    Ok(Some(dest))
+}
+
+/// Keeps the newest SAFETY_KEEP copies of `name` (their names sort by date)
+fn prune_safety_copies(base: &Path, name: &str) {
+    let prefix = format!("{name} ");
+    let Ok(entries) = std::fs::read_dir(base) else {
+        return;
+    };
+    let mut copies: Vec<PathBuf> = entries
+        .flatten()
+        .filter(|e| {
+            let n = e.file_name().to_string_lossy().into_owned();
+            n.strip_prefix(&prefix).is_some_and(is_stamp) && e.file_type().is_ok_and(|t| t.is_dir())
+        })
+        .map(|e| e.path())
+        .collect();
+    copies.sort();
+    let old = copies.len().saturating_sub(SAFETY_KEEP);
+    for p in &copies[..old] {
+        let _ = std::fs::remove_dir_all(p);
+    }
+}
+
+/// "2026-10-30 14.05.09"
+fn is_stamp(s: &str) -> bool {
+    chrono::NaiveDateTime::parse_from_str(s, "%Y-%m-%d %H.%M.%S").is_ok()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -169,6 +240,49 @@ mod tests {
         std::fs::write(d.join("desktop.ini"), ini).unwrap();
         assert!(windows_onedrive_folder(&d));
         assert!(is_windows_fs("ntfs3") && is_windows_fs("fuseblk") && !is_windows_fs("btrfs"));
+        let _ = std::fs::remove_dir_all(&d);
+    }
+
+    #[test]
+    fn safety_copies_are_pruned_to_the_newest_two_of_ours() {
+        let d = tmp("safety");
+        for n in [
+            "OneDrive 2026-10-01 10.00.00",
+            "OneDrive 2026-10-02 10.00.00",
+            "OneDrive 2026-10-03 10.00.00",
+            "OneDrive my own folder",
+            "Work 2026-09-01 10.00.00",
+        ] {
+            std::fs::create_dir_all(d.join(n)).unwrap();
+        }
+        prune_safety_copies(&d, "OneDrive");
+        let mut left: Vec<String> = std::fs::read_dir(&d)
+            .unwrap()
+            .flatten()
+            .map(|e| e.file_name().to_string_lossy().into_owned())
+            .collect();
+        left.sort();
+        assert_eq!(
+            left,
+            [
+                "OneDrive 2026-10-02 10.00.00",
+                "OneDrive 2026-10-03 10.00.00",
+                "OneDrive my own folder",
+                "Work 2026-09-01 10.00.00"
+            ]
+        );
+        let _ = std::fs::remove_dir_all(&d);
+    }
+
+    #[test]
+    fn a_safety_copy_is_never_made_inside_another_account() {
+        let d = tmp("nested");
+        std::fs::create_dir_all(d.join("Work/Personal")).unwrap();
+        assert_eq!(
+            safety_copy(&d.join("Work/Personal"), &[d.join("Work")]),
+            Ok(None)
+        );
+        assert!(!d.join("Work/.drivedeck-safety").exists());
         let _ = std::fs::remove_dir_all(&d);
     }
 }

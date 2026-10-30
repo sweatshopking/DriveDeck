@@ -2677,7 +2677,11 @@ fn preview_apply(ctx: &Shared) {
     let ui = ctx.borrow().ui();
     ui.set_p_busy(true);
     ui.set_p_can_apply(false);
-    ui.set_p_live(ss("Starting sync…"));
+    ui.set_p_live(ss(if p.mode == PreviewMode::Resync {
+        "Making a safety copy, then starting…"
+    } else {
+        "Starting sync…"
+    }));
     let acc = ctx.borrow().account(&p.key).cloned();
     bg(
         move || apply_preview_in_background(p, acc),
@@ -2690,6 +2694,7 @@ fn preview_apply(ctx: &Shared) {
                     mode,
                     cleanup,
                     account,
+                    safety,
                 } => {
                     ui.set_p_visible(false);
                     let mut msg = format!(
@@ -2702,6 +2707,12 @@ fn preview_apply(ctx: &Shared) {
                     );
                     if let Err(e) = cleanup {
                         msg.push_str(&format!(" The committed settings are safe, but the recovery record couldn't be cleared: {e}"));
+                    }
+                    if let Some(copy) = safety {
+                        msg.push_str(&format!(
+                            " A safety copy of the folder as it was is in {} (it takes no extra space until files change; delete it once you're happy).",
+                            copy.display()
+                        ));
                     }
                     ui.set_s_msg(ss(msg));
                     ui.set_o_msg(ss(""));
@@ -2738,6 +2749,8 @@ enum PreviewApplyResult {
         mode: PreviewMode,
         cleanup: Result<(), String>,
         account: AccountInfo,
+        /// Where the safety copy made just before went, if one was
+        safety: Option<PathBuf>,
     },
     Failed(String),
     Restored,
@@ -2755,6 +2768,18 @@ fn apply_preview_in_background(p: Preview, account: Option<AccountInfo>) -> Prev
         };
     };
     let job = core::resync_unit(&acc.confdir);
+    // a full resync re-decides every file: keep a quick reflink copy first where the drive can
+    let safety = if p.mode == PreviewMode::Resync {
+        let others: Vec<PathBuf> = core::discover_with_states(&AppSettings::load())
+            .0
+            .into_iter()
+            .filter(|a| a.confdir != acc.confdir)
+            .map(|a| a.sync_dir)
+            .collect();
+        crate::folderchecks::safety_copy(&acc.sync_dir, &others).unwrap_or(None)
+    } else {
+        None
+    };
     let client = core::client_binary().unwrap_or_else(|| PathBuf::from("onedrive"));
     let mut script = format!(
         "{} --confdir {} {}",
@@ -2824,6 +2849,7 @@ fn apply_preview_in_background(p: Preview, account: Option<AccountInfo>) -> Prev
                 mode,
                 cleanup,
                 account: acc,
+                safety,
             }
         }
         Ok(o) => rollback_preview_apply(
