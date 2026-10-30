@@ -1226,10 +1226,15 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
             let newly_bad =
                 *phase != Phase::BigDelete && before.is_some_and(|b| bad(*phase) && !bad(b));
             if big_delete_news || newly_bad {
+                let what = match (phase, unit) {
+                    (Phase::BigDelete, Some(u)) => core::big_delete_what(&core::big_delete(u)),
+                    _ => String::new(),
+                };
+                let big_delete_body = format!(
+                    "{what} were deleted on this computer, so syncing stopped before deleting them online. Click the OneDrive icon to choose what to do."
+                );
                 let body = match phase {
-                    Phase::BigDelete => {
-                        "Many files were deleted on this computer, so syncing stopped before deleting them online. Click the OneDrive icon to choose what to do."
-                    }
+                    Phase::BigDelete => big_delete_body.as_str(),
                     Phase::SignedOut => {
                         "Microsoft needs you to sign in again. Open the tray menu to fix it."
                     }

@@ -2250,8 +2250,16 @@ pub fn big_delete(unit: &str) -> BigDelete {
 
 /// Plain words for a big delete the client stopped for.
 pub fn big_delete_text(b: &BigDelete) -> String {
+    format!(
+        "{} were deleted on this computer. Syncing stopped before deleting them online too, in case that was a mistake.\nIf it was a mistake, put them back (for example from the Trash) and press \u{201c}Sync now\u{201d}. Otherwise choose what to do below.",
+        big_delete_what(b)
+    )
+}
+
+/// What a big delete removed, as the start of a sentence
+pub fn big_delete_what(b: &BigDelete) -> String {
     // the client names what it was deleting (a folder, usually) and counts it with its contents
-    let what = match (&b.path, b.count) {
+    match (&b.path, b.count) {
         (Some(p), Some(n)) => format!(
             "\u{201c}{}\u{201d} and what was in it ({n} items in all)",
             shown_path(p)
@@ -2259,10 +2267,7 @@ pub fn big_delete_text(b: &BigDelete) -> String {
         (Some(p), None) => format!("\u{201c}{}\u{201d} and what was in it", shown_path(p)),
         (None, Some(n)) => format!("{n} items"),
         (None, None) => "Many items".to_string(),
-    };
-    format!(
-        "{what} were deleted on this computer. Syncing stopped before deleting them online too, in case that was a mistake.\nIf it was a mistake, put them back (for example from the Trash) and press \u{201c}Sync now\u{201d}. Otherwise choose what to do below."
-    )
+    }
 }
 
 /// A relative path, safe to show: no control characters, and shortened from the front.
