@@ -87,7 +87,7 @@ pub fn notify(app_name: &str, icon: &str, summary: &str, body: &str) -> bool {
     let Some(c) = session() else { return false };
     let hints: HashMap<&str, Value> = HashMap::new();
     // where the server reads the body as markup, a file name like "<b>x</b>" or "a&b" must
-    // show as written
+    // show as written (the summary is always plain text)
     let body = if body_markup(c) {
         markup_escape(body)
     } else {

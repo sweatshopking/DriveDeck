@@ -337,7 +337,7 @@ pub fn remove_dolphin_plugin() -> Result<bool, String> {
                 .status()
                 .is_ok_and(|s| s.success())
     };
-    if owned("dpkg", "-S") || owned("rpm", "-qf") {
+    if owned("dpkg", "-S") || owned("rpm", "-qf") || owned("pacman", "-Qo") {
         return Ok(false);
     }
     let out = std::process::Command::new(crate::clientinstall::elevate())

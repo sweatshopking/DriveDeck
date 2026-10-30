@@ -133,6 +133,13 @@ fn trim_version_cache(
     let mut files = Vec::new();
     for entry in std::fs::read_dir(dir)? {
         let path = entry?.path();
+        // hidden files are downloads still in progress (see download_version)
+        if path
+            .file_name()
+            .is_some_and(|n| n.as_encoded_bytes().starts_with(b"."))
+        {
+            continue;
+        }
         let metadata = std::fs::symlink_metadata(&path)?;
         if metadata.file_type().is_file() {
             files.push((
@@ -485,6 +492,23 @@ mod tests {
         trim_version_cache(&dir, &paths[2], usize::MAX, 1).unwrap();
         assert_eq!(std::fs::read_to_string(&paths[2]).unwrap(), "6");
         assert_eq!(std::fs::read_dir(&dir).unwrap().count(), 1);
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn trim_version_cache_ignores_in_progress_temporary_files() {
+        let dir = std::env::temp_dir().join(format!("lodg-trim-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::create_dir_all(&dir).unwrap();
+        let temp_download = dir.join(".lodg-version-1234-0.tmp");
+        std::fs::write(&temp_download, b"partial in-flight bytes").unwrap();
+        let regular_v1 = dir.join("Report (v1).docx");
+        std::fs::write(&regular_v1, b"version 1").unwrap();
+        trim_version_cache(&dir, &regular_v1, 0, 0).unwrap();
+        assert!(
+            temp_download.exists(),
+            "temporary in-progress download must not be removed by cache trimmer"
+        );
         let _ = std::fs::remove_dir_all(&dir);
     }
 }

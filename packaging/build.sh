@@ -16,6 +16,7 @@
 # uses the one installed on the system, so it keeps getting updates from its own packages.
 set -euo pipefail
 
+# A custom tag also requires its trusted LINUXDEPLOY_SHA256 in the build environment.
 LINUXDEPLOY_TAG="${LINUXDEPLOY_TAG:-1-alpha-20251107-1}"
 APP=drivedeck
 APPSTREAM_ID=io.github.sweatshopking.DriveDeck
@@ -199,11 +200,47 @@ build_appimage() {
     install -Dm644 "$ROOT/packaging/THIRD-PARTY.md" "$appdir/usr/share/doc/$APP/THIRD-PARTY.md"
     # offered from App settings, installed for everyone with one password prompt
     stage_plugin "$appdir/usr/share/$APP"
-    local ld="$WORK/linuxdeploy-$ARCH.AppImage"
-    [ -x "$ld" ] || {
-        curl -fsSL -o "$ld" "https://github.com/linuxdeploy/linuxdeploy/releases/download/$LINUXDEPLOY_TAG/linuxdeploy-$ARCH.AppImage"
-        chmod +x "$ld"
-    }
+    local expected_sha256
+    if [ "$LINUXDEPLOY_TAG" = "1-alpha-20251107-1" ]; then
+        case "$ARCH" in
+            x86_64) expected_sha256="c20cd71e3a4e3b80c3483cef793cda3f4e990aca14014d23c544ca3ce1270b4d" ;;
+            aarch64) expected_sha256="620095110d693282b8ebeb244a95b5e911cf8f65f76c88b4b47d16ae6346fcff" ;;
+            *) echo "error: no pinned linuxdeploy checksum for $ARCH" >&2; return 1 ;;
+        esac
+    else
+        expected_sha256="${LINUXDEPLOY_SHA256:-}"
+    fi
+    if [[ ! "$expected_sha256" =~ ^[[:xdigit:]]{64}$ ]]; then
+        echo "error: set LINUXDEPLOY_SHA256 to the trusted SHA-256 for linuxdeploy $LINUXDEPLOY_TAG" >&2
+        return 1
+    fi
+    expected_sha256="${expected_sha256,,}"
+    local ld="$WORK/linuxdeploy-$ARCH-$expected_sha256.AppImage"
+    if [ ! -f "$ld" ]; then
+        local download
+        download="$(mktemp "$WORK/linuxdeploy-$ARCH.XXXXXX")"
+        if ! curl -fsSL -o "$download" "https://github.com/linuxdeploy/linuxdeploy/releases/download/$LINUXDEPLOY_TAG/linuxdeploy-$ARCH.AppImage"; then
+            rm -f "$download"
+            echo "error: failed to download linuxdeploy for $ARCH" >&2
+            return 1
+        fi
+        local downloaded_sha256
+        downloaded_sha256="$(sha256sum "$download" | cut -d ' ' -f1)"
+        if [ "$downloaded_sha256" != "$expected_sha256" ]; then
+            rm -f "$download"
+            echo "error: linuxdeploy checksum mismatch for $ARCH (expected $expected_sha256, got $downloaded_sha256)" >&2
+            return 1
+        fi
+        chmod +x "$download"
+        mv "$download" "$ld"
+    fi
+    local actual_sha256
+    actual_sha256="$(sha256sum "$ld" | cut -d ' ' -f1)"
+    if [ "$actual_sha256" != "$expected_sha256" ]; then
+        echo "error: cached linuxdeploy checksum mismatch for $ARCH (expected $expected_sha256, got $actual_sha256)" >&2
+        return 1
+    fi
+    chmod +x "$ld"
     # containers have no FUSE, so let the tool unpack itself
     export APPIMAGE_EXTRACT_AND_RUN=1
     (

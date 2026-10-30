@@ -590,6 +590,16 @@ pub fn atomic_write(path: &Path, data: &[u8]) -> std::io::Result<()> {
     static NEXT_TEMP: AtomicU64 = AtomicU64::new(0);
     let parent = path.parent().unwrap_or_else(|| Path::new("."));
     let base = path.file_name().unwrap_or_default().to_string_lossy();
+    // Keep the temporary component bounded so candidate never exceeds NAME_MAX (255 bytes).
+    let short_base = if base.len() > 128 {
+        let mut end = 128;
+        while !base.is_char_boundary(end) {
+            end -= 1;
+        }
+        &base[..end]
+    } else {
+        &base
+    };
     let mode = fs::symlink_metadata(path)
         .ok()
         .filter(|m| m.file_type().is_file())
@@ -600,7 +610,7 @@ pub fn atomic_write(path: &Path, data: &[u8]) -> std::io::Result<()> {
     let mut created = None;
     for _ in 0..32 {
         let n = NEXT_TEMP.fetch_add(1, Ordering::Relaxed);
-        let candidate = parent.join(format!("{base}.tmp-{}-{n}", std::process::id()));
+        let candidate = parent.join(format!("{short_base}.tmp-{}-{n}", std::process::id()));
         match OpenOptions::new()
             .write(true)
             .create_new(true)
@@ -1577,16 +1587,29 @@ pub fn outside_starts() -> Vec<OutsideStart> {
 }
 
 fn login_name() -> String {
-    // SAFETY: getpwuid returns a pointer into static storage (or null); it is read straight away
-    unsafe {
-        let pw = libc::getpwuid(libc::getuid());
-        if pw.is_null() || (*pw).pw_name.is_null() {
-            return std::env::var("USER").unwrap_or_default();
+    // getpwuid_r rather than getpwuid: the tray reads this from several threads
+    // SAFETY: getuid has no preconditions; a zeroed passwd is a valid out-parameter
+    let uid = unsafe { libc::getuid() };
+    let mut pwd: libc::passwd = unsafe { std::mem::zeroed() };
+    let mut buf = vec![0; 1024];
+    let mut result: *mut libc::passwd = std::ptr::null_mut();
+    while buf.len() <= 1 << 20 {
+        // SAFETY: buf outlives the call and its length is passed with it
+        let rc =
+            unsafe { libc::getpwuid_r(uid, &mut pwd, buf.as_mut_ptr(), buf.len(), &mut result) };
+        if rc == libc::ERANGE {
+            buf.resize(buf.len() * 2, 0);
+            continue;
         }
-        std::ffi::CStr::from_ptr((*pw).pw_name)
+        if rc != 0 || result.is_null() || pwd.pw_name.is_null() {
+            break;
+        }
+        // SAFETY: on success pw_name points into buf, which is still alive
+        return unsafe { std::ffi::CStr::from_ptr(pwd.pw_name) }
             .to_string_lossy()
-            .into_owned()
+            .into_owned();
     }
+    std::env::var("USER").unwrap_or_default()
 }
 
 fn outside_starts_in(user_dir: &Path, system_dir: &Path, login: &str) -> Vec<OutsideStart> {
@@ -2261,7 +2284,16 @@ pub fn parse_log(msg: &str) -> Option<LogEvent> {
     if msg.starts_with("Sync with Microsoft OneDrive is complete") {
         return Some(LogEvent::Complete);
     }
-    if msg.contains("--resync") && (msg.contains("required") || msg.contains("must")) {
+    // the client's ways of saying so; its "--resync needed" debug lines and "cannot be used
+    // with --resync" errors are not this
+    if msg.contains("--resync")
+        && (msg.contains("required")
+            || msg.contains("must")
+            || msg.contains("is needed to rebuild")
+            || msg.starts_with("Please")
+            || msg.starts_with("FATAL")
+            || msg.starts_with("Re-run the client with"))
+    {
         return Some(LogEvent::NeedsResync);
     }
     if msg.contains("requires authentication")
@@ -3829,5 +3861,39 @@ mod tests {
             ),
             Some(LogEvent::NeedsResync)
         ));
+        for msg in [
+            "Please restart the application with --resync to potentially fix any local database issues.",
+            "Please perform a --resync operation.",
+            "ERROR: A database consistency issue has been caught. A --resync is needed to rebuild the database.",
+            "FATAL: The DB record mtime entry is not a valid ISO timestamp entry. Please attempt a --resync to fix the local database.",
+            "Re-run the client with '--resync' appended to your normal '--sync' or '--monitor' command.",
+        ] {
+            assert!(
+                matches!(parse_log(msg), Some(LogEvent::NeedsResync)),
+                "{msg}"
+            );
+        }
+        for msg in [
+            "skip_dir newly added ... --resync needed",
+            "ERROR: --get-file-link cannot be used with --resync or --resync-auth",
+            "Removing interrupted download file due to --resync for: x",
+        ] {
+            assert!(
+                !matches!(parse_log(msg), Some(LogEvent::NeedsResync)),
+                "{msg}"
+            );
+        }
+    }
+
+    #[test]
+    fn atomic_write_handles_long_filename() {
+        let dir = std::env::temp_dir().join(format!("lodg-long-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&dir);
+        fs::create_dir_all(&dir).unwrap();
+        let long_name = "a".repeat(240) + ".txt";
+        let path = dir.join(long_name);
+        atomic_write(&path, b"test content").unwrap();
+        assert_eq!(fs::read(&path).unwrap(), b"test content");
+        let _ = fs::remove_dir_all(&dir);
     }
 }

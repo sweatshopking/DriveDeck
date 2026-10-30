@@ -50,6 +50,18 @@ pub fn installed() -> Installed {
         } else {
             vec!["rpm", "-e", core::APP_ID]
         })
+    } else if let Some(pkg) = pacman_owner(&me) {
+        // on Arch the package is named after where it came from (drivedeck-bin from the AUR)
+        return match core::which("pkexec") {
+            Some(_) => Installed::Package(
+                ["pkexec", "pacman", "-R", "--noconfirm"]
+                    .into_iter()
+                    .map(String::from)
+                    .chain([pkg])
+                    .collect(),
+            ),
+            None => Installed::PackageManual,
+        };
     } else {
         None
     };
@@ -62,6 +74,20 @@ pub fn installed() -> Installed {
         ),
         _ => Installed::PackageManual,
     }
+}
+
+/// The pacman package that owns `path`, if pacman knows it.
+fn pacman_owner(path: &std::path::Path) -> Option<String> {
+    core::which("pacman")?;
+    let out = Command::new("pacman")
+        .args(["-Qqo"])
+        .arg(path)
+        .stderr(Stdio::null())
+        .output()
+        .ok()?;
+    let name = String::from_utf8_lossy(&out.stdout).trim().to_string();
+    (out.status.success() && !name.is_empty() && !name.contains(char::is_whitespace))
+        .then_some(name)
 }
 
 /// One line for the dialog saying what will happen to the app itself.
@@ -147,14 +173,22 @@ pub fn remove_user_files(keep_setup: bool) -> Vec<String> {
                     continue;
                 }
                 let file = core::user_unit_dir().join(unit);
-                if file.exists()
-                    && let Err(e) = fs::remove_file(&file)
-                {
-                    notes.push(format!(
+                if acc.managed {
+                    if file.exists()
+                        && let Err(e) = fs::remove_file(&file)
+                    {
+                        notes.push(format!(
                             "{} was stopped, but its service file couldn't be removed. Its account files were left intact: {e}",
                             acc.name
                         ));
-                    continue;
+                        continue;
+                    }
+                } else if file.exists() {
+                    notes.push(format!(
+                        "{} was stopped and disabled, but its custom service file at {} was left in place.",
+                        acc.name,
+                        file.display()
+                    ));
                 }
             }
             if core::client_binary().is_some() {

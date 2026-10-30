@@ -890,13 +890,14 @@ pub fn create_link(
         if status < 400
             && let Some(u) = v["link"]["webUrl"].as_str()
         {
+            let u = web_address(u)?;
             // the service may quietly downgrade the scope, so trust what it reports
             let kind = match v["link"]["scope"].as_str() {
                 Some("anonymous") => LinkScope::Anyone,
                 Some(_) => LinkScope::Organization,
                 None => kind,
             };
-            return Ok((u.to_string(), kind));
+            return Ok((u, kind));
         }
         last = problem(status, &v);
     }
