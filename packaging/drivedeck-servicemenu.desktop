@@ -1,7 +1,21 @@
 [Desktop Entry]
 Type=Service
 Comment=OneDrive actions for files
+Comment[cs]=Akce OneDrive pro soubory
 Comment[de]=OneDrive-Aktionen für Dateien
+Comment[es]=Acciones de OneDrive para archivos
+Comment[fr]=Actions OneDrive pour les fichiers
+Comment[it]=Azioni di OneDrive per i file
+Comment[ja]=ファイル用の OneDrive 操作
+Comment[ko]=파일에 대한 OneDrive 작업
+Comment[nl]=OneDrive-acties voor bestanden
+Comment[pl]=Działania OneDrive dla plików
+Comment[pt_BR]=Ações do OneDrive para arquivos
+Comment[ru]=Действия OneDrive для файлов
+Comment[sv]=OneDrive-åtgärder för filer
+Comment[tr]=Dosyalar için OneDrive işlemleri
+Comment[uk]=Дії OneDrive для файлів
+Comment[zh_CN]=文件的 OneDrive 操作
 MimeType=application/octet-stream;inode/directory;
 Actions=sharePeople;manageAccess;copyLink;copyEditLink;versions;viewOnline;
 X-KDE-Submenu=OneDrive
@@ -11,36 +25,120 @@ Icon=drivedeck
 
 [Desktop Action sharePeople]
 Name=Share with people…
+Name[cs]=Sdílet s lidmi…
 Name[de]=Für Personen freigeben…
+Name[es]=Compartir con personas…
+Name[fr]=Partager avec des personnes…
+Name[it]=Condividi con le persone…
+Name[ja]=ユーザーと共有…
+Name[ko]=사람들과 공유…
+Name[nl]=Delen met mensen…
+Name[pl]=Udostępnij innym…
+Name[pt_BR]=Compartilhar com pessoas…
+Name[ru]=Поделиться с людьми…
+Name[sv]=Dela med personer…
+Name[tr]=Kişilerle paylaş…
+Name[uk]=Поділитися з людьми…
+Name[zh_CN]=与他人共享…
 Icon=document-share
 Exec=drivedeck --share-people %f
 
 [Desktop Action manageAccess]
 Name=Who has access…
+Name[cs]=Kdo má přístup…
 Name[de]=Wer hat Zugriff…
+Name[es]=Quién tiene acceso…
+Name[fr]=Qui y a accès…
+Name[it]=Chi ha accesso…
+Name[ja]=アクセスできるユーザー…
+Name[ko]=액세스 권한이 있는 사용자…
+Name[nl]=Wie heeft toegang…
+Name[pl]=Kto ma dostęp…
+Name[pt_BR]=Quem tem acesso…
+Name[ru]=У кого есть доступ…
+Name[sv]=Vem har åtkomst…
+Name[tr]=Kimlerin erişimi var…
+Name[uk]=Хто має доступ…
+Name[zh_CN]=谁可以访问…
 Icon=user-group-properties
 Exec=drivedeck --manage-access %f
 
 [Desktop Action copyLink]
 Name=Copy view-only link
+Name[cs]=Kopírovat odkaz jen pro čtení
 Name[de]=Link zum Ansehen kopieren
+Name[es]=Copiar enlace de solo lectura
+Name[fr]=Copier le lien en lecture seule
+Name[it]=Copia il link di sola visualizzazione
+Name[ja]=閲覧用リンクをコピー
+Name[ko]=보기 전용 링크 복사
+Name[nl]=Koppeling voor alleen-lezen kopiëren
+Name[pl]=Kopiuj link tylko do wyświetlania
+Name[pt_BR]=Copiar link somente para visualização
+Name[ru]=Скопировать ссылку для просмотра
+Name[sv]=Kopiera länk för visning
+Name[tr]=Yalnızca görüntüleme bağlantısını kopyala
+Name[uk]=Копіювати посилання лише для перегляду
+Name[zh_CN]=复制只读链接
 Icon=edit-link
 Exec=drivedeck --share-link %f
 
 [Desktop Action copyEditLink]
 Name=Copy editing link
+Name[cs]=Kopírovat odkaz pro úpravy
 Name[de]=Link zum Bearbeiten kopieren
+Name[es]=Copiar enlace de edición
+Name[fr]=Copier le lien de modification
+Name[it]=Copia il link per modificare
+Name[ja]=編集用リンクをコピー
+Name[ko]=편집 링크 복사
+Name[nl]=Bewerkingskoppeling kopiëren
+Name[pl]=Kopiuj link do edycji
+Name[pt_BR]=Copiar link de edição
+Name[ru]=Скопировать ссылку для редактирования
+Name[sv]=Kopiera redigeringslänk
+Name[tr]=Düzenleme bağlantısını kopyala
+Name[uk]=Копіювати посилання для редагування
+Name[zh_CN]=复制编辑链接
 Icon=document-edit
 Exec=drivedeck --share-edit-link %f
 
 [Desktop Action versions]
 Name=Version history
+Name[cs]=Historie verzí
 Name[de]=Versionsverlauf
+Name[es]=Historial de versiones
+Name[fr]=Historique des versions
+Name[it]=Cronologia versioni
+Name[ja]=バージョン履歴
+Name[ko]=버전 기록
+Name[nl]=Versiegeschiedenis
+Name[pl]=Historia wersji
+Name[pt_BR]=Histórico de versões
+Name[ru]=История версий
+Name[sv]=Versionshistorik
+Name[tr]=Sürüm geçmişi
+Name[uk]=Історія версій
+Name[zh_CN]=版本历史记录
 Icon=view-history
 Exec=drivedeck --versions %f
 
 [Desktop Action viewOnline]
 Name=View on the OneDrive website
+Name[cs]=Zobrazit na webu OneDrive
 Name[de]=Auf der OneDrive-Website ansehen
+Name[es]=Ver en el sitio web de OneDrive
+Name[fr]=Voir sur le site web OneDrive
+Name[it]=Visualizza sul sito Web di OneDrive
+Name[ja]=OneDrive の Web サイトで表示
+Name[ko]=OneDrive 웹 사이트에서 보기
+Name[nl]=Bekijken op de OneDrive-website
+Name[pl]=Zobacz w witrynie OneDrive
+Name[pt_BR]=Ver no site do OneDrive
+Name[ru]=Открыть на сайте OneDrive
+Name[sv]=Visa på OneDrive-webbplatsen
+Name[tr]=OneDrive web sitesinde görüntüle
+Name[uk]=Переглянути на вебсайті OneDrive
+Name[zh_CN]=在 OneDrive 网站上查看
 Icon=internet-web-browser
 Exec=drivedeck --view-online %f

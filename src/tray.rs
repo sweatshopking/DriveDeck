@@ -269,7 +269,7 @@ impl Tray {
         let k = a.info.key();
         StandardItem {
             // a single _ would turn into a keyboard shortcut and vanish
-            label: format!("{} — {}", a.info.name, st.text(&a.prefs)).replace('_', "__"),
+            label: crate::tr!("{} — {}", a.info.name, st.text(&a.prefs)).replace('_', "__"),
             icon_name: st.phase.icon().into(),
             activate: Box::new(move |_: &mut Self| open_settings(Some(&k))),
             ..Default::default()
@@ -346,12 +346,12 @@ impl ksni::Tray for Tray {
         let lines: Vec<String> = self
             .accs
             .iter()
-            .map(|a| format!("{}: {}", a.info.name, a.status().text(&a.prefs)))
+            .map(|a| crate::tr!("{}: {}", a.info.name, a.status().text(&a.prefs)))
             .collect();
         let description = if let Some(p) = &self.client_problem {
             crate::tr!("{}. Open Settings to fix it.", p)
         } else if lines.is_empty() {
-            crate::tr!("No accounts yet — open Settings to add one").into()
+            crate::tr!("No accounts yet — open Settings to add one")
         } else {
             lines.join("\n")
         };
@@ -388,7 +388,7 @@ impl ksni::Tray for Tray {
             );
             m.push(
                 StandardItem {
-                    label: crate::tr!("How to fix this…").into(),
+                    label: crate::tr!("How to fix this…"),
                     icon_name: "dialog-warning".into(),
                     activate: Box::new(|_: &mut Self| open_settings(None)),
                     ..Default::default()
@@ -401,7 +401,7 @@ impl ksni::Tray for Tray {
         if self.accs.is_empty() {
             m.push(
                 StandardItem {
-                    label: crate::tr!("No accounts yet").into(),
+                    label: crate::tr!("No accounts yet"),
                     enabled: false,
                     ..Default::default()
                 }
@@ -411,7 +411,7 @@ impl ksni::Tray for Tray {
         m.push(MenuItem::Separator);
         m.push(
             StandardItem {
-                label: crate::tr!("Show activity…").into(),
+                label: crate::tr!("Show activity…"),
                 icon_name: "view-list-details".into(),
                 activate: Box::new(|_: &mut Self| toggle_popup(None)),
                 ..Default::default()
@@ -428,7 +428,7 @@ impl ksni::Tray for Tray {
             let which = syncable.clone();
             m.push(
                 StandardItem {
-                    label: crate::tr!("Sync now").into(),
+                    label: crate::tr!("Sync now"),
                     icon_name: "view-refresh".into(),
                     enabled: !which.is_empty(),
                     activate: Box::new(move |t: &mut Self| {
@@ -455,7 +455,7 @@ impl ksni::Tray for Tray {
         if !paused.is_empty() {
             m.push(
                 StandardItem {
-                    label: crate::tr!("Resume syncing").into(),
+                    label: crate::tr!("Resume syncing"),
                     icon_name: "media-playback-start".into(),
                     activate: Box::new(move |t: &mut Self| {
                         for &i in &paused {
@@ -476,7 +476,7 @@ impl ksni::Tray for Tray {
             .map(|(label, secs)| {
                 let which = pausable.clone();
                 StandardItem {
-                    label: label.into(),
+                    label,
                     activate: Box::new(move |t: &mut Self| {
                         for &i in &which {
                             t.pause(i, secs);
@@ -489,7 +489,7 @@ impl ksni::Tray for Tray {
             .collect();
             m.push(
                 SubMenu {
-                    label: crate::tr!("Pause syncing").into(),
+                    label: crate::tr!("Pause syncing"),
                     icon_name: "media-playback-pause".into(),
                     submenu,
                     ..Default::default()
@@ -501,7 +501,7 @@ impl ksni::Tray for Tray {
             0 => {}
             1 => m.push(
                 StandardItem {
-                    label: crate::tr!("Open folder").into(),
+                    label: crate::tr!("Open folder"),
                     icon_name: "folder-open".into(),
                     activate: Box::new(|t: &mut Self| {
                         if let Some(a) = t.accs.first() {
@@ -529,7 +529,7 @@ impl ksni::Tray for Tray {
                     .collect();
                 m.push(
                     SubMenu {
-                        label: crate::tr!("Open folder").into(),
+                        label: crate::tr!("Open folder"),
                         icon_name: "folder-open".into(),
                         submenu,
                         ..Default::default()
@@ -541,7 +541,7 @@ impl ksni::Tray for Tray {
         m.push(MenuItem::Separator);
         m.push(
             StandardItem {
-                label: crate::tr!("Settings and accounts…").into(),
+                label: crate::tr!("Settings and accounts…"),
                 icon_name: "configure".into(),
                 activate: Box::new(|_: &mut Self| open_settings(None)),
                 ..Default::default()
@@ -551,9 +551,9 @@ impl ksni::Tray for Tray {
         m.push(
             StandardItem {
                 label: if self.stop_on_quit {
-                    crate::tr!("Quit and stop syncing").into()
+                    crate::tr!("Quit and stop syncing")
                 } else {
-                    crate::tr!("Quit tray icon").into()
+                    crate::tr!("Quit tray icon")
                 },
                 icon_name: "application-exit".into(),
                 activate: Box::new(|_| {
@@ -833,7 +833,7 @@ fn apply_one(a: &mut Acc, when: DateTime<Local>, ev: LogEvent) {
         LogEvent::NeedsResync => a.log_phase = Phase::NeedsResync,
         LogEvent::NeedsLogin => {
             a.log_phase = Phase::SignedOut;
-            a.last_error = Some("Microsoft needs you to sign in again".into());
+            a.last_error = Some(crate::tr!("Microsoft needs you to sign in again"));
         }
         LogEvent::BigDelete => a.log_phase = Phase::BigDelete,
         // a new run checks again; until it says otherwise, the old big delete no longer applies
@@ -991,10 +991,11 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
             let problem = match core::check_client() {
                 core::ClientCheck::Ok { .. } => None,
                 core::ClientCheck::Missing => {
-                    Some("The OneDrive Client for Linux isn't installed".to_string())
+                    Some(crate::tr!("The OneDrive Client for Linux isn't installed").to_string())
                 }
-                core::ClientCheck::TooOld { version, .. } => Some(format!(
-                    "The OneDrive Client for Linux ({version}) is too old"
+                core::ClientCheck::TooOld { version, .. } => Some(crate::tr!(
+                    "The OneDrive Client for Linux ({}) is too old",
+                    version
                 )),
             };
             let fixed = handle
@@ -1230,23 +1231,24 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
                     (Phase::BigDelete, Some(u)) => core::big_delete_what(&core::big_delete(u)),
                     _ => String::new(),
                 };
-                let big_delete_body = format!(
-                    "{what} were deleted on this computer, so syncing stopped before deleting them online. Click the OneDrive icon to choose what to do."
+                let big_delete_body = crate::tr!(
+                    "{} were deleted on this computer, so syncing stopped before deleting them online. Click the OneDrive icon to choose what to do.",
+                    what
                 );
                 let body = match phase {
-                    Phase::BigDelete => big_delete_body.as_str(),
-                    Phase::SignedOut => {
+                    Phase::BigDelete => big_delete_body,
+                    Phase::SignedOut => crate::tr!(
                         "Microsoft needs you to sign in again. Open the tray menu to fix it."
-                    }
-                    Phase::NeedsResync => {
+                    ),
+                    Phase::NeedsResync => crate::tr!(
                         "The sync engine needs a full resync. Open Settings to review and apply it."
-                    }
-                    Phase::Stalled => {
+                    ),
+                    Phase::Stalled => crate::tr!(
                         "Syncing has stopped making progress, though it is still running. Click the OneDrive icon and choose Sync now to restart it."
-                    }
-                    _ => "Syncing hit an error. Open the tray menu for details.",
+                    ),
+                    _ => crate::tr!("Syncing hit an error. Open the tray menu for details."),
                 };
-                share::notify(&format!("OneDrive: {name}"), body);
+                share::notify(&format!("OneDrive: {name}"), &body);
             }
         }
         // tell the user about each file that newly couldn't sync (not ones from before the tray started)
@@ -1275,7 +1277,9 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
         for name in out_of_watches {
             share::notify(
                 &format!("OneDrive: {name}"),
-                "Linux's limit on folders watched for changes ran out, so some changes on this computer won't sync right away. Open Settings to raise it.",
+                &crate::tr!(
+                    "Linux's limit on folders watched for changes ran out, so some changes on this computer won't sync right away. Open Settings to raise it."
+                ),
             );
         }
         // after an update, hand over to the new version (once the new file has stayed put for a
@@ -1353,13 +1357,15 @@ fn check_storage() {
             crate::graph::human_size(q.total)
         );
         let body = match level {
-            100 => format!(
-                "{} is full ({amount}). New and changed files won't upload until you free up space or get more storage.",
-                info.name
+            100 => crate::tr!(
+                "{} is full ({}). New and changed files won't upload until you free up space or get more storage.",
+                info.name,
+                amount
             ),
-            90 => format!(
-                "{} is almost full ({amount}). Free up space or get more storage before uploads stop.",
-                info.name
+            90 => crate::tr!(
+                "{} is almost full ({}). Free up space or get more storage before uploads stop.",
+                info.name,
+                amount
             ),
             _ => continue,
         };
@@ -1389,9 +1395,10 @@ fn check_for_update(handle: &ksni::blocking::Handle<Tray>) {
         s.update_notified = Some(v.clone());
         let _ = s.save();
         share::notify(
-            "OneDrive: a new version is out",
-            &format!(
-                "Version {v} of this app is available. Click the OneDrive tray icon (or right-click it) to get it."
+            &crate::tr!("OneDrive: a new version is out"),
+            &crate::tr!(
+                "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) to get it.",
+                v
             ),
         );
     }
@@ -1409,9 +1416,11 @@ fn check_for_client_update() {
     s.client_update_notified = Some(latest.clone());
     let _ = s.save();
     share::notify(
-        "OneDrive: the sync engine has an update",
-        &format!(
-            "Version {latest} of the OneDrive Client for Linux is out (you have {installed}). Open Settings to update it."
+        &crate::tr!("OneDrive: the sync engine has an update"),
+        &crate::tr!(
+            "Version {} of the OneDrive Client for Linux is out (you have {}). Open Settings to update it.",
+            latest,
+            installed
         ),
     );
 }
@@ -1438,9 +1447,10 @@ pub fn run() {
     let recovered = crate::ui::recover_interrupted_preview();
     if let Err(e) = &recovered {
         share::notify(
-            "Preview recovery needs attention",
-            &format!(
-                "Sync services weren't started because preview settings couldn't be put back: {e}"
+            &crate::tr!("Preview recovery needs attention"),
+            &crate::tr!(
+                "Sync services weren't started because preview settings couldn't be put back: {}",
+                e
             ),
         );
     }

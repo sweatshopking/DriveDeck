@@ -31,7 +31,7 @@ pub fn notes_named(
                 .map(|p| {
                     let rel = p.strip_prefix(sync_dir).unwrap_or(p).display().to_string();
                     if rel.is_empty() {
-                        "the top folder".into()
+                        crate::tr!("the top folder")
                     } else {
                         rel
                     }
@@ -41,14 +41,13 @@ pub fn notes_named(
                 names_list.join(", ")
             } else {
                 match found.len() {
-                    n if n >= 3 => format!("{n} or more"),
+                    n if n >= 3 => crate::tr!("{} or more", n),
                     n => n.to_string(),
                 }
             };
-            notes.push(format!(
-                "There are Git repositories in this folder ({which}). Syncing their .git folders can \
-                 damage them, because the files arrive one at a time and out of order. Skip .git \
-                 folders in Options, or keep repositories outside OneDrive."
+            notes.push(crate::tr!(
+                "There are Git repositories in this folder ({}). Syncing their .git folders can damage them, because the files arrive one at a time and out of order. Skip .git folders in Options, or keep repositories outside OneDrive.",
+                which
             ));
         }
     }
@@ -108,15 +107,13 @@ fn windows_drive_note(sync_dir: &Path) -> Option<String> {
         return None;
     }
     Some(if windows_onedrive_folder(sync_dir) {
-        "This folder is on a Windows drive, and Windows' OneDrive app uses it too. Files that \
-         Windows keeps online-only can't be opened from Linux, and the two apps can undo each \
-         other's changes. A separate folder for Linux is safer."
-            .into()
+        crate::tr!(
+            "This folder is on a Windows drive, and Windows' OneDrive app uses it too. Files that Windows keeps online-only can't be opened from Linux, and the two apps can undo each other's changes. A separate folder for Linux is safer."
+        )
     } else {
-        "This folder is on a Windows (NTFS) drive. If Windows' OneDrive app also syncs it, files \
-         that Windows keeps online-only can't be opened from Linux, and the two apps can undo \
-         each other's changes. A separate folder for Linux is safer."
-            .into()
+        crate::tr!(
+            "This folder is on a Windows (NTFS) drive. If Windows' OneDrive app also syncs it, files that Windows keeps online-only can't be opened from Linux, and the two apps can undo each other's changes. A separate folder for Linux is safer."
+        )
     })
 }
 
@@ -157,7 +154,8 @@ pub fn safety_copy(sync_dir: &Path, others: &[PathBuf]) -> Result<Option<PathBuf
         .file_name()
         .map(|n| n.to_string_lossy().into_owned())
         .unwrap_or_else(|| "OneDrive".into());
-    std::fs::create_dir_all(&base).map_err(|e| format!("Couldn't make {}: {e}", base.display()))?;
+    std::fs::create_dir_all(&base)
+        .map_err(|e| crate::tr!("Couldn't make {}: {}", base.display(), e))?;
     let stamp = chrono::Local::now().format("%Y-%m-%d %H.%M.%S");
     let dest = base.join(format!("{name} {stamp}"));
     let ok = Command::new("cp")

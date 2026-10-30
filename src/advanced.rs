@@ -128,14 +128,14 @@ fn check_abs_path(v: &str) -> Result<(), String> {
     if v.starts_with('/') || v.starts_with("~/") {
         Ok(())
     } else {
-        Err("needs a full path, starting with / or ~/".into())
+        Err(crate::tr!("needs a full path, starting with / or ~/"))
     }
 }
 
 fn check_https_url(v: &str) -> Result<(), String> {
     match v.strip_prefix("https://") {
         Some(rest) if rest.len() > 2 && !rest.contains(char::is_whitespace) => Ok(()),
-        _ => Err("needs a public https:// address".into()),
+        _ => Err(crate::tr!("needs a public https:// address")),
     }
 }
 
@@ -143,7 +143,7 @@ fn check_host(v: &str) -> Result<(), String> {
     if v.parse::<std::net::IpAddr>().is_ok() {
         Ok(())
     } else {
-        Err("needs an IP address, like 0.0.0.0 or 127.0.0.1".into())
+        Err(crate::tr!("needs an IP address, like 0.0.0.0 or 127.0.0.1"))
     }
 }
 
@@ -154,7 +154,9 @@ pub fn check_tenant(v: &str) -> Result<(), String> {
     if ok {
         Ok(())
     } else {
-        Err("needs a tenant ID (a GUID) or a domain like contoso.onmicrosoft.com".into())
+        Err(crate::tr!(
+            "needs a tenant ID (a GUID) or a domain like contoso.onmicrosoft.com"
+        ))
     }
 }
 
@@ -169,13 +171,15 @@ fn check_app_id(v: &str) -> Result<(), String> {
     if ok {
         Ok(())
     } else {
-        Err("needs an application ID like d50ca740-c83f-4d1b-b616-12c519384f0c".into())
+        Err(crate::tr!(
+            "needs an application ID like d50ca740-c83f-4d1b-b616-12c519384f0c"
+        ))
     }
 }
 
 fn check_any(v: &str) -> Result<(), String> {
     if v.contains('"') || v.contains('\n') {
-        Err("can't contain quotes or line breaks".into())
+        Err(crate::tr!("can't contain quotes or line breaks"))
     } else {
         Ok(())
     }
@@ -186,7 +190,9 @@ fn check_perms(v: &str) -> Result<(), String> {
     if v.len() == 3 && v.chars().all(|c| ('0'..='7').contains(&c)) {
         Ok(())
     } else {
-        Err("needs three digits from 0 to 7, like 700 or 644".into())
+        Err(crate::tr!(
+            "needs three digits from 0 to 7, like 700 or 644"
+        ))
     }
 }
 
@@ -791,9 +797,9 @@ pub fn check(s: &Spec, value: &str) -> Result<String, String> {
             };
             let n: u64 = v
                 .parse()
-                .map_err(|_| format!("needs a whole number from {min} to {max}{unit}"))?;
+                .map_err(|_| crate::tr!("needs a whole number from {} to {}{}", min, max, unit))?;
             if n < *min || n > *max {
-                return Err(format!("needs a number from {min} to {max}{unit}"));
+                return Err(crate::tr!("needs a number from {} to {}{}", min, max, unit));
             }
             if *step > 1 && !n.is_multiple_of(*step) {
                 return Err(format!("needs a multiple of {step}"));
@@ -811,7 +817,7 @@ pub fn check(s: &Spec, value: &str) -> Result<String, String> {
             if list.iter().any(|(val, _)| *val == v) {
                 Ok(v.to_string())
             } else {
-                Err("isn't one of the choices".into())
+                Err(crate::tr!("isn't one of the choices"))
             }
         }
     }

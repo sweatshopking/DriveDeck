@@ -60,7 +60,7 @@ pub fn copy_to_clipboard(text: &str) -> bool {
 pub(crate) fn locate(path: &Path) -> Result<(core::AccountInfo, String), String> {
     let path = path
         .canonicalize()
-        .map_err(|_| format!("{} doesn't exist.", path.display()))?;
+        .map_err(|_| crate::tr!("{} doesn't exist.", path.display()))?;
     let settings = AppSettings::load();
     let mut best: Option<(core::AccountInfo, String, usize)> = None;
     for a in core::discover(&settings) {
@@ -81,7 +81,7 @@ pub(crate) fn locate(path: &Path) -> Result<(core::AccountInfo, String), String>
         }
     }
     best.map(|(account, rel, _)| (account, rel))
-        .ok_or_else(|| "That isn't inside any of your OneDrive folders.".into())
+        .ok_or_else(|| crate::tr!("That isn't inside any of your OneDrive folders."))
 }
 
 /// Copies a sharing link to `path`: view-only, or one that lets people edit (change, add or
@@ -94,22 +94,30 @@ pub fn share_link(path: &Path, edit: bool) {
     match create_share_link(path, edit) {
         Ok((link, scope)) => {
             let who = match scope {
-                graph::LinkScope::Anyone => "Anyone with the link",
-                graph::LinkScope::Organization => "People in your organization with the link",
+                graph::LinkScope::Anyone => crate::tr!("Anyone with the link"),
+                graph::LinkScope::Organization => {
+                    crate::tr!("People in your organization with the link")
+                }
             };
             let title = if copy_to_clipboard(&link) {
-                "Link copied"
+                crate::tr!("Link copied")
             } else {
-                "Sharing link"
+                crate::tr!("Sharing link")
             };
             let can = match (edit, path.is_dir()) {
-                (false, _) => "can view",
-                (true, false) => "can edit",
-                (true, true) => "can change, add and delete files in",
+                (false, _) => crate::tr!("can view"),
+                (true, false) => crate::tr!("can edit"),
+                (true, true) => crate::tr!("can change, add and delete files in"),
             };
-            notify(title, &format!("{who} {can} \"{name}\".\n{link}"));
+            notify(
+                &title,
+                &crate::tr!("{} {} \"{}\".\n{}", who, can, name, link),
+            );
         }
-        Err(e) => notify("Couldn't create a link", &format!("{name}: {e}")),
+        Err(e) => notify(
+            &crate::tr!("Couldn't create a link"),
+            &crate::tr!("{}: {}", name, e),
+        ),
     }
 }
 
@@ -118,7 +126,7 @@ pub fn create_share_link(path: &Path, edit: bool) -> Result<(String, graph::Link
     let (acc, rel) = locate(path)?;
     // a link to the top of an account would expose everything in it
     if rel.is_empty() {
-        return Err(format!(
+        return Err(crate::tr!(
             "That's the whole of \"{}\". Share a file or folder inside it instead.",
             acc.name
         ));
@@ -134,7 +142,7 @@ pub fn print_share_link(path: &Path, edit: bool) -> i32 {
             0
         }
         Err(e) => {
-            eprintln!("Couldn't create a link: {e}");
+            eprintln!("{}", crate::tr!("Couldn't create a link: {}", e));
             1
         }
     }
@@ -147,7 +155,7 @@ pub fn view_online(path: &Path) {
     });
     match result {
         Ok(url) => core::run_detached("xdg-open", &[&url]),
-        Err(e) => notify("Couldn't open it online", &e),
+        Err(e) => notify(&crate::tr!("Couldn't open it online"), &e),
     }
 }
 

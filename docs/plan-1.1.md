@@ -175,7 +175,7 @@ Clippy, and all 98 tests pass.
 - **One catalog**: `po/drivedeck.pot` plus `po/<lang>.po` (or the layout Slint requires).
   Extract with `slint-tr-extractor` for `.slint` and a script for `tr!` in Rust. Add
   `po/README.md` explaining how to update and add a language.
-- **Languages to draft now:** de, es, fr, it, pt_BR, nl, pl, ja, zh_CN, ru, tr, ko, cs, uk, sv (15). Keep the same plain,
+- **Languages to draft now:** de, es, fr, it, pt_BR, nl, ja, zh_CN, ru, tr, ko (11; pl, cs, uk, sv set aside in po-later/). Keep the same plain,
   friendly tone; keep `{}`/`{n}` placeholders, `…`, and product names (OneDrive, SharePoint,
   Dolphin, DriveDeck) unchanged.
 - **Desktop files:** add `Name[xx]=`/`Comment[xx]=` lines to `packaging/drivedeck.desktop` and
@@ -202,17 +202,28 @@ Form label columns were widened (150/170 px). German screenshots still showed:
   `ui/app.slint` (search box, site address, account name example; leave URL and folder-name
   examples as they are).
 
-**Stage 2 (next):** wrap every remaining user-visible string, file by file: `src/ui.rs`,
-`src/core.rs` (status and error texts), `src/advanced.rs` (all setting labels, hints and
-choices), `src/backup.rs`, `src/conflict.rs`, `src/graph.rs` (the plain-words error messages),
-`src/clientinstall.rs`, `src/uninstall.rs`, `src/doctor.rs` (the checks, not the report's raw
-lines), `src/folderchecks.rs`, `src/share.rs`, `src/tray.rs`, `src/popup.rs`, `src/filewin.rs`.
-Then translate all 15 languages (de es fr it pt_BR nl pl ja zh_CN ru tr ko cs uk sv), every
-string in each. **Do all of it in this stage: nothing is deferred to a later stage.** Don't stop
-after some files or some languages to ask; keep going until every string is wrapped and every
-`.po` is complete. Only if you truly can't continue (out of room or time), list exactly which
-files and languages are left in the Done notes. Report how many strings each `.po` has and that
-the coverage test passes.
+**Known translation problems (found 2026-10-30, fix in the translation round):**
+- `src/share.rs` builds the "link copied" sentence from three pieces (who + can + name). That only
+  works in English word order. Replace with whole-sentence strings (one per who/can pair), so
+  ja, ko, tr and the others can order the words their own way.
+- The Turkish file (`po/tr`) had its second half shifted by one entry (a plural entry's two forms
+  were merged into one `msgstr`, then everything after sat one line off). Everything from entry
+  436 on was blanked (falls back to English); translate it again, entry by entry, checking each
+  `msgstr` belongs to the `msgid` above it. `scripts/fix-po-newlines.py` repairs raw line breaks
+  inside a `msgstr`. Never put two plural forms in one `msgstr`: use `msgstr[0]`, `msgstr[1]`.
+- `cargo test -- --ignored` runs `every_language_is_complete`: it must pass when this task is done.
+- Polish, Czech, Ukrainian and Swedish are set aside in `po-later/` (finish later).
+
+**Code side finished (Claude, 2026-10-30):** every user-visible string is wrapped (`tr!` in Rust,
+`@tr` in Slint; the Advanced table's labels, hints and choices are translated when shown). It
+builds, lints clean, and 127 tests pass; German screenshots show the tabs, dropdowns and labels
+translated and fitting. What is left is **only the translations themselves**, 927 strings per
+language. Done so far: nl 927, ja 927, de 828, it 720, tr 436, zh_CN 470, pt_BR 400, fr 192,
+es 180, ru 100, ko 0. Empty ones show in English. For each language with gaps: translate every
+empty `msgstr` in `po/<lang>/LC_MESSAGES/drivedeck.po` (one entry at a time, each `msgstr` under
+its own `msgid`; plural entries use `msgstr[0]`, `msgstr[1]`, and for ru `msgstr[2]`), keep
+`{}`, `{n}`, `…` and product names, then run `cargo test` (placeholders) and
+`cargo test -- --ignored` (every string present). The known problems above come first.
 
 **Done notes:**
 

@@ -1,7 +1,21 @@
 [Desktop Entry]
 Type=Service
 Comment=Edit supported documents with Office on the web
+Comment[cs]=Upravujte podporované dokumenty v Office na webu
 Comment[de]=Unterstützte Dokumente mit Office im Web bearbeiten
+Comment[es]=Editar documentos compatibles con Office en la web
+Comment[fr]=Modifier les documents compatibles avec Office sur le web
+Comment[it]=Modifica i documenti supportati con Office sul web
+Comment[ja]=Office for the web で対応ドキュメントを編集
+Comment[ko]=웹용 Office에서 지원되는 문서 편집
+Comment[nl]=Ondersteunde documenten bewerken met Office op het web
+Comment[pl]=Edytuj obsługiwane dokumenty w Office w internecie
+Comment[pt_BR]=Editar documentos compatíveis com o Office na Web
+Comment[ru]=Редактируйте поддерживаемые документы в Office в Интернете
+Comment[sv]=Redigera dokument som stöds med Office på webben
+Comment[tr]=Desteklenen belgeleri Office web'de düzenleyin
+Comment[uk]=Редагуйте підтримувані документи в Office в Інтернеті
+Comment[zh_CN]=使用 Office 网页版编辑支持的文档
 MimeType=application/msword;application/vnd.openxmlformats-officedocument.wordprocessingml.document;application/vnd.ms-word.document.macroEnabled.12;application/vnd.ms-excel;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;application/vnd.ms-excel.sheet.macroEnabled.12;application/vnd.ms-powerpoint;application/vnd.openxmlformats-officedocument.presentationml.presentation;application/vnd.ms-powerpoint.presentation.macroEnabled.12;application/vnd.oasis.opendocument.text;application/vnd.oasis.opendocument.spreadsheet;application/vnd.oasis.opendocument.presentation;
 Actions=officeOnline;
 X-KDE-Submenu=OneDrive
@@ -11,6 +25,20 @@ Icon=drivedeck
 
 [Desktop Action officeOnline]
 Name=Edit in Office on the web
+Name[cs]=Upravit v Office na webu
 Name[de]=In Office im Web bearbeiten
+Name[es]=Editar en Office en la web
+Name[fr]=Modifier dans Office sur le web
+Name[it]=Modifica in Office sul web
+Name[ja]=Office for the web で編集
+Name[ko]=웹용 Office에서 편집
+Name[nl]=Bewerken in Office op het web
+Name[pl]=Edytuj w Office w internecie
+Name[pt_BR]=Editar no Office na Web
+Name[ru]=Редактировать в Office в Интернете
+Name[sv]=Redigera i Office på webben
+Name[tr]=Office web'de düzenle
+Name[uk]=Редагувати в Office в Інтернеті
+Name[zh_CN]=在 Office 网页版中编辑
 Icon=document-edit
 Exec=drivedeck --office-online %f

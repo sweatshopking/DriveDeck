@@ -1,0 +1,3582 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2026-10-30 06:36+0000\n"
+"PO-Revision-Date: 2026-10-30 06:36+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ui/app.slint:477
+msgid ""
+"This app needs one more free program, the OneDrive Client for Linux (version "
+"2.5 or newer). It does the actual syncing in the background; this app is the "
+"window and tray icon for it."
+msgstr "Deze app heeft nog een gratis programma nodig: de OneDrive Client for Linux (versie 2.5 of nieuwer). Dat synchroniseert op de achtergrond; deze app is het venster en het systeemvakpictogram."
+
+#: ui/app.slint:488
+msgid "Updating…"
+msgstr "Bijwerken…"
+
+#: ui/app.slint:488
+msgid "Installing…"
+msgstr "Installeren…"
+
+#: ui/app.slint:488
+msgid "Update it for me"
+msgstr "Voor mij bijwerken"
+
+#: ui/app.slint:488
+msgid "Install it for me"
+msgstr "Voor mij installeren"
+
+#: ui/app.slint:496
+msgid "Open installation instructions"
+msgstr "Installatie-instructies openen"
+
+#: ui/app.slint:502
+msgid "Check again"
+msgstr "Opnieuw controleren"
+
+#: ui/app.slint:509
+msgid "Not now"
+msgstr "Niet nu"
+
+#: ui/app.slint:537
+msgid "Some changes on this computer aren't being noticed"
+msgstr "Sommige wijzigingen op deze computer worden niet opgemerkt"
+
+#: ui/app.slint:550
+msgid "Raising it…"
+msgstr "Verhogen…"
+
+#: ui/app.slint:550
+msgid "Raise the limit"
+msgstr "De limiet verhogen"
+
+#: ui/app.slint:582
+msgid "Syncing is also set up outside this app"
+msgstr "Synchronisatie is ook buiten deze app ingesteld"
+
+#: ui/app.slint:595
+msgid "Turning it off…"
+msgstr "Uitschakelen…"
+
+#: ui/app.slint:595
+msgid "Turn it off"
+msgstr "Uitschakelen"
+
+#: ui/app.slint:602
+msgid "Leave it as it is"
+msgstr "Zo laten"
+
+#: ui/app.slint:621
+msgid "DriveDeck for OneDrive"
+msgstr "DriveDeck voor OneDrive"
+
+#: ui/app.slint:920 ui/app.slint:3750
+msgid "Accounts"
+msgstr "Accounts"
+
+#: ui/app.slint:995
+msgid "Add account"
+msgstr "Account toevoegen"
+
+#: ui/app.slint:1007 ui/app.slint:2491
+msgid "App settings"
+msgstr "Appinstellingen"
+
+#: ui/app.slint:1046
+msgid "OK"
+msgstr "OK"
+
+#: ui/app.slint:1167
+msgid "Status"
+msgstr "Status"
+
+#: ui/app.slint:1167
+msgid "Folders"
+msgstr "Mappen"
+
+#: ui/app.slint:1167
+msgid "Options"
+msgstr "Opties"
+
+#: ui/app.slint:1167
+msgid "Activity"
+msgstr "Activiteit"
+
+#: ui/app.slint:1188
+msgid "This account isn't signed in"
+msgstr "Dit account is niet aangemeld"
+
+#: ui/app.slint:1191
+msgid ""
+"Sign in with your Microsoft account. Your browser will open so you can log "
+"in, then you'll come back here automatically."
+msgstr "Meld je aan met je Microsoft-account. Je browser wordt geopend. Na het aanmelden kom je automatisch hier terug."
+
+#: ui/app.slint:1196
+msgid "Sign in…"
+msgstr "Sign in…"
+
+#: ui/app.slint:1213 ui/app.slint:2388
+msgid "Name"
+msgstr "Naam"
+
+#: ui/app.slint:1218 ui/app.slint:2393
+msgid "Account name"
+msgstr "Accountnaam"
+
+#: ui/app.slint:1225
+msgid "Rename"
+msgstr "Naam wijzigen"
+
+#: ui/app.slint:1234
+msgid "Type"
+msgstr "Type"
+
+#: ui/app.slint:1246
+msgid "Folder"
+msgstr "Map"
+
+#: ui/app.slint:1257 ui/app.slint:4171
+msgid "Open"
+msgstr "Openen"
+
+#: ui/app.slint:1263
+msgid "Move…"
+msgstr "Verplaatsen…"
+
+#: ui/app.slint:1270
+msgid "Online ▾"
+msgstr "Online ▾"
+
+#: ui/app.slint:1280 ui/app.slint:3953 ui/app.slint:3971
+msgid "OneDrive website"
+msgstr "OneDrive-website"
+
+#: ui/app.slint:1286 ui/app.slint:3959 ui/app.slint:3980
+msgid "Recycle bin"
+msgstr "Prullenbak"
+
+#: ui/app.slint:1292 ui/app.slint:3965 ui/app.slint:3989
+msgid "Restore your OneDrive"
+msgstr "Je OneDrive herstellen"
+
+#: ui/app.slint:1303
+msgid "Last sync"
+msgstr "Laatste synchronisatie"
+
+#: ui/app.slint:1316
+msgid "Storage"
+msgstr "Opslag"
+
+#: ui/app.slint:1351
+msgid "Delete them online too…"
+msgstr "Ook online verwijderen…"
+
+#: ui/app.slint:1358
+msgid "Download them again…"
+msgstr "Opnieuw downloaden…"
+
+#: ui/app.slint:1366
+msgid ""
+"Downloading them again needs a full resync, which is turned off for this "
+"account in Options."
+msgstr "Opnieuw downloaden vereist een volledige hersynchronisatie. Die staat uit voor dit account bij Opties."
+
+#: ui/app.slint:1380 ui/app.slint:1387
+msgid "Background sync"
+msgstr "Synchronisatie op de achtergrond"
+
+#: ui/app.slint:1383
+msgid "Keeps this folder in sync all the time, including after you restart."
+msgstr "Houdt deze map steeds gesynchroniseerd, ook nadat je de computer opnieuw start."
+
+#: ui/app.slint:1399 ui/app.slint:3694
+msgid "Sync now"
+msgstr "Nu synchroniseren"
+
+#: ui/app.slint:1406
+msgid "Sign out"
+msgstr "Afmelden"
+
+#: ui/app.slint:1423
+msgid "Files changed in two places"
+msgstr "Bestanden op twee plekken gewijzigd"
+
+#: ui/app.slint:1434
+msgid ""
+"These files were changed here and online before they could sync, so both "
+"versions were kept. Compare them, then choose which to keep."
+msgstr "Deze bestanden zijn hier en online gewijzigd voordat ze konden synchroniseren. Beide versies zijn bewaard. Vergelijk ze en kies welke je wilt houden."
+
+#: ui/app.slint:1481
+msgid "Compare"
+msgstr "Vergelijken"
+
+#: ui/app.slint:1487
+msgid "Keep… ▾"
+msgstr "Bewaren… ▾"
+
+#: ui/app.slint:1500
+msgid "Keep this computer's version"
+msgstr "De versie op deze computer bewaren"
+
+#: ui/app.slint:1506
+msgid "Keep the OneDrive version"
+msgstr "De OneDrive-versie bewaren"
+
+#: ui/app.slint:1512
+msgid "Keep both"
+msgstr "Beide bewaren"
+
+#: ui/app.slint:1529
+msgid "Back up this computer's folders"
+msgstr "Mappen van deze computer back-uppen"
+
+#: ui/app.slint:1532
+msgid ""
+"Keep your important folders in OneDrive, so they're backed up and on your "
+"other devices. They stay where your apps expect them."
+msgstr "Bewaar je belangrijke mappen in OneDrive, zodat ze ook op je andere apparaten staan. Ze blijven op de plek waar je apps ze verwachten."
+
+#: ui/app.slint:1568
+msgid "✓ Backed up"
+msgstr "✓ Geback-upt"
+
+#: ui/app.slint:1583
+msgid "Back up…"
+msgstr "Back-uppen…"
+
+#: ui/app.slint:1590
+msgid "Stop…"
+msgstr "Stoppen…"
+
+#: ui/app.slint:1605
+msgid "Remove account from this computer…"
+msgstr "Account van deze computer verwijderen…"
+
+#: ui/app.slint:1629
+msgid "Sync everything"
+msgstr "Alles synchroniseren"
+
+#: ui/app.slint:1636
+msgid ""
+"Every folder in this account is kept on this computer. Untick to choose "
+"specific folders."
+msgstr "Elke map van dit account blijft op deze computer staan. Haal het vinkje weg om bepaalde mappen te kiezen."
+
+#: ui/app.slint:1636
+msgid ""
+"Only the ticked folders (and everything inside them) are kept on this "
+"computer."
+msgstr "Alleen de aangevinkte mappen en hun inhoud blijven op deze computer staan."
+
+#: ui/app.slint:1639
+msgid "Also sync files that sit at the top level (outside any folder)"
+msgstr "Ook bestanden synchroniseren die los in de hoofdmap staan"
+
+#: ui/app.slint:1657
+msgid "Loading subfolders for "
+msgstr "Submappen laden voor "
+
+#: ui/app.slint:1657
+msgid "Collapse "
+msgstr "Inklappen "
+
+#: ui/app.slint:1657
+msgid "Expand "
+msgstr "Uitklappen "
+
+#: ui/app.slint:1732
+msgid "Reload"
+msgstr "Opnieuw laden"
+
+#: ui/app.slint:1738
+msgid "Apply changes…"
+msgstr "Wijzigingen toepassen…"
+
+#: ui/app.slint:1761
+msgid "When to sync"
+msgstr "Wanneer synchroniseren"
+
+#: ui/app.slint:1766
+msgid "Full check every"
+msgstr "Volledige controle elke"
+
+#: ui/app.slint:1771
+msgid "How often to check for changes"
+msgstr "Hoe vaak op wijzigingen controleren"
+
+#: ui/app.slint:1772
+msgid "5 minutes"
+msgstr "5 minuten"
+
+#: ui/app.slint:1772
+msgid "10 minutes"
+msgstr "10 minuten"
+
+#: ui/app.slint:1772
+msgid "15 minutes"
+msgstr "15 minuten"
+
+#: ui/app.slint:1772
+msgid "30 minutes"
+msgstr "30 minuten"
+
+#: ui/app.slint:1772
+msgid "1 hour"
+msgstr "1 uur"
+
+#: ui/app.slint:1772
+msgid "2 hours"
+msgstr "2 uur"
+
+#: ui/app.slint:1780
+msgid ""
+"Changes on this computer are sent right away, and personal accounts also get "
+"online changes instantly. This sets how often a full check runs as well."
+msgstr "Wijzigingen op deze computer worden meteen verstuurd. Bij persoonlijke accounts komen online wijzigingen ook direct binnen. Dit bepaalt ook hoe vaak een volledige controle plaatsvindt."
+
+#: ui/app.slint:1785
+msgid "Only sync between"
+msgstr "Alleen synchroniseren tussen"
+
+#: ui/app.slint:1789
+msgid "Schedule start time"
+msgstr "Begintijd van schema"
+
+#: ui/app.slint:1796
+msgid "and"
+msgstr "en"
+
+#: ui/app.slint:1800
+msgid "Schedule end time"
+msgstr "Eindtijd van schema"
+
+#: ui/app.slint:1811
+msgid ""
+"Use 24-hour times. The window can cross midnight (for example 23:00 to 07:00 "
+"for overnight only). \"Sync now\" still works outside it for an hour. Needs "
+"the tray icon running."
+msgstr "Gebruik de 24-uursnotatie. De periode mag over middernacht lopen (bijvoorbeeld 23:00 tot 07:00). ‘Nu synchroniseren’ werkt buiten deze periode nog een uur. Het systeemvakpictogram moet actief zijn."
+
+#: ui/app.slint:1816
+msgid "Speed limit"
+msgstr "Snelheidslimiet"
+
+#: ui/app.slint:1821
+msgid "Sync speed limit"
+msgstr "Synchronisatiesnelheid"
+
+#: ui/app.slint:1822
+msgid "No limit"
+msgstr "Geen limiet"
+
+#: ui/app.slint:1822
+msgid "1 MB/s"
+msgstr "1 MB/s"
+
+#: ui/app.slint:1822
+msgid "2 MB/s"
+msgstr "2 MB/s"
+
+#: ui/app.slint:1822
+msgid "5 MB/s"
+msgstr "5 MB/s"
+
+#: ui/app.slint:1822
+msgid "10 MB/s"
+msgstr "10 MB/s"
+
+#: ui/app.slint:1822
+msgid "25 MB/s"
+msgstr "25 MB/s"
+
+#: ui/app.slint:1822
+msgid "50 MB/s"
+msgstr "50 MB/s"
+
+#: ui/app.slint:1830
+msgid "Applies to each file being transferred."
+msgstr "Geldt voor elk bestand dat wordt overgezet."
+
+#: ui/app.slint:1833
+msgid "Connect over IPv4 only"
+msgstr "Alleen via IPv4 verbinden"
+
+#: ui/app.slint:1837
+msgid ""
+"Can fix syncing that's slow to start or keeps timing out on some networks."
+msgstr "Kan helpen als synchronisatie traag start of op sommige netwerken steeds een time-out krijgt."
+
+#: ui/app.slint:1847
+msgid "Direction"
+msgstr "Richting"
+
+#: ui/app.slint:1850
+msgid "Sync direction"
+msgstr "Synchronisatierichting"
+
+#: ui/app.slint:1851
+msgid "Both ways (normal)"
+msgstr "Beide richtingen (normaal)"
+
+#: ui/app.slint:1851
+msgid "Download only"
+msgstr "Alleen downloaden"
+
+#: ui/app.slint:1851
+msgid "Upload only"
+msgstr "Alleen uploaden"
+
+#: ui/app.slint:1862
+msgid ""
+"Keeps this computer a copy of what's online. Changes you make here aren't "
+"sent to OneDrive."
+msgstr "Houdt op deze computer een kopie bij van wat online staat. Wijzigingen hier worden niet naar OneDrive verstuurd."
+
+#: ui/app.slint:1862
+msgid ""
+"Sends what you change here to OneDrive, but doesn't download changes made "
+"online. Good for backing up this computer."
+msgstr "Stuurt wijzigingen hier naar OneDrive, maar downloadt online wijzigingen niet. Handig om een back-up van deze computer te maken."
+
+#: ui/app.slint:1862
+msgid "Changes made here go to OneDrive, and changes made online come here."
+msgstr "Wijzigingen hier gaan naar OneDrive en online wijzigingen komen hierheen."
+
+#: ui/app.slint:1865
+msgid "Also delete files here that aren't online"
+msgstr "Verwijder hier ook bestanden die niet online staan"
+
+#: ui/app.slint:1869
+msgid ""
+"This deletes files you put in this folder yourself, since they aren't "
+"online. You'll see exactly what would be deleted before anything happens."
+msgstr "Dit verwijdert ook bestanden die je zelf in deze map zet, omdat ze niet online staan. Je ziet vooraf precies wat er wordt verwijderd."
+
+#: ui/app.slint:1875
+msgid "Keep files online when I delete them here"
+msgstr "Bestanden online bewaren als ik ze hier verwijder"
+
+#: ui/app.slint:1879
+msgid ""
+"Changing the direction is checked first with a dry run, so you can see what "
+"would happen."
+msgstr "Een wijziging van de richting wordt eerst gecontroleerd. Zo zie je vooraf wat er zou gebeuren."
+
+#: ui/app.slint:1889
+msgid "Files"
+msgstr "Bestanden"
+
+#: ui/app.slint:1892
+msgid ""
+"When a file is deleted online, move it to this computer's Trash instead of "
+"deleting it"
+msgstr "Verplaats online verwijderde bestanden naar de prullenbak op deze computer"
+
+#: ui/app.slint:1896
+msgid "Show desktop notifications for synced files"
+msgstr "Bureaubladmeldingen tonen voor gesynchroniseerde bestanden"
+
+#: ui/app.slint:1900
+msgid "Don't sync hidden files and folders (names starting with a dot) *"
+msgstr "Verborgen bestanden en mappen (naam begint met een punt) niet synchroniseren *"
+
+#: ui/app.slint:1906
+msgid "Never sync files named *"
+msgstr "Bestanden met deze naam nooit synchroniseren *"
+
+#: ui/app.slint:1910
+msgid "File name patterns to skip"
+msgstr "Over te slaan bestandsnamen"
+
+#: ui/app.slint:1916
+msgid "Separate patterns with | — for example  *.tmp|~*|Thumbs.db"
+msgstr "Scheid patronen met | — bijvoorbeeld *.tmp|~*|Thumbs.db"
+
+#: ui/app.slint:1921
+msgid "Never sync folders named *"
+msgstr "Mappen met deze naam nooit synchroniseren *"
+
+#: ui/app.slint:1925
+msgid "Folder names or paths to skip"
+msgstr "Over te slaan mapnamen of paden"
+
+#: ui/app.slint:1930
+msgid "Add developer folders…"
+msgstr "Ontwikkelmappen toevoegen…"
+
+#: ui/app.slint:1937
+msgid ""
+"A name skips every folder called that; a path like Projects/Old skips that "
+"folder."
+msgstr "Een naam slaat elke map met die naam over. Een pad zoals Projects/Old slaat alleen die map over."
+
+#: ui/app.slint:1940
+msgid "Don't sync symbolic links *"
+msgstr "Symbolische koppelingen niet synchroniseren *"
+
+#: ui/app.slint:1944
+msgid "Skip any folder that holds a file named .nosync *"
+msgstr "Mappen met een bestand met de naam .nosync overslaan *"
+
+#: ui/app.slint:1948
+msgid "Sync shared folders I've added to My files *"
+msgstr "Gedeelde mappen synchroniseren die ik aan Mijn bestanden heb toegevoegd *"
+
+#: ui/app.slint:1959
+msgid "Safety"
+msgstr "Veiligheid"
+
+#: ui/app.slint:1962
+msgid "Allow full resyncs for this account"
+msgstr "Volledige hersynchronisatie voor dit account toestaan"
+
+#: ui/app.slint:1966
+msgid ""
+"Changing which folders sync, or the settings marked *, makes the sync engine "
+"rebuild its view of everything (a full resync). You always get a preview of "
+"what would be downloaded, uploaded or deleted before anything happens. Turn "
+"this off to lock those settings."
+msgstr "Als je synchronisatiemappen wijzigt of instellingen met * aanpast, bouwt de synchronisatie opnieuw een overzicht van alles op (volledige hersynchronisatie). Je krijgt altijd vooraf te zien wat wordt gedownload, geüpload of verwijderd. Zet dit uit om die instellingen vast te zetten."
+
+#: ui/app.slint:1971
+msgid "Stop and ask when more than"
+msgstr "Stoppen en vragen als meer dan"
+
+#: ui/app.slint:1975
+msgid "Number of deleted items that stops syncing"
+msgstr "Aantal verwijderde items waarbij synchronisatie stopt"
+
+#: ui/app.slint:1982
+msgid "items are deleted at once"
+msgstr "items tegelijk worden verwijderd"
+
+#: ui/app.slint:1990
+msgid ""
+"Protects against deleting a lot online by accident, for example when a "
+"folder is moved out of OneDrive or a drive goes missing. Items inside "
+"deleted folders count too. The client's default is 1000."
+msgstr "Voorkomt dat je per ongeluk veel online verwijdert, bijvoorbeeld als een map uit OneDrive wordt verplaatst of een schijf ontbreekt. Items in verwijderde mappen tellen ook mee. De standaardwaarde van de client is 1000."
+
+#: ui/app.slint:2005
+msgid "Advanced"
+msgstr "Geavanceerd"
+
+#: ui/app.slint:2008
+msgid "Fine-tune the sync engine. Most people never need these."
+msgstr "Pas de synchronisatie precies aan. De meeste mensen hoeven dit niet te wijzigen."
+
+#: ui/app.slint:2012
+msgid "Shown"
+msgstr "Getoond"
+
+#: ui/app.slint:2012
+msgid "Hidden"
+msgstr "Verborgen"
+
+#: ui/app.slint:2013
+msgid "Show advanced settings"
+msgstr "Geavanceerde instellingen tonen"
+
+#: ui/app.slint:2022
+msgid "Search advanced settings"
+msgstr "Geavanceerde instellingen zoeken"
+
+#: ui/app.slint:2023
+msgid "Search settings (threads, timeout, log…)"
+msgstr "Instellingen zoeken (threads, time-out, logboek…)"
+
+#: ui/app.slint:2090
+msgid "⚠ Can lose data"
+msgstr "⚠ Kan gegevensverlies veroorzaken"
+
+#: ui/app.slint:2094
+msgid "Full resync"
+msgstr "Volledige hersynchronisatie"
+
+#: ui/app.slint:2098
+msgid "Sign in again"
+msgstr "Opnieuw aanmelden"
+
+#: ui/app.slint:2107
+msgid "Reset "
+msgstr "Opnieuw instellen "
+
+#: ui/app.slint:2107
+msgid " to the default"
+msgstr " naar de standaardwaarde"
+
+#: ui/app.slint:2112
+msgid "↺ Reset to default"
+msgstr "↺ Standaardwaarde herstellen"
+
+#: ui/app.slint:2170
+msgid "No setting matches \""
+msgstr "Geen instelling komt overeen met \""
+
+#: ui/app.slint:2177
+msgid "Show all settings in use"
+msgstr "Alle gebruikte instellingen tonen"
+
+#: ui/app.slint:2183
+msgid "Open log folder"
+msgstr "Logboekmap openen"
+
+#: ui/app.slint:2203
+msgid "Save"
+msgstr "Opslaan"
+
+#: ui/app.slint:2220
+msgid "When"
+msgstr "Wanneer"
+
+#: ui/app.slint:2220
+msgid "What"
+msgstr "Wat"
+
+#: ui/app.slint:2220
+msgid "File"
+msgstr "Bestand"
+
+#: ui/app.slint:2227
+msgid "Recent uploads, downloads and deletions from the sync log."
+msgstr "Recente uploads, downloads en verwijderingen uit het synchronisatielogboek."
+
+#: ui/app.slint:2232
+msgid "Show in folder"
+msgstr "In map tonen"
+
+#: ui/app.slint:2239
+msgid "Refresh"
+msgstr "Vernieuwen"
+
+#: ui/app.slint:2256
+msgid "Welcome — let's add your OneDrive"
+msgstr "Welkom — laten we je OneDrive toevoegen"
+
+#: ui/app.slint:2256
+msgid "Add an account"
+msgstr "Een account toevoegen"
+
+#: ui/app.slint:2261
+msgid "What would you like to sync?"
+msgstr "Wat wil je synchroniseren?"
+
+#: ui/app.slint:2265 ui/app.slint:3581 ui/app.slint:3670
+msgid "OneDrive"
+msgstr "OneDrive"
+
+#: ui/app.slint:2266
+msgid ""
+"A personal Microsoft account (Outlook, Hotmail, Live) or a work or school "
+"account."
+msgstr "Een persoonlijk Microsoft-account (Outlook, Hotmail, Live) of een werk- of schoolaccount."
+
+#: ui/app.slint:2273
+msgid "SharePoint library"
+msgstr "SharePoint-bibliotheek"
+
+#: ui/app.slint:2274
+msgid ""
+"A document library from a SharePoint or Teams site. You'll need a work or "
+"school account added first."
+msgstr "Een documentbibliotheek van een SharePoint- of Teams-site. Voeg eerst een werk- of schoolaccount toe."
+
+#: ui/app.slint:2288
+msgid "1. Find the library"
+msgstr "1. Bibliotheek zoeken"
+
+#: ui/app.slint:2293
+msgid "Using account"
+msgstr "Account gebruiken"
+
+#: ui/app.slint:2298
+msgid "Work or school account for this library"
+msgstr "Werk- of schoolaccount voor deze bibliotheek"
+
+#: ui/app.slint:2308
+msgid "Site"
+msgstr "Site"
+
+#: ui/app.slint:2313
+msgid "SharePoint site address or name"
+msgstr "SharePoint-siteadres of -naam"
+
+#: ui/app.slint:2316
+msgid "Paste the site's address, or type part of its name"
+msgstr "Plak het adres van de site of typ een deel van de naam"
+
+#: ui/app.slint:2322
+msgid "Find"
+msgstr "Zoeken"
+
+#: ui/app.slint:2330
+msgid ""
+"Copy the address from your browser while viewing the SharePoint site or "
+"library. Leave it empty to list the sites you belong to — only sites this "
+"account can already open appear."
+msgstr "Kopieer het adres uit je browser terwijl je de SharePoint-site of bibliotheek bekijkt. Laat het leeg om de sites te tonen waar je lid van bent. Alleen sites die dit account al kan openen, verschijnen."
+
+#: ui/app.slint:2383
+msgid "2. Where to keep it"
+msgstr "2. Waar je het wilt bewaren"
+
+#: ui/app.slint:2383
+msgid "Name and folder"
+msgstr "Naam en map"
+
+#: ui/app.slint:2395
+msgid "e.g. Personal, Work"
+msgstr "bijv. Persoonlijk, Werk"
+
+#: ui/app.slint:2401
+msgid "Local folder"
+msgstr "Lokale map"
+
+#: ui/app.slint:2406
+msgid "Local folder for synced files"
+msgstr "Lokale map voor gesynchroniseerde bestanden"
+
+#: ui/app.slint:2410
+msgid "Browse…"
+msgstr "Bladeren…"
+
+#: ui/app.slint:2417
+msgid ""
+"Best to pick an empty or new folder. Anything already in it will be uploaded."
+msgstr "Kies bij voorkeur een lege of nieuwe map. Alles wat er al in staat, wordt geüpload."
+
+#: ui/app.slint:2422 ui/app.slint:2427
+msgid "Microsoft cloud"
+msgstr "Microsoft-cloud"
+
+#: ui/app.slint:2428
+msgid "Worldwide (normal)"
+msgstr "Wereldwijd (normaal)"
+
+#: ui/app.slint:2428
+msgid "US Government (GCC High)"
+msgstr "Amerikaanse overheid (GCC High)"
+
+#: ui/app.slint:2428
+msgid "US Government (DoD)"
+msgstr "Amerikaanse overheid (DoD)"
+
+#: ui/app.slint:2428
+msgid "Germany"
+msgstr "Duitsland"
+
+#: ui/app.slint:2428
+msgid "China (21Vianet)"
+msgstr "China (21Vianet)"
+
+#: ui/app.slint:2438
+msgid "Tenant"
+msgstr "Tenant"
+
+#: ui/app.slint:2443
+msgid "Organization tenant"
+msgstr "Organisatietenant"
+
+#: ui/app.slint:2449
+msgid ""
+"Only for government and national cloud accounts. Your IT team can tell you "
+"the tenant."
+msgstr "Alleen voor overheids- en nationale cloudaccounts. Je IT-team kan je de tenant geven."
+
+#: ui/app.slint:2457
+msgid "Back"
+msgstr "Terug"
+
+#: ui/app.slint:2463
+msgid "Add library"
+msgstr "Bibliotheek toevoegen"
+
+#: ui/app.slint:2463
+msgid "Continue and sign in…"
+msgstr "Doorgaan en aanmelden…"
+
+#: ui/app.slint:2498
+msgid "Show the tray icon when I log in"
+msgstr "Systeemvakpictogram tonen als ik me aanmeld"
+
+#: ui/app.slint:2505
+msgid ""
+"Syncing itself keeps running in the background either way. The tray icon "
+"shows status and runs sync schedules."
+msgstr "De synchronisatie blijft hoe dan ook op de achtergrond actief. Het systeemvakpictogram toont de status en voert schema's uit."
+
+#: ui/app.slint:2508
+msgid "Stop syncing when I quit the tray icon"
+msgstr "Synchronisatie stoppen als ik het systeemvakpictogram afsluit"
+
+#: ui/app.slint:2515
+msgid ""
+"\"Quit\" in the tray icon's menu then stops syncing too. It starts again the "
+"next time the app opens or you log in."
+msgstr "Met ‘Afsluiten’ in het menu van het systeemvakpictogram stopt ook de synchronisatie. Die start weer als je de app opent of je opnieuw aanmeldt."
+
+#: ui/app.slint:2518
+msgid "Pause syncing on a metered network"
+msgstr "Synchronisatie pauzeren op een verbinding met datalimiet"
+
+#: ui/app.slint:2525
+msgid ""
+"Saves your data allowance on a phone hotspot or a connection you've marked "
+"as metered in your network settings."
+msgstr "Bespaart data bij een mobiele hotspot of een verbinding die je in de netwerkinstellingen als verbinding met datalimiet hebt ingesteld."
+
+#: ui/app.slint:2528
+msgid "Pause syncing while power saver is on"
+msgstr "Synchronisatie pauzeren als energiebesparing aanstaat"
+
+#: ui/app.slint:2535
+msgid ""
+"Syncing carries on by itself afterwards. \"Sync now\" still syncs for an "
+"hour if you need it to."
+msgstr "Daarna gaat de synchronisatie vanzelf verder. Met ‘Nu synchroniseren’ synchroniseer je zo nodig toch een uur lang."
+
+#: ui/app.slint:2538
+msgid "Save screenshots to OneDrive"
+msgstr "Schermafbeeldingen opslaan in OneDrive"
+
+#: ui/app.slint:2547
+msgid "Save screenshots in"
+msgstr "Schermafbeeldingen opslaan in"
+
+#: ui/app.slint:2552
+msgid "OneDrive account for screenshots"
+msgstr "OneDrive-account voor schermafbeeldingen"
+
+#: ui/app.slint:2561
+msgid "Show sync badges on files in Dolphin, Nemo and Caja"
+msgstr "Synchronisatiemarkeringen tonen bij bestanden in Dolphin, Nemo en Caja"
+
+#: ui/app.slint:2568
+msgid ""
+"A small tick, arrows or warning sign on the files in your OneDrive folders. "
+"File manager windows that are already open show them once they're reopened."
+msgstr "Een vinkje, pijlen of waarschuwing bij bestanden in je OneDrive-mappen. Open bestandsbeheervensters tonen ze nadat je ze opnieuw opent."
+
+#: ui/app.slint:2573
+msgid "Adding…"
+msgstr "Toevoegen…"
+
+#: ui/app.slint:2573
+msgid "Add badges to Dolphin…"
+msgstr "Markeringen aan Dolphin toevoegen…"
+
+#: ui/app.slint:2581
+msgid ""
+"Dolphin needs a small plugin installed for everyone on this computer, so it "
+"asks for your password once."
+msgstr "Dolphin heeft een kleine invoegtoepassing nodig die voor iedereen op deze computer wordt geïnstalleerd. Je wachtwoord wordt één keer gevraagd."
+
+#: ui/app.slint:2587
+msgid "Tell me when a new version is out"
+msgstr "Melden als er een nieuwe versie is"
+
+#: ui/app.slint:2594
+msgid ""
+"Looks at this app's page on GitHub once a day. Nothing is downloaded or "
+"installed by itself."
+msgstr "Controleert dagelijks de GitHub-pagina van deze app. Er wordt niets vanzelf gedownload of geïnstalleerd."
+
+#: ui/app.slint:2600 ui/app.slint:3727
+msgid "Version "
+msgstr "Versie "
+
+#: ui/app.slint:2600
+msgid " is out."
+msgstr " is beschikbaar."
+
+#: ui/app.slint:2605 ui/app.slint:3733
+msgid "Get it"
+msgstr "Downloaden"
+
+#: ui/app.slint:2616
+msgid "Add to my applications menu"
+msgstr "Toevoegen aan het toepassingenmenu"
+
+#: ui/app.slint:2632
+msgid "Something not right?"
+msgstr "Gaat er iets mis?"
+
+#: ui/app.slint:2635
+msgid ""
+"Checks the sync engine, the tray icon and every account in one go. The "
+"report is for a bug report: it leaves out your file names, email address, "
+"user and computer names and sign-in details, and opens so you can read it "
+"before sharing."
+msgstr "Controleert de synchronisatie, het systeemvakpictogram en alle accounts. Het rapport is bedoeld voor een bugmelding. Het bevat geen bestandsnamen, e-mailadres, gebruikers- of computernamen of aanmeldgegevens, en wordt geopend zodat je het kunt lezen voordat je het deelt."
+
+#: ui/app.slint:2641
+msgid "Checking…"
+msgstr "Controleren…"
+
+#: ui/app.slint:2641
+msgid "Check for problems"
+msgstr "Op problemen controleren"
+
+#: ui/app.slint:2648
+msgid "Make a problem report"
+msgstr "Probleemrapport maken"
+
+#: ui/app.slint:2667
+msgid "Appearance"
+msgstr "Uiterlijk"
+
+#: ui/app.slint:2670
+msgid ""
+"Colours, light or dark mode, text size and animations follow your desktop's "
+"settings."
+msgstr "Kleuren, lichte of donkere modus, tekstgrootte en animaties volgen de instellingen van je bureaublad."
+
+#: ui/app.slint:2675 ui/app.slint:2680
+msgid "Glass effect"
+msgstr "Glaseffect"
+
+#: ui/app.slint:2681
+msgid "Automatic"
+msgstr "Automatisch"
+
+#: ui/app.slint:2681
+msgid "On"
+msgstr "Aan"
+
+#: ui/app.slint:2681
+msgid "Off"
+msgstr "Uit"
+
+#: ui/app.slint:2701
+msgid "About"
+msgstr "Over"
+
+#: ui/app.slint:2704
+msgid "DriveDeck for OneDrive "
+msgstr "DriveDeck voor OneDrive "
+
+#: ui/app.slint:2708
+msgid "The easiest, most complete way to use OneDrive on Linux."
+msgstr "De eenvoudigste en meest complete manier om OneDrive op Linux te gebruiken."
+
+#: ui/app.slint:2716
+msgid ""
+"Free software under the GNU GPL v3. Syncing is done by the OneDrive Client "
+"for Linux by abraunegg (GPL v3). Not made by or affiliated with Microsoft. "
+"OneDrive is a trademark of Microsoft."
+msgstr "Vrije software onder de GNU GPL v3. De OneDrive Client for Linux van abraunegg (GPL v3) verzorgt de synchronisatie. Niet gemaakt door of verbonden aan Microsoft. OneDrive is een handelsmerk van Microsoft."
+
+#: ui/app.slint:2722
+msgid "Project page"
+msgstr "Projectpagina"
+
+#: ui/app.slint:2728
+msgid "Sync engine (abraunegg/onedrive)"
+msgstr "Synchronisatieprogramma (abraunegg/onedrive)"
+
+#: ui/app.slint:2741 ui/app.slint:2907 ui/app.slint:2953
+msgid "Uninstall"
+msgstr "Verwijderen"
+
+#: ui/app.slint:2744
+msgid ""
+"Remove this app, and choose whether to keep your OneDrive setup for the "
+"command-line client or remove that too. Your synced files always stay on "
+"this computer."
+msgstr "Verwijder deze app en kies of je de OneDrive-instellingen voor de opdrachtregelclient wilt bewaren of ook wilt verwijderen. Je gesynchroniseerde bestanden blijven altijd op deze computer staan."
+
+#: ui/app.slint:2749
+msgid "Uninstall…"
+msgstr "Verwijderen…"
+
+#: ui/app.slint:2780
+msgid "Sign in to Microsoft"
+msgstr "Aanmelden bij Microsoft"
+
+#: ui/app.slint:2788
+msgid "Address from the blank sign-in page"
+msgstr "Adres van de lege aanmeldpagina"
+
+#: ui/app.slint:2799
+msgid "Copy link"
+msgstr "Koppeling kopiëren"
+
+#: ui/app.slint:2805
+msgid "Open sign-in page again"
+msgstr "Aanmeldpagina opnieuw openen"
+
+#: ui/app.slint:2811
+msgid "Finish sign-in"
+msgstr "Aanmelden voltooien"
+
+#: ui/app.slint:2818 ui/app.slint:2971 ui/app.slint:3137 ui/app.slint:4341
+msgid "Close"
+msgstr "Sluiten"
+
+#: ui/app.slint:2818 ui/app.slint:2874 ui/app.slint:2946 ui/app.slint:3026
+#: ui/app.slint:3178 ui/app.slint:3230 ui/app.slint:3316
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: ui/app.slint:2880
+msgid "Apply"
+msgstr "Toepassen"
+
+#: ui/app.slint:2913
+msgid ""
+"What should happen to your OneDrive setup (sign-ins, chosen folders and "
+"options)? Your synced files stay on this computer either way."
+msgstr "Wat wil je doen met je OneDrive-instellingen (aanmeldingen, gekozen mappen en opties)? Je gesynchroniseerde bestanden blijven hoe dan ook op deze computer staan."
+
+#: ui/app.slint:2917
+msgid "Keep my OneDrive setup"
+msgstr "Mijn OneDrive-instellingen bewaren"
+
+#: ui/app.slint:2918
+msgid ""
+"Only this app is removed. Your accounts keep syncing in the background with "
+"the OneDrive Client for Linux, which you can keep using from the command "
+"line."
+msgstr "Alleen deze app wordt verwijderd. Je accounts blijven op de achtergrond synchroniseren met de OneDrive Client for Linux. Je kunt die via de opdrachtregel blijven gebruiken."
+
+#: ui/app.slint:2926
+msgid "Remove everything"
+msgstr "Alles verwijderen"
+
+#: ui/app.slint:2927
+msgid ""
+"Also stop all background syncing, sign out, and delete every OneDrive sync "
+"configuration on this computer, including ones made with the command-line "
+"client."
+msgstr "Stop ook alle synchronisatie op de achtergrond, meld je af en verwijder alle OneDrive-synchronisatie-instellingen op deze computer, ook die van de opdrachtregelclient."
+
+#: ui/app.slint:2998
+msgid "Move your OneDrive folder"
+msgstr "Je OneDrive-map verplaatsen"
+
+#: ui/app.slint:3002
+msgid "This moves the folder that holds this account's files, now "
+msgstr "Hiermee verplaats je de map met de bestanden van dit account, nu "
+
+#: ui/app.slint:3002
+msgid ""
+", to a new place — for example another hard drive with more space. Your "
+"files stay in OneDrive the whole time, and nothing is downloaded again."
+msgstr ", naar een nieuwe plek — bijvoorbeeld een grotere harde schijf. Je bestanden blijven ondertussen in OneDrive en worden niet opnieuw gedownload."
+
+#: ui/app.slint:3006
+msgid "What happens after you choose the new place:"
+msgstr "Dit gebeurt nadat je de nieuwe plek hebt gekozen:"
+
+#: ui/app.slint:3011
+msgid ""
+"1. Syncing for this account pauses.\n"
+"2. The files go to the new place. On the same drive they're simply moved, "
+"which is instant. To another drive they're copied, which can take a while "
+"for a big folder.\n"
+"3. A check runs to confirm everything matches online (a dry run, nothing "
+"changes). Press Apply and syncing carries on from the new place."
+msgstr "1. De synchronisatie van dit account wordt gepauzeerd.\n2. De bestanden gaan naar de nieuwe plek. Op dezelfde schijf worden ze meteen verplaatst. Naar een andere schijf worden ze gekopieerd; dat kan bij een grote map even duren.\n3. Er wordt gecontroleerd of alles overeenkomt met de online versie. Er verandert nog niets. Druk op Toepassen om vanaf de nieuwe plek verder te synchroniseren."
+
+#: ui/app.slint:3015
+msgid ""
+"Moving to another drive leaves your old folder exactly as it was: nothing is "
+"ever deleted for you, so no files can be lost if the copy goes wrong. Once "
+"you've checked your files are in the new place, delete the old folder "
+"yourself to free up the space. Until then, it isn't synced any more and "
+"changes made in it won't reach OneDrive."
+msgstr "Bij verplaatsen naar een andere schijf blijft de oude map precies zoals die is. Er wordt niets verwijderd, zodat er geen bestanden verloren gaan als kopiëren mislukt. Verwijder de oude map zelf om ruimte vrij te maken nadat je hebt gecontroleerd of je bestanden op de nieuwe plek staan. Tot die tijd wordt de oude map niet meer gesynchroniseerd en bereiken wijzigingen OneDrive niet."
+
+#: ui/app.slint:3020
+msgid ""
+"Pick an empty folder to use it as the new OneDrive folder. Pick a folder "
+"that already has things in it (like the top of a drive) and a folder named "
+"like the current one is made inside it. Make sure the new drive has enough "
+"free space and is always connected (mounted automatically)."
+msgstr "Kies een lege map als nieuwe OneDrive-map. Kies je een map waar al bestanden in staan (zoals de hoofdmap van een schijf), dan wordt daarin een map met de huidige naam gemaakt. Zorg dat de nieuwe schijf genoeg ruimte heeft en altijd is aangesloten (automatisch wordt aangekoppeld)."
+
+#: ui/app.slint:3032
+msgid "Choose new location…"
+msgstr "Nieuwe locatie kiezen…"
+
+#: ui/app.slint:3114
+msgid "All settings in use"
+msgstr "Alle gebruikte instellingen"
+
+#: ui/app.slint:3118
+msgid ""
+"What the sync engine reads from this account's config file, including the "
+"defaults for anything not set."
+msgstr "Wat het synchronisatieprogramma uit het instellingenbestand van dit account leest, inclusief standaardwaarden voor instellingen die niet zijn opgegeven."
+
+#: ui/app.slint:3163
+msgid "Remove account"
+msgstr "Account verwijderen"
+
+#: ui/app.slint:3171
+msgid "Also sign out and delete this account's sync settings"
+msgstr "Ook afmelden en de synchronisatie-instellingen van dit account verwijderen"
+
+#: ui/app.slint:3184
+msgid "Remove"
+msgstr "Verwijderen"
+
+#: ui/app.slint:3221
+msgid "I'll install it myself"
+msgstr "Ik installeer het zelf"
+
+#: ui/app.slint:3262
+msgid "Skip developer folders"
+msgstr "Ontwikkelmappen overslaan"
+
+#: ui/app.slint:3266
+msgid ".git"
+msgstr ".git"
+
+#: ui/app.slint:3270
+msgid "node_modules"
+msgstr "node_modules"
+
+#: ui/app.slint:3274
+msgid "target"
+msgstr "target"
+
+#: ui/app.slint:3278
+msgid "__pycache__"
+msgstr "__pycache__"
+
+#: ui/app.slint:3282
+msgid ".venv"
+msgstr ".venv"
+
+#: ui/app.slint:3286
+msgid "venv"
+msgstr "venv"
+
+#: ui/app.slint:3290
+msgid ".gradle"
+msgstr ".gradle"
+
+#: ui/app.slint:3294
+msgid ".idea"
+msgstr ".idea"
+
+#: ui/app.slint:3298
+msgid ".cache"
+msgstr ".cache"
+
+#: ui/app.slint:3302
+msgid "build"
+msgstr "build"
+
+#: ui/app.slint:3306
+msgid "dist"
+msgstr "dist"
+
+#: ui/app.slint:3310
+msgid ""
+"build and dist are common folder names too, so select them only if you mean "
+"to skip them."
+msgstr "build en dist zijn ook gewone mapnamen. Selecteer ze alleen als je die wilt overslaan."
+
+#: ui/app.slint:3322
+msgid "Add"
+msgstr "Toevoegen"
+
+#: ui/app.slint:3559
+msgid "Show "
+msgstr "Tonen "
+
+#: ui/app.slint:3559
+msgid " in its folder"
+msgstr " in de map"
+
+#: ui/app.slint:3703
+msgid "Pause syncing"
+msgstr "Synchronisatie pauzeren"
+
+#: ui/app.slint:3711
+msgid "Settings and accounts"
+msgstr "Instellingen en accounts"
+
+#: ui/app.slint:3727
+msgid " of this app is out."
+msgstr " van deze app is beschikbaar."
+
+#: ui/app.slint:3812
+msgid "Not synced ("
+msgstr "Niet gesynchroniseerd ("
+
+#: ui/app.slint:3830
+msgid "Syncing now"
+msgstr "Bezig met synchroniseren"
+
+#: ui/app.slint:3830
+msgid "Syncing now ("
+msgstr "Bezig met synchroniseren ("
+
+#: ui/app.slint:3835
+msgid "No large files are transferring right now."
+msgstr "Er worden nu geen grote bestanden overgezet."
+
+#: ui/app.slint:3849
+msgid "Recent files"
+msgstr "Recente bestanden"
+
+#: ui/app.slint:3854
+msgid "Show recent files for account"
+msgstr "Recente bestanden van account tonen"
+
+#: ui/app.slint:3866
+msgid "Nothing has synced recently."
+msgstr "Er is onlangs niets gesynchroniseerd."
+
+#: ui/app.slint:3880
+msgid "Open folder"
+msgstr "Map openen"
+
+#: ui/app.slint:3894
+msgid "View online"
+msgstr "Online bekijken"
+
+#: ui/app.slint:3911
+msgid "Pause for 1 hour"
+msgstr "1 uur pauzeren"
+
+#: ui/app.slint:3917
+msgid "Pause for 4 hours"
+msgstr "4 uur pauzeren"
+
+#: ui/app.slint:3923
+msgid "Pause until tomorrow morning"
+msgstr "Tot morgenochtend pauzeren"
+
+#: ui/app.slint:3930
+msgid "Resume syncing"
+msgstr "Synchronisatie hervatten"
+
+#: ui/app.slint:4019
+msgid "Version history — "
+msgstr "Versiegeschiedenis — "
+
+#: ui/app.slint:4019
+msgid "Who has access — "
+msgstr "Wie heeft toegang — "
+
+#: ui/app.slint:4019
+msgid "Share — "
+msgstr "Delen — "
+
+#: ui/app.slint:4079
+msgid "Version history"
+msgstr "Versiegeschiedenis"
+
+#: ui/app.slint:4079
+msgid "Who has access"
+msgstr "Wie heeft toegang"
+
+#: ui/app.slint:4079
+msgid "Share with people"
+msgstr "Met mensen delen"
+
+#: ui/app.slint:4105
+msgid "Getting the saved versions…"
+msgstr "Opgeslagen versies ophalen…"
+
+#: ui/app.slint:4154
+msgid "Current"
+msgstr "Huidig"
+
+#: ui/app.slint:4178 ui/app.slint:4382
+msgid "Restore"
+msgstr "Herstellen"
+
+#: ui/app.slint:4192
+msgid ""
+"\"Open\" saves a copy of that version and opens it, without changing "
+"anything. \"Restore\" makes it the current version everywhere; the version "
+"it replaces is kept here too, so nothing is lost."
+msgstr "Met ‘Openen’ bewaar en open je een kopie van die versie. Er verandert niets. Met ‘Herstellen’ wordt die versie overal de huidige versie. De vervangen versie blijft ook bewaard, dus er gaat niets verloren."
+
+#: ui/app.slint:4201
+msgid "Invite people by email"
+msgstr "Mensen per e-mail uitnodigen"
+
+#: ui/app.slint:4205
+msgid "Email addresses to invite"
+msgstr "Uit te nodigen e-mailadressen"
+
+#: ui/app.slint:4207
+msgid "name@example.com, another@example.com"
+msgstr "naam@voorbeeld.nl, ander@voorbeeld.nl"
+
+#: ui/app.slint:4212
+msgid ""
+"Separate addresses with commas. Each person gets an email and signs in to "
+"open it. People outside your organization can only be added if your IT team "
+"allows it."
+msgstr "Scheid adressen met komma's. Iedereen krijgt een e-mail en meldt zich aan om het te openen. Mensen buiten je organisatie kun je alleen toevoegen als je IT-team dit toestaat."
+
+#: ui/app.slint:4212
+msgid ""
+"Separate addresses with commas. Each person gets an email and signs in with "
+"a Microsoft account to open it."
+msgstr "Scheid adressen met komma's. Iedereen krijgt een e-mail en meldt zich met een Microsoft-account aan om het te openen."
+
+#: ui/app.slint:4220 ui/app.slint:4230
+msgid "Can edit"
+msgstr "Kan bewerken"
+
+#: ui/app.slint:4224
+msgid "They can change it (and add or delete files in a folder)."
+msgstr "Deze persoon kan het wijzigen en bestanden toevoegen of verwijderen als het om een map gaat."
+
+#: ui/app.slint:4224
+msgid "They can view and download it, but not change it."
+msgstr "Deze persoon kan het bekijken en downloaden, maar niet wijzigen."
+
+#: ui/app.slint:4234
+msgid "Message (optional)"
+msgstr "Bericht (optioneel)"
+
+#: ui/app.slint:4238
+msgid "Invitation message"
+msgstr "Uitnodigingsbericht"
+
+#: ui/app.slint:4287
+msgid "Keep"
+msgstr "Bewaren"
+
+#: ui/app.slint:4293
+msgid "Stop it"
+msgstr "Stoppen"
+
+#: ui/app.slint:4293
+msgid "Stop sharing"
+msgstr "Delen stoppen"
+
+#: ui/app.slint:4296
+msgid "Stop sharing with "
+msgstr "Delen stoppen met "
+
+#: ui/app.slint:4314
+msgid ""
+"Stopping a link makes it stop working for everyone who has it. Stopping a "
+"person's access takes the file away from their \"Shared\" list. Access that "
+"comes from a folder above can only be changed on that folder."
+msgstr "Als je een koppeling stopt, werkt die voor niemand meer. Als je iemands toegang stopt, verdwijnt het bestand uit diens lijst ‘Gedeeld’. Toegang via een bovenliggende map kun je alleen in die map wijzigen."
+
+#: ui/app.slint:4333
+msgid "Send invitation"
+msgstr "Uitnodiging versturen"
+
+#: ui/app.slint:4365
+msgid "Restore this version?"
+msgstr "Deze versie herstellen?"
+
+#: ui/app.slint:4369
+msgid "The version from "
+msgstr "De versie van "
+
+#: ui/app.slint:4369
+msgid ""
+" becomes the current one, online and on this computer. The current version "
+"is kept in the history, so you can switch back."
+msgstr " wordt online en op deze computer de huidige versie. De huidige versie blijft in de geschiedenis staan, zodat je kunt terugschakelen."
+
+msgid "needs a full path, starting with / or ~/"
+msgstr "heeft nodig een volledig pad, starting met / van ~/"
+
+msgid "needs a public https:// address"
+msgstr "heeft nodig een openbare https:// adres"
+
+msgid "needs an IP address, like 0.0.0.0 or 127.0.0.1"
+msgstr "heeft nodig een IP adres, zoals 0.0.0.0 van 127.0.0.1"
+
+msgid "needs a tenant ID (a GUID) or a domain like contoso.onmicrosoft.com"
+msgstr "heeft nodig een tenant ID (een GUID) van een domain zoals contoso.onmicrosoft.com"
+
+msgid "needs an application ID like d50ca740-c83f-4d1b-b616-12c519384f0c"
+msgstr "heeft nodig een applicatie ID zoals d50ca740-c83f-4d1b-b616-12c519384f0c"
+
+msgid "can't contain quotes or line breaks"
+msgstr "kan niet bevatten aanhalingstekens van regel breaks"
+
+msgid "needs three digits from 0 to 7, like 700 or 644"
+msgstr "heeft nodig three cijfers van 0 naar 7, zoals 700 van 644"
+
+msgid "needs a whole number from {} to {}{}"
+msgstr "heeft nodig een heel getal van {} naar {}{}"
+
+msgid "needs a number from {} to {}{}"
+msgstr "heeft nodig een getal van {} naar {}{}"
+
+msgid "isn't one of the choices"
+msgstr "is niet one van de keuzes"
+
+msgid "Couldn't read {}: {}"
+msgstr "Kon niet lezen {}: {}"
+
+msgid "Couldn't update {}: {}"
+msgstr "Kon niet bijwerken {}: {}"
+
+msgid "Couldn't enumerate {}: {}"
+msgstr "Kon niet opsommen {}: {}"
+
+msgid "Couldn't inspect {}: {}"
+msgstr "Kon niet bekijken {}: {}"
+
+msgid "Couldn't find a filesystem for {}."
+msgstr "Kon niet vinden een bestandsystem voor {}."
+
+msgid "Couldn't resolve the OneDrive folder {}: {}"
+msgstr "Kon niet oplossen de OneDrive-map {}: {}"
+
+msgid "Couldn't check the mounted drive for {}: {}"
+msgstr "Kon niet controle de aangekoppelde schijf voor {}: {}"
+
+msgid "Couldn't check whether the drive for {} is mounted."
+msgstr "Kon niet controle van de schijf voor {} is aangekoppeld."
+
+msgid ""
+"The drive for {} isn't mounted. Connect it before backing up this folder."
+msgstr "De schijf voor {} is niet aangekoppeld. Connect het voor backing omhoog dit map."
+
+msgid "Couldn't check the sync-folder rules in {}: {}"
+msgstr "Kon niet controle de synchronisatieregels voor mappen in {}: {}"
+
+msgid "Unknown folder."
+msgstr "Unknown map."
+
+msgid "This computer doesn't have a {} folder set up."
+msgstr "Deze computer doet niet hebben een {} map set omhoog."
+
+msgid ""
+"The OneDrive folder {} isn't available. Connect its drive and try again."
+msgstr "De OneDrive-map {} is niet beschikbaar. Connect zijn schijf en probeer het opnieuw."
+
+msgid ""
+"Your {} folder is set to {}, which holds everything in your home folder, so "
+"it can't be backed up. Point {} at its own folder in your desktop's settings "
+"first."
+msgstr "Je {} map is set naar {}, which bevat alles in je persoonlijke map, dus het kan niet zijn backed omhoog. Point {} bij zijn eigen map in je bureaublad's instellingen eerst."
+
+msgid "Your {} folder can't be backed up: {}"
+msgstr "Je {} map kan niet zijn backed omhoog: {}"
+
+msgid "{} doesn't exist."
+msgstr "{} doet niet bestaan."
+
+msgid "{} is already a link to somewhere else, so it's left alone."
+msgstr "{} is al een koppeling naar somewhere anders, dus het's gelaten alone."
+
+msgid "{} isn't a folder."
+msgstr "{} is niet een map."
+
+msgid "Your {} folder overlaps the OneDrive folder for account \"{}\" ({})."
+msgstr "Je {} map overlaps de OneDrive-map voor account \"{}\" ({})."
+
+msgid ""
+"This account only downloads, so nothing here would be backed up. Change its "
+"direction under Options first."
+msgstr "Dit account alleen downloads, dus niets hier zou zijn backed omhoog. Change zijn direction under Options eerst."
+
+msgid ""
+"This account only syncs the folders you chose, and \"{}\" isn't one of them. "
+"Add it under Folders first (you can create it online)."
+msgstr "Dit account alleen syncs de maps je chose, en \"{}\" is niet one van them. Add het under Folders eerst (je kan maken het online)."
+
+msgid ""
+"There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or "
+"rename it before backing up this folder."
+msgstr "Er is een symbolische koppeling called \"{}\" in je OneDrive-map. Resolve van rename het voor backing omhoog dit map."
+
+msgid "There's a file called \"{}\" in your OneDrive folder. Rename it first."
+msgstr "Er is een bestand called \"{}\" in je OneDrive-map. Rename het eerst."
+
+msgid "The suffix for {} is too long to make a collision-safe name."
+msgstr "De suffix voor {} is too long naar maken een collision-veilig naam."
+
+msgid "The name for {} is too long to make a collision-safe copy."
+msgstr "De naam voor {} is too long naar maken een collision-veilig kopiëren."
+
+msgid "Couldn't find an unused name for {} after 10,000 attempts."
+msgstr "Kon niet vinden een unused naam voor {} na 10,000 pogingen."
+
+msgid "Couldn't prepare a safe copy: {}"
+msgstr "Kon niet voorbereiden een veilig kopiëren: {}"
+
+msgid "{} has no usable name"
+msgstr "{} heeft geen usable naam"
+
+msgid "Copying {} failed (is there enough space?)"
+msgstr "Copying {} mislukt (is daar voldoende ruimte?)"
+
+msgid "The copy was published, but couldn't clean up {}: {}"
+msgstr "De kopiëren was geplaatst, maar niet kon clean omhoog {}: {}"
+
+msgid "The destination changed during copy ({}); couldn't clean up {}: {}"
+msgstr "De bestemming gewijzigd tijdens kopiëren ({}); niet kon clean omhoog {}: {}"
+
+msgid "Couldn't publish the completed copy: {}"
+msgstr "Kon niet plaatsen de completed kopiëren: {}"
+
+msgid "Couldn't find an unused destination for {} after 10,000 attempts."
+msgstr "Kon niet vinden een unused bestemming voor {} na 10,000 pogingen."
+
+msgid ""
+"Couldn't protect this account from another operation, so the folder wasn't "
+"backed up: {}"
+msgstr "Kon niet beschermen dit account van andere bewerking, dus de map was niet backed omhoog: {}"
+
+msgid ""
+"A one-time sync is running. Wait for it to finish before backing up this "
+"folder."
+msgstr "Een eenmalige synchronisatie is actief. Wait voor het naar voltooien voor backing omhoog dit map."
+
+msgid "Couldn't stop the sync engine, so the folder wasn't changed: {}"
+msgstr "Kon niet stoppen de synchronisatieprogramma, dus de map was niet gewijzigd: {}"
+
+msgid ""
+"The folder backup finished, but the sync engine couldn't be restarted: {}"
+msgstr "De mapback-omhoog voltooid, maar de synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+
+msgid "{}; the sync engine couldn't be restarted: {}"
+msgstr "{}; de synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+
+msgid ""
+"The source folder changed after the backup was reviewed. Review it again "
+"before continuing."
+msgstr "De bron map gewijzigd na de backup was reviewed. Review het opnieuw voor continuing."
+
+msgid ""
+"The OneDrive folder or its mounted drive changed after the backup was "
+"reviewed. Connect the right drive and review again."
+msgstr "De OneDrive-map van zijn aangekoppelde schijf gewijzigd na de backup was reviewed. Connect de juiste schijf en review opnieuw."
+
+msgid "The source folder has no usable name."
+msgstr "De bron map heeft geen usable naam."
+
+msgid "The backup paths changed or overlap. Review the folder backup again."
+msgstr "De backup paths gewijzigd van overlappen. Review de mapback-omhoog opnieuw."
+
+msgid ""
+"The OneDrive destination became a symbolic link after review. Resolve it and "
+"review the backup again."
+msgstr "De OneDrive bestemming became een symbolische koppeling na review. Resolve het en review de backup opnieuw."
+
+msgid ""
+"The OneDrive destination became a file after review. Review the backup again."
+msgstr "De OneDrive bestemming became een bestand na review. Review de backup opnieuw."
+
+msgid ""
+"The destination filesystem changed after the backup was reviewed. Review the "
+"backup again."
+msgstr "De bestemming bestandssysteem gewijzigd na de backup was reviewed. Review de backup opnieuw."
+
+msgid "Couldn't create {}: {}"
+msgstr "Kon niet maken {}: {}"
+
+msgid ""
+"The destination filesystem changed while preparing the backup. No files were "
+"moved."
+msgstr "De bestemming bestandssysteem gewijzigd terwijl preparing de backup. Geen bestanden waren verplaatst."
+
+msgid ""
+"Stopped at \"{}\": {}. Everything moved so far is in {}; the rest is still "
+"in {}."
+msgstr "Stopped bij \"{}\": {}. Alles verplaatst dus far is in {}; de rest is nog in {}."
+
+msgid ""
+"Stopped at \"{}\": {}. Your {} folder is still in {}; completed copies are "
+"in {}."
+msgstr "Stopped bij \"{}\": {}. Je {} map is nog in {}; completed kopieën zijn in {}."
+
+msgid "Everything was moved, but {} couldn't be replaced: {}"
+msgstr "Alles was verplaatst, maar {} niet kon zijn replaced: {}"
+
+msgid "Everything was copied, but {} couldn't be renamed: {}"
+msgstr "Alles was gekopieerd, maar {} niet kon zijn renamed: {}"
+
+msgid "Your files are in {}, but the link at {} couldn't be made: {}"
+msgstr "Je bestanden zijn in {}, maar de koppeling bij {} niet kon zijn gemaakt: {}"
+
+msgid "Your files are in {}, but the backup couldn't be recorded: {}"
+msgstr "Je bestanden zijn in {}, maar de backup niet kon zijn recorded: {}"
+
+msgid "That folder isn't being backed up."
+msgstr "Dat map is niet wordt backed omhoog."
+
+msgid "Couldn't inspect the link: {}"
+msgstr "Kon niet bekijken de koppeling: {}"
+
+msgid ""
+"{} now points somewhere unexpected, so the backup record was kept. Resolve "
+"the link before stopping the backup."
+msgstr "{} now points somewhere onverwacht, dus de terug-upregistratie was bewaard. Resolve de koppeling voor stopping de backup."
+
+msgid "Couldn't remove the link: {}"
+msgstr "Kon niet verwijderen de koppeling: {}"
+
+msgid ""
+"This installs the OneDrive client from your system's own software "
+"collection, the same place your other programs come from. Your normal "
+"software updates keep it up to date."
+msgstr "Deze installs de OneDrive-client van je systeem's eigen software collection, de same place je andere programs come van. Je normal software updates bewaren het omhoog naar date."
+
+msgid ""
+"{} comes with an old version of the OneDrive client that its author no "
+"longer supports. So this does two things:\n"
+"\n"
+"• Adds the place the client's author recommends getting it from to your "
+"computer's list of software sources. It's like adding a trusted app store.\n"
+"• Installs the current version of the client from there.\n"
+"\n"
+"After that, your normal software updates keep it up to date, like any other "
+"program."
+msgstr "{} comes met een oude versie van de OneDrive-client dat zijn author geen longer supports. So dit doet two things:\n\n• Adds de place de client's author recommends getting het van naar je computer's list van software sources. Het's zoals adding een trusted app store.\n• Installs de huidige versie van de client van daar.\n\nAfter dat, je normal software updates bewaren het omhoog naar date, zoals elke andere program."
+
+msgid ""
+"Arch doesn't include the OneDrive client, but the AUR does. The AUR is a "
+"collection of install recipes shared by Arch users. This downloads the "
+"client's recipe, builds the program on your computer and installs it. Any "
+"tools needed to build it are installed first. It takes a few minutes.\n"
+"\n"
+"Your normal software updates don't cover the AUR, so this app checks for new "
+"versions of the client and offers to update it for you."
+msgstr "Arch doet niet include de OneDrive-client, maar de AUR doet. De AUR is een collection van install recipes shared door Arch users. Deze downloads de client's recipe, builds de program op je computer en installs het. Any tools needed naar build het zijn installed eerst. Het takes een few minutes.\n\nJe normal software updates niet cover de AUR, dus dit app checks voor nieuwe versions van de client en offers naar bijwerken het voor je."
+
+msgid "to install the OneDrive client (plus a few small parts it needs)"
+msgstr "naar install de OneDrive-client (plus een few small parts het heeft nodig)"
+
+msgid ""
+"to add that software source and install the OneDrive client (plus a few "
+"small parts it needs)"
+msgstr "naar add dat software bron en install de OneDrive-client (plus een few small parts het heeft nodig)"
+
+msgid "to install the build tools and the OneDrive client"
+msgstr "naar install de build tools en de OneDrive-client"
+
+msgid ""
+"{}\n"
+"\n"
+"Why your password? Installing software changes the whole computer, not just "
+"your account, so your computer checks that it's really you. You type it into "
+"your computer's own password window, not into this app. Your computer checks "
+"it once and then forgets it: it isn't saved, and this app never sees it or "
+"sends it anywhere. It's only used {}. Nothing else is changed."
+msgstr "{}\n\nWhy je wachtwoord? Installing software wijzigingen de heel computer, niet just je account, dus je computer checks dat het's really je. Je type het into je computer's eigen wachtwoord window, niet into dit app. Je computer checks het zodra en dan forgets het: het is niet opgeslagen, en dit app never sees het van sends het anywhere. Het's alleen gebruikt {}. Niets anders is gewijzigd."
+
+msgid "The app can install it for you."
+msgstr "De app kan install het voor je."
+
+msgid ""
+"The copy that comes with your system is too old, so the app gets the current "
+"version for you."
+msgstr "De kopiëren dat comes met je systeem is too oude, dus de app krijgt de huidige versie voor je."
+
+msgid ""
+"On Arch it comes from the AUR (install recipes shared by Arch users). The "
+"app can build and install it for you."
+msgstr "On Arch het comes van de AUR (install recipes shared door Arch users). De app kan build en install het voor je."
+
+msgid ""
+"On Fedora Silverblue, Kinoite and other image-based versions: open a "
+"terminal and run {} then restart."
+msgstr "On Fedora Silverblue, Kinoite en andere image-based versions: openen een terminal en uitvoeren {} dan opnieuw starten."
+
+msgid "Open a terminal and run {}"
+msgstr "Open een terminal en uitvoeren {}"
+
+msgid ""
+"This version of openSUSE only has an old OneDrive client. The instructions "
+"show how to get a current one."
+msgstr "Deze versie van openSUSE alleen heeft een oude OneDrive-client. De instructions show how naar krijgen een huidige one."
+
+msgid ""
+"The app can't install it automatically on this version of your system. The "
+"instructions show how to install it yourself."
+msgstr "De app kan niet install het automatically op dit versie van je systeem. De instructions show how naar install het yourself."
+
+msgid "The instructions cover every major distribution."
+msgstr "De instructions cover every major distribution."
+
+msgid "Couldn't look in {}: {}"
+msgstr "Kon niet look in {}: {}"
+
+msgid "Stopped looking after {} items, so there may be more copies than shown."
+msgstr "Stopped looking na {} items, dus daar kan zijn more kopieën than shown."
+
+msgid "{} item(s) couldn't be read, so there may be more copies than shown."
+msgstr "{} item(s) niet kon zijn lezen, dus daar kan zijn more kopieën than shown."
+
+msgid ""
+"There's no Trash to move it to on this computer, so it was left as it is. "
+"Delete it yourself if you're sure."
+msgstr "Er is geen Trash naar verplaatsen het naar op deze computer, dus het was gelaten als het is. Delete het yourself als je're sure."
+
+msgid "The file extension is too long to make a Keep Both copy safely."
+msgstr "De bestand extension is too long naar maken een Keep Both kopiëren veilig."
+
+msgid "The filename is too long to make a Keep Both copy safely."
+msgstr "De filename is too long naar maken een Keep Both kopiëren veilig."
+
+msgid "That copy isn't there any more."
+msgstr "Dat kopiëren is niet daar elke more."
+
+msgid ""
+"The OneDrive version changed since this list was loaded. Refresh the list "
+"and choose again."
+msgstr "De OneDrive versie gewijzigd since dit list was loaded. Refresh de list en kiezen opnieuw."
+
+msgid "Couldn't replace it: {}"
+msgstr "Kon niet replace het: {}"
+
+msgid ""
+"\"{}\" is now this computer's version. OneDrive's version stays in its "
+"version history."
+msgstr "\"{}\" is now deze computer's versie. OneDrive's versie stays in zijn versie geschiedenis."
+
+msgid ""
+"Kept OneDrive's version of \"{}\". This computer's copy is in the Trash."
+msgstr "Kept OneDrive's versie van \"{}\". Deze computer's kopiëren is in de Trash."
+
+msgid "Couldn't rename it: {}"
+msgstr "Kon niet rename het: {}"
+
+msgid "Couldn't find an unused name for the local copy after 10,000 attempts."
+msgstr "Kon niet vinden een unused naam voor de lokale kopiëren na 10,000 pogingen."
+
+msgid "Kept both: this computer's version is \"{}\"."
+msgstr "Kept both: deze computer's versie is \"{}\"."
+
+msgid "{} is damaged ({}) and no copy could be kept ({}), so it isn't replaced"
+msgstr "{} is beschadigd ({}) en geen kopiëren kon zijn bewaard ({}), dus het is niet replaced"
+
+msgid ""
+"{} isn't plain UTF-8 text, so it wasn't changed. Edit it by hand, or save it "
+"as UTF-8 and try again."
+msgstr "{} is niet plain UTF-8 text, dus het was niet gewijzigd. Edit het door hand, van opslaan het als UTF-8 en probeer het opnieuw."
+
+msgid "the OneDrive Client for Linux isn't installed"
+msgstr "de OneDrive Client voor Linux is niet installed"
+
+msgid "{} isn't a regular managed unit file"
+msgstr "{} is niet een gewoon managed unitbestand"
+
+msgid "{} already belongs to another unit or account"
+msgstr "{} al belongs naar andere eenheid van account"
+
+msgid "systemd couldn't reload the user unit files: {}"
+msgstr "systemd niet kon herladen de gebruiker-unitbestanden: {}"
+
+msgid "couldn't identify the current process for the busy marker"
+msgstr "niet kon vaststellen de huidige proces voor de bezet markering"
+
+msgid "this account is already in use by another operation"
+msgstr "dit account is al in gebruik door andere bewerking"
+
+msgid "The local folder must be a full path, like /home/you/OneDrive."
+msgstr "De lokale map moet zijn een volledig pad, zoals /home/you/OneDrive."
+
+msgid ""
+"The sync engine can't use a folder whose name contains double quotes. Pick "
+"or rename a folder without them."
+msgstr "De synchronisatieprogramma kan niet gebruiken een map whose naam bevat double aanhalingstekens. Pick van rename een map zonder them."
+
+msgid ""
+"Couldn't safely resolve that folder path. Check its parent directories and "
+"try again."
+msgstr "Kon niet veilig oplossen dat mappad. Check zijn bovenliggende mappen en probeer het opnieuw."
+
+msgid ""
+"Couldn't safely resolve your home folder. Check the home-folder "
+"configuration."
+msgstr "Kon niet veilig oplossen je persoonlijke map. Check de persoonlijke-map configuratie."
+
+msgid "everything in your home folder"
+msgstr "alles in je persoonlijke map"
+
+msgid "everything on this computer"
+msgstr "alles op deze computer"
+
+msgid ""
+"Syncing {} would upload {}. Pick or create a folder inside your home folder, "
+"like {}."
+msgstr "Syncing {} zou uploaden {}. Pick van maken een map inside je persoonlijke map, zoals {}."
+
+msgid "Couldn't safely resolve the application settings folders."
+msgstr "Kon niet veilig oplossen de applicatie instellingenmaps."
+
+msgid "{} holds your settings. Pick a different folder."
+msgstr "{} bevat je instellingen. Pick een andere map."
+
+msgid ""
+"{} is a system folder. Pick a folder in your home folder or on a drive of "
+"your own."
+msgstr "{} is een systeem map. Pick een map in je persoonlijke map van op een schijf van je eigen."
+
+msgid "{} is a file, not a folder."
+msgstr "{} is een bestand, niet een map."
+
+msgid "{} isn't a folder"
+msgstr "{} is niet een map"
+
+msgid ""
+"“{}” didn't upload: it's open for editing in SharePoint or Office (by "
+"someone else, or by you on another device), which locks it. Your changes are "
+"still on this PC. Once it's closed there, press “Sync now” to upload them."
+msgstr "“{}” didn't uploaden: het's openen voor editing in SharePoint van Office (door someone anders, van door je op andere device), which locks het. Je wijzigingen zijn nog op dit PC. Once het's gesloten daar, press “Sync now” naar uploaden them."
+
+msgid ""
+"“{}” didn't upload: it's shared with you as read-only, so your changes stay "
+"only on this PC."
+msgstr "“{}” didn't uploaden: het's shared met je als alleen-lezen, dus je wijzigingen stay alleen op dit PC."
+
+msgid ""
+"“{}” isn't on this PC: it's shared as view-only, without permission to "
+"download. Open it on the OneDrive website instead."
+msgstr "“{}” is niet op dit PC: het's shared als alleen-bekijken, zonder permission naar downloaden. Open het op de OneDrive website instead."
+
+msgid ""
+"“{}” didn't upload: OneDrive turned it away for now. Your changes are still "
+"on this PC. Press “Sync now” to try again."
+msgstr "“{}” didn't uploaden: OneDrive turned het away voor now. Je wijzigingen zijn nog op dit PC. Press “Sync now” naar probeer het opnieuw."
+
+msgid "…and 1 more file."
+msgid_plural "…and {n} more files."
+msgstr[0] "…en 1 more bestand."
+msgstr[1] "…en {n} more bestanden."
+
+msgid ""
+"{} were deleted on this computer. Syncing stopped before deleting them "
+"online too, in case that was a mistake.\n"
+"If it was a mistake, put them back (for example from the Trash) and press "
+"“Sync now”. Otherwise choose what to do below."
+msgstr "{} waren verwijderd op deze computer. Syncing gestopt voor deleting them online too, in case dat was een mistake.\nIf het was een mistake, put them terug (voor example van de Trash) en press “Sync now”. Otherwise kiezen wat naar doen below."
+
+msgid "“{}” and what was in it ({} items in all)"
+msgstr "“{}” en wat was in het ({} items in alle)"
+
+msgid "“{}” and what was in it"
+msgstr "“{}” en wat was in het"
+
+msgid "{} items"
+msgstr "{} items"
+
+msgid "Many items"
+msgstr "Many items"
+
+msgid "Starting…"
+msgstr "Starting…"
+
+msgid "Syncing…"
+msgstr "Syncing…"
+
+msgid "1 file not synced"
+msgid_plural "{n} files not synced"
+msgstr[0] "1 bestand niet synced"
+msgstr[1] "{n} bestanden niet synced"
+
+msgid "Up to date ({})"
+msgstr "Up naar date ({})"
+
+msgid "Up to date"
+msgstr "Up naar date"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Stopped"
+msgstr "Stopped"
+
+msgid "Background sync off"
+msgstr "Background synchronisatie off"
+
+msgid "Paused until {}"
+msgstr "Paused tot {}"
+
+msgid "Paused"
+msgstr "Paused"
+
+msgid "Paused: {}"
+msgstr "Paused: {}"
+
+msgid "Paused by schedule until {}"
+msgstr "Paused door schedule tot {}"
+
+msgid "Applying changes…"
+msgstr "Applying wijzigingen…"
+
+msgid "Signed out"
+msgstr "Signed out"
+
+msgid "Needs a full resync"
+msgstr "Needs een volledige hersynchronisatie"
+
+msgid "Stopped to protect your files"
+msgstr "Stopped naar beschermen je bestanden"
+
+msgid "Not responding since {}"
+msgstr "Not responding since {}"
+
+msgid "Not responding"
+msgstr "Not responding"
+
+msgid "Waiting for first sync"
+msgstr "Waiting voor eerst synchronisatie"
+
+msgid "Couldn't ask for the password: {}"
+msgstr "Kon niet vragen voor de wachtwoord: {}"
+
+msgid "Nothing was changed (the password window was closed)."
+msgstr "Niets was gewijzigd (de wachtwoord window was gesloten)."
+
+msgid "Nothing was changed: your computer didn't allow it."
+msgstr "Niets was gewijzigd: je computer didn't toestaan het."
+
+msgid "That didn't work: {}"
+msgstr "Dat didn't work: {}"
+
+msgid "This account is busy with another task. Try again when it has finished."
+msgstr "Dit account is bezet met andere taak. Try opnieuw wanneer het heeft voltooid."
+
+msgid "Couldn't save the sync override: {}"
+msgstr "Kon niet opslaan de synchronisatie override: {}"
+
+msgid "Couldn't save the pause setting: {}"
+msgstr "Kon niet opslaan de pauzeren instelling: {}"
+
+msgid "OneDrive Client for Linux {} is installed; {} is out."
+msgstr "OneDrive Client voor Linux {} is installed; {} is out."
+
+msgid "OneDrive Client for Linux {} is installed."
+msgstr "OneDrive Client voor Linux {} is installed."
+
+msgid "OneDrive Client for Linux {} is too old for this app."
+msgstr "OneDrive Client voor Linux {} is too oude voor dit app."
+
+msgid "The OneDrive Client for Linux isn't installed."
+msgstr "De OneDrive Client voor Linux is niet installed."
+
+msgid "The tray icon is running."
+msgstr "De systeemvakpictogram is actief."
+
+msgid ""
+"The tray icon isn't running, so pauses, schedules and notifications aren't "
+"working."
+msgstr "De systeemvakpictogram is niet actief, dus pauses, schedules en notifications zijn niet working."
+
+msgid "No accounts are set up yet."
+msgstr "Geen accounts zijn set omhoog yet."
+
+msgid "{}: {}"
+msgstr "{}: {}"
+
+msgid "{}: ran out of folder watches; some changes aren't noticed."
+msgstr "{}: ran out van map watches; enkele wijzigingen zijn niet noticed."
+
+msgid "{}: only {} free on its drive."
+msgstr "{}: alleen {} vrij op zijn schijf."
+
+msgid ""
+"Your OneDrive folders hold {} folders, more than half of Linux's limit on "
+"watched folders ({}). Other programs need some too."
+msgstr "Je OneDrive-maps bevat {} mappen, more than half van Linux's limiet op watched mappen ({}). Other programs moet enkele too."
+
+msgid "{} is started outside this app."
+msgstr "{} is gestart outside dit app."
+
+msgid "Today"
+msgstr "Today"
+
+msgid "Yesterday"
+msgstr "Yesterday"
+
+msgid "\"{}\" isn't an email address."
+msgstr "\"{}\" is niet een e-mail adres."
+
+msgid "Type at least one email address."
+msgstr "Type minstens one e-mail adres."
+
+msgid "This version identifier and file extension are too long to save safely."
+msgstr "Deze versie identifier en bestand extension zijn too long naar opslaan veilig."
+
+msgid "This file name is too long to save a version copy safely."
+msgstr "Deze bestand naam is too long naar opslaan een versie kopiëren veilig."
+
+msgid "No version history for folders"
+msgstr "Geen versie geschiedenis voor mappen"
+
+msgid ""
+"\"{}\" is a folder. Open a file inside it to see its versions, or the "
+"recycle bin online for deleted items."
+msgstr "\"{}\" is een map. Open een bestand inside het naar see zijn versions, van de recycle bin online voor verwijderd items."
+
+msgid "Couldn't share it"
+msgstr "Kon niet share het"
+
+msgid "That's the whole of \"{}\". Share a file or folder inside it instead."
+msgstr "Dat's de heel van \"{}\". Share een bestand van map inside het instead."
+
+msgid "Can view"
+msgstr "Can view"
+
+msgid "  ·  until {}"
+msgstr "  ·  tot {}"
+
+msgid "  ·  from a folder above"
+msgstr "  ·  van een map above"
+
+msgid "Checking who has access…"
+msgstr "Checking wie heeft access…"
+
+msgid "It isn't shared: only you can open it."
+msgstr "Het is niet shared: alleen je kan openen het."
+
+msgid "  ·  saved by {}"
+msgstr "  ·  opgeslagen door {}"
+
+msgid ""
+"There's only the current version so far. OneDrive keeps older ones as the "
+"file changes."
+msgstr "Er is alleen de huidige versie dus far. OneDrive keeps older ones als het bestand wijzigingen."
+
+msgid "Downloading that version…"
+msgstr "Downloading dat versie…"
+
+msgid "Opened a copy: {}"
+msgstr "Opened een kopiëren: {}"
+
+msgid "Restoring…"
+msgstr "Restoring…"
+
+msgid ""
+"Restored. This computer gets it at the next sync (\"Sync now\" in the tray "
+"icon's menu does it right away)."
+msgstr "Restored. Deze computer krijgt het bij de next synchronisatie (\"Sync now\" in de systeemvakpictogram's menu doet het juiste away)."
+
+msgid "Sending…"
+msgstr "Sending…"
+
+msgid "Invitation sent."
+msgstr "Invitation sent."
+
+msgid "{} invitations sent."
+msgstr "{} invitations sent."
+
+msgid "the top folder"
+msgstr "de top map"
+
+msgid "{} or more"
+msgstr "{} van more"
+
+msgid ""
+"There are Git repositories in this folder ({}). Syncing their .git folders "
+"can damage them, because the files arrive one at a time and out of order. "
+"Skip .git folders in Options, or keep repositories outside OneDrive."
+msgstr "Er zijn Git repositories in dit map ({}). Syncing their .git mappen kan damage them, omdat het bestands arrive one bij een time en out van order. Skip .git mappen in Options, van bewaren repositories outside OneDrive."
+
+msgid ""
+"This folder is on a Windows drive, and Windows' OneDrive app uses it too. "
+"Files that Windows keeps online-only can't be opened from Linux, and the two "
+"apps can undo each other's changes. A separate folder for Linux is safer."
+msgstr "Deze map is op een Windows schijf, en Windows' OneDrive app uses het too. Files dat Windows keeps online-alleen kan niet zijn geopend van Linux, en de two apps kan undo each andere's wijzigingen. Een separate map voor Linux is safer."
+
+msgid ""
+"This folder is on a Windows (NTFS) drive. If Windows' OneDrive app also "
+"syncs it, files that Windows keeps online-only can't be opened from Linux, "
+"and the two apps can undo each other's changes. A separate folder for Linux "
+"is safer."
+msgstr "Deze map is op een Windows (NTFS) schijf. If Windows' OneDrive app ook syncs het, bestanden dat Windows keeps online-alleen kan niet zijn geopend van Linux, en de two apps kan undo each andere's wijzigingen. Een separate map voor Linux is safer."
+
+msgid "Couldn't make {}: {}"
+msgstr "Kon niet maken {}: {}"
+
+msgid "Couldn't reach Microsoft. Check your internet connection and try again."
+msgstr "Kon niet reach Microsoft. Check je internet connection en probeer het opnieuw."
+
+msgid "{} (Microsoft says: {})"
+msgstr "{} (Microsoft says: {})"
+
+msgid ""
+"Microsoft no longer accepts this sign-in. Open Settings and sign in again."
+msgstr "Microsoft geen longer accepts dit aanmelding. Open Instellingen en opnieuw aanmelden."
+
+msgid ""
+"This account doesn't have permission to do that. Check that you have access "
+"to this file or site."
+msgstr "Dit account doet niet hebben permission naar doen dat. Check dat je hebben access naar dit bestand van site."
+
+msgid ""
+"That item could not be found in OneDrive. It may have been moved or deleted."
+msgstr "Dat item kon niet zijn gevonden in OneDrive. Het kan hebben geweest verplaatst van verwijderd."
+
+msgid "OneDrive changed while this was running. Refresh and try again."
+msgstr "OneDrive gewijzigd terwijl dit was actief. Refresh en probeer het opnieuw."
+
+msgid "That item is locked. Close it elsewhere or try again later."
+msgstr "Dat item is locked. Close het elsewhere van probeer het opnieuw later."
+
+msgid "Microsoft is busy right now. Try again in a minute."
+msgstr "Microsoft is bezet juiste now. Try opnieuw in een minute."
+
+msgid ""
+"Your OneDrive storage is full. Free up space or get more storage, then try "
+"again."
+msgstr "Je OneDrive storage is volledige. Free omhoog ruimte van krijgen more storage, dan probeer het opnieuw."
+
+msgid "Microsoft is having a problem right now. Try again later."
+msgstr "Microsoft is having een probleem juiste now. Probeer het later opnieuw."
+
+msgid "Microsoft couldn't complete that request. Try again later."
+msgstr "Microsoft niet kon complete dat request. Probeer het later opnieuw."
+
+msgid "Microsoft sent an unexpected reply ({}). Try again later."
+msgstr "Microsoft sent een onverwacht reply ({}). Probeer het later opnieuw."
+
+msgid ""
+"Azure Germany closed on October 29, 2021. Migrate this account to a "
+"supported Microsoft cloud and select that cloud here."
+msgstr "Azure Germany gesloten op October 29, 2021. Migrate dit account naar een supported Microsoft cloud en select dat cloud hier."
+
+msgid "This account isn't signed in."
+msgstr "Dit account is niet aangemeld."
+
+msgid "Microsoft repeated a page while listing items. Try again later."
+msgstr "Microsoft repeated een page terwijl listing items. Probeer het later opnieuw."
+
+msgid "Microsoft sent an unexpected reply. Try again later."
+msgstr "Microsoft sent een onverwacht reply. Probeer het later opnieuw."
+
+msgid "Microsoft sent too many pages for this list. Try again later."
+msgstr "Microsoft sent too veel pages voor dit list. Probeer het later opnieuw."
+
+msgid "OneDrive didn't return a web address."
+msgstr "OneDrive didn't terugsturen een web adres."
+
+msgid "Couldn't check libraries on {}: {}"
+msgstr "Kon niet controle libraries op {}: {}"
+
+msgid "Microsoft returned a library without an ID."
+msgstr "Microsoft teruggestuurd een bibliotheek zonder een ID."
+
+msgid ""
+"That doesn't look like a SharePoint address. Copy it from your browser's "
+"address bar — it starts with https://"
+msgstr "Dat doet niet look zoals een SharePoint adres. Copy het van je browser's adres bar — het starts met https://"
+
+msgid "Couldn't open that site with this account: {}"
+msgstr "Kon niet openen dat site met dit account: {}"
+
+msgid "Microsoft didn't return the site."
+msgstr "Microsoft didn't terugsturen de site."
+
+msgid "{} already exists and isn't a regular file."
+msgstr "{} al bestaat en is niet een gewoon bestand."
+
+msgid "Couldn't find where to save that version."
+msgstr "Kon niet vinden waar naar opslaan dat versie."
+
+msgid "Couldn't save it: {}"
+msgstr "Kon niet opslaan het: {}"
+
+msgid "Couldn't allocate a temporary file for that version download."
+msgstr "Kon niet toewijzen een tijdelijk bestand voor dat versie downloaden."
+
+msgid "The download stopped: {}"
+msgstr "De downloaden gestopt: {}"
+
+msgid "Couldn't finish saving that version: {}"
+msgstr "Kon niet voltooien saving dat versie: {}"
+
+msgid "Someone"
+msgstr "Iemand"
+
+msgid "Couldn't check what kind of account this is, so no link was made: {}"
+msgstr "Kon niet controle wat soort van account dit is, dus geen koppeling was gemaakt: {}"
+
+msgid "less than a minute left"
+msgstr "less than een minute gelaten"
+
+msgid "1 min left"
+msgid_plural "{n} min left"
+msgstr[0] "1 min gelaten"
+msgstr[1] "{n} min gelaten"
+
+msgid "1 h left"
+msgid_plural "{n} h left"
+msgstr[0] "1 h gelaten"
+msgstr[1] "{n} h gelaten"
+
+msgid "1 h {0} min left"
+msgid_plural "{n} h {0} min left"
+msgstr[0] "1 h {0} min gelaten"
+msgstr[1] "{n} h {0} min gelaten"
+
+msgid "No accounts yet"
+msgstr "Geen accounts yet"
+
+msgid "1 account needs attention"
+msgid_plural "{n} accounts need attention"
+msgstr[0] "1 account heeft nodig attention"
+msgstr[1] "{n} accounts moet attention"
+
+msgid "Syncing 1 large file"
+msgid_plural "Syncing {n} large files"
+msgstr[0] "Syncing 1 large bestand"
+msgstr[1] "Syncing {n} large bestanden"
+
+msgid "Not syncing right now"
+msgstr "Not synchroniseren juiste now"
+
+msgid "All accounts"
+msgstr "All accounts"
+
+msgid "Uploading"
+msgstr "Uploading"
+
+msgid "Downloading"
+msgstr "Downloading"
+
+msgid "Uploaded"
+msgstr "Uploaded"
+
+msgid "Downloaded"
+msgstr "Downloaded"
+
+msgid "Deleted"
+msgstr "Deleted"
+
+msgid "New folder"
+msgstr "New map"
+
+msgid "{} {}"
+msgstr "{} {}"
+
+msgid "in {}"
+msgstr "in {}"
+
+msgid "That isn't inside any of your OneDrive folders."
+msgstr "Dat is niet inside elke van je OneDrive-maps."
+
+msgid "Anyone with the link"
+msgstr "Anyone met de koppeling"
+
+msgid "People in your organization with the link"
+msgstr "People in je organization met de koppeling"
+
+msgid "Link copied"
+msgstr "Link gekopieerd"
+
+msgid "Sharing link"
+msgstr "Sharing koppeling"
+
+msgid "can view"
+msgstr "kan view"
+
+msgid "can edit"
+msgstr "kan edit"
+
+msgid "can change, add and delete files in"
+msgstr "kan wijziging, add en verwijderen bestanden in"
+
+msgid ""
+"{} {} \"{}\".\n"
+"{}"
+msgstr "{} {} \"{}\".\n{}"
+
+msgid "Couldn't create a link"
+msgstr "Kon niet maken een koppeling"
+
+msgid "Couldn't create a link: {}"
+msgstr "Kon niet maken een koppeling: {}"
+
+msgid "Couldn't open it online"
+msgstr "Kon niet openen het online"
+
+msgid "{} — {}"
+msgstr "{} — {}"
+
+msgid "{}. Open Settings to fix it."
+msgstr "{}. Open Instellingen naar fix het."
+
+msgid "No accounts yet — open Settings to add one"
+msgstr "Geen accounts yet — openen Instellingen naar add one"
+
+msgid "Version {} is out — get it…"
+msgstr "Version {} is out — krijgen het…"
+
+msgid "How to fix this…"
+msgstr "How naar fix dit…"
+
+msgid "Show activity…"
+msgstr "Show activity…"
+
+msgid "For 1 hour"
+msgstr "For 1 hour"
+
+msgid "For 4 hours"
+msgstr "For 4 hours"
+
+msgid "Until tomorrow morning"
+msgstr "Until tomorrow morning"
+
+msgid "Settings and accounts…"
+msgstr "Settings en accounts…"
+
+msgid "Quit and stop syncing"
+msgstr "Quit en stoppen synchroniseren"
+
+msgid "Quit tray icon"
+msgstr "Quit systeemvakpictogram"
+
+msgid "Microsoft needs you to sign in again"
+msgstr "Microsoft heeft nodig je naar opnieuw aanmelden"
+
+msgid "The OneDrive Client for Linux isn't installed"
+msgstr "De OneDrive Client voor Linux is niet installed"
+
+msgid "The OneDrive Client for Linux ({}) is too old"
+msgstr "De OneDrive Client voor Linux ({}) is too oude"
+
+msgid ""
+"{} were deleted on this computer, so syncing stopped before deleting them "
+"online. Click the OneDrive icon to choose what to do."
+msgstr "{} waren verwijderd op deze computer, dus synchronisatie is gestopt voor deleting them online. Click de OneDrive pictogram naar kiezen wat naar doen."
+
+msgid "Microsoft needs you to sign in again. Open the tray menu to fix it."
+msgstr "Microsoft heeft nodig je naar opnieuw aanmelden. Open de systeemvak menu naar fix het."
+
+msgid ""
+"The sync engine needs a full resync. Open Settings to review and apply it."
+msgstr "De synchronisatieprogramma heeft nodig een volledige hersynchronisatie. Open Instellingen naar review en apply het."
+
+msgid ""
+"Syncing has stopped making progress, though it is still running. Click the "
+"OneDrive icon and choose Sync now to restart it."
+msgstr "Syncing heeft gestopt making progress, though het is nog actief. Click de OneDrive pictogram en kiezen Sync now naar opnieuw starten het."
+
+msgid "Syncing hit an error. Open the tray menu for details."
+msgstr "Syncing hit een fout. Open de systeemvak menu voor details."
+
+msgid ""
+"Linux's limit on folders watched for changes ran out, so some changes on "
+"this computer won't sync right away. Open Settings to raise it."
+msgstr "Linux's limiet op mappen watched voor wijzigingen ran out, dus enkele wijzigingen op deze computer zal niet synchronisatie juiste away. Open Instellingen naar raise het."
+
+msgid ""
+"{} is full ({}). New and changed files won't upload until you free up space "
+"or get more storage."
+msgstr "{} is volledige ({}). New en gewijzigd bestanden zal niet uploaden tot je vrij omhoog ruimte van krijgen more storage."
+
+msgid ""
+"{} is almost full ({}). Free up space or get more storage before uploads "
+"stop."
+msgstr "{} is almost volledige ({}). Free omhoog ruimte van krijgen more storage voor uploads stoppen."
+
+msgid "OneDrive: a new version is out"
+msgstr "OneDrive: een nieuwe versie is out"
+
+msgid ""
+"Version {} of this app is available. Click the OneDrive tray icon (or right-"
+"click it) to get it."
+msgstr "Version {} van dit app is beschikbaar. Click de OneDrive systeemvakpictogram (van juiste-click het) naar krijgen het."
+
+msgid "OneDrive: the sync engine has an update"
+msgstr "OneDrive: de synchronisatieprogramma heeft een bijwerken"
+
+msgid ""
+"Version {} of the OneDrive Client for Linux is out (you have {}). Open "
+"Settings to update it."
+msgstr "Version {} van de OneDrive Client voor Linux is out (je hebben {}). Open Instellingen naar bijwerken het."
+
+msgid "Preview recovery needs attention"
+msgstr "Preview herstel heeft nodig attention"
+
+msgid ""
+"Sync services weren't started because preview settings couldn't be put back: "
+"{}"
+msgstr "Sync services waren niet gestart omdat voorbeeld instellingen niet kon zijn put terug: {}"
+
+msgid "Microsoft needs you to sign in again."
+msgstr "Microsoft heeft nodig je naar opnieuw aanmelden."
+
+msgid ""
+"Glass is on: your desktop blurs what's behind windows, so the window is see-"
+"through."
+msgstr "Glass is op: je bureaublad blurs wat's behind windows, dus de window is see-through."
+
+msgid "Glass is off because your desktop asks for high contrast."
+msgstr "Glass is off omdat je bureaublad asks voor high contrast."
+
+msgid ""
+"Glass is off: your desktop doesn't blur what's behind windows, so the window "
+"stays solid and easy to read. If yours does (Hyprland with blur switched on, "
+"for example), choose On."
+msgstr "Glass is off: je bureaublad doet niet blur wat's behind windows, dus de window stays solid en easy naar lezen. If yours doet (Hyprland met blur switched op, voor example), kiezen On."
+
+msgid ""
+"Always see-through. If the window looks washed out, your desktop doesn't "
+"blur behind it: choose Automatic."
+msgstr "Always see-through. If de window looks washed out, je bureaublad doet niet blur behind het: kiezen Automatic."
+
+msgid "Always solid."
+msgstr "Always solid."
+
+msgid "The sync service stopped with an error. Try \"Sync now\"."
+msgstr "De synchronisatieservice gestopt met een fout. Try \"Sync now\"."
+
+msgid ""
+"The sync engine needs a full resync before it can continue. Open the Folders "
+"tab and press \"Apply changes…\", or turn on \"Allow full resyncs\" in "
+"Options and save."
+msgstr "De synchronisatieprogramma heeft nodig een volledige hersynchronisatie voor het kan continue. Open de Folders tab en press \"Apply wijzigingen…\", van turn op \"Allow volledige hersynchronisaties\" in Options en opslaan."
+
+msgid ""
+"Microsoft no longer accepts the saved sign-in (this happens after a password "
+"change, or when access is revoked). Sign in again to continue."
+msgstr "Microsoft geen longer accepts de opgeslagen aanmelding (dit happens na een wachtwoord wijziging, van wanneer access is revoked). Opnieuw aanmelden naar continue."
+
+msgid ""
+"The sync engine is running but has stopped making progress, so changes "
+"aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, "
+"check your network connection."
+msgstr "De synchronisatieprogramma is actief maar heeft gestopt making progress, dus wijzigingen zijn niet synchroniseren. Press \"Sync now\" naar opnieuw starten het. If dit keeps happening, controle je network connection."
+
+msgid "Everything in this account"
+msgstr "Alles in dit account"
+
+msgid "comes"
+msgstr "comes"
+
+msgid "Newly ticked folders"
+msgstr "Newly ticked mappen"
+
+msgid "come"
+msgstr "come"
+
+msgid "at least {}"
+msgstr "minstens {}"
+
+msgid ""
+"{} {} to {}, more than the {} free on this drive. Some files won't fit; free "
+"up space or tick less."
+msgstr "{} {} naar {}, more than de {} vrij op dit schijf. Sommige bestanden zal niet fit; vrij omhoog ruimte van tick less."
+
+msgid "{}: {}. Free on this drive: {}."
+msgstr "{}: {}. Free op dit schijf: {}."
+
+msgid "{} of {} used"
+msgstr "{} van {} gebruikt"
+
+msgid "{} used"
+msgstr "{} gebruikt"
+
+msgid "{} (set by hand)"
+msgstr "{} (set door hand)"
+
+msgid "needs \"Treat this computer as the source of truth\" on too"
+msgstr "heeft nodig \"Treat deze computer als de bron van truth\" op too"
+
+msgid "can't be used with Upload only"
+msgstr "kan niet zijn gebruikt met Upload alleen"
+
+msgid "needs an address"
+msgstr "heeft nodig een adres"
+
+msgid "couldn't create it: {}"
+msgstr "niet kon maken het: {}"
+
+msgid "Couldn't run the client: {}"
+msgstr "Kon niet uitvoeren de client: {}"
+
+msgid ""
+"Turn on \"Write a log file\" under Advanced and save first. Until then the "
+"app reads the system journal instead."
+msgstr "Turn op \"Write een logboek bestand\" under Advanced en opslaan eerst. Until dan de app reads de systeem logboek instead."
+
+msgid ""
+"{} doesn't exist yet. The client creates it when it next writes to the log."
+msgstr "{} doet niet bestaan yet. De client creates het wanneer het next writes naar de logboek."
+
+msgid ""
+"Folders to skip: remove the empty entry (two | in a row, or one at an end)."
+msgstr "Folders naar skip: verwijderen de lege entry (two | in een row, van one bij een end)."
+
+msgid ""
+"Folders to skip: \".*\" isn't allowed (it would hide all your changes). To "
+"skip hidden folders, use \"Don't sync hidden files and folders\"."
+msgstr "Folders naar skip: \".*\" is niet allowed (het zou hide alle je wijzigingen). To skip hidden mappen, gebruiken \"Niet synchronisatie hidden bestanden en mappen\"."
+
+msgid "Changes {}'s save folder. Turning this off puts it back."
+msgstr "Changes {}'s opslaan map. Turning dit off puts het terug."
+
+msgid "No supported screenshot tool was found."
+msgstr "Geen supported screenshot tool was gevonden."
+
+msgid "Add a OneDrive account before turning this on."
+msgstr "Add een OneDrive-account voor turning dit op."
+
+msgid "Couldn't change the screenshot folder: {}"
+msgstr "Kon niet wijziging de screenshot map: {}"
+
+msgid "The screenshot folder path contains a character the tool can't save."
+msgstr "De screenshot mappad bevat een character de tool kan niet opslaan."
+
+msgid "Couldn't save the setting: {}"
+msgstr "Kon niet opslaan de instelling: {}"
+
+msgid "{}. Couldn't clear the saved setting either: {}"
+msgstr "{}. Kon niet wissen de opgeslagen instelling either: {}"
+
+msgid "Screenshots will be saved in {}."
+msgstr "Screenshots zal zijn opgeslagen in {}."
+
+msgid "Couldn't restore {}: {}"
+msgstr "Kon niet herstellen {}: {}"
+
+msgid ""
+"The screenshot tool's save folder was changed since, so it was left as it is."
+msgstr "De screenshot tool's opslaan map was gewijzigd since, dus het was gelaten als het is."
+
+msgid "{} changed while DriveDeck was updating it, so it was left as it is."
+msgstr "{} gewijzigd terwijl DriveDeck was updating het, dus het was gelaten als het is."
+
+msgid "{} isn't a regular file."
+msgstr "{} is niet een gewoon bestand."
+
+msgid "Couldn't write {}: {}"
+msgstr "Kon niet schrijven {}: {}"
+
+msgid ""
+"Schedule times must be two different 24-hour times like 23:00 and 07:00."
+msgstr "Schedule times moet zijn two andere 24-hour times zoals 23:00 en 07:00."
+
+msgid "The number of items for a big delete {}."
+msgstr "De getal van items voor een big verwijderen {}."
+
+msgid "Nothing was saved: fix the settings marked in red under Advanced."
+msgstr "Niets was opgeslagen: fix de instellingen marked in red under Advanced."
+
+msgid "Couldn't save settings: {}"
+msgstr "Kon niet opslaan instellingen: {}"
+
+msgid "Couldn't save: {}"
+msgstr "Kon niet opslaan: {}"
+
+msgid ""
+"Saved, except the settings marked * — they need a full resync, which is "
+"turned off for this account."
+msgstr "Saved, except de instellingen marked * — they moet een volledige hersynchronisatie, which is turned off voor dit account."
+
+msgid ""
+"The settings marked * weren't saved: they need a full resync, which is "
+"turned off for this account. Check the preview for the new direction."
+msgstr "De instellingen marked * waren niet opgeslagen: they moet een volledige hersynchronisatie, which is turned off voor dit account. Check het voorbeeld voor de nieuwe direction."
+
+msgid ""
+"Files here that aren't online are deleted, including new files you put in "
+"this folder from now on."
+msgstr "Files hier dat zijn niet online zijn verwijderd, including nieuwe bestanden je put in dit map van now op."
+
+msgid "Change sync direction"
+msgstr "Change synchronisatie direction"
+
+msgid "Saved. The settings marked * need a full resync — check the preview."
+msgstr "Saved. De instellingen marked * moet een volledige hersynchronisatie — controle het voorbeeld."
+
+msgid "Apply file settings"
+msgstr "Apply bestand instellingen"
+
+msgid "Counting everything inside the deleted folders, that's {} items in all."
+msgstr "Counting alles inside de verwijderd mappen, dat's {} items in alle."
+
+msgid ""
+"Items deleted online go to the OneDrive recycle bin, where they can be "
+"restored for a while."
+msgstr "Items verwijderd online go naar de OneDrive recycle bin, waar they kan zijn restored voor een terwijl."
+
+msgid "Delete them online too"
+msgstr "Delete them online too"
+
+msgid "Download them again"
+msgstr "Download them opnieuw"
+
+msgid "The deleted items are downloaded again from OneDrive."
+msgstr "De verwijderd items zijn gedownload opnieuw van OneDrive."
+
+msgid "Couldn't read the folder-selection rules: {}"
+msgstr "Kon niet lezen de map-selection regels: {}"
+
+msgid "Sign in to choose folders."
+msgstr "Sign in naar kiezen mappen."
+
+msgid "Couldn't load folders: {}"
+msgstr "Kon niet laden mappen: {}"
+
+msgid ""
+"Full resyncs are turned off for this account (Options), so folder choices "
+"are locked."
+msgstr "Full resyncs zijn turned off voor dit account (Options), dus map keuzes zijn locked."
+
+msgid "Tick at least one folder, or choose \"Sync everything\"."
+msgstr "Tick minstens one map, van kiezen \"Sync alles\"."
+
+msgid "Change synced folders"
+msgstr "Change synced mappen"
+
+msgid "Preparing the preview…"
+msgstr "Preparing het voorbeeld…"
+
+msgid "Checking the sync service…"
+msgstr "Checking de synchronisatieservice…"
+
+msgid ""
+"Couldn't protect this account from a second sync process, so the preview was "
+"not started: {}"
+msgstr "Kon niet beschermen dit account van een tweede synchronisatieproces, dus het voorbeeld was niet gestart: {}"
+
+msgid "Couldn't safely prepare the preview because {} couldn't be read: {}"
+msgstr "Kon niet veilig voorbereiden het voorbeeld omdat {} niet kon zijn lezen: {}"
+
+msgid "Preview state disappeared before it could be saved."
+msgstr "Preview status disappeared voor het kon zijn opgeslagen."
+
+msgid ""
+"Couldn't safely start the preview because its recovery record couldn't be "
+"saved: {}"
+msgstr "Kon niet veilig starten het voorbeeld omdat zijn herstelregistratie niet kon zijn opgeslagen: {}"
+
+msgid "Couldn't pause the sync engine, so no preview was run: {}"
+msgstr "Kon niet pauzeren de synchronisatieprogramma, dus geen voorbeeld was uitvoeren: {}"
+
+msgid "Couldn't write the folder list: {}"
+msgstr "Kon niet schrijven de map list: {}"
+
+msgid "Couldn't write the settings: {}"
+msgstr "Kon niet schrijven de instellingen: {}"
+
+msgid "Couldn't start the sync engine: {}"
+msgstr "Kon niet starten de synchronisatieprogramma: {}"
+
+msgid "Couldn't clear the recovery record: {}"
+msgstr "Kon niet wissen de herstelregistratie: {}"
+
+msgid "Couldn't restore preview settings: {}"
+msgstr "Kon niet herstellen voorbeeld instellingen: {}"
+
+msgid "Couldn't read the preview recovery record: {}"
+msgstr "Kon niet lezen het voorbeeld herstelregistratie: {}"
+
+msgid "The preview recovery record is damaged: {}"
+msgstr "Het voorbeeld herstelregistratie is beschadigd: {}"
+
+msgid "Couldn't clear the committed preview record: {}"
+msgstr "Kon niet wissen de bevestigde voorbeeld registratie: {}"
+
+msgid "Restoring the previous settings…"
+msgstr "Restoring de vorige instellingen…"
+
+msgid "Cancelling…"
+msgstr "Cancelling…"
+
+msgid "Resync started."
+msgstr "Resync gestart."
+
+msgid "The account disappeared and preview settings couldn't be restored: {}"
+msgstr "De account disappeared en voorbeeld instellingen niet kon zijn restored: {}"
+
+msgid "The recovery record couldn't be committed: {}; the sync job was stopped"
+msgstr "De herstelregistratie niet kon zijn bevestigde: {}; de synchronisatie taak was gestopt"
+
+msgid ""
+"The sync job started, but its recovery state couldn't be saved or stopped: "
+"{}; {}. Restart this app to retry recovery. No other sync operation will "
+"start for this account in this session."
+msgstr "De synchronisatie taak gestart, maar zijn herstel status niet kon zijn opgeslagen van gestopt: {}; {}. Restart dit app naar opnieuw proberen herstel. Geen andere synchronisatie bewerking zal starten voor dit account in dit session."
+
+msgid ""
+"{}. The recovery record couldn't be refreshed, so syncing remains paused: {}"
+msgstr "{}. De herstelregistratie niet kon zijn refreshed, dus synchroniseren remains paused: {}"
+
+msgid ""
+"{}. Preview settings couldn't be fully restored; syncing remains paused. {}"
+msgstr "{}. Preview instellingen niet kon zijn fully restored; synchroniseren remains paused. {}"
+
+msgid "{}. The previous sync service couldn't be restarted: {}"
+msgstr "{}. De vorige synchronisatieservice niet kon zijn opnieuw gestart: {}"
+
+msgid "Preparing sign-in…"
+msgstr "Preparing aanmelding…"
+
+msgid ""
+"Opening the Microsoft sign-in page in your browser…\n"
+"\n"
+"Log in and approve access. This window updates by itself when you're done."
+msgstr "Opening de Microsoft aanmelding page in je browser…\n\nLog in en approve access. Deze window updates door itself wanneer je're done."
+
+msgid ""
+"Couldn't protect this account from a second sync process, so sign-in was not "
+"started: {}"
+msgstr "Kon niet beschermen dit account van een tweede synchronisatieproces, dus aanmelding was niet gestart: {}"
+
+msgid "Couldn't stop the sync engine before signing in: {}"
+msgstr "Kon niet stoppen de synchronisatieprogramma voor aanmelden in: {}"
+
+msgid ""
+"The sign-in was cancelled, but the previously running sync engine couldn't "
+"be restarted: {}"
+msgstr "De aanmelding was cancelled, maar de previously actief synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+
+msgid ""
+"Couldn't start the sign-in process: {}. The previously running sync engine "
+"also couldn't be restarted: {}"
+msgstr "Kon niet starten de aanmelding proces: {}. De previously actief synchronisatieprogramma ook niet kon zijn opnieuw gestart: {}"
+
+msgid "Couldn't start the sign-in process: {}"
+msgstr "Kon niet starten de aanmelding proces: {}"
+
+msgid ""
+"The sign-in window closed, but the previously running sync engine couldn't "
+"be restarted: {}"
+msgstr "De aanmelding window gesloten, maar de previously actief synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+
+msgid ""
+"This account's settings folder was removed during sign-in. Add the account "
+"again to sign in."
+msgstr "Dit account's instellingenmap was verwijderd tijdens aanmelding. Add het account opnieuw naar sign in."
+
+msgid ""
+"Your browser couldn't hand the sign-in back automatically.\n"
+"\n"
+"After you log in you'll end up on a blank page. Copy that page's full "
+"address from the address bar and paste it below."
+msgstr "Je browser niet kon hand de aanmelding terug automatically.\n\nAfter je logboek in je'll end omhoog op een blank page. Copy dat page's volledige adres van de adres bar en paste het below."
+
+msgid "Signed in. Your files will start syncing in a moment."
+msgstr "Signed in. Je bestanden zal starten synchroniseren in een moment."
+
+msgid "Signed in."
+msgstr "Signed in."
+
+msgid "The sign-in didn't finish."
+msgstr "De aanmelding didn't voltooien."
+
+msgid ""
+"Sign-in didn't complete.\n"
+"\n"
+"{}"
+msgstr "Aanmelding didn't complete.\n\n{}"
+
+msgid ""
+"Sign-in failed, and the previously running sync engine couldn't be "
+"restarted: {}"
+msgstr "Aanmelding mislukt, en de previously actief synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+
+msgid ""
+"Microsoft didn't accept the sign-in. Please try again, and make sure you "
+"finish logging in in the browser."
+msgstr "Microsoft didn't accepteren de aanmelding. Please probeer het opnieuw, en maken sure je voltooien logging in in de browser."
+
+msgid "The sign-in timed out. Please try again."
+msgstr "De aanmelding timed out. Please probeer het opnieuw."
+
+msgid "Microsoft reported a problem: {}"
+msgstr "Microsoft reported een probleem: {}"
+
+msgid "Sync was enabled, but the tray couldn't be set to start at login: {}"
+msgstr "Sync was enabled, maar de systeemvak niet kon zijn set naar starten bij login: {}"
+
+msgid "Sign-in finished, but setup wasn't fully completed: {}"
+msgstr "Aanmelding voltooid, maar setup was niet fully completed: {}"
+
+msgid ""
+"That doesn't look like the right address — it should contain \"code=\". Copy "
+"the whole address of the blank page you land on after logging in."
+msgstr "Dat doet niet look zoals de juiste adres — het moet bevatten \"code=\". Copy de heel adres van de blank page je land op na logging in."
+
+msgid "Finishing sign-in…"
+msgstr "Finishing aanmelding…"
+
+msgid "Couldn't find this account's settings folder: {}"
+msgstr "Kon niet vinden dit account's instellingenmap: {}"
+
+msgid "Couldn't protect this account from another sync operation: {}"
+msgstr "Kon niet beschermen dit account van andere synchronisatie bewerking: {}"
+
+msgid "Couldn't stop background syncing, so you weren't signed out: {}"
+msgstr "Kon niet stoppen background synchroniseren, dus je waren niet afgemeld: {}"
+
+msgid "Couldn't remove the saved sign-in: {}"
+msgstr "Kon niet verwijderen de opgeslagen aanmelding: {}"
+
+msgid "Signed out. Your files are still on this computer."
+msgstr "Signed out. Je bestanden zijn nog op deze computer."
+
+msgid ""
+"Signed out. Your files are still on this computer. (The sync engine "
+"reported: {})"
+msgstr "Signed out. Je bestanden zijn nog op deze computer. (De synchronisatieprogramma reported: {})"
+
+msgid ""
+"The account was left intact because its sync service couldn't be stopped: {}"
+msgstr "De account was gelaten intact omdat zijn synchronisatieservice niet kon zijn gestopt: {}"
+
+msgid "The service stopped, but couldn't remove {}: {}"
+msgstr "De service gestopt, maar niet kon verwijderen {}: {}"
+
+msgid "The service stopped, but systemd couldn't reload its units: {}"
+msgstr "De service gestopt, maar systemd niet kon herladen zijn eenheden: {}"
+
+msgid "Couldn't delete {}: {}"
+msgstr "Kon niet verwijderen {}: {}"
+
+msgid ""
+"Add and sign in to a work or school OneDrive account first. Its sign-in is "
+"reused to reach SharePoint."
+msgstr "Add en sign in naar een work van school OneDrive-account eerst. Its aanmelding is reused naar reach SharePoint."
+
+msgid "{}  ·  this computer's copy from {}"
+msgstr "{}  ·  deze computer's kopiëren van {}"
+
+msgid "In OneDrive: {}"
+msgstr "In OneDrive: {}"
+
+msgid "Backed up to \"{}\""
+msgstr "Backed omhoog naar \"{}\""
+
+msgid "Not set up on this computer"
+msgstr "Not set omhoog op deze computer"
+
+msgid "Set to your whole home folder, so it can't be backed up"
+msgstr "Set naar je heel persoonlijke map, dus het kan niet zijn backed omhoog"
+
+msgid "Looking at your {} folder…"
+msgstr "Looking bij je {} map…"
+
+msgid "1 file"
+msgid_plural "{n} files"
+msgstr[0] "1 bestand"
+msgstr[1] "{n} bestanden"
+
+msgid ""
+"Your {} folder ({}) moves into OneDrive, at {}, and everything in it "
+"uploads: {}, {}. Your apps keep finding it in the same place."
+msgstr "Je {} map ({}) moves into OneDrive, bij {}, en alles in het uploads: {}, {}. Je apps bewaren finding het in de same place."
+
+msgid "OneDrive is on the same drive, so the move is instant."
+msgstr "OneDrive is op de same schijf, dus de verplaatsen is instant."
+
+msgid "The desktop shows the new place after you next log in."
+msgstr "De bureaublad shows de nieuwe place na je next logboek in."
+
+msgid ""
+"To undo it later, press Stop: your files stay in OneDrive and the folder "
+"here starts empty again, as on Windows."
+msgstr "To undo het later, press Stop: je bestanden stay in OneDrive en de map hier starts lege opnieuw, als op Windows."
+
+msgid ""
+"OneDrive is on another drive, so the files are copied. Nothing is deleted: "
+"your original folder is kept, renamed \"{}\". Once you've checked everything "
+"is in OneDrive, delete it yourself to free the space. "
+msgstr "OneDrive is op andere schijf, dus het bestands zijn gekopieerd. Niets is verwijderd: je original map is bewaard, renamed \"{}\". Once je've gecontroleerd alles is in OneDrive, verwijderen het yourself naar vrij de ruimte. "
+
+msgid ""
+"OneDrive already has this folder: your files join what's there, and any "
+"whose name is taken get \"{}\" added."
+msgstr "OneDrive al heeft dit map: je bestanden join wat's daar, en elke whose naam is taken krijgen \"{}\" added."
+
+msgid "Back up your {} folder"
+msgstr "Back omhoog je {} map"
+
+msgid "Stop backing up {}?"
+msgstr "Stop backing omhoog {}?"
+
+msgid ""
+"Your files stay in OneDrive, at {}, and keep syncing there. Your {} folder "
+"on this computer starts empty again, and new files you put in it won't be "
+"backed up."
+msgstr "Je bestanden stay in OneDrive, bij {}, en bewaren synchroniseren daar. Je {} map op deze computer starts lege opnieuw, en nieuwe bestanden je put in het zal niet zijn backed omhoog."
+
+msgid ""
+"Nothing is moved back or deleted. To have the files here again, move them "
+"from {} yourself."
+msgstr "Niets is verplaatst terug van verwijderd. To hebben het bestands hier opnieuw, verplaatsen them van {} yourself."
+
+msgid "Stop backing up"
+msgstr "Stop backing omhoog"
+
+msgid "{} is now backed up to OneDrive."
+msgstr "{} is now backed omhoog naar OneDrive."
+
+msgid ""
+"1 name was already taken in OneDrive, so it was saved with \"(from …)\" "
+"added."
+msgid_plural ""
+"{n} names were already taken in OneDrive, so they were saved with \"(from …)"
+"\" added."
+msgstr[0] "1 naam was al taken in OneDrive, dus het was opgeslagen met \"(van …)\" added."
+msgstr[1] "{n} namen waren al taken in OneDrive, dus they waren opgeslagen met \"(van …)\" added."
+
+msgid ""
+"Your original folder is kept at {}: delete it yourself once you've checked "
+"your files in OneDrive."
+msgstr "Je original map is bewaard bij {}: verwijderen het yourself zodra je've gecontroleerd je bestanden in OneDrive."
+
+msgid ""
+"The desktop's folder setting couldn't be updated ({}); the link at the old "
+"place still works."
+msgstr "De bureaublad's map instelling niet kon zijn bijgewerkt ({}); de koppeling bij de oude place nog works."
+
+msgid "Stopped. Your files are still in OneDrive at {}."
+msgstr "Stopped. Je bestanden zijn nog in OneDrive bij {}."
+
+msgid "Couldn't inspect the selected folder {}: {}"
+msgstr "Kon niet bekijken de geselecteerde map {}: {}"
+
+msgid "Couldn't clear the empty destination {}: {}"
+msgstr "Kon niet wissen de lege bestemming {}: {}"
+
+msgid "The destination {} changed after review."
+msgstr "De bestemming {} gewijzigd na review."
+
+msgid ""
+"Copying to {} failed (is there enough space?). The original remains in {}."
+msgstr "Copying naar {} mislukt (is daar voldoende ruimte?). De original remains in {}."
+
+msgid "Choose where to move the OneDrive folder"
+msgstr "Choose waar naar verplaatsen de OneDrive-map"
+
+msgid ""
+"No folder chooser is available on this desktop, so the folder can't be moved "
+"from here."
+msgstr "Geen map chooser is beschikbaar op dit bureaublad, dus de map kan niet zijn verplaatst van hier."
+
+msgid "Couldn't safely resolve the selected destination folder."
+msgstr "Kon niet veilig oplossen de geselecteerde doelmap."
+
+msgid ""
+"{} is a symbolic link. Move the actual sync folder or choose a new folder in "
+"Options first."
+msgstr "{} is een symbolische koppeling. Move de actual synchronisatie map van kiezen een nieuwe map in Options eerst."
+
+msgid "{} isn't there (is its drive connected?), so there's nothing to move."
+msgstr "{} is niet daar (is zijn schijf connected?), dus er is niets naar verplaatsen."
+
+msgid "That folder overlaps with \"{}\" ({}). Pick a separate folder."
+msgstr "Dat map overlaps met \"{}\" ({}). Pick een separate map."
+
+msgid "{} already exists and isn't empty. Pick an empty folder."
+msgstr "{} al bestaat en is niet lege. Pick een lege map."
+
+msgid "Moving the folder to {}… The sync engine is paused meanwhile."
+msgstr "Moving de map naar {}… De synchronisatieprogramma is paused meanwhile."
+
+msgid "Couldn't stop the sync engine: {}"
+msgstr "Kon niet stoppen de synchronisatieprogramma: {}"
+
+msgid "Couldn't recheck {}: {}"
+msgstr "Kon niet recheck {}: {}"
+
+msgid ""
+"The current sync folder changed while the destination was being reviewed. "
+"Refresh and try again."
+msgstr "De huidige synchronisatie map gewijzigd terwijl de bestemming was wordt reviewed. Refresh en probeer het opnieuw."
+
+msgid ""
+"The destination drive changed while the folder move was being reviewed. "
+"Connect the intended drive and try again."
+msgstr "De bestemming schijf gewijzigd terwijl de map verplaatsen was wordt reviewed. Connect de bedoelde schijf en probeer het opnieuw."
+
+msgid "Couldn't move the folder: {}"
+msgstr "Kon niet verplaatsen de map: {}"
+
+msgid "Couldn't save the new folder in the settings: {}"
+msgstr "Kon niet opslaan de nieuwe map in de instellingen: {}"
+
+msgid ""
+"Couldn't save the new folder in the settings: {}; rollback also failed: {}"
+msgstr "Kon niet opslaan de nieuwe map in de instellingen: {}; rollback ook mislukt: {}"
+
+msgid ""
+"The folder operation finished, but the sync engine couldn't be restarted: {}"
+msgstr "De map bewerking voltooid, maar de synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+
+msgid ""
+"Folder moved. The sync engine needs a full resync to carry on there — check "
+"the preview."
+msgstr "Folder verplaatst. De synchronisatieprogramma heeft nodig een volledige hersynchronisatie naar carry op daar — controle het voorbeeld."
+
+msgid ""
+"Folder copied. Your old folder ({}) was left untouched and is no longer "
+"synced: once you've checked your files in the new place, delete it yourself "
+"to free the space. Next, check the preview to carry on syncing."
+msgstr "Folder gekopieerd. Je oude map ({}) was gelaten untouched en is geen longer synced: zodra je've gecontroleerd je bestanden in de nieuwe place, verwijderen het yourself naar vrij de ruimte. Next, controle het voorbeeld naar carry op synchroniseren."
+
+msgid "Finish moving the folder"
+msgstr "Finish moving de map"
+
+msgid ""
+"Your files are already in the new folder, so little or nothing should need "
+"to transfer."
+msgstr "Je bestanden zijn al in de nieuwe map, dus little van niets moet moet naar transfer."
+
+msgid "Add and sign in to a work or school account first."
+msgstr "Add en sign in naar een work van school account eerst."
+
+msgid "Checking the OneDrive client…"
+msgstr "Checking de OneDrive-client…"
+
+msgid "Give the account a name and pick a local folder."
+msgstr "Give het account een naam en kies een lokale map."
+
+msgid ""
+"A national cloud account needs your organisation's tenant (ask its IT team)."
+msgstr "Een nationale cloud account heeft nodig je organisation's tenant (vragen zijn IT team)."
+
+msgid "The tenant {}."
+msgstr "De tenant {}."
+
+msgid "You already have an account called \"{}\". Pick a different name."
+msgstr "Je al hebben een account called \"{}\". Pick een andere naam."
+
+msgid "Search for and pick a library first."
+msgstr "Search voor en kies een bibliotheek eerst."
+
+msgid "Couldn't copy the sign-in: {}"
+msgstr "Kon niet kopiëren de aanmelding: {}"
+
+msgid "Created the account but couldn't find it again — try reopening the app."
+msgstr "Created het account maar niet kon vinden het opnieuw — probeer reopening de app."
+
+msgid "Couldn't create the autostart folder: {}"
+msgstr "Kon niet maken de autostart map: {}"
+
+msgid "OneDrive sync status"
+msgstr "OneDrive synchronisatie status"
+
+msgid "Couldn't save the autostart setting: {}"
+msgstr "Kon niet opslaan de autostart instelling: {}"
+
+msgid "Couldn't remove {}: {}"
+msgstr "Kon niet verwijderen {}: {}"
+
+msgid "Checking the sync engine…"
+msgstr "Checking de synchronisatieprogramma…"
+
+msgid "Sync engine: OneDrive Client for Linux {} ({})"
+msgstr "Sync programma: OneDrive Client voor Linux {} ({})"
+
+msgid ""
+"Sync engine: OneDrive Client for Linux {} ({}) — too old, please update it."
+msgstr "Sync programma: OneDrive Client voor Linux {} ({}) — too oude, please bijwerken het."
+
+msgid "Sync engine: the OneDrive Client for Linux isn't installed."
+msgstr "Sync programma: de OneDrive Client voor Linux is niet installed."
+
+msgid ""
+"Added. Look for \"DriveDeck for OneDrive\" in your applications menu. Right-"
+"clicking a file in Dolphin now also shows a OneDrive menu with \"Copy view-"
+"only link\", \"Copy editing link\" and \"View on the OneDrive website\"."
+msgstr "Added. Look voor \"DriveDeck voor OneDrive\" in je applications menu. Right-clicking een bestand in Dolphin now ook shows een OneDrive menu met \"Copy alleen-bekijken koppeling\", \"Copy editing koppeling\" en \"View op de OneDrive website\"."
+
+msgid "Couldn't add it: {}"
+msgstr "Kon niet add het: {}"
+
+msgid "Found the OneDrive client ({}). You're ready to sync."
+msgstr "Found de OneDrive-client ({}). Je're ready naar synchronisatie."
+
+msgid "Your OneDrive Client for Linux ({}) is too old"
+msgstr "Je OneDrive Client voor Linux ({}) is too oude"
+
+msgid "Your computer will ask for your password…"
+msgstr "Je computer zal vragen voor je wachtwoord…"
+
+msgid ""
+"Nothing was changed: your computer didn't allow it (the password wasn't "
+"accepted, or no password window could be shown)."
+msgstr "Niets was gewijzigd: je computer didn't toestaan het (de wachtwoord was niet accepted, van geen wachtwoord window kon zijn shown)."
+
+msgid "Couldn't start the installer: {}"
+msgstr "Kon niet starten de installer: {}"
+
+msgid "The OneDrive client is updated to {}."
+msgstr "De OneDrive-client is bijgewerkt naar {}."
+
+msgid "The OneDrive client is installed. You're ready to sync."
+msgstr "De OneDrive-client is installed. Je're ready naar synchronisatie."
+
+msgid ""
+"It finished, but the OneDrive client still isn't working. The instructions "
+"show how to install it by hand."
+msgstr "Het voltooid, maar de OneDrive-client nog is niet working. De instructions show how naar install het door hand."
+
+msgid "Couldn't open OneDrive settings"
+msgstr "Kon niet openen OneDrive instellingen"
+
+msgid "The window couldn't open ({})."
+msgstr "De window niet kon openen ({})."
+
+msgid "Couldn't save the account name: {}"
+msgstr "Kon niet opslaan het account naam: {}"
+
+msgid "Renamed."
+msgstr "Renamed."
+
+msgid "Syncing now…"
+msgstr "Syncing now…"
+
+msgid "Saved as {}. It opens now: read it before sharing it."
+msgstr "Saved als {}. Het opens now: lezen het voor sharing het."
+
+msgid "Couldn't remove {}"
+msgstr "Kon niet verwijderen {}"
+
+msgid "Added. Close every Dolphin window and open it again to see the badges."
+msgstr "Added. Close every Dolphin window en openen het opnieuw naar see de badges."
+
+msgid "Once it's installed, this note goes away by itself."
+msgstr "Once het's installed, dit note goes away door itself."
+
+msgid "Couldn't save that: {}"
+msgstr "Kon niet opslaan dat: {}"
+
+msgid "The app file {} will be deleted."
+msgstr "De app bestand {} zal zijn verwijderd."
+
+msgid ""
+"The app's package will then be removed; your computer will ask for your "
+"password."
+msgstr "De app's package zal dan zijn verwijderd; je computer zal vragen voor je wachtwoord."
+
+msgid "Afterwards, remove the \"{}\" package with your software manager."
+msgstr "Afterwards, verwijderen de \"{}\" package met je software manager."
+
+msgid "This copy isn't installed, so only your settings are removed."
+msgstr "Deze kopiëren is niet installed, dus alleen je instellingen zijn verwijderd."
+
+msgid ""
+"The tray icon didn't close. Log out and back in once this is done to be sure "
+"it's gone."
+msgstr "De systeemvakpictogram didn't sluiten. Log out en terug in zodra dit is done naar zijn sure het's gone."
+
+msgid ""
+"Your accounts keep syncing in the background with the OneDrive Client for "
+"Linux."
+msgstr "Je accounts bewaren synchroniseren in de background met de OneDrive Client voor Linux."
+
+msgid ""
+"{} was left untouched because its settings folder couldn't be checked: {}"
+msgstr "{} was gelaten untouched omdat zijn instellingenmap niet kon zijn gecontroleerd: {}"
+
+msgid ""
+"{} was left untouched because its one-time sync job couldn't be stopped: {}"
+msgstr "{} was gelaten untouched omdat zijn eenmalige synchronisatie taak niet kon zijn gestopt: {}"
+
+msgid "{} was left untouched because its sync service couldn't be stopped: {}"
+msgstr "{} was gelaten untouched omdat zijn synchronisatieservice niet kon zijn gestopt: {}"
+
+msgid ""
+"{} was stopped, but its service couldn't be disabled. Its files and service "
+"were left intact: {}"
+msgstr "{} was gestopt, maar zijn service niet kon zijn disabled. Its bestanden en service waren gelaten intact: {}"
+
+msgid ""
+"{} was stopped, but its service file couldn't be removed. Its account files "
+"were left intact: {}"
+msgstr "{} was gestopt, maar zijn service bestand niet kon zijn verwijderd. Its account bestanden waren gelaten intact: {}"
+
+msgid ""
+"{} was stopped and disabled, but its custom service file at {} was left in "
+"place."
+msgstr "{} was gestopt en disabled, maar zijn aangepaste service bestand bij {} was gelaten in place."
+
+msgid ""
+"{}: signed out and its sync settings removed. The files in {} are still "
+"there."
+msgstr "{}: afgemeld en zijn synchronisatie-instellingen verwijderd. De bestanden in {} zijn nog daar."
+
+msgid ""
+"{} also holds files that aren't the OneDrive client's, so they and the "
+"folder were kept."
+msgstr "{} ook bevat bestanden dat zijn niet de OneDrive-client's, dus they en de map waren bewaard."
+
+msgid ""
+"The account services were removed, but systemd couldn't reload its unit "
+"list: {}"
+msgstr "De account services waren verwijderd, maar systemd niet kon herladen zijn eenheid list: {}"
+
+msgid "Couldn't delete {}: {}. Delete it yourself to finish."
+msgstr "Kon niet verwijderen {}: {}. Delete het yourself naar voltooien."
+
+msgid ""
+"The package wasn't removed (the password prompt may have been cancelled). "
+"Remove \"{}\" with your software manager to finish."
+msgstr "De package was niet verwijderd (de wachtwoord prompt kan hebben geweest cancelled). Remove \"{}\" met je software manager naar voltooien."
+
+msgid "Remove the \"{}\" package with your software manager to finish."
+msgstr "Remove de \"{}\" package met je software manager naar voltooien."
+
+msgid "0 means never. Too low cuts off large transfers."
+msgstr "0 means never. Too low cuts off large transfers."
+
+msgid "0 syncs files of any size."
+msgstr "0 syncs bestanden van elke size."
+
+msgid ""
+"10 to 60 MB, in steps of 5. Bigger pieces can be faster on fast, steady "
+"connections."
+msgstr "10 naar 60 MB, in steps van 5. Bigger pieces kan zijn faster op fast, steady connections."
+
+msgid "600 means only you can read them."
+msgstr "600 means alleen je kan lezen them."
+
+msgid "700 means only you can open them."
+msgstr "700 means alleen je kan openen them."
+
+msgid "Add the OneDrive folder to the file manager's sidebar"
+msgstr "Add de OneDrive-map naar het bestand manager's sidebar"
+
+msgid "Also delete the emptied folders"
+msgstr "Also verwijderen de emptied mappen"
+
+msgid "Always sync files at the top of the OneDrive folder"
+msgstr "Always synchronisatie bestanden bij de top van de OneDrive-map"
+
+msgid "Application ID"
+msgstr "Application ID"
+
+msgid "As found"
+msgstr "As gevonden"
+
+msgid "Ask for read-only access"
+msgstr "Ask voor alleen-lezen access"
+
+msgid "By name, A to Z"
+msgstr "By naam, Een naar Z"
+
+msgid "By name, Z to A"
+msgstr "By naam, Z naar Een"
+
+msgid "Can fix transfers that stall on some networks and proxies."
+msgstr "Can fix transfers dat stall op enkele networks en proxies."
+
+msgid ""
+"Counted in sync checks (set under When to sync). Lower catches missed online "
+"changes sooner but uses more data."
+msgstr "Counted in synchronisatie checks (set under When naar synchronisatie). Lower catches missed online wijzigingen sooner maar uses more data."
+
+msgid "Delete files here after they upload"
+msgstr "Delete bestanden hier na they uploaden"
+
+msgid "Delete permanently online (skip the OneDrive recycle bin)"
+msgstr "Delete permanently online (skip de OneDrive recycle bin)"
+
+msgid "Don't check downloads"
+msgstr "Niet controle downloads"
+
+msgid "Don't check for new client versions"
+msgstr "Niet controle voor nieuwe client versions"
+
+msgid "Don't check uploads"
+msgstr "Niet controle uploads"
+
+msgid "Don't get instant online changes"
+msgstr "Niet krijgen instant online wijzigingen"
+
+msgid "Don't set permissions on downloaded files"
+msgstr "Niet set permissions op gedownload bestanden"
+
+msgid "Don't sync files larger than"
+msgstr "Niet synchronisatie bestanden larger than"
+
+msgid "Don't sync if the drive isn't mounted"
+msgstr "Niet synchronisatie als de schijf is niet aangekoppeld"
+
+msgid "Downloads stop rather than fill the disk."
+msgstr "Downloads stoppen rather than fill de disk."
+
+msgid "Drop idle connections after"
+msgstr "Drop idle connections na"
+
+msgid "Files transferred at once"
+msgstr "Files transferred bij zodra"
+
+msgid "Folders to skip must match the whole path"
+msgstr "Folders naar skip moet match de heel pad"
+
+msgid ""
+"For moving files to OneDrive, usually with Upload only. Leaves the folders "
+"behind."
+msgstr "For moving bestanden naar OneDrive, usually met Upload alleen. Leaves de maps behind."
+
+msgid "Full online check every"
+msgstr "Full online controle every"
+
+msgid "Get online changes through a webhook"
+msgstr "Get online wijzigingen through een webhook"
+
+msgid "Give up connecting after"
+msgstr "Give omhoog connecting na"
+
+msgid "Give up on any single request after"
+msgstr "Give omhoog op elke single request na"
+
+msgid "Give up when no data arrives for"
+msgstr "Give omhoog wanneer geen data arrives voor"
+
+msgid ""
+"Helps with apps that save on every keystroke (Obsidian and other note apps)."
+msgstr "Helps met apps dat opslaan op every keystroke (Obsidian en andere note apps)."
+
+msgid "Identify as"
+msgstr "Identify als"
+
+msgid "In addition to the system journal the app already reads."
+msgstr "In addition naar de systeem logboek de app al reads."
+
+msgid "Items deleted here can't be restored online afterwards."
+msgstr "Items verwijderd hier kan niet zijn restored online afterwards."
+
+msgid ""
+"Items online that aren't on this computer are deleted online instead of "
+"downloaded. Check with a dry run first."
+msgstr "Items online dat zijn niet op deze computer zijn verwijderd online instead van gedownload. Check met een dry uitvoeren eerst."
+
+msgid "Keep SharePoint's changed copy as a new version"
+msgstr "Keep SharePoint's gewijzigd kopiëren als een nieuwe versie"
+
+msgid "Keep this much disk space free"
+msgstr "Keep dit much disk ruimte vrij"
+
+msgid ""
+"Keeps file dates exactly right online, at the cost of a little speed for "
+"small files."
+msgstr "Keeps bestand dates exactly juiste online, bij de cost van een little speed voor small bestanden."
+
+msgid "Largest first"
+msgstr "Largest eerst"
+
+msgid "Leave empty for the app's own folder (~/.local/share/drivedeck/logs)."
+msgstr "Leave lege voor de app's eigen map (~/.local/share/drivedeck/logs)."
+
+msgid "Leave empty for the client's own name, which Microsoft throttles least."
+msgstr "Leave lege voor de client's eigen naam, which Microsoft throttles least."
+
+msgid ""
+"Leaves permissions to the folder (needed on drives that don't support Linux "
+"permissions, like NTFS or exFAT)."
+msgstr "Leaves permissions naar de map (needed op drives dat niet support Linux permissions, zoals NTFS van exFAT)."
+
+msgid "Listen on address"
+msgstr "Listen op adres"
+
+msgid "Listen on port"
+msgstr "Listen op port"
+
+msgid "Log all network traffic"
+msgstr "Log alle network traffic"
+
+msgid "Log folder"
+msgstr "Log map"
+
+msgid "Log routine checks only every"
+msgstr "Log routine checks alleen every"
+
+msgid "Log the speed of each transfer"
+msgstr "Log de speed van each transfer"
+
+msgid "Logging"
+msgstr "Logging"
+
+msgid "Lower this if a router or firewall cuts connections that sit idle."
+msgstr "Lower dit als een router van firewall cuts connections dat sit idle."
+
+msgid "MB"
+msgstr "MB"
+
+msgid "Make OneDrive match this computer exactly"
+msgstr "Make OneDrive match deze computer exactly"
+
+msgid "More than 8 rarely helps and can get you throttled by Microsoft."
+msgstr "More than 8 rarely helps en kan krijgen je throttled door Microsoft."
+
+msgid ""
+"Needs a public https address that forwards to this computer. Instant online "
+"changes usually make this unnecessary."
+msgstr "Needs een openbare https adres dat forwards naar deze computer. Instant online wijzigingen usually maken dit unnecessary."
+
+msgid "Network"
+msgstr "Network"
+
+msgid ""
+"Normally a clashing local file is kept under a new name. With this on, its "
+"changes are lost."
+msgstr "Normally een clashing lokale bestand is bewaard under een nieuwe naam. With dit op, zijn wijzigingen zijn lost."
+
+msgid "Notify about every file synced"
+msgstr "Notify about every bestand synced"
+
+msgid "Online changes are then picked up at each sync check instead."
+msgstr "Online wijzigingen zijn dan picked omhoog bij each synchronisatie controle instead."
+
+msgid ""
+"Only for SharePoint libraries that change files after upload, which makes "
+"every check fail."
+msgstr "Alleen voor SharePoint libraries dat wijziging bestanden na uploaden, which maakt every controle mislukken."
+
+msgid "Only for government or national cloud accounts."
+msgstr "Alleen voor overheids van nationale cloud accounts."
+
+msgid ""
+"Only for reporting a problem. The log then holds sign-in tokens: don't share "
+"it without removing them."
+msgstr "Alleen voor reporting een probleem. De logboek dan bevat aanmelding tokens: niet share het zonder removing them."
+
+msgid "Only if your organisation registered its own app for the client."
+msgstr "Alleen als je organisation registered zijn eigen app voor de client."
+
+msgid ""
+"Only when SharePoint reports the wrong size for files, so good downloads get "
+"thrown away."
+msgstr "Alleen wanneer SharePoint reports de verkeerde size voor bestanden, dus good downloads krijgen thrown away."
+
+msgid "Overwrite local files on a conflict instead of keeping a copy"
+msgstr "Overwrite lokale bestanden op een conflict instead van keeping een kopiëren"
+
+msgid "Permissions for new files"
+msgstr "Permissions voor nieuwe bestanden"
+
+msgid "Permissions for new folders"
+msgstr "Permissions voor nieuwe mappen"
+
+msgid "Public address"
+msgstr "Public adres"
+
+msgid ""
+"Put an empty file named .nosync in the mount point while the drive is "
+"unplugged. If it's ever visible, syncing stops instead of deleting "
+"everything online."
+msgstr "Put een lege bestand named .nosync in de aankoppelpunt wijs terwijl de schijf is unplugged. If het's ever visible, synchroniseren stops instead van deleting alles online."
+
+msgid "Quiets the log when nothing is changing."
+msgstr "Quiets de logboek wanneer niets is changing."
+
+msgid "Record who created and last changed each file"
+msgstr "Record wie gemaakt en last gewijzigd each bestand"
+
+msgid "Remember server addresses for"
+msgstr "Remember server addresses voor"
+
+msgid "Renew the subscription every"
+msgstr "Renew de subscription every"
+
+msgid ""
+"Required for a national cloud; otherwise only if your organisation asks."
+msgstr "Required voor een nationale cloud; otherwise alleen als je organisation asks."
+
+msgid "Retry a failed subscription after"
+msgstr "Retry een mislukt subscription na"
+
+msgid ""
+"SharePoint rewrites Office, PDF and HTML files after upload. Normally the "
+"client puts your original back."
+msgstr "SharePoint rewrites Office, PDF en HTML bestanden na uploaden. Normally de client puts je original terug."
+
+msgid "Sign-in"
+msgstr "Aanmelding"
+
+msgid "Smallest first"
+msgstr "Smallest eerst"
+
+msgid "Stop and ask when this many items are deleted at once"
+msgstr "Stop en vragen wanneer dit veel items zijn verwijderd bij zodra"
+
+msgid ""
+"Stored in the file's extended attributes (user.onedrive.createdBy, "
+"user.onedrive.lastModifiedBy)."
+msgstr "Stored in het bestand's extended attributes (gebruiker.onedrive.createdBy, gebruiker.onedrive.lastModifiedBy)."
+
+msgid "Subscription lasts"
+msgstr "Subscription lasts"
+
+msgid "Syncing"
+msgstr "Syncing"
+
+msgid "The client can then only download. Uploads and online deletes fail."
+msgstr "De client kan dan alleen downloaden. Uploads en online deletes mislukken."
+
+msgid ""
+"Then \"Projects/Old\" only skips that one folder, and a plain name only "
+"skips a folder at the top."
+msgstr "Then \"Projects/Old\" alleen skips dat one map, en een plain naam alleen skips een map bij de top."
+
+msgid "Transfer files in this order"
+msgstr "Transfer bestanden in dit order"
+
+msgid "Transfers"
+msgstr "Transfers"
+
+msgid "Trash folder"
+msgstr "Trash map"
+
+msgid "Treat this computer as the source of truth"
+msgstr "Treat deze computer als de bron van truth"
+
+msgid "Upload every file in pieces"
+msgstr "Upload every bestand in pieces"
+
+msgid "Upload large files in pieces of"
+msgstr "Upload large bestanden in pieces van"
+
+msgid "Use HTTP/1.1 only"
+msgstr "Use HTTP/1.1 alleen"
+
+msgid "Wait"
+msgstr "Wait"
+
+msgid "Wait before sending changes from busy apps"
+msgstr "Wait voor sending wijzigingen van bezet apps"
+
+msgid "Webhooks"
+msgstr "Webhooks"
+
+msgid ""
+"When only some folders are chosen, files sitting directly in the OneDrive "
+"folder still sync."
+msgstr "When alleen enkele mappen zijn chosen, bestanden sitting directly in de OneDrive-map nog synchronisatie."
+
+msgid ""
+"When the same item differs here and online, this computer's copy wins "
+"instead of OneDrive's."
+msgstr "When de same item differs hier en online, deze computer's kopiëren wins instead van OneDrive's."
+
+msgid "Where files deleted online go on this computer."
+msgstr "Where bestanden verwijderd online go op deze computer."
+
+msgid "With a OneDrive folder icon where the file manager supports it."
+msgstr "With een OneDrive-map pictogram waar het bestand manager supports het."
+
+msgid "Write a log file"
+msgstr "Write een logboek bestand"
+
+msgid "checks"
+msgstr "checks"
+
+msgid "items"
+msgstr "items"
+
+msgid "seconds"
+msgstr "seconds"

@@ -86,7 +86,7 @@ fn eta_words(eta: &str) -> Option<String> {
     let (h, m, s) = (parts.next()??, parts.next()??, parts.next()??);
     let secs = h * 3600 + m * 60 + s;
     if secs < 60 {
-        return Some(crate::tr!("less than a minute left").into());
+        return Some(crate::tr!("less than a minute left"));
     }
     // rounded up to whole minutes, so 59:59 is "1 h left", not "60 min left"
     let mins = secs.div_ceil(60);
@@ -871,7 +871,7 @@ pub fn run(at: Option<(i32, i32)>) {
     let wayland = std::env::var_os("WAYLAND_DISPLAY").is_some();
     // on Wayland there's always a compositor, so rounded corners can be see-through
     ui.set_rounded(wayland);
-    ui.set_summary(ss("Checking OneDrive…"));
+    ui.set_summary(ss(crate::tr!("Checking OneDrive…")));
     ui.set_summary_tone(1);
     {
         // the desktop's settings service can be slow or stuck: don't hold the panel up for it
@@ -934,7 +934,7 @@ pub fn run(at: Option<(i32, i32)>) {
                 return;
             }
             if let Some(ui) = weak.upgrade() {
-                ui.set_summary(ss("Starting a sync…"));
+                ui.set_summary(ss(crate::tr!("Starting a sync…")));
                 ui.set_summary_tone(1);
             }
             let weak = weak.clone();
@@ -944,21 +944,22 @@ pub fn run(at: Option<(i32, i32)>) {
                 for i in &infos {
                     match core::sync_now(i) {
                         Ok(_) => started += 1,
-                        Err(e) => errors.push(format!("{}: {e}", i.name)),
+                        Err(e) => errors.push(crate::tr!("{}: {}", i.name, e)),
                     }
                 }
                 // at once, rather than at the next refresh
                 let _ = slint::invoke_from_event_loop(move || {
                     if let Some(ui) = weak.upgrade() {
                         if errors.is_empty() {
-                            ui.set_summary(ss("Starting a sync…"));
+                            ui.set_summary(ss(crate::tr!("Starting a sync…")));
                             ui.set_summary_tone(1);
                         } else {
                             ui.set_summary(ss(if started == 0 {
-                                format!("Couldn't start syncing: {}", errors.join("; "))
+                                crate::tr!("Couldn't start syncing: {}", errors.join("; "))
                             } else {
-                                format!(
-                                    "Started {started} account(s); some couldn't start: {}",
+                                crate::tr!(
+                                    "Started {n} account; some couldn't start: {}"
+                                        | "Started {n} accounts; some couldn't start: {}" % started,
                                     errors.join("; ")
                                 )
                             }));
@@ -991,7 +992,7 @@ pub fn run(at: Option<(i32, i32)>) {
                 let mut errors = Vec::new();
                 for i in &infos {
                     if let Err(e) = core::pause(i, secs as i64) {
-                        errors.push(format!("{}: {e}", i.name));
+                        errors.push(crate::tr!("{}: {}", i.name, e));
                     }
                 }
                 if errors.is_empty() {
@@ -999,7 +1000,7 @@ pub fn run(at: Option<(i32, i32)>) {
                 }
                 let _ = slint::invoke_from_event_loop(move || {
                     if let Some(ui) = weak.upgrade() {
-                        ui.set_summary(ss(format!(
+                        ui.set_summary(ss(crate::tr!(
                             "Couldn't update every pause setting: {}",
                             errors.join("; ")
                         )));

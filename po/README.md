@@ -14,8 +14,9 @@ sh scripts/update-translations.sh
 ```
 
 The extractor reads annotated strings from `ui/app.slint`. The script adds strings used with
-Rust's `tr!` macro. Review `po/drivedeck.pot`, then update each language catalog, keeping every
-placeholder unchanged. The unit tests check catalog coverage and placeholders.
+Rust's `tr!` macro. Review `po/drivedeck.pot`, then merge it into every language catalog with `msgmerge`. Translate
+new entries, keeping every placeholder unchanged. The unit tests check catalog coverage and
+placeholders.
 
 ## Adding a language
 
@@ -23,7 +24,9 @@ Copy the catalog to `po/<language>/LC_MESSAGES/drivedeck.po`, set its `Language`
 `Plural-Forms` headers, and translate each entry. Locale selection checks `LANGUAGE`,
 `LC_ALL`, `LC_MESSAGES`, then `LANG`; regional locales fall back to their base language and
 then English. Add the language's translated `Name` and `Comment` fields to the desktop files.
-The German catalog is the current machine-drafted first translation. Corrections are welcome.
+The bundled catalogs cover German, Spanish, French, Italian, Brazilian Portuguese, Dutch, Polish,
+Japanese, Simplified Chinese, Russian, Turkish, Korean, Czech, Ukrainian, and Swedish. Their
+translations were drafted by machine; corrections are welcome.
 
 Do not translate log messages, quoted messages from the OneDrive client, configuration keys,
 or command-line help.

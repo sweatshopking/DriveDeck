@@ -1164,7 +1164,7 @@ export component AppWindow inherits Window {
                 HorizontalLayout {
                     alignment: start;
                     Segmented {
-                        labels: ["Status", "Folders", "Options", "Activity"];
+                        labels: [@tr("Status"), @tr("Folders"), @tr("Options"), @tr("Activity")];
                         current <=> root.tab;
                         width: min(460px, parent.width);
                     }
@@ -1769,7 +1769,7 @@ export component AppWindow inherits Window {
                                             }
                                             ComboBox {
                                                 accessible-label: @tr("How often to check for changes");
-                                                model: ["5 minutes", "10 minutes", "15 minutes", "30 minutes", "1 hour", "2 hours"];
+                                                model: [@tr("5 minutes"), @tr("10 minutes"), @tr("15 minutes"), @tr("30 minutes"), @tr("1 hour"), @tr("2 hours")];
                                                 current-index <=> root.o-interval;
                                             }
                                             Rectangle {
@@ -1819,7 +1819,7 @@ export component AppWindow inherits Window {
                                             }
                                             ComboBox {
                                                 accessible-label: @tr("Sync speed limit");
-                                                model: ["No limit", "1 MB/s", "2 MB/s", "5 MB/s", "10 MB/s", "25 MB/s", "50 MB/s"];
+                                                model: [@tr("No limit"), @tr("1 MB/s"), @tr("2 MB/s"), @tr("5 MB/s"), @tr("10 MB/s"), @tr("25 MB/s"), @tr("50 MB/s")];
                                                 current-index <=> root.o-rate;
                                             }
                                             Rectangle {
@@ -1848,7 +1848,7 @@ export component AppWindow inherits Window {
                                         }
                                         ComboBox {
                                             accessible-label: @tr("Sync direction");
-                                            model: ["Both ways (normal)", "Download only", "Upload only"];
+                                            model: [@tr("Both ways (normal)"), @tr("Download only"), @tr("Upload only")];
                                             current-index <=> root.o-direction;
                                             // chosen by the user (not loaded): a backup should survive
                                             // tidying up this computer, so keep online copies by default
@@ -2020,7 +2020,7 @@ export component AppWindow inherits Window {
                                                 spacing: 8px;
                                                 LineEdit {
                                                     accessible-label: @tr("Search advanced settings");
-                                                    placeholder-text: "Search settings (threads, timeout, log…)";
+                                                    placeholder-text: @tr("Search settings (threads, timeout, log…)");
                                                     text <=> root.o-adv-query;
                                                     edited(t) => {
                                                         root.o-adv-search(t);
@@ -2217,7 +2217,7 @@ export component AppWindow inherits Window {
                             spacing: 8px;
                             StandardTableView {
                                 vertical-stretch: 1;
-                                columns: [{ title: "When", width: 120px }, { title: "What", width: 110px }, { title: "File", horizontal-stretch: 1 }];
+                                columns: [{ title: @tr("When"), width: 120px }, { title: @tr("What"), width: 110px }, { title: @tr("File"), horizontal-stretch: 1 }];
                                 rows: root.a-rows;
                                 current-row <=> root.a-current;
                             }
@@ -2263,7 +2263,7 @@ export component AppWindow inherits Window {
                         }
                         ChoiceCard {
                             title: @tr("OneDrive");
-                            detail: "A personal Microsoft account (Outlook, Hotmail, Live) or a work or school account.";
+                            detail: @tr("A personal Microsoft account (Outlook, Hotmail, Live) or a work or school account.");
                             height: 86px;
                             clicked => {
                                 root.add-choose(1);
@@ -2271,7 +2271,7 @@ export component AppWindow inherits Window {
                         }
                         ChoiceCard {
                             title: @tr("SharePoint library");
-                            detail: "A document library from a SharePoint or Teams site. You'll need a work or school account added first.";
+                            detail: @tr("A document library from a SharePoint or Teams site. You'll need a work or school account added first.");
                             height: 86px;
                             clicked => {
                                 root.add-choose(2);
@@ -2313,7 +2313,7 @@ export component AppWindow inherits Window {
                                         accessible-label: @tr("SharePoint site address or name");
                                         text <=> root.add-query;
                                         enabled: !root.add-busy;
-                                        placeholder-text: "Paste the site's address, or type part of its name";
+                                        placeholder-text: @tr("Paste the site's address, or type part of its name");
                                         accepted => {
                                             root.add-search();
                                         }
@@ -2392,7 +2392,7 @@ export component AppWindow inherits Window {
                                     LineEdit {
                                         accessible-label: @tr("Account name");
                                         text <=> root.add-name;
-                                        placeholder-text: "e.g. Personal, Work";
+                                        placeholder-text: @tr("e.g. Personal, Work");
                                     }
                                 }
                                 HorizontalLayout {
@@ -2425,7 +2425,7 @@ export component AppWindow inherits Window {
                                     }
                                     ComboBox {
                                         accessible-label: @tr("Microsoft cloud");
-                                        model: ["Worldwide (normal)", "US Government (GCC High)", "US Government (DoD)", "Germany", "China (21Vianet)"];
+                                        model: [@tr("Worldwide (normal)"), @tr("US Government (GCC High)"), @tr("US Government (DoD)"), @tr("Germany"), @tr("China (21Vianet)")];
                                         current-index <=> root.add-cloud;
                                     }
                                     Rectangle {
@@ -2678,7 +2678,7 @@ export component AppWindow inherits Window {
                                 }
                                 ComboBox {
                                     accessible-label: @tr("Glass effect");
-                                    model: ["Automatic", "On", "Off"];
+                                    model: [@tr("Automatic"), @tr("On"), @tr("Off")];
                                     current-index <=> root.app-glass;
                                     selected => {
                                         root.app-glass-changed();
@@ -2915,7 +2915,7 @@ export component AppWindow inherits Window {
                     }
                     UninstallChoice {
                         title: @tr("Keep my OneDrive setup");
-                        detail: "Only this app is removed. Your accounts keep syncing in the background with the OneDrive Client for Linux, which you can keep using from the command line.";
+                        detail: @tr("Only this app is removed. Your accounts keep syncing in the background with the OneDrive Client for Linux, which you can keep using from the command line.");
                         selected: root.u-keep-setup;
                         enabled: !root.u-busy;
                         clicked => {
@@ -2924,7 +2924,7 @@ export component AppWindow inherits Window {
                     }
                     UninstallChoice {
                         title: @tr("Remove everything");
-                        detail: "Also stop all background syncing, sign out, and delete every OneDrive sync configuration on this computer, including ones made with the command-line client.";
+                        detail: @tr("Also stop all background syncing, sign out, and delete every OneDrive sync configuration on this computer, including ones made with the command-line client.");
                         selected: !root.u-keep-setup;
                         enabled: !root.u-busy;
                         clicked => {
@@ -3832,7 +3832,7 @@ export component PopupPanel inherits Window {
                 tr := FileList {
                     height: root.transfers.length == 0 ? 40px : min(3, root.transfers.length) * 50px + 2px;
                     rows: root.transfers;
-                    empty-text: "No large files are transferring right now.";
+                    empty-text: @tr("No large files are transferring right now.");
                     current <=> root.tr-current;
                     open(i) => {
                         root.open-file(true, i);
@@ -3863,7 +3863,7 @@ export component PopupPanel inherits Window {
                 rec := FileList {
                     vertical-stretch: 1;
                     rows: root.recent;
-                    empty-text: "Nothing has synced recently.";
+                    empty-text: @tr("Nothing has synced recently.");
                     current <=> root.rec-current;
                     open(i) => {
                         root.open-file(false, i);
@@ -4204,7 +4204,7 @@ export component FileWindow inherits Window {
                 LineEdit {
                     accessible-label: @tr("Email addresses to invite");
                     text <=> root.emails;
-                    placeholder-text: "name@example.com, another@example.com";
+                    placeholder-text: @tr("name@example.com, another@example.com");
                     input-type: text;
                     enabled: !root.busy;
                 }

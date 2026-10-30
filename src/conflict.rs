@@ -91,7 +91,9 @@ pub fn find(root: &Path, limit: usize) -> Result<(Vec<Conflict>, Option<String>)
     'walk: while let Some(d) = stack.pop() {
         let rd = match fs::read_dir(&d) {
             Ok(rd) => rd,
-            Err(e) if d == root => return Err(format!("Couldn't look in {}: {e}", d.display())),
+            Err(e) if d == root => {
+                return Err(crate::tr!("Couldn't look in {}: {}", d.display(), e));
+            }
             Err(_) => {
                 unreadable += 1;
                 continue;
@@ -136,12 +138,14 @@ pub fn find(root: &Path, limit: usize) -> Result<(Vec<Conflict>, Option<String>)
     }
     out.sort_by_key(|a| std::cmp::Reverse(a.0));
     let note = if stopped {
-        Some(format!(
-            "Stopped looking after {limit} items, so there may be more copies than shown."
+        Some(crate::tr!(
+            "Stopped looking after {} items, so there may be more copies than shown.",
+            limit
         ))
     } else if unreadable > 0 {
-        Some(format!(
-            "{unreadable} item(s) couldn't be read, so there may be more copies than shown."
+        Some(crate::tr!(
+            "{} item(s) couldn't be read, so there may be more copies than shown.",
+            unreadable
         ))
     } else {
         None
@@ -177,7 +181,9 @@ pub fn to_trash(p: &Path) -> Result<(), String> {
             return Ok(());
         }
     }
-    Err("There's no Trash to move it to on this computer, so it was left as it is. Delete it yourself if you're sure.".into())
+    Err(crate::tr!(
+        "There's no Trash to move it to on this computer, so it was left as it is. Delete it yourself if you're sure."
+    ))
 }
 
 /// How to settle a conflict.
@@ -209,24 +215,30 @@ fn clear_name_numbered(c: &Conflict, n: u64) -> Result<PathBuf, String> {
     };
     let suffix = format!(" ({tag}){ext}");
     if suffix.len() >= 255 {
-        return Err("The file extension is too long to make a Keep Both copy safely.".into());
+        return Err(crate::tr!(
+            "The file extension is too long to make a Keep Both copy safely."
+        ));
     }
     let mut end = stem.len().min(255 - suffix.len());
     while !stem.is_char_boundary(end) {
         end -= 1;
     }
     if end == 0 {
-        return Err("The filename is too long to make a Keep Both copy safely.".into());
+        return Err(crate::tr!(
+            "The filename is too long to make a Keep Both copy safely."
+        ));
     }
     Ok(dir.join(format!("{}{suffix}", &stem[..end])))
 }
 
 pub fn settle(c: &Conflict, choice: Choice) -> Result<String, String> {
     if identity(&c.copy) != c.copy_identity || c.copy_identity.is_none() {
-        return Err("That copy isn't there any more.".into());
+        return Err(crate::tr!("That copy isn't there any more."));
     }
     if identity(&c.original) != c.original_identity {
-        return Err("The OneDrive version changed since this list was loaded. Refresh the list and choose again.".into());
+        return Err(crate::tr!(
+            "The OneDrive version changed since this list was loaded. Refresh the list and choose again."
+        ));
     }
     let name = |p: &Path| {
         p.file_name()
@@ -235,15 +247,16 @@ pub fn settle(c: &Conflict, choice: Choice) -> Result<String, String> {
     match choice {
         Choice::KeepMine => {
             // the version being replaced stays in OneDrive's version history
-            fs::rename(&c.copy, &c.original).map_err(|e| format!("Couldn't replace it: {e}"))?;
-            Ok(format!(
+            fs::rename(&c.copy, &c.original)
+                .map_err(|e| crate::tr!("Couldn't replace it: {}", e))?;
+            Ok(crate::tr!(
                 "\"{}\" is now this computer's version. OneDrive's version stays in its version history.",
                 name(&c.original)
             ))
         }
         Choice::KeepOnline => {
             to_trash(&c.copy)?;
-            Ok(format!(
+            Ok(crate::tr!(
                 "Kept OneDrive's version of \"{}\". This computer's copy is in the Trash.",
                 name(&c.original)
             ))
@@ -258,15 +271,15 @@ pub fn settle(c: &Conflict, choice: Choice) -> Result<String, String> {
                         break;
                     }
                     Err(e) if e.kind() == io::ErrorKind::AlreadyExists => continue,
-                    Err(e) => return Err(format!("Couldn't rename it: {e}")),
+                    Err(e) => return Err(crate::tr!("Couldn't rename it: {}", e)),
                 }
             }
             let Some(to) = to else {
-                return Err(
-                    "Couldn't find an unused name for the local copy after 10,000 attempts.".into(),
-                );
+                return Err(crate::tr!(
+                    "Couldn't find an unused name for the local copy after 10,000 attempts."
+                ));
             };
-            Ok(format!(
+            Ok(crate::tr!(
                 "Kept both: this computer's version is \"{}\".",
                 name(&to)
             ))
