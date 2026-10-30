@@ -6,7 +6,7 @@ use std::fs;
 use std::io::{BufRead, BufReader};
 use std::os::fd::{AsRawFd, FromRawFd, OwnedFd};
 use std::process::{Command, Stdio};
-use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::sync::{Arc, Mutex, mpsc};
 use std::thread;
 use std::time::{Duration, Instant};
@@ -39,6 +39,11 @@ struct Acc {
     told_big_delete: bool,
     /// Large files being uploaded or downloaded right now (file manager badges)
     moving: HashSet<String>,
+    /// The client has said nothing for far too long while running (see core::stall_limit)
+    stalled_since: Option<DateTime<Local>>,
+    /// We restarted the service once for being stuck; until a sync completes after this, a
+    /// second stall is reported instead of restarting again
+    stall_restart: Option<DateTime<Local>>,
 }
 
 impl Acc {
@@ -57,18 +62,25 @@ impl Acc {
             told_blocked_order: VecDeque::new(),
             told_big_delete: false,
             moving: HashSet::new(),
+            stalled_since: None,
+            stall_restart: None,
         }
+    }
+    /// The phase from systemd, the log and settings, before any stall is taken into account
+    fn base_phase(&self) -> Phase {
+        core::compose_phase_cached(
+            &self.info,
+            &self.prefs,
+            &self.unit,
+            self.resyncing,
+            self.log_phase,
+        )
     }
     fn status(&self) -> Status {
         Status {
-            phase: core::compose_phase_cached(
-                &self.info,
-                &self.prefs,
-                &self.unit,
-                self.resyncing,
-                self.log_phase,
-            ),
+            phase: core::with_stall(self.base_phase(), self.stalled_since),
             last_complete: self.last_complete,
+            stalled_since: self.stalled_since,
             last_error: self.last_error.clone(),
             blocked: self.blocked.clone(),
             big_delete: None,
@@ -221,7 +233,11 @@ impl Tray {
             || ps.iter().any(|p| {
                 matches!(
                     p,
-                    Phase::Error | Phase::NeedsResync | Phase::SignedOut | Phase::BigDelete
+                    Phase::Error
+                        | Phase::NeedsResync
+                        | Phase::SignedOut
+                        | Phase::BigDelete
+                        | Phase::Stalled
                 )
             })
         {
@@ -616,6 +632,76 @@ fn clear_moving(handle: &ksni::blocking::Handle<Tray>, unit: &str) {
 struct FollowControl {
     stop: AtomicBool,
     done: AtomicBool,
+    /// When the unit's log last said anything, in awake_secs(), so time spent suspended
+    /// doesn't count as silence
+    heard: AtomicU64,
+}
+
+impl FollowControl {
+    fn new() -> Self {
+        FollowControl {
+            stop: AtomicBool::new(false),
+            done: AtomicBool::new(false),
+            heard: AtomicU64::new(awake_secs()),
+        }
+    }
+}
+
+#[derive(Debug, PartialEq)]
+enum StallStep {
+    /// Not stuck (or no longer)
+    Fine,
+    /// Stuck, and already reported
+    Still,
+    /// Newly stuck, and ours: restart it once
+    Restart(String),
+    /// Newly stuck, and restarting didn't help or isn't ours to do: show and tell
+    Report,
+}
+
+/// What to do about an account whose log has been silent for `silent` awake seconds. `limit`
+/// (which reads the client's config) is only asked once the silence is long enough to matter.
+fn stall_step(a: &Acc, silent: u64, min: u64, limit: impl FnOnce() -> u64) -> StallStep {
+    let running = a.unit.active && !a.unit.starting && !a.unit.retrying;
+    let claims_fine = matches!(
+        a.base_phase(),
+        Phase::UpToDate | Phase::Syncing | Phase::Unknown
+    );
+    if !(running && claims_fine && silent >= min && silent >= limit()) {
+        return StallStep::Fine;
+    }
+    if a.stalled_since.is_some() {
+        return StallStep::Still;
+    }
+    // a restart only counts as tried until a sync completes after it
+    let tried = a
+        .stall_restart
+        .is_some_and(|r| a.last_complete.is_none_or(|c| c < r));
+    match &a.info.unit {
+        Some(u) if a.info.managed && !tried => StallStep::Restart(u.clone()),
+        _ => StallStep::Report,
+    }
+}
+
+/// End-to-end tests can't wait half an hour (test builds only).
+fn test_stall_secs() -> Option<u64> {
+    #[cfg(feature = "test-driver")]
+    if let Some(secs) = std::env::var("DRIVEDECK_TEST_STALL_SECS")
+        .ok()
+        .and_then(|v| v.parse().ok())
+    {
+        return Some(secs);
+    }
+    None
+}
+
+/// Nothing counts as stuck sooner than this, whatever the account's monitor_interval
+const STALL_MIN_SECS: u64 = 30 * 60;
+
+/// Seconds the computer has been awake since the tray started (Instant doesn't count suspend).
+fn awake_secs() -> u64 {
+    static START: std::sync::OnceLock<Instant> = std::sync::OnceLock::new();
+    START.get_or_init(Instant::now).elapsed().as_secs()
 }
 
 struct FollowDone(Arc<FollowControl>);
@@ -830,6 +916,7 @@ fn follow(handle: ksni::blocking::Handle<Tray>, unit: String, control: Arc<Follo
                 Ok(0) | Err(_) => break,
                 Ok(_) => {}
             }
+            control.heard.store(awake_secs(), Ordering::Relaxed);
             let line = String::from_utf8_lossy(&raw);
             if let Some((when, msg)) = core::split_journal_line(line.trim_end())
                 && let Some(ev) = core::parse_log(msg)
@@ -871,6 +958,7 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
     let mut last_phase: HashMap<String, Phase> = HashMap::new();
     tray_started();
     let mut replaced_seen = false;
+    let mut had_stalls = false;
     let mut round = 0u32;
     // first look for a new version a minute in (not in the rush of logging in), then daily
     let mut next_update_check = Instant::now() + Duration::from_secs(60);
@@ -989,10 +1077,7 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
             if let Some(u) = &i.unit
                 && !following.contains_key(u)
             {
-                let control = Arc::new(FollowControl {
-                    stop: AtomicBool::new(false),
-                    done: AtomicBool::new(false),
-                });
+                let control = Arc::new(FollowControl::new());
                 following.insert(u.clone(), control.clone());
                 let (h, u) = (handle.clone(), u.clone());
                 thread::spawn(move || follow(h, u, control));
@@ -1022,6 +1107,65 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
                 t.accs.push(a);
             }
         });
+        // A running client that has said nothing for far too long is stuck. One we manage is
+        // restarted once quietly; if it gets stuck again before finishing a sync, or isn't ours
+        // to restart, the account shows "Not responding" and the user is told.
+        let now_awake = awake_secs();
+        let test_stall = test_stall_secs();
+        let silence: HashMap<String, u64> = following
+            .iter()
+            .map(|(u, c)| {
+                let heard = c.heard.load(Ordering::Relaxed);
+                (u.clone(), now_awake.saturating_sub(heard))
+            })
+            .collect();
+        let restart: Vec<String> = handle
+            .update(|t: &mut Tray| {
+                let mut restart = Vec::new();
+                for a in &mut t.accs {
+                    let silent = a
+                        .info
+                        .unit
+                        .as_ref()
+                        .and_then(|u| silence.get(u).copied())
+                        .unwrap_or(0);
+                    let confdir = a.info.confdir.clone();
+                    let limit =
+                        || test_stall.unwrap_or_else(|| core::stall_limit(&confdir).as_secs());
+                    match stall_step(a, silent, test_stall.unwrap_or(STALL_MIN_SECS), limit) {
+                        StallStep::Fine => a.stalled_since = None,
+                        StallStep::Still => {}
+                        StallStep::Restart(unit) => {
+                            a.stall_restart = Some(Local::now());
+                            restart.push(unit);
+                        }
+                        StallStep::Report => {
+                            let silent = chrono::Duration::seconds(silent as i64);
+                            a.stalled_since = Some(Local::now() - silent);
+                        }
+                    }
+                }
+                restart
+            })
+            .unwrap_or_default();
+        for unit in restart {
+            if let Some(c) = following.get(&unit) {
+                c.heard.store(awake_secs(), Ordering::Relaxed);
+            }
+            core::run_detached("systemctl", &["--user", "restart", &unit]);
+        }
+        let stalls: Vec<(std::path::PathBuf, DateTime<Local>)> = handle
+            .update(|t: &mut Tray| {
+                t.accs
+                    .iter()
+                    .filter_map(|a| Some((a.info.confdir.clone(), a.stalled_since?)))
+                    .collect()
+            })
+            .unwrap_or_default();
+        if had_stalls || !stalls.is_empty() {
+            core::write_stalls(&stalls);
+        }
+        had_stalls = !stalls.is_empty();
         // tell the user when an account newly needs attention
         let phases: Vec<(String, String, Phase, Option<String>, bool)> = handle
             .update(|t: &mut Tray| {
@@ -1054,7 +1198,11 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
             let bad = |p: Phase| {
                 matches!(
                     p,
-                    Phase::Error | Phase::NeedsResync | Phase::SignedOut | Phase::BigDelete
+                    Phase::Error
+                        | Phase::NeedsResync
+                        | Phase::SignedOut
+                        | Phase::BigDelete
+                        | Phase::Stalled
                 )
             };
             // A big delete is told about once until a sync finishes (the log decides, so a
@@ -1080,6 +1228,9 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
                     }
                     Phase::NeedsResync => {
                         "The sync engine needs a full resync. Open Settings to review and apply it."
+                    }
+                    Phase::Stalled => {
+                        "Syncing has stopped making progress, though it is still running. Click the OneDrive icon and choose Sync now to restart it."
                     }
                     _ => "Syncing hit an error. Open the tray menu for details.",
                 };
@@ -1300,6 +1451,94 @@ mod tests {
         )
     }
 
+    fn running(a: &mut Acc) {
+        a.unit.exists = true;
+        a.unit.active = true;
+        a.unit.enabled = true;
+        a.log_phase = Phase::UpToDate;
+    }
+
+    #[test]
+    fn a_quiet_client_is_restarted_once_then_reported() {
+        let mut a = acc();
+        running(&mut a);
+        let hour = 3600;
+        // quiet, but not for long enough
+        assert_eq!(
+            stall_step(&a, 10 * 60, STALL_MIN_SECS, || 1800),
+            StallStep::Fine
+        );
+        assert_eq!(
+            stall_step(&a, hour, STALL_MIN_SECS, || 2 * hour),
+            StallStep::Fine
+        );
+        // stuck: ours, so restarted first
+        assert_eq!(
+            stall_step(&a, hour, STALL_MIN_SECS, || 1800),
+            StallStep::Restart("onedrive-work".into())
+        );
+        a.stall_restart = Some(Local::now());
+        // stuck again with no sync completed since: report, then stay reported
+        assert_eq!(
+            stall_step(&a, hour, STALL_MIN_SECS, || 1800),
+            StallStep::Report
+        );
+        a.stalled_since = Some(Local::now());
+        assert_eq!(a.status().phase, Phase::Stalled);
+        assert_eq!(
+            stall_step(&a, hour, STALL_MIN_SECS, || 1800),
+            StallStep::Still
+        );
+        // a sync completed after the restart: next time, restart again
+        a.stalled_since = None;
+        a.last_complete = Some(Local::now() + chrono::Duration::seconds(1));
+        assert!(matches!(
+            stall_step(&a, hour, STALL_MIN_SECS, || 1800),
+            StallStep::Restart(_)
+        ));
+        // talking again clears it
+        assert_eq!(stall_step(&a, 5, STALL_MIN_SECS, || 1800), StallStep::Fine);
+    }
+
+    #[test]
+    fn only_a_running_client_that_claims_all_is_well_can_be_stuck() {
+        let hour = 3600;
+        let mut a = acc();
+        running(&mut a);
+        a.info.managed = false;
+        // a service someone else set up is never restarted for them
+        assert_eq!(
+            stall_step(&a, hour, STALL_MIN_SECS, || 1800),
+            StallStep::Report
+        );
+        // a known problem, a stop or a restart in progress already says more
+        a.log_phase = Phase::Error;
+        assert_eq!(
+            stall_step(&a, hour, STALL_MIN_SECS, || 1800),
+            StallStep::Fine
+        );
+        a.log_phase = Phase::UpToDate;
+        a.unit.active = false;
+        assert_eq!(
+            stall_step(&a, hour, STALL_MIN_SECS, || 1800),
+            StallStep::Fine
+        );
+        a.unit.active = true;
+        a.unit.starting = true;
+        assert_eq!(
+            stall_step(&a, hour, STALL_MIN_SECS, || 1800),
+            StallStep::Fine
+        );
+        // the limit is only read once the silence is long enough to matter
+        a.unit.starting = false;
+        assert_eq!(
+            stall_step(&a, 60, STALL_MIN_SECS, || panic!(
+                "read the config too early"
+            )),
+            StallStep::Fine
+        );
+    }
+
     fn blocked(path: &str, reason: core::BlockReason) -> LogEvent {
         LogEvent::Blocked {
             path: path.into(),
@@ -1326,10 +1565,7 @@ mod tests {
 
     #[test]
     fn removed_quiet_followers_are_cancelled_then_pruned() {
-        let control = Arc::new(FollowControl {
-            stop: AtomicBool::new(false),
-            done: AtomicBool::new(false),
-        });
+        let control = Arc::new(FollowControl::new());
         let mut following = HashMap::from([("onedrive-a.service".into(), control.clone())]);
         prune_followers(&mut following, &HashSet::new());
         assert!(control.stop.load(Ordering::Acquire));

@@ -319,6 +319,7 @@ pub(crate) fn take_snapshot() -> Snapshot {
     let _ = core::device_hold();
     let settings = AppSettings::load();
     let (infos, mut unit_states) = core::discover_with_states(&settings);
+    let stalls = core::read_stalls();
     let statuses = infos
         .iter()
         .map(|i| {
@@ -332,9 +333,14 @@ pub(crate) fn take_snapshot() -> Snapshot {
                 core::cached_unit_state(&mut unit_states, &resync_unit, core::unit_state).active;
             let log = log_state(i.unit.as_deref());
             let prefs = settings.prefs(&i.confdir);
+            let stalled_since = stalls.get(&i.confdir).copied();
             Status {
-                phase: core::compose_phase(i, &prefs, &unit, resyncing, log.phase),
+                phase: core::with_stall(
+                    core::compose_phase(i, &prefs, &unit, resyncing, log.phase),
+                    stalled_since,
+                ),
                 last_complete: log.last_complete,
+                stalled_since,
                 last_error: log.last_error,
                 blocked: log.blocked,
                 big_delete: log.big_delete,
@@ -355,7 +361,11 @@ pub(crate) fn tone(s: &Status) -> i32 {
         Phase::UpToDate if s.unsynced_changes() > 0 => 2,
         Phase::UpToDate => 0,
         Phase::Syncing | Phase::Resyncing | Phase::Unknown => 1,
-        Phase::Error | Phase::NeedsResync | Phase::SignedOut | Phase::BigDelete => 2,
+        Phase::Error
+        | Phase::NeedsResync
+        | Phase::SignedOut
+        | Phase::BigDelete
+        | Phase::Stalled => 2,
         Phase::Off | Phase::Stopped | Phase::Paused => 3,
     }
 }
@@ -599,6 +609,7 @@ fn show_status(c: &Ctx, i: usize) {
         Phase::NeedsResync => "The sync engine needs a full resync before it can continue. Open the Folders tab and press \"Apply changes…\", or turn on \"Allow full resyncs\" in Options and save.".into(),
         Phase::SignedOut if a.signed_in => "Microsoft no longer accepts the saved sign-in (this happens after a password change, or when access is revoked). Sign in again to continue.".into(),
         Phase::BigDelete => core::big_delete_text(&s.big_delete.clone().unwrap_or_default()),
+        Phase::Stalled => "The sync engine is running but has stopped making progress, so changes aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, check your network connection.".into(),
         _ => String::new(),
     };
     let blocked = core::blocked_text(&s.blocked);
@@ -4462,6 +4473,7 @@ fn add_create_ready(ctx: &Shared) {
                 Phase::SignedOut
             },
             last_complete: None,
+            stalled_since: None,
             last_error: None,
             blocked: Vec::new(),
             big_delete: None,

@@ -2644,6 +2644,9 @@ pub enum Phase {
     NeedsResync,
     /// Stopped rather than delete many items online; the user decides
     BigDelete,
+    /// The service is running but the client has gone quiet for far longer than its
+    /// monitor_interval: stuck (a hung network call, a wedged process)
+    Stalled,
 }
 
 impl Phase {
@@ -2652,9 +2655,11 @@ impl Phase {
         match self {
             Phase::Syncing | Phase::Unknown | Phase::Resyncing => "drivedeck-sync",
             Phase::UpToDate => "drivedeck-ok",
-            Phase::Error | Phase::NeedsResync | Phase::SignedOut | Phase::BigDelete => {
-                "drivedeck-error"
-            }
+            Phase::Error
+            | Phase::NeedsResync
+            | Phase::SignedOut
+            | Phase::BigDelete
+            | Phase::Stalled => "drivedeck-error",
             Phase::Stopped | Phase::Off | Phase::Paused => "drivedeck-off",
         }
     }
@@ -2673,6 +2678,8 @@ pub fn short_time(t: DateTime<Local>) -> String {
 pub struct Status {
     pub phase: Phase,
     pub last_complete: Option<DateTime<Local>>,
+    /// When the client was last heard from, while it is Stalled
+    pub stalled_since: Option<DateTime<Local>>,
     pub last_error: Option<String>,
     /// Files the client left unsynced while the account itself is fine
     pub blocked: Vec<Blocked>,
@@ -2722,9 +2729,81 @@ impl Status {
             Phase::SignedOut => "Signed out".into(),
             Phase::NeedsResync => "Needs a full resync".into(),
             Phase::BigDelete => "Stopped to protect your files".into(),
+            Phase::Stalled => match self.stalled_since {
+                Some(t) => format!("Not responding since {}", short_time(t)),
+                None => "Not responding".into(),
+            },
             Phase::Unknown => "Waiting for first sync".into(),
         }
     }
+}
+
+/// How long a running client may stay silent before it counts as stuck. In --monitor mode it
+/// logs "Sync with Microsoft OneDrive is complete" after every pass (every monitor_interval,
+/// 300 s by default), and large transfers log their progress, so three missed passes, and never
+/// less than half an hour, is well past normal.
+pub fn stall_limit(confdir: &Path) -> std::time::Duration {
+    let interval = ClientConfig::load(confdir)
+        .get("monitor_interval")
+        .and_then(|v| v.trim().parse::<u64>().ok())
+        .filter(|&v| v > 0)
+        .unwrap_or(300);
+    std::time::Duration::from_secs(interval.saturating_mul(3).max(30 * 60))
+}
+
+/// The phase to show once the tray has found the client stuck: only a state that claims all is
+/// well (or in progress) is replaced; a stop, pause or known problem says more.
+pub fn with_stall(phase: Phase, stalled_since: Option<DateTime<Local>>) -> Phase {
+    match (phase, stalled_since) {
+        (Phase::UpToDate | Phase::Syncing | Phase::Unknown, Some(_)) => Phase::Stalled,
+        (p, _) => p,
+    }
+}
+
+/// The tray's list of stuck accounts, shared with the window and panel (which can't tell by
+/// themselves: they don't watch the log over time). The tray rewrites it every few seconds while
+/// anything is stuck and removes it when nothing is, so an old file (a tray that quit) is ignored.
+fn stalls_file() -> PathBuf {
+    runtime_dir().join("stalled")
+}
+
+pub fn write_stalls(stalls: &[(PathBuf, DateTime<Local>)]) {
+    let file = stalls_file();
+    if stalls.is_empty() {
+        let _ = fs::remove_file(&file);
+        return;
+    }
+    let text: String = stalls
+        .iter()
+        .map(|(confdir, since)| format!("{}\t{}\n", since.timestamp(), confdir.display()))
+        .collect();
+    if let Some(dir) = file.parent() {
+        let _ = fs::create_dir_all(dir);
+    }
+    let _ = atomic_write(&file, text.as_bytes());
+}
+
+pub fn read_stalls() -> HashMap<PathBuf, DateTime<Local>> {
+    let file = stalls_file();
+    let fresh = fs::metadata(&file)
+        .and_then(|m| m.modified())
+        .ok()
+        .and_then(|t| t.elapsed().ok())
+        .is_some_and(|age| age.as_secs() < 30);
+    if !fresh {
+        return HashMap::new();
+    }
+    parse_stalls(&fs::read_to_string(&file).unwrap_or_default())
+}
+
+fn parse_stalls(text: &str) -> HashMap<PathBuf, DateTime<Local>> {
+    text.lines()
+        .filter_map(|line| {
+            let (ts, confdir) = line.split_once('\t')?;
+            let since = Local.timestamp_opt(ts.parse().ok()?, 0).single()?;
+            Some((PathBuf::from(confdir), since))
+        })
+        .collect()
 }
 
 /// Works out the phase from a fresh look at systemd plus log-derived state.
@@ -3550,6 +3629,7 @@ mod tests {
         let mut st = Status {
             phase: Phase::UpToDate,
             last_complete: None,
+            stalled_since: None,
             last_error: None,
             big_delete: None,
             blocked: vec![one("a.txt", BlockReason::Locked)],
@@ -3582,6 +3662,7 @@ mod tests {
         let mut st = Status {
             phase: Phase::UpToDate,
             last_complete: None,
+            stalled_since: None,
             last_error: None,
             big_delete: None,
             blocked: vec![Blocked {
@@ -3895,5 +3976,44 @@ mod tests {
         atomic_write(&path, b"test content").unwrap();
         assert_eq!(fs::read(&path).unwrap(), b"test content");
         let _ = fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn stall_limit_follows_the_monitor_interval() {
+        let dir = std::env::temp_dir().join(format!("lodg-stall-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&dir);
+        fs::create_dir_all(&dir).unwrap();
+        let limit = |config: &str| {
+            fs::write(dir.join("config"), config).unwrap();
+            stall_limit(&dir).as_secs()
+        };
+        assert_eq!(limit(""), 1800);
+        assert_eq!(limit("monitor_interval = \"300\"\n"), 1800);
+        assert_eq!(limit("monitor_interval = \"1200\"\n"), 3600);
+        assert_eq!(limit("monitor_interval = \"soon\"\n"), 1800);
+        assert_eq!(limit("monitor_interval = \"0\"\n"), 1800);
+        let _ = fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn a_stall_only_replaces_a_state_that_claims_all_is_well() {
+        let t = Some(Local::now());
+        assert_eq!(with_stall(Phase::UpToDate, t), Phase::Stalled);
+        assert_eq!(with_stall(Phase::Syncing, t), Phase::Stalled);
+        assert_eq!(with_stall(Phase::Paused, t), Phase::Paused);
+        assert_eq!(with_stall(Phase::Error, t), Phase::Error);
+        assert_eq!(with_stall(Phase::UpToDate, None), Phase::UpToDate);
+    }
+
+    #[test]
+    fn stalls_file_round_trips() {
+        let a = Local.timestamp_opt(1_800_000_000, 0).single().unwrap();
+        let text = format!(
+            "{}\t/home/u/.config/onedrive work\nnonsense\n",
+            a.timestamp()
+        );
+        let got = parse_stalls(&text);
+        assert_eq!(got.len(), 1);
+        assert_eq!(got[&PathBuf::from("/home/u/.config/onedrive work")], a);
     }
 }
