@@ -46,4 +46,5 @@ cp -a %{stage}/. %{buildroot}/
 /usr/share/icons/hicolor/256x256/apps/drivedeck.png
 /usr/share/icons/hicolor/scalable/status/drivedeck-*.svg
 /usr/share/kio/servicemenus/drivedeck.desktop
+/usr/share/kio/servicemenus/drivedeck-office.desktop
 @PLUGIN@

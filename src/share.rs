@@ -1,4 +1,4 @@
-//! File-manager actions: copy a sharing link for a synced file, or open it on the OneDrive website.
+//! File-manager actions: copy a sharing link for a synced file, or open it online.
 //! Also desktop notifications and clipboard helpers shared with the tray.
 
 use std::fs;
@@ -87,22 +87,11 @@ pub(crate) fn locate(path: &Path) -> Result<(core::AccountInfo, String), String>
 /// Copies a sharing link to `path`: view-only, or one that lets people edit (change, add or
 /// delete what's in a folder).
 pub fn share_link(path: &Path, edit: bool) {
-    let result = locate(path).and_then(|(acc, rel)| {
-        // a link to the top of an account would expose everything in it
-        if rel.is_empty() {
-            return Err(format!(
-                "That's the whole of \"{}\". Share a file or folder inside it instead.",
-                acc.name
-            ));
-        }
-        let t = graph::token(&acc.confdir)?;
-        graph::create_link(&t, acc.drive_id.as_deref(), &rel, &acc.kind, edit)
-    });
     let name = path
         .file_name()
         .map(|n| n.to_string_lossy().to_string())
         .unwrap_or_default();
-    match result {
+    match create_share_link(path, edit) {
         Ok((link, scope)) => {
             let who = match scope {
                 graph::LinkScope::Anyone => "Anyone with the link",
@@ -124,6 +113,33 @@ pub fn share_link(path: &Path, edit: bool) {
     }
 }
 
+/// A new sharing link for `path`, and who it actually lets in (the service may narrow it).
+pub fn create_share_link(path: &Path, edit: bool) -> Result<(String, graph::LinkScope), String> {
+    let (acc, rel) = locate(path)?;
+    // a link to the top of an account would expose everything in it
+    if rel.is_empty() {
+        return Err(format!(
+            "That's the whole of \"{}\". Share a file or folder inside it instead.",
+            acc.name
+        ));
+    }
+    let t = graph::token(&acc.confdir)?;
+    graph::create_link(&t, acc.drive_id.as_deref(), &rel, &acc.kind, edit)
+}
+
+pub fn print_share_link(path: &Path, edit: bool) -> i32 {
+    match create_share_link(path, edit) {
+        Ok((link, _)) => {
+            println!("{link}");
+            0
+        }
+        Err(e) => {
+            eprintln!("Couldn't create a link: {e}");
+            1
+        }
+    }
+}
+
 pub fn view_online(path: &Path) {
     let result = locate(path).and_then(|(acc, rel)| {
         let t = graph::token(&acc.confdir)?;
@@ -136,8 +152,17 @@ pub fn view_online(path: &Path) {
 }
 
 fn service_menu_body() -> String {
-    include_str!("../packaging/drivedeck-servicemenu.desktop")
-        .replace("Exec=drivedeck", &format!("Exec={}", core::desktop_exec()))
+    menu_body(include_str!("../packaging/drivedeck-servicemenu.desktop"))
+}
+
+fn office_service_menu_body() -> String {
+    menu_body(include_str!(
+        "../packaging/drivedeck-servicemenu-office.desktop"
+    ))
+}
+
+fn menu_body(template: &str) -> String {
+    template.replace("Exec=drivedeck", &format!("Exec={}", core::desktop_exec()))
 }
 
 /// The tray's status pictures. Plasma looks a tray icon's name up in the icon theme before the
@@ -206,12 +231,25 @@ pub fn refresh_user_icons() {
 /// version. Does nothing if there's no copy, or it's current.
 pub fn refresh_service_menu() {
     let data = core::data_home();
-    let file = data.join(format!("kio/servicemenus/{}.desktop", core::APP_ID));
-    match fs::read_to_string(&file) {
-        Ok(old) if old != service_menu_body() => {
-            let _ = install_service_menu(&data);
-        }
-        _ => {}
+    let dir = data.join("kio/servicemenus");
+    // only a copy the user's app put there itself (an AppImage's); packages ship their own in
+    // /usr/share, and a second one in the home folder would show every entry twice
+    if !dir.join(format!("{}.desktop", core::APP_ID)).is_file() {
+        return;
+    }
+    let menus = [
+        (format!("{}.desktop", core::APP_ID), service_menu_body()),
+        (
+            format!("{}-office.desktop", core::APP_ID),
+            office_service_menu_body(),
+        ),
+    ];
+    if menus.iter().any(|(name, body)| {
+        fs::read_to_string(dir.join(name))
+            .map(|old| old != *body)
+            .unwrap_or(true)
+    }) {
+        let _ = install_service_menu(&data);
     }
 }
 
@@ -241,9 +279,64 @@ pub fn install_service_menu(data_dir: &Path) -> std::io::Result<PathBuf> {
     let dir = data_dir.join("kio/servicemenus");
     fs::create_dir_all(&dir)?;
     let file = dir.join(format!("{}.desktop", core::APP_ID));
-    core::atomic_write(&file, service_menu_body().as_bytes())?;
+    install_service_menu_file(&file, &service_menu_body())?;
+    install_service_menu_file(
+        &dir.join(format!("{}-office.desktop", core::APP_ID)),
+        &office_service_menu_body(),
+    )?;
+    Ok(file)
+}
+
+fn install_service_menu_file(file: &Path, body: &str) -> std::io::Result<()> {
+    core::atomic_write(file, body.as_bytes())?;
     // KDE only runs user service menus that are marked executable
     use std::os::unix::fs::PermissionsExt;
-    fs::set_permissions(&file, fs::Permissions::from_mode(0o755))?;
-    Ok(file)
+    fs::set_permissions(file, fs::Permissions::from_mode(0o755))?;
+    Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn office_service_menu_is_limited_to_supported_document_types() {
+        let menu = include_str!("../packaging/drivedeck-servicemenu-office.desktop");
+        let mime_types = [
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/vnd.ms-word.document.macroEnabled.12",
+            "application/vnd.ms-excel",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "application/vnd.ms-excel.sheet.macroEnabled.12",
+            "application/vnd.ms-powerpoint",
+            "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+            "application/vnd.ms-powerpoint.presentation.macroEnabled.12",
+            "application/vnd.oasis.opendocument.text",
+            "application/vnd.oasis.opendocument.spreadsheet",
+            "application/vnd.oasis.opendocument.presentation",
+        ];
+        let mime_line = menu
+            .lines()
+            .find_map(|line| line.strip_prefix("MimeType="))
+            .expect("Office service menu has a MIME type line");
+        assert_eq!(
+            mime_line
+                .split(';')
+                .filter(|mime| !mime.is_empty())
+                .collect::<Vec<_>>(),
+            mime_types
+        );
+        assert!(menu.contains("Name=Edit in Office on the web"));
+        assert!(menu.contains("Exec=drivedeck --office-online %f"));
+        assert!(menu.contains("X-KDE-Submenu=OneDrive"));
+    }
+
+    #[test]
+    fn service_menu_bodies_use_the_installed_command() {
+        for body in [service_menu_body(), office_service_menu_body()] {
+            assert!(!body.contains("Exec=drivedeck"));
+            assert!(body.contains(&format!("Exec={}", core::desktop_exec())));
+        }
+    }
 }

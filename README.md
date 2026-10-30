@@ -211,6 +211,18 @@ It covers what the OneDrive app on Windows does, and then some. In short:
 - **Light on your computer.** It's written in Rust, a language that compiles to a small, fast native
   program: no built-in web browser engine, and no Python or Java needed. The download is 10–14 MB.
 
+### From the terminal
+
+You can check syncing, start a sync, or print a sharing link without opening the app:
+
+```sh
+drivedeck --status
+drivedeck --status --json
+drivedeck --sync-now
+drivedeck --print-link "/path/to/OneDrive/report.docx"
+drivedeck --print-link "/path/to/OneDrive/report.docx" --edit
+```
+
 ### How much memory and CPU it uses
 
 Measured on a desktop PC with three accounts syncing:

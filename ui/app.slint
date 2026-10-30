@@ -737,6 +737,18 @@ export component AppWindow inherits Window {
     in-out property <bool> o-cleanup;
     in-out property <bool> o-keep-online;
     in-out property <string> o-skip-dirs;
+    in-out property <bool> o-dev-visible;
+    in-out property <bool> o-dev-git: true;
+    in-out property <bool> o-dev-node-modules: true;
+    in-out property <bool> o-dev-target: true;
+    in-out property <bool> o-dev-pycache: true;
+    in-out property <bool> o-dev-venv: true;
+    in-out property <bool> o-dev-venv-alt: true;
+    in-out property <bool> o-dev-gradle: true;
+    in-out property <bool> o-dev-idea: true;
+    in-out property <bool> o-dev-cache: true;
+    in-out property <bool> o-dev-build;
+    in-out property <bool> o-dev-dist;
     in-out property <bool> o-skip-symlinks;
     in-out property <bool> o-nosync;
     in property <bool> o-is-business;
@@ -752,6 +764,9 @@ export component AppWindow inherits Window {
     in property <bool> o-adv-any-match;
     callback o-adv-search(string);
     callback o-save();
+    callback o-dev-open();
+    callback o-dev-add();
+    callback o-dev-cancel();
     callback o-show-config();
     callback o-open-logs();
     // the client's full running settings (--display-config)
@@ -824,6 +839,12 @@ export component AppWindow inherits Window {
     callback app-check-updates-toggled();
     in-out property <bool> app-pause-metered;
     in-out property <bool> app-pause-saver;
+    in property <bool> app-screenshot-supported;
+    in-out property <bool> app-screenshot-enabled;
+    in property <[string]> app-screenshot-accounts;
+    in-out property <int> app-screenshot-account;
+    in property <string> app-screenshot-hint;
+    callback app-screenshot-toggled();
     in-out property <bool> app-badges;
     in property <bool> app-dolphin-offer;
     in property <bool> app-dolphin-busy;
@@ -1905,6 +1926,12 @@ export component AppWindow inherits Window {
                                                 text <=> root.o-skip-dirs;
                                                 placeholder-text: "node_modules|Temp|Cache";
                                             }
+                                            Button {
+                                                text: "Add developer folders…";
+                                                clicked => {
+                                                    root.o-dev-open();
+                                                }
+                                            }
                                         }
                                         Hint {
                                             text: "A name skips every folder called that; a path like Projects/Old skips that folder.";
@@ -2506,6 +2533,29 @@ export component AppWindow inherits Window {
                             }
                             Hint {
                                 text: "Syncing carries on by itself afterwards. \"Sync now\" still syncs for an hour if you need it to.";
+                            }
+                            if root.app-screenshot-supported: CheckBox {
+                                text: "Save screenshots to OneDrive";
+                                checked <=> root.app-screenshot-enabled;
+                                toggled => {
+                                    root.app-screenshot-toggled();
+                                }
+                            }
+                            if root.app-screenshot-supported && !root.app-screenshot-enabled && root.app-screenshot-accounts.length > 1: HorizontalLayout {
+                                spacing: 8px;
+                                Text {
+                                    text: "Save screenshots in";
+                                    vertical-alignment: center;
+                                    width: 150px;
+                                }
+                                ComboBox {
+                                    accessible-label: "OneDrive account for screenshots";
+                                    model: root.app-screenshot-accounts;
+                                    current-index <=> root.app-screenshot-account;
+                                }
+                            }
+                            if root.app-screenshot-supported && root.app-screenshot-hint != "": Hint {
+                                text: root.app-screenshot-hint;
                             }
                             CheckBox {
                                 text: "Show sync badges on files in Dolphin, Nemo and Caja";
@@ -3187,6 +3237,92 @@ export component AppWindow inherits Window {
                         primary: true;
                         clicked => {
                             root.ci-confirm();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if root.o-dev-visible: Overlay {
+        width: root.width;
+        height: root.height;
+        Card {
+            width: min(520px, root.width - 40px);
+            height: dev-layout.preferred-height;
+            background: Theme.dialog;
+            border-radius: 14px;
+            drop-shadow-blur: 30px;
+            drop-shadow-offset-y: 8px;
+            drop-shadow-color: #00000059;
+            dev-layout := VerticalLayout {
+                padding: 20px;
+                spacing: 8px;
+                Heading {
+                    text: "Skip developer folders";
+                    font-size: 16px;
+                }
+                CheckBox {
+                    text: ".git";
+                    checked <=> root.o-dev-git;
+                }
+                CheckBox {
+                    text: "node_modules";
+                    checked <=> root.o-dev-node-modules;
+                }
+                CheckBox {
+                    text: "target";
+                    checked <=> root.o-dev-target;
+                }
+                CheckBox {
+                    text: "__pycache__";
+                    checked <=> root.o-dev-pycache;
+                }
+                CheckBox {
+                    text: ".venv";
+                    checked <=> root.o-dev-venv;
+                }
+                CheckBox {
+                    text: "venv";
+                    checked <=> root.o-dev-venv-alt;
+                }
+                CheckBox {
+                    text: ".gradle";
+                    checked <=> root.o-dev-gradle;
+                }
+                CheckBox {
+                    text: ".idea";
+                    checked <=> root.o-dev-idea;
+                }
+                CheckBox {
+                    text: ".cache";
+                    checked <=> root.o-dev-cache;
+                }
+                CheckBox {
+                    text: "build";
+                    checked <=> root.o-dev-build;
+                }
+                CheckBox {
+                    text: "dist";
+                    checked <=> root.o-dev-dist;
+                }
+                Hint {
+                    text: "build and dist are common folder names too, so select them only if you mean to skip them.";
+                }
+                HorizontalLayout {
+                    spacing: 8px;
+                    alignment: end;
+                    Button {
+                        text: "Cancel";
+                        clicked => {
+                            root.o-dev-cancel();
+                        }
+                    }
+                    Button {
+                        text: "Add";
+                        primary: true;
+                        clicked => {
+                            root.o-dev-add();
                         }
                     }
                 }
