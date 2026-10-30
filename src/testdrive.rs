@@ -22,7 +22,9 @@ use std::time::{Duration, Instant};
 
 use slint::{ComponentHandle, SharedString};
 
-use crate::ui::{AppWindow, FileWindow, PanelAccount, PanelFile, PopupPanel, VersionRow};
+use crate::ui::{
+    AccessRow, AppWindow, FileWindow, PanelAccount, PanelFile, PopupPanel, VersionRow,
+};
 
 /// A window the script can drive.
 pub trait Driven: ComponentHandle + 'static {
@@ -103,6 +105,21 @@ impl Driven for FileWindow {
             v("21 Oct 2026, 11:30", "44 KB  ·  saved by Alex Rivera"),
             v("14 Oct 2026, 16:48", "39 KB  ·  saved by Alex Rivera"),
             v("2 Oct 2026, 10:05", "31 KB  ·  saved by Alex Rivera"),
+        ])));
+        let a = |who: &str, detail: &str, inherited: bool| AccessRow {
+            who: who.into(),
+            detail: detail.into(),
+            inherited,
+        };
+        self.set_access_rows(ModelRc::new(VecModel::from(vec![
+            a(
+                "Anyone with the link",
+                "Can view  ·  until 1 Dec 2026, 00:00",
+                false,
+            ),
+            a("Sam Lee", "Can edit", false),
+            a("Marketing team", "Can view  ·  from a folder above", true),
+            a("jordan@example.com", "Can view", false),
         ])));
         println!("STEP demo");
     }
@@ -447,6 +464,21 @@ fn set(ui: &AppWindow, k: &str, v: &str) -> bool {
         "add_query" => ui.set_add_query(s),
         "add_from_index" => ui.set_add_from_index(i),
         "s_name" => ui.set_s_name(s),
+        "s_status" => ui.set_s_status(s),
+        "s_tone" => ui.set_s_tone(i),
+        "s_error" => ui.set_s_error(s),
+        "s_folder_notes" => ui.set_s_folder_notes(s),
+        "watch_limit" => ui.set_watch_limit(s),
+        "watch_limit_hint" => ui.set_watch_limit_hint(s),
+        "f_space" => ui.set_f_space(s),
+        "f_space_warn" => ui.set_f_space_warn(b),
+        "app_doctor" => ui.set_app_doctor(s),
+        "app_krunner" => ui.set_app_krunner(b),
+        "app_krunner_supported" => ui.set_app_krunner_supported(b),
+        "client_update" => ui.set_client_update(b),
+        "client_problem" => ui.set_client_problem(s),
+        "client_hint" => ui.set_client_hint(s),
+        "client_can_install" => ui.set_client_can_install(b),
         "si_paste" => ui.set_si_paste(s),
         "o_interval" => ui.set_o_interval(i),
         "o_rate" => ui.set_o_rate(i),
