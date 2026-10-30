@@ -175,7 +175,7 @@ Clippy, and all 98 tests pass.
 - **One catalog**: `po/drivedeck.pot` plus `po/<lang>.po` (or the layout Slint requires).
   Extract with `slint-tr-extractor` for `.slint` and a script for `tr!` in Rust. Add
   `po/README.md` explaining how to update and add a language.
-- **Languages to draft now:** de, es, fr, it, pt_BR, nl, pl, ja, zh_CN, ru, tr, ko, cs, uk, sv (15). Keep the same plain,
+- **Languages to draft now:** de, es, fr, it, pt_BR, nl, ja, zh_CN, ru, tr, ko (11; pl, cs, uk, sv set aside in po-later/). Keep the same plain,
   friendly tone; keep `{}`/`{n}` placeholders, `…`, and product names (OneDrive, SharePoint,
   Dolphin, DriveDeck) unchanged.
 - **Desktop files:** add `Name[xx]=`/`Comment[xx]=` lines to `packaging/drivedeck.desktop` and
@@ -189,7 +189,52 @@ Clippy, and all 98 tests pass.
 nothing cut off (check the longest German strings in the settings window and popup), English is
 unchanged, and all checks pass.
 
+**Review of stage 1 (Claude, 2026-10-30):** the setup is good. Fixed in review: plural forms
+now follow each language's own rule (`i18n::plural_index`; the `.po` headers must use GNU
+gettext's standard `Plural-Forms` for the language), and "English first" in `LANGUAGE` wins.
+Form label columns were widened (150/170 px). German screenshots still showed:
+- cut-off labels: "Letzte Synchronisierung", "Geschwindigkeitsbegrenzung" don't fit. Labels in a
+  form's left column (next to a field) must stay short (about 22 characters); pick a shorter
+  wording in every language ("Zuletzt synchronisiert", "Tempolimit").
+- still English: the tab names (Status, Folders, Options, Activity), every dropdown's choices
+  (intervals, speed limits, direction, glass), "X of Y used", "this computer's copy from …",
+  the status texts in `core::Status::text`, and the remaining placeholder texts in
+  `ui/app.slint` (search box, site address, account name example; leave URL and folder-name
+  examples as they are).
+
+**Known translation problems (found 2026-10-30, fix in the translation round):**
+- `src/share.rs` builds the "link copied" sentence from three pieces (who + can + name). That only
+  works in English word order. Replace with whole-sentence strings (one per who/can pair), so
+  ja, ko, tr and the others can order the words their own way.
+- The Turkish file (`po/tr`) had its second half shifted by one entry (a plural entry's two forms
+  were merged into one `msgstr`, then everything after sat one line off). Everything from entry
+  436 on was blanked (falls back to English); translate it again, entry by entry, checking each
+  `msgstr` belongs to the `msgid` above it. `scripts/fix-po-newlines.py` repairs raw line breaks
+  inside a `msgstr`. Never put two plural forms in one `msgstr`: use `msgstr[0]`, `msgstr[1]`.
+- `cargo test -- --ignored` runs `every_language_is_complete`: it must pass when this task is done.
+- Polish, Czech, Ukrainian and Swedish are set aside in `po-later/` (finish later).
+
+**Code side finished (Claude, 2026-10-30):** every user-visible string is wrapped (`tr!` in Rust,
+`@tr` in Slint; the Advanced table's labels, hints and choices are translated when shown). It
+builds, lints clean, and 127 tests pass; German screenshots show the tabs, dropdowns and labels
+translated and fitting. What is left is **only the translations themselves**, 927 strings per
+language. Done so far: nl 927, ja 927, de 828, it 720, tr 436, zh_CN 470, pt_BR 400, fr 192,
+es 180, ru 100, ko 0. Empty ones show in English. For each language with gaps: translate every
+empty `msgstr` in `po/<lang>/LC_MESSAGES/drivedeck.po` (one entry at a time, each `msgstr` under
+its own `msgid`; plural entries use `msgstr[0]`, `msgstr[1]`, and for ru `msgstr[2]`), keep
+`{}`, `{n}`, `…` and product names, then run `cargo test` (placeholders) and
+`cargo test -- --ignored` (every string present). The known problems above come first.
+
 **Done notes:**
+
+Stage 1 only: added bundled Slint translations, locale selection, a shared PO parser and generated
+Rust lookup, the `tr!` macro, catalog extraction, and coverage/placeholder tests. Added a German
+catalog for the annotated Slint UI and the Rust status, popup, tray, and selected settings and
+file-window messages; added German desktop and service-menu labels. Changed `build.rs`,
+`build_support/po.rs`, `src/i18n.rs`, the annotated UI and Rust strings, `po/`, the translation
+scripts, packaging desktop files, `README.md`, and this plan. German visual checks for clipping
+were not run. `cargo fmt --check`, Clippy, and all 125 tests pass. The other requested languages
+and remaining Rust user-facing messages are deferred until review.
 
 ---
 

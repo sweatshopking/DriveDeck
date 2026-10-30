@@ -57,7 +57,7 @@ fn at(url: &str) -> String {
 }
 
 fn unreachable(_: ureq::Error) -> String {
-    "Couldn't reach Microsoft. Check your internet connection and try again.".into()
+    crate::tr!("Couldn't reach Microsoft. Check your internet connection and try again.")
 }
 
 /// The plain explanation, plus Microsoft's own reason when it sent one: for refusals such as
@@ -65,7 +65,9 @@ fn unreachable(_: ureq::Error) -> String {
 fn problem(status: u16, reply: &Value) -> String {
     let base = request_problem(status);
     match reply["error"]["message"].as_str().map(str::trim) {
-        Some(m) if !m.is_empty() && m.len() <= 300 => format!("{base} (Microsoft says: {m})"),
+        Some(m) if !m.is_empty() && m.len() <= 300 => {
+            crate::tr!("{} (Microsoft says: {})", base, m)
+        }
         _ => base,
     }
 }
@@ -73,15 +75,23 @@ fn problem(status: u16, reply: &Value) -> String {
 /// Turns Microsoft's response codes into an explanation a person can act on.
 fn request_problem(status: u16) -> String {
     match status {
-        401 => "Microsoft no longer accepts this sign-in. Open Settings and sign in again.".into(),
-        403 => "This account doesn't have permission to do that. Check that you have access to this file or site.".into(),
-        404 => "That item could not be found in OneDrive. It may have been moved or deleted.".into(),
-        409 => "OneDrive changed while this was running. Refresh and try again.".into(),
-        423 => "That item is locked. Close it elsewhere or try again later.".into(),
-        429 => "Microsoft is busy right now. Try again in a minute.".into(),
-        507 => "Your OneDrive storage is full. Free up space or get more storage, then try again.".into(),
-        500..=599 => "Microsoft is having a problem right now. Try again later.".into(),
-        _ => "Microsoft couldn't complete that request. Try again later.".into(),
+        401 => {
+            crate::tr!("Microsoft no longer accepts this sign-in. Open Settings and sign in again.")
+        }
+        403 => crate::tr!(
+            "This account doesn't have permission to do that. Check that you have access to this file or site."
+        ),
+        404 => crate::tr!(
+            "That item could not be found in OneDrive. It may have been moved or deleted."
+        ),
+        409 => crate::tr!("OneDrive changed while this was running. Refresh and try again."),
+        423 => crate::tr!("That item is locked. Close it elsewhere or try again later."),
+        429 => crate::tr!("Microsoft is busy right now. Try again in a minute."),
+        507 => crate::tr!(
+            "Your OneDrive storage is full. Free up space or get more storage, then try again."
+        ),
+        500..=599 => crate::tr!("Microsoft is having a problem right now. Try again later."),
+        _ => crate::tr!("Microsoft couldn't complete that request. Try again later."),
     }
 }
 
@@ -92,7 +102,10 @@ fn read_reply(resp: &mut ureq::http::Response<ureq::Body>) -> Result<Value, Stri
         if status.as_u16() >= 400 {
             request_problem(status.as_u16())
         } else {
-            format!("Microsoft sent an unexpected reply ({status}). Try again later.")
+            crate::tr!(
+                "Microsoft sent an unexpected reply ({}). Try again later.",
+                status
+            )
         }
     })
 }
@@ -103,10 +116,23 @@ fn endpoints(cfg: &ClientConfig) -> Result<(String, String, String), String> {
         .filter(|s| !s.is_empty())
         .unwrap_or_else(|| "common".into());
     let (host, graph) = match cfg.get("azure_ad_endpoint").unwrap_or_default().as_str() {
-        "USL4" => ("https://login.microsoftonline.us", "https://graph.microsoft.us/v1.0"),
-        "USL5" => ("https://login.microsoftonline.us", "https://dod-graph.microsoft.us/v1.0"),
-        "DE" => return Err("Azure Germany closed on October 29, 2021. Migrate this account to a supported Microsoft cloud and select that cloud here.".into()),
-        "CN" => ("https://login.partner.microsoftonline.cn", "https://microsoftgraph.chinacloudapi.cn/v1.0"),
+        "USL4" => (
+            "https://login.microsoftonline.us",
+            "https://graph.microsoft.us/v1.0",
+        ),
+        "USL5" => (
+            "https://login.microsoftonline.us",
+            "https://dod-graph.microsoft.us/v1.0",
+        ),
+        "DE" => {
+            return Err(crate::tr!(
+                "Azure Germany closed on October 29, 2021. Migrate this account to a supported Microsoft cloud and select that cloud here."
+            ));
+        }
+        "CN" => (
+            "https://login.partner.microsoftonline.cn",
+            "https://microsoftgraph.chinacloudapi.cn/v1.0",
+        ),
         _ => ("https://login.microsoftonline.com", GRAPH),
     };
     Ok((
@@ -118,7 +144,7 @@ fn endpoints(cfg: &ClientConfig) -> Result<(String, String, String), String> {
 
 pub fn token(confdir: &Path) -> Result<Token, String> {
     let rt = std::fs::read_to_string(confdir.join("refresh_token"))
-        .map_err(|_| "This account isn't signed in.".to_string())?;
+        .map_err(|_| crate::tr!("This account isn't signed in."))?;
     let cfg = ClientConfig::load(confdir);
     let app = cfg
         .get("application_id")
@@ -143,9 +169,9 @@ pub fn token(confdir: &Path) -> Result<Token, String> {
                 + Duration::from_secs(v["expires_in"].as_u64().unwrap_or(3600).saturating_sub(120)),
             graph,
         }),
-        None if v["error"].as_str() == Some("invalid_grant") => {
-            Err("Microsoft no longer accepts this sign-in. Open Settings and sign in again.".into())
-        }
+        None if v["error"].as_str() == Some("invalid_grant") => Err(crate::tr!(
+            "Microsoft no longer accepts this sign-in. Open Settings and sign in again."
+        )),
         None => Err(request_problem(resp.status().as_u16())),
     }
 }
@@ -197,23 +223,31 @@ fn for_each_page(
     let mut seen = std::collections::HashSet::new();
     for _ in 0..MAX_PAGES {
         if !seen.insert(url.clone()) {
-            return Err("Microsoft repeated a page while listing items. Try again later.".into());
+            return Err(crate::tr!(
+                "Microsoft repeated a page while listing items. Try again later."
+            ));
         }
         let v = get(tok, url)?;
-        let items = v["value"]
-            .as_array()
-            .ok_or_else(|| "Microsoft sent an unexpected reply. Try again later.".to_string())?;
+        let items = v["value"].as_array().ok_or_else(|| {
+            crate::tr!("Microsoft sent an unexpected reply. Try again later.").to_string()
+        })?;
         if consume(items) {
             return Ok(());
         }
         match v["@odata.nextLink"].as_str() {
             // the next page carries the sign-in too, so it may only go to Microsoft Graph
             Some(next) if is_graph(next, &tok.graph) => *url = next.to_string(),
-            Some(_) => return Err("Microsoft sent an unexpected reply. Try again later.".into()),
+            Some(_) => {
+                return Err(crate::tr!(
+                    "Microsoft sent an unexpected reply. Try again later."
+                ));
+            }
             None => return Ok(()),
         }
     }
-    Err("Microsoft sent too many pages for this list. Try again later.".into())
+    Err(crate::tr!(
+        "Microsoft sent too many pages for this list. Try again later."
+    ))
 }
 
 fn is_graph(url: &str, graph: &str) -> bool {
@@ -232,7 +266,7 @@ fn web_address(url: &str) -> Result<String, String> {
     if url.starts_with("https://") {
         Ok(url.to_string())
     } else {
-        Err("OneDrive didn't return a web address.".into())
+        Err(crate::tr!("OneDrive didn't return a web address."))
     }
 }
 
@@ -367,9 +401,9 @@ pub fn find_libraries(tok: &Token, query: &str) -> Result<Vec<Library>, String> 
         match site_libraries(tok, id, name) {
             Ok(libs) => out.extend(libs),
             // a site can show up in search although the user can't open its libraries
-            Err(e) if e.starts_with("This account doesn't have permission") => {}
+            Err(e) if e.starts_with(&request_problem(403)) => {}
             // one broken site shouldn't hide the others; say why only if nothing worked
-            Err(e) => failed = Some(format!("Couldn't check libraries on {name}: {e}")),
+            Err(e) => failed = Some(crate::tr!("Couldn't check libraries on {}: {}", name, e)),
         }
     }
     if out.is_empty()
@@ -397,7 +431,9 @@ fn site_libraries(tok: &Token, site_id: &str, site_name: &str) -> Result<Vec<Lib
                 name: d["name"].as_str().unwrap_or("").to_string(),
                 drive_id: d["id"]
                     .as_str()
-                    .ok_or_else(|| "Microsoft returned a library without an ID.".to_string())?
+                    .ok_or_else(|| {
+                        crate::tr!("Microsoft returned a library without an ID.").to_string()
+                    })?
                     .to_string(),
                 web_url: d["webUrl"].as_str().unwrap_or("").to_string(),
             })
@@ -434,17 +470,22 @@ pub fn parse_site_url(url: &str) -> Option<(String, String)> {
 /// into, if it points into one.
 pub fn libraries_at_url(tok: &Token, url: &str) -> Result<(Vec<Library>, Option<usize>), String> {
     let (host, path) = parse_site_url(url)
-        .ok_or_else(|| "That doesn't look like a SharePoint address. Copy it from your browser's address bar — it starts with https://".to_string())?;
+        .ok_or_else(|| {
+            crate::tr!(
+                "That doesn't look like a SharePoint address. Copy it from your browser's address bar — it starts with https://"
+            )
+            .to_string()
+        })?;
     let site_url = if path.is_empty() {
         format!("{}/sites/{host}", tok.graph)
     } else {
         format!("{}/sites/{host}:{path}", tok.graph)
     };
     let site = get(tok, &format!("{site_url}?$select=id,displayName"))
-        .map_err(|e| format!("Couldn't open that site with this account: {e}"))?;
+        .map_err(|e| crate::tr!("Couldn't open that site with this account: {}", e))?;
     let id = site["id"]
         .as_str()
-        .ok_or("Microsoft didn't return the site.")?;
+        .ok_or_else(|| crate::tr!("Microsoft didn't return the site.").to_string())?;
     let libs = site_libraries(tok, id, site["displayName"].as_str().unwrap_or(""))?;
     let wanted = percent_decode(url).to_lowercase();
     let pick = libs.iter().position(|l| {
@@ -740,7 +781,7 @@ pub fn download_version(
         if meta.file_type().is_file() {
             return Ok(()); // a completed cached copy is safe to reuse
         }
-        return Err(format!(
+        return Err(crate::tr!(
             "{} already exists and isn't a regular file.",
             dest.display()
         ));
@@ -759,7 +800,7 @@ pub fn download_version(
     static NEXT_DOWNLOAD: AtomicU64 = AtomicU64::new(0);
     let parent = dest
         .parent()
-        .ok_or_else(|| "Couldn't find where to save that version.".to_string())?;
+        .ok_or_else(|| crate::tr!("Couldn't find where to save that version.".to_string()))?;
     let mut temp = None;
     for _ in 0..32 {
         let n = NEXT_DOWNLOAD.fetch_add(1, Ordering::Relaxed);
@@ -775,17 +816,17 @@ pub fn download_version(
                 break;
             }
             Err(e) if e.kind() == std::io::ErrorKind::AlreadyExists => continue,
-            Err(e) => return Err(format!("Couldn't save it: {e}")),
+            Err(e) => return Err(crate::tr!("Couldn't save it: {}", e)),
         }
     }
     let (temp_path, mut file) = temp.ok_or_else(|| {
-        "Couldn't allocate a temporary file for that version download.".to_string()
+        crate::tr!("Couldn't allocate a temporary file for that version download.").to_string()
     })?;
     let result = (|| {
         std::io::copy(&mut resp.into_body().into_reader(), &mut file)
-            .map_err(|e| format!("The download stopped: {e}"))?;
+            .map_err(|e| crate::tr!("The download stopped: {}", e))?;
         file.sync_all()
-            .map_err(|e| format!("Couldn't finish saving that version: {e}"))?;
+            .map_err(|e| crate::tr!("Couldn't finish saving that version: {}", e))?;
         drop(file);
         match crate::core::rename_noreplace(&temp_path, dest) {
             Ok(()) => Ok(()),
@@ -794,13 +835,13 @@ pub fn download_version(
                 if std::fs::symlink_metadata(dest).is_ok_and(|m| m.file_type().is_file()) {
                     Ok(())
                 } else {
-                    Err(format!(
+                    Err(crate::tr!(
                         "{} already exists and isn't a regular file.",
                         dest.display()
                     ))
                 }
             }
-            Err(e) => Err(format!("Couldn't finish saving that version: {e}")),
+            Err(e) => Err(crate::tr!("Couldn't finish saving that version: {}", e)),
         }
     })();
     let _ = std::fs::remove_file(&temp_path);
@@ -899,7 +940,7 @@ fn access_from(p: &Value) -> Option<Access> {
                     .and_then(|a| a.iter().find_map(named))
             })
             .or_else(|| p["invitation"]["email"].as_str().map(String::from))
-            .unwrap_or_else(|| "Someone".into())
+            .unwrap_or_else(|| crate::tr!("Someone"))
     };
     Some(Access {
         id: p["id"].as_str().filter(|s| !s.is_empty())?.to_string(),
@@ -986,7 +1027,10 @@ pub fn create_link(
         "personal" | "business" | "sharepoint" => account_kind,
         _ => {
             looked_up = crate::graph::account_kind(tok).map_err(|e| {
-                format!("Couldn't check what kind of account this is, so no link was made: {e}")
+                crate::tr!(
+                    "Couldn't check what kind of account this is, so no link was made: {}",
+                    e
+                )
             })?;
             looked_up.as_str()
         }

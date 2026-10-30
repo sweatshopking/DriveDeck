@@ -124,7 +124,7 @@ fn set_xdg_dir(key: &str, path: &Path) -> Result<(), String> {
     let text = match fs::read_to_string(&file) {
         Ok(text) => text,
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => String::new(),
-        Err(e) => return Err(format!("Couldn't read {}: {e}", file.display())),
+        Err(e) => return Err(crate::tr!("Couldn't read {}: {}", file.display(), e)),
     };
     let prefix = format!("XDG_{key}_DIR=");
     let value = match path.strip_prefix(core::home()) {
@@ -138,7 +138,7 @@ fn set_xdg_dir(key: &str, path: &Path) -> Result<(), String> {
         .collect();
     lines.push(format!("{prefix}{value}"));
     core::atomic_write(&file, (lines.join("\n") + "\n").as_bytes())
-        .map_err(|e| format!("Couldn't update {}: {e}", file.display()))
+        .map_err(|e| crate::tr!("Couldn't update {}: {}", file.display(), e))
 }
 
 /// The account backing up `key`, if any.
@@ -181,20 +181,21 @@ fn measure(dir: &Path) -> Result<(u64, u64), String> {
     let (mut files, mut bytes) = (0u64, 0u64);
     let mut stack = vec![dir.to_path_buf()];
     while let Some(d) = stack.pop() {
-        let rd = fs::read_dir(&d).map_err(|e| format!("Couldn't read {}: {e}", d.display()))?;
+        let rd =
+            fs::read_dir(&d).map_err(|e| crate::tr!("Couldn't read {}: {}", d.display(), e))?;
         for entry in rd {
-            let e = entry.map_err(|e| format!("Couldn't enumerate {}: {e}", d.display()))?;
+            let e = entry.map_err(|e| crate::tr!("Couldn't enumerate {}: {}", d.display(), e))?;
             let path = e.path();
             let file_type = e
                 .file_type()
-                .map_err(|e| format!("Couldn't inspect {}: {e}", path.display()))?;
+                .map_err(|e| crate::tr!("Couldn't inspect {}: {}", path.display(), e))?;
             if file_type.is_dir() {
                 stack.push(path);
                 continue;
             }
             let m = path
                 .symlink_metadata()
-                .map_err(|e| format!("Couldn't inspect {}: {e}", path.display()))?;
+                .map_err(|e| crate::tr!("Couldn't inspect {}: {}", path.display(), e))?;
             if m.is_dir() {
                 // The entry changed between reading its type and metadata.
                 stack.push(path);
@@ -213,10 +214,10 @@ fn device(path: &Path) -> Result<u64, String> {
         match fs::metadata(ancestor) {
             Ok(meta) => return Ok(meta.dev()),
             Err(e) if e.kind() == std::io::ErrorKind::NotFound => continue,
-            Err(e) => return Err(format!("Couldn't inspect {}: {e}", ancestor.display())),
+            Err(e) => return Err(crate::tr!("Couldn't inspect {}: {}", ancestor.display(), e)),
         }
     }
-    Err(format!(
+    Err(crate::tr!(
         "Couldn't find a filesystem for {}.",
         path.display()
     ))
@@ -227,9 +228,10 @@ fn device(path: &Path) -> Result<u64, String> {
 /// make them look like a usable OneDrive location.
 fn ensure_user_mount_available(path: &Path) -> Result<(), String> {
     let resolved = fs::canonicalize(path).map_err(|e| {
-        format!(
-            "Couldn't resolve the OneDrive folder {}: {e}",
-            path.display()
+        crate::tr!(
+            "Couldn't resolve the OneDrive folder {}: {}",
+            path.display(),
+            e
         )
     })?;
     let roots = [
@@ -249,20 +251,21 @@ fn ensure_user_mount_available(path: &Path) -> Result<(), String> {
         .arg(&resolved)
         .output()
         .map_err(|e| {
-            format!(
-                "Couldn't check the mounted drive for {}: {e}",
-                path.display()
+            crate::tr!(
+                "Couldn't check the mounted drive for {}: {}",
+                path.display(),
+                e
             )
         })?;
     if !output.status.success() {
-        return Err(format!(
+        return Err(crate::tr!(
             "Couldn't check whether the drive for {} is mounted.",
             path.display()
         ));
     }
     let mount = PathBuf::from(String::from_utf8_lossy(&output.stdout).trim());
     if !mount.starts_with(root) {
-        return Err(format!(
+        return Err(crate::tr!(
             "The drive for {} isn't mounted. Connect it before backing up this folder.",
             path.display()
         ));
@@ -277,9 +280,10 @@ fn excluded_by_sync_list(acc: &AccountInfo, name: &str) -> Result<bool, String> 
         Ok(text) => text,
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(false),
         Err(e) => {
-            return Err(format!(
-                "Couldn't check the sync-folder rules in {}: {e}",
-                path.display()
+            return Err(crate::tr!(
+                "Couldn't check the sync-folder rules in {}: {}",
+                path.display(),
+                e
             ));
         }
     };
@@ -315,46 +319,53 @@ pub fn plan(acc: &AccountInfo, all: &[AccountInfo], key: &str) -> Result<Plan, S
     let known = FOLDERS
         .iter()
         .find(|k| k.key == key)
-        .ok_or("Unknown folder.")?;
+        .ok_or_else(|| crate::tr!("Unknown folder.").to_string())?;
     let label = known.label;
     let source = xdg_dir(key)
-        .ok_or_else(|| format!("This computer doesn't have a {label} folder set up."))?;
+        .ok_or_else(|| crate::tr!("This computer doesn't have a {} folder set up.", label))?;
     if !acc.sync_dir.is_dir() {
-        return Err(format!(
+        return Err(crate::tr!(
             "The OneDrive folder {} isn't available. Connect its drive and try again.",
             acc.sync_dir.display()
         ));
     }
     ensure_user_mount_available(&acc.sync_dir)?;
     let sync_meta = fs::metadata(&acc.sync_dir)
-        .map_err(|e| format!("Couldn't inspect {}: {e}", acc.sync_dir.display()))?;
+        .map_err(|e| crate::tr!("Couldn't inspect {}: {}", acc.sync_dir.display(), e))?;
     let home = core::home();
     if source == home || home.starts_with(&source) {
-        return Err(format!(
-            "Your {label} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {label} at its own folder in your desktop's settings first.",
-            source.display()
+        return Err(crate::tr!(
+            "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first.",
+            label,
+            source.display(),
+            label
         ));
     }
     // XDG paths are editable and may resolve through `..` or symlinked parents. Do not let a
     // misplaced Desktop/Documents setting make the backup move a system or app-settings tree.
     if let Some(reason) = core::unsuitable_sync_folder(&source) {
-        return Err(format!("Your {label} folder can't be backed up: {reason}"));
+        return Err(crate::tr!(
+            "Your {} folder can't be backed up: {}",
+            label,
+            reason
+        ));
     }
     let meta = fs::symlink_metadata(&source)
-        .map_err(|_| format!("{} doesn't exist.", source.display()))?;
+        .map_err(|_| crate::tr!("{} doesn't exist.", source.display()))?;
     if meta.file_type().is_symlink() {
-        return Err(format!(
+        return Err(crate::tr!(
             "{} is already a link to somewhere else, so it's left alone.",
             source.display()
         ));
     }
     if !meta.is_dir() {
-        return Err(format!("{} isn't a folder.", source.display()));
+        return Err(crate::tr!("{} isn't a folder.", source.display()));
     }
     for a in all {
         if core::paths_overlap(&source, &a.sync_dir) {
-            return Err(format!(
-                "Your {label} folder overlaps the OneDrive folder for account \"{}\" ({}).",
+            return Err(crate::tr!(
+                "Your {} folder overlaps the OneDrive folder for account \"{}\" ({}).",
+                label,
                 a.name,
                 a.sync_dir.display()
             ));
@@ -362,41 +373,46 @@ pub fn plan(acc: &AccountInfo, all: &[AccountInfo], key: &str) -> Result<Plan, S
     }
     let cfg = ClientConfig::load(&acc.confdir);
     if cfg.get_bool("download_only") {
-        return Err("This account only downloads, so nothing here would be backed up. Change its direction under Options first.".into());
+        return Err(crate::tr!(
+            "This account only downloads, so nothing here would be backed up. Change its direction under Options first."
+        ));
     }
     let name = source
         .file_name()
         .map_or_else(|| label.to_string(), |n| n.to_string_lossy().to_string());
     if excluded_by_sync_list(acc, &name)? {
-        return Err(format!(
-            "This account only syncs the folders you chose, and \"{name}\" isn't one of them. Add it under Folders first (you can create it online)."
+        return Err(crate::tr!(
+            "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online).",
+            name
         ));
     }
     let target = acc.sync_dir.join(&name);
     match fs::symlink_metadata(&target) {
         Ok(meta) if meta.file_type().is_symlink() => {
-            return Err(format!(
-                "There's a symbolic link called \"{name}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
+            return Err(crate::tr!(
+                "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder.",
+                name
             ));
         }
         Ok(meta) if !meta.is_dir() => {
-            return Err(format!(
-                "There's a file called \"{name}\" in your OneDrive folder. Rename it first."
+            return Err(crate::tr!(
+                "There's a file called \"{}\" in your OneDrive folder. Rename it first.",
+                name
             ));
         }
         Ok(_) => {}
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
-        Err(e) => return Err(format!("Couldn't inspect {}: {e}", target.display())),
+        Err(e) => return Err(crate::tr!("Couldn't inspect {}: {}", target.display(), e)),
     }
     let target_dev = device(&target)?;
     let target_has_files = match fs::read_dir(&target) {
         Ok(mut entries) => entries
             .next()
             .transpose()
-            .map_err(|e| format!("Couldn't inspect {}: {e}", target.display()))?
+            .map_err(|e| crate::tr!("Couldn't inspect {}: {}", target.display(), e))?
             .is_some(),
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => false,
-        Err(e) => return Err(format!("Couldn't inspect {}: {e}", target.display())),
+        Err(e) => return Err(crate::tr!("Couldn't inspect {}: {}", target.display(), e)),
     };
     let (files, bytes) = measure(&source)?;
     Ok(Plan {
@@ -428,7 +444,7 @@ fn free_name(dir: &Path, name: &str, host: &str) -> Result<PathBuf, String> {
     let p = dir.join(name);
     match fs::symlink_metadata(&p) {
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(p),
-        Err(e) => return Err(format!("Couldn't inspect {}: {e}", p.display())),
+        Err(e) => return Err(crate::tr!("Couldn't inspect {}: {}", p.display(), e)),
         Ok(_) => {}
     }
     let (stem, ext) = match name.rsplit_once('.') {
@@ -443,8 +459,9 @@ fn free_name(dir: &Path, name: &str, host: &str) -> Result<PathBuf, String> {
         };
         let suffix = format!(" ({tag}){ext}");
         if suffix.len() >= 255 {
-            return Err(format!(
-                "The suffix for {name} is too long to make a collision-safe name."
+            return Err(crate::tr!(
+                "The suffix for {} is too long to make a collision-safe name.",
+                name
             ));
         }
         let mut end = stem.len().min(255 - suffix.len());
@@ -452,19 +469,27 @@ fn free_name(dir: &Path, name: &str, host: &str) -> Result<PathBuf, String> {
             end -= 1;
         }
         if end == 0 {
-            return Err(format!(
-                "The name for {name} is too long to make a collision-safe copy."
+            return Err(crate::tr!(
+                "The name for {} is too long to make a collision-safe copy.",
+                name
             ));
         }
         let candidate = dir.join(format!("{}{suffix}", &stem[..end]));
         match fs::symlink_metadata(&candidate) {
             Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(candidate),
-            Err(e) => return Err(format!("Couldn't inspect {}: {e}", candidate.display())),
+            Err(e) => {
+                return Err(crate::tr!(
+                    "Couldn't inspect {}: {}",
+                    candidate.display(),
+                    e
+                ));
+            }
             Ok(_) => {}
         }
     }
-    Err(format!(
-        "Couldn't find an unused name for {name} after 10,000 attempts."
+    Err(crate::tr!(
+        "Couldn't find an unused name for {} after 10,000 attempts.",
+        name
     ))
 }
 
@@ -486,12 +511,12 @@ fn copy_noreplace(
         match fs::DirBuilder::new().mode(0o700).create(&stage) {
             Ok(()) => {}
             Err(e) if e.kind() == std::io::ErrorKind::AlreadyExists => continue,
-            Err(e) => return Err(format!("Couldn't prepare a safe copy: {e}")),
+            Err(e) => return Err(crate::tr!("Couldn't prepare a safe copy: {}", e)),
         }
         let staged = source
             .file_name()
             .map(|name| stage.join(name))
-            .ok_or_else(|| format!("{} has no usable name", source.display()))?;
+            .ok_or_else(|| crate::tr!("{} has no usable name", source.display()))?;
         let copied = Command::new("cp")
             .args(["-a", "--reflink=auto", "--"])
             .arg(source)
@@ -501,7 +526,7 @@ fn copy_noreplace(
             .is_ok_and(|s| s.success());
         if !copied {
             let _ = fs::remove_dir_all(&stage);
-            return Err(format!(
+            return Err(crate::tr!(
                 "Copying {} failed (is there enough space?)",
                 source.display()
             ));
@@ -509,26 +534,33 @@ fn copy_noreplace(
         match core::rename_noreplace(&staged, &dest) {
             Ok(()) => {
                 fs::remove_dir(&stage).map_err(|e| {
-                    format!(
-                        "The copy was published, but couldn't clean up {}: {e}",
-                        stage.display()
+                    crate::tr!(
+                        "The copy was published, but couldn't clean up {}: {}",
+                        stage.display(),
+                        e
                     )
                 })?;
                 return Ok(dest);
             }
             Err(e) if e.kind() == std::io::ErrorKind::AlreadyExists => {
                 fs::remove_dir_all(&stage).map_err(|cleanup| {
-                    format!("The destination changed during copy ({e}); couldn't clean up {}: {cleanup}", stage.display())
+                    crate::tr!(
+                        "The destination changed during copy ({}); couldn't clean up {}: {}",
+                        e,
+                        stage.display(),
+                        cleanup
+                    )
                 })?;
             }
             Err(e) => {
                 let _ = fs::remove_dir_all(&stage);
-                return Err(format!("Couldn't publish the completed copy: {e}"));
+                return Err(crate::tr!("Couldn't publish the completed copy: {}", e));
             }
         }
     }
-    Err(format!(
-        "Couldn't find an unused destination for {name} after 10,000 attempts."
+    Err(crate::tr!(
+        "Couldn't find an unused destination for {} after 10,000 attempts.",
+        name
     ))
 }
 
@@ -546,16 +578,16 @@ pub struct Done {
 /// new one, and records it with the account.
 pub fn start(acc: &AccountInfo, plan: &Plan) -> Result<Done, String> {
     let _busy = core::BusyMarker::try_new(&acc.confdir).map_err(|e| {
-        format!(
-            "Couldn't protect this account from another operation, so the folder wasn't backed up: {e}"
+        crate::tr!(
+            "Couldn't protect this account from another operation, so the folder wasn't backed up: {}",
+            e
         )
     })?;
     let resync = core::resync_unit(&acc.confdir);
     if core::unit_state(&resync).active {
-        return Err(
+        return Err(crate::tr!(
             "A one-time sync is running. Wait for it to finish before backing up this folder."
-                .into(),
-        );
+        ));
     }
     let was_active = acc
         .unit
@@ -564,7 +596,7 @@ pub fn start(acc: &AccountInfo, plan: &Plan) -> Result<Done, String> {
     if let Some(unit) = acc.unit.as_deref() {
         let (ok, err) = core::systemctl(&["stop", unit]);
         if !ok {
-            return Err(format!(
+            return Err(crate::tr!(
                 "Couldn't stop the sync engine, so the folder wasn't changed: {}",
                 err.trim()
             ));
@@ -587,81 +619,104 @@ pub fn start(acc: &AccountInfo, plan: &Plan) -> Result<Done, String> {
     match (operation, restarted) {
         (Ok(done), Some(Ok(()))) | (Ok(done), None) => Ok(done),
         (Err(e), Some(Ok(()))) | (Err(e), None) => Err(e),
-        (Ok(_), Some(Err(restart))) => Err(format!(
-            "The folder backup finished, but the sync engine couldn't be restarted: {restart}"
+        (Ok(_), Some(Err(restart))) => Err(crate::tr!(
+            "The folder backup finished, but the sync engine couldn't be restarted: {}",
+            restart
         )),
-        (Err(operation), Some(Err(restart))) => Err(format!(
-            "{operation}; the sync engine couldn't be restarted: {restart}"
+        (Err(operation), Some(Err(restart))) => Err(crate::tr!(
+            "{}; the sync engine couldn't be restarted: {}",
+            operation,
+            restart
         )),
     }
 }
 
 fn start_files(acc: &AccountInfo, plan: &Plan) -> Result<Done, String> {
     if !acc.sync_dir.is_dir() {
-        return Err(format!(
+        return Err(crate::tr!(
             "The OneDrive folder {} isn't available. Connect its drive and try again.",
             acc.sync_dir.display()
         ));
     }
     ensure_user_mount_available(&acc.sync_dir)?;
     let source_meta = fs::symlink_metadata(&plan.source)
-        .map_err(|e| format!("Couldn't inspect {}: {e}", plan.source.display()))?;
+        .map_err(|e| crate::tr!("Couldn't inspect {}: {}", plan.source.display(), e))?;
     if source_meta.file_type().is_symlink()
         || !source_meta.is_dir()
         || source_meta.dev() != plan.source_dev
         || source_meta.ino() != plan.source_ino
     {
-        return Err("The source folder changed after the backup was reviewed. Review it again before continuing.".into());
+        return Err(crate::tr!(
+            "The source folder changed after the backup was reviewed. Review it again before continuing."
+        ));
     }
     let sync_meta = fs::metadata(&acc.sync_dir)
-        .map_err(|e| format!("Couldn't inspect {}: {e}", acc.sync_dir.display()))?;
+        .map_err(|e| crate::tr!("Couldn't inspect {}: {}", acc.sync_dir.display(), e))?;
     if !sync_meta.is_dir() || sync_meta.dev() != plan.sync_dev {
-        return Err("The OneDrive folder or its mounted drive changed after the backup was reviewed. Connect the right drive and review again.".into());
+        return Err(crate::tr!(
+            "The OneDrive folder or its mounted drive changed after the backup was reviewed. Connect the right drive and review again."
+        ));
     }
     let expected_target = acc.sync_dir.join(
         plan.source
             .file_name()
-            .ok_or("The source folder has no usable name.")?,
+            .ok_or_else(|| crate::tr!("The source folder has no usable name."))?,
     );
     if expected_target != plan.target || core::paths_overlap(&plan.source, &acc.sync_dir) {
-        return Err("The backup paths changed or overlap. Review the folder backup again.".into());
+        return Err(crate::tr!(
+            "The backup paths changed or overlap. Review the folder backup again."
+        ));
     }
     match fs::symlink_metadata(&plan.target) {
         Ok(meta) if meta.file_type().is_symlink() => {
-            return Err("The OneDrive destination became a symbolic link after review. Resolve it and review the backup again.".into());
+            return Err(crate::tr!(
+                "The OneDrive destination became a symbolic link after review. Resolve it and review the backup again."
+            ));
         }
         Ok(meta) if !meta.is_dir() => {
-            return Err(
+            return Err(crate::tr!(
                 "The OneDrive destination became a file after review. Review the backup again."
-                    .into(),
-            );
+            ));
         }
         Ok(_) => {}
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
-        Err(e) => return Err(format!("Couldn't inspect {}: {e}", plan.target.display())),
+        Err(e) => {
+            return Err(crate::tr!(
+                "Couldn't inspect {}: {}",
+                plan.target.display(),
+                e
+            ));
+        }
     }
     if device(&plan.target)? != plan.target_dev {
-        return Err("The destination filesystem changed after the backup was reviewed. Review the backup again.".into());
+        return Err(crate::tr!(
+            "The destination filesystem changed after the backup was reviewed. Review the backup again."
+        ));
     }
     fs::create_dir_all(&plan.target)
-        .map_err(|e| format!("Couldn't create {}: {e}", plan.target.display()))?;
+        .map_err(|e| crate::tr!("Couldn't create {}: {}", plan.target.display(), e))?;
     if device(&plan.target)? != plan.target_dev {
-        return Err(
+        return Err(crate::tr!(
             "The destination filesystem changed while preparing the backup. No files were moved."
-                .into(),
-        );
+        ));
     }
     let host = hostname();
     let mut renamed = 0;
     let entries: Vec<_> = fs::read_dir(&plan.source)
-        .map_err(|e| format!("Couldn't read {}: {e}", plan.source.display()))?
+        .map_err(|e| crate::tr!("Couldn't read {}: {}", plan.source.display(), e))?
         .collect::<Result<_, _>>()
-        .map_err(|e| format!("Couldn't enumerate {}: {e}", plan.source.display()))?;
+        .map_err(|e| crate::tr!("Couldn't enumerate {}: {}", plan.source.display(), e))?;
     for e in entries {
         let name = e.file_name().to_string_lossy().to_string();
         if plan.same_drive {
             let dest = free_name(&plan.target, &name, &host).map_err(|e| {
-                format!("Stopped at \"{name}\": {e}. Everything moved so far is in {}; the rest is still in {}.", plan.target.display(), plan.source.display())
+                crate::tr!(
+                    "Stopped at \"{}\": {}. Everything moved so far is in {}; the rest is still in {}.",
+                    name,
+                    e,
+                    plan.target.display(),
+                    plan.source.display()
+                )
             })?;
             if dest
                 .file_name()
@@ -671,17 +726,23 @@ fn start_files(acc: &AccountInfo, plan: &Plan) -> Result<Done, String> {
                 renamed += 1;
             }
             core::rename_noreplace(&e.path(), &dest).map_err(|err| {
-                format!(
-                    "Stopped at \"{name}\": {err}. Everything moved so far is in {}; the rest is still in {}.",
+                crate::tr!(
+                    "Stopped at \"{}\": {}. Everything moved so far is in {}; the rest is still in {}.",
+                    name,
+                    err,
                     plan.target.display(),
                     plan.source.display()
                 )
             })?;
         } else {
             let dest = copy_noreplace(&e.path(), &plan.target, &name, &host).map_err(|err| {
-                format!(
-                    "Stopped at \"{name}\": {err}. Your {} folder is still in {}; completed copies are in {}.",
-                    plan.label, plan.source.display(), plan.target.display()
+                crate::tr!(
+                    "Stopped at \"{}\": {}. Your {} folder is still in {}; completed copies are in {}.",
+                    name,
+                    err,
+                    crate::tr!(plan.label),
+                    plan.source.display(),
+                    plan.target.display()
                 )
             })?;
             if dest
@@ -696,9 +757,10 @@ fn start_files(acc: &AccountInfo, plan: &Plan) -> Result<Done, String> {
     // the old place: emptied (same drive) and removed, or kept under a new name (copied)
     let kept_original = if plan.same_drive {
         fs::remove_dir(&plan.source).map_err(|e| {
-            format!(
-                "Everything was moved, but {} couldn't be replaced: {e}",
-                plan.source.display()
+            crate::tr!(
+                "Everything was moved, but {} couldn't be replaced: {}",
+                plan.source.display(),
+                e
             )
         })?;
         None
@@ -707,18 +769,20 @@ fn start_files(acc: &AccountInfo, plan: &Plan) -> Result<Done, String> {
         let base = format!("{} (copied to OneDrive)", plan.label);
         let kept = free_name(parent, &base, &host)?;
         core::rename_noreplace(&plan.source, &kept).map_err(|e| {
-            format!(
-                "Everything was copied, but {} couldn't be renamed: {e}",
-                plan.source.display()
+            crate::tr!(
+                "Everything was copied, but {} couldn't be renamed: {}",
+                plan.source.display(),
+                e
             )
         })?;
         Some(kept)
     };
     std::os::unix::fs::symlink(&plan.target, &plan.source).map_err(|e| {
-        format!(
-            "Your files are in {}, but the link at {} couldn't be made: {e}",
+        crate::tr!(
+            "Your files are in {}, but the link at {} couldn't be made: {}",
             plan.target.display(),
-            plan.source.display()
+            plan.source.display(),
+            e
         )
     })?;
     // recorded before anything else can fail, so the app can always stop the backup again
@@ -731,9 +795,10 @@ fn start_files(acc: &AccountInfo, plan: &Plan) -> Result<Done, String> {
         target: plan.target.clone(),
     });
     s.save().map_err(|e| {
-        format!(
-            "Your files are in {}, but the backup couldn't be recorded: {e}",
-            plan.target.display()
+        crate::tr!(
+            "Your files are in {}, but the backup couldn't be recorded: {}",
+            plan.target.display(),
+            e
         )
     })?;
     // apps that ask the desktop where the folder is (and sandboxed apps) get the real place;
@@ -756,18 +821,19 @@ pub fn stop(acc: &AccountInfo, key: &str) -> Result<Backup, String> {
         .iter()
         .find(|b| b.key == key)
         .cloned()
-        .ok_or("That folder isn't being backed up.")?;
+        .ok_or_else(|| crate::tr!("That folder isn't being backed up."))?;
     match fs::symlink_metadata(&b.original) {
         Ok(m) if m.file_type().is_symlink() => {
             let link_target = fs::read_link(&b.original)
-                .map_err(|e| format!("Couldn't inspect the link: {e}"))?;
+                .map_err(|e| crate::tr!("Couldn't inspect the link: {}", e))?;
             if link_target != b.target {
-                return Err(format!(
+                return Err(crate::tr!(
                     "{} now points somewhere unexpected, so the backup record was kept. Resolve the link before stopping the backup.",
                     b.original.display()
                 ));
             }
-            fs::remove_file(&b.original).map_err(|e| format!("Couldn't remove the link: {e}"))?;
+            fs::remove_file(&b.original)
+                .map_err(|e| crate::tr!("Couldn't remove the link: {}", e))?;
             fs::create_dir_all(&b.original).map_err(|e| e.to_string())?;
         }
         // something else is there now: leave it be
@@ -775,7 +841,13 @@ pub fn stop(acc: &AccountInfo, key: &str) -> Result<Backup, String> {
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => {
             fs::create_dir_all(&b.original).map_err(|e| e.to_string())?
         }
-        Err(e) => return Err(format!("Couldn't inspect {}: {e}", b.original.display())),
+        Err(e) => {
+            return Err(crate::tr!(
+                "Couldn't inspect {}: {}",
+                b.original.display(),
+                e
+            ));
+        }
     }
     set_xdg_dir(&b.key, &b.original)?;
     s.prefs_mut(&acc.confdir).backups.retain(|x| x.key != key);

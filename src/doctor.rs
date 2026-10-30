@@ -44,35 +44,39 @@ fn checks_named(names: bool) -> Vec<Check> {
     let mut out = Vec::new();
     match core::check_client() {
         core::ClientCheck::Ok { version, .. } => match crate::update::client_news() {
-            Some((_, latest)) => out.push(Check::warn(format!(
-                "OneDrive Client for Linux {version} is installed; {latest} is out."
+            Some((_, latest)) => out.push(Check::warn(crate::tr!(
+                "OneDrive Client for Linux {} is installed; {} is out.",
+                version,
+                latest
             ))),
-            None => out.push(Check::ok(format!(
-                "OneDrive Client for Linux {version} is installed."
+            None => out.push(Check::ok(crate::tr!(
+                "OneDrive Client for Linux {} is installed.",
+                version
             ))),
         },
-        core::ClientCheck::TooOld { version, .. } => out.push(Check::warn(format!(
-            "OneDrive Client for Linux {version} is too old for this app."
+        core::ClientCheck::TooOld { version, .. } => out.push(Check::warn(crate::tr!(
+            "OneDrive Client for Linux {} is too old for this app.",
+            version
         ))),
-        core::ClientCheck::Missing => out.push(Check::warn(
-            "The OneDrive Client for Linux isn't installed.",
-        )),
+        core::ClientCheck::Missing => out.push(Check::warn(crate::tr!(
+            "The OneDrive Client for Linux isn't installed."
+        ))),
     }
     if crate::dbus::name_owner_pid(core::TRAY_BUS_NAME).is_some() {
-        out.push(Check::ok("The tray icon is running."));
+        out.push(Check::ok(crate::tr!("The tray icon is running.")));
     } else {
-        out.push(Check::warn(
-            "The tray icon isn't running, so pauses, schedules and notifications aren't working.",
-        ));
+        out.push(Check::warn(crate::tr!(
+            "The tray icon isn't running, so pauses, schedules and notifications aren't working."
+        )));
     }
     let snap = crate::ui::take_snapshot();
     if snap.infos.is_empty() {
-        out.push(Check::warn("No accounts are set up yet."));
+        out.push(Check::warn(crate::tr!("No accounts are set up yet.")));
     }
     let mut dirs = 0usize;
     for (info, status) in snap.infos.iter().zip(&snap.statuses) {
         let prefs = snap.settings.prefs(&info.confdir);
-        let text = format!("{}: {}", info.name, status.text(&prefs));
+        let text = crate::tr!("{}: {}", info.name, status.text(&prefs));
         let fine = matches!(
             status.phase,
             Phase::UpToDate | Phase::Syncing | Phase::Paused | Phase::Off
@@ -83,18 +87,18 @@ fn checks_named(names: bool) -> Vec<Check> {
             Check::warn(text)
         });
         if let Some(e) = &status.last_error {
-            out.push(Check::warn(format!("{}: {e}", info.name)));
+            out.push(Check::warn(crate::tr!("{}: {}", info.name, e)));
         }
         if let Some(u) = &info.unit
             && core::watch_limit_hit(u)
         {
-            out.push(Check::warn(format!(
+            out.push(Check::warn(crate::tr!(
                 "{}: ran out of folder watches; some changes aren't noticed.",
                 info.name
             )));
         }
         match core::free_space(&info.sync_dir) {
-            Some(free) if free < LOW_SPACE => out.push(Check::warn(format!(
+            Some(free) if free < LOW_SPACE => out.push(Check::warn(crate::tr!(
                 "{}: only {} free on its drive.",
                 info.name,
                 crate::graph::human_size(free)
@@ -113,13 +117,14 @@ fn checks_named(names: bool) -> Vec<Check> {
     if let Some(limit) = core::watch_limit()
         && dirs as u64 > limit / 2
     {
-        out.push(Check::warn(format!(
-            "Your OneDrive folders hold {dirs} folders, more than half of Linux's limit on \
-             watched folders ({limit}). Other programs need some too."
+        out.push(Check::warn(crate::tr!(
+            "Your OneDrive folders hold {} folders, more than half of Linux's limit on watched folders ({}). Other programs need some too.",
+            dirs,
+            limit
         )));
     }
     for o in core::outside_starts() {
-        out.push(Check::warn(format!(
+        out.push(Check::warn(crate::tr!(
             "{} is started outside this app.",
             o.unit
         )));

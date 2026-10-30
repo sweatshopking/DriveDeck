@@ -33,9 +33,9 @@ fn when(rfc3339: &str) -> String {
     let t = t.with_timezone(&chrono::Local);
     let today = chrono::Local::now().date_naive();
     if t.date_naive() == today {
-        t.format("Today, %H:%M").to_string()
+        format!("{} {}", crate::tr!("Today"), t.format("%H:%M"))
     } else if Some(t.date_naive()) == today.pred_opt() {
-        t.format("Yesterday, %H:%M").to_string()
+        format!("{} {}", crate::tr!("Yesterday"), t.format("%H:%M"))
     } else {
         t.format("%-d %b %Y, %H:%M").to_string()
     }
@@ -73,14 +73,14 @@ fn parse_emails(text: &str) -> Result<Vec<String>, String> {
                 && !domain.ends_with('.')
         });
         if !ok {
-            return Err(format!("\"{part}\" isn't an email address."));
+            return Err(crate::tr!("\"{}\" isn't an email address.", part));
         }
         if !out.iter().any(|e: &String| e.eq_ignore_ascii_case(part)) {
             out.push(part.to_string());
         }
     }
     if out.is_empty() {
-        return Err("Type at least one email address.".into());
+        return Err(crate::tr!("Type at least one email address."));
     }
     Ok(out)
 }
@@ -109,9 +109,9 @@ fn version_copy_path(file: &Path, v: &Version) -> Result<PathBuf, String> {
     let suffix = format!(" ({stamp}, {tag:08x})");
     let fixed_len = suffix.len() + ext.len();
     if fixed_len >= 255 {
-        return Err(
-            "This version identifier and file extension are too long to save safely.".into(),
-        );
+        return Err(crate::tr!(
+            "This version identifier and file extension are too long to save safely."
+        ));
     }
     let max_stem = 255 - fixed_len;
     let mut end = stem.len().min(max_stem);
@@ -119,7 +119,9 @@ fn version_copy_path(file: &Path, v: &Version) -> Result<PathBuf, String> {
         end -= 1;
     }
     if end == 0 {
-        return Err("This file name is too long to save a version copy safely.".into());
+        return Err(crate::tr!(
+            "This file name is too long to save a version copy safely."
+        ));
     }
     let dir = core::cache_home().join(core::APP_ID).join("versions");
     Ok(dir.join(format!("{}{}{ext}", &stem[..end], suffix)))
@@ -186,17 +188,18 @@ pub fn run(mode: Mode, path: &Path) {
         .map_or_else(String::new, |n| n.to_string_lossy().to_string());
     if mode == Mode::Versions && path.is_dir() {
         crate::share::notify(
-            "No version history for folders",
-            &format!(
-                "\"{name}\" is a folder. Open a file inside it to see its versions, or the recycle bin online for deleted items."
+            &crate::tr!("No version history for folders"),
+            &crate::tr!(
+                "\"{}\" is a folder. Open a file inside it to see its versions, or the recycle bin online for deleted items.",
+                name
             ),
         );
         return;
     }
     if mode != Mode::Versions && rel.is_empty() {
         crate::share::notify(
-            "Couldn't share it",
-            &format!(
+            &crate::tr!("Couldn't share it"),
+            &crate::tr!(
                 "That's the whole of \"{}\". Share a file or folder inside it instead.",
                 acc.name
             ),
@@ -210,6 +213,7 @@ pub fn run(mode: Mode, path: &Path) {
             return;
         }
     };
+    crate::i18n::select_bundled();
     let _ = slint::set_xdg_app_id(core::APP_ID);
     {
         let (tx, rx) = std::sync::mpsc::channel();
@@ -267,12 +271,16 @@ thread_local! {
 }
 
 fn access_detail(a: &graph::Access) -> String {
-    let mut d = String::from(if a.can_edit { "Can edit" } else { "Can view" });
+    let mut d = if a.can_edit {
+        crate::tr!("Can edit")
+    } else {
+        crate::tr!("Can view")
+    };
     if let Some(e) = &a.expires {
-        d.push_str(&format!("  ·  until {}", when(e)));
+        d.push_str(&crate::tr!("  ·  until {}", when(e)));
     }
     if a.inherited {
-        d.push_str("  ·  from a folder above");
+        d.push_str(&crate::tr!("  ·  from a folder above"));
     }
     d
 }
@@ -281,7 +289,7 @@ fn access_detail(a: &graph::Access) -> String {
 fn load_access(weak: &slint::Weak<FileWindow>, acc: &AccountInfo, rel: &str) {
     if let Some(ui) = weak.upgrade() {
         ui.set_busy(true);
-        say(&ui, 3, "Checking who has access…");
+        say(&ui, 3, crate::tr!("Checking who has access…"));
     }
     let (acc, rel) = (acc.clone(), rel.to_string());
     bg(
@@ -304,7 +312,7 @@ fn load_access(weak: &slint::Weak<FileWindow>, acc: &AccountInfo, rel: &str) {
                         .collect();
                     ui.set_access_rows(ModelRc::new(VecModel::from(rows)));
                     if list.is_empty() {
-                        say(ui, 3, "It isn't shared: only you can open it.");
+                        say(ui, 3, crate::tr!("It isn't shared: only you can open it."));
                     } else {
                         say(ui, 3, "");
                     }
@@ -371,7 +379,7 @@ fn load_versions(weak: &slint::Weak<FileWindow>, acc: &AccountInfo, rel: &str) {
                         .map(|v| {
                             let mut detail = graph::human_size(v.size);
                             if !v.by.is_empty() {
-                                detail.push_str(&format!("  ·  saved by {}", v.by));
+                                detail.push_str(&crate::tr!("  ·  saved by {}", v.by));
                             }
                             VersionRow {
                                 when: ss(when(&v.modified)),
@@ -384,7 +392,9 @@ fn load_versions(weak: &slint::Weak<FileWindow>, acc: &AccountInfo, rel: &str) {
                         say(
                             ui,
                             3,
-                            "There's only the current version so far. OneDrive keeps older ones as the file changes.",
+                            crate::tr!(
+                                "There's only the current version so far. OneDrive keeps older ones as the file changes."
+                            ),
                         );
                     }
                     VERSIONS.with(|l| *l.borrow_mut() = vs);
@@ -427,7 +437,7 @@ fn versions(
             };
             if let Some(ui) = weak.upgrade() {
                 ui.set_busy(true);
-                say(&ui, 3, "Downloading that version…");
+                say(&ui, 3, crate::tr!("Downloading that version…"));
             }
             let (acc, rel) = (acc.clone(), rel.clone());
             bg(
@@ -450,7 +460,7 @@ fn versions(
                     ui.set_busy(false);
                     match r {
                         Ok(dest) => {
-                            say(ui, 3, format!("Opened a copy: {}", dest.display()));
+                            say(ui, 3, crate::tr!("Opened a copy: {}", dest.display()));
                             core::open_path(&dest);
                         }
                         Err(e) => say(ui, 2, e),
@@ -465,7 +475,7 @@ fn versions(
             let Some(v) = version_at(i) else { return };
             if let Some(ui) = weak.upgrade() {
                 ui.set_busy(true);
-                say(&ui, 3, "Restoring…");
+                say(&ui, 3, crate::tr!("Restoring…"));
             }
             let (acc, rel, weak2) = (acc.clone(), rel.clone(), weak.clone());
             let (acc2, rel2) = (acc.clone(), rel.clone());
@@ -479,7 +489,13 @@ fn versions(
                     ui.set_busy(false);
                     match r {
                         Ok(()) => {
-                            say(ui, 0, "Restored. This computer gets it at the next sync (\"Sync now\" in the tray icon's menu does it right away).");
+                            say(
+                                ui,
+                                0,
+                                crate::tr!(
+                                    "Restored. This computer gets it at the next sync (\"Sync now\" in the tray icon's menu does it right away)."
+                                ),
+                            );
                             load_versions(&weak2, &acc2, &rel2);
                         }
                         Err(e) => say(ui, 2, e),
@@ -500,7 +516,7 @@ fn share(ui: &FileWindow, weak: &slint::Weak<FileWindow>, acc: AccountInfo, rel:
         };
         let (edit, message) = (ui.get_can_edit(), ui.get_message().to_string());
         ui.set_busy(true);
-        say(&ui, 3, "Sending…");
+        say(&ui, 3, crate::tr!("Sending…"));
         let (acc, rel) = (acc.clone(), rel.clone());
         let count = emails.len();
         bg(
@@ -519,9 +535,9 @@ fn share(ui: &FileWindow, weak: &slint::Weak<FileWindow>, acc: AccountInfo, rel:
                             ui,
                             0,
                             if count == 1 {
-                                "Invitation sent.".to_string()
+                                crate::tr!("Invitation sent.")
                             } else {
-                                format!("{count} invitations sent.")
+                                crate::tr!("{} invitations sent.", count)
                             },
                         );
                     }

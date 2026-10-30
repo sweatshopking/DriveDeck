@@ -1,0 +1,3610 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2026-10-30 06:36+0000\n"
+"PO-Revision-Date: 2026-10-30 06:36+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: ui/app.slint:477
+msgid ""
+"This app needs one more free program, the OneDrive Client for Linux (version "
+"2.5 or newer). It does the actual syncing in the background; this app is the "
+"window and tray icon for it."
+msgstr "Tato aplikace potřebuje ještě jeden bezplatný program: OneDrive Client for Linux (verze 2.5 nebo novější). Ten na pozadí synchronizuje soubory; tato aplikace zobrazuje okno a ikonu v oznamovací oblasti."
+
+#: ui/app.slint:488
+msgid "Updating…"
+msgstr "Probíhá aktualizace…"
+
+#: ui/app.slint:488
+msgid "Installing…"
+msgstr "Probíhá instalace…"
+
+#: ui/app.slint:488
+msgid "Update it for me"
+msgstr "Aktualizovat"
+
+#: ui/app.slint:488
+msgid "Install it for me"
+msgstr "Nainstalovat"
+
+#: ui/app.slint:496
+msgid "Open installation instructions"
+msgstr "Otevřít pokyny k instalaci"
+
+#: ui/app.slint:502
+msgid "Check again"
+msgstr "Zkontrolovat znovu"
+
+#: ui/app.slint:509
+msgid "Not now"
+msgstr "Teď ne"
+
+#: ui/app.slint:537
+msgid "Some changes on this computer aren't being noticed"
+msgstr "Některé změny v počítači se nezaznamenávají"
+
+#: ui/app.slint:550
+msgid "Raising it…"
+msgstr "Probíhá zvýšení limitu…"
+
+#: ui/app.slint:550
+msgid "Raise the limit"
+msgstr "Zvýšit limit"
+
+#: ui/app.slint:582
+msgid "Syncing is also set up outside this app"
+msgstr "Synchronizace je nastavena i mimo tuto aplikaci"
+
+#: ui/app.slint:595
+msgid "Turning it off…"
+msgstr "Probíhá vypínání…"
+
+#: ui/app.slint:595
+msgid "Turn it off"
+msgstr "Vypnout"
+
+#: ui/app.slint:602
+msgid "Leave it as it is"
+msgstr "Ponechat beze změny"
+
+#: ui/app.slint:621
+msgid "DriveDeck for OneDrive"
+msgstr "DriveDeck pro OneDrive"
+
+#: ui/app.slint:920 ui/app.slint:3750
+msgid "Accounts"
+msgstr "Účty"
+
+#: ui/app.slint:995
+msgid "Add account"
+msgstr "Přidat účet"
+
+#: ui/app.slint:1007 ui/app.slint:2491
+msgid "App settings"
+msgstr "Nastavení aplikace"
+
+#: ui/app.slint:1046
+msgid "OK"
+msgstr "OK"
+
+#: ui/app.slint:1167
+msgid "Status"
+msgstr "Stav"
+
+#: ui/app.slint:1167
+msgid "Folders"
+msgstr "Složky"
+
+#: ui/app.slint:1167
+msgid "Options"
+msgstr "Možnosti"
+
+#: ui/app.slint:1167
+msgid "Activity"
+msgstr "Aktivita"
+
+#: ui/app.slint:1188
+msgid "This account isn't signed in"
+msgstr "Tento účet není přihlášený"
+
+#: ui/app.slint:1191
+msgid ""
+"Sign in with your Microsoft account. Your browser will open so you can log "
+"in, then you'll come back here automatically."
+msgstr "Přihlaste se pomocí účtu Microsoft. Otevře se prohlížeč, ve kterém se přihlásíte, a pak se automaticky vrátíte sem."
+
+#: ui/app.slint:1196
+msgid "Sign in…"
+msgstr "Přihlásit se…"
+
+#: ui/app.slint:1213 ui/app.slint:2388
+msgid "Name"
+msgstr "Název"
+
+#: ui/app.slint:1218 ui/app.slint:2393
+msgid "Account name"
+msgstr "Název účtu"
+
+#: ui/app.slint:1225
+msgid "Rename"
+msgstr "Přejmenovat"
+
+#: ui/app.slint:1234
+msgid "Type"
+msgstr "Typ"
+
+#: ui/app.slint:1246
+msgid "Folder"
+msgstr "Složka"
+
+#: ui/app.slint:1257 ui/app.slint:4171
+msgid "Open"
+msgstr "Otevřít"
+
+#: ui/app.slint:1263
+msgid "Move…"
+msgstr "Přesunout…"
+
+#: ui/app.slint:1270
+msgid "Online ▾"
+msgstr "Online ▾"
+
+#: ui/app.slint:1280 ui/app.slint:3953 ui/app.slint:3971
+msgid "OneDrive website"
+msgstr "Web OneDrive"
+
+#: ui/app.slint:1286 ui/app.slint:3959 ui/app.slint:3980
+msgid "Recycle bin"
+msgstr "Koš"
+
+#: ui/app.slint:1292 ui/app.slint:3965 ui/app.slint:3989
+msgid "Restore your OneDrive"
+msgstr "Obnovit OneDrive"
+
+#: ui/app.slint:1303
+msgid "Last sync"
+msgstr "Poslední synchronizace"
+
+#: ui/app.slint:1316
+msgid "Storage"
+msgstr "Úložiště"
+
+#: ui/app.slint:1351
+msgid "Delete them online too…"
+msgstr "Smazat také online…"
+
+#: ui/app.slint:1358
+msgid "Download them again…"
+msgstr "Znovu stáhnout…"
+
+#: ui/app.slint:1366
+msgid ""
+"Downloading them again needs a full resync, which is turned off for this "
+"account in Options."
+msgstr "Opětovné stažení vyžaduje úplnou novou synchronizaci. Ta je pro tento účet v Možnostech vypnutá."
+
+#: ui/app.slint:1380 ui/app.slint:1387
+msgid "Background sync"
+msgstr "Synchronizace na pozadí"
+
+#: ui/app.slint:1383
+msgid "Keeps this folder in sync all the time, including after you restart."
+msgstr "Tuto složku stále synchronizuje, i po restartu počítače."
+
+#: ui/app.slint:1399 ui/app.slint:3694
+msgid "Sync now"
+msgstr "Synchronizovat"
+
+#: ui/app.slint:1406
+msgid "Sign out"
+msgstr "Odhlásit se"
+
+#: ui/app.slint:1423
+msgid "Files changed in two places"
+msgstr "Soubory změněné na dvou místech"
+
+#: ui/app.slint:1434
+msgid ""
+"These files were changed here and online before they could sync, so both "
+"versions were kept. Compare them, then choose which to keep."
+msgstr "Tyto soubory se změnily tady i online dřív, než se stihly synchronizovat, proto se zachovaly obě verze. Porovnejte je a vyberte, kterou chcete ponechat."
+
+#: ui/app.slint:1481
+msgid "Compare"
+msgstr "Porovnat"
+
+#: ui/app.slint:1487
+msgid "Keep… ▾"
+msgstr "Ponechat… ▾"
+
+#: ui/app.slint:1500
+msgid "Keep this computer's version"
+msgstr "Ponechat verzi z tohoto počítače"
+
+#: ui/app.slint:1506
+msgid "Keep the OneDrive version"
+msgstr "Ponechat verzi z OneDrive"
+
+#: ui/app.slint:1512
+msgid "Keep both"
+msgstr "Ponechat obě"
+
+#: ui/app.slint:1529
+msgid "Back up this computer's folders"
+msgstr "Zálohovat složky tohoto počítače"
+
+#: ui/app.slint:1532
+msgid ""
+"Keep your important folders in OneDrive, so they're backed up and on your "
+"other devices. They stay where your apps expect them."
+msgstr "Ukládejte důležité složky na OneDrive, ať jsou zálohované a dostupné i na dalších zařízeních. Zůstanou tam, kde je vaše aplikace očekávají."
+
+#: ui/app.slint:1568
+msgid "✓ Backed up"
+msgstr "✓ Zálohováno"
+
+#: ui/app.slint:1583
+msgid "Back up…"
+msgstr "Zálohovat…"
+
+#: ui/app.slint:1590
+msgid "Stop…"
+msgstr "Zastavit…"
+
+#: ui/app.slint:1605
+msgid "Remove account from this computer…"
+msgstr "Odebrat účet z tohoto počítače…"
+
+#: ui/app.slint:1629
+msgid "Sync everything"
+msgstr "Synchronizovat vše"
+
+#: ui/app.slint:1636
+msgid ""
+"Every folder in this account is kept on this computer. Untick to choose "
+"specific folders."
+msgstr "Všechny složky tohoto účtu jsou uložené v tomto počítači. Zrušením výběru zvolíte jen některé složky."
+
+#: ui/app.slint:1636
+msgid ""
+"Only the ticked folders (and everything inside them) are kept on this "
+"computer."
+msgstr "V tomto počítači se ukládají jen vybrané složky a vše, co obsahují."
+
+#: ui/app.slint:1639
+msgid "Also sync files that sit at the top level (outside any folder)"
+msgstr "Synchronizovat také soubory mimo složky"
+
+#: ui/app.slint:1657
+msgid "Loading subfolders for "
+msgstr "Načítají se podsložky: "
+
+#: ui/app.slint:1657
+msgid "Collapse "
+msgstr "Sbalit "
+
+#: ui/app.slint:1657
+msgid "Expand "
+msgstr "Rozbalit "
+
+#: ui/app.slint:1732
+msgid "Reload"
+msgstr "Znovu načíst"
+
+#: ui/app.slint:1738
+msgid "Apply changes…"
+msgstr "Použít změny…"
+
+#: ui/app.slint:1761
+msgid "When to sync"
+msgstr "Kdy synchronizovat"
+
+#: ui/app.slint:1766
+msgid "Full check every"
+msgstr "Úplná kontrola každých"
+
+#: ui/app.slint:1771
+msgid "How often to check for changes"
+msgstr "Jak často kontrolovat změny"
+
+#: ui/app.slint:1772
+msgid "5 minutes"
+msgstr "5 minut"
+
+#: ui/app.slint:1772
+msgid "10 minutes"
+msgstr "10 minut"
+
+#: ui/app.slint:1772
+msgid "15 minutes"
+msgstr "15 minut"
+
+#: ui/app.slint:1772
+msgid "30 minutes"
+msgstr "30 minut"
+
+#: ui/app.slint:1772
+msgid "1 hour"
+msgstr "1 hodina"
+
+#: ui/app.slint:1772
+msgid "2 hours"
+msgstr "2 hodiny"
+
+#: ui/app.slint:1780
+msgid ""
+"Changes on this computer are sent right away, and personal accounts also get "
+"online changes instantly. This sets how often a full check runs as well."
+msgstr "Změny v tomto počítači se odesílají hned. U osobních účtů se také okamžitě načítají online změny. Tady nastavíte i četnost úplné kontroly."
+
+#: ui/app.slint:1785
+msgid "Only sync between"
+msgstr "Synchronizovat pouze v době"
+
+#: ui/app.slint:1789
+msgid "Schedule start time"
+msgstr "Čas začátku"
+
+#: ui/app.slint:1796
+msgid "and"
+msgstr "a"
+
+#: ui/app.slint:1800
+msgid "Schedule end time"
+msgstr "Čas konce"
+
+#: ui/app.slint:1811
+msgid ""
+"Use 24-hour times. The window can cross midnight (for example 23:00 to 07:00 "
+"for overnight only). \"Sync now\" still works outside it for an hour. Needs "
+"the tray icon running."
+msgstr "Použijte 24hodinový formát. Časové rozmezí může být přes půlnoc (například 23:00 až 07:00 pro synchronizaci jen v noci). Volba „Synchronizovat“ funguje mimo tento čas ještě hodinu. Ikona v oznamovací oblasti musí být spuštěná."
+
+#: ui/app.slint:1816
+msgid "Speed limit"
+msgstr "Omezení rychlosti"
+
+#: ui/app.slint:1821
+msgid "Sync speed limit"
+msgstr "Omezit rychlost synchronizace"
+
+#: ui/app.slint:1822
+msgid "No limit"
+msgstr "Bez omezení"
+
+#: ui/app.slint:1822
+msgid "1 MB/s"
+msgstr "1 MB/s"
+
+#: ui/app.slint:1822
+msgid "2 MB/s"
+msgstr "2 MB/s"
+
+#: ui/app.slint:1822
+msgid "5 MB/s"
+msgstr "5 MB/s"
+
+#: ui/app.slint:1822
+msgid "10 MB/s"
+msgstr "10 MB/s"
+
+#: ui/app.slint:1822
+msgid "25 MB/s"
+msgstr "25 MB/s"
+
+#: ui/app.slint:1822
+msgid "50 MB/s"
+msgstr "50 MB/s"
+
+#: ui/app.slint:1830
+msgid "Applies to each file being transferred."
+msgstr "Platí pro každý přenášený soubor."
+
+#: ui/app.slint:1833
+msgid "Connect over IPv4 only"
+msgstr "Připojovat se pouze přes IPv4"
+
+#: ui/app.slint:1837
+msgid ""
+"Can fix syncing that's slow to start or keeps timing out on some networks."
+msgstr "Může pomoci, když se synchronizace pomalu spouští nebo v některých sítích opakovaně vyprší časový limit."
+
+#: ui/app.slint:1847
+msgid "Direction"
+msgstr "Směr"
+
+#: ui/app.slint:1850
+msgid "Sync direction"
+msgstr "Směr synchronizace"
+
+#: ui/app.slint:1851
+msgid "Both ways (normal)"
+msgstr "Oběma směry (běžně)"
+
+#: ui/app.slint:1851
+msgid "Download only"
+msgstr "Pouze stahovat"
+
+#: ui/app.slint:1851
+msgid "Upload only"
+msgstr "Pouze nahrávat"
+
+#: ui/app.slint:1862
+msgid ""
+"Keeps this computer a copy of what's online. Changes you make here aren't "
+"sent to OneDrive."
+msgstr "Tento počítač uchovává kopii toho, co je online. Změny provedené tady se na OneDrive neodesílají."
+
+#: ui/app.slint:1862
+msgid ""
+"Sends what you change here to OneDrive, but doesn't download changes made "
+"online. Good for backing up this computer."
+msgstr "Odesílá změny z tohoto počítače na OneDrive, ale nestahuje změny provedené online. Hodí se k zálohování tohoto počítače."
+
+#: ui/app.slint:1862
+msgid "Changes made here go to OneDrive, and changes made online come here."
+msgstr "Změny provedené tady se odešlou na OneDrive a změny provedené online se stáhnou sem."
+
+#: ui/app.slint:1865
+msgid "Also delete files here that aren't online"
+msgstr "Smazat také soubory, které nejsou online"
+
+#: ui/app.slint:1869
+msgid ""
+"This deletes files you put in this folder yourself, since they aren't "
+"online. You'll see exactly what would be deleted before anything happens."
+msgstr "Smažou se tím soubory, které jste do této složky přidali sami, protože nejsou online. Než se cokoli změní, uvidíte přesně, co se smaže."
+
+#: ui/app.slint:1875
+msgid "Keep files online when I delete them here"
+msgstr "Při smazání tady ponechat soubory online"
+
+#: ui/app.slint:1879
+msgid ""
+"Changing the direction is checked first with a dry run, so you can see what "
+"would happen."
+msgstr "Změna směru se nejprve ověří nanečisto, abyste viděli, co by se stalo."
+
+#: ui/app.slint:1889
+msgid "Files"
+msgstr "Soubory"
+
+#: ui/app.slint:1892
+msgid ""
+"When a file is deleted online, move it to this computer's Trash instead of "
+"deleting it"
+msgstr "Při smazání souboru online ho přesunout do koše tohoto počítače"
+
+#: ui/app.slint:1896
+msgid "Show desktop notifications for synced files"
+msgstr "Zobrazovat oznámení o synchronizovaných souborech"
+
+#: ui/app.slint:1900
+msgid "Don't sync hidden files and folders (names starting with a dot) *"
+msgstr "Nesynchronizovat skryté soubory a složky (názvy začínající tečkou) *"
+
+#: ui/app.slint:1906
+msgid "Never sync files named *"
+msgstr "Nikdy nesynchronizovat soubory s názvem *"
+
+#: ui/app.slint:1910
+msgid "File name patterns to skip"
+msgstr "Vzory názvů souborů, které přeskočit"
+
+#: ui/app.slint:1916
+msgid "Separate patterns with | — for example  *.tmp|~*|Thumbs.db"
+msgstr "Vzory oddělte znakem | — například  *.tmp|~*|Thumbs.db"
+
+#: ui/app.slint:1921
+msgid "Never sync folders named *"
+msgstr "Nikdy nesynchronizovat složky s názvem *"
+
+#: ui/app.slint:1925
+msgid "Folder names or paths to skip"
+msgstr "Názvy nebo cesty složek, které přeskočit"
+
+#: ui/app.slint:1930
+msgid "Add developer folders…"
+msgstr "Přidat složky pro vývoj…"
+
+#: ui/app.slint:1937
+msgid ""
+"A name skips every folder called that; a path like Projects/Old skips that "
+"folder."
+msgstr "Název přeskočí všechny složky se stejným názvem; cesta jako Projekty/Staré přeskočí danou složku."
+
+#: ui/app.slint:1940
+msgid "Don't sync symbolic links *"
+msgstr "Nesynchronizovat symbolické odkazy *"
+
+#: ui/app.slint:1944
+msgid "Skip any folder that holds a file named .nosync *"
+msgstr "Přeskočit každou složku, která obsahuje soubor s názvem .nosync *"
+
+#: ui/app.slint:1948
+msgid "Sync shared folders I've added to My files *"
+msgstr "Synchronizovat sdílené složky přidané do části Moje soubory *"
+
+#: ui/app.slint:1959
+msgid "Safety"
+msgstr "Bezpečnost"
+
+#: ui/app.slint:1962
+msgid "Allow full resyncs for this account"
+msgstr "Povolit úplnou novou synchronizaci tohoto účtu"
+
+#: ui/app.slint:1966
+msgid ""
+"Changing which folders sync, or the settings marked *, makes the sync engine "
+"rebuild its view of everything (a full resync). You always get a preview of "
+"what would be downloaded, uploaded or deleted before anything happens. Turn "
+"this off to lock those settings."
+msgstr "Změna synchronizovaných složek nebo nastavení označených * způsobí, že synchronizační program znovu načte všechny soubory (úplná nová synchronizace). Než se cokoli změní, vždy uvidíte náhled souborů ke stažení, nahrání nebo smazání. Vypnutím tato nastavení uzamknete."
+
+#: ui/app.slint:1971
+msgid "Stop and ask when more than"
+msgstr "Zastavit a zeptat se při smazání více než"
+
+#: ui/app.slint:1975
+msgid "Number of deleted items that stops syncing"
+msgstr "Počet smazaných položek, při kterém se synchronizace zastaví"
+
+#: ui/app.slint:1982
+msgid "items are deleted at once"
+msgstr "položek najednou"
+
+#: ui/app.slint:1990
+msgid ""
+"Protects against deleting a lot online by accident, for example when a "
+"folder is moved out of OneDrive or a drive goes missing. Items inside "
+"deleted folders count too. The client's default is 1000."
+msgstr "Chrání před nechtěným smazáním mnoha souborů online, například když se složka přesune mimo OneDrive nebo zmizí disk. Započítávají se i položky ve smazaných složkách. Výchozí hodnota klienta je 1000."
+
+#: ui/app.slint:2005
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: ui/app.slint:2008
+msgid "Fine-tune the sync engine. Most people never need these."
+msgstr "Podrobnější nastavení synchronizace. Většina lidí je nemusí měnit."
+
+#: ui/app.slint:2012
+msgid "Shown"
+msgstr "Zobrazené"
+
+#: ui/app.slint:2012
+msgid "Hidden"
+msgstr "Skryté"
+
+#: ui/app.slint:2013
+msgid "Show advanced settings"
+msgstr "Zobrazit pokročilá nastavení"
+
+#: ui/app.slint:2022
+msgid "Search advanced settings"
+msgstr "Hledat v pokročilém nastavení"
+
+#: ui/app.slint:2023
+msgid "Search settings (threads, timeout, log…)"
+msgstr "Hledat nastavení (vlákna, časový limit, protokol…)"
+
+#: ui/app.slint:2090
+msgid "⚠ Can lose data"
+msgstr "⚠ Může dojít ke ztrátě dat"
+
+#: ui/app.slint:2094
+msgid "Full resync"
+msgstr "Úplná nová synchronizace"
+
+#: ui/app.slint:2098
+msgid "Sign in again"
+msgstr "Znovu se přihlásit"
+
+#: ui/app.slint:2107
+msgid "Reset "
+msgstr "Obnovit "
+
+#: ui/app.slint:2107
+msgid " to the default"
+msgstr " na výchozí hodnotu"
+
+#: ui/app.slint:2112
+msgid "↺ Reset to default"
+msgstr "↺ Obnovit výchozí hodnoty"
+
+#: ui/app.slint:2170
+msgid "No setting matches \""
+msgstr "Žádné nastavení neodpovídá „"
+
+#: ui/app.slint:2177
+msgid "Show all settings in use"
+msgstr "Zobrazit všechna používaná nastavení"
+
+#: ui/app.slint:2183
+msgid "Open log folder"
+msgstr "Otevřít složku s protokoly"
+
+#: ui/app.slint:2203
+msgid "Save"
+msgstr "Uložit"
+
+#: ui/app.slint:2220
+msgid "When"
+msgstr "Kdy"
+
+#: ui/app.slint:2220
+msgid "What"
+msgstr "Co"
+
+#: ui/app.slint:2220
+msgid "File"
+msgstr "Soubor"
+
+#: ui/app.slint:2227
+msgid "Recent uploads, downloads and deletions from the sync log."
+msgstr "Nedávná nahrání, stažení a smazání podle protokolu synchronizace."
+
+#: ui/app.slint:2232
+msgid "Show in folder"
+msgstr "Zobrazit ve složce"
+
+#: ui/app.slint:2239
+msgid "Refresh"
+msgstr "Obnovit"
+
+#: ui/app.slint:2256
+msgid "Welcome — let's add your OneDrive"
+msgstr "Vítejte — přidejme váš OneDrive"
+
+#: ui/app.slint:2256
+msgid "Add an account"
+msgstr "Přidat účet"
+
+#: ui/app.slint:2261
+msgid "What would you like to sync?"
+msgstr "Co chcete synchronizovat?"
+
+#: ui/app.slint:2265 ui/app.slint:3581 ui/app.slint:3670
+msgid "OneDrive"
+msgstr "OneDrive"
+
+#: ui/app.slint:2266
+msgid ""
+"A personal Microsoft account (Outlook, Hotmail, Live) or a work or school "
+"account."
+msgstr "Osobní účet Microsoft (Outlook, Hotmail, Live) nebo pracovní či školní účet."
+
+#: ui/app.slint:2273
+msgid "SharePoint library"
+msgstr "Knihovna SharePoint"
+
+#: ui/app.slint:2274
+msgid ""
+"A document library from a SharePoint or Teams site. You'll need a work or "
+"school account added first."
+msgstr "Knihovna dokumentů na webu SharePoint nebo Teams. Nejprve je potřeba přidat pracovní nebo školní účet."
+
+#: ui/app.slint:2288
+msgid "1. Find the library"
+msgstr "1. Najděte knihovnu"
+
+#: ui/app.slint:2293
+msgid "Using account"
+msgstr "Použít účet"
+
+#: ui/app.slint:2298
+msgid "Work or school account for this library"
+msgstr "Pracovní nebo školní účet pro tuto knihovnu"
+
+#: ui/app.slint:2308
+msgid "Site"
+msgstr "Web"
+
+#: ui/app.slint:2313
+msgid "SharePoint site address or name"
+msgstr "Adresa nebo název webu SharePoint"
+
+#: ui/app.slint:2316
+msgid "Paste the site's address, or type part of its name"
+msgstr "Vložte adresu webu nebo napište část jeho názvu"
+
+#: ui/app.slint:2322
+msgid "Find"
+msgstr "Najít"
+
+#: ui/app.slint:2330
+msgid ""
+"Copy the address from your browser while viewing the SharePoint site or "
+"library. Leave it empty to list the sites you belong to — only sites this "
+"account can already open appear."
+msgstr "Zkopírujte adresu z prohlížeče při zobrazení webu nebo knihovny SharePoint. Nechte pole prázdné, chcete-li zobrazit weby, ke kterým máte přístup — zobrazí se jen weby, které lze otevřít pomocí tohoto účtu."
+
+#: ui/app.slint:2383
+msgid "2. Where to keep it"
+msgstr "2. Kam ji uložit"
+
+#: ui/app.slint:2383
+msgid "Name and folder"
+msgstr "Název a složka"
+
+#: ui/app.slint:2395
+msgid "e.g. Personal, Work"
+msgstr "např. Osobní, Práce"
+
+#: ui/app.slint:2401
+msgid "Local folder"
+msgstr "Místní složka"
+
+#: ui/app.slint:2406
+msgid "Local folder for synced files"
+msgstr "Místní složka pro synchronizované soubory"
+
+#: ui/app.slint:2410
+msgid "Browse…"
+msgstr "Procházet…"
+
+#: ui/app.slint:2417
+msgid ""
+"Best to pick an empty or new folder. Anything already in it will be uploaded."
+msgstr "Nejlepší je vybrat prázdnou nebo novou složku. Vše, co v ní už je, se nahraje."
+
+#: ui/app.slint:2422 ui/app.slint:2427
+msgid "Microsoft cloud"
+msgstr "Cloud Microsoft"
+
+#: ui/app.slint:2428
+msgid "Worldwide (normal)"
+msgstr "Celosvětový (běžný)"
+
+#: ui/app.slint:2428
+msgid "US Government (GCC High)"
+msgstr "Vláda USA (GCC High)"
+
+#: ui/app.slint:2428
+msgid "US Government (DoD)"
+msgstr "Vláda USA (DoD)"
+
+#: ui/app.slint:2428
+msgid "Germany"
+msgstr "Německo"
+
+#: ui/app.slint:2428
+msgid "China (21Vianet)"
+msgstr "Čína (21Vianet)"
+
+#: ui/app.slint:2438
+msgid "Tenant"
+msgstr "Tenant"
+
+#: ui/app.slint:2443
+msgid "Organization tenant"
+msgstr "Tenant organizace"
+
+#: ui/app.slint:2449
+msgid ""
+"Only for government and national cloud accounts. Your IT team can tell you "
+"the tenant."
+msgstr "Pouze pro vládní a národní cloudové účty. Tenant vám sdělí správce IT."
+
+#: ui/app.slint:2457
+msgid "Back"
+msgstr "Zpět"
+
+#: ui/app.slint:2463
+msgid "Add library"
+msgstr "Přidat knihovnu"
+
+#: ui/app.slint:2463
+msgid "Continue and sign in…"
+msgstr "Pokračovat a přihlásit se…"
+
+#: ui/app.slint:2498
+msgid "Show the tray icon when I log in"
+msgstr "Zobrazovat ikonu v oznamovací oblasti po přihlášení"
+
+#: ui/app.slint:2505
+msgid ""
+"Syncing itself keeps running in the background either way. The tray icon "
+"shows status and runs sync schedules."
+msgstr "Synchronizace běží na pozadí v obou případech. Ikona v oznamovací oblasti ukazuje stav a spouští naplánovanou synchronizaci."
+
+#: ui/app.slint:2508
+msgid "Stop syncing when I quit the tray icon"
+msgstr "Při ukončení ikony v oznamovací oblasti zastavit synchronizaci"
+
+#: ui/app.slint:2515
+msgid ""
+"\"Quit\" in the tray icon's menu then stops syncing too. It starts again the "
+"next time the app opens or you log in."
+msgstr "Volba „Ukončit“ v nabídce ikony zastaví i synchronizaci. Znovu se spustí při příštím otevření aplikace nebo přihlášení."
+
+#: ui/app.slint:2518
+msgid "Pause syncing on a metered network"
+msgstr "Pozastavit synchronizaci při připojení s omezenými daty"
+
+#: ui/app.slint:2525
+msgid ""
+"Saves your data allowance on a phone hotspot or a connection you've marked "
+"as metered in your network settings."
+msgstr "Šetří data při připojení přes mobilní hotspot nebo síť označenou v nastavení sítě jako připojení s omezenými daty."
+
+#: ui/app.slint:2528
+msgid "Pause syncing while power saver is on"
+msgstr "Pozastavit synchronizaci při zapnutém spořiči energie"
+
+#: ui/app.slint:2535
+msgid ""
+"Syncing carries on by itself afterwards. \"Sync now\" still syncs for an "
+"hour if you need it to."
+msgstr "Poté se synchronizace sama obnoví. Pokud potřebujete synchronizovat ještě předtím, volba „Synchronizovat“ funguje jednu hodinu."
+
+#: ui/app.slint:2538
+msgid "Save screenshots to OneDrive"
+msgstr "Ukládat snímky obrazovky na OneDrive"
+
+#: ui/app.slint:2547
+msgid "Save screenshots in"
+msgstr "Ukládat snímky obrazovky do"
+
+#: ui/app.slint:2552
+msgid "OneDrive account for screenshots"
+msgstr "Účet OneDrive pro snímky obrazovky"
+
+#: ui/app.slint:2561
+msgid "Show sync badges on files in Dolphin, Nemo and Caja"
+msgstr "Zobrazovat značky synchronizace u souborů v Dolphin, Nemo a Caja"
+
+#: ui/app.slint:2568
+msgid ""
+"A small tick, arrows or warning sign on the files in your OneDrive folders. "
+"File manager windows that are already open show them once they're reopened."
+msgstr "Malá značka zaškrtnutí, šipky nebo varování u souborů ve složkách OneDrive. U již otevřených oken správce souborů se zobrazí po jejich opětovném otevření."
+
+#: ui/app.slint:2573
+msgid "Adding…"
+msgstr "Probíhá přidávání…"
+
+#: ui/app.slint:2573
+msgid "Add badges to Dolphin…"
+msgstr "Přidat do Dolphin…"
+
+#: ui/app.slint:2581
+msgid ""
+"Dolphin needs a small plugin installed for everyone on this computer, so it "
+"asks for your password once."
+msgstr "Dolphin potřebuje pro všechny uživatele tohoto počítače nainstalovat malý doplněk. Jednou vás požádá o heslo."
+
+#: ui/app.slint:2587
+msgid "Tell me when a new version is out"
+msgstr "Upozornit na novou verzi"
+
+#: ui/app.slint:2594
+msgid ""
+"Looks at this app's page on GitHub once a day. Nothing is downloaded or "
+"installed by itself."
+msgstr "Jednou denně kontroluje stránku této aplikace na GitHubu. Nic se samo nestahuje ani neinstaluje."
+
+#: ui/app.slint:2600 ui/app.slint:3727
+msgid "Version "
+msgstr "Verze "
+
+#: ui/app.slint:2600
+msgid " is out."
+msgstr " je k dispozici."
+
+#: ui/app.slint:2605 ui/app.slint:3733
+msgid "Get it"
+msgstr "Získat"
+
+#: ui/app.slint:2616
+msgid "Add to my applications menu"
+msgstr "Přidat do nabídky aplikací"
+
+#: ui/app.slint:2632
+msgid "Something not right?"
+msgstr "Něco nefunguje?"
+
+#: ui/app.slint:2635
+msgid ""
+"Checks the sync engine, the tray icon and every account in one go. The "
+"report is for a bug report: it leaves out your file names, email address, "
+"user and computer names and sign-in details, and opens so you can read it "
+"before sharing."
+msgstr "Najednou zkontroluje synchronizační program, ikonu v oznamovací oblasti a všechny účty. Protokol je určen k nahlášení chyby: neobsahuje názvy souborů, e-mailovou adresu, jména uživatele ani počítače nebo údaje k přihlášení. Otevře se, abyste si ho před sdílením mohli přečíst."
+
+#: ui/app.slint:2641
+msgid "Checking…"
+msgstr "Probíhá kontrola…"
+
+#: ui/app.slint:2641
+msgid "Check for problems"
+msgstr "Zkontrolovat problémy"
+
+#: ui/app.slint:2648
+msgid "Make a problem report"
+msgstr "Vytvořit hlášení o problému"
+
+#: ui/app.slint:2667
+msgid "Appearance"
+msgstr "Vzhled"
+
+#: ui/app.slint:2670
+msgid ""
+"Colours, light or dark mode, text size and animations follow your desktop's "
+"settings."
+msgstr "Barvy, světlý či tmavý režim, velikost textu a animace přebírá z nastavení počítače."
+
+#: ui/app.slint:2675 ui/app.slint:2680
+msgid "Glass effect"
+msgstr "Skleněný efekt"
+
+#: ui/app.slint:2681
+msgid "Automatic"
+msgstr "Automaticky"
+
+#: ui/app.slint:2681
+msgid "On"
+msgstr "Zapnuto"
+
+#: ui/app.slint:2681
+msgid "Off"
+msgstr "Vypnuto"
+
+#: ui/app.slint:2701
+msgid "About"
+msgstr "O aplikaci"
+
+#: ui/app.slint:2704
+msgid "DriveDeck for OneDrive "
+msgstr "DriveDeck pro OneDrive "
+
+#: ui/app.slint:2708
+msgid "The easiest, most complete way to use OneDrive on Linux."
+msgstr "Nejjednodušší a nejúplnější způsob, jak používat OneDrive v Linuxu."
+
+#: ui/app.slint:2716
+msgid ""
+"Free software under the GNU GPL v3. Syncing is done by the OneDrive Client "
+"for Linux by abraunegg (GPL v3). Not made by or affiliated with Microsoft. "
+"OneDrive is a trademark of Microsoft."
+msgstr "Svobodný software pod licencí GNU GPL v3. Synchronizaci zajišťuje OneDrive Client for Linux od abraunegg (GPL v3). Není vytvořen společností Microsoft ani s ní není spojen. OneDrive je ochranná známka společnosti Microsoft."
+
+#: ui/app.slint:2722
+msgid "Project page"
+msgstr "Stránka projektu"
+
+#: ui/app.slint:2728
+msgid "Sync engine (abraunegg/onedrive)"
+msgstr "Synchronizační program (abraunegg/onedrive)"
+
+#: ui/app.slint:2741 ui/app.slint:2907 ui/app.slint:2953
+msgid "Uninstall"
+msgstr "Odinstalovat"
+
+#: ui/app.slint:2744
+msgid ""
+"Remove this app, and choose whether to keep your OneDrive setup for the "
+"command-line client or remove that too. Your synced files always stay on "
+"this computer."
+msgstr "Odebere tuto aplikaci. Můžete zvolit, zda ponechat nastavení OneDrive pro použití z příkazového řádku, nebo odebrat i je. Synchronizované soubory v tomto počítači zůstanou."
+
+#: ui/app.slint:2749
+msgid "Uninstall…"
+msgstr "Odinstalovat…"
+
+#: ui/app.slint:2780
+msgid "Sign in to Microsoft"
+msgstr "Přihlásit se k Microsoftu"
+
+#: ui/app.slint:2788
+msgid "Address from the blank sign-in page"
+msgstr "Adresa z prázdné přihlašovací stránky"
+
+#: ui/app.slint:2799
+msgid "Copy link"
+msgstr "Kopírovat odkaz"
+
+#: ui/app.slint:2805
+msgid "Open sign-in page again"
+msgstr "Znovu otevřít přihlašovací stránku"
+
+#: ui/app.slint:2811
+msgid "Finish sign-in"
+msgstr "Dokončit přihlášení"
+
+#: ui/app.slint:2818 ui/app.slint:2971 ui/app.slint:3137 ui/app.slint:4341
+msgid "Close"
+msgstr "Zavřít"
+
+#: ui/app.slint:2818 ui/app.slint:2874 ui/app.slint:2946 ui/app.slint:3026
+#: ui/app.slint:3178 ui/app.slint:3230 ui/app.slint:3316
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: ui/app.slint:2880
+msgid "Apply"
+msgstr "Použít"
+
+#: ui/app.slint:2913
+msgid ""
+"What should happen to your OneDrive setup (sign-ins, chosen folders and "
+"options)? Your synced files stay on this computer either way."
+msgstr "Co se má stát s nastavením OneDrive (přihlášení, vybrané složky a možnosti)? Synchronizované soubory v tomto počítači zůstanou tak jako tak."
+
+#: ui/app.slint:2917
+msgid "Keep my OneDrive setup"
+msgstr "Ponechat nastavení OneDrive"
+
+#: ui/app.slint:2918
+msgid ""
+"Only this app is removed. Your accounts keep syncing in the background with "
+"the OneDrive Client for Linux, which you can keep using from the command "
+"line."
+msgstr "Odebere se pouze tato aplikace. Účty se budou dál synchronizovat na pozadí pomocí OneDrive Client for Linux, který můžete používat z příkazového řádku."
+
+#: ui/app.slint:2926
+msgid "Remove everything"
+msgstr "Odebrat vše"
+
+#: ui/app.slint:2927
+msgid ""
+"Also stop all background syncing, sign out, and delete every OneDrive sync "
+"configuration on this computer, including ones made with the command-line "
+"client."
+msgstr "Také zastaví veškerou synchronizaci na pozadí, odhlásí vás a smaže všechna nastavení synchronizace OneDrive v tomto počítači, včetně nastavení vytvořených pomocí příkazového řádku."
+
+#: ui/app.slint:2998
+msgid "Move your OneDrive folder"
+msgstr "Přesunout složku OneDrive"
+
+#: ui/app.slint:3002
+msgid "This moves the folder that holds this account's files, now "
+msgstr "Tím přesunete složku se soubory tohoto účtu, nyní "
+
+#: ui/app.slint:3002
+msgid ""
+", to a new place — for example another hard drive with more space. Your "
+"files stay in OneDrive the whole time, and nothing is downloaded again."
+msgstr ", na nové místo — například na jiný disk s větším prostorem. Soubory zůstanou na OneDrive a znovu se nestáhnou."
+
+#: ui/app.slint:3006
+msgid "What happens after you choose the new place:"
+msgstr "Co se stane po výběru nového místa:"
+
+#: ui/app.slint:3011
+msgid ""
+"1. Syncing for this account pauses.\n"
+"2. The files go to the new place. On the same drive they're simply moved, "
+"which is instant. To another drive they're copied, which can take a while "
+"for a big folder.\n"
+"3. A check runs to confirm everything matches online (a dry run, nothing "
+"changes). Press Apply and syncing carries on from the new place."
+msgstr "1. Synchronizace tohoto účtu se pozastaví.
+2. Soubory se přesunou na nové místo. Na stejném disku je přesun okamžitý. Na jiný disk se soubory zkopírují, což může u velké složky chvíli trvat.
+3. Proběhne kontrola, zda vše odpovídá online obsahu (nanečisto, nic se nezmění). Kliknutím na Použít obnovíte synchronizaci z nového místa."
+
+#: ui/app.slint:3015
+msgid ""
+"Moving to another drive leaves your old folder exactly as it was: nothing is "
+"ever deleted for you, so no files can be lost if the copy goes wrong. Once "
+"you've checked your files are in the new place, delete the old folder "
+"yourself to free up the space. Until then, it isn't synced any more and "
+"changes made in it won't reach OneDrive."
+msgstr "Při přesunu na jiný disk zůstane stará složka přesně tak, jak je. Nic se samo nesmaže, takže při neúspěšném kopírování o soubory nepřijdete. Až ověříte, že jsou soubory na novém místě, smažte starou složku sami a uvolněte místo. Do té doby se už nesynchronizuje a změny v ní se na OneDrive neodešlou."
+
+#: ui/app.slint:3020
+msgid ""
+"Pick an empty folder to use it as the new OneDrive folder. Pick a folder "
+"that already has things in it (like the top of a drive) and a folder named "
+"like the current one is made inside it. Make sure the new drive has enough "
+"free space and is always connected (mounted automatically)."
+msgstr "Jako novou složku OneDrive vyberte prázdnou složku. Pokud zvolíte složku, která už něco obsahuje (například kořen disku), vytvoří se v ní složka se současným názvem. Ověřte, že má nový disk dost místa a je vždy připojený (připojuje se automaticky)."
+
+#: ui/app.slint:3032
+msgid "Choose new location…"
+msgstr "Vybrat nové místo…"
+
+#: ui/app.slint:3114
+msgid "All settings in use"
+msgstr "Všechna používaná nastavení"
+
+#: ui/app.slint:3118
+msgid ""
+"What the sync engine reads from this account's config file, including the "
+"defaults for anything not set."
+msgstr "Co synchronizační program načítá z konfiguračního souboru tohoto účtu, včetně výchozích hodnot nepoužitých možností."
+
+#: ui/app.slint:3163
+msgid "Remove account"
+msgstr "Odebrat účet"
+
+#: ui/app.slint:3171
+msgid "Also sign out and delete this account's sync settings"
+msgstr "Také odhlásit tento účet a smazat jeho nastavení synchronizace"
+
+#: ui/app.slint:3184
+msgid "Remove"
+msgstr "Odebrat"
+
+#: ui/app.slint:3221
+msgid "I'll install it myself"
+msgstr "Nainstaluji si ho sám/sama"
+
+#: ui/app.slint:3262
+msgid "Skip developer folders"
+msgstr "Přeskočit vývojářské složky"
+
+#: ui/app.slint:3266
+msgid ".git"
+msgstr ".git"
+
+#: ui/app.slint:3270
+msgid "node_modules"
+msgstr "node_modules"
+
+#: ui/app.slint:3274
+msgid "target"
+msgstr "target"
+
+#: ui/app.slint:3278
+msgid "__pycache__"
+msgstr "__pycache__"
+
+#: ui/app.slint:3282
+msgid ".venv"
+msgstr ".venv"
+
+#: ui/app.slint:3286
+msgid "venv"
+msgstr "venv"
+
+#: ui/app.slint:3290
+msgid ".gradle"
+msgstr ".gradle"
+
+#: ui/app.slint:3294
+msgid ".idea"
+msgstr ".idea"
+
+#: ui/app.slint:3298
+msgid ".cache"
+msgstr ".cache"
+
+#: ui/app.slint:3302
+msgid "build"
+msgstr "build"
+
+#: ui/app.slint:3306
+msgid "dist"
+msgstr "dist"
+
+#: ui/app.slint:3310
+msgid ""
+"build and dist are common folder names too, so select them only if you mean "
+"to skip them."
+msgstr "Názvy build a dist jsou běžné i pro jiné složky. Vyberte je jen tehdy, pokud je chcete přeskočit."
+
+#: ui/app.slint:3322
+msgid "Add"
+msgstr "Přidat"
+
+#: ui/app.slint:3559
+msgid "Show "
+msgstr "Zobrazit "
+
+#: ui/app.slint:3559
+msgid " in its folder"
+msgstr " ve složce"
+
+#: ui/app.slint:3703
+msgid "Pause syncing"
+msgstr "Pozastavit synchronizaci"
+
+#: ui/app.slint:3711
+msgid "Settings and accounts"
+msgstr "Nastavení a účty"
+
+#: ui/app.slint:3727
+msgid " of this app is out."
+msgstr " této aplikace je k dispozici."
+
+#: ui/app.slint:3812
+msgid "Not synced ("
+msgstr "Nesynchronizováno ("
+
+#: ui/app.slint:3830
+msgid "Syncing now"
+msgstr "Právě se synchronizuje"
+
+#: ui/app.slint:3830
+msgid "Syncing now ("
+msgstr "Právě se synchronizuje ("
+
+#: ui/app.slint:3835
+msgid "No large files are transferring right now."
+msgstr "Žádné velké soubory se právě nepřenášejí."
+
+#: ui/app.slint:3849
+msgid "Recent files"
+msgstr "Nedávné soubory"
+
+#: ui/app.slint:3854
+msgid "Show recent files for account"
+msgstr "Zobrazit nedávné soubory účtu"
+
+#: ui/app.slint:3866
+msgid "Nothing has synced recently."
+msgstr "V poslední době se nic nesynchronizovalo."
+
+#: ui/app.slint:3880
+msgid "Open folder"
+msgstr "Otevřít složku"
+
+#: ui/app.slint:3894
+msgid "View online"
+msgstr "Zobrazit online"
+
+#: ui/app.slint:3911
+msgid "Pause for 1 hour"
+msgstr "Pozastavit na 1 hodinu"
+
+#: ui/app.slint:3917
+msgid "Pause for 4 hours"
+msgstr "Pozastavit na 4 hodiny"
+
+#: ui/app.slint:3923
+msgid "Pause until tomorrow morning"
+msgstr "Pozastavit do zítřejšího rána"
+
+#: ui/app.slint:3930
+msgid "Resume syncing"
+msgstr "Pokračovat v synchronizaci"
+
+#: ui/app.slint:4019
+msgid "Version history — "
+msgstr "Historie verzí — "
+
+#: ui/app.slint:4019
+msgid "Who has access — "
+msgstr "Kdo má přístup — "
+
+#: ui/app.slint:4019
+msgid "Share — "
+msgstr "Sdílet — "
+
+#: ui/app.slint:4079
+msgid "Version history"
+msgstr "Historie verzí"
+
+#: ui/app.slint:4079
+msgid "Who has access"
+msgstr "Kdo má přístup"
+
+#: ui/app.slint:4079
+msgid "Share with people"
+msgstr "Sdílet s lidmi"
+
+#: ui/app.slint:4105
+msgid "Getting the saved versions…"
+msgstr "Načítají se uložené verze…"
+
+#: ui/app.slint:4154
+msgid "Current"
+msgstr "Aktuální"
+
+#: ui/app.slint:4178 ui/app.slint:4382
+msgid "Restore"
+msgstr "Obnovit"
+
+#: ui/app.slint:4192
+msgid ""
+"\"Open\" saves a copy of that version and opens it, without changing "
+"anything. \"Restore\" makes it the current version everywhere; the version "
+"it replaces is kept here too, so nothing is lost."
+msgstr "Volba „Otevřít“ uloží kopii dané verze a otevře ji, aniž by cokoli změnila. Volba „Obnovit“ nastaví tuto verzi jako aktuální všude. Nahrazená verze se také zachová, takže o nic nepřijdete."
+
+#: ui/app.slint:4201
+msgid "Invite people by email"
+msgstr "Pozvat e-mailem"
+
+#: ui/app.slint:4205
+msgid "Email addresses to invite"
+msgstr "E-mailové adresy k pozvání"
+
+#: ui/app.slint:4207
+msgid "name@example.com, another@example.com"
+msgstr "name@example.com, another@example.com"
+
+#: ui/app.slint:4212
+msgid ""
+"Separate addresses with commas. Each person gets an email and signs in to "
+"open it. People outside your organization can only be added if your IT team "
+"allows it."
+msgstr "Adresy oddělte čárkami. Každý člověk dostane e-mail a přihlásí se, aby pozvánku otevřel. Lidi mimo vaši organizaci lze přidat jen tehdy, pokud to správce IT povolí."
+
+#: ui/app.slint:4212
+msgid ""
+"Separate addresses with commas. Each person gets an email and signs in with "
+"a Microsoft account to open it."
+msgstr "Adresy oddělte čárkami. Každý člověk dostane e-mail a přihlásí se pomocí účtu Microsoft, aby pozvánku otevřel."
+
+#: ui/app.slint:4220 ui/app.slint:4230
+msgid "Can edit"
+msgstr "Může upravovat"
+
+#: ui/app.slint:4224
+msgid "They can change it (and add or delete files in a folder)."
+msgstr "Může soubor měnit (a ve složce přidávat nebo mazat soubory)."
+
+#: ui/app.slint:4224
+msgid "They can view and download it, but not change it."
+msgstr "Může soubor zobrazit a stáhnout, ale ne měnit."
+
+#: ui/app.slint:4234
+msgid "Message (optional)"
+msgstr "Zpráva (nepovinná)"
+
+#: ui/app.slint:4238
+msgid "Invitation message"
+msgstr "Zpráva k pozvánce"
+
+#: ui/app.slint:4287
+msgid "Keep"
+msgstr "Ponechat"
+
+#: ui/app.slint:4293
+msgid "Stop it"
+msgstr "Zastavit"
+
+#: ui/app.slint:4293
+msgid "Stop sharing"
+msgstr "Zastavit sdílení"
+
+#: ui/app.slint:4296
+msgid "Stop sharing with "
+msgstr "Zastavit sdílení s "
+
+#: ui/app.slint:4314
+msgid ""
+"Stopping a link makes it stop working for everyone who has it. Stopping a "
+"person's access takes the file away from their \"Shared\" list. Access that "
+"comes from a folder above can only be changed on that folder."
+msgstr "Zastavení odkazu způsobí, že přestane fungovat všem, kdo ho mají. Odebráním přístupu člověku se soubor odstraní z jeho seznamu „Sdílené“. Přístup zděděný z nadřazené složky lze změnit jen u této složky."
+
+#: ui/app.slint:4333
+msgid "Send invitation"
+msgstr "Odeslat pozvánku"
+
+#: ui/app.slint:4365
+msgid "Restore this version?"
+msgstr "Obnovit tuto verzi?"
+
+#: ui/app.slint:4369
+msgid "The version from "
+msgstr "Verze z "
+
+#: ui/app.slint:4369
+msgid ""
+" becomes the current one, online and on this computer. The current version "
+"is kept in the history, so you can switch back."
+msgstr " se stane aktuální online i v tomto počítači. Současná verze zůstane v historii, takže se k ní můžete vrátit."
+
+msgid "needs a full path, starting with / or ~/"
+msgstr "musí být úplná cesta začínající znakem / nebo ~/"
+
+msgid "needs a public https:// address"
+msgstr "musí být veřejná adresa https://"
+
+msgid "needs an IP address, like 0.0.0.0 or 127.0.0.1"
+msgstr "musí být IP adresa, například 0.0.0.0 nebo 127.0.0.1"
+
+msgid "needs a tenant ID (a GUID) or a domain like contoso.onmicrosoft.com"
+msgstr "musí být ID tenanta (GUID) nebo doména, například contoso.onmicrosoft.com"
+
+msgid "needs an application ID like d50ca740-c83f-4d1b-b616-12c519384f0c"
+msgstr "musí být ID aplikace, například d50ca740-c83f-4d1b-b616-12c519384f0c"
+
+msgid "can't contain quotes or line breaks"
+msgstr "nesmí obsahovat uvozovky ani konce řádků"
+
+msgid "needs three digits from 0 to 7, like 700 or 644"
+msgstr "musí obsahovat tři číslice od 0 do 7, například 700 nebo 644"
+
+msgid "needs a whole number from {} to {}{}"
+msgstr "musí být celé číslo od {} do {}{}"
+
+msgid "needs a number from {} to {}{}"
+msgstr "musí být číslo od {} do {}{}"
+
+msgid "isn't one of the choices"
+msgstr "není jednou z nabízených možností"
+
+msgid "Couldn't read {}: {}"
+msgstr "Nepodařilo se načíst {}: {}"
+
+msgid "Couldn't update {}: {}"
+msgstr "Nepodařilo se aktualizovat {}: {}"
+
+msgid "Couldn't enumerate {}: {}"
+msgstr "Nepodařilo se vypsat {}: {}"
+
+msgid "Couldn't inspect {}: {}"
+msgstr "Nepodařilo se zkontrolovat {}: {}"
+
+msgid "Couldn't find a filesystem for {}."
+msgstr "Nepodařilo se najít souborový systém pro {}."
+
+msgid "Couldn't resolve the OneDrive folder {}: {}"
+msgstr "Nepodařilo se zjistit umístění složky OneDrive {}: {}"
+
+msgid "Couldn't check the mounted drive for {}: {}"
+msgstr "Nepodařilo se zkontrolovat připojený disk pro {}: {}"
+
+msgid "Couldn't check whether the drive for {} is mounted."
+msgstr "Nepodařilo se zjistit, zda je disk pro {} připojený."
+
+msgid ""
+"The drive for {} isn't mounted. Connect it before backing up this folder."
+msgstr "Disk pro {} není připojený. Před zálohováním této složky ho připojte."
+
+msgid "Couldn't check the sync-folder rules in {}: {}"
+msgstr "Nepodařilo se zkontrolovat pravidla synchronizace složky v {}: {}"
+
+msgid "Unknown folder."
+msgstr "Neznámá složka."
+
+msgid "This computer doesn't have a {} folder set up."
+msgstr "V tomto počítači není nastavena složka {}."
+
+msgid ""
+"The OneDrive folder {} isn't available. Connect its drive and try again."
+msgstr "Složka OneDrive {} není dostupná. Připojte její disk a zkuste to znovu."
+
+msgid ""
+"Your {} folder is set to {}, which holds everything in your home folder, so "
+"it can't be backed up. Point {} at its own folder in your desktop's settings "
+"first."
+msgstr "Složka {} je nastavena na {}, která obsahuje celou vaši domovskou složku, a proto ji nelze zálohovat. Nejprve v nastavení počítače nastavte {} na samostatnou složku."
+
+msgid "Your {} folder can't be backed up: {}"
+msgstr "Složku {} nelze zálohovat: {}"
+
+msgid "{} doesn't exist."
+msgstr "{} neexistuje."
+
+msgid "{} is already a link to somewhere else, so it's left alone."
+msgstr "{} už je odkazem na jiné místo, proto zůstane beze změny."
+
+msgid "{} isn't a folder."
+msgstr "{} není složka."
+
+msgid "Your {} folder overlaps the OneDrive folder for account \"{}\" ({})."
+msgstr "Složka {} se překrývá se složkou OneDrive účtu „{}“ ({})."
+
+msgid ""
+"This account only downloads, so nothing here would be backed up. Change its "
+"direction under Options first."
+msgstr "Tento účet pouze stahuje, takže by se odsud nic nezálohovalo. Nejprve změňte směr v části Možnosti."
+
+msgid ""
+"This account only syncs the folders you chose, and \"{}\" isn't one of them. "
+"Add it under Folders first (you can create it online)."
+msgstr "Tento účet synchronizuje jen vybrané složky a „{}“ mezi nimi není. Nejprve ji přidejte v části Složky (můžete ji vytvořit online)."
+
+msgid ""
+"There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or "
+"rename it before backing up this folder."
+msgstr "Ve složce OneDrive je symbolický odkaz „{}“. Před zálohováním této složky ho opravte nebo přejmenujte."
+
+msgid "There's a file called \"{}\" in your OneDrive folder. Rename it first."
+msgstr "Ve složce OneDrive je soubor „{}“. Nejprve ho přejmenujte."
+
+msgid "The suffix for {} is too long to make a collision-safe name."
+msgstr "Přípona pro {} je příliš dlouhá na vytvoření bezpečného názvu bez kolizí."
+
+msgid "The name for {} is too long to make a collision-safe copy."
+msgstr "Název pro {} je příliš dlouhý na vytvoření bezpečné kopie bez kolizí."
+
+msgid "Couldn't find an unused name for {} after 10,000 attempts."
+msgstr "Po 10 000 pokusech se nepodařilo najít nepoužitý název pro {}."
+
+msgid "Couldn't prepare a safe copy: {}"
+msgstr "Nepodařilo se připravit bezpečnou kopii: {}"
+
+msgid "{} has no usable name"
+msgstr "{} nemá použitelný název"
+
+msgid "Copying {} failed (is there enough space?)"
+msgstr "Kopírování {} se nezdařilo (je na disku dost místa?)"
+
+msgid "The copy was published, but couldn't clean up {}: {}"
+msgstr "Kopie byla zveřejněna, ale nepodařilo se uklidit {}: {}"
+
+msgid "The destination changed during copy ({}); couldn't clean up {}: {}"
+msgstr "Cíl se během kopírování změnil ({}); nepodařilo se uklidit {}: {}"
+
+msgid "Couldn't publish the completed copy: {}"
+msgstr "Nepodařilo se zveřejnit dokončenou kopii: {}"
+
+msgid "Couldn't find an unused destination for {} after 10,000 attempts."
+msgstr "Po 10 000 pokusech se nepodařilo najít nepoužitý cíl pro {}."
+
+msgid ""
+"Couldn't protect this account from another operation, so the folder wasn't "
+"backed up: {}"
+msgstr "Nepodařilo se zabránit souběžné operaci s tímto účtem, proto se složka nezálohovala: {}"
+
+msgid ""
+"A one-time sync is running. Wait for it to finish before backing up this "
+"folder."
+msgstr "Probíhá jednorázová synchronizace. Před zálohováním této složky počkejte, až skončí."
+
+msgid "Couldn't stop the sync engine, so the folder wasn't changed: {}"
+msgstr "Nepodařilo se zastavit synchronizační program, složka proto nebyla změněna: {}"
+
+msgid ""
+"The folder backup finished, but the sync engine couldn't be restarted: {}"
+msgstr "Zálohování složky skončilo, ale synchronizační program se nepodařilo znovu spustit: {}"
+
+msgid "{}; the sync engine couldn't be restarted: {}"
+msgstr "{}; synchronizační program se nepodařilo znovu spustit: {}"
+
+msgid ""
+"The source folder changed after the backup was reviewed. Review it again "
+"before continuing."
+msgstr "Zdrojová složka se po kontrole zálohy změnila. Před pokračováním ji zkontrolujte znovu."
+
+msgid ""
+"The OneDrive folder or its mounted drive changed after the backup was "
+"reviewed. Connect the right drive and review again."
+msgstr "Složka OneDrive nebo její připojený disk se po kontrole zálohy změnily. Připojte správný disk a proveďte kontrolu znovu."
+
+msgid "The source folder has no usable name."
+msgstr "Zdrojová složka nemá použitelný název."
+
+msgid "The backup paths changed or overlap. Review the folder backup again."
+msgstr "Cesty zálohy se změnily nebo se překrývají. Zkontrolujte zálohu složky znovu."
+
+msgid ""
+"The OneDrive destination became a symbolic link after review. Resolve it and "
+"review the backup again."
+msgstr "Cíl OneDrive se po kontrole změnil na symbolický odkaz. Opravte ho a znovu zkontrolujte zálohu."
+
+msgid ""
+"The OneDrive destination became a file after review. Review the backup again."
+msgstr "Cíl OneDrive se po kontrole změnil na soubor. Zkontrolujte zálohu znovu."
+
+msgid ""
+"The destination filesystem changed after the backup was reviewed. Review the "
+"backup again."
+msgstr "Souborový systém cíle se po kontrole zálohy změnil. Zkontrolujte zálohu znovu."
+
+msgid "Couldn't create {}: {}"
+msgstr "Nepodařilo se vytvořit {}: {}"
+
+msgid ""
+"The destination filesystem changed while preparing the backup. No files were "
+"moved."
+msgstr "Souborový systém cíle se při přípravě zálohy změnil. Žádné soubory nebyly přesunuty."
+
+msgid ""
+"Stopped at \"{}\": {}. Everything moved so far is in {}; the rest is still "
+"in {}."
+msgstr "Zastaveno u „{}“: {}. Vše, co se dosud přesunulo, je v {}; zbytek je stále v {}."
+
+msgid ""
+"Stopped at \"{}\": {}. Your {} folder is still in {}; completed copies are "
+"in {}."
+msgstr "Zastaveno u „{}“: {}. Složka {} je stále v {}; dokončené kopie jsou v {}."
+
+msgid "Everything was moved, but {} couldn't be replaced: {}"
+msgstr "Vše se přesunulo, ale {} se nepodařilo nahradit: {}"
+
+msgid "Everything was copied, but {} couldn't be renamed: {}"
+msgstr "Vše se zkopírovalo, ale {} se nepodařilo přejmenovat: {}"
+
+msgid "Your files are in {}, but the link at {} couldn't be made: {}"
+msgstr "Soubory jsou v {}, ale odkaz v {} se nepodařilo vytvořit: {}"
+
+msgid "Your files are in {}, but the backup couldn't be recorded: {}"
+msgstr "Soubory jsou v {}, ale záznam o záloze se nepodařilo vytvořit: {}"
+
+msgid "That folder isn't being backed up."
+msgstr "Tato složka se nezálohuje."
+
+msgid "Couldn't inspect the link: {}"
+msgstr "Nepodařilo se zkontrolovat odkaz: {}"
+
+msgid ""
+"{} now points somewhere unexpected, so the backup record was kept. Resolve "
+"the link before stopping the backup."
+msgstr "{} nyní odkazuje na neočekávané místo, proto se záznam o záloze zachoval. Před zastavením zálohování odkaz opravte."
+
+msgid "Couldn't remove the link: {}"
+msgstr "Nepodařilo se odebrat odkaz: {}"
+
+msgid ""
+"This installs the OneDrive client from your system's own software "
+"collection, the same place your other programs come from. Your normal "
+"software updates keep it up to date."
+msgstr "Tím se nainstaluje klient OneDrive z vlastního zdroje softwaru vašeho systému, odkud pocházejí i ostatní programy. Běžné aktualizace softwaru ho budou udržovat aktuální."
+
+msgid ""
+"{} comes with an old version of the OneDrive client that its author no "
+"longer supports. So this does two things:\n"
+"\n"
+"• Adds the place the client's author recommends getting it from to your "
+"computer's list of software sources. It's like adding a trusted app store.\n"
+"• Installs the current version of the client from there.\n"
+"\n"
+"After that, your normal software updates keep it up to date, like any other "
+"program."
+msgstr "{} obsahuje starou verzi klienta OneDrive, kterou její autor už nepodporuje. Proto se provedou dva kroky:
+
+• Do seznamu zdrojů softwaru v počítači se přidá zdroj doporučený autorem klienta. Je to podobné jako přidání důvěryhodného obchodu s aplikacemi.
+• Odtud se nainstaluje aktuální verze klienta.
+
+Poté ho budou jako jiné programy udržovat aktuální běžné aktualizace softwaru."
+
+msgid ""
+"Arch doesn't include the OneDrive client, but the AUR does. The AUR is a "
+"collection of install recipes shared by Arch users. This downloads the "
+"client's recipe, builds the program on your computer and installs it. Any "
+"tools needed to build it are installed first. It takes a few minutes.\n"
+"\n"
+"Your normal software updates don't cover the AUR, so this app checks for new "
+"versions of the client and offers to update it for you."
+msgstr "Arch klienta OneDrive neobsahuje, ale je dostupný v AUR. AUR je sbírka návodů k instalaci, které sdílejí uživatelé Archu. Stáhne se návod klienta, program se sestaví v počítači a nainstaluje. Nejprve se nainstalují potřebné nástroje. Zabere to několik minut.
+
+Běžné aktualizace softwaru AUR nezahrnují, proto tato aplikace kontroluje nové verze klienta a nabídne vám jejich instalaci."
+
+msgid "to install the OneDrive client (plus a few small parts it needs)"
+msgstr "k instalaci klienta OneDrive (a několika drobných součástí, které potřebuje)"
+
+msgid ""
+"to add that software source and install the OneDrive client (plus a few "
+"small parts it needs)"
+msgstr "k přidání tohoto zdroje softwaru a instalaci klienta OneDrive (a několika drobných součástí, které potřebuje)"
+
+msgid "to install the build tools and the OneDrive client"
+msgstr "k instalaci nástrojů pro sestavení a klienta OneDrive"
+
+msgid ""
+"{}\n"
+"\n"
+"Why your password? Installing software changes the whole computer, not just "
+"your account, so your computer checks that it's really you. You type it into "
+"your computer's own password window, not into this app. Your computer checks "
+"it once and then forgets it: it isn't saved, and this app never sees it or "
+"sends it anywhere. It's only used {}. Nothing else is changed."
+msgstr "{}
+
+Proč je potřeba heslo? Instalace softwaru mění celý počítač, nejen váš účet, proto počítač ověřuje, že jste to opravdu vy. Zadáváte ho do vlastního dialogu počítače, ne do této aplikace. Počítač ho jednou ověří a zapomene: neukládá se a tato aplikace ho nikdy neuvidí ani nikam neodešle. Použije se pouze {}. Nic jiného se nezmění."
+
+msgid "The app can install it for you."
+msgstr "Aplikace ho může nainstalovat za vás."
+
+msgid ""
+"The copy that comes with your system is too old, so the app gets the current "
+"version for you."
+msgstr "Verze dodaná se systémem je příliš stará, proto za vás aplikace získá aktuální verzi."
+
+msgid ""
+"On Arch it comes from the AUR (install recipes shared by Arch users). The "
+"app can build and install it for you."
+msgstr "V Archu je dostupný v AUR (návodech k instalaci sdílených uživateli Archu). Aplikace ho může sestavit a nainstalovat."
+
+msgid ""
+"On Fedora Silverblue, Kinoite and other image-based versions: open a "
+"terminal and run {} then restart."
+msgstr "Ve Fedora Silverblue, Kinoite a dalších obrazových verzích: otevřete terminál, spusťte {} a restartujte."
+
+msgid "Open a terminal and run {}"
+msgstr "Otevřete terminál a spusťte {}"
+
+msgid ""
+"This version of openSUSE only has an old OneDrive client. The instructions "
+"show how to get a current one."
+msgstr "Tato verze openSUSE obsahuje jen starého klienta OneDrive. V pokynech se dozvíte, jak získat aktuální verzi."
+
+msgid ""
+"The app can't install it automatically on this version of your system. The "
+"instructions show how to install it yourself."
+msgstr "V této verzi systému ho aplikace nemůže nainstalovat automaticky. V pokynech se dozvíte, jak ho nainstalovat sami."
+
+msgid "The instructions cover every major distribution."
+msgstr "Pokyny jsou určeny pro všechny hlavní distribuce."
+
+msgid "Couldn't look in {}: {}"
+msgstr "Nepodařilo se prohledat {}: {}"
+
+msgid "Stopped looking after {} items, so there may be more copies than shown."
+msgstr "Hledání se zastavilo po {} položkách, takže se mohou vyskytovat i další kopie."
+
+msgid "{} item(s) couldn't be read, so there may be more copies than shown."
+msgstr "Nepodařilo se načíst {} položek, takže se mohou vyskytovat i další kopie."
+
+msgid ""
+"There's no Trash to move it to on this computer, so it was left as it is. "
+"Delete it yourself if you're sure."
+msgstr "V tomto počítači není koš, kam by se soubor přesunul, proto zůstal beze změny. Pokud jste si jistí, smažte ho sami."
+
+msgid "The file extension is too long to make a Keep Both copy safely."
+msgstr "Přípona souboru je příliš dlouhá na bezpečné vytvoření kopie pomocí volby Ponechat obě."
+
+msgid "The filename is too long to make a Keep Both copy safely."
+msgstr "Název souboru je příliš dlouhý na bezpečné vytvoření kopie pomocí volby Ponechat obě."
+
+msgid "That copy isn't there any more."
+msgstr "Tato kopie už není k dispozici."
+
+msgid ""
+"The OneDrive version changed since this list was loaded. Refresh the list "
+"and choose again."
+msgstr "Verze na OneDrive se od načtení seznamu změnila. Obnovte seznam a vyberte znovu."
+
+msgid "Couldn't replace it: {}"
+msgstr "Nepodařilo se nahradit soubor: {}"
+
+msgid ""
+"\"{}\" is now this computer's version. OneDrive's version stays in its "
+"version history."
+msgstr "„{}“ je nyní verzí z tohoto počítače. Verze na OneDrive zůstává v historii verzí."
+
+msgid ""
+"Kept OneDrive's version of \"{}\". This computer's copy is in the Trash."
+msgstr "Ponechána verze „{}“ z OneDrive. Kopie z tohoto počítače je v koši."
+
+msgid "Couldn't rename it: {}"
+msgstr "Nepodařilo se přejmenovat soubor: {}"
+
+msgid "Couldn't find an unused name for the local copy after 10,000 attempts."
+msgstr "Po 10 000 pokusech se nepodařilo najít nepoužitý název pro místní kopii."
+
+msgid "Kept both: this computer's version is \"{}\"."
+msgstr "Ponechány obě verze: verze z tohoto počítače se jmenuje „{}“."
+
+msgid "{} is damaged ({}) and no copy could be kept ({}), so it isn't replaced"
+msgstr "{} je poškozený ({}), nepodařilo se zachovat žádnou kopii ({}), proto nebyl nahrazen"
+
+msgid ""
+"{} isn't plain UTF-8 text, so it wasn't changed. Edit it by hand, or save it "
+"as UTF-8 and try again."
+msgstr "{} není běžný text v UTF-8, proto nebyl změněn. Upravte ho ručně nebo ho uložte jako UTF-8 a zkuste to znovu."
+
+msgid "the OneDrive Client for Linux isn't installed"
+msgstr "OneDrive Client for Linux není nainstalovaný"
+
+msgid "{} isn't a regular managed unit file"
+msgstr "{} není běžný spravovaný soubor jednotky"
+
+msgid "{} already belongs to another unit or account"
+msgstr "{} už patří jiné jednotce nebo účtu"
+
+msgid "systemd couldn't reload the user unit files: {}"
+msgstr "systemd nemohl znovu načíst soubory uživatelských jednotek: {}"
+
+msgid "couldn't identify the current process for the busy marker"
+msgstr "nepodařilo se určit aktuální proces pro příznak zaneprázdnění"
+
+msgid "this account is already in use by another operation"
+msgstr "tento účet už používá jiná operace"
+
+msgid "The local folder must be a full path, like /home/you/OneDrive."
+msgstr "Místní složka musí být úplná cesta, například /home/you/OneDrive."
+
+msgid ""
+"The sync engine can't use a folder whose name contains double quotes. Pick "
+"or rename a folder without them."
+msgstr "Synchronizační program nemůže používat složku, jejíž název obsahuje dvojité uvozovky. Vyberte nebo přejmenujte složku bez nich."
+
+msgid ""
+"Couldn't safely resolve that folder path. Check its parent directories and "
+"try again."
+msgstr "Cestu ke složce se nepodařilo bezpečně vyřešit. Zkontrolujte nadřazené složky a zkuste to znovu."
+
+msgid ""
+"Couldn't safely resolve your home folder. Check the home-folder "
+"configuration."
+msgstr "Domovskou složku se nepodařilo bezpečně zjistit. Zkontrolujte její nastavení."
+
+msgid "everything in your home folder"
+msgstr "vše v domovské složce"
+
+msgid "everything on this computer"
+msgstr "vše v tomto počítači"
+
+msgid ""
+"Syncing {} would upload {}. Pick or create a folder inside your home folder, "
+"like {}."
+msgstr "Synchronizací {} by se nahrálo {}. Vyberte nebo vytvořte složku uvnitř domovské složky, například {}."
+
+msgid "Couldn't safely resolve the application settings folders."
+msgstr "Složky s nastavením aplikace se nepodařilo bezpečně zjistit."
+
+msgid "{} holds your settings. Pick a different folder."
+msgstr "{} obsahuje vaše nastavení. Vyberte jinou složku."
+
+msgid ""
+"{} is a system folder. Pick a folder in your home folder or on a drive of "
+"your own."
+msgstr "{} je systémová složka. Vyberte složku v domovské složce nebo na vlastním disku."
+
+msgid "{} is a file, not a folder."
+msgstr "{} je soubor, ne složka."
+
+msgid "{} isn't a folder"
+msgstr "{} není složka"
+
+msgid ""
+"“{}” didn't upload: it's open for editing in SharePoint or Office (by "
+"someone else, or by you on another device), which locks it. Your changes are "
+"still on this PC. Once it's closed there, press “Sync now” to upload them."
+msgstr "„{}“ se nenahrál: někdo ho právě upravuje v SharePointu nebo Office (buď někdo jiný, nebo vy na jiném zařízení), a proto je uzamčený. Vaše změny jsou stále v tomto počítači. Až ho tam zavřete, klikněte na „Synchronizovat“ a odešlete změny."
+
+msgid ""
+"“{}” didn't upload: it's shared with you as read-only, so your changes stay "
+"only on this PC."
+msgstr "„{}“ se nenahrál: je s vámi sdílený jen pro čtení, takže vaše změny zůstávají pouze v tomto počítači."
+
+msgid ""
+"“{}” isn't on this PC: it's shared as view-only, without permission to "
+"download. Open it on the OneDrive website instead."
+msgstr "„{}“ není v tomto počítači: je sdílený jen k zobrazení a nemáte oprávnění ho stáhnout. Otevřete ho na webu OneDrive."
+
+msgid ""
+"“{}” didn't upload: OneDrive turned it away for now. Your changes are still "
+"on this PC. Press “Sync now” to try again."
+msgstr "„{}“ se nenahrál: OneDrive ho zatím odmítl. Vaše změny jsou stále v tomto počítači. Zkuste to znovu kliknutím na „Synchronizovat“."
+
+msgid "…and 1 more file."
+msgid_plural "…and {n} more files."
+msgstr[0] "…a ještě 1 soubor."
+msgstr[1] "…a ještě {n} soubory."
+msgstr[2] "…a ještě {n} souborů."
+
+msgid ""
+"{} were deleted on this computer. Syncing stopped before deleting them "
+"online too, in case that was a mistake.\n"
+"If it was a mistake, put them back (for example from the Trash) and press "
+"“Sync now”. Otherwise choose what to do below."
+msgstr "V tomto počítači bylo smazáno {}. Synchronizace se zastavila, než by se smazaly i online, pro případ, že šlo o omyl.
+Pokud šlo o omyl, vraťte je zpět (například z koše) a klikněte na „Synchronizovat“. Jinak zvolte, co se má stát."
+
+msgid "“{}” and what was in it ({} items in all)"
+msgstr "„{}“ a jeho obsah (celkem {} položek)"
+
+msgid "“{}” and what was in it"
+msgstr "„{}“ a jeho obsah"
+
+msgid "{} items"
+msgstr "{} položek"
+
+msgid "Many items"
+msgstr "Mnoho položek"
+
+msgid "Starting…"
+msgstr "Spouštění…"
+
+msgid "Syncing…"
+msgstr "Probíhá synchronizace…"
+
+msgid "1 file not synced"
+msgid_plural "{n} files not synced"
+msgstr[0] "1 soubor se nesynchronizoval"
+msgstr[1] "Nesynchronizované soubory: {n}"
+msgstr[2] "Nesynchronizovaných souborů: {n}"
+
+msgid "Up to date ({})"
+msgstr "Aktuální ({})"
+
+msgid "Up to date"
+msgstr "Aktuální"
+
+msgid "Error"
+msgstr "Chyba"
+
+msgid "Stopped"
+msgstr "Zastaveno"
+
+msgid "Background sync off"
+msgstr "Synchronizace na pozadí vypnutá"
+
+msgid "Paused until {}"
+msgstr "Pozastaveno do {}"
+
+msgid "Paused"
+msgstr "Pozastaveno"
+
+msgid "Paused: {}"
+msgstr "Pozastaveno: {}"
+
+msgid "Paused by schedule until {}"
+msgstr "Pozastaveno podle plánu do {}"
+
+msgid "Applying changes…"
+msgstr "Používají se změny…"
+
+msgid "Signed out"
+msgstr "Odhlášeno"
+
+msgid "Needs a full resync"
+msgstr "Je potřeba úplná nová synchronizace"
+
+msgid "Stopped to protect your files"
+msgstr "Zastaveno kvůli ochraně souborů"
+
+msgid "Not responding since {}"
+msgstr "Nereaguje od {}"
+
+msgid "Not responding"
+msgstr "Nereaguje"
+
+msgid "Waiting for first sync"
+msgstr "Čeká se na první synchronizaci"
+
+msgid "Couldn't ask for the password: {}"
+msgstr "Nepodařilo se požádat o heslo: {}"
+
+msgid "Nothing was changed (the password window was closed)."
+msgstr "Nic se nezměnilo (okno pro zadání hesla bylo zavřeno)."
+
+msgid "Nothing was changed: your computer didn't allow it."
+msgstr "Nic se nezměnilo: počítač to nepovolil."
+
+msgid "That didn't work: {}"
+msgstr "To se nepovedlo: {}"
+
+msgid "This account is busy with another task. Try again when it has finished."
+msgstr "Tento účet právě používá jiná úloha. Zkuste to znovu, až skončí."
+
+msgid "Couldn't save the sync override: {}"
+msgstr "Nepodařilo se uložit přepsání synchronizace: {}"
+
+msgid "Couldn't save the pause setting: {}"
+msgstr "Nepodařilo se uložit pozastavení: {}"
+
+msgid "OneDrive Client for Linux {} is installed; {} is out."
+msgstr "Je nainstalován OneDrive Client for Linux {}; k dispozici je {}."
+
+msgid "OneDrive Client for Linux {} is installed."
+msgstr "Je nainstalován OneDrive Client for Linux {}."
+
+msgid "OneDrive Client for Linux {} is too old for this app."
+msgstr "OneDrive Client for Linux {} je pro tuto aplikaci příliš starý."
+
+msgid "The OneDrive Client for Linux isn't installed."
+msgstr "OneDrive Client for Linux není nainstalovaný."
+
+msgid "The tray icon is running."
+msgstr "Ikona v oznamovací oblasti je spuštěná."
+
+msgid ""
+"The tray icon isn't running, so pauses, schedules and notifications aren't "
+"working."
+msgstr "Ikona v oznamovací oblasti není spuštěná, proto nefunguje pozastavení, plánování ani oznámení."
+
+msgid "No accounts are set up yet."
+msgstr "Zatím nejsou nastavené žádné účty."
+
+msgid "{}: {}"
+msgstr "{}: {}"
+
+msgid "{}: ran out of folder watches; some changes aren't noticed."
+msgstr "{}: došly dostupné sledované složky, některé změny se nezaznamenávají."
+
+msgid "{}: only {} free on its drive."
+msgstr "{}: na disku zbývá jen {} volného místa."
+
+msgid ""
+"Your OneDrive folders hold {} folders, more than half of Linux's limit on "
+"watched folders ({}). Other programs need some too."
+msgstr "Vaše složky OneDrive obsahují {} složek, což je více než polovina limitu Linuxu pro sledování složek ({}). Část limitu potřebují i jiné programy."
+
+msgid "{} is started outside this app."
+msgstr "{} se spouští mimo tuto aplikaci."
+
+msgid "Today"
+msgstr "Dnes"
+
+msgid "Yesterday"
+msgstr "Včera"
+
+msgid "\"{}\" isn't an email address."
+msgstr "„{}“ není e-mailová adresa."
+
+msgid "Type at least one email address."
+msgstr "Zadejte alespoň jednu e-mailovou adresu."
+
+msgid "This version identifier and file extension are too long to save safely."
+msgstr "Označení verze a přípona souboru jsou příliš dlouhé pro bezpečné uložení."
+
+msgid "This file name is too long to save a version copy safely."
+msgstr "Název souboru je příliš dlouhý pro bezpečné uložení kopie verze."
+
+msgid "No version history for folders"
+msgstr "Historie verzí není dostupná pro složky"
+
+msgid ""
+"\"{}\" is a folder. Open a file inside it to see its versions, or the "
+"recycle bin online for deleted items."
+msgstr "„{}“ je složka. Otevřete soubor uvnitř a zobrazte jeho verze, nebo přejděte do online koše a najděte smazané položky."
+
+msgid "Couldn't share it"
+msgstr "Sdílení se nezdařilo"
+
+msgid "That's the whole of \"{}\". Share a file or folder inside it instead."
+msgstr "To je celý obsah „{}“. Místo toho sdílejte soubor nebo složku uvnitř."
+
+msgid "Can view"
+msgstr "Může zobrazit"
+
+msgid "  ·  until {}"
+msgstr "  ·  do {}"
+
+msgid "  ·  from a folder above"
+msgstr "  ·  z nadřazené složky"
+
+msgid "Checking who has access…"
+msgstr "Zjišťuje se, kdo má přístup…"
+
+msgid "It isn't shared: only you can open it."
+msgstr "Není sdílený: otevřít ho můžete jen vy."
+
+msgid "  ·  saved by {}"
+msgstr "  ·  uložil(a) {}"
+
+msgid ""
+"There's only the current version so far. OneDrive keeps older ones as the "
+"file changes."
+msgstr "Zatím je dostupná jen aktuální verze. OneDrive uchovává starší verze při změnách souboru."
+
+msgid "Downloading that version…"
+msgstr "Stahuje se tato verze…"
+
+msgid "Opened a copy: {}"
+msgstr "Otevřena kopie: {}"
+
+msgid "Restoring…"
+msgstr "Probíhá obnovení…"
+
+msgid ""
+"Restored. This computer gets it at the next sync (\"Sync now\" in the tray "
+"icon's menu does it right away)."
+msgstr "Obnoveno. Tento počítač změnu převezme při další synchronizaci (okamžitě ji spustíte volbou „Synchronizovat“ v nabídce ikony v oznamovací oblasti)."
+
+msgid "Sending…"
+msgstr "Odesílá se…"
+
+msgid "Invitation sent."
+msgstr "Pozvánka odeslána."
+
+msgid "{} invitations sent."
+msgstr "Odesláno pozvánek: {}."
+
+msgid "the top folder"
+msgstr "nejvyšší složka"
+
+msgid "{} or more"
+msgstr "{} nebo více"
+
+msgid ""
+"There are Git repositories in this folder ({}). Syncing their .git folders "
+"can damage them, because the files arrive one at a time and out of order. "
+"Skip .git folders in Options, or keep repositories outside OneDrive."
+msgstr "V této složce jsou repozitáře Git ({}). Synchronizace jejich složek .git je může poškodit, protože soubory přicházejí po jednom a v nesprávném pořadí. V Možnostech přeskočte složky .git nebo mějte repozitáře mimo OneDrive."
+
+msgid ""
+"This folder is on a Windows drive, and Windows' OneDrive app uses it too. "
+"Files that Windows keeps online-only can't be opened from Linux, and the two "
+"apps can undo each other's changes. A separate folder for Linux is safer."
+msgstr "Tato složka je na disku Windows, který používá i aplikace OneDrive pro Windows. Soubory, které Windows uchovává jen online, nelze v Linuxu otevřít a obě aplikace mohou navzájem rušit své změny. Bezpečnější je mít pro Linux samostatnou složku."
+
+msgid ""
+"This folder is on a Windows (NTFS) drive. If Windows' OneDrive app also "
+"syncs it, files that Windows keeps online-only can't be opened from Linux, "
+"and the two apps can undo each other's changes. A separate folder for Linux "
+"is safer."
+msgstr "Tato složka je na disku Windows (NTFS). Pokud ji synchronizuje i aplikace OneDrive pro Windows, soubory uchovávané jen online nelze v Linuxu otevřít a obě aplikace mohou navzájem rušit své změny. Bezpečnější je mít pro Linux samostatnou složku."
+
+msgid "Couldn't make {}: {}"
+msgstr "Nepodařilo se vytvořit {}: {}"
+
+msgid "Couldn't reach Microsoft. Check your internet connection and try again."
+msgstr "Nepodařilo se spojit se společností Microsoft. Zkontrolujte připojení k internetu a zkuste to znovu."
+
+msgid "{} (Microsoft says: {})"
+msgstr "{} (zpráva od Microsoftu: {})"
+
+msgid ""
+"Microsoft no longer accepts this sign-in. Open Settings and sign in again."
+msgstr "Microsoft už toto přihlášení nepřijímá. Otevřete Nastavení a znovu se přihlaste."
+
+msgid ""
+"This account doesn't have permission to do that. Check that you have access "
+"to this file or site."
+msgstr "Tento účet nemá potřebné oprávnění. Zkontrolujte, zda máte přístup k tomuto souboru nebo webu."
+
+msgid ""
+"That item could not be found in OneDrive. It may have been moved or deleted."
+msgstr "Tuto položku se na OneDrive nepodařilo najít. Možná byla přesunuta nebo smazána."
+
+msgid "OneDrive changed while this was running. Refresh and try again."
+msgstr "OneDrive se během této akce změnil. Obnovte obsah a zkuste to znovu."
+
+msgid "That item is locked. Close it elsewhere or try again later."
+msgstr "Tato položka je uzamčená. Zavřete ji jinde nebo to zkuste později."
+
+msgid "Microsoft is busy right now. Try again in a minute."
+msgstr "Microsoft je právě zaneprázdněný. Zkuste to za chvíli."
+
+msgid ""
+"Your OneDrive storage is full. Free up space or get more storage, then try "
+"again."
+msgstr "Úložiště OneDrive je plné. Uvolněte místo nebo si pořiďte větší úložiště a zkuste to znovu."
+
+msgid "Microsoft is having a problem right now. Try again later."
+msgstr "Microsoft má právě potíže. Zkuste to později."
+
+msgid "Microsoft couldn't complete that request. Try again later."
+msgstr "Microsoft nemohl požadavek dokončit. Zkuste to později."
+
+msgid "Microsoft sent an unexpected reply ({}). Try again later."
+msgstr "Microsoft poslal neočekávanou odpověď ({}). Zkuste to později."
+
+msgid ""
+"Azure Germany closed on October 29, 2021. Migrate this account to a "
+"supported Microsoft cloud and select that cloud here."
+msgstr "Azure Germany byl uzavřen 29. října 2021. Přesuňte tento účet do podporovaného cloudu Microsoft a vyberte ho zde."
+
+msgid "This account isn't signed in."
+msgstr "Tento účet není přihlášený."
+
+msgid "Microsoft repeated a page while listing items. Try again later."
+msgstr "Microsoft při vypisování položek opakoval stejnou stránku. Zkuste to později."
+
+msgid "Microsoft sent an unexpected reply. Try again later."
+msgstr "Microsoft poslal neočekávanou odpověď. Zkuste to později."
+
+msgid "Microsoft sent too many pages for this list. Try again later."
+msgstr "Microsoft pro tento seznam poslal příliš mnoho stránek. Zkuste to později."
+
+msgid "OneDrive didn't return a web address."
+msgstr "OneDrive neposlal webovou adresu."
+
+msgid "Couldn't check libraries on {}: {}"
+msgstr "Nepodařilo se zkontrolovat knihovny na {}: {}"
+
+msgid "Microsoft returned a library without an ID."
+msgstr "Microsoft vrátil knihovnu bez ID."
+
+msgid ""
+"That doesn't look like a SharePoint address. Copy it from your browser's "
+"address bar — it starts with https://"
+msgstr "To nevypadá jako adresa SharePointu. Zkopírujte ji z adresního řádku prohlížeče — začíná na https://"
+
+msgid "Couldn't open that site with this account: {}"
+msgstr "Tento web se nepodařilo otevřít pomocí tohoto účtu: {}"
+
+msgid "Microsoft didn't return the site."
+msgstr "Microsoft neposlal web."
+
+msgid "{} already exists and isn't a regular file."
+msgstr "{} už existuje a není to běžný soubor."
+
+msgid "Couldn't find where to save that version."
+msgstr "Nepodařilo se zjistit, kam tuto verzi uložit."
+
+msgid "Couldn't save it: {}"
+msgstr "Nepodařilo se uložit: {}"
+
+msgid "Couldn't allocate a temporary file for that version download."
+msgstr "Nepodařilo se vytvořit dočasný soubor pro stažení této verze."
+
+msgid "The download stopped: {}"
+msgstr "Stahování se zastavilo: {}"
+
+msgid "Couldn't finish saving that version: {}"
+msgstr "Nepodařilo se dokončit ukládání této verze: {}"
+
+msgid "Someone"
+msgstr "Někdo"
+
+msgid "Couldn't check what kind of account this is, so no link was made: {}"
+msgstr "Nepodařilo se zjistit typ účtu, proto se odkaz nevytvořil: {}"
+
+msgid "less than a minute left"
+msgstr "zbývá méně než minuta"
+
+msgid "1 min left"
+msgid_plural "{n} min left"
+msgstr[0] "zbývá 1 min"
+msgstr[1] "zbývá {n} min"
+msgstr[2] "zbývá {n} min"
+
+msgid "1 h left"
+msgid_plural "{n} h left"
+msgstr[0] "zbývá 1 h"
+msgstr[1] "zbývá {n} h"
+msgstr[2] "zbývá {n} h"
+
+msgid "1 h {0} min left"
+msgid_plural "{n} h {0} min left"
+msgstr[0] "zbývá 1 h {0} min"
+msgstr[1] "zbývá {n} h {0} min"
+msgstr[2] "zbývá {n} h {0} min"
+
+msgid "No accounts yet"
+msgstr "Zatím žádné účty"
+
+msgid "1 account needs attention"
+msgid_plural "{n} accounts need attention"
+msgstr[0] "1 účet vyžaduje pozornost"
+msgstr[1] "Pozornost vyžadují {n} účty"
+msgstr[2] "Pozornost vyžaduje {n} účtů"
+
+msgid "Syncing 1 large file"
+msgid_plural "Syncing {n} large files"
+msgstr[0] "Synchronizuje se 1 velký soubor"
+msgstr[1] "Synchronizují se {n} velké soubory"
+msgstr[2] "Synchronizuje se {n} velkých souborů"
+
+msgid "Not syncing right now"
+msgstr "Právě se nesynchronizuje"
+
+msgid "All accounts"
+msgstr "Všechny účty"
+
+msgid "Uploading"
+msgstr "Nahrávání"
+
+msgid "Downloading"
+msgstr "Stahování"
+
+msgid "Uploaded"
+msgstr "Nahráno"
+
+msgid "Downloaded"
+msgstr "Staženo"
+
+msgid "Deleted"
+msgstr "Smazáno"
+
+msgid "New folder"
+msgstr "Nová složka"
+
+msgid "{} {}"
+msgstr "{} {}"
+
+msgid "in {}"
+msgstr "v {}"
+
+msgid "That isn't inside any of your OneDrive folders."
+msgstr "Tato položka není v žádné z vašich složek OneDrive."
+
+msgid "Anyone with the link"
+msgstr "Kdokoli s odkazem"
+
+msgid "People in your organization with the link"
+msgstr "Lidé ve vaší organizaci s odkazem"
+
+msgid "Link copied"
+msgstr "Odkaz zkopírován"
+
+msgid "Sharing link"
+msgstr "Odkaz ke sdílení"
+
+msgid "can view"
+msgstr "může zobrazit"
+
+msgid "can edit"
+msgstr "může upravovat"
+
+msgid "can change, add and delete files in"
+msgstr "může měnit, přidávat a mazat soubory v"
+
+msgid ""
+"{} {} \"{}\".\n"
+"{}"
+msgstr "{} {} „{}“.
+{}"
+
+msgid "Couldn't create a link"
+msgstr "Nepodařilo se vytvořit odkaz"
+
+msgid "Couldn't create a link: {}"
+msgstr "Nepodařilo se vytvořit odkaz: {}"
+
+msgid "Couldn't open it online"
+msgstr "Nepodařilo se otevřít online"
+
+msgid "{} — {}"
+msgstr "{} — {}"
+
+msgid "{}. Open Settings to fix it."
+msgstr "{}. Otevřete Nastavení a opravte to."
+
+msgid "No accounts yet — open Settings to add one"
+msgstr "Zatím žádné účty — otevřete Nastavení a přidejte účet"
+
+msgid "Version {} is out — get it…"
+msgstr "Je k dispozici verze {} — získat…"
+
+msgid "How to fix this…"
+msgstr "Jak to opravit…"
+
+msgid "Show activity…"
+msgstr "Zobrazit aktivitu…"
+
+msgid "For 1 hour"
+msgstr "Na 1 hodinu"
+
+msgid "For 4 hours"
+msgstr "Na 4 hodiny"
+
+msgid "Until tomorrow morning"
+msgstr "Do zítřejšího rána"
+
+msgid "Settings and accounts…"
+msgstr "Nastavení a účty…"
+
+msgid "Quit and stop syncing"
+msgstr "Ukončit a zastavit synchronizaci"
+
+msgid "Quit tray icon"
+msgstr "Ukončit ikonu v oznamovací oblasti"
+
+msgid "Microsoft needs you to sign in again"
+msgstr "Microsoft vyžaduje nové přihlášení"
+
+msgid "The OneDrive Client for Linux isn't installed"
+msgstr "OneDrive Client for Linux není nainstalovaný"
+
+msgid "The OneDrive Client for Linux ({}) is too old"
+msgstr "OneDrive Client for Linux ({}) je příliš starý"
+
+msgid ""
+"{} were deleted on this computer, so syncing stopped before deleting them "
+"online. Click the OneDrive icon to choose what to do."
+msgstr "V tomto počítači bylo smazáno {}. Synchronizace se proto zastavila, než by se položky smazaly i online. Kliknutím na ikonu OneDrive zvolíte, co dál."
+
+msgid "Microsoft needs you to sign in again. Open the tray menu to fix it."
+msgstr "Microsoft vyžaduje nové přihlášení. Otevřete nabídku ikony v oznamovací oblasti a vyřešte to."
+
+msgid ""
+"The sync engine needs a full resync. Open Settings to review and apply it."
+msgstr "Synchronizační program potřebuje úplnou novou synchronizaci. Otevřete Nastavení a zkontrolujte ji a použijte."
+
+msgid ""
+"Syncing has stopped making progress, though it is still running. Click the "
+"OneDrive icon and choose Sync now to restart it."
+msgstr "Synchronizace přestala pokračovat, přestože stále běží. Kliknutím na ikonu OneDrive a volbou Synchronizovat ji znovu spustíte."
+
+msgid "Syncing hit an error. Open the tray menu for details."
+msgstr "Při synchronizaci došlo k chybě. Podrobnosti najdete v nabídce ikony."
+
+msgid ""
+"Linux's limit on folders watched for changes ran out, so some changes on "
+"this computer won't sync right away. Open Settings to raise it."
+msgstr "Byl vyčerpán limit Linuxu pro sledování změn ve složkách, takže se některé změny v tomto počítači hned nesynchronizují. Otevřete Nastavení a limit zvyšte."
+
+msgid ""
+"{} is full ({}). New and changed files won't upload until you free up space "
+"or get more storage."
+msgstr "{} je plné ({}). Nové a změněné soubory se nenahrají, dokud neuvolníte místo nebo nezískáte větší úložiště."
+
+msgid ""
+"{} is almost full ({}). Free up space or get more storage before uploads "
+"stop."
+msgstr "{} je téměř plné ({}). Než se nahrávání zastaví, uvolněte místo nebo si pořiďte větší úložiště."
+
+msgid "OneDrive: a new version is out"
+msgstr "OneDrive: je k dispozici nová verze"
+
+msgid ""
+"Version {} of this app is available. Click the OneDrive tray icon (or right-"
+"click it) to get it."
+msgstr "Je k dispozici verze {} této aplikace. Kliknutím na ikonu OneDrive v oznamovací oblasti (nebo pravým tlačítkem) ji získáte."
+
+msgid "OneDrive: the sync engine has an update"
+msgstr "OneDrive: synchronizační program má aktualizaci"
+
+msgid ""
+"Version {} of the OneDrive Client for Linux is out (you have {}). Open "
+"Settings to update it."
+msgstr "Je k dispozici verze {} programu OneDrive Client for Linux (máte {}). Otevřete Nastavení a aktualizujte ho."
+
+msgid "Preview recovery needs attention"
+msgstr "Kontrola obnovení vyžaduje pozornost"
+
+msgid ""
+"Sync services weren't started because preview settings couldn't be put back: "
+"{}"
+msgstr "Synchronizační služby se nespustily, protože se nepodařilo obnovit původní nastavení: {}"
+
+msgid "Microsoft needs you to sign in again."
+msgstr "Microsoft vyžaduje nové přihlášení."
+
+msgid ""
+"Glass is on: your desktop blurs what's behind windows, so the window is see-"
+"through."
+msgstr "Skleněný efekt je zapnutý: plocha rozmazává obsah za okny, takže je okno průhledné."
+
+msgid "Glass is off because your desktop asks for high contrast."
+msgstr "Skleněný efekt je vypnutý, protože plocha používá vysoký kontrast."
+
+msgid ""
+"Glass is off: your desktop doesn't blur what's behind windows, so the window "
+"stays solid and easy to read. If yours does (Hyprland with blur switched on, "
+"for example), choose On."
+msgstr "Skleněný efekt je vypnutý: plocha nerozmazává obsah za okny, takže okno zůstává neprůhledné a dobře čitelné. Pokud to vaše plocha umí (například Hyprland se zapnutým rozmazáním), zvolte Zapnuto."
+
+msgid ""
+"Always see-through. If the window looks washed out, your desktop doesn't "
+"blur behind it: choose Automatic."
+msgstr "Vždy průhledné. Pokud je okno vybledlé, plocha za ním nerozmazává obsah: zvolte Automaticky."
+
+msgid "Always solid."
+msgstr "Vždy neprůhledné."
+
+msgid "The sync service stopped with an error. Try \"Sync now\"."
+msgstr "Synchronizační služba skončila s chybou. Zkuste volbu „Synchronizovat“."
+
+msgid ""
+"The sync engine needs a full resync before it can continue. Open the Folders "
+"tab and press \"Apply changes…\", or turn on \"Allow full resyncs\" in "
+"Options and save."
+msgstr "Synchronizační program potřebuje před pokračováním úplnou novou synchronizaci. Otevřete kartu Složky a klikněte na „Použít změny…“ nebo v Možnostech zapněte „Povolit úplnou novou synchronizaci“ a uložte nastavení."
+
+msgid ""
+"Microsoft no longer accepts the saved sign-in (this happens after a password "
+"change, or when access is revoked). Sign in again to continue."
+msgstr "Microsoft už uložené přihlášení nepřijímá (může se to stát po změně hesla nebo odebrání přístupu). Pro pokračování se znovu přihlaste."
+
+msgid ""
+"The sync engine is running but has stopped making progress, so changes "
+"aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, "
+"check your network connection."
+msgstr "Synchronizační program běží, ale přestal pracovat, takže se změny nesynchronizují. Kliknutím na „Synchronizovat“ ho znovu spustíte. Pokud se to opakuje, zkontrolujte připojení k síti."
+
+msgid "Everything in this account"
+msgstr "Vše v tomto účtu"
+
+msgid "comes"
+msgstr "je"
+
+msgid "Newly ticked folders"
+msgstr "Nově vybrané složky"
+
+msgid "come"
+msgstr "jsou"
+
+msgid "at least {}"
+msgstr "alespoň {}"
+
+msgid ""
+"{} {} to {}, more than the {} free on this drive. Some files won't fit; free "
+"up space or tick less."
+msgstr "{} {} až {}, více než {} volného místa na tomto disku. Některé soubory se nevejdou; uvolněte místo nebo vyberte méně složek."
+
+msgid "{}: {}. Free on this drive: {}."
+msgstr "{}: {}. Volné místo na tomto disku: {}."
+
+msgid "{} of {} used"
+msgstr "Využito {} z {}"
+
+msgid "{} used"
+msgstr "Využito {}"
+
+msgid "{} (set by hand)"
+msgstr "{} (nastaveno ručně)"
+
+msgid "needs \"Treat this computer as the source of truth\" on too"
+msgstr "je potřeba také zapnout „Považovat tento počítač za hlavní zdroj“"
+
+msgid "can't be used with Upload only"
+msgstr "nelze použít se směrem Pouze nahrávat"
+
+msgid "needs an address"
+msgstr "je potřeba zadat adresu"
+
+msgid "couldn't create it: {}"
+msgstr "nepodařilo se vytvořit: {}"
+
+msgid "Couldn't run the client: {}"
+msgstr "Nepodařilo se spustit klienta: {}"
+
+msgid ""
+"Turn on \"Write a log file\" under Advanced and save first. Until then the "
+"app reads the system journal instead."
+msgstr "Nejprve v části Pokročilé zapněte „Zapisovat do souboru protokolu“ a uložte nastavení. Do té doby aplikace čte systémový žurnál."
+
+msgid ""
+"{} doesn't exist yet. The client creates it when it next writes to the log."
+msgstr "{} zatím neexistuje. Klient ho vytvoří při příštím zápisu do protokolu."
+
+msgid ""
+"Folders to skip: remove the empty entry (two | in a row, or one at an end)."
+msgstr "Složky k přeskočení: odeberte prázdnou položku (dvě | za sebou nebo jedno na začátku či konci)."
+
+msgid ""
+"Folders to skip: \".*\" isn't allowed (it would hide all your changes). To "
+"skip hidden folders, use \"Don't sync hidden files and folders\"."
+msgstr "Složky k přeskočení: „.*“ není povoleno (skrylo by všechny změny). Skryté složky přeskočíte volbou „Nesynchronizovat skryté soubory a složky“."
+
+msgid "Changes {}'s save folder. Turning this off puts it back."
+msgstr "Změní složku pro ukládání {}. Vypnutím se nastavení vrátí."
+
+msgid "No supported screenshot tool was found."
+msgstr "Nebyl nalezen žádný podporovaný nástroj pro snímání obrazovky."
+
+msgid "Add a OneDrive account before turning this on."
+msgstr "Nejprve přidejte účet OneDrive a pak tuto možnost zapněte."
+
+msgid "Couldn't change the screenshot folder: {}"
+msgstr "Nepodařilo se změnit složku pro snímky obrazovky: {}"
+
+msgid "The screenshot folder path contains a character the tool can't save."
+msgstr "Cesta ke složce pro snímky obrazovky obsahuje znak, který nástroj neumí uložit."
+
+msgid "Couldn't save the setting: {}"
+msgstr "Nepodařilo se uložit nastavení: {}"
+
+msgid "{}. Couldn't clear the saved setting either: {}"
+msgstr "{}. Nepodařilo se ani vymazat uložené nastavení: {}"
+
+msgid "Screenshots will be saved in {}."
+msgstr "Snímky obrazovky se budou ukládat do {}."
+
+msgid "Couldn't restore {}: {}"
+msgstr "Nepodařilo se obnovit {}: {}"
+
+msgid ""
+"The screenshot tool's save folder was changed since, so it was left as it is."
+msgstr "Nástroj pro snímání obrazovky mezitím změnil složku pro ukládání, proto zůstala beze změny."
+
+msgid "{} changed while DriveDeck was updating it, so it was left as it is."
+msgstr "{} se změnil během úprav aplikace DriveDeck, proto zůstal beze změny."
+
+msgid "{} isn't a regular file."
+msgstr "{} není běžný soubor."
+
+msgid "Couldn't write {}: {}"
+msgstr "Nepodařilo se zapsat do {}: {}"
+
+msgid ""
+"Schedule times must be two different 24-hour times like 23:00 and 07:00."
+msgstr "Časy plánu musí být dvě různé hodnoty ve 24hodinovém formátu, například 23:00 a 07:00."
+
+msgid "The number of items for a big delete {}."
+msgstr "Počet položek pro hromadné smazání {}."
+
+msgid "Nothing was saved: fix the settings marked in red under Advanced."
+msgstr "Nic se neuložilo: opravte nastavení označená červeně v části Pokročilé."
+
+msgid "Couldn't save settings: {}"
+msgstr "Nepodařilo se uložit nastavení: {}"
+
+msgid "Couldn't save: {}"
+msgstr "Nepodařilo se uložit: {}"
+
+msgid ""
+"Saved, except the settings marked * — they need a full resync, which is "
+"turned off for this account."
+msgstr "Uloženo, kromě nastavení označených * — vyžadují úplnou novou synchronizaci, která je pro tento účet vypnutá."
+
+msgid ""
+"The settings marked * weren't saved: they need a full resync, which is "
+"turned off for this account. Check the preview for the new direction."
+msgstr "Nastavení označená * se neuložila: vyžadují úplnou novou synchronizaci, která je pro tento účet vypnutá. Zkontrolujte náhled nového směru."
+
+msgid ""
+"Files here that aren't online are deleted, including new files you put in "
+"this folder from now on."
+msgstr "Soubory, které nejsou online, se smažou. Platí to i pro nové soubory, které odteď do této složky přidáte."
+
+msgid "Change sync direction"
+msgstr "Změnit směr synchronizace"
+
+msgid "Saved. The settings marked * need a full resync — check the preview."
+msgstr "Uloženo. Nastavení označená * vyžadují úplnou novou synchronizaci — zkontrolujte náhled."
+
+msgid "Apply file settings"
+msgstr "Použít nastavení souborů"
+
+msgid "Counting everything inside the deleted folders, that's {} items in all."
+msgstr "Po započítání všeho ve smazaných složkách jde celkem o {} položek."
+
+msgid ""
+"Items deleted online go to the OneDrive recycle bin, where they can be "
+"restored for a while."
+msgstr "Položky smazané online se přesunou do koše OneDrive, kde je lze po určitou dobu obnovit."
+
+msgid "Delete them online too"
+msgstr "Smazat také online"
+
+msgid "Download them again"
+msgstr "Znovu stáhnout"
+
+msgid "The deleted items are downloaded again from OneDrive."
+msgstr "Smazané položky se znovu stáhnou z OneDrive."
+
+msgid "Couldn't read the folder-selection rules: {}"
+msgstr "Nepodařilo se načíst pravidla pro výběr složek: {}"
+
+msgid "Sign in to choose folders."
+msgstr "Přihlaste se a vyberte složky."
+
+msgid "Couldn't load folders: {}"
+msgstr "Nepodařilo se načíst složky: {}"
+
+msgid ""
+"Full resyncs are turned off for this account (Options), so folder choices "
+"are locked."
+msgstr "Úplné nové synchronizace jsou pro tento účet vypnuté (Možnosti), proto nelze výběr složek měnit."
+
+msgid "Tick at least one folder, or choose \"Sync everything\"."
+msgstr "Vyberte alespoň jednu složku nebo zvolte „Synchronizovat vše“."
+
+msgid "Change synced folders"
+msgstr "Změnit synchronizované složky"
+
+msgid "Preparing the preview…"
+msgstr "Připravuje se náhled…"
+
+msgid "Checking the sync service…"
+msgstr "Kontroluje se synchronizační služba…"
+
+msgid ""
+"Couldn't protect this account from a second sync process, so the preview was "
+"not started: {}"
+msgstr "Nepodařilo se zabránit spuštění dalšího synchronizačního procesu pro tento účet, proto se náhled nespustil: {}"
+
+msgid "Couldn't safely prepare the preview because {} couldn't be read: {}"
+msgstr "Náhled se nepodařilo bezpečně připravit, protože soubor {} nelze přečíst: {}"
+
+msgid "Preview state disappeared before it could be saved."
+msgstr "Stav náhledu zmizel před uložením."
+
+msgid ""
+"Couldn't safely start the preview because its recovery record couldn't be "
+"saved: {}"
+msgstr "Náhled se nepodařilo bezpečně spustit, protože záznam pro obnovení nešlo uložit: {}"
+
+msgid "Couldn't pause the sync engine, so no preview was run: {}"
+msgstr "Synchronizační program se nepodařilo pozastavit, náhled proto neproběhl: {}"
+
+msgid "Couldn't write the folder list: {}"
+msgstr "Nepodařilo se zapsat seznam složek: {}"
+
+msgid "Couldn't write the settings: {}"
+msgstr "Nepodařilo se zapsat nastavení: {}"
+
+msgid "Couldn't start the sync engine: {}"
+msgstr "Nepodařilo se spustit synchronizační program: {}"
+
+msgid "Couldn't clear the recovery record: {}"
+msgstr "Nepodařilo se smazat záznam pro obnovení: {}"
+
+msgid "Couldn't restore preview settings: {}"
+msgstr "Nepodařilo se obnovit nastavení náhledu: {}"
+
+msgid "Couldn't read the preview recovery record: {}"
+msgstr "Nepodařilo se načíst záznam pro obnovení náhledu: {}"
+
+msgid "The preview recovery record is damaged: {}"
+msgstr "Záznam pro obnovení náhledu je poškozený: {}"
+
+msgid "Couldn't clear the committed preview record: {}"
+msgstr "Nepodařilo se smazat potvrzený záznam náhledu: {}"
+
+msgid "Restoring the previous settings…"
+msgstr "Obnovují se předchozí nastavení…"
+
+msgid "Cancelling…"
+msgstr "Probíhá rušení…"
+
+msgid "Resync started."
+msgstr "Nová synchronizace spuštěna."
+
+msgid "The account disappeared and preview settings couldn't be restored: {}"
+msgstr "Účet zmizel a nastavení náhledu se nepodařilo obnovit: {}"
+
+msgid "The recovery record couldn't be committed: {}; the sync job was stopped"
+msgstr "Záznam pro obnovení se nepodařilo uložit; synchronizační úloha byla zastavena: {}"
+
+msgid ""
+"The sync job started, but its recovery state couldn't be saved or stopped: "
+"{}; {}. Restart this app to retry recovery. No other sync operation will "
+"start for this account in this session."
+msgstr "Synchronizační úloha se spustila, ale její stav pro obnovení se nepodařilo uložit ani zastavit: {}; {}. Restartujte aplikaci a zkuste obnovení znovu. Během této relace se pro tento účet nespustí žádná další synchronizace."
+
+msgid ""
+"{}. The recovery record couldn't be refreshed, so syncing remains paused: {}"
+msgstr "{}. Záznam pro obnovení se nepodařilo aktualizovat, proto synchronizace zůstává pozastavená: {}"
+
+msgid ""
+"{}. Preview settings couldn't be fully restored; syncing remains paused. {}"
+msgstr "{}. Nastavení náhledu se nepodařilo úplně obnovit; synchronizace zůstává pozastavená. {}"
+
+msgid "{}. The previous sync service couldn't be restarted: {}"
+msgstr "{}. Předchozí synchronizační službu se nepodařilo znovu spustit: {}"
+
+msgid "Preparing sign-in…"
+msgstr "Připravuje se přihlášení…"
+
+msgid ""
+"Opening the Microsoft sign-in page in your browser…\n"
+"\n"
+"Log in and approve access. This window updates by itself when you're done."
+msgstr "V prohlížeči se otevírá přihlašovací stránka Microsoftu…
+
+Přihlaste se a potvrďte přístup. Po dokončení se toto okno samo aktualizuje."
+
+msgid ""
+"Couldn't protect this account from a second sync process, so sign-in was not "
+"started: {}"
+msgstr "Nepodařilo se zabránit spuštění dalšího synchronizačního procesu pro tento účet, proto se přihlášení nespustilo: {}"
+
+msgid "Couldn't stop the sync engine before signing in: {}"
+msgstr "Před přihlášením se nepodařilo zastavit synchronizační program: {}"
+
+msgid ""
+"The sign-in was cancelled, but the previously running sync engine couldn't "
+"be restarted: {}"
+msgstr "Přihlášení bylo zrušeno, ale dříve spuštěný synchronizační program se nepodařilo znovu spustit: {}"
+
+msgid ""
+"Couldn't start the sign-in process: {}. The previously running sync engine "
+"also couldn't be restarted: {}"
+msgstr "Přihlašovací proces se nepodařilo spustit: {}. Nepodařilo se znovu spustit ani dříve běžící synchronizační program: {}"
+
+msgid "Couldn't start the sign-in process: {}"
+msgstr "Přihlašovací proces se nepodařilo spustit: {}"
+
+msgid ""
+"The sign-in window closed, but the previously running sync engine couldn't "
+"be restarted: {}"
+msgstr "Přihlašovací okno se zavřelo, ale dříve spuštěný synchronizační program se nepodařilo znovu spustit: {}"
+
+msgid ""
+"This account's settings folder was removed during sign-in. Add the account "
+"again to sign in."
+msgstr "Složka s nastavením tohoto účtu byla během přihlášení odebrána. Přidejte účet znovu a přihlaste se."
+
+msgid ""
+"Your browser couldn't hand the sign-in back automatically.\n"
+"\n"
+"After you log in you'll end up on a blank page. Copy that page's full "
+"address from the address bar and paste it below."
+msgstr "Prohlížeč nemohl automaticky předat přihlášení zpět.
+
+Po přihlášení se zobrazí prázdná stránka. Zkopírujte její úplnou adresu z adresního řádku a vložte ji níže."
+
+msgid "Signed in. Your files will start syncing in a moment."
+msgstr "Přihlášeno. Soubory se za chvíli začnou synchronizovat."
+
+msgid "Signed in."
+msgstr "Přihlášeno."
+
+msgid "The sign-in didn't finish."
+msgstr "Přihlášení nebylo dokončeno."
+
+msgid ""
+"Sign-in didn't complete.\n"
+"\n"
+"{}"
+msgstr "Přihlášení nebylo dokončeno.
+
+{}"
+
+msgid ""
+"Sign-in failed, and the previously running sync engine couldn't be "
+"restarted: {}"
+msgstr "Přihlášení se nezdařilo a dříve spuštěný synchronizační program se nepodařilo znovu spustit: {}"
+
+msgid ""
+"Microsoft didn't accept the sign-in. Please try again, and make sure you "
+"finish logging in in the browser."
+msgstr "Microsoft přihlášení nepřijal. Zkuste to znovu a nezapomeňte dokončit přihlášení v prohlížeči."
+
+msgid "The sign-in timed out. Please try again."
+msgstr "Časový limit přihlášení vypršel. Zkuste to znovu."
+
+msgid "Microsoft reported a problem: {}"
+msgstr "Microsoft oznámil problém: {}"
+
+msgid "Sync was enabled, but the tray couldn't be set to start at login: {}"
+msgstr "Synchronizace byla zapnuta, ale ikonu v oznamovací oblasti se nepodařilo nastavit pro spuštění po přihlášení: {}"
+
+msgid "Sign-in finished, but setup wasn't fully completed: {}"
+msgstr "Přihlášení skončilo, ale nastavení se nepodařilo úplně dokončit: {}"
+
+msgid ""
+"That doesn't look like the right address — it should contain \"code=\". Copy "
+"the whole address of the blank page you land on after logging in."
+msgstr "To nevypadá jako správná adresa — musí obsahovat „code=“. Zkopírujte celou adresu prázdné stránky, která se zobrazila po přihlášení."
+
+msgid "Finishing sign-in…"
+msgstr "Dokončuje se přihlášení…"
+
+msgid "Couldn't find this account's settings folder: {}"
+msgstr "Nepodařilo se najít složku s nastavením tohoto účtu: {}"
+
+msgid "Couldn't protect this account from another sync operation: {}"
+msgstr "Nepodařilo se zabránit další synchronizační operaci s tímto účtem: {}"
+
+msgid "Couldn't stop background syncing, so you weren't signed out: {}"
+msgstr "Nepodařilo se zastavit synchronizaci na pozadí, proto jste nebyli odhlášeni: {}"
+
+msgid "Couldn't remove the saved sign-in: {}"
+msgstr "Nepodařilo se odebrat uložené přihlášení: {}"
+
+msgid "Signed out. Your files are still on this computer."
+msgstr "Odhlášeno. Soubory zůstaly v tomto počítači."
+
+msgid ""
+"Signed out. Your files are still on this computer. (The sync engine "
+"reported: {})"
+msgstr "Odhlášeno. Soubory zůstaly v tomto počítači. (Synchronizační program oznámil: {})"
+
+msgid ""
+"The account was left intact because its sync service couldn't be stopped: {}"
+msgstr "Účet zůstal beze změny, protože se nepodařilo zastavit jeho synchronizační službu: {}"
+
+msgid "The service stopped, but couldn't remove {}: {}"
+msgstr "Služba se zastavila, ale nepodařilo se odebrat {}: {}"
+
+msgid "The service stopped, but systemd couldn't reload its units: {}"
+msgstr "Služba se zastavila, ale systemd nemohl znovu načíst jednotky: {}"
+
+msgid "Couldn't delete {}: {}"
+msgstr "Nepodařilo se smazat {}: {}"
+
+msgid ""
+"Add and sign in to a work or school OneDrive account first. Its sign-in is "
+"reused to reach SharePoint."
+msgstr "Nejprve přidejte a přihlaste se k pracovnímu nebo školnímu účtu OneDrive. Jeho přihlášení se použije i pro přístup k SharePointu."
+
+msgid "{}  ·  this computer's copy from {}"
+msgstr "{}  ·  kopie z tohoto počítače z {}"
+
+msgid "In OneDrive: {}"
+msgstr "Na OneDrive: {}"
+
+msgid "Backed up to \"{}\""
+msgstr "Zálohováno do „{}“"
+
+msgid "Not set up on this computer"
+msgstr "V tomto počítači není nastaveno"
+
+msgid "Set to your whole home folder, so it can't be backed up"
+msgstr "Je nastavena celá domovská složka, kterou nelze zálohovat"
+
+msgid "Looking at your {} folder…"
+msgstr "Kontroluje se složka {}…"
+
+msgid "1 file"
+msgid_plural "{n} files"
+msgstr[0] "1 soubor"
+msgstr[1] "{n} soubory"
+msgstr[2] "{n} souborů"
+
+msgid ""
+"Your {} folder ({}) moves into OneDrive, at {}, and everything in it "
+"uploads: {}, {}. Your apps keep finding it in the same place."
+msgstr "Složka {} se přesune do OneDrive na místo {} a nahraje se vše, co obsahuje: {}, {}. Aplikace ji budou dál nacházet na stejném místě."
+
+msgid "OneDrive is on the same drive, so the move is instant."
+msgstr "OneDrive je na stejném disku, takže přesun proběhne okamžitě."
+
+msgid "The desktop shows the new place after you next log in."
+msgstr "Nové umístění se na ploše zobrazí po příštím přihlášení."
+
+msgid ""
+"To undo it later, press Stop: your files stay in OneDrive and the folder "
+"here starts empty again, as on Windows."
+msgstr "Později přesun vrátíte volbou Zastavit: soubory zůstanou na OneDrive a složka v počítači se znovu vyprázdní, stejně jako ve Windows."
+
+msgid ""
+"OneDrive is on another drive, so the files are copied. Nothing is deleted: "
+"your original folder is kept, renamed \"{}\". Once you've checked everything "
+"is in OneDrive, delete it yourself to free the space. "
+msgstr "OneDrive je na jiném disku, proto se soubory zkopírují. Nic se nesmaže: původní složka zůstane a přejmenuje se na „{}“. Až ověříte, že je vše na OneDrive, smažte ji sami a uvolněte místo. "
+
+msgid ""
+"OneDrive already has this folder: your files join what's there, and any "
+"whose name is taken get \"{}\" added."
+msgstr "Tato složka už na OneDrive je: soubory se přidají k těm, které tam jsou. K názvům případných duplicit se přidá „{}“."
+
+msgid "Back up your {} folder"
+msgstr "Zálohovat složku {}"
+
+msgid "Stop backing up {}?"
+msgstr "Zastavit zálohování složky {}?"
+
+msgid ""
+"Your files stay in OneDrive, at {}, and keep syncing there. Your {} folder "
+"on this computer starts empty again, and new files you put in it won't be "
+"backed up."
+msgstr "Soubory zůstanou na OneDrive v umístění {} a budou se tam dál synchronizovat. Složka {} v tomto počítači se znovu vyprázdní a nové soubory, které do ní uložíte, se nezálohují."
+
+msgid ""
+"Nothing is moved back or deleted. To have the files here again, move them "
+"from {} yourself."
+msgstr "Nic se nepřesune zpět ani nesmaže. Pokud chcete mít soubory znovu tady, přesuňte je sami z {}."
+
+msgid "Stop backing up"
+msgstr "Zastavit zálohování"
+
+msgid "{} is now backed up to OneDrive."
+msgstr "Složka {} se nyní zálohuje na OneDrive."
+
+msgid ""
+"1 name was already taken in OneDrive, so it was saved with \"(from …)\" "
+"added."
+msgid_plural ""
+"{n} names were already taken in OneDrive, so they were saved with \"(from …)"
+"\" added."
+msgstr[0] "1 název už byl na OneDrive použit, proto se soubor uložil s dodatkem „(from …)“."
+msgstr[1] "{n} názvy už byly na OneDrive použity, proto se soubory uložily s dodatkem „(from …)“."
+msgstr[2] "{n} názvů už bylo na OneDrive použito, proto se soubory uložily s dodatkem „(from …)“."
+
+msgid ""
+"Your original folder is kept at {}: delete it yourself once you've checked "
+"your files in OneDrive."
+msgstr "Původní složka zůstala v umístění {}: až zkontrolujete soubory na OneDrive, smažte ji sami."
+
+msgid ""
+"The desktop's folder setting couldn't be updated ({}); the link at the old "
+"place still works."
+msgstr "Nastavení složky na ploše se nepodařilo změnit ({}); odkaz na původním místě stále funguje."
+
+msgid "Stopped. Your files are still in OneDrive at {}."
+msgstr "Zálohování zastaveno. Soubory zůstaly na OneDrive v umístění {}."
+
+msgid "Couldn't inspect the selected folder {}: {}"
+msgstr "Nepodařilo se zkontrolovat vybranou složku {}: {}"
+
+msgid "Couldn't clear the empty destination {}: {}"
+msgstr "Nepodařilo se vyprázdnit cílovou složku {}: {}"
+
+msgid "The destination {} changed after review."
+msgstr "Cíl {} se po kontrole změnil."
+
+msgid ""
+"Copying to {} failed (is there enough space?). The original remains in {}."
+msgstr "Kopírování do {} se nezdařilo (je na disku dost místa?). Původní složka zůstala v {}."
+
+msgid "Choose where to move the OneDrive folder"
+msgstr "Vyberte, kam přesunout složku OneDrive"
+
+msgid ""
+"No folder chooser is available on this desktop, so the folder can't be moved "
+"from here."
+msgstr "Na této ploše není k dispozici výběr složky, proto ji odsud nelze přesunout."
+
+msgid "Couldn't safely resolve the selected destination folder."
+msgstr "Vybranou cílovou složku se nepodařilo bezpečně zjistit."
+
+msgid ""
+"{} is a symbolic link. Move the actual sync folder or choose a new folder in "
+"Options first."
+msgstr "{} je symbolický odkaz. Nejprve přesuňte skutečnou synchronizovanou složku nebo v Možnostech vyberte novou složku."
+
+msgid "{} isn't there (is its drive connected?), so there's nothing to move."
+msgstr "{} není k dispozici (je připojený disk?), proto není co přesouvat."
+
+msgid "That folder overlaps with \"{}\" ({}). Pick a separate folder."
+msgstr "Tato složka se překrývá se složkou „{}“ ({}). Vyberte jinou složku."
+
+msgid "{} already exists and isn't empty. Pick an empty folder."
+msgstr "{} už existuje a není prázdná. Vyberte prázdnou složku."
+
+msgid "Moving the folder to {}… The sync engine is paused meanwhile."
+msgstr "Přesouvá se složka do {}… Synchronizační program je mezitím pozastavený."
+
+msgid "Couldn't stop the sync engine: {}"
+msgstr "Nepodařilo se zastavit synchronizační program: {}"
+
+msgid "Couldn't recheck {}: {}"
+msgstr "Nepodařilo se znovu zkontrolovat {}: {}"
+
+msgid ""
+"The current sync folder changed while the destination was being reviewed. "
+"Refresh and try again."
+msgstr "Současná synchronizovaná složka se změnila při kontrole cíle. Obnovte obsah a zkuste to znovu."
+
+msgid ""
+"The destination drive changed while the folder move was being reviewed. "
+"Connect the intended drive and try again."
+msgstr "Cílový disk se změnil při kontrole přesunu složky. Připojte požadovaný disk a zkuste to znovu."
+
+msgid "Couldn't move the folder: {}"
+msgstr "Nepodařilo se přesunout složku: {}"
+
+msgid "Couldn't save the new folder in the settings: {}"
+msgstr "Nepodařilo se uložit novou složku v nastavení: {}"
+
+msgid ""
+"Couldn't save the new folder in the settings: {}; rollback also failed: {}"
+msgstr "Nepodařilo se uložit novou složku v nastavení: {}; nepodařilo se ani vrátit původní změny: {}"
+
+msgid ""
+"The folder operation finished, but the sync engine couldn't be restarted: {}"
+msgstr "Operace se složkou skončila, ale synchronizační program se nepodařilo znovu spustit: {}"
+
+msgid ""
+"Folder moved. The sync engine needs a full resync to carry on there — check "
+"the preview."
+msgstr "Složka přesunuta. Synchronizační program potřebuje k pokračování na novém místě úplnou novou synchronizaci — zkontrolujte náhled."
+
+msgid ""
+"Folder copied. Your old folder ({}) was left untouched and is no longer "
+"synced: once you've checked your files in the new place, delete it yourself "
+"to free the space. Next, check the preview to carry on syncing."
+msgstr "Složka zkopírována. Stará složka ({}) zůstala beze změny a už se nesynchronizuje. Až ověříte, že jsou soubory na novém místě, smažte ji sami a uvolněte místo. Pak zkontrolujte náhled a pokračujte v synchronizaci."
+
+msgid "Finish moving the folder"
+msgstr "Dokončit přesun složky"
+
+msgid ""
+"Your files are already in the new folder, so little or nothing should need "
+"to transfer."
+msgstr "Soubory už jsou v nové složce, takže by se mělo přenášet jen málo dat nebo žádná."
+
+msgid "Add and sign in to a work or school account first."
+msgstr "Nejprve přidejte a přihlaste se k pracovnímu nebo školnímu účtu."
+
+msgid "Checking the OneDrive client…"
+msgstr "Kontroluje se klient OneDrive…"
+
+msgid "Give the account a name and pick a local folder."
+msgstr "Pojmenujte účet a vyberte místní složku."
+
+msgid ""
+"A national cloud account needs your organisation's tenant (ask its IT team)."
+msgstr "Účet v národním cloudu potřebuje tenant organizace (zeptejte se správce IT)."
+
+msgid "The tenant {}."
+msgstr "Tenant: {}."
+
+msgid "You already have an account called \"{}\". Pick a different name."
+msgstr "Účet s názvem „{}“ už máte. Vyberte jiný název."
+
+msgid "Search for and pick a library first."
+msgstr "Nejprve vyhledejte a vyberte knihovnu."
+
+msgid "Couldn't copy the sign-in: {}"
+msgstr "Nepodařilo se zkopírovat přihlášení: {}"
+
+msgid "Created the account but couldn't find it again — try reopening the app."
+msgstr "Účet byl vytvořen, ale nepodařilo se ho znovu najít — zkuste aplikaci znovu otevřít."
+
+msgid "Couldn't create the autostart folder: {}"
+msgstr "Nepodařilo se vytvořit složku pro automatické spuštění: {}"
+
+msgid "OneDrive sync status"
+msgstr "Stav synchronizace OneDrive"
+
+msgid "Couldn't save the autostart setting: {}"
+msgstr "Nepodařilo se uložit nastavení automatického spuštění: {}"
+
+msgid "Couldn't remove {}: {}"
+msgstr "Nepodařilo se odebrat {}: {}"
+
+msgid "Checking the sync engine…"
+msgstr "Kontroluje se synchronizační program…"
+
+msgid "Sync engine: OneDrive Client for Linux {} ({})"
+msgstr "Synchronizační program: OneDrive Client for Linux {} ({})"
+
+msgid ""
+"Sync engine: OneDrive Client for Linux {} ({}) — too old, please update it."
+msgstr "Synchronizační program: OneDrive Client for Linux {} ({}) — je příliš starý, aktualizujte ho."
+
+msgid "Sync engine: the OneDrive Client for Linux isn't installed."
+msgstr "Synchronizační program: OneDrive Client for Linux není nainstalovaný."
+
+msgid ""
+"Added. Look for \"DriveDeck for OneDrive\" in your applications menu. Right-"
+"clicking a file in Dolphin now also shows a OneDrive menu with \"Copy view-"
+"only link\", \"Copy editing link\" and \"View on the OneDrive website\"."
+msgstr "Přidáno. V nabídce aplikací vyhledejte „DriveDeck for OneDrive“. Po kliknutí pravým tlačítkem na soubor v Dolphin se zobrazí také nabídka OneDrive s volbami „Kopírovat odkaz jen pro zobrazení“, „Kopírovat odkaz pro úpravy“ a „Zobrazit na webu OneDrive“."
+
+msgid "Couldn't add it: {}"
+msgstr "Nepodařilo se přidat: {}"
+
+msgid "Found the OneDrive client ({}). You're ready to sync."
+msgstr "Klient OneDrive nalezen ({}) . Můžete začít synchronizovat."
+
+msgid "Your OneDrive Client for Linux ({}) is too old"
+msgstr "Váš OneDrive Client for Linux ({}) je příliš starý"
+
+msgid "Your computer will ask for your password…"
+msgstr "Počítač vás požádá o heslo…"
+
+msgid ""
+"Nothing was changed: your computer didn't allow it (the password wasn't "
+"accepted, or no password window could be shown)."
+msgstr "Nic se nezměnilo: počítač to nepovolil (heslo nebylo přijato nebo se nepodařilo zobrazit okno pro heslo)."
+
+msgid "Couldn't start the installer: {}"
+msgstr "Nepodařilo se spustit instalační program: {}"
+
+msgid "The OneDrive client is updated to {}."
+msgstr "Klient OneDrive byl aktualizován na verzi {}."
+
+msgid "The OneDrive client is installed. You're ready to sync."
+msgstr "Klient OneDrive je nainstalovaný. Můžete začít synchronizovat."
+
+msgid ""
+"It finished, but the OneDrive client still isn't working. The instructions "
+"show how to install it by hand."
+msgstr "Instalace skončila, ale klient OneDrive stále nefunguje. V pokynech se dozvíte, jak ho nainstalovat ručně."
+
+msgid "Couldn't open OneDrive settings"
+msgstr "Nepodařilo se otevřít nastavení OneDrive"
+
+msgid "The window couldn't open ({})."
+msgstr "Okno se nepodařilo otevřít ({})."
+
+msgid "Couldn't save the account name: {}"
+msgstr "Nepodařilo se uložit název účtu: {}"
+
+msgid "Renamed."
+msgstr "Přejmenováno."
+
+msgid "Syncing now…"
+msgstr "Probíhá synchronizace…"
+
+msgid "Saved as {}. It opens now: read it before sharing it."
+msgstr "Uloženo jako {}. Nyní se otevře; před sdílením si ho přečtěte."
+
+msgid "Couldn't remove {}"
+msgstr "Nepodařilo se odebrat {}"
+
+msgid "Added. Close every Dolphin window and open it again to see the badges."
+msgstr "Přidáno. Zavřete všechna okna Dolphin a znovu je otevřete, aby se značky zobrazily."
+
+msgid "Once it's installed, this note goes away by itself."
+msgstr "Po instalaci tato poznámka sama zmizí."
+
+msgid "Couldn't save that: {}"
+msgstr "Nepodařilo se uložit: {}"
+
+msgid "The app file {} will be deleted."
+msgstr "Soubor aplikace {} se smaže."
+
+msgid ""
+"The app's package will then be removed; your computer will ask for your "
+"password."
+msgstr "Poté se odebere balíček aplikace; počítač vás požádá o heslo."
+
+msgid "Afterwards, remove the \"{}\" package with your software manager."
+msgstr "Nakonec odeberte balíček „{}“ pomocí správce softwaru."
+
+msgid "This copy isn't installed, so only your settings are removed."
+msgstr "Tato kopie není nainstalovaná, proto se odebere jen nastavení."
+
+msgid ""
+"The tray icon didn't close. Log out and back in once this is done to be sure "
+"it's gone."
+msgstr "Ikonu v oznamovací oblasti se nepodařilo ukončit. Po dokončení se odhlaste a znovu přihlaste, abyste měli jistotu, že zmizela."
+
+msgid ""
+"Your accounts keep syncing in the background with the OneDrive Client for "
+"Linux."
+msgstr "Vaše účty se budou dál synchronizovat na pozadí pomocí OneDrive Client for Linux."
+
+msgid ""
+"{} was left untouched because its settings folder couldn't be checked: {}"
+msgstr "{} zůstal beze změny, protože se nepodařilo zkontrolovat jeho složku s nastavením: {}"
+
+msgid ""
+"{} was left untouched because its one-time sync job couldn't be stopped: {}"
+msgstr "{} zůstal beze změny, protože se nepodařilo zastavit jeho jednorázovou synchronizaci: {}"
+
+msgid "{} was left untouched because its sync service couldn't be stopped: {}"
+msgstr "{} zůstal beze změny, protože se nepodařilo zastavit jeho synchronizační službu: {}"
+
+msgid ""
+"{} was stopped, but its service couldn't be disabled. Its files and service "
+"were left intact: {}"
+msgstr "{} se zastavil, ale jeho službu se nepodařilo zakázat. Soubory a služba zůstaly beze změny: {}"
+
+msgid ""
+"{} was stopped, but its service file couldn't be removed. Its account files "
+"were left intact: {}"
+msgstr "{} se zastavil, ale jeho soubor služby se nepodařilo odebrat. Soubory účtu zůstaly beze změny: {}"
+
+msgid ""
+"{} was stopped and disabled, but its custom service file at {} was left in "
+"place."
+msgstr "{} se zastavil a zakázal, ale jeho vlastní soubor služby v {} zůstal."
+
+msgid ""
+"{}: signed out and its sync settings removed. The files in {} are still "
+"there."
+msgstr "{}: odhlášeno a nastavení synchronizace odebráno. Soubory v {} zůstaly."
+
+msgid ""
+"{} also holds files that aren't the OneDrive client's, so they and the "
+"folder were kept."
+msgstr "{} obsahuje i soubory, které nepatří klientovi OneDrive, proto složka i tyto soubory zůstaly."
+
+msgid ""
+"The account services were removed, but systemd couldn't reload its unit "
+"list: {}"
+msgstr "Služby účtů byly odebrány, ale systemd nemohl znovu načíst seznam jednotek: {}"
+
+msgid "Couldn't delete {}: {}. Delete it yourself to finish."
+msgstr "Nepodařilo se smazat {}: {}. Dokončete to ručně."
+
+msgid ""
+"The package wasn't removed (the password prompt may have been cancelled). "
+"Remove \"{}\" with your software manager to finish."
+msgstr "Balíček se neodebral (možná jste zrušili zadání hesla). Odeberte balíček „{}“ pomocí správce softwaru."
+
+msgid "Remove the \"{}\" package with your software manager to finish."
+msgstr "Dokončete odebrání balíčku „{}“ pomocí správce softwaru."
+
+msgid "0 means never. Too low cuts off large transfers."
+msgstr "0 znamená nikdy. Příliš nízká hodnota přeruší velké přenosy."
+
+msgid "0 syncs files of any size."
+msgstr "0 synchronizuje soubory libovolné velikosti."
+
+msgid ""
+"10 to 60 MB, in steps of 5. Bigger pieces can be faster on fast, steady "
+"connections."
+msgstr "10 až 60 MB po 5 MB. Větší části mohou být rychlejší při rychlém a stabilním připojení."
+
+msgid "600 means only you can read them."
+msgstr "600 znamená, že je mohou číst jen uživatelé s vaším oprávněním."
+
+msgid "700 means only you can open them."
+msgstr "700 znamená, že je můžete otevřít jen vy."
+
+msgid "Add the OneDrive folder to the file manager's sidebar"
+msgstr "Přidat složku OneDrive do postranního panelu správce souborů"
+
+msgid "Also delete the emptied folders"
+msgstr "Smazat také prázdné složky"
+
+msgid "Always sync files at the top of the OneDrive folder"
+msgstr "Vždy synchronizovat soubory v nejvyšší složce OneDrive"
+
+msgid "Application ID"
+msgstr "ID aplikace"
+
+msgid "As found"
+msgstr "Podle zjištěného stavu"
+
+msgid "Ask for read-only access"
+msgstr "Požadovat přístup jen pro čtení"
+
+msgid "By name, A to Z"
+msgstr "Podle názvu vzestupně"
+
+msgid "By name, Z to A"
+msgstr "Podle názvu sestupně"
+
+msgid "Can fix transfers that stall on some networks and proxies."
+msgstr "Může pomoci, když se přenosy v některých sítích a proxy serverech zasekávají."
+
+msgid ""
+"Counted in sync checks (set under When to sync). Lower catches missed online "
+"changes sooner but uses more data."
+msgstr "Započítává se do kontrol synchronizace (nastavují se v části Kdy synchronizovat). Kratší interval dříve zachytí vynechané online změny, ale spotřebuje více dat."
+
+msgid "Delete files here after they upload"
+msgstr "Po nahrání souborů je zde smazat"
+
+msgid "Delete permanently online (skip the OneDrive recycle bin)"
+msgstr "Smazat online natrvalo (přeskočit koš OneDrive)"
+
+msgid "Don't check downloads"
+msgstr "Nekontrolovat stahování"
+
+msgid "Don't check for new client versions"
+msgstr "Nekontrolovat nové verze klienta"
+
+msgid "Don't check uploads"
+msgstr "Nekontrolovat nahrávání"
+
+msgid "Don't get instant online changes"
+msgstr "Nenačítat okamžitě online změny"
+
+msgid "Don't set permissions on downloaded files"
+msgstr "Nenastavovat oprávnění stažených souborů"
+
+msgid "Don't sync files larger than"
+msgstr "Nesynchronizovat soubory větší než"
+
+msgid "Don't sync if the drive isn't mounted"
+msgstr "Nesynchronizovat, pokud disk není připojený"
+
+msgid "Downloads stop rather than fill the disk."
+msgstr "Stahování se zastaví, aby se disk nezaplnil."
+
+msgid "Drop idle connections after"
+msgstr "Ukončit nečinná připojení po"
+
+msgid "Files transferred at once"
+msgstr "Počet současně přenášených souborů"
+
+msgid "Folders to skip must match the whole path"
+msgstr "Cesta složky k přeskočení se musí shodovat celá"
+
+msgid ""
+"For moving files to OneDrive, usually with Upload only. Leaves the folders "
+"behind."
+msgstr "Pro přesun souborů na OneDrive, obvykle při volbě Pouze nahrávat. Složky zůstanou."
+
+msgid "Full online check every"
+msgstr "Úplná online kontrola každých"
+
+msgid "Get online changes through a webhook"
+msgstr "Načítat online změny pomocí webhooku"
+
+msgid "Give up connecting after"
+msgstr "Přerušit připojování po"
+
+msgid "Give up on any single request after"
+msgstr "Přerušit jednotlivý požadavek po"
+
+msgid "Give up when no data arrives for"
+msgstr "Přerušit, když nepřicházejí data po"
+
+msgid ""
+"Helps with apps that save on every keystroke (Obsidian and other note apps)."
+msgstr "Hodí se pro aplikace, které ukládají po každém stisku klávesy (Obsidian a další poznámkové aplikace)."
+
+msgid "Identify as"
+msgstr "Identifikovat se jako"
+
+msgid "In addition to the system journal the app already reads."
+msgstr "Kromě systémového žurnálu, který aplikace už čte."
+
+msgid "Items deleted here can't be restored online afterwards."
+msgstr "Položky smazané tady už nelze online obnovit."
+
+msgid ""
+"Items online that aren't on this computer are deleted online instead of "
+"downloaded. Check with a dry run first."
+msgstr "Položky, které jsou online, ale nejsou v tomto počítači, se smažou online místo stažení. Nejprve to ověřte nanečisto."
+
+msgid "Keep SharePoint's changed copy as a new version"
+msgstr "Ponechat změněnou kopii ze SharePointu jako novou verzi"
+
+msgid "Keep this much disk space free"
+msgstr "Kolik místa na disku ponechat volného"
+
+msgid ""
+"Keeps file dates exactly right online, at the cost of a little speed for "
+"small files."
+msgstr "Zachovává přesné časy souborů online za cenu mírně pomalejšího přenosu malých souborů."
+
+msgid "Largest first"
+msgstr "Nejprve největší"
+
+msgid "Leave empty for the app's own folder (~/.local/share/drivedeck/logs)."
+msgstr "Nechte prázdné, chcete-li použít složku aplikace (~/.local/share/drivedeck/logs)."
+
+msgid "Leave empty for the client's own name, which Microsoft throttles least."
+msgstr "Nechte prázdné, chcete-li použít vlastní název klienta, u kterého Microsoft uplatňuje nejmírnější omezení."
+
+msgid ""
+"Leaves permissions to the folder (needed on drives that don't support Linux "
+"permissions, like NTFS or exFAT)."
+msgstr "Ponechá oprávnění složce (potřebné na discích bez podpory linuxových oprávnění, například NTFS nebo exFAT)."
+
+msgid "Listen on address"
+msgstr "Naslouchat na adrese"
+
+msgid "Listen on port"
+msgstr "Naslouchat na portu"
+
+msgid "Log all network traffic"
+msgstr "Zaznamenávat veškerý síťový provoz"
+
+msgid "Log folder"
+msgstr "Složka protokolu"
+
+msgid "Log routine checks only every"
+msgstr "Zapisovat běžné kontroly jen každých"
+
+msgid "Log the speed of each transfer"
+msgstr "Zapisovat rychlost každého přenosu"
+
+msgid "Logging"
+msgstr "Záznamy"
+
+msgid "Lower this if a router or firewall cuts connections that sit idle."
+msgstr "Snižte hodnotu, pokud router nebo firewall ukončuje nečinná připojení."
+
+msgid "MB"
+msgstr "MB"
+
+msgid "Make OneDrive match this computer exactly"
+msgstr "Přizpůsobit OneDrive přesně tomuto počítači"
+
+msgid "More than 8 rarely helps and can get you throttled by Microsoft."
+msgstr "Více než 8 obvykle nepomůže a Microsoft může omezit připojení."
+
+msgid ""
+"Needs a public https address that forwards to this computer. Instant online "
+"changes usually make this unnecessary."
+msgstr "Je potřeba veřejná adresa https, která přesměrovává do tohoto počítače. Okamžité online změny ji obvykle nepotřebují."
+
+msgid "Network"
+msgstr "Síť"
+
+msgid ""
+"Normally a clashing local file is kept under a new name. With this on, its "
+"changes are lost."
+msgstr "Při střetu se místní soubor obvykle uloží pod novým názvem. Při zapnutí se jeho změny ztratí."
+
+msgid "Notify about every file synced"
+msgstr "Upozorňovat na každý synchronizovaný soubor"
+
+msgid "Online changes are then picked up at each sync check instead."
+msgstr "Online změny se pak načtou při každé kontrole synchronizace."
+
+msgid ""
+"Only for SharePoint libraries that change files after upload, which makes "
+"every check fail."
+msgstr "Pouze pro knihovny SharePoint, které po nahrání mění soubory a způsobují tak neúspěch každé kontroly."
+
+msgid "Only for government or national cloud accounts."
+msgstr "Pouze pro vládní nebo národní cloudové účty."
+
+msgid ""
+"Only for reporting a problem. The log then holds sign-in tokens: don't share "
+"it without removing them."
+msgstr "Pouze pro nahlášení problému. Protokol pak obsahuje přihlašovací tokeny: před sdílením je odstraňte."
+
+msgid "Only if your organisation registered its own app for the client."
+msgstr "Pouze pokud vaše organizace zaregistrovala pro klienta vlastní aplikaci."
+
+msgid ""
+"Only when SharePoint reports the wrong size for files, so good downloads get "
+"thrown away."
+msgstr "Pouze pokud SharePoint uvádí u souborů nesprávnou velikost, takže se správně stažené soubory zahodí."
+
+msgid "Overwrite local files on a conflict instead of keeping a copy"
+msgstr "Při střetu přepsat místní soubory místo uložení kopie"
+
+msgid "Permissions for new files"
+msgstr "Oprávnění nových souborů"
+
+msgid "Permissions for new folders"
+msgstr "Oprávnění nových složek"
+
+msgid "Public address"
+msgstr "Veřejná adresa"
+
+msgid ""
+"Put an empty file named .nosync in the mount point while the drive is "
+"unplugged. If it's ever visible, syncing stops instead of deleting "
+"everything online."
+msgstr "Když je disk odpojený, vložte do přípojného bodu prázdný soubor s názvem .nosync. Pokud je viditelný, synchronizace se zastaví místo smazání všeho online."
+
+msgid "Quiets the log when nothing is changing."
+msgstr "Ztiší protokol, když se nic nemění."
+
+msgid "Record who created and last changed each file"
+msgstr "Zaznamenávat, kdo každý soubor vytvořil a naposledy změnil"
+
+msgid "Remember server addresses for"
+msgstr "Uchovávat adresy serverů po dobu"
+
+msgid "Renew the subscription every"
+msgstr "Obnovovat předplatné každých"
+
+msgid ""
+"Required for a national cloud; otherwise only if your organisation asks."
+msgstr "Je nutné pro národní cloud; jinak jen pokud to vyžaduje vaše organizace."
+
+msgid "Retry a failed subscription after"
+msgstr "Po neúspěšném pokusu o předplatné čekat"
+
+msgid ""
+"SharePoint rewrites Office, PDF and HTML files after upload. Normally the "
+"client puts your original back."
+msgstr ""
+
+msgid "Sign-in"
+msgstr ""
+
+msgid "Smallest first"
+msgstr ""
+
+msgid "Stop and ask when this many items are deleted at once"
+msgstr ""
+
+msgid ""
+"Stored in the file's extended attributes (user.onedrive.createdBy, "
+"user.onedrive.lastModifiedBy)."
+msgstr ""
+
+msgid "Subscription lasts"
+msgstr ""
+
+msgid "Syncing"
+msgstr ""
+
+msgid "The client can then only download. Uploads and online deletes fail."
+msgstr ""
+
+msgid ""
+"Then \"Projects/Old\" only skips that one folder, and a plain name only "
+"skips a folder at the top."
+msgstr ""
+
+msgid "Transfer files in this order"
+msgstr ""
+
+msgid "Transfers"
+msgstr ""
+
+msgid "Trash folder"
+msgstr ""
+
+msgid "Treat this computer as the source of truth"
+msgstr ""
+
+msgid "Upload every file in pieces"
+msgstr ""
+
+msgid "Upload large files in pieces of"
+msgstr ""
+
+msgid "Use HTTP/1.1 only"
+msgstr ""
+
+msgid "Wait"
+msgstr ""
+
+msgid "Wait before sending changes from busy apps"
+msgstr ""
+
+msgid "Webhooks"
+msgstr ""
+
+msgid ""
+"When only some folders are chosen, files sitting directly in the OneDrive "
+"folder still sync."
+msgstr ""
+
+msgid ""
+"When the same item differs here and online, this computer's copy wins "
+"instead of OneDrive's."
+msgstr ""
+
+msgid "Where files deleted online go on this computer."
+msgstr ""
+
+msgid "With a OneDrive folder icon where the file manager supports it."
+msgstr ""
+
+msgid "Write a log file"
+msgstr ""
+
+msgid "checks"
+msgstr ""
+
+msgid "items"
+msgstr ""
+
+msgid "seconds"
+msgstr ""

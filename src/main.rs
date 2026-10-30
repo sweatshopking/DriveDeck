@@ -19,6 +19,7 @@ mod filewin;
 mod folderchecks;
 mod glass;
 mod graph;
+mod i18n;
 mod popup;
 mod rename;
 mod share;

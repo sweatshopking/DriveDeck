@@ -307,7 +307,7 @@ fn log_state(unit: Option<&str>) -> LogState {
             Some(LogEvent::ClientStart) if phase == Phase::BigDelete => phase = Phase::Unknown,
             Some(LogEvent::NeedsLogin) => {
                 phase = Phase::SignedOut;
-                err = Some("Microsoft needs you to sign in again.".into());
+                err = Some(crate::tr!("Microsoft needs you to sign in again."));
             }
             _ => {}
         }
@@ -501,21 +501,27 @@ fn glass_wanted(setting: Option<bool>, look: Look) -> bool {
     setting.unwrap_or(look.blurs && !look.appearance.high_contrast)
 }
 
-fn glass_note(setting: Option<bool>, look: Look) -> &'static str {
+fn glass_note(setting: Option<bool>, look: Look) -> String {
     match setting {
         None if glass_wanted(None, look) => {
-            "Glass is on: your desktop blurs what's behind windows, so the window is see-through."
+            crate::tr!(
+                "Glass is on: your desktop blurs what's behind windows, so the window is see-through."
+            )
         }
         None if look.appearance.high_contrast => {
-            "Glass is off because your desktop asks for high contrast."
+            crate::tr!("Glass is off because your desktop asks for high contrast.")
         }
         None => {
-            "Glass is off: your desktop doesn't blur what's behind windows, so the window stays solid and easy to read. If yours does (Hyprland with blur switched on, for example), choose On."
+            crate::tr!(
+                "Glass is off: your desktop doesn't blur what's behind windows, so the window stays solid and easy to read. If yours does (Hyprland with blur switched on, for example), choose On."
+            )
         }
         Some(true) => {
-            "Always see-through. If the window looks washed out, your desktop doesn't blur behind it: choose Automatic."
+            crate::tr!(
+                "Always see-through. If the window looks washed out, your desktop doesn't blur behind it: choose Automatic."
+            )
         }
-        Some(false) => "Always solid.",
+        Some(false) => crate::tr!("Always solid."),
     }
 }
 
@@ -613,11 +619,19 @@ fn show_status(c: &Ctx, i: usize) {
         .map(core::short_time)
         .unwrap_or_else(|| "—".into())));
     let err = match s.phase {
-        Phase::Error => s.last_error.clone().unwrap_or_else(|| "The sync service stopped with an error. Try \"Sync now\".".into()),
-        Phase::NeedsResync => "The sync engine needs a full resync before it can continue. Open the Folders tab and press \"Apply changes…\", or turn on \"Allow full resyncs\" in Options and save.".into(),
-        Phase::SignedOut if a.signed_in => "Microsoft no longer accepts the saved sign-in (this happens after a password change, or when access is revoked). Sign in again to continue.".into(),
+        Phase::Error => s.last_error.clone().unwrap_or_else(|| {
+            crate::tr!("The sync service stopped with an error. Try \"Sync now\".")
+        }),
+        Phase::NeedsResync => crate::tr!(
+            "The sync engine needs a full resync before it can continue. Open the Folders tab and press \"Apply changes…\", or turn on \"Allow full resyncs\" in Options and save."
+        ),
+        Phase::SignedOut if a.signed_in => crate::tr!(
+            "Microsoft no longer accepts the saved sign-in (this happens after a password change, or when access is revoked). Sign in again to continue."
+        ),
         Phase::BigDelete => core::big_delete_text(&s.big_delete.clone().unwrap_or_default()),
-        Phase::Stalled => "The sync engine is running but has stopped making progress, so changes aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, check your network connection.".into(),
+        Phase::Stalled => crate::tr!(
+            "The sync engine is running but has stopped making progress, so changes aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, check your network connection."
+        ),
         _ => String::new(),
     };
     let blocked = core::blocked_text(&s.blocked);
@@ -713,28 +727,35 @@ fn space_note(
         return (String::new(), false);
     };
     let (what, comes) = if sync_all {
-        ("Everything in this account", "comes")
+        (
+            crate::tr!("Everything in this account"),
+            crate::tr!("comes"),
+        )
     } else {
-        ("Newly ticked folders", "come")
+        (crate::tr!("Newly ticked folders"), crate::tr!("come"))
     };
     let amount = if unknown {
-        format!("at least {}", graph::human_size(new))
+        crate::tr!("at least {}", graph::human_size(new))
     } else {
         graph::human_size(new)
     };
     if new > free {
         (
-            format!(
-                "{what} {comes} to {amount}, more than the {} free on this drive. Some files won't \
-                 fit; free up space or tick less.",
+            crate::tr!(
+                "{} {} to {}, more than the {} free on this drive. Some files won't fit; free up space or tick less.",
+                what,
+                comes,
+                amount,
                 graph::human_size(free)
             ),
             true,
         )
     } else {
         (
-            format!(
-                "{what}: {amount}. Free on this drive: {}.",
+            crate::tr!(
+                "{}: {}. Free on this drive: {}.",
+                what,
+                amount,
                 graph::human_size(free)
             ),
             false,
@@ -778,7 +799,7 @@ fn load_quota(ctx: &Shared, acc: &AccountInfo) {
                     }
                     let ui = c.ui();
                     if q.total > 0 {
-                        ui.set_s_quota(ss(format!(
+                        ui.set_s_quota(ss(crate::tr!(
                             "{} of {} used",
                             graph::human_size(q.used),
                             graph::human_size(q.total)
@@ -787,7 +808,7 @@ fn load_quota(ctx: &Shared, acc: &AccountInfo) {
                         c.quota_used = Some(q.used);
                     } else if q.used > 0 {
                         // SharePoint libraries often report usage without a total
-                        ui.set_s_quota(ss(format!("{} used", graph::human_size(q.used))));
+                        ui.set_s_quota(ss(crate::tr!("{} used", graph::human_size(q.used))));
                         ui.set_s_quota_frac(0.0);
                     }
                     ui.set_s_owner(ss(q.owner));
@@ -896,7 +917,7 @@ fn adv_rows(acc: &AccountInfo, cfg: &ClientConfig) -> Vec<AdvRow> {
         .iter()
         .map(|s| {
             let value = advanced::current(s, cfg);
-            let (kind, unit, placeholder, mut choices, choice, default_choice) = match &s.kind {
+            let (kind, _unit, placeholder, mut choices, choice, default_choice) = match &s.kind {
                 Kind::Bool => (0, "", "", Vec::new(), 0, 0),
                 Kind::Number { unit, .. } => (1, *unit, s.default, Vec::new(), 0, 0),
                 Kind::Text { placeholder, .. } => (2, "", *placeholder, Vec::new(), 0, 0),
@@ -904,7 +925,9 @@ fn adv_rows(acc: &AccountInfo, cfg: &ClientConfig) -> Vec<AdvRow> {
                     3,
                     "",
                     "",
-                    list.iter().map(|(_, words)| ss(*words)).collect(),
+                    list.iter()
+                        .map(|(_, _words)| ss(crate::tr!(*words)))
+                        .collect(),
                     list.iter()
                         .position(|(v, _)| *v == value)
                         .unwrap_or(list.len()),
@@ -913,17 +936,17 @@ fn adv_rows(acc: &AccountInfo, cfg: &ClientConfig) -> Vec<AdvRow> {
             };
             // a value set by hand that isn't one of the choices stays selectable (and unchanged)
             if kind == 3 && choice == choices.len() {
-                choices.push(ss(format!("{value} (set by hand)")));
+                choices.push(ss(crate::tr!("{} (set by hand)", value)));
             }
             let is_text = kind == 1 || kind == 2;
             AdvRow {
-                group: ss(s.group),
-                label: ss(s.label),
-                hint: ss(s.hint),
+                group: ss(crate::tr!(s.group)),
+                label: ss(crate::tr!(s.label)),
+                hint: ss(crate::tr!(s.hint)),
                 kind,
                 checked: kind == 0 && value == "true",
                 text: ss(if is_text { value.as_str() } else { "" }),
-                unit: ss(unit),
+                unit: ss(crate::tr!(unit)),
                 placeholder: ss(placeholder),
                 choices: ModelRc::new(VecModel::from(choices)),
                 choice: choice as i32,
@@ -959,7 +982,10 @@ fn adv_groups(acc: &AccountInfo) -> Vec<SharedString> {
             groups.push(s.group);
         }
     }
-    groups.into_iter().map(ss).collect()
+    groups
+        .into_iter()
+        .map(|_group| ss(crate::tr!(group)))
+        .collect()
 }
 
 /// Marks the advanced settings whose name, explanation, group or config key holds every word
@@ -1056,13 +1082,13 @@ fn adv_collect(
             errors.extend(pos("mirror_local_state").map(|i| {
                 (
                     i,
-                    "needs \"Treat this computer as the source of truth\" on too".to_string(),
+                    crate::tr!("needs \"Treat this computer as the source of truth\" on too"),
                 )
             }));
         } else if ui.get_o_direction() == 2 {
             errors.extend(
                 pos("mirror_local_state")
-                    .map(|i| (i, "can't be used with Upload only".to_string())),
+                    .map(|i| (i, crate::tr!("can't be used with Upload only"))),
             );
         }
     }
@@ -1071,7 +1097,7 @@ fn adv_collect(
             .get("webhook_public_url")
             .is_none_or(|v| v.is_empty())
     {
-        errors.extend(pos("webhook_public_url").map(|i| (i, "needs an address".to_string())));
+        errors.extend(pos("webhook_public_url").map(|i| (i, crate::tr!("needs an address"))));
     }
     // the client's default log folder (/var/log/onedrive) isn't writable by you: use our own
     if on("enable_logging") && values.get("log_dir").is_none_or(|v| v.is_empty()) {
@@ -1098,7 +1124,7 @@ fn adv_collect(
             && let Some(d) = &c.value
             && let Err(e) = fs::create_dir_all(d)
         {
-            errors.extend(pos("log_dir").map(|i| (i, format!("couldn't create it: {e}"))));
+            errors.extend(pos("log_dir").map(|i| (i, crate::tr!("couldn't create it: {}", e))));
         }
     }
     for i in 0..model.row_count() {
@@ -1141,7 +1167,7 @@ fn show_client_config(ctx: &Shared) {
     bg(
         move || {
             let Some(bin) = core::client_binary() else {
-                return "The OneDrive Client for Linux isn't installed.".to_string();
+                return crate::tr!("The OneDrive Client for Linux isn't installed.").to_string();
             };
             match Command::new(bin)
                 .arg("--confdir")
@@ -1155,7 +1181,7 @@ fn show_client_config(ctx: &Shared) {
                     t.push_str(&String::from_utf8_lossy(&o.stderr));
                     t.trim().to_string()
                 }
-                Err(e) => format!("Couldn't run the client: {e}"),
+                Err(e) => crate::tr!("Couldn't run the client: {}", e),
             }
         },
         |ctx, text| {
@@ -1173,9 +1199,9 @@ fn open_log_folder(ctx: &Shared) {
     let cfg = ClientConfig::load(&acc.confdir);
     if !cfg.get_bool("enable_logging") {
         ui.set_o_adv_open(true);
-        ui.set_o_msg(ss(
-            "Turn on \"Write a log file\" under Advanced and save first. Until then the app reads the system journal instead.",
-        ));
+        ui.set_o_msg(ss(crate::tr!(
+            "Turn on \"Write a log file\" under Advanced and save first. Until then the app reads the system journal instead."
+        )));
         return;
     }
     let dir = cfg
@@ -1186,7 +1212,7 @@ fn open_log_folder(ctx: &Shared) {
             |d| PathBuf::from(advanced::expand_home(d.trim())),
         );
     if !dir.is_dir() {
-        ui.set_o_msg(ss(format!(
+        ui.set_o_msg(ss(crate::tr!(
             "{} doesn't exist yet. The client creates it when it next writes to the log.",
             dir.display()
         )));
@@ -1203,12 +1229,14 @@ fn clean_skip_dirs(text: &str) -> Result<Option<String>, String> {
         return Ok(None);
     }
     if parts.iter().any(|p| p.is_empty()) {
-        return Err(
-            "Folders to skip: remove the empty entry (two | in a row, or one at an end).".into(),
-        );
+        return Err(crate::tr!(
+            "Folders to skip: remove the empty entry (two | in a row, or one at an end)."
+        ));
     }
     if parts.contains(&".*") {
-        return Err("Folders to skip: \".*\" isn't allowed (it would hide all your changes). To skip hidden folders, use \"Don't sync hidden files and folders\".".into());
+        return Err(crate::tr!(
+            "Folders to skip: \".*\" isn't allowed (it would hide all your changes). To skip hidden folders, use \"Don't sync hidden files and folders\"."
+        ));
     }
     Ok(Some(parts.join("|")))
 }
@@ -1447,7 +1475,10 @@ fn file_url(path: &Path) -> String {
 }
 
 fn screenshot_setting_message(program: &str) -> String {
-    format!("Changes {program}'s save folder. Turning this off puts it back.")
+    crate::tr!(
+        "Changes {}'s save folder. Turning this off puts it back.",
+        program
+    )
 }
 
 fn set_screenshot_saving(ctx: &Shared, enabled: bool) {
@@ -1462,8 +1493,8 @@ fn set_screenshot_saving(ctx: &Shared, enabled: bool) {
     let result = if enabled {
         match (screenshot_tool(), accounts.get(selected_index)) {
             (Some(tool), Some(account)) => enable_screenshot_saving(&mut settings, &tool, account),
-            (None, _) => Err("No supported screenshot tool was found.".into()),
-            (_, None) => Err("Add a OneDrive account before turning this on.".into()),
+            (None, _) => Err(crate::tr!("No supported screenshot tool was found.")),
+            (_, None) => Err(crate::tr!("Add a OneDrive account before turning this on.")),
         }
     } else {
         disable_screenshot_saving(&mut settings)
@@ -1474,7 +1505,7 @@ fn set_screenshot_saving(ctx: &Shared, enabled: bool) {
         Ok(None) => String::new(),
         Err(error) => {
             ui.set_app_screenshot_enabled(was_enabled);
-            format!("Couldn't change the screenshot folder: {error}")
+            crate::tr!("Couldn't change the screenshot folder: {}", error)
         }
     }));
 }
@@ -1525,17 +1556,19 @@ fn enable_screenshot_saving(
     let current = match fs::read_to_string(&path) {
         Ok(text) => text,
         Err(error) if error.kind() == std::io::ErrorKind::NotFound => String::new(),
-        Err(error) => return Err(format!("Couldn't read {}: {error}", path.display())),
+        Err(error) => return Err(crate::tr!("Couldn't read {}: {}", path.display(), error)),
     };
     let screenshots = account.sync_dir.join("Pictures/Screenshots");
     fs::create_dir_all(&screenshots)
-        .map_err(|error| format!("Couldn't create {}: {error}", screenshots.display()))?;
+        .map_err(|error| crate::tr!("Couldn't create {}: {}", screenshots.display(), error))?;
     let target = match tool.tool {
         core::ScreenshotTool::Spectacle => file_url(&screenshots),
         core::ScreenshotTool::Flameshot => screenshots.to_string_lossy().to_string(),
     };
     if target.chars().any(char::is_control) {
-        return Err("The screenshot folder path contains a character the tool can't save.".into());
+        return Err(crate::tr!(
+            "The screenshot folder path contains a character the tool can't save."
+        ));
     }
     let updated = set_ini_value(&current, tool.group, tool.key, Some(&target));
     let mut next = settings.clone();
@@ -1547,18 +1580,20 @@ fn enable_screenshot_saving(
         applied_value: target,
     });
     next.save()
-        .map_err(|error| format!("Couldn't save the setting: {error}"))?;
+        .map_err(|error| crate::tr!("Couldn't save the setting: {}", error))?;
     if let Err(error) = write_ini_if_unchanged(&path, &current, &updated) {
         next.screenshot_save = None;
         if let Err(rollback) = next.save() {
-            return Err(format!(
-                "{error}. Couldn't clear the saved setting either: {rollback}"
+            return Err(crate::tr!(
+                "{}. Couldn't clear the saved setting either: {}",
+                error,
+                rollback
             ));
         }
         return Err(error);
     }
     *settings = next;
-    Ok(Some(format!(
+    Ok(Some(crate::tr!(
         "Screenshots will be saved in {}.",
         screenshots.display()
     )))
@@ -1572,7 +1607,7 @@ fn disable_screenshot_saving(settings: &mut AppSettings) -> Result<Option<String
     let current = match fs::read_to_string(&path) {
         Ok(text) => Some(text),
         Err(error) if error.kind() == std::io::ErrorKind::NotFound => None,
-        Err(error) => return Err(format!("Couldn't read {}: {error}", path.display())),
+        Err(error) => return Err(crate::tr!("Couldn't read {}: {}", path.display(), error)),
     };
     let (group, key) = screenshot_tool_keys(&saved.tool);
     let message = match current {
@@ -1584,25 +1619,30 @@ fn disable_screenshot_saving(settings: &mut AppSettings) -> Result<Option<String
                 &saved.applied_value,
                 saved.previous_value.as_deref(),
             ) {
-                write_ini_if_unchanged(&path, &current, &updated)
-                    .map_err(|error| format!("Couldn't restore {}: {error}", path.display()))?;
+                write_ini_if_unchanged(&path, &current, &updated).map_err(|error| {
+                    crate::tr!("Couldn't restore {}: {}", path.display(), error)
+                })?;
                 None
             } else {
                 Some(
-                    "The screenshot tool's save folder was changed since, so it was left as it is."
-                        .to_string(),
+                    crate::tr!(
+                        "The screenshot tool's save folder was changed since, so it was left as it is."
+                    )
+                    .to_string(),
                 )
             }
         }
         None => Some(
-            "The screenshot tool's save folder was changed since, so it was left as it is."
-                .to_string(),
+            crate::tr!(
+                "The screenshot tool's save folder was changed since, so it was left as it is."
+            )
+            .to_string(),
         ),
     };
     let mut next = settings.clone();
     next.screenshot_save = None;
     next.save()
-        .map_err(|error| format!("Couldn't save the setting: {error}"))?;
+        .map_err(|error| crate::tr!("Couldn't save the setting: {}", error))?;
     *settings = next;
     Ok(message)
 }
@@ -1618,10 +1658,10 @@ fn write_ini_if_unchanged(path: &Path, expected: &str, updated: &str) -> Result<
     let current = match fs::read_to_string(path) {
         Ok(text) => text,
         Err(error) if error.kind() == std::io::ErrorKind::NotFound => String::new(),
-        Err(error) => return Err(format!("Couldn't read {}: {error}", path.display())),
+        Err(error) => return Err(crate::tr!("Couldn't read {}: {}", path.display(), error)),
     };
     if current != expected {
-        return Err(format!(
+        return Err(crate::tr!(
             "{} changed while DriveDeck was updating it, so it was left as it is.",
             path.display()
         ));
@@ -1631,15 +1671,15 @@ fn write_ini_if_unchanged(path: &Path, expected: &str, updated: &str) -> Result<
     }
     if let Some(parent) = path.parent() {
         fs::create_dir_all(parent)
-            .map_err(|error| format!("Couldn't create {}: {error}", parent.display()))?;
+            .map_err(|error| crate::tr!("Couldn't create {}: {}", parent.display(), error))?;
     }
     if let Ok(metadata) = fs::symlink_metadata(path)
         && !metadata.file_type().is_file()
     {
-        return Err(format!("{} isn't a regular file.", path.display()));
+        return Err(crate::tr!("{} isn't a regular file.", path.display()));
     }
     core::atomic_write(path, updated.as_bytes())
-        .map_err(|error| format!("Couldn't write {}: {error}", path.display()))
+        .map_err(|error| crate::tr!("Couldn't write {}: {}", path.display(), error))
 }
 
 fn open_developer_skip_dirs(ctx: &Shared) {
@@ -1694,9 +1734,9 @@ fn save_options(ctx: &Shared) {
     );
     let (a, b) = (core::parse_hhmm(&from), core::parse_hhmm(&to));
     if sched_on && (a.is_none() || b.is_none() || a == b) {
-        ui.set_o_msg(ss(
-            "Schedule times must be two different 24-hour times like 23:00 and 07:00.",
-        ));
+        ui.set_o_msg(ss(crate::tr!(
+            "Schedule times must be two different 24-hour times like 23:00 and 07:00."
+        )));
         return;
     }
     let skip_dirs = match clean_skip_dirs(&ui.get_o_skip_dirs()) {
@@ -1720,16 +1760,19 @@ fn save_options(ctx: &Shared) {
             match advanced::check(&advanced::BIG_DELETE, &raw) {
                 Ok(v) => advanced::change(&advanced::BIG_DELETE, &cfg, &v),
                 Err(e) => {
-                    ui.set_o_msg(ss(format!("The number of items for a big delete {e}.")));
+                    ui.set_o_msg(ss(crate::tr!(
+                        "The number of items for a big delete {}.",
+                        e
+                    )));
                     return;
                 }
             }
         }
     };
     let Ok(adv) = adv_collect(&acc, &ui, &cfg) else {
-        ui.set_o_msg(ss(
-            "Nothing was saved: fix the settings marked in red under Advanced.",
-        ));
+        ui.set_o_msg(ss(crate::tr!(
+            "Nothing was saved: fix the settings marked in red under Advanced."
+        )));
         return;
     };
 
@@ -1745,7 +1788,7 @@ fn save_options(ctx: &Shared) {
         p.allow_resync = Some(ui.get_o_allow_resync());
     }
     if let Err(e) = s.save() {
-        ui.set_o_msg(ss(format!("Couldn't save settings: {e}")));
+        ui.set_o_msg(ss(crate::tr!("Couldn't save settings: {}", e)));
         return;
     }
     ctx.borrow_mut().settings = s.clone();
@@ -1852,7 +1895,7 @@ fn save_options(ctx: &Shared) {
     if let Some(v) = big_delete {
         plain.push(("classify_as_big_delete".into(), v));
     }
-    let signin_changed = adv.iter().any(|c| c.effect == Effect::SignIn);
+    let _signin_changed = adv.iter().any(|c| c.effect == Effect::SignIn);
     for c in adv {
         let list = if c.effect == Effect::Resync {
             &mut resync
@@ -1888,7 +1931,7 @@ fn save_options(ctx: &Shared) {
             cfg.set(k, v.as_deref());
         }
         if let Err(e) = cfg.save() {
-            ui.set_o_msg(ss(format!("Couldn't save: {e}")));
+            ui.set_o_msg(ss(crate::tr!("Couldn't save: {}", e)));
             return;
         }
     }
@@ -1896,13 +1939,13 @@ fn save_options(ctx: &Shared) {
         if !plain.is_empty() {
             restart_if_running(acc.clone());
         }
-        ui.set_o_msg(ss(if signin_changed {
+        ui.set_o_msg(ss(crate::tr!(if signin_changed {
             "Saved. Sign out and in again for the settings marked † to take effect."
         } else if plain.is_empty() {
             "Saved."
         } else {
             "Saved. The sync engine restarts to pick up the changes."
-        }));
+        })));
         refresh(ctx);
         return;
     }
@@ -1911,11 +1954,11 @@ fn save_options(ctx: &Shared) {
             if !plain.is_empty() {
                 restart_if_running(acc.clone());
             }
-            ui.set_o_msg(ss("Saved, except the settings marked * — they need a full resync, which is turned off for this account."));
+            ui.set_o_msg(ss(crate::tr!("Saved, except the settings marked * — they need a full resync, which is turned off for this account.")));
             return;
         }
         // the direction can still change; the * settings stay as they were
-        ui.set_o_msg(ss("The settings marked * weren't saved: they need a full resync, which is turned off for this account. Check the preview for the new direction."));
+        ui.set_o_msg(ss(crate::tr!("The settings marked * weren't saved: they need a full resync, which is turned off for this account. Check the preview for the new direction.")));
         resync.clear();
     }
     if resync.is_empty() {
@@ -1924,12 +1967,14 @@ fn save_options(ctx: &Shared) {
             .iter()
             .any(|(k, v)| k == "cleanup_local_files" && v.is_some())
         {
-            note = "Files here that aren't online are deleted, including new files you put in this folder from now on.".into();
+            note = crate::tr!(
+                "Files here that aren't online are deleted, including new files you put in this folder from now on."
+            );
         }
         start_preview(
             ctx,
             &acc,
-            "Change sync direction",
+            &crate::tr!("Change sync direction"),
             PreviewChange {
                 sync_list: None,
                 config: direction_changes,
@@ -1941,13 +1986,13 @@ fn save_options(ctx: &Shared) {
     }
     // a full resync's dry run covers a new direction too
     resync.extend(direction_changes);
-    ui.set_o_msg(ss(
-        "Saved. The settings marked * need a full resync — check the preview.",
-    ));
+    ui.set_o_msg(ss(crate::tr!(
+        "Saved. The settings marked * need a full resync — check the preview."
+    )));
     start_preview(
         ctx,
         &acc,
-        "Apply file settings",
+        &crate::tr!("Apply file settings"),
         PreviewChange {
             sync_list: None,
             config: resync,
@@ -1977,17 +2022,23 @@ fn big_delete_choose(ctx: &Shared, delete_online: bool) {
     if delete_online {
         let mut note = match big.count {
             Some(n) => {
-                format!("Counting everything inside the deleted folders, that's {n} items in all.")
+                crate::tr!(
+                    "Counting everything inside the deleted folders, that's {} items in all.",
+                    n
+                )
             }
             None => String::new(),
         };
         if !ClientConfig::load(&acc.confdir).get_bool("permanent_delete") {
-            note.push_str(" Items deleted online go to the OneDrive recycle bin, where they can be restored for a while.");
+            note.push(' ');
+            note.push_str(&crate::tr!(
+                "Items deleted online go to the OneDrive recycle bin, where they can be restored for a while."
+            ));
         }
         start_preview(
             ctx,
             &acc,
-            "Delete them online too",
+            &crate::tr!("Delete them online too"),
             PreviewChange {
                 sync_list: None,
                 config: Vec::new(),
@@ -1999,12 +2050,12 @@ fn big_delete_choose(ctx: &Shared, delete_online: bool) {
         start_preview(
             ctx,
             &acc,
-            "Download them again",
+            &crate::tr!("Download them again"),
             PreviewChange {
                 sync_list: None,
                 config: Vec::new(),
                 mode: PreviewMode::Resync,
-                note: "The deleted items are downloaded again from OneDrive.".into(),
+                note: crate::tr!("The deleted items are downloaded again from OneDrive."),
             },
         );
     }
@@ -2035,9 +2086,10 @@ fn load_folders(ctx: &Shared, acc: &AccountInfo, force: bool) {
     let rules = match core::read_sync_list(&acc.confdir) {
         Ok(rules) => rules,
         Err(e) => {
-            ctx.borrow()
-                .ui()
-                .set_f_msg(ss(format!("Couldn't read the folder-selection rules: {e}")));
+            ctx.borrow().ui().set_f_msg(ss(crate::tr!(
+                "Couldn't read the folder-selection rules: {}",
+                e
+            )));
             return;
         }
     };
@@ -2069,7 +2121,7 @@ fn load_folders(ctx: &Shared, acc: &AccountInfo, force: bool) {
     if !acc.signed_in {
         ctx.borrow()
             .ui()
-            .set_f_msg(ss("Sign in to choose folders."));
+            .set_f_msg(ss(crate::tr!("Sign in to choose folders.")));
         return;
     }
     fetch_children(ctx, acc, "/".into());
@@ -2149,7 +2201,8 @@ fn fetch_children(ctx: &Shared, acc: &AccountInfo, path: String) {
                         if let Some(n) = c.tree.rows.iter_mut().find(|n| n.path == path) {
                             n.loading = false;
                         }
-                        c.ui().set_f_msg(ss(format!("Couldn't load folders: {e}")));
+                        c.ui()
+                            .set_f_msg(ss(crate::tr!("Couldn't load folders: {}", e)));
                     }
                 }
             }
@@ -2186,11 +2239,13 @@ fn render_tree(ctx: &Shared) {
     let dirty = folder_changes(&c, &ui).is_some();
     ui.set_f_dirty(dirty);
     let msg = if !ui.get_f_allowed() {
-        "Full resyncs are turned off for this account (Options), so folder choices are locked."
+        crate::tr!(
+            "Full resyncs are turned off for this account (Options), so folder choices are locked."
+        )
     } else if !ui.get_f_sync_all() && t.selected.is_empty() && !t.rows.is_empty() {
-        "Tick at least one folder, or choose \"Sync everything\"."
+        crate::tr!("Tick at least one folder, or choose \"Sync everything\".")
     } else {
-        ""
+        String::new()
     };
     if !msg.is_empty() || dirty {
         ui.set_f_msg(ss(msg));
@@ -2304,7 +2359,7 @@ fn folders_apply(ctx: &Shared) {
     start_preview(
         ctx,
         &acc,
-        "Change synced folders",
+        &crate::tr!("Change synced folders"),
         PreviewChange {
             sync_list: Some(lines),
             config,
@@ -2566,9 +2621,9 @@ fn start_preview(ctx: &Shared, acc: &AccountInfo, title: &str, change: PreviewCh
     let title = title.to_string();
     ctx.borrow_mut().preview_starting = Some(cancelled.clone());
     let ui = ctx.borrow().ui();
-    ui.set_p_title(ss(&title));
-    ui.set_p_text(ss("Preparing the preview…"));
-    ui.set_p_live(ss("Checking the sync service…"));
+    ui.set_p_title(ss(crate::tr!(title)));
+    ui.set_p_text(ss(crate::tr!("Preparing the preview…")));
+    ui.set_p_live(ss(crate::tr!("Checking the sync service…")));
     ui.set_p_busy(true);
     ui.set_p_can_apply(false);
     ui.set_p_visible(true);
@@ -2608,8 +2663,9 @@ fn start_preview_ready(
     let busy = match core::BusyMarker::try_new(&confdir) {
         Ok(marker) => marker,
         Err(e) => {
-            ctx.borrow().ui().set_s_msg(ss(format!(
-                "Couldn't protect this account from a second sync process, so the preview was not started: {e}"
+            ctx.borrow().ui().set_s_msg(ss(crate::tr!(
+                "Couldn't protect this account from a second sync process, so the preview was not started: {}",
+                e
             )));
             return;
         }
@@ -2621,9 +2677,10 @@ fn start_preview_ready(
             Ok(data) => Some(data),
             Err(e) if e.kind() == std::io::ErrorKind::NotFound => None,
             Err(e) => {
-                ctx.borrow().ui().set_s_msg(ss(format!(
-                    "Couldn't safely prepare the preview because {} couldn't be read: {e}",
-                    path.display()
+                ctx.borrow().ui().set_s_msg(ss(crate::tr!(
+                    "Couldn't safely prepare the preview because {} couldn't be read: {}",
+                    path.display(),
+                    e
                 )));
                 return;
             }
@@ -2632,18 +2689,18 @@ fn start_preview_ready(
     }
     {
         let ui = ctx.borrow().ui();
-        ui.set_p_title(ss(title));
-        ui.set_p_text(ss(match change.mode {
+        ui.set_p_title(ss(crate::tr!(title)));
+        ui.set_p_text(ss(crate::tr!(match change.mode {
             PreviewMode::Resync => "Checking what a full resync would do. Nothing is changed while this runs — it's a dry run. Large accounts can take several minutes.",
             PreviewMode::ForceDelete => "Checking what syncing with the deletions would do. Nothing is changed while this runs — it's a dry run.",
             PreviewMode::Check => "Checking what syncing with the new settings would do. Nothing is changed while this runs — it's a dry run.",
-        }));
+        })));
         ui.set_p_warn(ss(""));
-        ui.set_p_live(ss(if was_active {
+        ui.set_p_live(ss(crate::tr!(if was_active {
             "Pausing background sync…"
         } else {
             "Starting…"
-        }));
+        })));
         ui.set_p_busy(true);
         ui.set_p_can_apply(false);
         ui.set_p_visible(true);
@@ -2667,14 +2724,19 @@ fn start_preview_ready(
         .preview
         .as_ref()
         .map(save_pending_preview)
-        .unwrap_or_else(|| Err("Preview state disappeared before it could be saved.".into()));
+        .unwrap_or_else(|| {
+            Err(crate::tr!(
+                "Preview state disappeared before it could be saved."
+            ))
+        });
     if let Err(e) = save_result {
         ctx.borrow_mut().preview.take();
         let ui = ctx.borrow().ui();
         ui.set_p_visible(false);
         ui.set_p_busy(false);
-        ui.set_s_msg(ss(format!(
-            "Couldn't safely start the preview because its recovery record couldn't be saved: {e}"
+        ui.set_s_msg(ss(crate::tr!(
+            "Couldn't safely start the preview because its recovery record couldn't be saved: {}",
+            e
         )));
         return;
     }
@@ -2683,7 +2745,7 @@ fn start_preview_ready(
             if let Some(u) = &unit {
                 let (ok, err) = core::systemctl(&["stop", u]);
                 if !ok {
-                    return Err(format!(
+                    return Err(crate::tr!(
                         "Couldn't pause the sync engine, so no preview was run: {}",
                         err.trim()
                     ));
@@ -2694,7 +2756,7 @@ fn start_preview_ready(
             }
             if let Some(list) = &change.sync_list {
                 core::write_sync_list(&confdir, list)
-                    .map_err(|e| format!("Couldn't write the folder list: {e}"))?;
+                    .map_err(|e| crate::tr!("Couldn't write the folder list: {}", e))?;
             }
             if !change.config.is_empty() {
                 let mut cfg = ClientConfig::load(&confdir);
@@ -2702,7 +2764,7 @@ fn start_preview_ready(
                     cfg.set(k, v.as_deref());
                 }
                 cfg.save()
-                    .map_err(|e| format!("Couldn't write the settings: {e}"))?;
+                    .map_err(|e| crate::tr!("Couldn't write the settings: {}", e))?;
             }
             let mut cmd = core::client_command();
             cmd.arg("--confdir")
@@ -2710,7 +2772,7 @@ fn start_preview_ready(
                 .args(change.mode.client_args())
                 .args(["--dry-run", "--verbose"]);
             let (mut child, readers) = spawn_preview_capture(cmd, out)
-                .map_err(|e| format!("Couldn't start the sync engine: {e}"))?;
+                .map_err(|e| crate::tr!("Couldn't start the sync engine: {}", e))?;
             let child_pid = child.id();
             let raw_fd =
                 unsafe { libc::syscall(libc::SYS_pidfd_open, child_pid as libc::pid_t, 0) };
@@ -2887,7 +2949,7 @@ fn summarize_preview(output: &PreviewLog, ok: bool, folders_changed: bool) -> Su
 
 fn restore_snapshot(p: &Preview) -> Result<(), String> {
     restore_files(&p.snapshot)?;
-    clear_pending_preview().map_err(|e| format!("Couldn't clear the recovery record: {e}"))
+    clear_pending_preview().map_err(|e| crate::tr!("Couldn't clear the recovery record: {}", e))
 }
 
 fn restore_files(files: &[(PathBuf, Option<Vec<u8>>)]) -> Result<(), String> {
@@ -2896,14 +2958,14 @@ fn restore_files(files: &[(PathBuf, Option<Vec<u8>>)]) -> Result<(), String> {
         match data {
             Some(d) => {
                 if let Err(e) = core::atomic_write(path, d) {
-                    errors.push(format!("{}: {e}", path.display()));
+                    errors.push(crate::tr!("{}: {}", path.display(), e));
                 }
             }
             None => {
                 if let Err(e) = fs::remove_file(path)
                     && e.kind() != std::io::ErrorKind::NotFound
                 {
-                    errors.push(format!("{}: {e}", path.display()));
+                    errors.push(crate::tr!("{}: {}", path.display(), e));
                 }
             }
         }
@@ -2911,7 +2973,7 @@ fn restore_files(files: &[(PathBuf, Option<Vec<u8>>)]) -> Result<(), String> {
     if errors.is_empty() {
         Ok(())
     } else {
-        Err(format!(
+        Err(crate::tr!(
             "Couldn't restore preview settings: {}",
             errors.join("; ")
         ))
@@ -2972,10 +3034,15 @@ pub fn recover_interrupted_preview() -> Result<(), String> {
     let data = match fs::read(pending_preview_file()) {
         Ok(data) => data,
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(()),
-        Err(e) => return Err(format!("Couldn't read the preview recovery record: {e}")),
+        Err(e) => {
+            return Err(crate::tr!(
+                "Couldn't read the preview recovery record: {}",
+                e
+            ));
+        }
     };
     let p: PendingPreview = serde_json::from_slice(&data)
-        .map_err(|e| format!("The preview recovery record is damaged: {e}"))?;
+        .map_err(|e| crate::tr!("The preview recovery record is damaged: {}", e))?;
     if p.window_pid != std::process::id()
         && let Some(current_start) = core::process_start_time(p.window_pid)
         && (p.window_start_time == 0 || current_start == p.window_start_time)
@@ -2984,7 +3051,7 @@ pub fn recover_interrupted_preview() -> Result<(), String> {
     }
     if p.committed {
         return clear_pending_preview()
-            .map_err(|e| format!("Couldn't clear the committed preview record: {e}"));
+            .map_err(|e| crate::tr!("Couldn't clear the committed preview record: {}", e));
     }
     let confdir = p.files.first().and_then(|(path, _)| path.parent());
     if let Some(confdir) = confdir {
@@ -3054,7 +3121,7 @@ fn finish_cancel(ctx: &Shared) {
     let ui = ctx.borrow().ui();
     ui.set_p_busy(true);
     ui.set_p_can_apply(false);
-    ui.set_p_live(ss("Restoring the previous settings…"));
+    ui.set_p_live(ss(crate::tr!("Restoring the previous settings…")));
     bg(
         move || {
             let key = p.key.clone();
@@ -3135,7 +3202,7 @@ fn preview_cancel(ctx: &Shared) {
         p.running
     };
     if running {
-        ctx.borrow().ui().set_p_live(ss("Cancelling…"));
+        ctx.borrow().ui().set_p_live(ss(crate::tr!("Cancelling…")));
     } else {
         finish_cancel(ctx);
     }
@@ -3188,7 +3255,7 @@ fn preview_apply(ctx: &Shared) {
                     ui.set_s_msg(ss(msg));
                     ui.set_o_msg(ss(""));
                     if mode == PreviewMode::Resync {
-                        ui.set_f_msg(ss("Resync started."));
+                        ui.set_f_msg(ss(crate::tr!("Resync started.")));
                     }
                     load_folders(ctx, &account, true);
                     refresh(ctx);
@@ -3234,7 +3301,10 @@ fn apply_preview_in_background(p: Preview, account: Option<AccountInfo>) -> Prev
             Ok(()) => PreviewApplyResult::Restored,
             Err(e) => PreviewApplyResult::KeepPreview(
                 p,
-                format!("The account disappeared and preview settings couldn't be restored: {e}"),
+                crate::tr!(
+                    "The account disappeared and preview settings couldn't be restored: {}",
+                    e
+                ),
             ),
         };
     };
@@ -3299,16 +3369,18 @@ fn apply_preview_in_background(p: Preview, account: Option<AccountInfo>) -> Prev
                 if stopped {
                     return rollback_preview_apply(
                         p,
-                        format!(
-                            "The recovery record couldn't be committed: {e}; the sync job was stopped"
+                        crate::tr!(
+                            "The recovery record couldn't be committed: {}; the sync job was stopped",
+                            e
                         ),
                     );
                 }
                 // Keep the account blocked until process exit; startup recovery will stop the
                 // one-time job before it restores the saved files.
                 std::mem::forget(p);
-                return PreviewApplyResult::Failed(format!(
-                    "The sync job started, but its recovery state couldn't be saved or stopped: {e}; {}. Restart this app to retry recovery. No other sync operation will start for this account in this session.",
+                return PreviewApplyResult::Failed(crate::tr!(
+                    "The sync job started, but its recovery state couldn't be saved or stopped: {}; {}. Restart this app to retry recovery. No other sync operation will start for this account in this session.",
+                    e,
                     stop_error.trim()
                 ));
             }
@@ -3325,12 +3397,12 @@ fn apply_preview_in_background(p: Preview, account: Option<AccountInfo>) -> Prev
         }
         Ok(o) => rollback_preview_apply(
             p,
-            format!(
+            crate::tr!(
                 "Couldn't start the sync engine: {}",
                 String::from_utf8_lossy(&o.stderr).trim()
             ),
         ),
-        Err(e) => rollback_preview_apply(p, format!("Couldn't start the sync engine: {e}")),
+        Err(e) => rollback_preview_apply(p, crate::tr!("Couldn't start the sync engine: {}", e)),
     }
 }
 
@@ -3339,8 +3411,10 @@ fn rollback_preview_apply(mut p: Preview, cause: String) -> PreviewApplyResult {
     if let Err(e) = save_pending_preview(&p) {
         return PreviewApplyResult::KeepPreview(
             p,
-            format!(
-                "{cause}. The recovery record couldn't be refreshed, so syncing remains paused: {e}"
+            crate::tr!(
+                "{}. The recovery record couldn't be refreshed, so syncing remains paused: {}",
+                cause,
+                e
             ),
         );
     }
@@ -3348,8 +3422,10 @@ fn rollback_preview_apply(mut p: Preview, cause: String) -> PreviewApplyResult {
         p.running = false;
         return PreviewApplyResult::KeepPreview(
             p,
-            format!(
-                "{cause}. Preview settings couldn't be fully restored; syncing remains paused. {e}"
+            crate::tr!(
+                "{}. Preview settings couldn't be fully restored; syncing remains paused. {}",
+                cause,
+                e
             ),
         );
     }
@@ -3359,8 +3435,9 @@ fn rollback_preview_apply(mut p: Preview, cause: String) -> PreviewApplyResult {
         None
     };
     let msg = match restart {
-        Some((false, e)) => format!(
-            "{cause}. The previous sync service couldn't be restarted: {}",
+        Some((false, e)) => crate::tr!(
+            "{}. The previous sync service couldn't be restarted: {}",
+            cause,
             e.trim()
         ),
         _ => cause,
@@ -3445,7 +3522,7 @@ fn sign_in(ctx: &Shared, acc: &AccountInfo, enable_after: Option<bool>) {
     let acc = acc.clone();
     ctx.borrow_mut().signin_starting = Some(cancelled.clone());
     let ui = ctx.borrow().ui();
-    ui.set_si_text(ss("Preparing sign-in…"));
+    ui.set_si_text(ss(crate::tr!("Preparing sign-in…")));
     ui.set_si_need_paste(false);
     ui.set_si_has_url(false);
     ui.set_si_done(false);
@@ -3469,7 +3546,7 @@ fn sign_in(ctx: &Shared, acc: &AccountInfo, enable_after: Option<bool>) {
             ctx.borrow_mut().signin_starting = None;
             match result {
                 SignInStart::Ready(si) if !cancelled.load(Ordering::Acquire) => {
-                    ctx.borrow().ui().set_si_text(ss("Opening the Microsoft sign-in page in your browser…\n\nLog in and approve access. This window updates by itself when you're done."));
+                    ctx.borrow().ui().set_si_text(ss(crate::tr!("Opening the Microsoft sign-in page in your browser…\n\nLog in and approve access. This window updates by itself when you're done.")));
                     ctx.borrow_mut().signin = Some(*si);
                 }
                 SignInStart::Ready(si) => close_sign_in(*si),
@@ -3509,8 +3586,9 @@ fn begin_sign_in(
         Ok(marker) => marker,
         Err(e) => {
             return SignInStart::Failed(
-                format!(
-                    "Couldn't protect this account from a second sync process, so sign-in was not started: {e}"
+                crate::tr!(
+                    "Couldn't protect this account from a second sync process, so sign-in was not started: {}",
+                    e
                 ),
                 false,
             );
@@ -3531,7 +3609,7 @@ fn begin_sign_in(
         let (ok, err) = core::systemctl(&["stop", u]);
         if !ok {
             return SignInStart::Failed(
-                format!(
+                crate::tr!(
                     "Couldn't stop the sync engine before signing in: {}",
                     err.trim()
                 ),
@@ -3542,7 +3620,7 @@ fn begin_sign_in(
     if cancelled.load(Ordering::Acquire) {
         return match restore_signin_service(&acc, was_active) {
             Some(e) => SignInStart::Failed(
-                format!(
+                crate::tr!(
                     "The sign-in was cancelled, but the previously running sync engine couldn't be restarted: {}",
                     e.trim()
                 ),
@@ -3582,12 +3660,13 @@ fn begin_sign_in(
             let restore = restore_signin_service(&acc, was_active);
             SignInStart::Failed(
                 if let Some(err) = restore {
-                    format!(
-                        "Couldn't start the sign-in process: {e}. The previously running sync engine also couldn't be restarted: {}",
+                    crate::tr!(
+                        "Couldn't start the sign-in process: {}. The previously running sync engine also couldn't be restarted: {}",
+                        e,
                         err.trim()
                     )
                 } else {
-                    format!("Couldn't start the sign-in process: {e}")
+                    crate::tr!("Couldn't start the sign-in process: {}", e)
                 },
                 false,
             )
@@ -3622,7 +3701,7 @@ fn close_sign_in(mut si: SignIn) {
         },
         |ctx, restart_error| {
             if let Some(err) = restart_error {
-                ctx.borrow().ui().set_s_msg(ss(format!(
+                ctx.borrow().ui().set_s_msg(ss(crate::tr!(
                     "The sign-in window closed, but the previously running sync engine couldn't be restarted: {}",
                     err.trim()
                 )));
@@ -3647,9 +3726,9 @@ fn poll_signin(ctx: &Shared) {
         let Some(mut si) = c.signin.take() else {
             return;
         };
-        ui.set_si_text(ss(
-            "This account's settings folder was removed during sign-in. Add the account again to sign in.",
-        ));
+        ui.set_si_text(ss(crate::tr!(
+            "This account's settings folder was removed during sign-in. Add the account again to sign in."
+        )));
         ui.set_si_done(true);
         ui.set_si_need_paste(false);
         ui.set_si_has_url(false);
@@ -3683,7 +3762,7 @@ fn poll_signin(ctx: &Shared) {
     }
     if !ui.get_si_need_paste() && text.contains("Paste redirect URI here") {
         ui.set_si_need_paste(true);
-        ui.set_si_text(ss("Your browser couldn't hand the sign-in back automatically.\n\nAfter you log in you'll end up on a blank page. Copy that page's full address from the address bar and paste it below."));
+        ui.set_si_text(ss(crate::tr!("Your browser couldn't hand the sign-in back automatically.\n\nAfter you log in you'll end up on a blank page. Copy that page's full address from the address bar and paste it below.")));
     }
     let exited = si.child.try_wait().ok().flatten();
     if exited.is_none() {
@@ -3707,11 +3786,12 @@ fn poll_signin(ctx: &Shared) {
         si.finished = true;
     }
     if acc.confdir.join("refresh_token").exists() {
-        ui.set_si_text(ss(if enable_after {
-            "Signed in. Your files will start syncing in a moment."
+        let text = if enable_after {
+            crate::tr!("Signed in. Your files will start syncing in a moment.")
         } else {
-            "Signed in."
-        }));
+            crate::tr!("Signed in.")
+        };
+        ui.set_si_text(ss(text));
         ui.set_si_done(true);
         ui.set_si_need_paste(false);
         c.tokens.remove(&key);
@@ -3723,9 +3803,9 @@ fn poll_signin(ctx: &Shared) {
             .rev()
             .map(str::trim)
             .find(|l| !l.is_empty() && !l.starts_with("Paste"))
-            .unwrap_or("The sign-in didn't finish.")
-            .to_string();
-        ui.set_si_text(ss(format!(
+            .map(str::to_string)
+            .unwrap_or_else(|| crate::tr!("The sign-in didn't finish."));
+        ui.set_si_text(ss(crate::tr!(
             "Sign-in didn't complete.\n\n{}",
             friendly_signin_error(&detail)
         )));
@@ -3741,7 +3821,7 @@ fn poll_signin(ctx: &Shared) {
                 },
                 |ctx, restart_error| {
                     if let Some(err) = restart_error {
-                        ctx.borrow().ui().set_s_msg(ss(format!(
+                        ctx.borrow().ui().set_s_msg(ss(crate::tr!(
                             "Sign-in failed, and the previously running sync engine couldn't be restarted: {}",
                             err.trim()
                         )));
@@ -3756,16 +3836,18 @@ fn poll_signin(ctx: &Shared) {
 fn friendly_signin_error(detail: &str) -> String {
     let d = detail.to_lowercase();
     if d.contains("--reauth") || d.contains("invalid_grant") || d.contains("authorisation code") {
-        "Microsoft didn't accept the sign-in. Please try again, and make sure you finish logging in in the browser.".into()
+        crate::tr!(
+            "Microsoft didn't accept the sign-in. Please try again, and make sure you finish logging in in the browser."
+        )
     } else if d.contains("timed out") || d.contains("timeout") {
-        "The sign-in timed out. Please try again.".into()
+        crate::tr!("The sign-in timed out. Please try again.")
     } else if d.contains("aadsts") {
-        format!("Microsoft reported a problem: {detail}")
+        crate::tr!("Microsoft reported a problem: {}", detail)
     } else if d.contains("unable to reach")
         || d.contains("network")
         || d.contains("could not resolve")
     {
-        "Couldn't reach Microsoft. Check your internet connection and try again.".into()
+        crate::tr!("Couldn't reach Microsoft. Check your internet connection and try again.")
     } else {
         detail.to_string()
     }
@@ -3821,7 +3903,10 @@ fn after_sign_in(acc: AccountInfo, enable: bool, was_active: bool) {
                 let autostart = set_autostart(true);
                 start_tray();
                 autostart.map_err(|e| {
-                    format!("Sync was enabled, but the tray couldn't be set to start at login: {e}")
+                    crate::tr!(
+                        "Sync was enabled, but the tray couldn't be set to start at login: {}",
+                        e
+                    )
                 })?;
             } else if was_active {
                 let (ok, msg) = core::systemctl(&["start", &unit]);
@@ -3833,8 +3918,9 @@ fn after_sign_in(acc: AccountInfo, enable: bool, was_active: bool) {
         },
         |ctx, r: Result<(), String>| {
             if let Err(e) = r {
-                ctx.borrow().ui().set_s_msg(ss(format!(
-                    "Sign-in finished, but setup wasn't fully completed: {e}"
+                ctx.borrow().ui().set_s_msg(ss(crate::tr!(
+                    "Sign-in finished, but setup wasn't fully completed: {}",
+                    e
                 )));
             }
             refresh(ctx);
@@ -3847,7 +3933,7 @@ fn signin_submit(ctx: &Shared) {
     let ui = c.ui();
     let url = ui.get_si_paste().trim().to_string();
     if !url.contains("code=") {
-        ui.set_si_text(ss("That doesn't look like the right address — it should contain \"code=\". Copy the whole address of the blank page you land on after logging in."));
+        ui.set_si_text(ss(crate::tr!("That doesn't look like the right address — it should contain \"code=\". Copy the whole address of the blank page you land on after logging in.")));
         return;
     }
     if let Some(si) = c.signin.as_mut() {
@@ -3855,7 +3941,7 @@ fn signin_submit(ctx: &Shared) {
             let _ = writeln!(stdin, "{url}");
             let _ = stdin.flush();
         }
-        ui.set_si_text(ss("Finishing sign-in…"));
+        ui.set_si_text(ss(crate::tr!("Finishing sign-in…")));
         ui.set_si_need_paste(false);
     }
 }
@@ -3885,14 +3971,17 @@ fn sign_out(ctx: &Shared) {
     bg(
         move || -> Result<(String, Option<String>), String> {
             core::validate_confdir(&acc.confdir)
-                .map_err(|e| format!("Couldn't find this account's settings folder: {e}"))?;
+                .map_err(|e| crate::tr!("Couldn't find this account's settings folder: {}", e))?;
             let _busy = core::BusyMarker::try_new(&acc.confdir).map_err(|e| {
-                format!("Couldn't protect this account from another sync operation: {e}")
+                crate::tr!(
+                    "Couldn't protect this account from another sync operation: {}",
+                    e
+                )
             })?;
             if let Some(u) = &acc.unit {
                 let (ok, err) = core::systemctl(&["disable", "--now", u]);
                 if !ok {
-                    return Err(format!(
+                    return Err(crate::tr!(
                         "Couldn't stop background syncing, so you weren't signed out: {}",
                         err.trim()
                     ));
@@ -3915,7 +4004,7 @@ fn sign_out(ctx: &Shared) {
                 Ok(()) => {}
                 Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
                 Err(e) => {
-                    return Err(format!("Couldn't remove the saved sign-in: {e}"));
+                    return Err(crate::tr!("Couldn't remove the saved sign-in: {}", e));
                 }
             }
             Ok((acc.key(), note))
@@ -3928,9 +4017,10 @@ fn sign_out(ctx: &Shared) {
                 Ok((key, note)) => {
                     c.tokens.remove(&key);
                     ui.set_s_msg(ss(match note {
-                        None => "Signed out. Your files are still on this computer.".to_string(),
-                        Some(n) => format!(
-                            "Signed out. Your files are still on this computer. (The sync engine reported: {n})"
+                        None => crate::tr!("Signed out. Your files are still on this computer."),
+                        Some(n) => crate::tr!(
+                            "Signed out. Your files are still on this computer. (The sync engine reported: {})",
+                            n
                         ),
                     }));
                 }
@@ -3953,14 +4043,17 @@ fn remove_confirm(ctx: &Shared) {
     bg(
         move || -> Result<(), String> {
             core::validate_confdir(&acc.confdir)
-                .map_err(|e| format!("Couldn't find this account's settings folder: {e}"))?;
+                .map_err(|e| crate::tr!("Couldn't find this account's settings folder: {}", e))?;
             let _busy = core::BusyMarker::try_new(&acc.confdir).map_err(|e| {
-                format!("Couldn't protect this account from another sync operation: {e}")
+                crate::tr!(
+                    "Couldn't protect this account from another sync operation: {}",
+                    e
+                )
             })?;
             if let Some(u) = &acc.unit {
                 let (ok, err) = core::systemctl(&["disable", "--now", u]);
                 if !ok {
-                    return Err(format!(
+                    return Err(crate::tr!(
                         "The account was left intact because its sync service couldn't be stopped: {}",
                         err.trim()
                     ));
@@ -3971,15 +4064,16 @@ fn remove_confirm(ctx: &Shared) {
                         Ok(()) => {}
                         Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
                         Err(e) => {
-                            return Err(format!(
-                                "The service stopped, but couldn't remove {}: {e}",
-                                unit_file.display()
+                            return Err(crate::tr!(
+                                "The service stopped, but couldn't remove {}: {}",
+                                unit_file.display(),
+                                e
                             ));
                         }
                     }
                     let (ok, err) = core::systemctl(&["daemon-reload"]);
                     if !ok {
-                        return Err(format!(
+                        return Err(crate::tr!(
                             "The service stopped, but systemd couldn't reload its units: {}",
                             err.trim()
                         ));
@@ -3995,7 +4089,7 @@ fn remove_confirm(ctx: &Shared) {
                     .stdin(Stdio::null())
                     .output();
                 core::delete_confdir(&acc.confdir)
-                    .map_err(|e| format!("Couldn't delete {}: {e}", acc.confdir.display()))?;
+                    .map_err(|e| crate::tr!("Couldn't delete {}: {}", acc.confdir.display(), e))?;
                 s.accounts.remove(&acc.key());
             }
             // an unmanaged unit still points at this config dir, so hide it rather than have it reappear
@@ -4106,7 +4200,7 @@ fn add_choose(ctx: &Shared, mode: i32) {
             ui.set_add_name(ss(""));
             ui.set_add_folder(ss(""));
             if business_accounts(&ctx.borrow()).is_empty() {
-                ui.set_add_msg(ss("Add and sign in to a work or school OneDrive account first. Its sign-in is reused to reach SharePoint."));
+                ui.set_add_msg(ss(crate::tr!("Add and sign in to a work or school OneDrive account first. Its sign-in is reused to reach SharePoint.")));
             }
         }
         _ => {}
@@ -4116,23 +4210,27 @@ fn add_choose(ctx: &Shared, mode: i32) {
 fn add_browse(ctx: &Shared) {
     // open the chooser at the suggested folder, or the nearest parent that exists yet
     let typed = core::expand_tilde(ctx.borrow().ui().get_add_folder().trim());
-    pick_folder("Choose a folder to sync into", &typed, |ctx, picked| {
-        let ui = ctx.borrow().ui();
-        match picked {
+    pick_folder(
+        crate::tr!("Choose a folder to sync into"),
+        &typed,
+        |ctx, picked| {
+            let ui = ctx.borrow().ui();
+            match picked {
             Ok(Some(p)) => ui.set_add_folder(ss(p)),
             Ok(None) => {}
             Err(()) => ui.set_add_msg(ss(
                 "No folder chooser is available on this desktop. Type the folder's full path instead.",
             )),
         }
-    });
+        },
+    );
 }
 
 /// Asks for a folder with the desktop's chooser (or kdialog/zenity), opened at `near` or the
 /// nearest parent that exists. `done` gets Ok(None) if the user cancelled, Err if there's no
 /// chooser at all.
 fn pick_folder(
-    title: &'static str,
+    title: String,
     near: &Path,
     done: impl FnOnce(&Shared, Result<Option<String>, ()>) + Send + 'static,
 ) {
@@ -4145,7 +4243,7 @@ fn pick_folder(
         .to_string();
     bg(
         move || {
-            if let Some(picked) = crate::dbus::choose_folder(title, Path::new(&start)) {
+            if let Some(picked) = crate::dbus::choose_folder(&title, Path::new(&start)) {
                 return Ok(picked.map(|p| p.to_string_lossy().to_string()));
             }
             let tries: [(&str, Vec<String>); 2] = [
@@ -4240,7 +4338,11 @@ fn load_conflicts(ctx: &Shared, acc: &AccountInfo) {
                         .unwrap_or_default();
                     ConflictRow {
                         name: ss(name),
-                        detail: ss(format!("{folder}  ·  this computer's copy from {when}")),
+                        detail: ss(crate::tr!(
+                            "{}  ·  this computer's copy from {}",
+                            folder,
+                            when
+                        )),
                     }
                 })
                 .collect();
@@ -4297,20 +4399,20 @@ fn load_backups(ctx: &Shared, acc: &AccountInfo) {
         .map(|k| {
             let (state, detail) = match backup::backed_up_by(&c.settings, &c.accounts, k.key) {
                 Some((a, b)) if a.key() == acc.key() => {
-                    (1, format!("In OneDrive: {}", b.target.display()))
+                    (1, crate::tr!("In OneDrive: {}", b.target.display()))
                 }
-                Some((a, _)) => (2, format!("Backed up to \"{}\"", a.name)),
+                Some((a, _)) => (2, crate::tr!("Backed up to \"{}\"", a.name)),
                 None => match backup::xdg_dir(k.key) {
-                    None => (3, "Not set up on this computer".to_string()),
+                    None => (3, crate::tr!("Not set up on this computer")),
                     Some(p) if p == home || home.starts_with(&p) => (
                         3,
-                        "Set to your whole home folder, so it can't be backed up".to_string(),
+                        crate::tr!("Set to your whole home folder, so it can't be backed up"),
                     ),
                     Some(p) => (0, p.display().to_string()),
                 },
             };
             BackupRow {
-                label: ss(k.label),
+                label: ss(crate::tr!(k.label)),
                 detail: ss(detail),
                 state,
             }
@@ -4328,7 +4430,10 @@ fn backup_start(ctx: &Shared, i: usize) {
     let all = ctx.borrow().accounts.clone();
     let ui = ctx.borrow().ui();
     ui.set_b_busy(true);
-    ui.set_s_msg(ss(format!("Looking at your {} folder…", known.label)));
+    ui.set_s_msg(ss(crate::tr!(
+        "Looking at your {} folder…",
+        crate::tr!(known.label)
+    )));
     bg(
         move || crate::backup::plan(&acc, &all, key).map(|p| (acc, p)),
         |ctx, r| {
@@ -4340,32 +4445,46 @@ fn backup_start(ctx: &Shared, i: usize) {
                 Err(e) => return ui.set_s_msg(ss(e)),
             };
             let size = graph::human_size(p.bytes);
-            let mut text = format!(
-                "Your {} folder ({}) moves into OneDrive, at {}, and everything in it uploads: {} {}, {size}. Your apps keep finding it in the same place.",
-                p.label,
+            let label = crate::tr!(p.label);
+            let files = crate::tr!("1 file" | "{n} files" % p.files);
+            let mut text = crate::tr!(
+                "Your {} folder ({}) moves into OneDrive, at {}, and everything in it uploads: {}, {}. Your apps keep finding it in the same place.",
+                label,
                 p.source.display(),
                 p.target.display(),
-                p.files,
-                if p.files == 1 { "file" } else { "files" },
+                files,
+                size,
             );
             if p.same_drive {
-                text.push_str(" OneDrive is on the same drive, so the move is instant.");
+                text.push(' ');
+                text.push_str(&crate::tr!(
+                    "OneDrive is on the same drive, so the move is instant."
+                ));
             }
             if p.key == "DESKTOP" {
-                text.push_str(" The desktop shows the new place after you next log in.");
+                text.push(' ');
+                text.push_str(&crate::tr!(
+                    "The desktop shows the new place after you next log in."
+                ));
             }
-            text.push_str(" To undo it later, press Stop: your files stay in OneDrive and the folder here starts empty again, as on Windows.");
+            text.push(' ');
+            text.push_str(&crate::tr!(
+                "To undo it later, press Stop: your files stay in OneDrive and the folder here starts empty again, as on Windows."
+            ));
             let mut warn = String::new();
             if !p.same_drive {
-                warn.push_str(&format!(
-                    "OneDrive is on another drive, so the files are copied. Nothing is deleted: your original folder is kept, renamed \"{} (copied to OneDrive)\". Once you've checked everything is in OneDrive, delete it yourself to free the space. ",
-                    p.label
+                warn.push_str(&crate::tr!(
+                    "OneDrive is on another drive, so the files are copied. Nothing is deleted: your original folder is kept, renamed \"{}\". Once you've checked everything is in OneDrive, delete it yourself to free the space. ",
+                    format!("{} (copied to OneDrive)", p.label)
                 ));
             }
             if p.target_has_files {
-                warn.push_str("OneDrive already has this folder: your files join what's there, and any whose name is taken get \"(from this computer's name)\" added.");
+                warn.push_str(&crate::tr!(
+                    "OneDrive already has this folder: your files join what's there, and any whose name is taken get \"{}\" added.",
+                    "(from this computer's name)"
+                ));
             }
-            ui.set_bk_title(ss(format!("Back up your {} folder", p.label)));
+            ui.set_bk_title(ss(crate::tr!("Back up your {} folder", label)));
             ui.set_bk_text(ss(text));
             ui.set_bk_warn(ss(warn.trim()));
             ui.set_bk_action(ss(if p.same_drive {
@@ -4394,15 +4513,18 @@ fn backup_stop(ctx: &Shared, i: usize) {
         .map(|b| b.target.display().to_string())
         .unwrap_or_default();
     let ui = ctx.borrow().ui();
-    ui.set_bk_title(ss(format!("Stop backing up {}?", known.label)));
-    ui.set_bk_text(ss(format!(
-        "Your files stay in OneDrive, at {target}, and keep syncing there. Your {} folder on this computer starts empty again, and new files you put in it won't be backed up.",
-        known.label
+    let label = crate::tr!(known.label);
+    ui.set_bk_title(ss(crate::tr!("Stop backing up {}?", label)));
+    ui.set_bk_text(ss(crate::tr!(
+        "Your files stay in OneDrive, at {}, and keep syncing there. Your {} folder on this computer starts empty again, and new files you put in it won't be backed up.",
+        target,
+        label
     )));
-    ui.set_bk_warn(ss(format!(
-        "Nothing is moved back or deleted. To have the files here again, move them from {target} yourself."
+    ui.set_bk_warn(ss(crate::tr!(
+        "Nothing is moved back or deleted. To have the files here again, move them from {} yourself.",
+        target
     )));
-    ui.set_bk_action(ss("Stop backing up"));
+    ui.set_bk_action(ss(crate::tr!("Stop backing up")));
     ctx.borrow_mut().backup_ask = Some(BackupAsk::Stop(acc, known.key.to_string()));
     ui.set_bk_visible(true);
 }
@@ -4417,30 +4539,36 @@ fn backup_confirm(ctx: &Shared) {
         move || {
             match ask {
             BackupAsk::Start(acc, p) => crate::backup::start(&acc, &p).map(|d| {
-                let mut msg = format!("{} is now backed up to OneDrive.", p.label);
+                let mut msg = crate::tr!(
+                    "{} is now backed up to OneDrive.",
+                    crate::tr!(p.label)
+                );
                 if d.renamed > 0 {
-                    msg.push_str(&format!(
-                        " {} {} already taken in OneDrive, so {} saved with \"(from …)\" added.",
-                        d.renamed,
-                        if d.renamed == 1 { "name was" } else { "names were" },
-                        if d.renamed == 1 { "it was" } else { "they were" }
+                    msg.push(' ');
+                    msg.push_str(&crate::tr!(
+                        "1 name was already taken in OneDrive, so it was saved with \"(from …)\" added."
+                            | "{n} names were already taken in OneDrive, so they were saved with \"(from …)\" added."
+                            % d.renamed
                     ));
                 }
                 if let Some(k) = d.kept_original {
-                    msg.push_str(&format!(
-                        " Your original folder is kept at {}: delete it yourself once you've checked your files in OneDrive.",
+                    msg.push(' ');
+                    msg.push_str(&crate::tr!(
+                        "Your original folder is kept at {}: delete it yourself once you've checked your files in OneDrive.",
                         k.display()
                     ));
                 }
                 if let Some(e) = d.desktop_setting {
-                    msg.push_str(&format!(
-                        " The desktop's folder setting couldn't be updated ({e}); the link at the old place still works."
+                    msg.push(' ');
+                    msg.push_str(&crate::tr!(
+                        "The desktop's folder setting couldn't be updated ({}); the link at the old place still works.",
+                        e
                     ));
                 }
                 msg
             }),
             BackupAsk::Stop(acc, key) => crate::backup::stop(&acc, &key).map(|b| {
-                format!(
+                crate::tr!(
                     "Stopped. Your files are still in OneDrive at {}.",
                     b.target.display()
                 )
@@ -4467,18 +4595,20 @@ fn backup_confirm(ctx: &Shared) {
 /// a folder with the same name as now inside it.
 fn move_destination(picked: &Path, current: &Path) -> Result<PathBuf, String> {
     let mut entries = fs::read_dir(picked).map_err(|e| {
-        format!(
-            "Couldn't inspect the selected folder {}: {e}",
-            picked.display()
+        crate::tr!(
+            "Couldn't inspect the selected folder {}: {}",
+            picked.display(),
+            e
         )
     })?;
     let has_entry = entries
         .next()
         .transpose()
         .map_err(|e| {
-            format!(
-                "Couldn't inspect the selected folder {}: {e}",
-                picked.display()
+            crate::tr!(
+                "Couldn't inspect the selected folder {}: {}",
+                picked.display(),
+                e
             )
         })?
         .is_some();
@@ -4495,17 +4625,18 @@ fn remove_empty_destination(dest: &Path) -> Result<(), String> {
     match fs::symlink_metadata(dest) {
         Ok(meta) if meta.is_dir() && !meta.file_type().is_symlink() => fs::remove_dir(dest)
             .map_err(|e| {
-                format!(
-                    "Couldn't clear the empty destination {}: {e}",
-                    dest.display()
+                crate::tr!(
+                    "Couldn't clear the empty destination {}: {}",
+                    dest.display(),
+                    e
                 )
             }),
-        Ok(_) => Err(format!(
+        Ok(_) => Err(crate::tr!(
             "The destination {} changed after review.",
             dest.display()
         )),
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => Ok(()),
-        Err(e) => Err(format!("Couldn't inspect {}: {e}", dest.display())),
+        Err(e) => Err(crate::tr!("Couldn't inspect {}: {}", dest.display(), e)),
     }
 }
 
@@ -4521,7 +4652,7 @@ fn copy_tree_noreplace(source: &Path, dest: &Path) -> Result<(), String> {
         match fs::DirBuilder::new().mode(0o700).create(&stage) {
             Ok(()) => {}
             Err(e) if e.kind() == std::io::ErrorKind::AlreadyExists => continue,
-            Err(e) => return Err(format!("Couldn't prepare a safe copy: {e}")),
+            Err(e) => return Err(crate::tr!("Couldn't prepare a safe copy: {}", e)),
         }
         let payload = stage.join("payload");
         let copied = Command::new("cp")
@@ -4533,7 +4664,7 @@ fn copy_tree_noreplace(source: &Path, dest: &Path) -> Result<(), String> {
             .is_ok_and(|s| s.success());
         if !copied {
             let _ = fs::remove_dir_all(&stage);
-            return Err(format!(
+            return Err(crate::tr!(
                 "Copying to {} failed (is there enough space?). The original remains in {}.",
                 dest.display(),
                 source.display()
@@ -4573,15 +4704,15 @@ fn move_folder_start(ctx: &Shared) {
     }
     let near = acc.sync_dir.parent().unwrap_or(&acc.sync_dir).to_path_buf();
     pick_folder(
-        "Choose where to move the OneDrive folder",
+        crate::tr!("Choose where to move the OneDrive folder"),
         &near,
         move |ctx, picked| {
             match picked {
             Ok(Some(p)) => move_folder_to(ctx, &acc, &core::expand_tilde(&p)),
             Ok(None) => {}
-            Err(()) => ctx.borrow().ui().set_s_msg(ss(
-                "No folder chooser is available on this desktop, so the folder can't be moved from here.",
-            )),
+            Err(()) => ctx.borrow().ui().set_s_msg(ss(crate::tr!(
+                "No folder chooser is available on this desktop, so the folder can't be moved from here."
+            ))),
         }
         },
     );
@@ -4599,7 +4730,7 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
     let old = acc.sync_dir.clone();
     let dest = match move_destination(picked, &old).and_then(|path| {
         core::resolve_path(&path)
-            .ok_or_else(|| "Couldn't safely resolve the selected destination folder.".to_string())
+            .ok_or_else(|| crate::tr!("Couldn't safely resolve the selected destination folder."))
     }) {
         Ok(path) => path,
         Err(e) => {
@@ -4610,19 +4741,19 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
     let old_meta = match fs::symlink_metadata(&old) {
         Ok(meta) => meta,
         Err(e) => {
-            ui.set_s_msg(ss(format!("Couldn't inspect {}: {e}", old.display())));
+            ui.set_s_msg(ss(crate::tr!("Couldn't inspect {}: {}", old.display(), e)));
             return;
         }
     };
     if old_meta.file_type().is_symlink() {
-        ui.set_s_msg(ss(format!(
+        ui.set_s_msg(ss(crate::tr!(
             "{} is a symbolic link. Move the actual sync folder or choose a new folder in Options first.",
             old.display()
         )));
         return;
     }
     if !old_meta.is_dir() {
-        ui.set_s_msg(ss(format!(
+        ui.set_s_msg(ss(crate::tr!(
             "{} isn't there (is its drive connected?), so there's nothing to move.",
             old.display()
         )));
@@ -4636,9 +4767,10 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
     let destination_dev = match fs::metadata(&destination_fs_path) {
         Ok(meta) => meta.dev(),
         Err(e) => {
-            ui.set_s_msg(ss(format!(
-                "Couldn't inspect {}: {e}",
-                destination_fs_path.display()
+            ui.set_s_msg(ss(crate::tr!(
+                "Couldn't inspect {}: {}",
+                destination_fs_path.display(),
+                e
             )));
             return;
         }
@@ -4659,7 +4791,7 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
         .iter()
         .find(|a| a.key() != acc.key() && core::paths_overlap(&a.sync_dir, &dest))
     {
-        ui.set_s_msg(ss(format!(
+        ui.set_s_msg(ss(crate::tr!(
             "That folder overlaps with \"{}\" ({}). Pick a separate folder.",
             other.name,
             other.sync_dir.display()
@@ -4669,25 +4801,25 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
     match fs::read_dir(&dest) {
         Ok(mut entries) => match entries.next() {
             Some(Ok(_)) => {
-                ui.set_s_msg(ss(format!(
+                ui.set_s_msg(ss(crate::tr!(
                     "{} already exists and isn't empty. Pick an empty folder.",
                     dest.display()
                 )));
                 return;
             }
             Some(Err(e)) => {
-                ui.set_s_msg(ss(format!("Couldn't inspect {}: {e}", dest.display())));
+                ui.set_s_msg(ss(crate::tr!("Couldn't inspect {}: {}", dest.display(), e)));
                 return;
             }
             None => {}
         },
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
         Err(e) => {
-            ui.set_s_msg(ss(format!("Couldn't inspect {}: {e}", dest.display())));
+            ui.set_s_msg(ss(crate::tr!("Couldn't inspect {}: {}", dest.display(), e)));
             return;
         }
     }
-    ui.set_s_msg(ss(format!(
+    ui.set_s_msg(ss(crate::tr!(
         "Moving the folder to {}… The sync engine is paused meanwhile.",
         dest.display()
     )));
@@ -4699,7 +4831,10 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
     bg(
         move || -> Result<Moved, String> {
             let _busy = core::BusyMarker::try_new(&confdir).map_err(|e| {
-                format!("Couldn't protect this account from another sync operation: {e}")
+                crate::tr!(
+                    "Couldn't protect this account from another sync operation: {}",
+                    e
+                )
             })?;
             let was_active = unit.as_deref().is_some_and(|u| core::unit_state(u).active);
             // stopped even when idle, so nothing starts it mid-move; if stopping fails it is
@@ -4707,28 +4842,32 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
             if let Some(u) = unit.as_deref() {
                 let (ok, err) = core::systemctl(&["stop", u]);
                 if !ok {
-                    return Err(format!("Couldn't stop the sync engine: {}", err.trim()));
+                    return Err(crate::tr!("Couldn't stop the sync engine: {}", err.trim()));
                 }
             }
             let operation = (|| {
                 let current_source = fs::symlink_metadata(&old)
-                    .map_err(|e| format!("Couldn't recheck {}: {e}", old.display()))?;
+                    .map_err(|e| crate::tr!("Couldn't recheck {}: {}", old.display(), e))?;
                 if current_source.file_type().is_symlink()
                     || !current_source.is_dir()
                     || current_source.dev() != source_dev
                     || current_source.ino() != source_ino
                 {
-                    return Err("The current sync folder changed while the destination was being reviewed. Refresh and try again.".into());
+                    return Err(crate::tr!(
+                        "The current sync folder changed while the destination was being reviewed. Refresh and try again."
+                    ));
                 }
                 let current_destination = fs::metadata(&destination_fs_path).map_err(|e| {
-                    format!("Couldn't recheck {}: {e}", destination_fs_path.display())
+                    crate::tr!("Couldn't recheck {}: {}", destination_fs_path.display(), e)
                 })?;
                 if current_destination.dev() != destination_dev {
-                    return Err("The destination drive changed while the folder move was being reviewed. Connect the intended drive and try again.".into());
+                    return Err(crate::tr!(
+                        "The destination drive changed while the folder move was being reviewed. Connect the intended drive and try again."
+                    ));
                 }
                 if let Some(parent) = dest.parent() {
                     fs::create_dir_all(parent)
-                        .map_err(|e| format!("Couldn't create {}: {e}", parent.display()))?;
+                        .map_err(|e| crate::tr!("Couldn't create {}: {}", parent.display(), e))?;
                 }
                 let move_result = core::rename_noreplace(&old, &dest);
                 let move_result = match move_result {
@@ -4745,7 +4884,7 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
                         copy_tree_noreplace(&old, &dest)?;
                         Moved::Copied
                     }
-                    Err(e) => return Err(format!("Couldn't move the folder: {e}")),
+                    Err(e) => return Err(crate::tr!("Couldn't move the folder: {}", e)),
                 };
                 let mut cfg = ClientConfig::load(&confdir);
                 cfg.set("sync_dir", Some(&dest.to_string_lossy()));
@@ -4760,9 +4899,13 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
                         Moved::Copied => Ok(()),
                     };
                     return Err(match rollback {
-                        Ok(()) => format!("Couldn't save the new folder in the settings: {e}"),
-                        Err(rollback) => format!(
-                            "Couldn't save the new folder in the settings: {e}; rollback also failed: {rollback}"
+                        Ok(()) => {
+                            crate::tr!("Couldn't save the new folder in the settings: {}", e)
+                        }
+                        Err(rollback) => crate::tr!(
+                            "Couldn't save the new folder in the settings: {}; rollback also failed: {}",
+                            e,
+                            rollback
                         ),
                     });
                 }
@@ -4782,11 +4925,14 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
             match (operation, restarted) {
                 (Ok(done), Some(Ok(()))) | (Ok(done), None) => Ok(done),
                 (Err(e), Some(Ok(()))) | (Err(e), None) => Err(e),
-                (Ok(_), Some(Err(restart))) => Err(format!(
-                    "The folder operation finished, but the sync engine couldn't be restarted: {restart}"
+                (Ok(_), Some(Err(restart))) => Err(crate::tr!(
+                    "The folder operation finished, but the sync engine couldn't be restarted: {}",
+                    restart
                 )),
-                (Err(operation), Some(Err(restart))) => Err(format!(
-                    "{operation}; the sync engine couldn't be restarted: {restart}"
+                (Err(operation), Some(Err(restart))) => Err(crate::tr!(
+                    "{}; the sync engine couldn't be restarted: {}",
+                    operation,
+                    restart
                 )),
             }
         },
@@ -4799,8 +4945,10 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
                     ui.set_s_folder(ss(moved_acc.sync_dir.to_string_lossy()));
                     ui.set_mv_from(ss(moved_acc.sync_dir.to_string_lossy()));
                     ui.set_s_msg(ss(match how {
-                        Moved::Renamed => "Folder moved. The sync engine needs a full resync to carry on there — check the preview.".to_string(),
-                        Moved::Copied => format!(
+                        Moved::Renamed => crate::tr!(
+                            "Folder moved. The sync engine needs a full resync to carry on there — check the preview."
+                        ),
+                        Moved::Copied => crate::tr!(
                             "Folder copied. Your old folder ({}) was left untouched and is no longer synced: once you've checked your files in the new place, delete it yourself to free the space. Next, check the preview to carry on syncing.",
                             old_shown
                         ),
@@ -4808,12 +4956,14 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
                     start_preview(
                         ctx,
                         &moved_acc,
-                        "Finish moving the folder",
+                        &crate::tr!("Finish moving the folder"),
                         PreviewChange {
                             sync_list: None,
                             config: Vec::new(),
                             mode: PreviewMode::Resync,
-                            note: "Your files are already in the new folder, so little or nothing should need to transfer.".into(),
+                            note: crate::tr!(
+                                "Your files are already in the new folder, so little or nothing should need to transfer."
+                            ),
                         },
                     );
                 }
@@ -4832,7 +4982,9 @@ fn add_search(ctx: &Shared) {
     }
     let accs = business_accounts(&c);
     let Some(from) = accs.get(ui.get_add_from_index().max(0) as usize).cloned() else {
-        ui.set_add_msg(ss("Add and sign in to a work or school account first."));
+        ui.set_add_msg(ss(crate::tr!(
+            "Add and sign in to a work or school account first."
+        )));
         return;
     };
     let query = ui.get_add_query().trim().to_string();
@@ -4932,7 +5084,7 @@ fn add_create(ctx: &Shared) {
     }
     ui.set_client_done(ss(""));
     ui.set_add_busy(true);
-    ui.set_add_msg(ss("Checking the OneDrive client…"));
+    ui.set_add_msg(ss(crate::tr!("Checking the OneDrive client…")));
     bg(core::check_client, |ctx, check| {
         if let Some(why) = client_blocker_for(check) {
             let ui = ctx.borrow().ui();
@@ -4952,7 +5104,9 @@ fn add_create_ready(ctx: &Shared) {
     let name = ui.get_add_name().trim().to_string();
     let folder = ui.get_add_folder().trim().to_string();
     if name.is_empty() || folder.is_empty() {
-        ui.set_add_msg(ss("Give the account a name and pick a local folder."));
+        ui.set_add_msg(ss(crate::tr!(
+            "Give the account a name and pick a local folder."
+        )));
         return;
     }
     // a national cloud has to be set before the first sign-in, and needs the tenant
@@ -4966,19 +5120,20 @@ fn add_create_ready(ctx: &Shared) {
     let tenant = ui.get_add_tenant().trim().to_string();
     if !cloud.is_empty() {
         if tenant.is_empty() {
-            ui.set_add_msg(ss(
-                "A national cloud account needs your organisation's tenant (ask its IT team).",
-            ));
+            ui.set_add_msg(ss(crate::tr!(
+                "A national cloud account needs your organisation's tenant (ask its IT team)."
+            )));
             return;
         }
         if let Err(e) = advanced::check_tenant(&tenant) {
-            ui.set_add_msg(ss(format!("The tenant {e}.")));
+            ui.set_add_msg(ss(crate::tr!("The tenant {}.", e)));
             return;
         }
     }
     if name_taken(&ctx.borrow(), &name, None) {
-        ui.set_add_msg(ss(format!(
-            "You already have an account called \"{name}\". Pick a different name."
+        ui.set_add_msg(ss(crate::tr!(
+            "You already have an account called \"{}\". Pick a different name.",
+            name
         )));
         return;
     }
@@ -4993,7 +5148,7 @@ fn add_create_ready(ctx: &Shared) {
         .iter()
         .find(|a| core::paths_overlap(&a.sync_dir, &folder))
     {
-        ui.set_add_msg(ss(format!(
+        ui.set_add_msg(ss(crate::tr!(
             "That folder overlaps with \"{}\" ({}). Pick a separate folder.",
             other.name,
             other.sync_dir.display()
@@ -5006,7 +5161,7 @@ fn add_create_ready(ctx: &Shared) {
             .get(ui.get_add_lib_index().max(-1) as usize)
             .cloned()
         else {
-            ui.set_add_msg(ss("Search for and pick a library first."));
+            ui.set_add_msg(ss(crate::tr!("Search for and pick a library first.")));
             return;
         };
         let Some(from) = business_accounts(&c)
@@ -5024,7 +5179,7 @@ fn add_create_ready(ctx: &Shared) {
 
     let setup = (|| -> Result<(), String> {
         fs::create_dir_all(&folder)
-            .map_err(|e| format!("Couldn't create {}: {e}", folder.display()))?;
+            .map_err(|e| crate::tr!("Couldn't create {}: {}", folder.display(), e))?;
         core::create_private_dir(&confdir).map_err(|e| e.to_string())?;
         let mut cfg = ClientConfig::load(&confdir);
         cfg.set("sync_dir", Some(&folder.to_string_lossy()));
@@ -5047,7 +5202,7 @@ fn add_create_ready(ctx: &Shared) {
                 from.confdir.join("refresh_token"),
                 confdir.join("refresh_token"),
             )
-            .map_err(|e| format!("Couldn't copy the sign-in: {e}"))?;
+            .map_err(|e| crate::tr!("Couldn't copy the sign-in: {}", e))?;
         }
         cfg.save().map_err(|e| e.to_string())?;
         let mut s = AppSettings::load();
@@ -5068,9 +5223,9 @@ fn add_create_ready(ctx: &Shared) {
         .into_iter()
         .find(|a| a.confdir == confdir);
     let Some(acc) = acc else {
-        ui.set_add_msg(ss(
-            "Created the account but couldn't find it again — try reopening the app.",
-        ));
+        ui.set_add_msg(ss(crate::tr!(
+            "Created the account but couldn't find it again — try reopening the app."
+        )));
         return;
     };
     let index = {
@@ -5115,20 +5270,21 @@ pub fn set_autostart(on: bool) -> Result<(), String> {
     let f = autostart_file();
     if on {
         fs::create_dir_all(f.parent().unwrap())
-            .map_err(|e| format!("Couldn't create the autostart folder: {e}"))?;
+            .map_err(|e| crate::tr!("Couldn't create the autostart folder: {}", e))?;
         let body = format!(
-            "[Desktop Entry]\nType=Application\nName={}\nComment=OneDrive sync status\nExec={} --tray\nIcon={}\nX-GNOME-Autostart-enabled=true\nNoDisplay=true\n",
+            "[Desktop Entry]\nType=Application\nName={}\nComment={}\nExec={} --tray\nIcon={}\nX-GNOME-Autostart-enabled=true\nNoDisplay=true\n",
             core::APP_NAME,
+            crate::tr!("OneDrive sync status"),
             core::desktop_exec(),
             core::APP_ID
         );
         core::atomic_write(&f, body.as_bytes())
-            .map_err(|e| format!("Couldn't save the autostart setting: {e}"))?;
+            .map_err(|e| crate::tr!("Couldn't save the autostart setting: {}", e))?;
     } else {
         match fs::remove_file(&f) {
             Ok(()) => {}
             Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
-            Err(e) => return Err(format!("Couldn't remove {}: {e}", f.display())),
+            Err(e) => return Err(crate::tr!("Couldn't remove {}: {}", f.display(), e)),
         }
     }
     Ok(())
@@ -5169,19 +5325,21 @@ fn prepare_app_page(ctx: &Shared) {
     ui.set_app_version(ss(env!("CARGO_PKG_VERSION")));
     ui.set_app_is_appimage(std::env::var("APPIMAGE").is_ok());
     ui.set_app_msg(ss(""));
-    ui.set_app_client(ss("Checking the sync engine…"));
+    ui.set_app_client(ss(crate::tr!("Checking the sync engine…")));
     bg(core::check_client, |ctx, check| {
         let client = match check {
-            core::ClientCheck::Ok { path, version } => format!(
-                "Sync engine: OneDrive Client for Linux {version} ({})",
+            core::ClientCheck::Ok { path, version } => crate::tr!(
+                "Sync engine: OneDrive Client for Linux {} ({})",
+                version,
                 path.display()
             ),
-            core::ClientCheck::TooOld { path, version } => format!(
-                "Sync engine: OneDrive Client for Linux {version} ({}) — too old, please update it.",
+            core::ClientCheck::TooOld { path, version } => crate::tr!(
+                "Sync engine: OneDrive Client for Linux {} ({}) — too old, please update it.",
+                version,
                 path.display()
             ),
             core::ClientCheck::Missing => {
-                "Sync engine: the OneDrive Client for Linux isn't installed.".into()
+                crate::tr!("Sync engine: the OneDrive Client for Linux isn't installed.")
             }
         };
         ctx.borrow().ui().set_app_client(ss(client));
@@ -5193,8 +5351,10 @@ fn add_to_menu(ctx: &Shared) {
     let r = crate::share::install_menu_entry();
     let ui = ctx.borrow().ui();
     ui.set_app_msg(ss(match r {
-        Ok(()) => "Added. Look for \"DriveDeck for OneDrive\" in your applications menu. Right-clicking a file in Dolphin now also shows a OneDrive menu with \"Copy view-only link\", \"Copy editing link\" and \"View on the OneDrive website\".".to_string(),
-        Err(e) => format!("Couldn't add it: {e}"),
+        Ok(()) => crate::tr!(
+            "Added. Look for \"DriveDeck for OneDrive\" in your applications menu. Right-clicking a file in Dolphin now also shows a OneDrive menu with \"Copy view-only link\", \"Copy editing link\" and \"View on the OneDrive website\"."
+        ),
+        Err(e) => crate::tr!("Couldn't add it: {}", e),
     }));
 }
 
@@ -5210,7 +5370,10 @@ fn check_client() {
             // installed by hand while the window was open
             show_client_done(
                 ctx,
-                format!("Found the OneDrive client ({version}). You're ready to sync."),
+                crate::tr!(
+                    "Found the OneDrive client ({}). You're ready to sync.",
+                    version
+                ),
             );
             put_client_to_work(false);
         }
@@ -5383,14 +5546,16 @@ done"#;
                 .args(&boot)
                 .stdin(Stdio::null())
                 .output()
-                .map_err(|e| format!("Couldn't ask for the password: {e}"))?;
+                .map_err(|e| crate::tr!("Couldn't ask for the password: {}", e))?;
             match out.status.code() {
                 Some(0) => Ok(()),
-                Some(126) => {
-                    Err("Nothing was changed (the password window was closed).".to_string())
-                }
-                Some(127) => Err("Nothing was changed: your computer didn't allow it.".to_string()),
-                _ => Err(format!(
+                Some(126) => Err(crate::tr!(
+                    "Nothing was changed (the password window was closed)."
+                )),
+                Some(127) => Err(crate::tr!(
+                    "Nothing was changed: your computer didn't allow it."
+                )),
+                _ => Err(crate::tr!(
                     "That didn't work: {}",
                     String::from_utf8_lossy(&out.stderr).trim()
                 )),
@@ -5414,9 +5579,11 @@ fn show_client_check(ctx: &Shared, check: &core::ClientCheck) {
     let ui = ctx.borrow().ui();
     let problem = match check {
         core::ClientCheck::Ok { .. } => String::new(),
-        core::ClientCheck::Missing => "The OneDrive Client for Linux isn't installed".into(),
+        core::ClientCheck::Missing => {
+            crate::tr!("The OneDrive Client for Linux isn't installed")
+        }
         core::ClientCheck::TooOld { version, .. } => {
-            format!("Your OneDrive Client for Linux ({version}) is too old")
+            crate::tr!("Your OneDrive Client for Linux ({}) is too old", version)
         }
     };
     let plan = clientinstall::plan();
@@ -5527,7 +5694,7 @@ fn run_client_install(ctx: &Shared, plan: clientinstall::Plan) {
     let ui = ctx.borrow().ui();
     ui.set_ci_visible(false);
     ui.set_client_installing(true);
-    ui.set_client_install_msg(ss("Your computer will ask for your password…"));
+    ui.set_client_install_msg(ss(crate::tr!("Your computer will ask for your password…")));
     let out = Arc::new(Mutex::new(String::new()));
     ctx.borrow_mut().install_out = Some(out.clone());
     let was_update = ui.get_client_update();
@@ -5558,16 +5725,14 @@ fn run_client_install(ctx: &Shared, plan: clientinstall::Plan) {
                 Ok((Some(0), _)) => None,
                 // the installer itself never started: pkexec's 126 = the password window was
                 // closed, 127 = not allowed (wrong password, or no password window available)
-                Ok((Some(126), text)) if !text.contains(STEP) => {
-                    Some("Nothing was changed (the password window was closed).".to_string())
-                }
-                Ok((Some(127), text)) if !text.contains(STEP) => Some(
-                    "Nothing was changed: your computer didn't allow it (the password wasn't \
-                     accepted, or no password window could be shown)."
-                        .to_string(),
-                ),
-                Ok((_, text)) => Some(format!("That didn't work: {}", last(text))),
-                Err(e) => Some(format!("Couldn't start the installer: {e}")),
+                Ok((Some(126), text)) if !text.contains(STEP) => Some(crate::tr!(
+                    "Nothing was changed (the password window was closed)."
+                )),
+                Ok((Some(127), text)) if !text.contains(STEP) => Some(crate::tr!(
+                    "Nothing was changed: your computer didn't allow it (the password wasn't accepted, or no password window could be shown)."
+                )),
+                Ok((_, text)) => Some(crate::tr!("That didn't work: {}", last(text))),
+                Err(e) => Some(crate::tr!("Couldn't start the installer: {}", e)),
             };
             match failed {
                 // the client still works: keep offering the update, with the reason
@@ -5587,15 +5752,19 @@ fn run_client_install(ctx: &Shared, plan: clientinstall::Plan) {
                         show_client_done(
                             ctx,
                             if was_update {
-                                format!("The OneDrive client is updated to {version}.")
+                                crate::tr!("The OneDrive client is updated to {}.", version)
                             } else {
-                                "The OneDrive client is installed. You're ready to sync.".into()
+                                crate::tr!(
+                                    "The OneDrive client is installed. You're ready to sync."
+                                )
                             },
                         );
                         put_client_to_work(true);
                     } else {
                         ui.set_client_install_msg(ss(
-                            "It finished, but the OneDrive client still isn't working. The instructions show how to install it by hand.",
+                            crate::tr!(
+                                "It finished, but the OneDrive client still isn't working. The instructions show how to install it by hand."
+                            ),
                         ));
                     }
                 }
@@ -5822,7 +5991,9 @@ pub(crate) fn use_startup_token() {
 }
 
 /// The settings window's title (as in app.slint), by which the panel finds it on KDE Plasma.
-pub const WINDOW_TITLE: &str = "DriveDeck for OneDrive";
+pub fn window_title() -> &'static str {
+    crate::i18n::translate("DriveDeck for OneDrive")
+}
 
 pub fn run(account: Option<String>) {
     if !claim_window(account.as_deref()) {
@@ -5849,12 +6020,13 @@ pub fn run(account: Option<String>) {
             eprintln!("The window couldn't open: {e}");
             let first = e.to_string().lines().next().unwrap_or_default().to_string();
             crate::share::notify(
-                "Couldn't open OneDrive settings",
-                &format!("The window couldn't open ({first})."),
+                &crate::tr!("Couldn't open OneDrive settings"),
+                &crate::tr!("The window couldn't open ({}).", first),
             );
             std::process::exit(1);
         }
     };
+    crate::i18n::select_bundled();
     // Matches the .desktop file name, so desktops show our icon and group the window correctly.
     // Slint only accepts this once its backend exists (after AppWindow::new) and before the
     // window is first shown.
@@ -5971,7 +6143,7 @@ pub fn run(account: Option<String>) {
         if let Err(e) = s.save() {
             c.borrow()
                 .ui()
-                .set_s_msg(ss(format!("Couldn't save the account name: {e}")));
+                .set_s_msg(ss(crate::tr!("Couldn't save the account name: {}", e)));
             return;
         }
         c.borrow_mut().settings = s;
@@ -5985,7 +6157,7 @@ pub fn run(account: Option<String>) {
             refresh(c);
             return;
         }
-        c.borrow().ui().set_s_msg(ss("Renamed."));
+        c.borrow().ui().set_s_msg(ss(crate::tr!("Renamed.")));
         refresh(c);
     });
     on!(on_open_folder, |c| {
@@ -6007,7 +6179,7 @@ pub fn run(account: Option<String>) {
             |c, (result, blocked)| {
                 c.borrow().ui().set_s_busy(false);
                 match result {
-                    Ok(()) => c.borrow().ui().set_s_msg(ss("Syncing now…")),
+                    Ok(()) => c.borrow().ui().set_s_msg(ss(crate::tr!("Syncing now…"))),
                     Err(e) => c.borrow().ui().set_s_msg(ss(e)),
                 }
                 if blocked {
@@ -6177,7 +6349,7 @@ pub fn run(account: Option<String>) {
             ui.set_app_doctor_busy(false);
             match r {
                 Ok(file) => {
-                    ui.set_app_doctor(ss(format!(
+                    ui.set_app_doctor(ss(crate::tr!(
                         "Saved as {}. It opens now: read it before sharing it.",
                         file.display()
                     )));
@@ -6193,7 +6365,7 @@ pub fn run(account: Option<String>) {
         s.pause_on_metered = (!ui.get_app_pause_metered()).then_some(false);
         s.pause_on_power_saver = (!ui.get_app_pause_saver()).then_some(false);
         if let Err(e) = s.save() {
-            ui.set_app_msg(ss(format!("Couldn't save the setting: {e}")));
+            ui.set_app_msg(ss(crate::tr!("Couldn't save the setting: {}", e)));
         }
     });
     on!(on_app_badges_toggled, |c| {
@@ -6202,7 +6374,7 @@ pub fn run(account: Option<String>) {
         let mut s = AppSettings::load();
         s.show_badges = (!on).then_some(false);
         if let Err(e) = s.save() {
-            ui.set_app_badges_msg(ss(format!("Couldn't save the setting: {e}")));
+            ui.set_app_badges_msg(ss(crate::tr!("Couldn't save the setting: {}", e)));
             return;
         }
         // the tray picks the setting up within a few seconds; the Nemo / Caja extension and the
@@ -6216,20 +6388,21 @@ pub fn run(account: Option<String>) {
         ui.set_app_badges_msg(ss(if errors.is_empty() {
             String::new()
         } else {
-            format!("Couldn't remove {}", errors.join(", "))
+            crate::tr!("Couldn't remove {}", errors.join(", "))
         }));
     });
     on!(on_app_dolphin_install, |c| {
         let ui = c.borrow().ui();
         ui.set_app_dolphin_busy(true);
-        ui.set_app_badges_msg(ss("Your computer will ask for your password…"));
+        ui.set_app_badges_msg(ss(crate::tr!("Your computer will ask for your password…")));
         bg(crate::badges::install_dolphin_plugin, |ctx, r| {
             let ui = ctx.borrow().ui();
             ui.set_app_dolphin_busy(false);
             ui.set_app_dolphin_offer(crate::badges::dolphin_offer());
             ui.set_app_badges_msg(ss(match r {
-                Ok(()) => "Added. Close every Dolphin window and open it again to see the badges."
-                    .to_string(),
+                Ok(()) => crate::tr!(
+                    "Added. Close every Dolphin window and open it again to see the badges."
+                ),
                 Err(e) => e,
             }));
         });
@@ -6244,7 +6417,7 @@ pub fn run(account: Option<String>) {
         if let Err(e) = s.save() {
             c.borrow()
                 .ui()
-                .set_app_msg(ss(format!("Couldn't save the setting: {e}")));
+                .set_app_msg(ss(crate::tr!("Couldn't save the setting: {}", e)));
         }
     });
     on!(on_app_get_update, |_c| core::run_detached(
@@ -6258,7 +6431,7 @@ pub fn run(account: Option<String>) {
         if let Err(e) = s.save() {
             c.borrow()
                 .ui()
-                .set_app_msg(ss(format!("Couldn't save the setting: {e}")));
+                .set_app_msg(ss(crate::tr!("Couldn't save the setting: {}", e)));
         }
     });
     on!(on_app_screenshot_toggled, |c| {
@@ -6275,7 +6448,7 @@ pub fn run(account: Option<String>) {
         let mut settings = AppSettings::load();
         settings.glass = glass;
         if let Err(e) = settings.save() {
-            ui.set_app_msg(ss(format!("Couldn't save the setting: {e}")));
+            ui.set_app_msg(ss(crate::tr!("Couldn't save the setting: {}", e)));
         }
         c.borrow_mut().settings.glass = glass;
         // copied out first: apply_look locks LOOK itself, and a guard in the call would still hold it
@@ -6294,7 +6467,9 @@ pub fn run(account: Option<String>) {
     on!(on_ci_myself, |c| {
         let ui = c.borrow().ui();
         ui.set_ci_visible(false);
-        ui.set_client_install_msg(ss("Once it's installed, this note goes away by itself."));
+        ui.set_client_install_msg(ss(crate::tr!(
+            "Once it's installed, this note goes away by itself."
+        )));
         core::run_detached("xdg-open", &[clientinstall::instructions_url()]);
     });
     on!(on_client_done_ok, |c| c
@@ -6320,7 +6495,7 @@ pub fn run(account: Option<String>) {
         }
         match s.save() {
             Ok(()) => ui.set_outside_start(ss("")),
-            Err(e) => ui.set_outside_start_hint(ss(format!("Couldn't save that: {e}"))),
+            Err(e) => ui.set_outside_start_hint(ss(crate::tr!("Couldn't save that: {}", e))),
         }
     });
     on!(on_client_instructions, |_c| core::run_detached(
@@ -6657,7 +6832,7 @@ mod tests {
     fn window_title_matches_the_ui() {
         // the panel finds the settings window by this title (popup::focus_settings_with_kwin)
         let slint = include_str!("../ui/app.slint");
-        assert!(slint.contains(&format!("title: \"{WINDOW_TITLE}\";")));
+        assert!(slint.contains("title: @tr(\"DriveDeck for OneDrive\");"));
     }
 
     #[test]

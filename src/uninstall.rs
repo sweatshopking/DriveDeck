@@ -93,17 +93,18 @@ fn pacman_owner(path: &std::path::Path) -> Option<String> {
 /// One line for the dialog saying what will happen to the app itself.
 pub fn removal_summary(how: &Installed) -> String {
     match how {
-        Installed::AppImage(p) => format!("The app file {} will be deleted.", p.display()),
-        Installed::Package(_) => {
-            "The app's package will then be removed; your computer will ask for your password."
-                .into()
+        Installed::AppImage(p) => {
+            crate::tr!("The app file {} will be deleted.", p.display())
         }
-        Installed::PackageManual => format!(
+        Installed::Package(_) => crate::tr!(
+            "The app's package will then be removed; your computer will ask for your password."
+        ),
+        Installed::PackageManual => crate::tr!(
             "Afterwards, remove the \"{}\" package with your software manager.",
             core::APP_ID
         ),
         Installed::BuildDirectory => {
-            "This copy isn't installed, so only your settings are removed.".into()
+            crate::tr!("This copy isn't installed, so only your settings are removed.")
         }
     }
 }
@@ -120,24 +121,25 @@ pub fn remove_user_files(keep_setup: bool) -> Vec<String> {
     // can't restart a service whose file is gone
     if !stop_tray() {
         notes.push(
-            "The tray icon didn't close. Log out and back in once this is done to be sure it's gone."
-                .into(),
+            crate::tr!(
+                "The tray icon didn't close. Log out and back in once this is done to be sure it's gone."
+            ),
         );
     }
     if keep_setup {
         // the background units run the OneDrive Client for Linux directly, so they carry on
         if accounts.iter().any(|a| a.unit.is_some()) {
-            notes.push(
+            notes.push(crate::tr!(
                 "Your accounts keep syncing in the background with the OneDrive Client for Linux."
-                    .into(),
-            );
+            ));
         }
     } else {
         for acc in &accounts {
             if let Err(e) = core::validate_confdir(&acc.confdir) {
-                notes.push(format!(
-                    "{} was left untouched because its settings folder couldn't be checked: {e}",
-                    acc.name
+                notes.push(crate::tr!(
+                    "{} was left untouched because its settings folder couldn't be checked: {}",
+                    acc.name,
+                    e
                 ));
                 continue;
             }
@@ -145,7 +147,7 @@ pub fn remove_user_files(keep_setup: bool) -> Vec<String> {
             if core::unit_state(&resync).active {
                 let (ok, err) = core::systemctl(&["stop", &resync]);
                 if !ok {
-                    notes.push(format!(
+                    notes.push(crate::tr!(
                         "{} was left untouched because its one-time sync job couldn't be stopped: {}",
                         acc.name,
                         err.trim()
@@ -156,7 +158,7 @@ pub fn remove_user_files(keep_setup: bool) -> Vec<String> {
             if let Some(unit) = &acc.unit {
                 let (ok, err) = core::systemctl(&["stop", unit]);
                 if !ok {
-                    notes.push(format!(
+                    notes.push(crate::tr!(
                         "{} was left untouched because its sync service couldn't be stopped: {}",
                         acc.name,
                         err.trim()
@@ -165,7 +167,7 @@ pub fn remove_user_files(keep_setup: bool) -> Vec<String> {
                 }
                 let (ok, err) = core::systemctl(&["disable", unit]);
                 if !ok {
-                    notes.push(format!(
+                    notes.push(crate::tr!(
                         "{} was stopped, but its service couldn't be disabled. Its files and service were left intact: {}",
                         acc.name,
                         err.trim()
@@ -177,14 +179,15 @@ pub fn remove_user_files(keep_setup: bool) -> Vec<String> {
                     if file.exists()
                         && let Err(e) = fs::remove_file(&file)
                     {
-                        notes.push(format!(
-                            "{} was stopped, but its service file couldn't be removed. Its account files were left intact: {e}",
-                            acc.name
+                        notes.push(crate::tr!(
+                            "{} was stopped, but its service file couldn't be removed. Its account files were left intact: {}",
+                            acc.name,
+                            e
                         ));
                         continue;
                     }
                 } else if file.exists() {
-                    notes.push(format!(
+                    notes.push(crate::tr!(
                         "{} was stopped and disabled, but its custom service file at {} was left in place.",
                         acc.name,
                         file.display()
@@ -203,24 +206,28 @@ pub fn remove_user_files(keep_setup: bool) -> Vec<String> {
             }
             match core::delete_confdir(&acc.confdir) {
                 Ok(gone) => {
-                    notes.push(format!(
+                    notes.push(crate::tr!(
                         "{}: signed out and its sync settings removed. The files in {} are still there.",
                         acc.name,
                         acc.sync_dir.display()
                     ));
                     if !gone {
-                        notes.push(format!(
+                        notes.push(crate::tr!(
                             "{} also holds files that aren't the OneDrive client's, so they and the folder were kept.",
                             acc.confdir.display()
                         ));
                     }
                 }
-                Err(e) => notes.push(format!("Couldn't delete {}: {e}", acc.confdir.display())),
+                Err(e) => notes.push(crate::tr!(
+                    "Couldn't delete {}: {}",
+                    acc.confdir.display(),
+                    e
+                )),
             }
         }
         let (ok, err) = core::systemctl(&["daemon-reload"]);
         if !ok {
-            notes.push(format!(
+            notes.push(crate::tr!(
                 "The account services were removed, but systemd couldn't reload its unit list: {}",
                 err.trim()
             ));
@@ -257,7 +264,7 @@ pub fn remove_user_files(keep_setup: bool) -> Vec<String> {
         if let Err(e) = result
             && e.kind() != std::io::ErrorKind::NotFound
         {
-            notes.push(format!("Couldn't remove {}: {e}", f.display()));
+            notes.push(crate::tr!("Couldn't remove {}: {}", f.display(), e));
         }
     }
     notes
@@ -315,9 +322,10 @@ pub fn remove_program(how: &Installed) -> Result<(), String> {
             let plugin = crate::badges::remove_dolphin_plugin().err();
             fs::remove_file(p)
                 .map_err(|e| {
-                    format!(
-                        "Couldn't delete {}: {e}. Delete it yourself to finish.",
-                        p.display()
+                    crate::tr!(
+                        "Couldn't delete {}: {}. Delete it yourself to finish.",
+                        p.display(),
+                        e
                     )
                 })
                 .and(plugin.map_or(Ok(()), Err))
@@ -333,13 +341,13 @@ pub fn remove_program(how: &Installed) -> Result<(), String> {
             if ok {
                 Ok(())
             } else {
-                Err(format!(
+                Err(crate::tr!(
                     "The package wasn't removed (the password prompt may have been cancelled). Remove \"{}\" with your software manager to finish.",
                     core::APP_ID
                 ))
             }
         }
-        Installed::PackageManual => Err(format!(
+        Installed::PackageManual => Err(crate::tr!(
             "Remove the \"{}\" package with your software manager to finish.",
             core::APP_ID
         )),

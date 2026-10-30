@@ -477,7 +477,7 @@ impl AppSettings {
             Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Self::default(),
             Err(e) => {
                 return Self {
-                    load_error: Some(format!("Couldn't read {}: {e}", path.display())),
+                    load_error: Some(crate::tr!("Couldn't read {}: {}", path.display(), e)),
                     ..Self::default()
                 };
             }
@@ -493,9 +493,11 @@ impl AppSettings {
                     aside.display()
                 ),
                 Err(copy_error) => {
-                    settings.load_error = Some(format!(
-                        "{} is damaged ({e}) and no copy could be kept ({copy_error}), so it isn't replaced",
-                        path.display()
+                    settings.load_error = Some(crate::tr!(
+                        "{} is damaged ({}) and no copy could be kept ({}), so it isn't replaced",
+                        path.display(),
+                        e,
+                        copy_error
                     ));
                 }
             }
@@ -691,7 +693,7 @@ pub struct ClientConfig {
 
 /// An error for a file the app can't safely rewrite because it isn't UTF-8 text.
 fn not_text_error(p: &Path) -> std::io::Error {
-    std::io::Error::other(format!(
+    std::io::Error::other(crate::tr!(
         "{} isn't plain UTF-8 text, so it wasn't changed. Edit it by hand, or save it as UTF-8 and try again.",
         p.display()
     ))
@@ -717,7 +719,7 @@ impl ClientConfig {
             Err(e) => (
                 Vec::new(),
                 false,
-                Some(format!("Couldn't read {}: {e}", path.display())),
+                Some(crate::tr!("Couldn't read {}: {}", path.display(), e)),
             ),
         };
         ClientConfig {
@@ -1018,7 +1020,7 @@ pub fn write_managed_unit(unit: &str, name: &str, confdir: &Path) -> std::io::Re
     let client = client_binary().ok_or_else(|| {
         std::io::Error::new(
             std::io::ErrorKind::NotFound,
-            "the OneDrive Client for Linux isn't installed",
+            crate::tr!("the OneDrive Client for Linux isn't installed"),
         )
     })?;
     fs::create_dir_all(user_unit_dir())?;
@@ -1027,7 +1029,7 @@ pub fn write_managed_unit(unit: &str, name: &str, confdir: &Path) -> std::io::Re
         Ok(meta) if !meta.file_type().is_file() => {
             return Err(std::io::Error::new(
                 std::io::ErrorKind::AlreadyExists,
-                format!("{} isn't a regular managed unit file", path.display()),
+                crate::tr!("{} isn't a regular managed unit file", path.display()),
             ));
         }
         Ok(_) => {
@@ -1035,7 +1037,7 @@ pub fn write_managed_unit(unit: &str, name: &str, confdir: &Path) -> std::io::Re
             if !is_managed(&text) || confdir_from_exec(&text).as_deref() != Some(confdir) {
                 return Err(std::io::Error::new(
                     std::io::ErrorKind::AlreadyExists,
-                    format!(
+                    crate::tr!(
                         "{} already belongs to another unit or account",
                         path.display()
                     ),
@@ -1071,7 +1073,7 @@ pub fn write_managed_unit(unit: &str, name: &str, confdir: &Path) -> std::io::Re
     atomic_write(&path, body.as_bytes())?;
     let (ok, err) = systemctl(&["daemon-reload"]);
     if !ok {
-        return Err(std::io::Error::other(format!(
+        return Err(std::io::Error::other(crate::tr!(
             "systemd couldn't reload the user unit files: {}",
             err.trim()
         )));
@@ -1109,7 +1111,9 @@ impl BusyMarker {
         }
         let pid = std::process::id();
         let start = process_start_time(pid).ok_or_else(|| {
-            std::io::Error::other("couldn't identify the current process for the busy marker")
+            std::io::Error::other(crate::tr!(
+                "couldn't identify the current process for the busy marker"
+            ))
         })?;
         let token = format!("{pid}:{start}");
         let mut file = OpenOptions::new()
@@ -1126,7 +1130,7 @@ impl BusyMarker {
             Err(fs::TryLockError::WouldBlock) => {
                 return Err(std::io::Error::new(
                     std::io::ErrorKind::WouldBlock,
-                    "this account is already in use by another operation",
+                    crate::tr!("this account is already in use by another operation"),
                 ));
             }
             Err(fs::TryLockError::Error(e)) => return Err(e),
@@ -1152,7 +1156,7 @@ impl BusyMarker {
         if owner_is_live {
             return Err(std::io::Error::new(
                 std::io::ErrorKind::WouldBlock,
-                "this account is already in use by another operation",
+                crate::tr!("this account is already in use by another operation"),
             ));
         }
         file.set_len(0)?;
@@ -1306,44 +1310,49 @@ pub fn unit_text(s: &str) -> String {
 pub fn unsuitable_sync_folder(folder: &Path) -> Option<String> {
     let shown = folder.display();
     if !folder.is_absolute() {
-        return Some("The local folder must be a full path, like /home/you/OneDrive.".into());
+        return Some(crate::tr!(
+            "The local folder must be a full path, like /home/you/OneDrive."
+        ));
     }
     let text = folder.to_string_lossy();
     if text.contains('"') || text.chars().any(char::is_control) {
-        return Some(
+        return Some(crate::tr!(
             "The sync engine can't use a folder whose name contains double quotes. Pick or rename a folder without them."
-                .into(),
-        );
+        ));
     }
     let Some(checked) = canonicalize_with_missing_tail(folder) else {
-        return Some(
+        return Some(crate::tr!(
             "Couldn't safely resolve that folder path. Check its parent directories and try again."
-                .into(),
-        );
+        ));
     };
     let Some(home) = canonicalize_with_missing_tail(&home()) else {
-        return Some(
-            "Couldn't safely resolve your home folder. Check the home-folder configuration.".into(),
-        );
+        return Some(crate::tr!(
+            "Couldn't safely resolve your home folder. Check the home-folder configuration."
+        ));
     };
     if checked == home || home.starts_with(&checked) {
         let what = if checked == home {
-            "everything in your home folder"
+            crate::tr!("everything in your home folder")
         } else {
-            "everything on this computer"
+            crate::tr!("everything on this computer")
         };
-        return Some(format!(
-            "Syncing {shown} would upload {what}. Pick or create a folder inside your home folder, like {}.",
+        return Some(crate::tr!(
+            "Syncing {} would upload {}. Pick or create a folder inside your home folder, like {}.",
+            shown,
+            what,
             home.join("OneDrive").display()
         ));
     }
     for own in [config_home(), data_home()] {
         let Some(own) = canonicalize_with_missing_tail(&own) else {
-            return Some("Couldn't safely resolve the application settings folders.".into());
+            return Some(crate::tr!(
+                "Couldn't safely resolve the application settings folders."
+            ));
         };
         if checked.starts_with(&own) || own.starts_with(&checked) {
-            return Some(format!(
-                "{shown} holds your settings. Pick a different folder."
+            return Some(crate::tr!(
+                "{} holds your settings. Pick a different folder.",
+                shown
             ));
         }
     }
@@ -1361,12 +1370,13 @@ pub fn unsuitable_sync_folder(folder: &Path) -> Option<String> {
             .any(|m| checked.to_string_lossy().starts_with(m))
         && system.iter().any(|t| under(t))
     {
-        return Some(format!(
-            "{shown} is a system folder. Pick a folder in your home folder or on a drive of your own."
+        return Some(crate::tr!(
+            "{} is a system folder. Pick a folder in your home folder or on a drive of your own.",
+            shown
         ));
     }
     if folder.is_file() {
-        return Some(format!("{shown} is a file, not a folder."));
+        return Some(crate::tr!("{} is a file, not a folder.", shown));
     }
     None
 }
@@ -1812,7 +1822,7 @@ fn is_client_file(name: &str) -> bool {
 pub fn validate_confdir(confdir: &Path) -> std::io::Result<()> {
     let meta = fs::metadata(confdir)?;
     if !meta.is_dir() {
-        return Err(std::io::Error::other(format!(
+        return Err(std::io::Error::other(crate::tr!(
             "{} isn't a folder",
             confdir.display()
         )));
@@ -2044,22 +2054,28 @@ pub fn blocked_text(list: &[Blocked]) -> String {
     for b in list.iter().take(3) {
         let name = shown_name(&b.path);
         out.push(match b.reason {
-            BlockReason::Locked => format!(
-                "\u{201c}{name}\u{201d} didn't upload: it's open for editing in SharePoint or Office (by someone else, or by you on another device), which locks it. Your changes are still on this PC. Once it's closed there, press \u{201c}Sync now\u{201d} to upload them."
+            BlockReason::Locked => crate::tr!(
+                "“{}” didn't upload: it's open for editing in SharePoint or Office (by someone else, or by you on another device), which locks it. Your changes are still on this PC. Once it's closed there, press “Sync now” to upload them.",
+                name
             ),
-            BlockReason::ReadOnly => format!(
-                "\u{201c}{name}\u{201d} didn't upload: it's shared with you as read-only, so your changes stay only on this PC."
+            BlockReason::ReadOnly => crate::tr!(
+                "“{}” didn't upload: it's shared with you as read-only, so your changes stay only on this PC.",
+                name
             ),
-            BlockReason::NoDownload => format!(
-                "\u{201c}{name}\u{201d} isn't on this PC: it's shared as view-only, without permission to download. Open it on the OneDrive website instead."
+            BlockReason::NoDownload => crate::tr!(
+                "“{}” isn't on this PC: it's shared as view-only, without permission to download. Open it on the OneDrive website instead.",
+                name
             ),
-            BlockReason::NotNow => format!(
-                "\u{201c}{name}\u{201d} didn't upload: OneDrive turned it away for now. Your changes are still on this PC. Press \u{201c}Sync now\u{201d} to try again."
+            BlockReason::NotNow => crate::tr!(
+                "“{}” didn't upload: OneDrive turned it away for now. Your changes are still on this PC. Press “Sync now” to try again.",
+                name
             ),
         });
     }
     if list.len() > 3 {
-        out.push(format!("\u{2026}and {} more files.", list.len() - 3));
+        out.push(crate::tr!(
+            "…and 1 more file." | "…and {n} more files." % (list.len() - 3)
+        ));
     }
     out.join("\n")
 }
@@ -2271,8 +2287,8 @@ pub fn big_delete(unit: &str) -> BigDelete {
 
 /// Plain words for a big delete the client stopped for.
 pub fn big_delete_text(b: &BigDelete) -> String {
-    format!(
-        "{} were deleted on this computer. Syncing stopped before deleting them online too, in case that was a mistake.\nIf it was a mistake, put them back (for example from the Trash) and press \u{201c}Sync now\u{201d}. Otherwise choose what to do below.",
+    crate::tr!(
+        "{} were deleted on this computer. Syncing stopped before deleting them online too, in case that was a mistake.\nIf it was a mistake, put them back (for example from the Trash) and press “Sync now”. Otherwise choose what to do below.",
         big_delete_what(b)
     )
 }
@@ -2281,13 +2297,14 @@ pub fn big_delete_text(b: &BigDelete) -> String {
 pub fn big_delete_what(b: &BigDelete) -> String {
     // the client names what it was deleting (a folder, usually) and counts it with its contents
     match (&b.path, b.count) {
-        (Some(p), Some(n)) => format!(
-            "\u{201c}{}\u{201d} and what was in it ({n} items in all)",
-            shown_path(p)
+        (Some(p), Some(n)) => crate::tr!(
+            "“{}” and what was in it ({} items in all)",
+            shown_path(p),
+            n
         ),
-        (Some(p), None) => format!("\u{201c}{}\u{201d} and what was in it", shown_path(p)),
-        (None, Some(n)) => format!("{n} items"),
-        (None, None) => "Many items".to_string(),
+        (Some(p), None) => crate::tr!("“{}” and what was in it", shown_path(p)),
+        (None, Some(n)) => crate::tr!("{} items", n),
+        (None, None) => crate::tr!("Many items"),
     }
 }
 
@@ -2731,41 +2748,41 @@ impl Status {
 
     pub fn text(&self, prefs: &AccountPrefs) -> String {
         match self.phase {
-            Phase::Syncing if self.unit.starting => "Starting…".into(),
-            Phase::Syncing => "Syncing…".into(),
-            Phase::UpToDate if self.unsynced_changes() > 0 => match self.unsynced_changes() {
-                1 => "1 file not synced".into(),
-                n => format!("{n} files not synced"),
-            },
+            Phase::Syncing if self.unit.starting => crate::tr!("Starting…"),
+            Phase::Syncing => crate::tr!("Syncing…"),
+            Phase::UpToDate if self.unsynced_changes() > 0 => {
+                let n = self.unsynced_changes();
+                crate::tr!("1 file not synced" | "{n} files not synced" % n)
+            }
             Phase::UpToDate => match self.last_complete {
-                Some(t) => format!("Up to date ({})", short_time(t)),
-                None => "Up to date".into(),
+                Some(t) => crate::tr!("Up to date ({})", short_time(t)),
+                None => crate::tr!("Up to date"),
             },
-            Phase::Error => "Error".into(),
-            Phase::Stopped => "Stopped".into(),
-            Phase::Off => "Background sync off".into(),
+            Phase::Error => crate::tr!("Error"),
+            Phase::Stopped => crate::tr!("Stopped"),
+            Phase::Off => crate::tr!("Background sync off"),
             Phase::Paused if prefs.paused() => {
                 match Local.timestamp_opt(prefs.pause_until, 0).single() {
-                    Some(t) => format!("Paused until {}", short_time(t)),
-                    None => "Paused".into(),
+                    Some(t) => crate::tr!("Paused until {}", short_time(t)),
+                    None => crate::tr!("Paused"),
                 }
             }
             Phase::Paused => match cached_device_hold() {
                 Some(h) if prefs.schedule.allows(Local::now().time()) => {
-                    format!("Paused: {}", h.words())
+                    crate::tr!("Paused: {}", h.words())
                 }
-                _ => format!("Paused by schedule until {}", prefs.schedule.from),
+                _ => crate::tr!("Paused by schedule until {}", prefs.schedule.from),
             },
             // a full resync, or the deletions the user approved after a big delete
-            Phase::Resyncing => "Applying changes…".into(),
-            Phase::SignedOut => "Signed out".into(),
-            Phase::NeedsResync => "Needs a full resync".into(),
-            Phase::BigDelete => "Stopped to protect your files".into(),
+            Phase::Resyncing => crate::tr!("Applying changes…"),
+            Phase::SignedOut => crate::tr!("Signed out"),
+            Phase::NeedsResync => crate::tr!("Needs a full resync"),
+            Phase::BigDelete => crate::tr!("Stopped to protect your files"),
             Phase::Stalled => match self.stalled_since {
-                Some(t) => format!("Not responding since {}", short_time(t)),
-                None => "Not responding".into(),
+                Some(t) => crate::tr!("Not responding since {}", short_time(t)),
+                None => crate::tr!("Not responding"),
             },
-            Phase::Unknown => "Waiting for first sync".into(),
+            Phase::Unknown => crate::tr!("Waiting for first sync"),
         }
     }
 }
@@ -2819,12 +2836,16 @@ echo "$1" >/proc/sys/fs/inotify/max_user_watches"#;
         .args(["/bin/sh", "-c", script, "sh", &to.to_string()])
         .stdin(Stdio::null())
         .output()
-        .map_err(|e| format!("Couldn't ask for the password: {e}"))?;
+        .map_err(|e| crate::tr!("Couldn't ask for the password: {}", e))?;
     match out.status.code() {
         Some(0) => Ok(()),
-        Some(126) => Err("Nothing was changed (the password window was closed).".into()),
-        Some(127) => Err("Nothing was changed: your computer didn't allow it.".into()),
-        _ => Err(format!(
+        Some(126) => Err(crate::tr!(
+            "Nothing was changed (the password window was closed)."
+        )),
+        Some(127) => Err(crate::tr!(
+            "Nothing was changed: your computer didn't allow it."
+        )),
+        _ => Err(crate::tr!(
             "That didn't work: {}",
             String::from_utf8_lossy(&out.stderr).trim()
         )),
@@ -3016,9 +3037,9 @@ pub fn unit_action(verb: &'static str, unit: &str) {
 /// pause is lifted. Returns the unit (made now if the account had none).
 pub fn sync_now(info: &AccountInfo) -> Result<String, String> {
     if account_busy(&info.confdir) {
-        return Err(
-            "This account is busy with another task. Try again when it has finished.".into(),
-        );
+        return Err(crate::tr!(
+            "This account is busy with another task. Try again when it has finished."
+        ));
     }
     let mut s = AppSettings::load();
     if !s.prefs(&info.confdir).sync_allowed() {
@@ -3026,7 +3047,7 @@ pub fn sync_now(info: &AccountInfo) -> Result<String, String> {
         p.override_until = Local::now().timestamp() + 3600;
         p.pause_until = 0;
         s.save()
-            .map_err(|e| format!("Couldn't save the sync override: {e}"))?;
+            .map_err(|e| crate::tr!("Couldn't save the sync override: {}", e))?;
     }
     match &info.unit {
         Some(u) => {
@@ -3072,7 +3093,7 @@ pub fn pause(info: &AccountInfo, secs: i64) -> Result<i64, String> {
     p.override_until = 0;
     let allowed = p.sync_allowed();
     s.save()
-        .map_err(|e| format!("Couldn't save the pause setting: {e}"))?;
+        .map_err(|e| crate::tr!("Couldn't save the pause setting: {}", e))?;
     if let Some(u) = &info.unit {
         if until != 0 {
             unit_action("stop", u);
