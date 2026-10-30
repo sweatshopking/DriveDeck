@@ -21,7 +21,11 @@ pub fn parse(input: &str) -> Result<Vec<Entry>, String> {
             continue;
         }
         if line.starts_with('#') {
-            if line.starts_with("#,") && line.split(|c: char| c == ',' || c.is_whitespace()).any(|f| f == "fuzzy") {
+            if line.starts_with("#,")
+                && line
+                    .split(|c: char| c == ',' || c.is_whitespace())
+                    .any(|f| f == "fuzzy")
+            {
                 current.fuzzy = true;
             }
             continue;
@@ -183,10 +187,9 @@ mod tests {
 
     #[test]
     fn marks_fuzzy_entries() {
-        let entries = parse(
-            "#, fuzzy\nmsgid \"old\"\nmsgstr \"alt\"\n\nmsgid \"fine\"\nmsgstr \"gut\"\n",
-        )
-        .unwrap();
+        let entries =
+            parse("#, fuzzy\nmsgid \"old\"\nmsgstr \"alt\"\n\nmsgid \"fine\"\nmsgstr \"gut\"\n")
+                .unwrap();
         assert!(entries[0].fuzzy);
         assert!(!entries[1].fuzzy);
     }

@@ -643,7 +643,10 @@ mod tests {
         let keep = dir.join("Report (v1).docx");
         std::fs::write(&keep, b"version 1").unwrap();
         trim_version_cache(&dir, &keep, 0, 0).unwrap();
-        assert!(!stale.exists(), "an interrupted download must be cleaned up");
+        assert!(
+            !stale.exists(),
+            "an interrupted download must be cleaned up"
+        );
         let _ = std::fs::remove_dir_all(&dir);
     }
 }

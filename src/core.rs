@@ -2871,20 +2871,16 @@ pub fn free_space(path: &Path) -> Option<u64> {
 /// How long a running client may stay silent before it counts as stuck. In --monitor mode it
 /// logs "Sync with Microsoft OneDrive is complete" after every pass (every monitor_interval,
 /// 300 s by default), and large transfers log their progress, so three missed passes, and never
-/// less than half an hour, is well past normal. With monitor_log_frequency N the routine
-/// lines come only every Nth pass, so the limit is never below N + 1 passes.
+/// less than half an hour, is well past normal. (Checked against the client 2.5.12 with its default
+/// monitor_log_frequency of 12: it still logs "Starting a sync" and "complete" on every pass, even
+/// when idle, so that setting doesn't stretch the quiet time.)
 pub fn stall_limit(confdir: &Path) -> std::time::Duration {
     let interval = ClientConfig::load(confdir)
         .get("monitor_interval")
         .and_then(|v| v.trim().parse::<u64>().ok())
         .filter(|&v| v > 0)
         .unwrap_or(300);
-    let frequency = ClientConfig::load(confdir)
-        .get("monitor_log_frequency")
-        .and_then(|v| v.trim().parse::<u64>().ok())
-        .unwrap_or(12);
-    let quiet = interval.saturating_mul(frequency.saturating_add(1));
-    std::time::Duration::from_secs(interval.saturating_mul(3).max(30 * 60).max(quiet))
+    std::time::Duration::from_secs(interval.saturating_mul(3).max(30 * 60))
 }
 
 /// The phase to show once the tray has found the client stuck: only a state that claims all is
@@ -4123,14 +4119,14 @@ mod tests {
             fs::write(dir.join("config"), config).unwrap();
             stall_limit(&dir).as_secs()
         };
-        // routine lines come only every monitor_log_frequency passes (12 by default)
-        assert_eq!(limit(""), 3900);
-        assert_eq!(limit("monitor_interval = \"300\"\n"), 3900);
-        assert_eq!(limit("monitor_interval = \"1200\"\n"), 15600);
-        assert_eq!(limit("monitor_interval = \"soon\"\n"), 3900);
-        assert_eq!(limit("monitor_interval = \"0\"\n"), 3900);
+        assert_eq!(limit(""), 1800);
+        assert_eq!(limit("monitor_interval = \"300\"\n"), 1800);
+        assert_eq!(limit("monitor_interval = \"1200\"\n"), 3600);
+        assert_eq!(limit("monitor_interval = \"soon\"\n"), 1800);
+        assert_eq!(limit("monitor_interval = \"0\"\n"), 1800);
+        // the client logs every pass whatever monitor_log_frequency says (checked on 2.5.12)
         assert_eq!(limit("monitor_log_frequency = \"1\"\n"), 1800);
-        assert_eq!(limit("monitor_interval = \"1200\"\nmonitor_log_frequency = \"1\"\n"), 3600);
+        assert_eq!(limit("monitor_log_frequency = \"50\"\n"), 1800);
         let _ = fs::remove_dir_all(&dir);
     }
 

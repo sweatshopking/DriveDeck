@@ -53,7 +53,6 @@ fn plugin_body() -> String {
          X-KDE-PluginInfo-License=GPL\n\
          X-KDE-PluginInfo-EnabledByDefault=true\n\
          X-Plasma-API=DBus\n\
-         X-Plasma-API-Minimum-Version=2.0\n\
          X-Plasma-DBusRunner-Service={SERVICE}\n\
          X-Plasma-DBusRunner-Path={PATH}\n\
          X-Plasma-Request-Actions-Once=true\n",
@@ -530,7 +529,6 @@ mod tests {
     fn the_plugin_description_names_our_service() {
         let body = plugin_body();
         assert!(body.contains("X-Plasma-API=DBus"));
-        assert!(body.contains("X-Plasma-API-Minimum-Version=2.0"));
         assert!(body.contains(&format!("X-Plasma-DBusRunner-Service={SERVICE}")));
         assert!(body.contains("X-Plasma-DBusRunner-Path=/runner"));
         assert!(body.starts_with("[Desktop Entry]\n"));

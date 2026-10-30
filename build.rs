@@ -45,29 +45,38 @@ fn main() {
         "pub fn lookup(language: &str, message: &str) -> Option<&'static str> {\n    match language {\n",
     );
     for (locale, messages) in &catalogs {
-        generated.push_str(&format!("        {locale:?} => match message {{\n"));
+        let mut arm = String::new();
         for entry in messages {
-            if let Some(translation) = entry.translation.as_ref().filter(|value| !value.is_empty() && !entry.fuzzy)
+            if let Some(translation) = entry
+                .translation
+                .as_ref()
+                .filter(|value| !value.is_empty() && !entry.fuzzy)
             {
-                generated.push_str(&format!(
+                arm.push_str(&format!(
                     "            {:?} => Some({:?}),\n",
                     entry.id, translation
                 ));
             }
         }
-        generated.push_str("            _ => None,\n        },\n");
+        // a language with nothing translated yet has no arm (its messages show in English)
+        if !arm.is_empty() {
+            generated.push_str(&format!(
+                "        {locale:?} => match message {{\n{arm}            _ => None,\n        }},\n"
+            ));
+        }
     }
     generated.push_str("        _ => None,\n    }\n}\n");
     generated.push_str(
         "pub fn lookup_plural_forms(language: &str, message: &str) -> Option<&'static [&'static str]> {\n    match language {\n",
     );
     for (locale, messages) in &catalogs {
-        generated.push_str(&format!("        {locale:?} => match message {{\n"));
+        let mut arm = String::new();
         for entry in messages {
             if entry.plural.is_some()
                 && !entry.plural_translations.is_empty()
                 && entry.plural_translations.iter().all(|(_, s)| !s.is_empty())
-                && !entry.fuzzy {
+                && !entry.fuzzy
+            {
                 // every form the language has, in msgstr[n] order; i18n::plural_index picks one
                 let forms: std::collections::BTreeMap<_, _> = entry
                     .plural_translations
@@ -75,14 +84,18 @@ fn main() {
                     .map(|(i, s)| (*i, s))
                     .collect();
                 let forms: Vec<String> = forms.values().map(|s| format!("{s:?}")).collect();
-                generated.push_str(&format!(
+                arm.push_str(&format!(
                     "            {:?} => Some(&[{}]),\n",
                     entry.id,
                     forms.join(", ")
                 ));
             }
         }
-        generated.push_str("            _ => None,\n        },\n");
+        if !arm.is_empty() {
+            generated.push_str(&format!(
+                "        {locale:?} => match message {{\n{arm}            _ => None,\n        }},\n"
+            ));
+        }
     }
     generated.push_str("        _ => None,\n    }\n}\n");
     fs::write(out, generated).expect("couldn't write translation lookup table");
