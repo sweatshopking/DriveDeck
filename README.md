@@ -57,6 +57,49 @@ sync client, syncing issues should go to the original app, which is linked above
   </tr>
 </table>
 
+## New in 1.5.0
+
+A big update: new ways to keep syncing healthy, new things you can do from your file manager, and
+the app in your own language.
+
+- **Tells you when syncing has quietly stopped.** If the sync engine keeps running but goes silent
+  for more than half an hour (a stuck network call, say), the app restarts it once by itself. If
+  that doesn't help, the account shows *Not responding* in red and you get a notification, instead
+  of looking "up to date" for days.
+- **Fixes a hidden limit on big folders.** Linux limits how many folders can be watched for changes,
+  and when it runs out, changes in some folders are missed without any error. The app notices,
+  explains, and offers to raise the limit (one password prompt).
+- **Folder sizes, and a free-space check.** The folder list shows how big each folder is, and says
+  whether what you've just ticked will fit on the drive before you apply it.
+- **Warnings that save you trouble.** Git repositories inside OneDrive (syncing their `.git` folders
+  can damage them) and OneDrive folders on a Windows drive that Windows' own OneDrive app may also
+  use. *Add developer folders…* in Options skips `.git`, `node_modules` and the like in two clicks.
+- **Check for problems** in *App settings* (or `drivedeck --doctor`): the sync engine, the tray, each
+  account, free disk space, the folder-watch limit and services set up elsewhere, in one list.
+  *Make a problem report* writes a file for a bug report with your file names, email address, user
+  and computer names and sign-in details left out.
+- **See who can open a file, and stop it.** Right-click a file or folder, *OneDrive*, *Who has
+  access…* lists every link and person, and *Stop sharing* ends one.
+- **Edit Word, Excel and PowerPoint files on the web** from the same menu (no Office needed).
+- **A safety copy before a full resync.** On btrfs and XFS the app first copies your OneDrive folder
+  in an instant (no extra space until files change), and says where.
+- **Keeps the sync engine up to date,** not just installed. It notices new releases from the
+  client's own authors, not only the AUR, and shows their important note (for example "the first
+  sync will take a long time") before you update.
+- **Search OneDrive from KRunner** (Plasma's Alt+Space). Finds files by name or content, including
+  ones that aren't on this computer. Off until you switch it on, because what you type is sent to
+  Microsoft.
+- **Screenshots saved straight to OneDrive.** A switch in *App settings* points Spectacle or
+  Flameshot at a folder in your OneDrive, and puts their setting back when you switch it off.
+- **From the terminal:** `drivedeck --status` (with `--json` for scripts and status bars),
+  `--sync-now` and `--print-link <file>`.
+- **In your language:** German, Spanish, French, Italian, Portuguese (Brazil), Dutch, Japanese,
+  Chinese (Simplified), Russian, Turkish and Korean, picked from your system's language. The
+  translations are machine-drafted; corrections are welcome (see `po/README.md`).
+- **Smaller improvements:** the big-delete notification names the folder and how many items; more of
+  the client's own "needs a full resync" wording is recognised; uninstalling on Arch removes the
+  right package; a custom service that would restart the client in a loop is pointed out.
+
 ## New in 1.0.0
 
 - **A new name: DriveDeck for OneDrive.** Upgrading carries everything over by itself: your
