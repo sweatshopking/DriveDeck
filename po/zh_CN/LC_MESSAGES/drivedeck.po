@@ -1963,955 +1963,955 @@ msgid "OneDrive Client for Linux {} is installed."
 msgstr "已安装 OneDrive Client for Linux {}。"
 
 msgid "OneDrive Client for Linux {} is too old for this app."
-msgstr ""
+msgstr "OneDrive Client for Linux {} 版本过旧，无法用于此应用。"
 
 msgid "The OneDrive Client for Linux isn't installed."
-msgstr ""
+msgstr "尚未安装 OneDrive Client for Linux。"
 
 msgid "The tray icon is running."
-msgstr ""
+msgstr "托盘图标正在运行。"
 
 msgid ""
 "The tray icon isn't running, so pauses, schedules and notifications aren't "
 "working."
-msgstr ""
+msgstr "托盘图标未运行，因此暂停、计划和通知功能不可用。"
 
 msgid "No accounts are set up yet."
-msgstr ""
+msgstr "尚未设置任何帐户。"
 
 msgid "{}: {}"
-msgstr ""
+msgstr "{}：{}"
 
 msgid "{}: ran out of folder watches; some changes aren't noticed."
-msgstr ""
+msgstr "{}：文件夹监视额度已用完，部分更改无法被发现。"
 
 msgid "{}: only {} free on its drive."
-msgstr ""
+msgstr "{}：磁盘仅剩 {} 可用空间。"
 
 msgid ""
 "Your OneDrive folders hold {} folders, more than half of Linux's limit on "
 "watched folders ({}). Other programs need some too."
-msgstr ""
+msgstr "你的 OneDrive 文件夹包含 {} 个文件夹，超过了 Linux 文件夹监视上限（{}）的一半。其他程序也需要使用这些额度。"
 
 msgid "{} is started outside this app."
-msgstr ""
+msgstr "{} 由此应用以外的程序启动。"
 
 msgid "Today"
-msgstr ""
+msgstr "今天"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "昨天"
 
 msgid "\"{}\" isn't an email address."
-msgstr ""
+msgstr "\"{}\" 不是电子邮件地址。"
 
 msgid "Type at least one email address."
-msgstr ""
+msgstr "至少输入一个电子邮件地址。"
 
 msgid "This version identifier and file extension are too long to save safely."
-msgstr ""
+msgstr "版本标识和文件扩展名过长，无法安全保存。"
 
 msgid "This file name is too long to save a version copy safely."
-msgstr ""
+msgstr "文件名过长，无法安全保存版本副本。"
 
 msgid "No version history for folders"
-msgstr ""
+msgstr "文件夹没有版本历史记录"
 
 msgid ""
 "\"{}\" is a folder. Open a file inside it to see its versions, or the "
 "recycle bin online for deleted items."
-msgstr ""
+msgstr "\"{}\" 是文件夹。打开其中的文件以查看版本，或在线查看回收站中的已删除项目。"
 
 msgid "Couldn't share it"
-msgstr ""
+msgstr "无法共享"
 
 msgid "That's the whole of \"{}\". Share a file or folder inside it instead."
-msgstr ""
+msgstr "\"{}\" 本身就是全部内容。请改为共享其中的文件或文件夹。"
 
 msgid "Can view"
-msgstr ""
+msgstr "可以查看"
 
 msgid "  ·  until {}"
-msgstr ""
+msgstr "  ·  到期时间：{}"
 
 msgid "  ·  from a folder above"
-msgstr ""
+msgstr "  ·  来自上级文件夹"
 
 msgid "Checking who has access…"
-msgstr ""
+msgstr "正在检查有权访问的人…"
 
 msgid "It isn't shared: only you can open it."
-msgstr ""
+msgstr "尚未共享：只有你可以打开。"
 
 msgid "  ·  saved by {}"
-msgstr ""
+msgstr "  ·  保存者：{}"
 
 msgid ""
 "There's only the current version so far. OneDrive keeps older ones as the "
 "file changes."
-msgstr ""
+msgstr "目前只有当前版本。文件更改后，OneDrive 会保留旧版本。"
 
 msgid "Downloading that version…"
-msgstr ""
+msgstr "正在下载该版本…"
 
 msgid "Opened a copy: {}"
-msgstr ""
+msgstr "已打开副本：{}"
 
 msgid "Restoring…"
-msgstr ""
+msgstr "正在还原…"
 
 msgid ""
 "Restored. This computer gets it at the next sync (\"Sync now\" in the tray "
 "icon's menu does it right away)."
-msgstr ""
+msgstr "已还原。下次同步时此计算机将收到该文件（在托盘图标菜单中选择“立即同步”可马上同步）。"
 
 msgid "Sending…"
-msgstr ""
+msgstr "正在发送…"
 
 msgid "Invitation sent."
-msgstr ""
+msgstr "邀请已发送。"
 
 msgid "{} invitations sent."
-msgstr ""
+msgstr "已发送 {} 个邀请。"
 
 msgid "the top folder"
-msgstr ""
+msgstr "顶层文件夹"
 
 msgid "{} or more"
-msgstr ""
+msgstr "{} 个或更多"
 
 msgid ""
 "There are Git repositories in this folder ({}). Syncing their .git folders "
 "can damage them, because the files arrive one at a time and out of order. "
 "Skip .git folders in Options, or keep repositories outside OneDrive."
-msgstr ""
+msgstr "此文件夹中有 Git 仓库（{}）。同步其 .git 文件夹可能会损坏仓库，因为文件会逐个以不同顺序到达。请在“选项”中跳过 .git 文件夹，或将仓库放在 OneDrive 之外。"
 
 msgid ""
 "This folder is on a Windows drive, and Windows' OneDrive app uses it too. "
 "Files that Windows keeps online-only can't be opened from Linux, and the two "
 "apps can undo each other's changes. A separate folder for Linux is safer."
-msgstr ""
+msgstr "此文件夹位于 Windows 磁盘上，Windows 的 OneDrive 应用也在使用它。Windows 设为仅联机的文件无法在 Linux 中打开，而且两个应用可能互相撤销对方的更改。为 Linux 单独使用一个文件夹更安全。"
 
 msgid ""
 "This folder is on a Windows (NTFS) drive. If Windows' OneDrive app also "
 "syncs it, files that Windows keeps online-only can't be opened from Linux, "
 "and the two apps can undo each other's changes. A separate folder for Linux "
 "is safer."
-msgstr ""
+msgstr "此文件夹位于 Windows（NTFS）磁盘上。如果 Windows 的 OneDrive 应用也同步此文件夹，Windows 设为仅联机的文件将无法在 Linux 中打开，而且两个应用可能互相撤销对方的更改。为 Linux 单独使用一个文件夹更安全。"
 
 msgid "Couldn't make {}: {}"
-msgstr ""
+msgstr "无法创建 {}：{}"
 
 msgid "Couldn't reach Microsoft. Check your internet connection and try again."
-msgstr ""
+msgstr "无法连接到 Microsoft。请检查网络连接后重试。"
 
 msgid "{} (Microsoft says: {})"
-msgstr ""
+msgstr "{}（Microsoft 提示：{}）"
 
 msgid ""
 "Microsoft no longer accepts this sign-in. Open Settings and sign in again."
-msgstr ""
+msgstr "Microsoft 不再接受此登录信息。请打开“设置”并重新登录。"
 
 msgid ""
 "This account doesn't have permission to do that. Check that you have access "
 "to this file or site."
-msgstr ""
+msgstr "此帐户没有执行该操作的权限。请检查你是否有权访问此文件或网站。"
 
 msgid ""
 "That item could not be found in OneDrive. It may have been moved or deleted."
-msgstr ""
+msgstr "在 OneDrive 中找不到该项目。它可能已被移动或删除。"
 
 msgid "OneDrive changed while this was running. Refresh and try again."
-msgstr ""
+msgstr "操作期间 OneDrive 内容发生了变化。请刷新后重试。"
 
 msgid "That item is locked. Close it elsewhere or try again later."
-msgstr ""
+msgstr "该项目已锁定。请在其他位置关闭它，或稍后重试。"
 
 msgid "Microsoft is busy right now. Try again in a minute."
-msgstr ""
+msgstr "Microsoft 当前繁忙。请稍后再试。"
 
 msgid ""
 "Your OneDrive storage is full. Free up space or get more storage, then try "
 "again."
-msgstr ""
+msgstr "OneDrive 存储空间已满。请释放空间或购买更多存储空间，然后重试。"
 
 msgid "Microsoft is having a problem right now. Try again later."
-msgstr ""
+msgstr "Microsoft 当前出现问题。请稍后重试。"
 
 msgid "Microsoft couldn't complete that request. Try again later."
-msgstr ""
+msgstr "Microsoft 无法完成该请求。请稍后重试。"
 
 msgid "Microsoft sent an unexpected reply ({}). Try again later."
-msgstr ""
+msgstr "Microsoft 返回了意外的响应（{}）。请稍后重试。"
 
 msgid ""
 "Azure Germany closed on October 29, 2021. Migrate this account to a "
 "supported Microsoft cloud and select that cloud here."
-msgstr ""
+msgstr "Azure Germany 已于 2021 年 10 月 29 日关闭。请将此帐户迁移到受支持的 Microsoft 云，并在此处选择该云。"
 
 msgid "This account isn't signed in."
-msgstr ""
+msgstr "此帐户尚未登录。"
 
 msgid "Microsoft repeated a page while listing items. Try again later."
-msgstr ""
+msgstr "Microsoft 在列出项目时重复返回了某个页面。请稍后重试。"
 
 msgid "Microsoft sent an unexpected reply. Try again later."
-msgstr ""
+msgstr "Microsoft 返回了意外的响应。请稍后重试。"
 
 msgid "Microsoft sent too many pages for this list. Try again later."
-msgstr ""
+msgstr "Microsoft 为此列表返回了过多页面。请稍后重试。"
 
 msgid "OneDrive didn't return a web address."
-msgstr ""
+msgstr "OneDrive 未返回网页地址。"
 
 msgid "Couldn't check libraries on {}: {}"
-msgstr ""
+msgstr "无法检查 {} 上的文档库：{}"
 
 msgid "Microsoft returned a library without an ID."
-msgstr ""
+msgstr "Microsoft 返回的文档库没有 ID。"
 
 msgid ""
 "That doesn't look like a SharePoint address. Copy it from your browser's "
 "address bar — it starts with https://"
-msgstr ""
+msgstr "这似乎不是 SharePoint 地址。请从浏览器地址栏复制网址，网址以 https:// 开头。"
 
 msgid "Couldn't open that site with this account: {}"
-msgstr ""
+msgstr "无法使用此帐户打开该网站：{}"
 
 msgid "Microsoft didn't return the site."
-msgstr ""
+msgstr "Microsoft 未返回该网站。"
 
 msgid "{} already exists and isn't a regular file."
-msgstr ""
+msgstr "{} 已存在，但不是普通文件。"
 
 msgid "Couldn't find where to save that version."
-msgstr ""
+msgstr "找不到保存该版本的位置。"
 
 msgid "Couldn't save it: {}"
-msgstr ""
+msgstr "无法保存：{}"
 
 msgid "Couldn't allocate a temporary file for that version download."
-msgstr ""
+msgstr "无法为该版本下载创建临时文件。"
 
 msgid "The download stopped: {}"
-msgstr ""
+msgstr "下载已停止：{}"
 
 msgid "Couldn't finish saving that version: {}"
-msgstr ""
+msgstr "无法完成该版本的保存：{}"
 
 msgid "Someone"
-msgstr ""
+msgstr "某人"
 
 msgid "Couldn't check what kind of account this is, so no link was made: {}"
-msgstr ""
+msgstr "无法检查此帐户的类型，因此未创建链接：{}"
 
 msgid "less than a minute left"
-msgstr ""
+msgstr "不到一分钟"
 
 msgid "1 min left"
 msgid_plural "{n} min left"
-msgstr[0] ""
+msgstr[0] "还剩 1 分钟"
 
 msgid "1 h left"
 msgid_plural "{n} h left"
-msgstr[0] ""
+msgstr[0] "还剩 1 小时"
 
 msgid "1 h {0} min left"
 msgid_plural "{n} h {0} min left"
-msgstr[0] ""
+msgstr[0] "还剩 1 小时 {0} 分钟"
 
 msgid "No accounts yet"
-msgstr ""
+msgstr "尚无帐户"
 
 msgid "1 account needs attention"
 msgid_plural "{n} accounts need attention"
-msgstr[0] ""
+msgstr[0] "有 1 个帐户需要处理"
 
 msgid "Syncing 1 large file"
 msgid_plural "Syncing {n} large files"
-msgstr[0] ""
+msgstr[0] "正在同步 1 个大文件"
 
 msgid "Not syncing right now"
-msgstr ""
+msgstr "当前未同步"
 
 msgid "All accounts"
-msgstr ""
+msgstr "所有帐户"
 
 msgid "Uploading"
-msgstr ""
+msgstr "正在上传"
 
 msgid "Downloading"
-msgstr ""
+msgstr "正在下载"
 
 msgid "Uploaded"
-msgstr ""
+msgstr "已上传"
 
 msgid "Downloaded"
-msgstr ""
+msgstr "已下载"
 
 msgid "Deleted"
-msgstr ""
+msgstr "已删除"
 
 msgid "New folder"
-msgstr ""
+msgstr "新建文件夹"
 
 msgid "{} {}"
-msgstr ""
+msgstr "{} {}"
 
 msgid "in {}"
-msgstr ""
+msgstr "位于 {}"
 
 msgid "That isn't inside any of your OneDrive folders."
-msgstr ""
+msgstr "该项目不在你的任何 OneDrive 文件夹中。"
 
 msgid "Anyone with the link"
-msgstr ""
+msgstr "任何拥有此链接的人"
 
 msgid "People in your organization with the link"
-msgstr ""
+msgstr "组织中拥有此链接的人员"
 
 msgid "Link copied"
-msgstr ""
+msgstr "链接已复制"
 
 msgid "Sharing link"
-msgstr ""
+msgstr "正在共享链接"
 
 msgid "can view"
-msgstr ""
+msgstr "可以查看"
 
 msgid "can edit"
-msgstr ""
+msgstr "可以编辑"
 
 msgid "can change, add and delete files in"
-msgstr ""
+msgstr "可以更改、添加和删除其中的文件："
 
 msgid ""
 "{} {} \"{}\".\n"
 "{}"
-msgstr ""
+msgstr "{} {}“{}”。\\n{}"
 
 msgid "Couldn't create a link"
-msgstr ""
+msgstr "无法创建链接"
 
 msgid "Couldn't create a link: {}"
-msgstr ""
+msgstr "无法创建链接：{}"
 
 msgid "Couldn't open it online"
-msgstr ""
+msgstr "无法在线打开"
 
 msgid "{} — {}"
-msgstr ""
+msgstr "{} — {}"
 
 msgid "{}. Open Settings to fix it."
-msgstr ""
+msgstr "{}。请打开“设置”进行修复。"
 
 msgid "No accounts yet — open Settings to add one"
-msgstr ""
+msgstr "尚无帐户 — 请打开“设置”添加帐户"
 
 msgid "Version {} is out — get it…"
-msgstr ""
+msgstr "版本 {} 已发布 — 获取更新…"
 
 msgid "How to fix this…"
-msgstr ""
+msgstr "如何修复…"
 
 msgid "Show activity…"
-msgstr ""
+msgstr "显示活动…"
 
 msgid "For 1 hour"
-msgstr ""
+msgstr "1 小时"
 
 msgid "For 4 hours"
-msgstr ""
+msgstr "4 小时"
 
 msgid "Until tomorrow morning"
-msgstr ""
+msgstr "暂停到明天早上"
 
 msgid "Settings and accounts…"
-msgstr ""
+msgstr "设置和帐户…"
 
 msgid "Quit and stop syncing"
-msgstr ""
+msgstr "退出并停止同步"
 
 msgid "Quit tray icon"
-msgstr ""
+msgstr "退出托盘图标"
 
 msgid "Microsoft needs you to sign in again"
-msgstr ""
+msgstr "需要重新登录 Microsoft"
 
 msgid "The OneDrive Client for Linux isn't installed"
-msgstr ""
+msgstr "尚未安装 OneDrive Client for Linux"
 
 msgid "The OneDrive Client for Linux ({}) is too old"
-msgstr ""
+msgstr "OneDrive Client for Linux ({}) 版本过旧"
 
 msgid ""
 "{} were deleted on this computer, so syncing stopped before deleting them "
 "online. Click the OneDrive icon to choose what to do."
-msgstr ""
+msgstr "此计算机上删除了 {} 个项目，因此同步已在在线删除这些项目之前停止。请点击 OneDrive 图标选择处理方式。"
 
 msgid "Microsoft needs you to sign in again. Open the tray menu to fix it."
-msgstr ""
+msgstr "需要重新登录 Microsoft。请打开托盘菜单进行处理。"
 
 msgid ""
 "The sync engine needs a full resync. Open Settings to review and apply it."
-msgstr ""
+msgstr "同步引擎需要完全重新同步。请打开“设置”检查并应用。"
 
 msgid ""
 "Syncing has stopped making progress, though it is still running. Click the "
 "OneDrive icon and choose Sync now to restart it."
-msgstr ""
+msgstr "同步仍在运行，但已停止取得进展。请点击 OneDrive 图标并选择“立即同步”以重新启动。"
 
 msgid "Syncing hit an error. Open the tray menu for details."
-msgstr ""
+msgstr "同步遇到错误。请打开托盘菜单查看详情。"
 
 msgid ""
 "Linux's limit on folders watched for changes ran out, so some changes on "
 "this computer won't sync right away. Open Settings to raise it."
-msgstr ""
+msgstr "Linux 的文件夹更改监视额度已用完，因此此计算机上的部分更改不会立即同步。请打开“设置”提高额度。"
 
 msgid ""
 "{} is full ({}). New and changed files won't upload until you free up space "
 "or get more storage."
-msgstr ""
+msgstr "{} 已满（{}）。释放空间或购买更多存储空间后，才能上传新文件和已更改的文件。"
 
 msgid ""
 "{} is almost full ({}). Free up space or get more storage before uploads "
 "stop."
-msgstr ""
+msgstr "{} 快满了（{}）。请在上传停止前释放空间或购买更多存储空间。"
 
 msgid "OneDrive: a new version is out"
-msgstr ""
+msgstr "OneDrive：有新版本可用"
 
 msgid ""
 "Version {} of this app is available. Click the OneDrive tray icon (or right-"
 "click it) to get it."
-msgstr ""
+msgstr "此应用的 {} 版本现已推出。点击 OneDrive 托盘图标（或右键点击）获取更新。"
 
 msgid "OneDrive: the sync engine has an update"
-msgstr ""
+msgstr "OneDrive：同步引擎有可用更新"
 
 msgid ""
 "Version {} of the OneDrive Client for Linux is out (you have {}). Open "
 "Settings to update it."
-msgstr ""
+msgstr "OneDrive Client for Linux 的 {} 版本已发布（你当前使用的是 {}）。请打开“设置”进行更新。"
 
 msgid "Preview recovery needs attention"
-msgstr ""
+msgstr "预览恢复需要处理"
 
 msgid ""
 "Sync services weren't started because preview settings couldn't be put back: "
 "{}"
-msgstr ""
+msgstr "无法还原预览设置，因此未启动同步服务：{}"
 
 msgid "Microsoft needs you to sign in again."
-msgstr ""
+msgstr "需要重新登录 Microsoft。"
 
 msgid ""
 "Glass is on: your desktop blurs what's behind windows, so the window is see-"
 "through."
-msgstr ""
+msgstr "玻璃效果已开启：桌面会模糊窗口后方的内容，因此窗口是半透明的。"
 
 msgid "Glass is off because your desktop asks for high contrast."
-msgstr ""
+msgstr "桌面要求使用高对比度，因此玻璃效果已关闭。"
 
 msgid ""
 "Glass is off: your desktop doesn't blur what's behind windows, so the window "
 "stays solid and easy to read. If yours does (Hyprland with blur switched on, "
 "for example), choose On."
-msgstr ""
+msgstr "玻璃效果已关闭：桌面不会模糊窗口后方的内容，因此窗口保持不透明，便于阅读。如果你的桌面支持模糊效果（例如启用了模糊的 Hyprland），请选择“开启”。"
 
 msgid ""
 "Always see-through. If the window looks washed out, your desktop doesn't "
 "blur behind it: choose Automatic."
-msgstr ""
+msgstr "始终半透明。如果窗口看起来发白，说明桌面不会模糊其后方内容：请选择“自动”。"
 
 msgid "Always solid."
-msgstr ""
+msgstr "始终不透明。"
 
 msgid "The sync service stopped with an error. Try \"Sync now\"."
-msgstr ""
+msgstr "同步服务因错误而停止。请尝试“立即同步”。"
 
 msgid ""
 "The sync engine needs a full resync before it can continue. Open the Folders "
 "tab and press \"Apply changes…\", or turn on \"Allow full resyncs\" in "
 "Options and save."
-msgstr ""
+msgstr "同步引擎需要完全重新同步才能继续。请打开“文件夹”标签并点击“应用更改…”，或在“选项”中开启“允许完全重新同步”后保存。"
 
 msgid ""
 "Microsoft no longer accepts the saved sign-in (this happens after a password "
 "change, or when access is revoked). Sign in again to continue."
-msgstr ""
+msgstr "Microsoft 不再接受已保存的登录信息（密码更改或访问权限被撤销后可能发生）。请重新登录以继续。"
 
 msgid ""
 "The sync engine is running but has stopped making progress, so changes "
 "aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, "
 "check your network connection."
-msgstr ""
+msgstr "同步引擎正在运行，但已停止取得进展，因此更改没有同步。点击“立即同步”重新启动。如果问题持续发生，请检查网络连接。"
 
 msgid "Everything in this account"
-msgstr ""
+msgstr "此帐户中的所有内容"
 
 msgid "comes"
-msgstr ""
+msgstr "需要"
 
 msgid "Newly ticked folders"
-msgstr ""
+msgstr "新勾选的文件夹"
 
 msgid "come"
-msgstr ""
+msgstr "需要"
 
 msgid "at least {}"
-msgstr ""
+msgstr "至少 {}"
 
 msgid ""
 "{} {} to {}, more than the {} free on this drive. Some files won't fit; free "
 "up space or tick less."
-msgstr ""
+msgstr "{} {}，需要 {}，超过了此磁盘剩余的 {}。部分文件无法存放；请释放空间或减少勾选的文件夹。"
 
 msgid "{}: {}. Free on this drive: {}."
-msgstr ""
+msgstr "{}：{}。此磁盘剩余空间：{}。"
 
 msgid "{} of {} used"
-msgstr ""
+msgstr "已使用 {} / {}"
 
 msgid "{} used"
-msgstr ""
+msgstr "已使用 {}"
 
 msgid "{} (set by hand)"
-msgstr ""
+msgstr "{}（手动设置）"
 
 msgid "needs \"Treat this computer as the source of truth\" on too"
-msgstr ""
+msgstr "还需要启用“以此计算机为准”"
 
 msgid "can't be used with Upload only"
-msgstr ""
+msgstr "不能与“仅上传”同时使用"
 
 msgid "needs an address"
-msgstr ""
+msgstr "需要填写地址"
 
 msgid "couldn't create it: {}"
-msgstr ""
+msgstr "无法创建：{}"
 
 msgid "Couldn't run the client: {}"
-msgstr ""
+msgstr "无法运行客户端：{}"
 
 msgid ""
 "Turn on \"Write a log file\" under Advanced and save first. Until then the "
 "app reads the system journal instead."
-msgstr ""
+msgstr "请先在“高级”中开启“写入日志文件”并保存。在此之前，应用会读取系统日志。"
 
 msgid ""
 "{} doesn't exist yet. The client creates it when it next writes to the log."
-msgstr ""
+msgstr "{} 尚不存在。客户端下次写入日志时会创建它。"
 
 msgid ""
 "Folders to skip: remove the empty entry (two | in a row, or one at an end)."
-msgstr ""
+msgstr "要跳过的文件夹：请删除空项目（两个 | 连在一起，或 | 位于开头或结尾）。"
 
 msgid ""
 "Folders to skip: \".*\" isn't allowed (it would hide all your changes). To "
 "skip hidden folders, use \"Don't sync hidden files and folders\"."
-msgstr ""
+msgstr "要跳过的文件夹：不允许使用 \".*\"（这会隐藏所有更改）。如需跳过隐藏文件夹，请使用“不同步隐藏文件和文件夹”。"
 
 msgid "Changes {}'s save folder. Turning this off puts it back."
-msgstr ""
+msgstr "更改 {} 的保存文件夹。关闭此选项会将其恢复。"
 
 msgid "No supported screenshot tool was found."
-msgstr ""
+msgstr "未找到受支持的截图工具。"
 
 msgid "Add a OneDrive account before turning this on."
-msgstr ""
+msgstr "开启此选项前，请先添加 OneDrive 帐户。"
 
 msgid "Couldn't change the screenshot folder: {}"
-msgstr ""
+msgstr "无法更改截图文件夹：{}"
 
 msgid "The screenshot folder path contains a character the tool can't save."
-msgstr ""
+msgstr "截图文件夹路径包含该工具无法保存的字符。"
 
 msgid "Couldn't save the setting: {}"
-msgstr ""
+msgstr "无法保存设置：{}"
 
 msgid "{}. Couldn't clear the saved setting either: {}"
-msgstr ""
+msgstr "{}。也无法清除已保存的设置：{}"
 
 msgid "Screenshots will be saved in {}."
-msgstr ""
+msgstr "截图将保存到 {}。"
 
 msgid "Couldn't restore {}: {}"
-msgstr ""
+msgstr "无法还原 {}：{}"
 
 msgid ""
 "The screenshot tool's save folder was changed since, so it was left as it is."
-msgstr ""
+msgstr "截图工具的保存文件夹后来被更改，因此未作改动。"
 
 msgid "{} changed while DriveDeck was updating it, so it was left as it is."
-msgstr ""
+msgstr "DriveDeck 更新期间 {} 发生了变化，因此未作改动。"
 
 msgid "{} isn't a regular file."
-msgstr ""
+msgstr "{} 不是普通文件。"
 
 msgid "Couldn't write {}: {}"
-msgstr ""
+msgstr "无法写入 {}：{}"
 
 msgid ""
 "Schedule times must be two different 24-hour times like 23:00 and 07:00."
-msgstr ""
+msgstr "计划时间必须是两个不同的 24 小时制时间，例如 23:00 和 07:00。"
 
 msgid "The number of items for a big delete {}."
-msgstr ""
+msgstr "大量删除时的项目数 {}。"
 
 msgid "Nothing was saved: fix the settings marked in red under Advanced."
-msgstr ""
+msgstr "未保存任何内容：请修复“高级”中标红的设置。"
 
 msgid "Couldn't save settings: {}"
-msgstr ""
+msgstr "无法保存设置：{}"
 
 msgid "Couldn't save: {}"
-msgstr ""
+msgstr "无法保存：{}"
 
 msgid ""
 "Saved, except the settings marked * — they need a full resync, which is "
 "turned off for this account."
-msgstr ""
+msgstr "已保存，但标有 * 的设置除外——这些设置需要完全重新同步，而此帐户已关闭此功能。"
 
 msgid ""
 "The settings marked * weren't saved: they need a full resync, which is "
 "turned off for this account. Check the preview for the new direction."
-msgstr ""
+msgstr "未保存标有 * 的设置：这些设置需要完全重新同步，而此帐户已关闭此功能。请检查新同步方向的预览。"
 
 msgid ""
 "Files here that aren't online are deleted, including new files you put in "
 "this folder from now on."
-msgstr ""
+msgstr "此处存在但云端没有的文件将被删除，包括今后放入此文件夹的新文件。"
 
 msgid "Change sync direction"
-msgstr ""
+msgstr "更改同步方向"
 
 msgid "Saved. The settings marked * need a full resync — check the preview."
-msgstr ""
+msgstr "已保存。标有 * 的设置需要完全重新同步 — 请检查预览。"
 
 msgid "Apply file settings"
-msgstr ""
+msgstr "应用文件设置"
 
 msgid "Counting everything inside the deleted folders, that's {} items in all."
-msgstr ""
+msgstr "包括已删除文件夹中的所有内容，总计 {} 个项目。"
 
 msgid ""
 "Items deleted online go to the OneDrive recycle bin, where they can be "
 "restored for a while."
-msgstr ""
+msgstr "在线删除的项目会进入 OneDrive 回收站，并可在一段时间内还原。"
 
 msgid "Delete them online too"
-msgstr ""
+msgstr "也在线删除这些项目"
 
 msgid "Download them again"
-msgstr ""
+msgstr "重新下载这些项目"
 
 msgid "The deleted items are downloaded again from OneDrive."
-msgstr ""
+msgstr "已删除的项目将从 OneDrive 重新下载。"
 
 msgid "Couldn't read the folder-selection rules: {}"
-msgstr ""
+msgstr "无法读取文件夹选择规则：{}"
 
 msgid "Sign in to choose folders."
-msgstr ""
+msgstr "请登录以选择文件夹。"
 
 msgid "Couldn't load folders: {}"
-msgstr ""
+msgstr "无法加载文件夹：{}"
 
 msgid ""
 "Full resyncs are turned off for this account (Options), so folder choices "
 "are locked."
-msgstr ""
+msgstr "此帐户已关闭完全重新同步（“选项”），因此无法更改文件夹选择。"
 
 msgid "Tick at least one folder, or choose \"Sync everything\"."
-msgstr ""
+msgstr "至少勾选一个文件夹，或选择“同步所有内容”。"
 
 msgid "Change synced folders"
-msgstr ""
+msgstr "更改同步文件夹"
 
 msgid "Preparing the preview…"
-msgstr ""
+msgstr "正在准备预览…"
 
 msgid "Checking the sync service…"
-msgstr ""
+msgstr "正在检查同步服务…"
 
 msgid ""
 "Couldn't protect this account from a second sync process, so the preview was "
 "not started: {}"
-msgstr ""
+msgstr "无法阻止第二个同步进程操作此帐户，因此未启动预览：{}"
 
 msgid "Couldn't safely prepare the preview because {} couldn't be read: {}"
-msgstr ""
+msgstr "无法安全准备预览，因为无法读取 {}：{}"
 
 msgid "Preview state disappeared before it could be saved."
-msgstr ""
+msgstr "预览状态在保存前消失了。"
 
 msgid ""
 "Couldn't safely start the preview because its recovery record couldn't be "
 "saved: {}"
-msgstr ""
+msgstr "无法安全启动预览，因为无法保存恢复记录：{}"
 
 msgid "Couldn't pause the sync engine, so no preview was run: {}"
-msgstr ""
+msgstr "无法暂停同步引擎，因此未运行预览：{}"
 
 msgid "Couldn't write the folder list: {}"
-msgstr ""
+msgstr "无法写入文件夹列表：{}"
 
 msgid "Couldn't write the settings: {}"
-msgstr ""
+msgstr "无法写入设置：{}"
 
 msgid "Couldn't start the sync engine: {}"
-msgstr ""
+msgstr "无法启动同步引擎：{}"
 
 msgid "Couldn't clear the recovery record: {}"
-msgstr ""
+msgstr "无法清除恢复记录：{}"
 
 msgid "Couldn't restore preview settings: {}"
-msgstr ""
+msgstr "无法还原预览设置：{}"
 
 msgid "Couldn't read the preview recovery record: {}"
-msgstr ""
+msgstr "无法读取预览恢复记录：{}"
 
 msgid "The preview recovery record is damaged: {}"
-msgstr ""
+msgstr "预览恢复记录已损坏：{}"
 
 msgid "Couldn't clear the committed preview record: {}"
-msgstr ""
+msgstr "无法清除已提交的预览记录：{}"
 
 msgid "Restoring the previous settings…"
-msgstr ""
+msgstr "正在还原之前的设置…"
 
 msgid "Cancelling…"
-msgstr ""
+msgstr "正在取消…"
 
 msgid "Resync started."
-msgstr ""
+msgstr "已开始重新同步。"
 
 msgid "The account disappeared and preview settings couldn't be restored: {}"
-msgstr ""
+msgstr "帐户已消失，无法还原预览设置：{}"
 
 msgid "The recovery record couldn't be committed: {}; the sync job was stopped"
-msgstr ""
+msgstr "无法提交恢复记录：{}；同步任务已停止"
 
 msgid ""
 "The sync job started, but its recovery state couldn't be saved or stopped: "
 "{}; {}. Restart this app to retry recovery. No other sync operation will "
 "start for this account in this session."
-msgstr ""
+msgstr "同步任务已启动，但无法保存恢复状态，也无法停止任务：{}；{}。请重新启动此应用以再次尝试恢复。在本次会话中，此帐户不会启动其他同步操作。"
 
 msgid ""
 "{}. The recovery record couldn't be refreshed, so syncing remains paused: {}"
-msgstr ""
+msgstr "{}。无法更新恢复记录，因此同步仍处于暂停状态：{}"
 
 msgid ""
 "{}. Preview settings couldn't be fully restored; syncing remains paused. {}"
-msgstr ""
+msgstr "{}。无法完全还原预览设置；同步仍处于暂停状态。{}"
 
 msgid "{}. The previous sync service couldn't be restarted: {}"
-msgstr ""
+msgstr "{}。无法重新启动之前的同步服务：{}"
 
 msgid "Preparing sign-in…"
-msgstr ""
+msgstr "正在准备登录…"
 
 msgid ""
 "Opening the Microsoft sign-in page in your browser…\n"
 "\n"
 "Log in and approve access. This window updates by itself when you're done."
-msgstr ""
+msgstr "正在浏览器中打开 Microsoft 登录页面…\\n\\n请登录并批准访问。完成后，此窗口会自动更新。"
 
 msgid ""
 "Couldn't protect this account from a second sync process, so sign-in was not "
 "started: {}"
-msgstr ""
+msgstr "无法阻止第二个同步进程操作此帐户，因此未开始登录：{}"
 
 msgid "Couldn't stop the sync engine before signing in: {}"
-msgstr ""
+msgstr "登录前无法停止同步引擎：{}"
 
 msgid ""
 "The sign-in was cancelled, but the previously running sync engine couldn't "
 "be restarted: {}"
-msgstr ""
+msgstr "登录已取消，但无法重新启动之前运行的同步引擎：{}"
 
 msgid ""
 "Couldn't start the sign-in process: {}. The previously running sync engine "
 "also couldn't be restarted: {}"
-msgstr ""
+msgstr "无法启动登录流程：{}。也无法重新启动之前运行的同步引擎：{}"
 
 msgid "Couldn't start the sign-in process: {}"
-msgstr ""
+msgstr "无法启动登录流程：{}"
 
 msgid ""
 "The sign-in window closed, but the previously running sync engine couldn't "
 "be restarted: {}"
-msgstr ""
+msgstr "登录窗口已关闭，但无法重新启动之前运行的同步引擎：{}"
 
 msgid ""
 "This account's settings folder was removed during sign-in. Add the account "
 "again to sign in."
-msgstr ""
+msgstr "登录过程中此帐户的设置文件夹已被删除。请重新添加帐户以登录。"
 
 msgid ""
 "Your browser couldn't hand the sign-in back automatically.\n"
 "\n"
 "After you log in you'll end up on a blank page. Copy that page's full "
 "address from the address bar and paste it below."
-msgstr ""
+msgstr "浏览器无法自动返回登录结果。\\n\\n登录后会显示一个空白页面。请从地址栏复制该页面的完整网址并粘贴到下方。"
 
 msgid "Signed in. Your files will start syncing in a moment."
-msgstr ""
+msgstr "已登录。文件即将开始同步。"
 
 msgid "Signed in."
-msgstr ""
+msgstr "已登录。"
 
 msgid "The sign-in didn't finish."
-msgstr ""
+msgstr "登录未完成。"
 
 msgid ""
 "Sign-in didn't complete.\n"
 "\n"
 "{}"
-msgstr ""
+msgstr "登录未完成。\\n\\n{}"
 
 msgid ""
 "Sign-in failed, and the previously running sync engine couldn't be "
 "restarted: {}"
-msgstr ""
+msgstr "登录失败，且无法重新启动之前运行的同步引擎：{}"
 
 msgid ""
 "Microsoft didn't accept the sign-in. Please try again, and make sure you "
 "finish logging in in the browser."
-msgstr ""
+msgstr "Microsoft 未接受此登录。请重试，并确保在浏览器中完成登录。"
 
 msgid "The sign-in timed out. Please try again."
-msgstr ""
+msgstr "登录超时。请重试。"
 
 msgid "Microsoft reported a problem: {}"
-msgstr ""
+msgstr "Microsoft 报告了一个问题：{}"
 
 msgid "Sync was enabled, but the tray couldn't be set to start at login: {}"
-msgstr ""
+msgstr "同步已启用，但无法设置托盘图标在登录时启动：{}"
 
 msgid "Sign-in finished, but setup wasn't fully completed: {}"
-msgstr ""
+msgstr "登录已完成，但设置未能全部完成：{}"
 
 msgid ""
 "That doesn't look like the right address — it should contain \"code=\". Copy "
 "the whole address of the blank page you land on after logging in."
-msgstr ""
+msgstr "这似乎不是正确的网址 — 网址中应包含 \"code=\"。请复制登录后显示的空白页面的完整网址。"
 
 msgid "Finishing sign-in…"
-msgstr ""
+msgstr "正在完成登录…"
 
 msgid "Couldn't find this account's settings folder: {}"
-msgstr ""
+msgstr "找不到此帐户的设置文件夹：{}"
 
 msgid "Couldn't protect this account from another sync operation: {}"
-msgstr ""
+msgstr "无法阻止此帐户被其他同步操作使用：{}"
 
 msgid "Couldn't stop background syncing, so you weren't signed out: {}"
-msgstr ""
+msgstr "无法停止后台同步，因此未将你登出：{}"
 
 msgid "Couldn't remove the saved sign-in: {}"
-msgstr ""
+msgstr "无法删除已保存的登录信息：{}"
 
 msgid "Signed out. Your files are still on this computer."
-msgstr ""
+msgstr "已登出。你的文件仍保留在此计算机上。"
 
 msgid ""
 "Signed out. Your files are still on this computer. (The sync engine "
 "reported: {})"
-msgstr ""
+msgstr "已登出。你的文件仍保留在此计算机上。（同步引擎报告：{}）"
 
 msgid ""
 "The account was left intact because its sync service couldn't be stopped: {}"
-msgstr ""
+msgstr "帐户未作更改，因为无法停止其同步服务：{}"
 
 msgid "The service stopped, but couldn't remove {}: {}"
-msgstr ""
+msgstr "服务已停止，但无法删除 {}：{}"
 
 msgid "The service stopped, but systemd couldn't reload its units: {}"
-msgstr ""
+msgstr "服务已停止，但 systemd 无法重新加载其单元：{}"
 
 msgid "Couldn't delete {}: {}"
-msgstr ""
+msgstr "无法删除 {}：{}"
 
 msgid ""
 "Add and sign in to a work or school OneDrive account first. Its sign-in is "
 "reused to reach SharePoint."
-msgstr ""
+msgstr "请先添加并登录工作或学校 OneDrive 帐户。此登录信息也会用于访问 SharePoint。"
 
 msgid "{}  ·  this computer's copy from {}"
-msgstr ""
+msgstr "{} · 此计算机上的副本，来自 {}"
 
 msgid "In OneDrive: {}"
-msgstr ""
+msgstr "OneDrive 中：{}"
 
 msgid "Backed up to \"{}\""
-msgstr ""
+msgstr "已备份到“{}”"
 
 msgid "Not set up on this computer"
-msgstr ""
+msgstr "此计算机尚未设置"
 
 msgid "Set to your whole home folder, so it can't be backed up"
-msgstr ""
+msgstr "已设置为整个个人文件夹，因此无法备份"
 
 msgid "Looking at your {} folder…"
-msgstr ""
+msgstr "正在检查你的 {} 文件夹…"
 
 msgid "1 file"
 msgid_plural "{n} files"
-msgstr[0] ""
+msgstr[0] "1 个文件"
 
 msgid ""
 "Your {} folder ({}) moves into OneDrive, at {}, and everything in it "
 "uploads: {}, {}. Your apps keep finding it in the same place."
-msgstr ""
+msgstr "你的 {} 文件夹（{}）将移到 OneDrive 的 {}，其中的所有内容都会上传：{}、{}。你的应用仍会在原位置找到它。"
 
 msgid "OneDrive is on the same drive, so the move is instant."
-msgstr ""
+msgstr "OneDrive 位于同一磁盘，因此移动会立即完成。"
 
 msgid "The desktop shows the new place after you next log in."
-msgstr ""
+msgstr "下次登录后，桌面将显示新的位置。"
 
 msgid ""
 "To undo it later, press Stop: your files stay in OneDrive and the folder "
 "here starts empty again, as on Windows."
-msgstr ""
+msgstr "如需以后撤销，请点击“停止”：文件会留在 OneDrive 中，此处的文件夹会重新变空，就像 Windows 上一样。"
 
 msgid ""
 "OneDrive is on another drive, so the files are copied. Nothing is deleted: "
 "your original folder is kept, renamed \"{}\". Once you've checked everything "
 "is in OneDrive, delete it yourself to free the space. "
-msgstr ""
+msgstr "OneDrive 位于另一个磁盘，因此文件会被复制。不会删除任何内容：原文件夹会保留并改名为“{}”。确认所有内容都已在 OneDrive 中后，请自行删除原文件夹以释放空间。"
 
 msgid ""
 "OneDrive already has this folder: your files join what's there, and any "
 "whose name is taken get \"{}\" added."
-msgstr ""
+msgstr "OneDrive 中已存在此文件夹：你的文件会添加到其中；如果名称已被占用，会在文件名后添加“{}”。"
 
 msgid "Back up your {} folder"
-msgstr ""
+msgstr "备份你的 {} 文件夹"
 
 msgid "Stop backing up {}?"
-msgstr ""
+msgstr "停止备份 {}？"
 
 msgid ""
 "Your files stay in OneDrive, at {}, and keep syncing there. Your {} folder "
 "on this computer starts empty again, and new files you put in it won't be "
 "backed up."
-msgstr ""
+msgstr "文件会保留在 OneDrive 的 {} 中，并继续在那里同步。此计算机上的 {} 文件夹会重新变空，之后放入其中的新文件将不会备份。"
 
 msgid ""
 "Nothing is moved back or deleted. To have the files here again, move them "
 "from {} yourself."
-msgstr ""
+msgstr "不会移回或删除任何内容。如需让文件重新出现在这里，请自行从 {} 移动它们。"
 
 msgid "Stop backing up"
-msgstr ""
+msgstr "停止备份"
 
 msgid "{} is now backed up to OneDrive."
-msgstr ""
+msgstr "{} 现在已备份到 OneDrive。"
 
 msgid ""
 "1 name was already taken in OneDrive, so it was saved with \"(from …)\" "
@@ -2919,687 +2919,687 @@ msgid ""
 msgid_plural ""
 "{n} names were already taken in OneDrive, so they were saved with \"(from …)"
 "\" added."
-msgstr[0] ""
+msgstr[0] "OneDrive 中已有一个同名项目，因此保存时添加了“（来自 …）”。"
 
 msgid ""
 "Your original folder is kept at {}: delete it yourself once you've checked "
 "your files in OneDrive."
-msgstr ""
+msgstr "原文件夹保留在 {}：确认 OneDrive 中的文件无误后，请自行删除它。"
 
 msgid ""
 "The desktop's folder setting couldn't be updated ({}); the link at the old "
 "place still works."
-msgstr ""
+msgstr "无法更新桌面文件夹设置（{}）；旧位置的链接仍然有效。"
 
 msgid "Stopped. Your files are still in OneDrive at {}."
-msgstr ""
+msgstr "已停止。你的文件仍在 OneDrive 的 {} 中。"
 
 msgid "Couldn't inspect the selected folder {}: {}"
-msgstr ""
+msgstr "无法检查所选文件夹 {}：{}"
 
 msgid "Couldn't clear the empty destination {}: {}"
-msgstr ""
+msgstr "无法清空空的目标文件夹 {}：{}"
 
 msgid "The destination {} changed after review."
-msgstr ""
+msgstr "检查后，目标位置 {} 发生了变化。"
 
 msgid ""
 "Copying to {} failed (is there enough space?). The original remains in {}."
-msgstr ""
+msgstr "复制到 {} 失败（空间是否足够？）。原文件仍保留在 {}。"
 
 msgid "Choose where to move the OneDrive folder"
-msgstr ""
+msgstr "选择 OneDrive 文件夹的移动位置"
 
 msgid ""
 "No folder chooser is available on this desktop, so the folder can't be moved "
 "from here."
-msgstr ""
+msgstr "此桌面没有可用的文件夹选择器，因此无法从此处移动文件夹。"
 
 msgid "Couldn't safely resolve the selected destination folder."
-msgstr ""
+msgstr "无法安全确定所选目标文件夹的位置。"
 
 msgid ""
 "{} is a symbolic link. Move the actual sync folder or choose a new folder in "
 "Options first."
-msgstr ""
+msgstr "{} 是符号链接。请先移动实际的同步文件夹，或在“选项”中选择新文件夹。"
 
 msgid "{} isn't there (is its drive connected?), so there's nothing to move."
-msgstr ""
+msgstr "{} 不存在（磁盘是否已连接？），因此没有内容可移动。"
 
 msgid "That folder overlaps with \"{}\" ({}). Pick a separate folder."
-msgstr ""
+msgstr "此文件夹与“{}”（{}）重叠。请选择另一个文件夹。"
 
 msgid "{} already exists and isn't empty. Pick an empty folder."
-msgstr ""
+msgstr "{} 已存在且不为空。请选择空文件夹。"
 
 msgid "Moving the folder to {}… The sync engine is paused meanwhile."
-msgstr ""
+msgstr "正在将文件夹移到 {}… 同步引擎暂时已暂停。"
 
 msgid "Couldn't stop the sync engine: {}"
-msgstr ""
+msgstr "无法停止同步引擎：{}"
 
 msgid "Couldn't recheck {}: {}"
-msgstr ""
+msgstr "无法重新检查 {}：{}"
 
 msgid ""
 "The current sync folder changed while the destination was being reviewed. "
 "Refresh and try again."
-msgstr ""
+msgstr "检查目标位置期间，同步文件夹发生了变化。请刷新后重试。"
 
 msgid ""
 "The destination drive changed while the folder move was being reviewed. "
 "Connect the intended drive and try again."
-msgstr ""
+msgstr "检查文件夹移动期间，目标磁盘发生了变化。请连接预定的磁盘后重试。"
 
 msgid "Couldn't move the folder: {}"
-msgstr ""
+msgstr "无法移动文件夹：{}"
 
 msgid "Couldn't save the new folder in the settings: {}"
-msgstr ""
+msgstr "无法在设置中保存新文件夹：{}"
 
 msgid ""
 "Couldn't save the new folder in the settings: {}; rollback also failed: {}"
-msgstr ""
+msgstr "无法在设置中保存新文件夹：{}；回滚也失败：{}"
 
 msgid ""
 "The folder operation finished, but the sync engine couldn't be restarted: {}"
-msgstr ""
+msgstr "文件夹操作已完成，但无法重新启动同步引擎：{}"
 
 msgid ""
 "Folder moved. The sync engine needs a full resync to carry on there — check "
 "the preview."
-msgstr ""
+msgstr "文件夹已移动。同步引擎需要完全重新同步才能继续 — 请检查预览。"
 
 msgid ""
 "Folder copied. Your old folder ({}) was left untouched and is no longer "
 "synced: once you've checked your files in the new place, delete it yourself "
 "to free the space. Next, check the preview to carry on syncing."
-msgstr ""
+msgstr "文件夹已复制。旧文件夹（{}）未作更改，但不再同步：确认新位置的文件无误后，请自行删除旧文件夹以释放空间。然后检查预览以继续同步。"
 
 msgid "Finish moving the folder"
-msgstr ""
+msgstr "完成文件夹移动"
 
 msgid ""
 "Your files are already in the new folder, so little or nothing should need "
 "to transfer."
-msgstr ""
+msgstr "文件已在新文件夹中，因此几乎不需要传输内容。"
 
 msgid "Add and sign in to a work or school account first."
-msgstr ""
+msgstr "请先添加并登录工作或学校帐户。"
 
 msgid "Checking the OneDrive client…"
-msgstr ""
+msgstr "正在检查 OneDrive 客户端…"
 
 msgid "Give the account a name and pick a local folder."
-msgstr ""
+msgstr "为帐户命名并选择本地文件夹。"
 
 msgid ""
 "A national cloud account needs your organisation's tenant (ask its IT team)."
-msgstr ""
+msgstr "国家云帐户需要组织的租户信息（请联系 IT 团队）。"
 
 msgid "The tenant {}."
-msgstr ""
+msgstr "租户：{}。"
 
 msgid "You already have an account called \"{}\". Pick a different name."
-msgstr ""
+msgstr "你已有一个名为“{}”的帐户。请选择其他名称。"
 
 msgid "Search for and pick a library first."
-msgstr ""
+msgstr "请先搜索并选择文档库。"
 
 msgid "Couldn't copy the sign-in: {}"
-msgstr ""
+msgstr "无法复制登录信息：{}"
 
 msgid "Created the account but couldn't find it again — try reopening the app."
-msgstr ""
+msgstr "帐户已创建，但无法再次找到 — 请尝试重新打开应用。"
 
 msgid "Couldn't create the autostart folder: {}"
-msgstr ""
+msgstr "无法创建自动启动文件夹：{}"
 
 msgid "OneDrive sync status"
-msgstr ""
+msgstr "OneDrive 同步状态"
 
 msgid "Couldn't save the autostart setting: {}"
-msgstr ""
+msgstr "无法保存自动启动设置：{}"
 
 msgid "Couldn't remove {}: {}"
-msgstr ""
+msgstr "无法移除 {}：{}"
 
 msgid "Checking the sync engine…"
-msgstr ""
+msgstr "正在检查同步引擎…"
 
 msgid "Sync engine: OneDrive Client for Linux {} ({})"
-msgstr ""
+msgstr "同步引擎：OneDrive Client for Linux {}（{}）"
 
 msgid ""
 "Sync engine: OneDrive Client for Linux {} ({}) — too old, please update it."
-msgstr ""
+msgstr "同步引擎：OneDrive Client for Linux {}（{}）版本过旧，请更新。"
 
 msgid "Sync engine: the OneDrive Client for Linux isn't installed."
-msgstr ""
+msgstr "同步引擎：尚未安装 OneDrive Client for Linux。"
 
 msgid ""
 "Added. Look for \"DriveDeck for OneDrive\" in your applications menu. Right-"
 "clicking a file in Dolphin now also shows a OneDrive menu with \"Copy view-"
 "only link\", \"Copy editing link\" and \"View on the OneDrive website\"."
-msgstr ""
+msgstr "已添加。在应用程序菜单中查找“DriveDeck for OneDrive”。现在，在 Dolphin 中右键点击文件时也会显示 OneDrive 菜单，其中包含“复制只读链接”、“复制编辑链接”和“在 OneDrive 网站上查看”。"
 
 msgid "Couldn't add it: {}"
-msgstr ""
+msgstr "无法添加：{}"
 
 msgid "Found the OneDrive client ({}). You're ready to sync."
-msgstr ""
+msgstr "已找到 OneDrive 客户端（{}）。现在可以开始同步。"
 
 msgid "Your OneDrive Client for Linux ({}) is too old"
-msgstr ""
+msgstr "你的 OneDrive Client for Linux（{}）版本过旧"
 
 msgid "Your computer will ask for your password…"
-msgstr ""
+msgstr "计算机将提示你输入密码…"
 
 msgid ""
 "Nothing was changed: your computer didn't allow it (the password wasn't "
 "accepted, or no password window could be shown)."
-msgstr ""
+msgstr "未作任何更改：计算机未允许此操作（密码未被接受，或无法显示密码窗口）。"
 
 msgid "Couldn't start the installer: {}"
-msgstr ""
+msgstr "无法启动安装程序：{}"
 
 msgid "The OneDrive client is updated to {}."
-msgstr ""
+msgstr "OneDrive 客户端已更新到 {}。"
 
 msgid "The OneDrive client is installed. You're ready to sync."
-msgstr ""
+msgstr "OneDrive 客户端已安装。现在可以开始同步。"
 
 msgid ""
 "It finished, but the OneDrive client still isn't working. The instructions "
 "show how to install it by hand."
-msgstr ""
+msgstr "操作已完成，但 OneDrive 客户端仍无法运行。说明中介绍了如何手动安装。"
 
 msgid "Couldn't open OneDrive settings"
-msgstr ""
+msgstr "无法打开 OneDrive 设置"
 
 msgid "The window couldn't open ({})."
-msgstr ""
+msgstr "无法打开窗口（{}）。"
 
 msgid "Couldn't save the account name: {}"
-msgstr ""
+msgstr "无法保存帐户名称：{}"
 
 msgid "Renamed."
-msgstr ""
+msgstr "已重命名。"
 
 msgid "Syncing now…"
-msgstr ""
+msgstr "正在同步…"
 
 msgid "Saved as {}. It opens now: read it before sharing it."
-msgstr ""
+msgstr "已另存为 {}。现已打开：请先阅读，再进行共享。"
 
 msgid "Couldn't remove {}"
-msgstr ""
+msgstr "无法移除 {}"
 
 msgid "Added. Close every Dolphin window and open it again to see the badges."
-msgstr ""
+msgstr "已添加。请关闭所有 Dolphin 窗口并重新打开，以查看状态徽标。"
 
 msgid "Once it's installed, this note goes away by itself."
-msgstr ""
+msgstr "安装完成后，此提示会自动消失。"
 
 msgid "Couldn't save that: {}"
-msgstr ""
+msgstr "无法保存：{}"
 
 msgid "The app file {} will be deleted."
-msgstr ""
+msgstr "将删除应用文件 {}。"
 
 msgid ""
 "The app's package will then be removed; your computer will ask for your "
 "password."
-msgstr ""
+msgstr "随后将移除应用的软件包；计算机将提示你输入密码。"
 
 msgid "Afterwards, remove the \"{}\" package with your software manager."
-msgstr ""
+msgstr "之后，请使用软件管理器移除“{}”软件包。"
 
 msgid "This copy isn't installed, so only your settings are removed."
-msgstr ""
+msgstr "此副本未安装，因此只会移除设置。"
 
 msgid ""
 "The tray icon didn't close. Log out and back in once this is done to be sure "
 "it's gone."
-msgstr ""
+msgstr "托盘图标未关闭。完成后请注销并重新登录，以确保它已退出。"
 
 msgid ""
 "Your accounts keep syncing in the background with the OneDrive Client for "
 "Linux."
-msgstr ""
+msgstr "你的帐户仍由 OneDrive Client for Linux 在后台同步。"
 
 msgid ""
 "{} was left untouched because its settings folder couldn't be checked: {}"
-msgstr ""
+msgstr "未更改 {}，因为无法检查其设置文件夹：{}"
 
 msgid ""
 "{} was left untouched because its one-time sync job couldn't be stopped: {}"
-msgstr ""
+msgstr "未更改 {}，因为无法停止其一次性同步任务：{}"
 
 msgid "{} was left untouched because its sync service couldn't be stopped: {}"
-msgstr ""
+msgstr "未更改 {}，因为无法停止其同步服务：{}"
 
 msgid ""
 "{} was stopped, but its service couldn't be disabled. Its files and service "
 "were left intact: {}"
-msgstr ""
+msgstr "{} 已停止，但无法禁用其服务。其文件和服务均保持原样：{}"
 
 msgid ""
 "{} was stopped, but its service file couldn't be removed. Its account files "
 "were left intact: {}"
-msgstr ""
+msgstr "{} 已停止，但无法移除其服务文件。帐户文件保持原样：{}"
 
 msgid ""
 "{} was stopped and disabled, but its custom service file at {} was left in "
 "place."
-msgstr ""
+msgstr "{} 已停止并禁用，但位于 {} 的自定义服务文件仍保留。"
 
 msgid ""
 "{}: signed out and its sync settings removed. The files in {} are still "
 "there."
-msgstr ""
+msgstr "{}：已登出并移除同步设置。文件仍保留在 {} 中。"
 
 msgid ""
 "{} also holds files that aren't the OneDrive client's, so they and the "
 "folder were kept."
-msgstr ""
+msgstr "{} 中还包含不属于 OneDrive 客户端的文件，因此这些文件和文件夹均已保留。"
 
 msgid ""
 "The account services were removed, but systemd couldn't reload its unit "
 "list: {}"
-msgstr ""
+msgstr "帐户服务已移除，但 systemd 无法重新加载单元列表：{}"
 
 msgid "Couldn't delete {}: {}. Delete it yourself to finish."
-msgstr ""
+msgstr "无法删除 {}：{}。请自行删除以完成操作。"
 
 msgid ""
 "The package wasn't removed (the password prompt may have been cancelled). "
 "Remove \"{}\" with your software manager to finish."
-msgstr ""
+msgstr "软件包未移除（可能取消了密码提示）。请使用软件管理器移除“{}”以完成操作。"
 
 msgid "Remove the \"{}\" package with your software manager to finish."
-msgstr ""
+msgstr "请使用软件管理器移除“{}”软件包以完成操作。"
 
 msgid "0 means never. Too low cuts off large transfers."
-msgstr ""
+msgstr "0 表示永不超时。数值太低会中断大型传输。"
 
 msgid "0 syncs files of any size."
-msgstr ""
+msgstr "0 表示同步任意大小的文件。"
 
 msgid ""
 "10 to 60 MB, in steps of 5. Bigger pieces can be faster on fast, steady "
 "connections."
-msgstr ""
+msgstr "范围为 10 到 60 MB，步长为 5。在快速稳定的连接上，较大的分块可能更快。"
 
 msgid "600 means only you can read them."
-msgstr ""
+msgstr "600 表示只有你可以读取这些文件。"
 
 msgid "700 means only you can open them."
-msgstr ""
+msgstr "700 表示只有你可以打开这些文件夹。"
 
 msgid "Add the OneDrive folder to the file manager's sidebar"
-msgstr ""
+msgstr "将 OneDrive 文件夹添加到文件管理器侧边栏"
 
 msgid "Also delete the emptied folders"
-msgstr ""
+msgstr "同时删除已清空的文件夹"
 
 msgid "Always sync files at the top of the OneDrive folder"
-msgstr ""
+msgstr "始终同步 OneDrive 文件夹顶层的文件"
 
 msgid "Application ID"
-msgstr ""
+msgstr "应用程序 ID"
 
 msgid "As found"
-msgstr ""
+msgstr "按检测到的设置"
 
 msgid "Ask for read-only access"
-msgstr ""
+msgstr "请求只读访问权限"
 
 msgid "By name, A to Z"
-msgstr ""
+msgstr "按名称升序排列"
 
 msgid "By name, Z to A"
-msgstr ""
+msgstr "按名称降序排列"
 
 msgid "Can fix transfers that stall on some networks and proxies."
-msgstr ""
+msgstr "可修复在某些网络和代理上停滞的传输。"
 
 msgid ""
 "Counted in sync checks (set under When to sync). Lower catches missed online "
 "changes sooner but uses more data."
-msgstr ""
+msgstr "计入同步检查（在“同步时间”下设置）。数值较低能更快发现遗漏的在线更改，但会使用更多数据。"
 
 msgid "Delete files here after they upload"
-msgstr ""
+msgstr "文件上传后删除本地副本"
 
 msgid "Delete permanently online (skip the OneDrive recycle bin)"
-msgstr ""
+msgstr "在线永久删除（跳过 OneDrive 回收站）"
 
 msgid "Don't check downloads"
-msgstr ""
+msgstr "不检查下载"
 
 msgid "Don't check for new client versions"
-msgstr ""
+msgstr "不检查客户端新版本"
 
 msgid "Don't check uploads"
-msgstr ""
+msgstr "不检查上传"
 
 msgid "Don't get instant online changes"
-msgstr ""
+msgstr "不即时获取在线更改"
 
 msgid "Don't set permissions on downloaded files"
-msgstr ""
+msgstr "不设置下载文件的权限"
 
 msgid "Don't sync files larger than"
-msgstr ""
+msgstr "不同步大于此大小的文件"
 
 msgid "Don't sync if the drive isn't mounted"
-msgstr ""
+msgstr "磁盘未挂载时不同步"
 
 msgid "Downloads stop rather than fill the disk."
-msgstr ""
+msgstr "下载会停止，而不会占满磁盘。"
 
 msgid "Drop idle connections after"
-msgstr ""
+msgstr "在此时间后断开空闲连接"
 
 msgid "Files transferred at once"
-msgstr ""
+msgstr "同时传输的文件数"
 
 msgid "Folders to skip must match the whole path"
-msgstr ""
+msgstr "要跳过的文件夹必须匹配完整路径"
 
 msgid ""
 "For moving files to OneDrive, usually with Upload only. Leaves the folders "
 "behind."
-msgstr ""
+msgstr "用于将文件移动到 OneDrive，通常配合“仅上传”使用。原文件夹会保留。"
 
 msgid "Full online check every"
-msgstr ""
+msgstr "完整在线检查间隔"
 
 msgid "Get online changes through a webhook"
-msgstr ""
+msgstr "通过 webhook 获取在线更改"
 
 msgid "Give up connecting after"
-msgstr ""
+msgstr "连接失败后放弃的时间"
 
 msgid "Give up on any single request after"
-msgstr ""
+msgstr "单个请求超时后放弃"
 
 msgid "Give up when no data arrives for"
-msgstr ""
+msgstr "无数据到达后放弃的时间"
 
 msgid ""
 "Helps with apps that save on every keystroke (Obsidian and other note apps)."
-msgstr ""
+msgstr "适用于每次按键都会保存的应用（Obsidian 和其他笔记应用）。"
 
 msgid "Identify as"
-msgstr ""
+msgstr "标识为"
 
 msgid "In addition to the system journal the app already reads."
-msgstr ""
+msgstr "除应用已读取的系统日志外，也会记录这些内容。"
 
 msgid "Items deleted here can't be restored online afterwards."
-msgstr ""
+msgstr "在此删除的项目之后无法在线还原。"
 
 msgid ""
 "Items online that aren't on this computer are deleted online instead of "
 "downloaded. Check with a dry run first."
-msgstr ""
+msgstr "在线存在但此计算机上没有的项目会被在线删除，而不是下载。请先运行模拟检查。"
 
 msgid "Keep SharePoint's changed copy as a new version"
-msgstr ""
+msgstr "将 SharePoint 修改后的副本保留为新版本"
 
 msgid "Keep this much disk space free"
-msgstr ""
+msgstr "至少保留这么多磁盘空间"
 
 msgid ""
 "Keeps file dates exactly right online, at the cost of a little speed for "
 "small files."
-msgstr ""
+msgstr "确保在线文件日期准确，但会稍微降低小文件的处理速度。"
 
 msgid "Largest first"
-msgstr ""
+msgstr "从最大项开始"
 
 msgid "Leave empty for the app's own folder (~/.local/share/drivedeck/logs)."
-msgstr ""
+msgstr "留空以使用应用自己的文件夹（~/.local/share/drivedeck/logs）。"
 
 msgid "Leave empty for the client's own name, which Microsoft throttles least."
-msgstr ""
+msgstr "留空以使用客户端默认名称，Microsoft 对其限制最少。"
 
 msgid ""
 "Leaves permissions to the folder (needed on drives that don't support Linux "
 "permissions, like NTFS or exFAT)."
-msgstr ""
+msgstr "使用文件夹的权限（适用于不支持 Linux 权限的磁盘，例如 NTFS 或 exFAT）。"
 
 msgid "Listen on address"
-msgstr ""
+msgstr "监听地址"
 
 msgid "Listen on port"
-msgstr ""
+msgstr "监听端口"
 
 msgid "Log all network traffic"
-msgstr ""
+msgstr "记录所有网络流量"
 
 msgid "Log folder"
-msgstr ""
+msgstr "日志文件夹"
 
 msgid "Log routine checks only every"
-msgstr ""
+msgstr "常规检查的日志间隔"
 
 msgid "Log the speed of each transfer"
-msgstr ""
+msgstr "记录每次传输的速度"
 
 msgid "Logging"
-msgstr ""
+msgstr "日志记录"
 
 msgid "Lower this if a router or firewall cuts connections that sit idle."
-msgstr ""
+msgstr "如果路由器或防火墙会断开空闲连接，请调低此值。"
 
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 msgid "Make OneDrive match this computer exactly"
-msgstr ""
+msgstr "让 OneDrive 与此计算机完全一致"
 
 msgid "More than 8 rarely helps and can get you throttled by Microsoft."
-msgstr ""
+msgstr "超过 8 通常没有帮助，还可能被 Microsoft 限速。"
 
 msgid ""
 "Needs a public https address that forwards to this computer. Instant online "
 "changes usually make this unnecessary."
-msgstr ""
+msgstr "需要一个转发到此计算机的公共 HTTPS 地址。通常有即时在线更改时不需要此设置。"
 
 msgid "Network"
-msgstr ""
+msgstr "网络"
 
 msgid ""
 "Normally a clashing local file is kept under a new name. With this on, its "
 "changes are lost."
-msgstr ""
+msgstr "通常会用新名称保留冲突的本地文件。开启此选项后，该文件的更改会丢失。"
 
 msgid "Notify about every file synced"
-msgstr ""
+msgstr "每同步一个文件都通知"
 
 msgid "Online changes are then picked up at each sync check instead."
-msgstr ""
+msgstr "在线更改将改为在每次同步检查时获取。"
 
 msgid ""
 "Only for SharePoint libraries that change files after upload, which makes "
 "every check fail."
-msgstr ""
+msgstr "仅适用于上传后会修改文件、导致每次检查都失败的 SharePoint 文档库。"
 
 msgid "Only for government or national cloud accounts."
-msgstr ""
+msgstr "仅适用于政府云或国家云帐户。"
 
 msgid ""
 "Only for reporting a problem. The log then holds sign-in tokens: don't share "
 "it without removing them."
-msgstr ""
+msgstr "仅用于报告问题。日志届时会包含登录令牌：移除令牌前不要分享日志。"
 
 msgid "Only if your organisation registered its own app for the client."
-msgstr ""
+msgstr "仅当你的组织为客户端注册了自己的应用时使用。"
 
 msgid ""
 "Only when SharePoint reports the wrong size for files, so good downloads get "
 "thrown away."
-msgstr ""
+msgstr "仅当 SharePoint 报告的文件大小错误，导致正常下载被丢弃时使用。"
 
 msgid "Overwrite local files on a conflict instead of keeping a copy"
-msgstr ""
+msgstr "发生冲突时覆盖本地文件，而不是保留副本"
 
 msgid "Permissions for new files"
-msgstr ""
+msgstr "新文件的权限"
 
 msgid "Permissions for new folders"
-msgstr ""
+msgstr "新文件夹的权限"
 
 msgid "Public address"
-msgstr ""
+msgstr "公共地址"
 
 msgid ""
 "Put an empty file named .nosync in the mount point while the drive is "
 "unplugged. If it's ever visible, syncing stops instead of deleting "
 "everything online."
-msgstr ""
+msgstr "磁盘断开时，在挂载点放置一个名为 .nosync 的空文件。如果该文件变得可见，同步会停止，而不是删除云端的所有内容。"
 
 msgid "Quiets the log when nothing is changing."
-msgstr ""
+msgstr "没有更改时减少日志内容。"
 
 msgid "Record who created and last changed each file"
-msgstr ""
+msgstr "记录每个文件的创建者和最后修改者"
 
 msgid "Remember server addresses for"
-msgstr ""
+msgstr "记住服务器地址的时间"
 
 msgid "Renew the subscription every"
-msgstr ""
+msgstr "续订订阅的间隔"
 
 msgid ""
 "Required for a national cloud; otherwise only if your organisation asks."
-msgstr ""
+msgstr "国家云需要此项；其他情况下仅在组织要求时使用。"
 
 msgid "Retry a failed subscription after"
-msgstr ""
+msgstr "订阅失败后重试的间隔"
 
 msgid ""
 "SharePoint rewrites Office, PDF and HTML files after upload. Normally the "
 "client puts your original back."
-msgstr ""
+msgstr "上传后，SharePoint 会重写 Office、PDF 和 HTML 文件。通常客户端会还原原始文件。"
 
 msgid "Sign-in"
-msgstr ""
+msgstr "登录"
 
 msgid "Smallest first"
-msgstr ""
+msgstr "从最小项开始"
 
 msgid "Stop and ask when this many items are deleted at once"
-msgstr ""
+msgstr "一次删除这么多项目时停止并询问"
 
 msgid ""
 "Stored in the file's extended attributes (user.onedrive.createdBy, "
 "user.onedrive.lastModifiedBy)."
-msgstr ""
+msgstr "存储在文件扩展属性中（user.onedrive.createdBy、user.onedrive.lastModifiedBy）。"
 
 msgid "Subscription lasts"
-msgstr ""
+msgstr "订阅有效期"
 
 msgid "Syncing"
-msgstr ""
+msgstr "正在同步"
 
 msgid "The client can then only download. Uploads and online deletes fail."
-msgstr ""
+msgstr "此后客户端只能下载。上传和在线删除都会失败。"
 
 msgid ""
 "Then \"Projects/Old\" only skips that one folder, and a plain name only "
 "skips a folder at the top."
-msgstr ""
+msgstr "这样，“Projects/Old”只会跳过该文件夹，而普通名称只会跳过顶层文件夹。"
 
 msgid "Transfer files in this order"
-msgstr ""
+msgstr "按此顺序传输文件"
 
 msgid "Transfers"
-msgstr ""
+msgstr "传输"
 
 msgid "Trash folder"
-msgstr ""
+msgstr "回收站文件夹"
 
 msgid "Treat this computer as the source of truth"
-msgstr ""
+msgstr "以此计算机为准"
 
 msgid "Upload every file in pieces"
-msgstr ""
+msgstr "分块上传每个文件"
 
 msgid "Upload large files in pieces of"
-msgstr ""
+msgstr "将大文件分成以下大小的块上传"
 
 msgid "Use HTTP/1.1 only"
-msgstr ""
+msgstr "仅使用 HTTP/1.1"
 
 msgid "Wait"
-msgstr ""
+msgstr "等待"
 
 msgid "Wait before sending changes from busy apps"
-msgstr ""
+msgstr "等待繁忙应用发送更改"
 
 msgid "Webhooks"
-msgstr ""
+msgstr "Webhook"
 
 msgid ""
 "When only some folders are chosen, files sitting directly in the OneDrive "
 "folder still sync."
-msgstr ""
+msgstr "即使只选择了部分文件夹，OneDrive 文件夹顶层的文件仍会同步。"
 
 msgid ""
 "When the same item differs here and online, this computer's copy wins "
 "instead of OneDrive's."
-msgstr ""
+msgstr "当本地和云端的同一项目不同时，以此计算机上的副本为准，而不是 OneDrive 中的副本。"
 
 msgid "Where files deleted online go on this computer."
-msgstr ""
+msgstr "在线删除的文件在此计算机上的存放位置。"
 
 msgid "With a OneDrive folder icon where the file manager supports it."
-msgstr ""
+msgstr "文件管理器支持时显示 OneDrive 文件夹图标。"
 
 msgid "Write a log file"
-msgstr ""
+msgstr "写入日志文件"
 
 msgid "checks"
-msgstr ""
+msgstr "次检查"
 
 msgid "items"
-msgstr ""
+msgstr "个项目"
 
 msgid "seconds"
-msgstr ""
+msgstr "秒"
 
 #: src/runner.rs
 msgid "OneDrive files"
-msgstr ""
+msgstr "OneDrive 文件"
 
 #: src/runner.rs
 msgid "Search your OneDrive, including files that aren't on this computer"
-msgstr ""
+msgstr "搜索 OneDrive，包括此计算机上没有的文件"
 
 #: src/runner.rs
 msgid "Top of OneDrive"
-msgstr ""
+msgstr "OneDrive 顶层"
 
 #: src/runner.rs
 msgid "Open on the OneDrive website"
-msgstr ""
+msgstr "在 OneDrive 网站上打开"
 
 #: ui/app.slint
 msgid "Search OneDrive from KRunner (Alt+Space)"
-msgstr ""
+msgstr "从 KRunner 搜索 OneDrive（Alt+Space）"
 
 #: ui/app.slint
 msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
-msgstr ""
+msgstr "按名称或内容查找文件，包括此计算机上没有的文件。开启后，你在 KRunner 中输入的内容（至少三个字母）会发送给 Microsoft 以查找匹配项。"
 
 #: src/ui.rs
 msgid "From the client's authors: {}"
-msgstr ""
+msgstr "来自客户端作者的说明：{}"
 
 #: src/doctor.rs
 msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
-msgstr ""
+msgstr "{}：在此应用之外设置的服务文件未在 RestartPreventExitStatus 中列出退出状态 78，因此客户端请求完全重新同步后会不断重新启动。请在该文件中添加 \"RestartPreventExitStatus=78\"，或让此应用管理该服务。"
