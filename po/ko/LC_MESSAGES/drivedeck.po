@@ -3603,3 +3603,11 @@ msgstr "클라이언트 제작자의 안내: {}"
 #: src/doctor.rs
 msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
 msgstr "{}: 앱 외부에서 설정한 서비스 파일의 RestartPreventExitStatus에 종료 코드 78이 없어 클라이언트가 전체 재동기화를 요청한 뒤 계속 다시 시작됩니다. 해당 파일에 “RestartPreventExitStatus=78”을 추가하거나 앱에서 서비스를 관리하도록 하세요."
+
+#: src/core.rs
+msgid "Couldn't reach Microsoft OneDrive ({}). Check your internet connection; syncing carries on once it's back."
+msgstr "Microsoft OneDrive에 연결할 수 없습니다({}). 인터넷 연결을 확인하세요. 연결이 돌아오면 동기화가 계속됩니다."
+
+#: src/core.rs
+msgid "Microsoft OneDrive reported an error: {}"
+msgstr "Microsoft OneDrive에서 오류를 보고했습니다: {}"

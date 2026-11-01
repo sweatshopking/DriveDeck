@@ -2377,6 +2377,11 @@ pub fn parse_log(msg: &str) -> Option<LogEvent> {
     if msg.contains(WATCH_LIMIT_MSG) {
         return Some(LogEvent::WatchLimit);
     }
+    // the client's API errors are a header ("...returned an error with the following message:")
+    // and the reason on the next line; the reason replaces the header
+    if let Some(detail) = msg.strip_prefix("Error Message:") {
+        return Some(LogEvent::Error(api_error_text(detail)));
+    }
     if msg.starts_with("ERROR") || msg.contains("ERROR:") || msg.starts_with("Unable to ") {
         return Some(LogEvent::Error(msg.to_string()));
     }
@@ -2405,6 +2410,30 @@ pub fn parse_log(msg: &str) -> Option<LogEvent> {
         }
     }
     None
+}
+
+/// The reason from an API error's "Error Message:" line, in plain words where we know it
+fn api_error_text(detail: &str) -> String {
+    // curl's errors end with " on handle 7F54...", which means nothing to anyone
+    let detail = detail.trim();
+    let detail = match detail.rsplit_once(" on handle ") {
+        Some((d, h)) if !h.is_empty() && h.chars().all(|c| c.is_ascii_hexdigit()) => d,
+        _ => detail,
+    };
+    let d = detail.to_lowercase();
+    if d.contains("could not resolve")
+        || d.contains("couldn't resolve")
+        || d.contains("couldn't connect")
+        || d.contains("could not connect")
+        || d.contains("timeout was reached")
+    {
+        crate::tr!(
+            "Couldn't reach Microsoft OneDrive ({}). Check your internet connection; syncing carries on once it's back.",
+            detail
+        )
+    } else {
+        crate::tr!("Microsoft OneDrive reported an error: {}", detail)
+    }
 }
 
 /// Splits a `journalctl -o short-unix` line into (time, message).
@@ -2437,7 +2466,7 @@ pub fn icon_theme_path() -> Option<PathBuf> {
 /// Only the log lines that matter for status, however busy the log is, oldest first.
 /// Falls back to a plain tail on systems whose journalctl lacks --grep.
 pub fn journal_status_lines(unit: &str) -> Vec<String> {
-    let pattern = "Reading configuration file: |Starting a sync|Sync with Microsoft OneDrive is complete|ERROR|Unable to |--resync|--reauth|requires authentication|re-authenticate|re-authorise|invalid_grant";
+    let pattern = "Reading configuration file: |Starting a sync|Sync with Microsoft OneDrive is complete|ERROR|Error Message:|Unable to |--resync|--reauth|requires authentication|re-authenticate|re-authorise|invalid_grant";
     let out = Command::new("journalctl")
         .args([
             "--user",
@@ -3644,6 +3673,19 @@ mod tests {
             ),
             Some(LogEvent::Error(_))
         ));
+        // an API error's reason is on the line after its header
+        assert_eq!(
+            parse_log("  Error Message:       Could not resolve hostname on handle 7F5420052920"),
+            Some(LogEvent::Error(
+                "Couldn't reach Microsoft OneDrive (Could not resolve hostname). Check your internet connection; syncing carries on once it's back.".into()
+            ))
+        );
+        assert_eq!(
+            parse_log("Error Message:    Item not found"),
+            Some(LogEvent::Error(
+                "Microsoft OneDrive reported an error: Item not found".into()
+            ))
+        );
         assert!(matches!(
             parse_log("Reading configuration file: /home/j/.config/onedrive/config"),
             Some(LogEvent::ClientStart)

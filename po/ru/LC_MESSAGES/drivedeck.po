@@ -3622,3 +3622,11 @@ msgstr "От авторов клиента: {}"
 #: src/doctor.rs
 msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
 msgstr "{}: в файле службы (настроенной вне приложения) не указан код завершения 78 в RestartPreventExitStatus, поэтому после запроса полной повторной синхронизации клиент запускается снова и снова. Добавьте в этот файл «RestartPreventExitStatus=78» или разрешите приложению управлять службой."
+
+#: src/core.rs
+msgid "Couldn't reach Microsoft OneDrive ({}). Check your internet connection; syncing carries on once it's back."
+msgstr "Не удалось связаться с Microsoft OneDrive ({}). Проверьте подключение к интернету; синхронизация продолжится, как только оно восстановится."
+
+#: src/core.rs
+msgid "Microsoft OneDrive reported an error: {}"
+msgstr "Microsoft OneDrive сообщил об ошибке: {}"

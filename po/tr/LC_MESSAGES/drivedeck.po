@@ -3612,3 +3612,11 @@ msgstr "İstemcinin geliştiricilerinden: {}"
 #: src/doctor.rs
 msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
 msgstr "{}: Bu uygulamanın dışında ayarlanan hizmet dosyasında RestartPreventExitStatus içinde 78 çıkış durumu listelenmiyor. Bu nedenle istemci tam eşitleme istediğinde tekrar tekrar başlatılıyor. Dosyaya \"RestartPreventExitStatus=78\" ekleyin veya hizmeti bu uygulamanın yönetmesine izin verin."
+
+#: src/core.rs
+msgid "Couldn't reach Microsoft OneDrive ({}). Check your internet connection; syncing carries on once it's back."
+msgstr "Microsoft OneDrive'a ulaşılamadı ({}). İnternet bağlantınızı kontrol edin; bağlantı geri geldiğinde eşitleme devam eder."
+
+#: src/core.rs
+msgid "Microsoft OneDrive reported an error: {}"
+msgstr "Microsoft OneDrive bir hata bildirdi: {}"
