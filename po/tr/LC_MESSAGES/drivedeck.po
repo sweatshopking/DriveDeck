@@ -1856,1070 +1856,1070 @@ msgstr "“{}” yüklenmedi: OneDrive şimdilik dosyayı kabul etmedi. Değişi
 
 msgid "…and 1 more file."
 msgid_plural "…and {n} more files."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "…ve 1 dosya daha."
+msgstr[1] "…ve {n} dosya daha."
 
 msgid ""
 "{} were deleted on this computer. Syncing stopped before deleting them "
 "online too, in case that was a mistake.\n"
 "If it was a mistake, put them back (for example from the Trash) and press "
 "“Sync now”. Otherwise choose what to do below."
-msgstr ""
+msgstr "Bu bilgisayarda {} silindi. Yanlışlıkla silinmiş olabilecekleri için çevrimiçi kopyaları da silinmeden önce eşitleme durduruldu.\\nYanlışlıkla sildiyseniz geri yükleyin (örneğin Çöp Kutusu'ndan) ve “Şimdi eşitle”ye basın. Değilse aşağıdan ne yapılacağını seçin."
 
 msgid "“{}” and what was in it ({} items in all)"
-msgstr ""
+msgstr "“{}” ve içindekiler (toplam {} öğe)"
 
 msgid "“{}” and what was in it"
-msgstr ""
+msgstr "“{}” ve içindekiler"
 
 msgid "{} items"
-msgstr ""
+msgstr "{} öğe"
 
 msgid "Many items"
-msgstr ""
+msgstr "Çok sayıda öğe"
 
 msgid "Starting…"
-msgstr ""
+msgstr "Başlatılıyor…"
 
 msgid "Syncing…"
-msgstr ""
+msgstr "Eşitleniyor…"
 
 msgid "1 file not synced"
 msgid_plural "{n} files not synced"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Eşitlenmeyen 1 dosya"
+msgstr[1] "Eşitlenmeyen {n} dosya"
 
 msgid "Up to date ({})"
-msgstr ""
+msgstr "Güncel ({})"
 
 msgid "Up to date"
-msgstr ""
+msgstr "Güncel"
 
 msgid "Error"
-msgstr ""
+msgstr "Hata"
 
 msgid "Stopped"
-msgstr ""
+msgstr "Durduruldu"
 
 msgid "Background sync off"
-msgstr ""
+msgstr "Arka plan eşitlemesi kapalı"
 
 msgid "Paused until {}"
-msgstr ""
+msgstr "{} zamanına kadar duraklatıldı"
 
 msgid "Paused"
-msgstr ""
+msgstr "Duraklatıldı"
 
 msgid "Paused: {}"
-msgstr ""
+msgstr "Duraklatıldı: {}"
 
 msgid "Paused by schedule until {}"
-msgstr ""
+msgstr "Zamanlamaya göre {} tarihine kadar duraklatıldı"
 
 msgid "Applying changes…"
-msgstr ""
+msgstr "Değişiklikler uygulanıyor…"
 
 msgid "Signed out"
-msgstr ""
+msgstr "Oturum kapatıldı"
 
 msgid "Needs a full resync"
-msgstr ""
+msgstr "Tam eşitleme gerekiyor"
 
 msgid "Stopped to protect your files"
-msgstr ""
+msgstr "Dosyalarınızı korumak için durduruldu"
 
 msgid "Not responding since {}"
-msgstr ""
+msgstr "{} tarihinden beri yanıt vermiyor"
 
 msgid "Not responding"
-msgstr ""
+msgstr "Yanıt vermiyor"
 
 msgid "Waiting for first sync"
-msgstr ""
+msgstr "İlk eşitleme bekleniyor"
 
 msgid "Couldn't ask for the password: {}"
-msgstr ""
+msgstr "Parola istenemedi: {}"
 
 msgid "Nothing was changed (the password window was closed)."
-msgstr ""
+msgstr "Hiçbir şey değiştirilmedi (parola penceresi kapatıldı)."
 
 msgid "Nothing was changed: your computer didn't allow it."
-msgstr ""
+msgstr "Hiçbir şey değiştirilmedi: bilgisayarınız buna izin vermedi."
 
 msgid "That didn't work: {}"
-msgstr ""
+msgstr "İşlem başarısız oldu: {}"
 
 msgid "This account is busy with another task. Try again when it has finished."
-msgstr ""
+msgstr "Bu hesap başka bir görevle meşgul. Görev tamamlanınca yeniden deneyin."
 
 msgid "Couldn't save the sync override: {}"
-msgstr ""
+msgstr "Eşitleme geçersiz kılma ayarı kaydedilemedi: {}"
 
 msgid "Couldn't save the pause setting: {}"
-msgstr ""
+msgstr "Duraklatma ayarı kaydedilemedi: {}"
 
 msgid "OneDrive Client for Linux {} is installed; {} is out."
-msgstr ""
+msgstr "OneDrive Client for Linux {} yüklü; {} sürümü çıktı."
 
 msgid "OneDrive Client for Linux {} is installed."
-msgstr ""
+msgstr "OneDrive Client for Linux {} yüklü."
 
 msgid "OneDrive Client for Linux {} is too old for this app."
-msgstr ""
+msgstr "OneDrive Client for Linux {} bu uygulama için çok eski."
 
 msgid "The OneDrive Client for Linux isn't installed."
-msgstr ""
+msgstr "OneDrive Client for Linux yüklü değil."
 
 msgid "The tray icon is running."
-msgstr ""
+msgstr "Sistem tepsisi simgesi çalışıyor."
 
 msgid ""
 "The tray icon isn't running, so pauses, schedules and notifications aren't "
 "working."
-msgstr ""
+msgstr "Sistem tepsisi simgesi çalışmıyor; duraklatma, zamanlama ve bildirimler kullanılamıyor."
 
 msgid "No accounts are set up yet."
-msgstr ""
+msgstr "Henüz hesap ayarlanmadı."
 
 msgid "{}: {}"
-msgstr ""
+msgstr "{}: {}"
 
 msgid "{}: ran out of folder watches; some changes aren't noticed."
-msgstr ""
+msgstr "{}: klasör izleme sınırı doldu; bazı değişiklikler fark edilmiyor."
 
 msgid "{}: only {} free on its drive."
-msgstr ""
+msgstr "{}: diskinde yalnızca {} boş alan var."
 
 msgid ""
 "Your OneDrive folders hold {} folders, more than half of Linux's limit on "
 "watched folders ({}). Other programs need some too."
-msgstr ""
+msgstr "OneDrive klasörlerinizde {} klasör var; bu, Linux'un izlenen klasör sınırının ({}) yarısından fazla. Diğer programların da bu sınıra ihtiyacı var."
 
 msgid "{} is started outside this app."
-msgstr ""
+msgstr "{} bu uygulama dışında başlatılıyor."
 
 msgid "Today"
-msgstr ""
+msgstr "Bugün"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Dün"
 
 msgid "\"{}\" isn't an email address."
-msgstr ""
+msgstr "“{}” bir e-posta adresi değil."
 
 msgid "Type at least one email address."
-msgstr ""
+msgstr "En az bir e-posta adresi yazın."
 
 msgid "This version identifier and file extension are too long to save safely."
-msgstr ""
+msgstr "Bu sürüm kimliği ve dosya uzantısı güvenli biçimde kaydedilemeyecek kadar uzun."
 
 msgid "This file name is too long to save a version copy safely."
-msgstr ""
+msgstr "Bu dosya adı, sürüm kopyasını güvenli biçimde kaydetmek için çok uzun."
 
 msgid "No version history for folders"
-msgstr ""
+msgstr "Klasörlerin sürüm geçmişi yoktur"
 
 msgid ""
 "\"{}\" is a folder. Open a file inside it to see its versions, or the "
 "recycle bin online for deleted items."
-msgstr ""
+msgstr "“{}” bir klasör. Sürümlerini görmek için içindeki bir dosyayı açın veya silinen öğeler için çevrimiçi geri dönüşüm kutusuna bakın."
 
 msgid "Couldn't share it"
-msgstr ""
+msgstr "Paylaşılamadı"
 
 msgid "That's the whole of \"{}\". Share a file or folder inside it instead."
-msgstr ""
+msgstr "“{}” zaten tamamı. Bunun yerine içindeki bir dosyayı veya klasörü paylaşın."
 
 msgid "Can view"
-msgstr ""
+msgstr "Görüntüleyebilir"
 
 msgid "  ·  until {}"
-msgstr ""
+msgstr "  ·  {} tarihine kadar"
 
 msgid "  ·  from a folder above"
-msgstr ""
+msgstr "  ·  üst klasörden geliyor"
 
 msgid "Checking who has access…"
-msgstr ""
+msgstr "Kimlerin erişimi olduğu denetleniyor…"
 
 msgid "It isn't shared: only you can open it."
-msgstr ""
+msgstr "Paylaşılmıyor: yalnızca siz açabilirsiniz."
 
 msgid "  ·  saved by {}"
-msgstr ""
+msgstr "  ·  kaydeden: {}"
 
 msgid ""
 "There's only the current version so far. OneDrive keeps older ones as the "
 "file changes."
-msgstr ""
+msgstr "Şimdilik yalnızca geçerli sürüm var. Dosya değiştikçe OneDrive eski sürümleri saklar."
 
 msgid "Downloading that version…"
-msgstr ""
+msgstr "Bu sürüm indiriliyor…"
 
 msgid "Opened a copy: {}"
-msgstr ""
+msgstr "Bir kopya açıldı: {}"
 
 msgid "Restoring…"
-msgstr ""
+msgstr "Geri yükleniyor…"
 
 msgid ""
 "Restored. This computer gets it at the next sync (\"Sync now\" in the tray "
 "icon's menu does it right away)."
-msgstr ""
+msgstr "Geri yüklendi. Bu bilgisayara sonraki eşitlemede gelir (hemen eşitlemek için tepsi simgesinin menüsünden “Şimdi eşitle”yi seçin)."
 
 msgid "Sending…"
-msgstr ""
+msgstr "Gönderiliyor…"
 
 msgid "Invitation sent."
-msgstr ""
+msgstr "Davet gönderildi."
 
 msgid "{} invitations sent."
-msgstr ""
+msgstr "{} davet gönderildi."
 
 msgid "the top folder"
-msgstr ""
+msgstr "üst klasör"
 
 msgid "{} or more"
-msgstr ""
+msgstr "{} veya daha fazla"
 
 msgid ""
 "There are Git repositories in this folder ({}). Syncing their .git folders "
 "can damage them, because the files arrive one at a time and out of order. "
 "Skip .git folders in Options, or keep repositories outside OneDrive."
-msgstr ""
+msgstr "Bu klasörde Git depoları var ({}). .git klasörlerini eşitlemek depolara zarar verebilir; dosyalar tek tek ve sırasız gelir. Seçenekler'de .git klasörlerini atlayın veya depoları OneDrive dışında tutun."
 
 msgid ""
 "This folder is on a Windows drive, and Windows' OneDrive app uses it too. "
 "Files that Windows keeps online-only can't be opened from Linux, and the two "
 "apps can undo each other's changes. A separate folder for Linux is safer."
-msgstr ""
+msgstr "Bu klasör bir Windows sürücüsünde ve Windows'un OneDrive uygulaması da onu kullanıyor. Windows'un yalnızca çevrimiçi tuttuğu dosyalar Linux'ta açılamaz; iki uygulama birbirinin değişikliklerini geri alabilir. Linux için ayrı bir klasör kullanmak daha güvenlidir."
 
 msgid ""
 "This folder is on a Windows (NTFS) drive. If Windows' OneDrive app also "
 "syncs it, files that Windows keeps online-only can't be opened from Linux, "
 "and the two apps can undo each other's changes. A separate folder for Linux "
 "is safer."
-msgstr ""
+msgstr "Bu klasör bir Windows (NTFS) sürücüsünde. Windows'un OneDrive uygulaması da eşitlerse yalnızca çevrimiçi tutulan dosyalar Linux'ta açılamaz ve iki uygulama birbirinin değişikliklerini geri alabilir. Linux için ayrı bir klasör kullanmak daha güvenlidir."
 
 msgid "Couldn't make {}: {}"
-msgstr ""
+msgstr "{} oluşturulamadı: {}"
 
 msgid "Couldn't reach Microsoft. Check your internet connection and try again."
-msgstr ""
+msgstr "Microsoft'a ulaşılamadı. İnternet bağlantınızı denetleyip yeniden deneyin."
 
 msgid "{} (Microsoft says: {})"
-msgstr ""
+msgstr "{} (Microsoft şöyle diyor: {})"
 
 msgid ""
 "Microsoft no longer accepts this sign-in. Open Settings and sign in again."
-msgstr ""
+msgstr "Microsoft bu oturum açma bilgisini artık kabul etmiyor. Ayarlar'ı açıp yeniden oturum açın."
 
 msgid ""
 "This account doesn't have permission to do that. Check that you have access "
 "to this file or site."
-msgstr ""
+msgstr "Bu hesabın bunu yapma izni yok. Bu dosyaya veya siteye erişiminiz olduğundan emin olun."
 
 msgid ""
 "That item could not be found in OneDrive. It may have been moved or deleted."
-msgstr ""
+msgstr "Bu öğe OneDrive'da bulunamadı. Taşınmış veya silinmiş olabilir."
 
 msgid "OneDrive changed while this was running. Refresh and try again."
-msgstr ""
+msgstr "Bu işlem sürerken OneDrive değişti. Yenileyip yeniden deneyin."
 
 msgid "That item is locked. Close it elsewhere or try again later."
-msgstr ""
+msgstr "Bu öğe kilitli. Başka yerde kapatın veya daha sonra yeniden deneyin."
 
 msgid "Microsoft is busy right now. Try again in a minute."
-msgstr ""
+msgstr "Microsoft şu anda meşgul. Bir dakika sonra yeniden deneyin."
 
 msgid ""
 "Your OneDrive storage is full. Free up space or get more storage, then try "
 "again."
-msgstr ""
+msgstr "OneDrive depolama alanınız dolu. Yer açın veya daha fazla depolama alanı alın, sonra yeniden deneyin."
 
 msgid "Microsoft is having a problem right now. Try again later."
-msgstr ""
+msgstr "Microsoft şu anda sorun yaşıyor. Daha sonra yeniden deneyin."
 
 msgid "Microsoft couldn't complete that request. Try again later."
-msgstr ""
+msgstr "Microsoft bu isteği tamamlayamadı. Daha sonra yeniden deneyin."
 
 msgid "Microsoft sent an unexpected reply ({}). Try again later."
-msgstr ""
+msgstr "Microsoft beklenmeyen bir yanıt gönderdi ({}). Daha sonra yeniden deneyin."
 
 msgid ""
 "Azure Germany closed on October 29, 2021. Migrate this account to a "
 "supported Microsoft cloud and select that cloud here."
-msgstr ""
+msgstr "Azure Germany 29 Ekim 2021'de kapandı. Bu hesabı desteklenen bir Microsoft bulutuna taşıyıp burada o bulutu seçin."
 
 msgid "This account isn't signed in."
-msgstr ""
+msgstr "Bu hesapta oturum açılmamış."
 
 msgid "Microsoft repeated a page while listing items. Try again later."
-msgstr ""
+msgstr "Microsoft öğeleri listelerken aynı sayfayı yineledi. Daha sonra yeniden deneyin."
 
 msgid "Microsoft sent an unexpected reply. Try again later."
-msgstr ""
+msgstr "Microsoft beklenmeyen bir yanıt gönderdi. Daha sonra yeniden deneyin."
 
 msgid "Microsoft sent too many pages for this list. Try again later."
-msgstr ""
+msgstr "Microsoft bu liste için çok fazla sayfa gönderdi. Daha sonra yeniden deneyin."
 
 msgid "OneDrive didn't return a web address."
-msgstr ""
+msgstr "OneDrive bir web adresi döndürmedi."
 
 msgid "Couldn't check libraries on {}: {}"
-msgstr ""
+msgstr "{} üzerindeki kitaplıklar denetlenemedi: {}"
 
 msgid "Microsoft returned a library without an ID."
-msgstr ""
+msgstr "Microsoft, kimliği olmayan bir kitaplık döndürdü."
 
 msgid ""
 "That doesn't look like a SharePoint address. Copy it from your browser's "
 "address bar — it starts with https://"
-msgstr ""
+msgstr "Bu bir SharePoint adresine benzemiyor. Tarayıcınızın adres çubuğundan kopyalayın — https:// ile başlar."
 
 msgid "Couldn't open that site with this account: {}"
-msgstr ""
+msgstr "Bu site bu hesapla açılamadı: {}"
 
 msgid "Microsoft didn't return the site."
-msgstr ""
+msgstr "Microsoft siteyi döndürmedi."
 
 msgid "{} already exists and isn't a regular file."
-msgstr ""
+msgstr "{} zaten var ve normal bir dosya değil."
 
 msgid "Couldn't find where to save that version."
-msgstr ""
+msgstr "Bu sürümün kaydedileceği yer bulunamadı."
 
 msgid "Couldn't save it: {}"
-msgstr ""
+msgstr "Kaydedilemedi: {}"
 
 msgid "Couldn't allocate a temporary file for that version download."
-msgstr ""
+msgstr "Bu sürümü indirmek için geçici dosya oluşturulamadı."
 
 msgid "The download stopped: {}"
-msgstr ""
+msgstr "İndirme durdu: {}"
 
 msgid "Couldn't finish saving that version: {}"
-msgstr ""
+msgstr "Bu sürümün kaydı tamamlanamadı: {}"
 
 msgid "Someone"
-msgstr ""
+msgstr "Birisi"
 
 msgid "Couldn't check what kind of account this is, so no link was made: {}"
-msgstr ""
+msgstr "Hesap türü denetlenemediği için bağlantı oluşturulmadı: {}"
 
 msgid "less than a minute left"
-msgstr ""
+msgstr "bir dakikadan az kaldı"
 
 msgid "1 min left"
 msgid_plural "{n} min left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 dakika kaldı"
+msgstr[1] "{n} dakika kaldı"
 
 msgid "1 h left"
 msgid_plural "{n} h left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 saat kaldı"
+msgstr[1] "{n} saat kaldı"
 
 msgid "1 h {0} min left"
 msgid_plural "{n} h {0} min left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 saat {0} dakika kaldı"
+msgstr[1] "{n} saat {0} dakika kaldı"
 
 msgid "No accounts yet"
-msgstr ""
+msgstr "Henüz hesap yok"
 
 msgid "1 account needs attention"
 msgid_plural "{n} accounts need attention"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 hesabın ilgilenilmesi gerekiyor"
+msgstr[1] "{n} hesabın ilgilenilmesi gerekiyor"
 
 msgid "Syncing 1 large file"
 msgid_plural "Syncing {n} large files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 büyük dosya eşitleniyor"
+msgstr[1] "{n} büyük dosya eşitleniyor"
 
 msgid "Not syncing right now"
-msgstr ""
+msgstr "Şu anda eşitlenmiyor"
 
 msgid "All accounts"
-msgstr ""
+msgstr "Tüm hesaplar"
 
 msgid "Uploading"
-msgstr ""
+msgstr "Yükleniyor"
 
 msgid "Downloading"
-msgstr ""
+msgstr "İndiriliyor"
 
 msgid "Uploaded"
-msgstr ""
+msgstr "Yüklendi"
 
 msgid "Downloaded"
-msgstr ""
+msgstr "İndirildi"
 
 msgid "Deleted"
-msgstr ""
+msgstr "Silindi"
 
 msgid "New folder"
-msgstr ""
+msgstr "Yeni klasör"
 
 msgid "{} {}"
-msgstr ""
+msgstr "{} {}"
 
 msgid "in {}"
-msgstr ""
+msgstr "{} içinde"
 
 msgid "That isn't inside any of your OneDrive folders."
-msgstr ""
+msgstr "Bu, OneDrive klasörlerinizden hiçbirinin içinde değil."
 
 msgid "Anyone with the link"
-msgstr ""
+msgstr "Bağlantıya sahip olan herkes"
 
 msgid "People in your organization with the link"
-msgstr ""
+msgstr "Kuruluşunuzdaki bağlantıya sahip kişiler"
 
 msgid "Link copied"
-msgstr ""
+msgstr "Bağlantı kopyalandı"
 
 msgid "Sharing link"
-msgstr ""
+msgstr "Bağlantı paylaşılıyor"
 
 msgid "can view"
-msgstr ""
+msgstr "görüntüleyebilir"
 
 msgid "can edit"
-msgstr ""
+msgstr "düzenleyebilir"
 
 msgid "can change, add and delete files in"
-msgstr ""
+msgstr "içindeki dosyaları değiştirebilir, ekleyebilir ve silebilir"
 
 msgid ""
 "{} {} \"{}\".\n"
 "{}"
-msgstr ""
+msgstr "{} {}, “{}”.\\n{}"
 
 msgid "Couldn't create a link"
-msgstr ""
+msgstr "Bağlantı oluşturulamadı"
 
 msgid "Couldn't create a link: {}"
-msgstr ""
+msgstr "Bağlantı oluşturulamadı: {}"
 
 msgid "Couldn't open it online"
-msgstr ""
+msgstr "Çevrimiçi açılamadı"
 
 msgid "{} — {}"
-msgstr ""
+msgstr "{} — {}"
 
 msgid "{}. Open Settings to fix it."
-msgstr ""
+msgstr "{}. Düzeltmek için Ayarlar'ı açın."
 
 msgid "No accounts yet — open Settings to add one"
-msgstr ""
+msgstr "Henüz hesap yok — eklemek için Ayarlar'ı açın"
 
 msgid "Version {} is out — get it…"
-msgstr ""
+msgstr "{} sürümü çıktı — indirin…"
 
 msgid "How to fix this…"
-msgstr ""
+msgstr "Bunu düzeltme…"
 
 msgid "Show activity…"
-msgstr ""
+msgstr "Etkinliği göster…"
 
 msgid "For 1 hour"
-msgstr ""
+msgstr "1 saat boyunca"
 
 msgid "For 4 hours"
-msgstr ""
+msgstr "4 saat boyunca"
 
 msgid "Until tomorrow morning"
-msgstr ""
+msgstr "Yarın sabaha kadar"
 
 msgid "Settings and accounts…"
-msgstr ""
+msgstr "Ayarlar ve hesaplar…"
 
 msgid "Quit and stop syncing"
-msgstr ""
+msgstr "Çık ve eşitlemeyi durdur"
 
 msgid "Quit tray icon"
-msgstr ""
+msgstr "Tepsi simgesinden çık"
 
 msgid "Microsoft needs you to sign in again"
-msgstr ""
+msgstr "Microsoft'ta yeniden oturum açmanız gerekiyor"
 
 msgid "The OneDrive Client for Linux isn't installed"
-msgstr ""
+msgstr "OneDrive Client for Linux yüklü değil"
 
 msgid "The OneDrive Client for Linux ({}) is too old"
-msgstr ""
+msgstr "OneDrive Client for Linux ({}) çok eski"
 
 msgid ""
 "{} were deleted on this computer, so syncing stopped before deleting them "
 "online. Click the OneDrive icon to choose what to do."
-msgstr ""
+msgstr "Bu bilgisayarda {} silindi; çevrimiçi kopyaları silinmeden önce eşitleme durdu. Ne yapılacağını seçmek için OneDrive simgesine tıklayın."
 
 msgid "Microsoft needs you to sign in again. Open the tray menu to fix it."
-msgstr ""
+msgstr "Microsoft'ta yeniden oturum açmanız gerekiyor. Düzeltmek için tepsi menüsünü açın."
 
 msgid ""
 "The sync engine needs a full resync. Open Settings to review and apply it."
-msgstr ""
+msgstr "Eşitleme motorunun yeniden eşitlemeye ihtiyacı var. İnceleyip uygulamak için Ayarlar'ı açın."
 
 msgid ""
 "Syncing has stopped making progress, though it is still running. Click the "
 "OneDrive icon and choose Sync now to restart it."
-msgstr ""
+msgstr "Eşitleme hâlâ çalışıyor, ancak ilerlemiyor. Yeniden başlatmak için OneDrive simgesine tıklayıp Şimdi eşitle'yi seçin."
 
 msgid "Syncing hit an error. Open the tray menu for details."
-msgstr ""
+msgstr "Eşitleme hatayla karşılaştı. Ayrıntılar için tepsi menüsünü açın."
 
 msgid ""
 "Linux's limit on folders watched for changes ran out, so some changes on "
 "this computer won't sync right away. Open Settings to raise it."
-msgstr ""
+msgstr "Linux'un değişiklikleri izlediği klasör sınırına ulaşıldı; bu bilgisayardaki bazı değişiklikler hemen eşitlenmeyecek. Sınırı artırmak için Ayarlar'ı açın."
 
 msgid ""
 "{} is full ({}). New and changed files won't upload until you free up space "
 "or get more storage."
-msgstr ""
+msgstr "{} dolu ({}). Yer açana veya daha fazla depolama alanı alana kadar yeni ve değiştirilen dosyalar yüklenmeyecek."
 
 msgid ""
 "{} is almost full ({}). Free up space or get more storage before uploads "
 "stop."
-msgstr ""
+msgstr "{} neredeyse dolu ({}). Yüklemeler durmadan önce yer açın veya daha fazla depolama alanı alın."
 
 msgid "OneDrive: a new version is out"
-msgstr ""
+msgstr "OneDrive: yeni bir sürüm çıktı"
 
 msgid ""
 "Version {} of this app is available. Click the OneDrive tray icon (or right-"
 "click it) to get it."
-msgstr ""
+msgstr "Bu uygulamanın {} sürümü çıktı. İndirmek için OneDrive tepsi simgesine tıklayın veya sağ tıklayın."
 
 msgid "OneDrive: the sync engine has an update"
-msgstr ""
+msgstr "OneDrive: eşitleme motoru için güncelleme var"
 
 msgid ""
 "Version {} of the OneDrive Client for Linux is out (you have {}). Open "
 "Settings to update it."
-msgstr ""
+msgstr "OneDrive Client for Linux'un {} sürümü çıktı (sizdeki {}). Güncellemek için Ayarlar'ı açın."
 
 msgid "Preview recovery needs attention"
-msgstr ""
+msgstr "Önizleme kurtarma işlemi gerekiyor"
 
 msgid ""
 "Sync services weren't started because preview settings couldn't be put back: "
 "{}"
-msgstr ""
+msgstr "Önizleme ayarları geri yüklenemediği için eşitleme hizmetleri başlatılmadı: {}"
 
 msgid "Microsoft needs you to sign in again."
-msgstr ""
+msgstr "Microsoft'ta yeniden oturum açmanız gerekiyor."
 
 msgid ""
 "Glass is on: your desktop blurs what's behind windows, so the window is see-"
 "through."
-msgstr ""
+msgstr "Cam efekti açık: masaüstünüz pencerelerin arkasını bulanıklaştırdığı için pencere yarı saydam görünür."
 
 msgid "Glass is off because your desktop asks for high contrast."
-msgstr ""
+msgstr "Masaüstünüz yüksek karşıtlık istediği için cam efekti kapalı."
 
 msgid ""
 "Glass is off: your desktop doesn't blur what's behind windows, so the window "
 "stays solid and easy to read. If yours does (Hyprland with blur switched on, "
 "for example), choose On."
-msgstr ""
+msgstr "Cam efekti kapalı: masaüstünüz pencerelerin arkasını bulanıklaştırmıyor, bu nedenle pencere opak ve okunaklı kalıyor. Masaüstünüz bunu destekliyorsa (örneğin bulanıklığın açık olduğu Hyprland), Açık'ı seçin."
 
 msgid ""
 "Always see-through. If the window looks washed out, your desktop doesn't "
 "blur behind it: choose Automatic."
-msgstr ""
+msgstr "Her zaman yarı saydam. Pencere soluk görünüyorsa masaüstünüz arkasını bulanıklaştırmıyor demektir: Otomatik'i seçin."
 
 msgid "Always solid."
-msgstr ""
+msgstr "Her zaman opak."
 
 msgid "The sync service stopped with an error. Try \"Sync now\"."
-msgstr ""
+msgstr "Eşitleme hizmeti hatayla durdu. “Şimdi eşitle”yi deneyin."
 
 msgid ""
 "The sync engine needs a full resync before it can continue. Open the Folders "
 "tab and press \"Apply changes…\", or turn on \"Allow full resyncs\" in "
 "Options and save."
-msgstr ""
+msgstr "Devam etmeden önce eşitleme motorunun yeniden eşitlemesi gerekiyor. Klasörler sekmesini açıp “Değişiklikleri uygula…”ya basın veya Seçenekler'de “Yeniden eşitlemeye izin ver”i açıp kaydedin."
 
 msgid ""
 "Microsoft no longer accepts the saved sign-in (this happens after a password "
 "change, or when access is revoked). Sign in again to continue."
-msgstr ""
+msgstr "Microsoft kayıtlı oturum açma bilgisini artık kabul etmiyor (parola değiştirildiğinde veya erişim kaldırıldığında olabilir). Devam etmek için yeniden oturum açın."
 
 msgid ""
 "The sync engine is running but has stopped making progress, so changes "
 "aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, "
 "check your network connection."
-msgstr ""
+msgstr "Eşitleme motoru çalışıyor ancak ilerlemediği için değişiklikler eşitlenmiyor. Yeniden başlatmak için “Şimdi eşitle”ye basın. Sorun sürerse ağ bağlantınızı denetleyin."
 
 msgid "Everything in this account"
-msgstr ""
+msgstr "Bu hesaptaki her şey"
 
 msgid "comes"
-msgstr ""
+msgstr "indirilecek"
 
 msgid "Newly ticked folders"
-msgstr ""
+msgstr "Yeni seçilen klasörler"
 
 msgid "come"
-msgstr ""
+msgstr "indirilecek"
 
 msgid "at least {}"
-msgstr ""
+msgstr "en az {}"
 
 msgid ""
 "{} {} to {}, more than the {} free on this drive. Some files won't fit; free "
 "up space or tick less."
-msgstr ""
+msgstr "{} {} için {} gerekiyor; bu diskteki boş alan {}. Bazı dosyalar sığmayacak; yer açın veya daha azını seçin."
 
 msgid "{}: {}. Free on this drive: {}."
-msgstr ""
+msgstr "{}: {}. Bu diskteki boş alan: {}."
 
 msgid "{} of {} used"
-msgstr ""
+msgstr "{} / {} kullanılıyor"
 
 msgid "{} used"
-msgstr ""
+msgstr "{} kullanılıyor"
 
 msgid "{} (set by hand)"
-msgstr ""
+msgstr "{} (elle ayarlandı)"
 
 msgid "needs \"Treat this computer as the source of truth\" on too"
-msgstr ""
+msgstr "“Bu bilgisayarı esas al” ayarının da açılması gerekiyor"
 
 msgid "can't be used with Upload only"
-msgstr ""
+msgstr "Yalnızca yükle ile kullanılamaz"
 
 msgid "needs an address"
-msgstr ""
+msgstr "bir adres gerekiyor"
 
 msgid "couldn't create it: {}"
-msgstr ""
+msgstr "oluşturulamadı: {}"
 
 msgid "Couldn't run the client: {}"
-msgstr ""
+msgstr "İstemci çalıştırılamadı: {}"
 
 msgid ""
 "Turn on \"Write a log file\" under Advanced and save first. Until then the "
 "app reads the system journal instead."
-msgstr ""
+msgstr "Önce Gelişmiş altında “Günlük dosyası yaz”ı açıp kaydedin. O zamana kadar uygulama sistem günlüğünü okur."
 
 msgid ""
 "{} doesn't exist yet. The client creates it when it next writes to the log."
-msgstr ""
+msgstr "{} henüz yok. İstemci günlüğe bir sonraki yazışında oluşturacak."
 
 msgid ""
 "Folders to skip: remove the empty entry (two | in a row, or one at an end)."
-msgstr ""
+msgstr "Atlanacak klasörler: boş öğeyi kaldırın (yan yana iki | veya başta ya da sonda bir |)."
 
 msgid ""
 "Folders to skip: \".*\" isn't allowed (it would hide all your changes). To "
 "skip hidden folders, use \"Don't sync hidden files and folders\"."
-msgstr ""
+msgstr "Atlanacak klasörler: tüm değişiklikleri gizleyeceği için \".*\" kullanılamaz. Gizli klasörleri atlamak için “Gizli dosya ve klasörleri eşitleme”yi kullanın."
 
 msgid "Changes {}'s save folder. Turning this off puts it back."
-msgstr ""
+msgstr "{} kayıt klasörünü değiştirir. Bu seçeneği kapatınca eski konumuna döner."
 
 msgid "No supported screenshot tool was found."
-msgstr ""
+msgstr "Desteklenen bir ekran görüntüsü aracı bulunamadı."
 
 msgid "Add a OneDrive account before turning this on."
-msgstr ""
+msgstr "Bunu açmadan önce bir OneDrive hesabı ekleyin."
 
 msgid "Couldn't change the screenshot folder: {}"
-msgstr ""
+msgstr "Ekran görüntüsü klasörü değiştirilemedi: {}"
 
 msgid "The screenshot folder path contains a character the tool can't save."
-msgstr ""
+msgstr "Ekran görüntüsü klasörünün yolu, aracın kaydedemediği bir karakter içeriyor."
 
 msgid "Couldn't save the setting: {}"
-msgstr ""
+msgstr "Ayar kaydedilemedi: {}"
 
 msgid "{}. Couldn't clear the saved setting either: {}"
-msgstr ""
+msgstr "{}. Kaydedilmiş ayar da temizlenemedi: {}"
 
 msgid "Screenshots will be saved in {}."
-msgstr ""
+msgstr "Ekran görüntüleri {} konumuna kaydedilecek."
 
 msgid "Couldn't restore {}: {}"
-msgstr ""
+msgstr "{} geri yüklenemedi: {}"
 
 msgid ""
 "The screenshot tool's save folder was changed since, so it was left as it is."
-msgstr ""
+msgstr "Ekran görüntüsü aracının kayıt klasörü sonradan değiştirildi; mevcut haliyle bırakıldı."
 
 msgid "{} changed while DriveDeck was updating it, so it was left as it is."
-msgstr ""
+msgstr "DriveDeck güncelleme yaparken {} değişti; mevcut haliyle bırakıldı."
 
 msgid "{} isn't a regular file."
-msgstr ""
+msgstr "{} normal bir dosya değil."
 
 msgid "Couldn't write {}: {}"
-msgstr ""
+msgstr "{} yazılamadı: {}"
 
 msgid ""
 "Schedule times must be two different 24-hour times like 23:00 and 07:00."
-msgstr ""
+msgstr "Zamanlama saatleri 23:00 ve 07:00 gibi, 24 saat biçiminde ve birbirinden farklı olmalı."
 
 msgid "The number of items for a big delete {}."
-msgstr ""
+msgstr "Toplu silme için öğe sayısı {}."
 
 msgid "Nothing was saved: fix the settings marked in red under Advanced."
-msgstr ""
+msgstr "Hiçbir şey kaydedilmedi: Gelişmiş bölümünde kırmızıyla işaretli ayarları düzeltin."
 
 msgid "Couldn't save settings: {}"
-msgstr ""
+msgstr "Ayarlar kaydedilemedi: {}"
 
 msgid "Couldn't save: {}"
-msgstr ""
+msgstr "Kaydedilemedi: {}"
 
 msgid ""
 "Saved, except the settings marked * — they need a full resync, which is "
 "turned off for this account."
-msgstr ""
+msgstr "Kaydedildi; ancak * ile işaretli ayarlar kaydedilmedi — bu hesapta kapalı olan tam eşitleme gerekiyor."
 
 msgid ""
 "The settings marked * weren't saved: they need a full resync, which is "
 "turned off for this account. Check the preview for the new direction."
-msgstr ""
+msgstr "* ile işaretli ayarlar kaydedilmedi: bu hesapta kapalı olan tam eşitleme gerekiyor. Yeni yönün önizlemesini denetleyin."
 
 msgid ""
 "Files here that aren't online are deleted, including new files you put in "
 "this folder from now on."
-msgstr ""
+msgstr "Burada olup çevrimiçi olmayan dosyalar silinir; bundan sonra bu klasöre ekleyeceğiniz dosyalar da buna dahildir."
 
 msgid "Change sync direction"
-msgstr ""
+msgstr "Eşitleme yönünü değiştir"
 
 msgid "Saved. The settings marked * need a full resync — check the preview."
-msgstr ""
+msgstr "Kaydedildi. * ile işaretli ayarlar için tam eşitleme gerekiyor — önizlemeyi denetleyin."
 
 msgid "Apply file settings"
-msgstr ""
+msgstr "Dosya ayarlarını uygula"
 
 msgid "Counting everything inside the deleted folders, that's {} items in all."
-msgstr ""
+msgstr "Silinen klasörlerin içindekiler de dahil toplam {} öğe."
 
 msgid ""
 "Items deleted online go to the OneDrive recycle bin, where they can be "
 "restored for a while."
-msgstr ""
+msgstr "Çevrimiçi silinen öğeler, bir süre geri yüklenebilecekleri OneDrive geri dönüşüm kutusuna gider."
 
 msgid "Delete them online too"
-msgstr ""
+msgstr "Onları çevrimiçi de sil"
 
 msgid "Download them again"
-msgstr ""
+msgstr "Onları yeniden indir"
 
 msgid "The deleted items are downloaded again from OneDrive."
-msgstr ""
+msgstr "Silinen öğeler OneDrive'dan yeniden indirilir."
 
 msgid "Couldn't read the folder-selection rules: {}"
-msgstr ""
+msgstr "Klasör seçimi kuralları okunamadı: {}"
 
 msgid "Sign in to choose folders."
-msgstr ""
+msgstr "Klasör seçmek için oturum açın."
 
 msgid "Couldn't load folders: {}"
-msgstr ""
+msgstr "Klasörler yüklenemedi: {}"
 
 msgid ""
 "Full resyncs are turned off for this account (Options), so folder choices "
 "are locked."
-msgstr ""
+msgstr "Bu hesapta (Seçenekler) tam eşitleme kapalı olduğundan klasör seçimi kilitli."
 
 msgid "Tick at least one folder, or choose \"Sync everything\"."
-msgstr ""
+msgstr "En az bir klasör seçin veya “Her şeyi eşitle”yi seçin."
 
 msgid "Change synced folders"
-msgstr ""
+msgstr "Eşitlenen klasörleri değiştir"
 
 msgid "Preparing the preview…"
-msgstr ""
+msgstr "Önizleme hazırlanıyor…"
 
 msgid "Checking the sync service…"
-msgstr ""
+msgstr "Eşitleme hizmeti denetleniyor…"
 
 msgid ""
 "Couldn't protect this account from a second sync process, so the preview was "
 "not started: {}"
-msgstr ""
+msgstr "Bu hesabı ikinci bir eşitleme işleminden korumak mümkün olmadı; bu nedenle önizleme başlatılmadı: {}"
 
 msgid "Couldn't safely prepare the preview because {} couldn't be read: {}"
-msgstr ""
+msgstr "{} okunamadığı için önizleme güvenli biçimde hazırlanamadı: {}"
 
 msgid "Preview state disappeared before it could be saved."
-msgstr ""
+msgstr "Önizleme durumu kaydedilmeden önce kayboldu."
 
 msgid ""
 "Couldn't safely start the preview because its recovery record couldn't be "
 "saved: {}"
-msgstr ""
+msgstr "Kurtarma kaydı kaydedilemediği için önizleme güvenli biçimde başlatılamadı: {}"
 
 msgid "Couldn't pause the sync engine, so no preview was run: {}"
-msgstr ""
+msgstr "Eşitleme motoru duraklatılamadığı için önizleme çalıştırılmadı: {}"
 
 msgid "Couldn't write the folder list: {}"
-msgstr ""
+msgstr "Klasör listesi yazılamadı: {}"
 
 msgid "Couldn't write the settings: {}"
-msgstr ""
+msgstr "Ayarlar yazılamadı: {}"
 
 msgid "Couldn't start the sync engine: {}"
-msgstr ""
+msgstr "Eşitleme motoru başlatılamadı: {}"
 
 msgid "Couldn't clear the recovery record: {}"
-msgstr ""
+msgstr "Kurtarma kaydı temizlenemedi: {}"
 
 msgid "Couldn't restore preview settings: {}"
-msgstr ""
+msgstr "Önizleme ayarları geri yüklenemedi: {}"
 
 msgid "Couldn't read the preview recovery record: {}"
-msgstr ""
+msgstr "Önizleme kurtarma kaydı okunamadı: {}"
 
 msgid "The preview recovery record is damaged: {}"
-msgstr ""
+msgstr "Önizleme kurtarma kaydı bozuk: {}"
 
 msgid "Couldn't clear the committed preview record: {}"
-msgstr ""
+msgstr "Onaylanan önizleme kaydı temizlenemedi: {}"
 
 msgid "Restoring the previous settings…"
-msgstr ""
+msgstr "Önceki ayarlar geri yükleniyor…"
 
 msgid "Cancelling…"
-msgstr ""
+msgstr "İptal ediliyor…"
 
 msgid "Resync started."
-msgstr ""
+msgstr "Yeniden eşitleme başladı."
 
 msgid "The account disappeared and preview settings couldn't be restored: {}"
-msgstr ""
+msgstr "Hesap kayboldu ve önizleme ayarları geri yüklenemedi: {}"
 
 msgid "The recovery record couldn't be committed: {}; the sync job was stopped"
-msgstr ""
+msgstr "Kurtarma kaydı tamamlanamadı: {}; eşitleme görevi durduruldu"
 
 msgid ""
 "The sync job started, but its recovery state couldn't be saved or stopped: "
 "{}; {}. Restart this app to retry recovery. No other sync operation will "
 "start for this account in this session."
-msgstr ""
+msgstr "Eşitleme görevi başladı ancak kurtarma durumu kaydedilemedi veya görev durdurulamadı: {}; {}. Kurtarmayı yeniden denemek için uygulamayı yeniden başlatın. Bu oturumda bu hesap için başka bir eşitleme işlemi başlamayacak."
 
 msgid ""
 "{}. The recovery record couldn't be refreshed, so syncing remains paused: {}"
-msgstr ""
+msgstr "{}. Kurtarma kaydı yenilenemediğinden eşitleme duraklatılmış durumda: {}"
 
 msgid ""
 "{}. Preview settings couldn't be fully restored; syncing remains paused. {}"
-msgstr ""
+msgstr "{}. Önizleme ayarları tamamen geri yüklenemedi; eşitleme duraklatılmış durumda. {}"
 
 msgid "{}. The previous sync service couldn't be restarted: {}"
-msgstr ""
+msgstr "{}. Önceki eşitleme hizmeti yeniden başlatılamadı: {}"
 
 msgid "Preparing sign-in…"
-msgstr ""
+msgstr "Oturum açma hazırlanıyor…"
 
 msgid ""
 "Opening the Microsoft sign-in page in your browser…\n"
 "\n"
 "Log in and approve access. This window updates by itself when you're done."
-msgstr ""
+msgstr "Microsoft oturum açma sayfası tarayıcınızda açılıyor…\\n\\nOturum açıp erişimi onaylayın. İşiniz bittiğinde bu pencere kendiliğinden güncellenir."
 
 msgid ""
 "Couldn't protect this account from a second sync process, so sign-in was not "
 "started: {}"
-msgstr ""
+msgstr "Bu hesap ikinci bir eşitleme işleminden korunamadı; bu nedenle oturum açma başlatılmadı: {}"
 
 msgid "Couldn't stop the sync engine before signing in: {}"
-msgstr ""
+msgstr "Oturum açmadan önce eşitleme motoru durdurulamadı: {}"
 
 msgid ""
 "The sign-in was cancelled, but the previously running sync engine couldn't "
 "be restarted: {}"
-msgstr ""
+msgstr "Oturum açma iptal edildi ancak daha önce çalışan eşitleme motoru yeniden başlatılamadı: {}"
 
 msgid ""
 "Couldn't start the sign-in process: {}. The previously running sync engine "
 "also couldn't be restarted: {}"
-msgstr ""
+msgstr "Oturum açma işlemi başlatılamadı: {}. Daha önce çalışan eşitleme motoru da yeniden başlatılamadı: {}"
 
 msgid "Couldn't start the sign-in process: {}"
-msgstr ""
+msgstr "Oturum açma işlemi başlatılamadı: {}"
 
 msgid ""
 "The sign-in window closed, but the previously running sync engine couldn't "
 "be restarted: {}"
-msgstr ""
+msgstr "Oturum açma penceresi kapandı ancak daha önce çalışan eşitleme motoru yeniden başlatılamadı: {}"
 
 msgid ""
 "This account's settings folder was removed during sign-in. Add the account "
 "again to sign in."
-msgstr ""
+msgstr "Oturum açılırken bu hesabın ayarlar klasörü kaldırıldı. Oturum açmak için hesabı yeniden ekleyin."
 
 msgid ""
 "Your browser couldn't hand the sign-in back automatically.\n"
 "\n"
 "After you log in you'll end up on a blank page. Copy that page's full "
 "address from the address bar and paste it below."
-msgstr ""
+msgstr "Tarayıcınız oturum açma sonucunu otomatik olarak uygulamaya iletemedi.\\n\\nOturum açtıktan sonra boş bir sayfa göreceksiniz. Bu sayfanın tam adresini adres çubuğundan kopyalayıp aşağıya yapıştırın."
 
 msgid "Signed in. Your files will start syncing in a moment."
-msgstr ""
+msgstr "Oturum açıldı. Dosyalarınız birazdan eşitlenmeye başlayacak."
 
 msgid "Signed in."
-msgstr ""
+msgstr "Oturum açıldı."
 
 msgid "The sign-in didn't finish."
-msgstr ""
+msgstr "Oturum açma tamamlanmadı."
 
 msgid ""
 "Sign-in didn't complete.\n"
 "\n"
 "{}"
-msgstr ""
+msgstr "Oturum açma tamamlanmadı.\\n\\n{}"
 
 msgid ""
 "Sign-in failed, and the previously running sync engine couldn't be "
 "restarted: {}"
-msgstr ""
+msgstr "Oturum açma başarısız oldu ve daha önce çalışan eşitleme motoru yeniden başlatılamadı: {}"
 
 msgid ""
 "Microsoft didn't accept the sign-in. Please try again, and make sure you "
 "finish logging in in the browser."
-msgstr ""
+msgstr "Microsoft oturum açmayı kabul etmedi. Yeniden deneyin ve tarayıcıda oturum açma işlemini tamamladığınızdan emin olun."
 
 msgid "The sign-in timed out. Please try again."
-msgstr ""
+msgstr "Oturum açma zaman aşımına uğradı. Yeniden deneyin."
 
 msgid "Microsoft reported a problem: {}"
-msgstr ""
+msgstr "Microsoft bir sorun bildirdi: {}"
 
 msgid "Sync was enabled, but the tray couldn't be set to start at login: {}"
-msgstr ""
+msgstr "Eşitleme etkinleştirildi ancak tepsi simgesinin oturum açıldığında başlaması ayarlanamadı: {}"
 
 msgid "Sign-in finished, but setup wasn't fully completed: {}"
-msgstr ""
+msgstr "Oturum açma tamamlandı ancak kurulum bütünüyle tamamlanamadı: {}"
 
 msgid ""
 "That doesn't look like the right address — it should contain \"code=\". Copy "
 "the whole address of the blank page you land on after logging in."
-msgstr ""
+msgstr "Bu doğru adres gibi görünmüyor — \"code=\" içermeli. Oturum açtıktan sonra açılan boş sayfanın tam adresini kopyalayın."
 
 msgid "Finishing sign-in…"
-msgstr ""
+msgstr "Oturum açma tamamlanıyor…"
 
 msgid "Couldn't find this account's settings folder: {}"
-msgstr ""
+msgstr "Bu hesabın ayarlar klasörü bulunamadı: {}"
 
 msgid "Couldn't protect this account from another sync operation: {}"
-msgstr ""
+msgstr "Bu hesap başka bir eşitleme işleminden korunamadı: {}"
 
 msgid "Couldn't stop background syncing, so you weren't signed out: {}"
-msgstr ""
+msgstr "Arka plan eşitlemesi durdurulamadığı için oturumunuz kapatılmadı: {}"
 
 msgid "Couldn't remove the saved sign-in: {}"
-msgstr ""
+msgstr "Kaydedilmiş oturum açma bilgisi kaldırılamadı: {}"
 
 msgid "Signed out. Your files are still on this computer."
-msgstr ""
+msgstr "Oturum kapatıldı. Dosyalarınız hâlâ bu bilgisayarda."
 
 msgid ""
 "Signed out. Your files are still on this computer. (The sync engine "
 "reported: {})"
-msgstr ""
+msgstr "Oturum kapatıldı. Dosyalarınız hâlâ bu bilgisayarda. (Eşitleme motoru şunu bildirdi: {})"
 
 msgid ""
 "The account was left intact because its sync service couldn't be stopped: {}"
-msgstr ""
+msgstr "Eşitleme hizmeti durdurulamadığı için hesap olduğu gibi bırakıldı: {}"
 
 msgid "The service stopped, but couldn't remove {}: {}"
-msgstr ""
+msgstr "Hizmet durduruldu ancak {} kaldırılamadı: {}"
 
 msgid "The service stopped, but systemd couldn't reload its units: {}"
-msgstr ""
+msgstr "Hizmet durduruldu ancak systemd birimleri yeniden yükleyemedi: {}"
 
 msgid "Couldn't delete {}: {}"
-msgstr ""
+msgstr "{} silinemedi: {}"
 
 msgid ""
 "Add and sign in to a work or school OneDrive account first. Its sign-in is "
 "reused to reach SharePoint."
-msgstr ""
+msgstr "Önce bir iş veya okul OneDrive hesabı ekleyip oturum açın. SharePoint'e erişmek için aynı oturum açma bilgisi kullanılır."
 
 msgid "{}  ·  this computer's copy from {}"
-msgstr ""
+msgstr "{} · bu bilgisayardaki kopya, {} tarihli"
 
 msgid "In OneDrive: {}"
-msgstr ""
+msgstr "OneDrive'da: {}"
 
 msgid "Backed up to \"{}\""
-msgstr ""
+msgstr "\"{}\" konumuna yedeklendi"
 
 msgid "Not set up on this computer"
-msgstr ""
+msgstr "Bu bilgisayarda ayarlanmamış"
 
 msgid "Set to your whole home folder, so it can't be backed up"
-msgstr ""
+msgstr "Tüm ana klasörünüz seçilmiş; bu nedenle yedeklenemez"
 
 msgid "Looking at your {} folder…"
-msgstr ""
+msgstr "{} klasörünüz inceleniyor…"
 
 msgid "1 file"
 msgid_plural "{n} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 dosya"
+msgstr[1] "{n} dosya"
 
 msgid ""
 "Your {} folder ({}) moves into OneDrive, at {}, and everything in it "
 "uploads: {}, {}. Your apps keep finding it in the same place."
-msgstr ""
+msgstr "{} klasörünüz ({}) OneDrive'da {} konumuna taşınacak ve içindeki her şey yüklenecek: {}, {}. Uygulamalarınız klasörü aynı yerde bulmaya devam edecek."
 
 msgid "OneDrive is on the same drive, so the move is instant."
-msgstr ""
+msgstr "OneDrive aynı sürücüde, bu yüzden taşıma hemen tamamlanır."
 
 msgid "The desktop shows the new place after you next log in."
-msgstr ""
+msgstr "Masaüstü, sonraki oturum açışınızda yeni konumu gösterir."
 
 msgid ""
 "To undo it later, press Stop: your files stay in OneDrive and the folder "
 "here starts empty again, as on Windows."
-msgstr ""
+msgstr "Daha sonra geri almak için Durdur'a basın: dosyalarınız OneDrive'da kalır ve buradaki klasör Windows'taki gibi yeniden boş olur."
 
 msgid ""
 "OneDrive is on another drive, so the files are copied. Nothing is deleted: "
 "your original folder is kept, renamed \"{}\". Once you've checked everything "
 "is in OneDrive, delete it yourself to free the space. "
-msgstr ""
+msgstr "OneDrive başka bir sürücüde, bu yüzden dosyalar kopyalanır. Hiçbir şey silinmez: özgün klasörünüz \"{}\" adıyla tutulur. Her şeyin OneDrive'da olduğunu denetledikten sonra yer açmak için klasörü kendiniz silin."
 
 msgid ""
 "OneDrive already has this folder: your files join what's there, and any "
 "whose name is taken get \"{}\" added."
-msgstr ""
+msgstr "OneDrive'da bu klasör zaten var: dosyalarınız mevcut içeriğe eklenir ve adı kullanılmış olanlara \"{}\" eklenir."
 
 msgid "Back up your {} folder"
-msgstr ""
+msgstr "{} klasörünüzü yedekleyin"
 
 msgid "Stop backing up {}?"
-msgstr ""
+msgstr "{} yedeklemesi durdurulsun mu?"
 
 msgid ""
 "Your files stay in OneDrive, at {}, and keep syncing there. Your {} folder "
 "on this computer starts empty again, and new files you put in it won't be "
 "backed up."
-msgstr ""
+msgstr "Dosyalarınız OneDrive'da {} konumunda kalır ve orada eşitlenmeye devam eder. Bu bilgisayardaki {} klasörünüz yeniden boş olur; içine koyduğunuz yeni dosyalar yedeklenmez."
 
 msgid ""
 "Nothing is moved back or deleted. To have the files here again, move them "
 "from {} yourself."
-msgstr ""
+msgstr "Hiçbir şey geri taşınmaz veya silinmez. Dosyaları yeniden buraya almak için {} konumundan kendiniz taşıyın."
 
 msgid "Stop backing up"
-msgstr ""
+msgstr "Yedeklemeyi durdur"
 
 msgid "{} is now backed up to OneDrive."
-msgstr ""
+msgstr "{} artık OneDrive'a yedekleniyor."
 
 msgid ""
 "1 name was already taken in OneDrive, so it was saved with \"(from …)\" "
@@ -2927,689 +2927,688 @@ msgid ""
 msgid_plural ""
 "{n} names were already taken in OneDrive, so they were saved with \"(from …)"
 "\" added."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "OneDrive'da bu ad zaten kullanılıyordu; dosya adına \"(… kaynağından)\" eklenerek kaydedildi."
+msgstr[1] "OneDrive'da bu adlar zaten kullanılıyordu; dosya adlarına \"(… kaynağından)\" eklenerek kaydedildi."
 
 msgid ""
 "Your original folder is kept at {}: delete it yourself once you've checked "
 "your files in OneDrive."
-msgstr ""
+msgstr "Özgün klasörünüz {} konumunda tutuluyor: OneDrive'daki dosyalarınızı denetledikten sonra kendiniz silin."
 
 msgid ""
 "The desktop's folder setting couldn't be updated ({}); the link at the old "
 "place still works."
-msgstr ""
+msgstr "Masaüstünün klasör ayarı güncellenemedi ({}); eski konumdaki bağlantı çalışmaya devam ediyor."
 
 msgid "Stopped. Your files are still in OneDrive at {}."
-msgstr ""
+msgstr "Durduruldu. Dosyalarınız hâlâ OneDrive'da, {} konumunda."
 
 msgid "Couldn't inspect the selected folder {}: {}"
-msgstr ""
+msgstr "Seçilen {} klasörü incelenemedi: {}"
 
 msgid "Couldn't clear the empty destination {}: {}"
-msgstr ""
+msgstr "Boş hedef {} temizlenemedi: {}"
 
 msgid "The destination {} changed after review."
-msgstr ""
+msgstr "İncelemeden sonra {} hedefi değişti."
 
 msgid ""
 "Copying to {} failed (is there enough space?). The original remains in {}."
-msgstr ""
+msgstr "{} konumuna kopyalama başarısız oldu (yeterli alan var mı?). Özgün klasör {} konumunda duruyor."
 
 msgid "Choose where to move the OneDrive folder"
-msgstr ""
+msgstr "OneDrive klasörünün taşınacağı yeri seçin"
 
 msgid ""
 "No folder chooser is available on this desktop, so the folder can't be moved "
 "from here."
-msgstr ""
+msgstr "Bu masaüstünde klasör seçici yok; bu nedenle klasör buradan taşınamıyor."
 
 msgid "Couldn't safely resolve the selected destination folder."
-msgstr ""
+msgstr "Seçilen hedef klasörün yolu güvenli biçimde belirlenemedi."
 
 msgid ""
 "{} is a symbolic link. Move the actual sync folder or choose a new folder in "
 "Options first."
-msgstr ""
+msgstr "{} bir sembolik bağlantı. Önce gerçek eşitleme klasörünü taşıyın veya Seçenekler'den yeni bir klasör seçin."
 
 msgid "{} isn't there (is its drive connected?), so there's nothing to move."
-msgstr ""
+msgstr "{} bulunamadı (sürücü bağlı mı?), bu nedenle taşınacak bir şey yok."
 
 msgid "That folder overlaps with \"{}\" ({}). Pick a separate folder."
-msgstr ""
+msgstr "Bu klasör \"{}\" ({}) ile çakışıyor. Ayrı bir klasör seçin."
 
 msgid "{} already exists and isn't empty. Pick an empty folder."
-msgstr ""
+msgstr "{} zaten var ve boş değil. Boş bir klasör seçin."
 
 msgid "Moving the folder to {}… The sync engine is paused meanwhile."
-msgstr ""
+msgstr "Klasör {} konumuna taşınıyor… Bu sırada eşitleme motoru duraklatıldı."
 
 msgid "Couldn't stop the sync engine: {}"
-msgstr ""
+msgstr "Eşitleme motoru durdurulamadı: {}"
 
 msgid "Couldn't recheck {}: {}"
-msgstr ""
+msgstr "{} yeniden denetlenemedi: {}"
 
 msgid ""
 "The current sync folder changed while the destination was being reviewed. "
 "Refresh and try again."
-msgstr ""
+msgstr "Hedef incelenirken geçerli eşitleme klasörü değişti. Yenileyip yeniden deneyin."
 
 msgid ""
 "The destination drive changed while the folder move was being reviewed. "
 "Connect the intended drive and try again."
-msgstr ""
+msgstr "Klasör taşıma incelenirken hedef sürücü değişti. İstenen sürücüyü bağlayıp yeniden deneyin."
 
 msgid "Couldn't move the folder: {}"
-msgstr ""
+msgstr "Klasör taşınamadı: {}"
 
 msgid "Couldn't save the new folder in the settings: {}"
-msgstr ""
+msgstr "Yeni klasör ayarlara kaydedilemedi: {}"
 
 msgid ""
 "Couldn't save the new folder in the settings: {}; rollback also failed: {}"
-msgstr ""
+msgstr "Yeni klasör ayarlara kaydedilemedi: {}; geri alma da başarısız oldu: {}"
 
 msgid ""
 "The folder operation finished, but the sync engine couldn't be restarted: {}"
-msgstr ""
+msgstr "Klasör işlemi tamamlandı ancak eşitleme motoru yeniden başlatılamadı: {}"
 
 msgid ""
 "Folder moved. The sync engine needs a full resync to carry on there — check "
 "the preview."
-msgstr ""
+msgstr "Klasör taşındı. Eşitleme motorunun burada devam edebilmesi için baştan eşitlemesi gerekiyor — önizlemeyi denetleyin."
 
 msgid ""
 "Folder copied. Your old folder ({}) was left untouched and is no longer "
 "synced: once you've checked your files in the new place, delete it yourself "
 "to free the space. Next, check the preview to carry on syncing."
-msgstr ""
+msgstr "Klasör kopyalandı. Eski klasörünüz ({}) değiştirilmedi ve artık eşitlenmiyor: yeni konumdaki dosyaları denetledikten sonra yer açmak için eski klasörü kendiniz silin. Ardından eşitlemeye devam etmek için önizlemeyi denetleyin."
 
 msgid "Finish moving the folder"
-msgstr ""
+msgstr "Klasör taşımayı tamamla"
 
 msgid ""
 "Your files are already in the new folder, so little or nothing should need "
 "to transfer."
-msgstr ""
+msgstr "Dosyalarınız zaten yeni klasörde, bu nedenle çok az şeyin veya hiçbir şeyin aktarılması gerekmez."
 
 msgid "Add and sign in to a work or school account first."
-msgstr ""
+msgstr "Önce bir iş veya okul hesabı ekleyip oturum açın."
 
 msgid "Checking the OneDrive client…"
-msgstr ""
+msgstr "OneDrive istemcisi denetleniyor…"
 
 msgid "Give the account a name and pick a local folder."
-msgstr ""
+msgstr "Hesaba bir ad verin ve yerel bir klasör seçin."
 
 msgid ""
 "A national cloud account needs your organisation's tenant (ask its IT team)."
-msgstr ""
+msgstr "Ulusal bulut hesabı için kuruluşunuzun kiracı bilgisi gerekir (BT ekibinize sorun)."
 
 msgid "The tenant {}."
-msgstr ""
+msgstr "Kiracı: {}."
 
 msgid "You already have an account called \"{}\". Pick a different name."
-msgstr ""
+msgstr "“{}” adlı bir hesabınız zaten var. Başka bir ad seçin."
 
 msgid "Search for and pick a library first."
-msgstr ""
+msgstr "Önce bir kitaplık arayıp seçin."
 
 msgid "Couldn't copy the sign-in: {}"
-msgstr ""
+msgstr "Oturum açma bilgisi kopyalanamadı: {}"
 
 msgid "Created the account but couldn't find it again — try reopening the app."
-msgstr ""
+msgstr "Hesap oluşturuldu ancak tekrar bulunamadı — uygulamayı yeniden açmayı deneyin."
 
 msgid "Couldn't create the autostart folder: {}"
-msgstr ""
+msgstr "Otomatik başlatma klasörü oluşturulamadı: {}"
 
 msgid "OneDrive sync status"
-msgstr ""
+msgstr "OneDrive eşitleme durumu"
 
 msgid "Couldn't save the autostart setting: {}"
-msgstr ""
+msgstr "Otomatik başlatma ayarı kaydedilemedi: {}"
 
 msgid "Couldn't remove {}: {}"
-msgstr ""
+msgstr "{} kaldırılamadı: {}"
 
 msgid "Checking the sync engine…"
-msgstr ""
+msgstr "Eşitleme motoru denetleniyor…"
 
 msgid "Sync engine: OneDrive Client for Linux {} ({})"
-msgstr ""
+msgstr "Eşitleme motoru: OneDrive Client for Linux {} ({})"
 
 msgid ""
 "Sync engine: OneDrive Client for Linux {} ({}) — too old, please update it."
-msgstr ""
+msgstr "Eşitleme motoru: OneDrive Client for Linux {} ({}) çok eski; lütfen güncelleyin."
 
 msgid "Sync engine: the OneDrive Client for Linux isn't installed."
-msgstr ""
+msgstr "Eşitleme motoru: OneDrive Client for Linux yüklü değil."
 
 msgid ""
 "Added. Look for \"DriveDeck for OneDrive\" in your applications menu. Right-"
 "clicking a file in Dolphin now also shows a OneDrive menu with \"Copy view-"
 "only link\", \"Copy editing link\" and \"View on the OneDrive website\"."
-msgstr ""
+msgstr "Eklendi. Uygulamalar menüsünde “DriveDeck for OneDrive”ı bulun. Dolphin'de bir dosyaya sağ tıklayınca “Yalnızca görüntüleme bağlantısını kopyala”, “Düzenleme bağlantısını kopyala” ve “OneDrive web sitesinde görüntüle” seçeneklerini içeren OneDrive menüsü de görünür."
 
 msgid "Couldn't add it: {}"
-msgstr ""
+msgstr "Eklenemedi: {}"
 
 msgid "Found the OneDrive client ({}). You're ready to sync."
-msgstr ""
+msgstr "OneDrive istemcisi bulundu ({}). Eşitlemeye hazırsınız."
 
 msgid "Your OneDrive Client for Linux ({}) is too old"
-msgstr ""
+msgstr "OneDrive Client for Linux ({}) çok eski"
 
 msgid "Your computer will ask for your password…"
-msgstr ""
+msgstr "Bilgisayarınız parolanızı isteyecek…"
 
 msgid ""
 "Nothing was changed: your computer didn't allow it (the password wasn't "
 "accepted, or no password window could be shown)."
-msgstr ""
+msgstr "Hiçbir şey değiştirilmedi: bilgisayarınız izin vermedi (parola kabul edilmedi veya parola penceresi gösterilemedi)."
 
 msgid "Couldn't start the installer: {}"
-msgstr ""
+msgstr "Yükleyici başlatılamadı: {}"
 
 msgid "The OneDrive client is updated to {}."
-msgstr ""
+msgstr "OneDrive istemcisi {} sürümüne güncellendi."
 
 msgid "The OneDrive client is installed. You're ready to sync."
-msgstr ""
+msgstr "OneDrive istemcisi yüklendi. Eşitlemeye hazırsınız."
 
 msgid ""
 "It finished, but the OneDrive client still isn't working. The instructions "
 "show how to install it by hand."
-msgstr ""
+msgstr "İşlem tamamlandı ancak OneDrive istemcisi hâlâ çalışmıyor. Yönergelerde elle nasıl kurulacağı anlatılıyor."
 
 msgid "Couldn't open OneDrive settings"
-msgstr ""
+msgstr "OneDrive ayarları açılamadı"
 
 msgid "The window couldn't open ({})."
-msgstr ""
+msgstr "Pencere açılamadı ({})."
 
 msgid "Couldn't save the account name: {}"
-msgstr ""
+msgstr "Hesap adı kaydedilemedi: {}"
 
 msgid "Renamed."
-msgstr ""
+msgstr "Yeniden adlandırıldı."
 
 msgid "Syncing now…"
-msgstr ""
+msgstr "Şimdi eşitleniyor…"
 
 msgid "Saved as {}. It opens now: read it before sharing it."
-msgstr ""
+msgstr "{} olarak kaydedildi. Şimdi açıldı: paylaşmadan önce okuyun."
 
 msgid "Couldn't remove {}"
-msgstr ""
+msgstr "{} kaldırılamadı"
 
 msgid "Added. Close every Dolphin window and open it again to see the badges."
-msgstr ""
+msgstr "Eklendi. Simgeleri görmek için tüm Dolphin pencerelerini kapatıp yeniden açın."
 
 msgid "Once it's installed, this note goes away by itself."
-msgstr ""
+msgstr "Kurulduğunda bu not kendiliğinden kaybolur."
 
 msgid "Couldn't save that: {}"
-msgstr ""
+msgstr "Kaydedilemedi: {}"
 
 msgid "The app file {} will be deleted."
-msgstr ""
+msgstr "{} uygulama dosyası silinecek."
 
 msgid ""
 "The app's package will then be removed; your computer will ask for your "
 "password."
-msgstr ""
+msgstr "Ardından uygulama paketi kaldırılacak; bilgisayarınız parolanızı isteyecek."
 
 msgid "Afterwards, remove the \"{}\" package with your software manager."
-msgstr ""
+msgstr "Daha sonra yazılım yöneticinizi kullanarak “{}” paketini kaldırın."
 
 msgid "This copy isn't installed, so only your settings are removed."
-msgstr ""
+msgstr "Bu kopya yüklü değil; yalnızca ayarlarınız kaldırılır."
 
 msgid ""
 "The tray icon didn't close. Log out and back in once this is done to be sure "
 "it's gone."
-msgstr ""
+msgstr "Tepsi simgesi kapanmadı. İşlem bittikten sonra tamamen kapandığından emin olmak için oturumu kapatıp yeniden açın."
 
 msgid ""
 "Your accounts keep syncing in the background with the OneDrive Client for "
 "Linux."
-msgstr ""
+msgstr "Hesaplarınız OneDrive Client for Linux ile arka planda eşitlenmeye devam eder."
 
 msgid ""
 "{} was left untouched because its settings folder couldn't be checked: {}"
-msgstr ""
+msgstr "Ayarlar klasörü denetlenemediği için {} olduğu gibi bırakıldı: {}"
 
 msgid ""
 "{} was left untouched because its one-time sync job couldn't be stopped: {}"
-msgstr ""
+msgstr "Tek seferlik eşitleme işi durdurulamadığı için {} olduğu gibi bırakıldı: {}"
 
 msgid "{} was left untouched because its sync service couldn't be stopped: {}"
-msgstr ""
+msgstr "Eşitleme hizmeti durdurulamadığı için {} olduğu gibi bırakıldı: {}"
 
 msgid ""
 "{} was stopped, but its service couldn't be disabled. Its files and service "
 "were left intact: {}"
-msgstr ""
+msgstr "{} durduruldu ancak hizmeti devre dışı bırakılamadı. Dosyaları ve hizmeti olduğu gibi bırakıldı: {}"
 
 msgid ""
 "{} was stopped, but its service file couldn't be removed. Its account files "
 "were left intact: {}"
-msgstr ""
+msgstr "{} durduruldu ancak hizmet dosyası kaldırılamadı. Hesap dosyaları olduğu gibi bırakıldı: {}"
 
 msgid ""
 "{} was stopped and disabled, but its custom service file at {} was left in "
 "place."
-msgstr ""
+msgstr "{} durdurulup devre dışı bırakıldı ancak {} konumundaki özel hizmet dosyası yerinde bırakıldı."
 
 msgid ""
 "{}: signed out and its sync settings removed. The files in {} are still "
 "there."
-msgstr ""
+msgstr "{}: oturum kapatıldı ve eşitleme ayarları kaldırıldı. {} konumundaki dosyalar hâlâ duruyor."
 
 msgid ""
 "{} also holds files that aren't the OneDrive client's, so they and the "
 "folder were kept."
-msgstr ""
+msgstr "{} içinde OneDrive istemcisine ait olmayan dosyalar da var; bu nedenle dosyalar ve klasör korundu."
 
 msgid ""
 "The account services were removed, but systemd couldn't reload its unit "
 "list: {}"
-msgstr ""
+msgstr "Hesap hizmetleri kaldırıldı ancak systemd birim listesini yeniden yükleyemedi: {}"
 
 msgid "Couldn't delete {}: {}. Delete it yourself to finish."
-msgstr ""
+msgstr "{} silinemedi: {}. Tamamlamak için kendiniz silin."
 
 msgid ""
 "The package wasn't removed (the password prompt may have been cancelled). "
 "Remove \"{}\" with your software manager to finish."
-msgstr ""
+msgstr "Paket kaldırılmadı (parola istemini iptal etmiş olabilirsiniz). Tamamlamak için yazılım yöneticinizden “{}” paketini kaldırın."
 
 msgid "Remove the \"{}\" package with your software manager to finish."
-msgstr ""
+msgstr "Tamamlamak için yazılım yöneticinizden “{}” paketini kaldırın."
 
 msgid "0 means never. Too low cuts off large transfers."
-msgstr ""
+msgstr "0, hiçbir zaman anlamına gelir. Çok düşük bir değer büyük aktarımları keser."
 
 msgid "0 syncs files of any size."
-msgstr ""
+msgstr "0, her boyuttaki dosyaları eşitler."
 
 msgid ""
 "10 to 60 MB, in steps of 5. Bigger pieces can be faster on fast, steady "
 "connections."
-msgstr ""
+msgstr "5'er MB artışlarla 10–60 MB. Hızlı ve kararlı bağlantılarda büyük parçalar daha hızlı olabilir."
 
 msgid "600 means only you can read them."
-msgstr ""
+msgstr "600, dosyaları yalnızca sizin okuyabileceğiniz anlamına gelir."
 
 msgid "700 means only you can open them."
-msgstr ""
+msgstr "700, klasörleri yalnızca sizin açabileceğiniz anlamına gelir."
 
 msgid "Add the OneDrive folder to the file manager's sidebar"
-msgstr ""
+msgstr "OneDrive klasörünü dosya yöneticisinin kenar çubuğuna ekle"
 
 msgid "Also delete the emptied folders"
-msgstr ""
+msgstr "Boş kalan klasörleri de sil"
 
 msgid "Always sync files at the top of the OneDrive folder"
-msgstr ""
+msgstr "OneDrive klasörünün en üstündeki dosyaları her zaman eşitle"
 
 msgid "Application ID"
-msgstr ""
+msgstr "Uygulama kimliği"
 
 msgid "As found"
-msgstr ""
+msgstr "Bulunduğu gibi"
 
 msgid "Ask for read-only access"
-msgstr ""
+msgstr "Salt okunur erişim iste"
 
 msgid "By name, A to Z"
-msgstr ""
+msgstr "Ada göre, A'dan Z'ye"
 
 msgid "By name, Z to A"
-msgstr ""
+msgstr "Ada göre, Z'den A'ya"
 
 msgid "Can fix transfers that stall on some networks and proxies."
-msgstr ""
+msgstr "Bazı ağlarda ve vekil sunucularda takılan aktarımları düzeltebilir."
 
 msgid ""
 "Counted in sync checks (set under When to sync). Lower catches missed online "
 "changes sooner but uses more data."
-msgstr ""
+msgstr "Eşitleme denetimlerine dahildir (Eşitleme zamanı bölümünden ayarlanır). Düşük değer, kaçırılan çevrimiçi değişiklikleri daha erken bulur ancak daha fazla veri kullanır."
 
 msgid "Delete files here after they upload"
-msgstr ""
+msgstr "Yüklendikten sonra buradaki dosyaları sil"
 
 msgid "Delete permanently online (skip the OneDrive recycle bin)"
-msgstr ""
+msgstr "Çevrimiçi kalıcı olarak sil (OneDrive geri dönüşüm kutusunu atla)"
 
 msgid "Don't check downloads"
-msgstr ""
+msgstr "İndirmeleri denetleme"
 
 msgid "Don't check for new client versions"
-msgstr ""
+msgstr "İstemcinin yeni sürümlerini denetleme"
 
 msgid "Don't check uploads"
-msgstr ""
+msgstr "Yüklemeleri denetleme"
 
 msgid "Don't get instant online changes"
-msgstr ""
+msgstr "Çevrimiçi değişiklikleri anında alma"
 
 msgid "Don't set permissions on downloaded files"
-msgstr ""
+msgstr "İndirilen dosyaların izinlerini ayarlama"
 
 msgid "Don't sync files larger than"
-msgstr ""
+msgstr "Şundan büyük dosyaları eşitleme:"
 
 msgid "Don't sync if the drive isn't mounted"
-msgstr ""
+msgstr "Sürücü bağlanmamışsa eşitleme"
 
 msgid "Downloads stop rather than fill the disk."
-msgstr ""
+msgstr "Diski doldurmak yerine indirmeler durdurulur."
 
 msgid "Drop idle connections after"
-msgstr ""
+msgstr "Boşta kalan bağlantıları şu süre sonra kapat"
 
 msgid "Files transferred at once"
-msgstr ""
+msgstr "Aynı anda aktarılacak dosya sayısı"
 
 msgid "Folders to skip must match the whole path"
-msgstr ""
+msgstr "Atlanacak klasörler yolun tamamıyla eşleşmeli"
 
 msgid ""
 "For moving files to OneDrive, usually with Upload only. Leaves the folders "
 "behind."
-msgstr ""
+msgstr "Dosyaları OneDrive'a taşımak için kullanılır; genellikle Yalnızca yükle ile. Klasörler yerinde kalır."
 
 msgid "Full online check every"
-msgstr ""
+msgstr "Tam çevrimiçi denetim aralığı"
 
 msgid "Get online changes through a webhook"
-msgstr ""
+msgstr "Çevrimiçi değişiklikleri webhook üzerinden al"
 
 msgid "Give up connecting after"
-msgstr ""
+msgstr "Bağlanmayı şu süre sonra bırak"
 
 msgid "Give up on any single request after"
-msgstr ""
+msgstr "Tek bir isteği şu süre sonra bırak"
 
 msgid "Give up when no data arrives for"
-msgstr ""
+msgstr "Şu süre boyunca veri gelmezse bırak"
 
 msgid ""
 "Helps with apps that save on every keystroke (Obsidian and other note apps)."
-msgstr ""
+msgstr "Her tuş vuruşunda kaydeden uygulamalara yardımcı olur (Obsidian ve diğer not uygulamaları)."
 
 msgid "Identify as"
-msgstr ""
+msgstr "Şu kimlikle tanıt"
 
 msgid "In addition to the system journal the app already reads."
-msgstr ""
+msgstr "Uygulamanın zaten okuduğu sistem günlüğüne ek olarak."
 
 msgid "Items deleted here can't be restored online afterwards."
-msgstr ""
+msgstr "Burada silinen öğeler daha sonra çevrimiçi olarak geri yüklenemez."
 
 msgid ""
 "Items online that aren't on this computer are deleted online instead of "
 "downloaded. Check with a dry run first."
-msgstr ""
+msgstr "Çevrimiçi olup bu bilgisayarda olmayan öğeler indirilmek yerine çevrimiçi silinir. Önce deneme çalıştırmasıyla denetleyin."
 
 msgid "Keep SharePoint's changed copy as a new version"
-msgstr ""
+msgstr "SharePoint'in değiştirdiği kopyayı yeni sürüm olarak sakla"
 
 msgid "Keep this much disk space free"
-msgstr ""
+msgstr "Diskte şu kadar boş alan bırak"
 
 msgid ""
 "Keeps file dates exactly right online, at the cost of a little speed for "
 "small files."
-msgstr ""
+msgstr "Küçük dosyalarda biraz hız kaybı karşılığında çevrimiçi dosya tarihlerini tam olarak doğru tutar."
 
 msgid "Largest first"
-msgstr ""
+msgstr "Önce en büyük"
 
 msgid "Leave empty for the app's own folder (~/.local/share/drivedeck/logs)."
-msgstr ""
+msgstr "Uygulamanın kendi klasörünü kullanmak için boş bırak (~/.local/share/drivedeck/logs)."
 
 msgid "Leave empty for the client's own name, which Microsoft throttles least."
-msgstr ""
+msgstr "Microsoft'un en az kısıtladığı istemci adını kullanmak için boş bırakın."
 
 msgid ""
 "Leaves permissions to the folder (needed on drives that don't support Linux "
 "permissions, like NTFS or exFAT)."
-msgstr ""
+msgstr "İzinleri klasörden alır (NTFS veya exFAT gibi Linux izinlerini desteklemeyen sürücülerde gerekir)."
 
 msgid "Listen on address"
-msgstr ""
+msgstr "Şu adreste dinle"
 
 msgid "Listen on port"
-msgstr ""
+msgstr "Şu bağlantı noktasında dinle"
 
 msgid "Log all network traffic"
-msgstr ""
+msgstr "Tüm ağ trafiğini günlüğe kaydet"
 
 msgid "Log folder"
-msgstr ""
+msgstr "Günlük klasörü"
 
 msgid "Log routine checks only every"
-msgstr ""
+msgstr "Düzenli denetimleri şu aralıkla günlüğe kaydet"
 
 msgid "Log the speed of each transfer"
-msgstr ""
+msgstr "Her aktarımın hızını günlüğe kaydet"
 
 msgid "Logging"
-msgstr ""
+msgstr "Günlük kaydı"
 
 msgid "Lower this if a router or firewall cuts connections that sit idle."
-msgstr ""
+msgstr "Yönlendirici veya güvenlik duvarı boşta kalan bağlantıları kesiyorsa bu değeri düşürün."
 
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 msgid "Make OneDrive match this computer exactly"
-msgstr ""
+msgstr "OneDrive'ı bu bilgisayarla tamamen aynı yap"
 
 msgid "More than 8 rarely helps and can get you throttled by Microsoft."
-msgstr ""
+msgstr "8'den fazlası nadiren işe yarar ve Microsoft tarafından hızınız kısıtlanabilir."
 
 msgid ""
 "Needs a public https address that forwards to this computer. Instant online "
 "changes usually make this unnecessary."
-msgstr ""
+msgstr "Bu bilgisayara yönlendiren herkese açık bir HTTPS adresi gerekir. Çevrimiçi değişikliklerin anında alınması genellikle buna gerek bırakmaz."
 
 msgid "Network"
-msgstr ""
+msgstr "Ağ"
 
 msgid ""
 "Normally a clashing local file is kept under a new name. With this on, its "
 "changes are lost."
-msgstr ""
+msgstr "Normalde çakışan yerel dosya yeni bir adla saklanır. Bu seçenek açıksa dosyadaki değişiklikler kaybolur."
 
 msgid "Notify about every file synced"
-msgstr ""
+msgstr "Eşitlenen her dosya için bildirim göster"
 
 msgid "Online changes are then picked up at each sync check instead."
-msgstr ""
+msgstr "Bunun yerine çevrimiçi değişiklikler her eşitleme denetiminde alınır."
 
 msgid ""
 "Only for SharePoint libraries that change files after upload, which makes "
 "every check fail."
-msgstr ""
+msgstr "Yalnızca yüklemeden sonra dosyaları değiştirip her denetimin başarısız olmasına neden olan SharePoint kitaplıkları için."
 
 msgid "Only for government or national cloud accounts."
-msgstr ""
+msgstr "Yalnızca kamu veya ulusal bulut hesapları için."
 
 msgid ""
 "Only for reporting a problem. The log then holds sign-in tokens: don't share "
 "it without removing them."
-msgstr ""
+msgstr "Yalnızca sorun bildirirken kullanın. Günlük oturum açma belirteçlerini içerir: bunları kaldırmadan günlüğü paylaşmayın."
 
 msgid "Only if your organisation registered its own app for the client."
-msgstr ""
+msgstr "Yalnızca kuruluşunuz istemci için kendi uygulamasını kaydettiyse."
 
 msgid ""
 "Only when SharePoint reports the wrong size for files, so good downloads get "
 "thrown away."
-msgstr ""
+msgstr "Yalnızca SharePoint dosya boyutlarını yanlış bildirip düzgün indirmelerin atılmasına neden oluyorsa."
 
 msgid "Overwrite local files on a conflict instead of keeping a copy"
-msgstr ""
+msgstr "Çakışmada kopya saklamak yerine yerel dosyaların üzerine yaz"
 
 msgid "Permissions for new files"
-msgstr ""
+msgstr "Yeni dosyaların izinleri"
 
 msgid "Permissions for new folders"
-msgstr ""
+msgstr "Yeni klasörlerin izinleri"
 
 msgid "Public address"
-msgstr ""
+msgstr "Herkese açık adres"
 
 msgid ""
 "Put an empty file named .nosync in the mount point while the drive is "
 "unplugged. If it's ever visible, syncing stops instead of deleting "
 "everything online."
-msgstr ""
+msgstr "Sürücü çıkarılmışken bağlama noktasına .nosync adlı boş bir dosya koyun. Bu dosya görünür olursa çevrimiçi her şeyi silmek yerine eşitleme durur."
 
 msgid "Quiets the log when nothing is changing."
-msgstr ""
+msgstr "Hiçbir şey değişmiyorken günlük kayıtlarını azaltır."
 
 msgid "Record who created and last changed each file"
-msgstr ""
+msgstr "Her dosyayı kimin oluşturduğunu ve en son kimin değiştirdiğini kaydet"
 
 msgid "Remember server addresses for"
-msgstr ""
+msgstr "Sunucu adreslerini şu süreyle hatırla"
 
 msgid "Renew the subscription every"
-msgstr ""
+msgstr "Aboneliği şu aralıkla yenile"
 
 msgid ""
 "Required for a national cloud; otherwise only if your organisation asks."
-msgstr ""
+msgstr "Ulusal bulut için gereklidir; diğer durumlarda yalnızca kuruluşunuz isterse."
 
 msgid "Retry a failed subscription after"
-msgstr ""
+msgstr "Başarısız aboneliği şu süre sonra yeniden dene"
 
 msgid ""
 "SharePoint rewrites Office, PDF and HTML files after upload. Normally the "
 "client puts your original back."
-msgstr ""
+msgstr "SharePoint yüklemeden sonra Office, PDF ve HTML dosyalarını yeniden yazar. Normalde istemci özgün dosyanızı geri koyar."
 
 msgid "Sign-in"
-msgstr ""
+msgstr "Oturum açma"
 
 msgid "Smallest first"
-msgstr ""
+msgstr "Önce en küçük"
 
 msgid "Stop and ask when this many items are deleted at once"
-msgstr ""
+msgstr "Bir kerede bu kadar öğe silinirse durup sor"
 
 msgid ""
 "Stored in the file's extended attributes (user.onedrive.createdBy, "
 "user.onedrive.lastModifiedBy)."
-msgstr ""
+msgstr "Dosyanın genişletilmiş özniteliklerinde saklanır (user.onedrive.createdBy, user.onedrive.lastModifiedBy)."
 
 msgid "Subscription lasts"
-msgstr ""
+msgstr "Abonelik süresi"
 
 msgid "Syncing"
-msgstr ""
+msgstr "Eşitleniyor"
 
 msgid "The client can then only download. Uploads and online deletes fail."
-msgstr ""
+msgstr "İstemci bundan sonra yalnızca indirebilir. Yüklemeler ve çevrimiçi silmeler başarısız olur."
 
 msgid ""
 "Then \"Projects/Old\" only skips that one folder, and a plain name only "
 "skips a folder at the top."
-msgstr ""
+msgstr "Böylece \"Projects/Old\" yalnızca o klasörü, tek başına yazılan bir ad ise yalnızca en üstteki bir klasörü atlar."
 
 msgid "Transfer files in this order"
-msgstr ""
+msgstr "Dosyaları bu sırayla aktar"
 
 msgid "Transfers"
-msgstr ""
+msgstr "Aktarımlar"
 
 msgid "Trash folder"
-msgstr ""
+msgstr "Çöp klasörü"
 
 msgid "Treat this computer as the source of truth"
-msgstr ""
+msgstr "Bu bilgisayarı esas al"
 
 msgid "Upload every file in pieces"
-msgstr ""
+msgstr "Her dosyayı parçalara bölerek yükle"
 
 msgid "Upload large files in pieces of"
-msgstr ""
+msgstr "Büyük dosyaları şu büyüklükte parçalara bölerek yükle"
 
 msgid "Use HTTP/1.1 only"
-msgstr ""
+msgstr "Yalnızca HTTP/1.1 kullan"
 
 msgid "Wait"
-msgstr ""
+msgstr "Bekle"
 
 msgid "Wait before sending changes from busy apps"
-msgstr ""
+msgstr "Meşgul uygulamalardaki değişiklikleri göndermeden önce bekle"
 
 msgid "Webhooks"
-msgstr ""
+msgstr "Webhook'lar"
 
 msgid ""
 "When only some folders are chosen, files sitting directly in the OneDrive "
 "folder still sync."
-msgstr ""
+msgstr "Yalnızca bazı klasörler seçilse bile OneDrive klasörünün en üstündeki dosyalar eşitlenir."
 
 msgid ""
 "When the same item differs here and online, this computer's copy wins "
 "instead of OneDrive's."
-msgstr ""
+msgstr "Aynı öğe buradaki kopya ile çevrimiçi kopya arasında farklıysa OneDrive'daki yerine bu bilgisayardaki kopya kullanılır."
 
 msgid "Where files deleted online go on this computer."
-msgstr ""
+msgstr "Çevrimiçi silinen dosyaların bu bilgisayarda gideceği yer."
 
 msgid "With a OneDrive folder icon where the file manager supports it."
-msgstr ""
+msgstr "Dosya yöneticisi destekliyorsa OneDrive klasör simgesiyle göster."
 
 msgid "Write a log file"
-msgstr ""
+msgstr "Günlük dosyası yaz"
 
 msgid "checks"
-msgstr ""
+msgstr "denetim"
 
 msgid "items"
-msgstr ""
+msgstr "öğe"
 
 msgid "seconds"
-
-msgstr ""
+msgstr "saniye"
 
 #: src/runner.rs
 msgid "OneDrive files"
-msgstr ""
+msgstr "OneDrive dosyaları"
 
 #: src/runner.rs
 msgid "Search your OneDrive, including files that aren't on this computer"
-msgstr ""
+msgstr "Bu bilgisayarda olmayan dosyalar da dahil OneDrive'ınızda arama yapın"
 
 #: src/runner.rs
 msgid "Top of OneDrive"
-msgstr ""
+msgstr "OneDrive'ın en üstü"
 
 #: src/runner.rs
 msgid "Open on the OneDrive website"
-msgstr ""
+msgstr "OneDrive web sitesinde aç"
 
 #: ui/app.slint
 msgid "Search OneDrive from KRunner (Alt+Space)"
-msgstr ""
+msgstr "KRunner'dan OneDrive'da ara (Alt+Space)"
 
 #: ui/app.slint
 msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
-msgstr ""
+msgstr "Bu bilgisayarda olmayanlar da dahil dosyaları ada veya içeriğe göre bulur. Açıkken KRunner'a yazdıklarınız (en az üç harf) eşleşmeleri bulması için Microsoft'a gönderilir."
 
 #: src/ui.rs
 msgid "From the client's authors: {}"
-msgstr ""
+msgstr "İstemcinin geliştiricilerinden: {}"
 
 #: src/doctor.rs
 msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
-msgstr ""
+msgstr "{}: Bu uygulamanın dışında ayarlanan hizmet dosyasında RestartPreventExitStatus içinde 78 çıkış durumu listelenmiyor. Bu nedenle istemci tam eşitleme istediğinde tekrar tekrar başlatılıyor. Dosyaya \"RestartPreventExitStatus=78\" ekleyin veya hizmeti bu uygulamanın yönetmesine izin verin."
