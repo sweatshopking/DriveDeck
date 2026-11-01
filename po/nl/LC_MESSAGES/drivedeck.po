@@ -3583,32 +3583,32 @@ msgstr "seconds"
 
 #: src/runner.rs
 msgid "OneDrive files"
-msgstr ""
+msgstr "OneDrive-bestanden"
 
 #: src/runner.rs
 msgid "Search your OneDrive, including files that aren't on this computer"
-msgstr ""
+msgstr "Zoek in je OneDrive, ook naar bestanden die niet op deze computer staan"
 
 #: src/runner.rs
 msgid "Top of OneDrive"
-msgstr ""
+msgstr "Hoofdniveau van OneDrive"
 
 #: src/runner.rs
 msgid "Open on the OneDrive website"
-msgstr ""
+msgstr "Openen op de OneDrive-website"
 
 #: ui/app.slint
 msgid "Search OneDrive from KRunner (Alt+Space)"
-msgstr ""
+msgstr "Zoek in OneDrive vanuit KRunner (Alt+Spatie)"
 
 #: ui/app.slint
 msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
-msgstr ""
+msgstr "Zoekt bestanden op naam of inhoud, ook als ze niet op deze computer staan. Als dit aanstaat, wordt wat je in KRunner typt (drie letters of meer) naar Microsoft gestuurd om overeenkomsten te zoeken."
 
 #: src/ui.rs
 msgid "From the client's authors: {}"
-msgstr ""
+msgstr "Van de makers van de client: {}"
 
 #: src/doctor.rs
 msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
-msgstr ""
+msgstr "{}: in het servicebestand (buiten deze app ingesteld) staat afsluitstatus 78 niet in RestartPreventExitStatus. Daarom wordt de client steeds opnieuw gestart nadat die om een volledige hersynchronisatie vraagt. Voeg \"RestartPreventExitStatus=78\" toe aan dat bestand of laat deze app de service beheren."
