@@ -3404,336 +3404,336 @@ msgid "Add the OneDrive folder to the file manager's sidebar"
 msgstr "Den OneDrive-Ordner zur Seitenleiste des Dateimanagers hinzufügen"
 
 msgid "Also delete the emptied folders"
-msgstr ""
+msgstr "Auch die leeren Ordner löschen"
 
 msgid "Always sync files at the top of the OneDrive folder"
-msgstr ""
+msgstr "Dateien ganz oben im OneDrive-Ordner immer synchronisieren"
 
 msgid "Application ID"
-msgstr ""
+msgstr "Anwendungs-ID"
 
 msgid "As found"
-msgstr ""
+msgstr "Wie gefunden"
 
 msgid "Ask for read-only access"
-msgstr ""
+msgstr "Schreibgeschützten Zugriff anfordern"
 
 msgid "By name, A to Z"
-msgstr ""
+msgstr "Nach Name, A bis Z"
 
 msgid "By name, Z to A"
-msgstr ""
+msgstr "Nach Name, Z bis A"
 
 msgid "Can fix transfers that stall on some networks and proxies."
-msgstr ""
+msgstr "Kann Übertragungen beheben, die in manchen Netzwerken und über manche Proxys hängen bleiben."
 
 msgid ""
 "Counted in sync checks (set under When to sync). Lower catches missed online "
 "changes sooner but uses more data."
-msgstr ""
+msgstr "Wird bei den Synchronisierungsprüfungen gezählt (unter „Wann synchronisieren“ festgelegt). Ein niedrigerer Wert erkennt verpasste Online-Änderungen früher, verbraucht aber mehr Daten."
 
 msgid "Delete files here after they upload"
-msgstr ""
+msgstr "Dateien hier löschen, nachdem sie hochgeladen wurden"
 
 msgid "Delete permanently online (skip the OneDrive recycle bin)"
-msgstr ""
+msgstr "Online dauerhaft löschen (OneDrive-Papierkorb umgehen)"
 
 msgid "Don't check downloads"
-msgstr ""
+msgstr "Downloads nicht prüfen"
 
 msgid "Don't check for new client versions"
-msgstr ""
+msgstr "Nicht nach neuen Client-Versionen suchen"
 
 msgid "Don't check uploads"
-msgstr ""
+msgstr "Uploads nicht prüfen"
 
 msgid "Don't get instant online changes"
-msgstr ""
+msgstr "Online-Änderungen nicht sofort abrufen"
 
 msgid "Don't set permissions on downloaded files"
-msgstr ""
+msgstr "Berechtigungen für heruntergeladene Dateien nicht festlegen"
 
 msgid "Don't sync files larger than"
-msgstr ""
+msgstr "Dateien über dieser Größe nicht synchronisieren"
 
 msgid "Don't sync if the drive isn't mounted"
-msgstr ""
+msgstr "Nicht synchronisieren, wenn das Laufwerk nicht eingebunden ist"
 
 msgid "Downloads stop rather than fill the disk."
-msgstr ""
+msgstr "Downloads werden angehalten, statt den Datenträger zu füllen."
 
 msgid "Drop idle connections after"
-msgstr ""
+msgstr "Inaktive Verbindungen trennen nach"
 
 msgid "Files transferred at once"
-msgstr ""
+msgstr "Dateien gleichzeitig übertragen"
 
 msgid "Folders to skip must match the whole path"
-msgstr ""
+msgstr "Zu überspringende Ordner müssen dem gesamten Pfad entsprechen"
 
 msgid ""
 "For moving files to OneDrive, usually with Upload only. Leaves the folders "
 "behind."
-msgstr ""
+msgstr "Zum Verschieben von Dateien zu OneDrive, meist mit „Nur hochladen“. Die Ordner bleiben zurück."
 
 msgid "Full online check every"
-msgstr ""
+msgstr "Vollständige Online-Prüfung alle"
 
 msgid "Get online changes through a webhook"
-msgstr ""
+msgstr "Online-Änderungen über einen Webhook abrufen"
 
 msgid "Give up connecting after"
-msgstr ""
+msgstr "Verbindungsversuch abbrechen nach"
 
 msgid "Give up on any single request after"
-msgstr ""
+msgstr "Einzelne Anfrage abbrechen nach"
 
 msgid "Give up when no data arrives for"
-msgstr ""
+msgstr "Abbrechen, wenn keine Daten eintreffen für"
 
 msgid ""
 "Helps with apps that save on every keystroke (Obsidian and other note apps)."
-msgstr ""
+msgstr "Hilft bei Apps, die bei jedem Tastendruck speichern (Obsidian und andere Notiz-Apps)."
 
 msgid "Identify as"
-msgstr ""
+msgstr "Erkennen als"
 
 msgid "In addition to the system journal the app already reads."
-msgstr ""
+msgstr "Zusätzlich zum Systemjournal, das die App bereits ausliest."
 
 msgid "Items deleted here can't be restored online afterwards."
-msgstr ""
+msgstr "Hier gelöschte Elemente können online nicht wiederhergestellt werden."
 
 msgid ""
 "Items online that aren't on this computer are deleted online instead of "
 "downloaded. Check with a dry run first."
-msgstr ""
+msgstr "Online vorhandene Elemente, die nicht auf diesem Computer liegen, werden online gelöscht statt heruntergeladen. Prüfe das zuerst mit einem Probelauf."
 
 msgid "Keep SharePoint's changed copy as a new version"
-msgstr ""
+msgstr "Geänderte SharePoint-Kopie als neue Version behalten"
 
 msgid "Keep this much disk space free"
-msgstr ""
+msgstr "So viel Speicherplatz freihalten"
 
 msgid ""
 "Keeps file dates exactly right online, at the cost of a little speed for "
 "small files."
-msgstr ""
+msgstr "Hält Dateidaten online genau aktuell, verlangsamt dafür kleine Dateien etwas."
 
 msgid "Largest first"
-msgstr ""
+msgstr "Größte zuerst"
 
 msgid "Leave empty for the app's own folder (~/.local/share/drivedeck/logs)."
-msgstr ""
+msgstr "Leer lassen, um den eigenen Ordner der App zu verwenden (~/.local/share/drivedeck/logs)."
 
 msgid "Leave empty for the client's own name, which Microsoft throttles least."
-msgstr ""
+msgstr "Leer lassen, um den eigenen Namen des Clients zu verwenden, den Microsoft am wenigsten drosselt."
 
 msgid ""
 "Leaves permissions to the folder (needed on drives that don't support Linux "
 "permissions, like NTFS or exFAT)."
-msgstr ""
+msgstr "Übernimmt die Berechtigungen des Ordners (nötig bei Laufwerken ohne Linux-Berechtigungen, etwa NTFS oder exFAT)."
 
 msgid "Listen on address"
-msgstr ""
+msgstr "Auf Adresse warten"
 
 msgid "Listen on port"
-msgstr ""
+msgstr "Auf Port warten"
 
 msgid "Log all network traffic"
-msgstr ""
+msgstr "Gesamten Netzwerkverkehr protokollieren"
 
 msgid "Log folder"
-msgstr ""
+msgstr "Protokollordner"
 
 msgid "Log routine checks only every"
-msgstr ""
+msgstr "Regelmäßige Prüfungen nur alle"
 
 msgid "Log the speed of each transfer"
-msgstr ""
+msgstr "Geschwindigkeit jeder Übertragung protokollieren"
 
 msgid "Logging"
-msgstr ""
+msgstr "Protokollierung"
 
 msgid "Lower this if a router or firewall cuts connections that sit idle."
-msgstr ""
+msgstr "Verringere den Wert, wenn ein Router oder eine Firewall inaktive Verbindungen trennt."
 
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 msgid "Make OneDrive match this computer exactly"
-msgstr ""
+msgstr "OneDrive genau an diesen Computer angleichen"
 
 msgid "More than 8 rarely helps and can get you throttled by Microsoft."
-msgstr ""
+msgstr "Mehr als 8 hilft selten und kann dazu führen, dass Microsoft dich drosselt."
 
 msgid ""
 "Needs a public https address that forwards to this computer. Instant online "
 "changes usually make this unnecessary."
-msgstr ""
+msgstr "Benötigt eine öffentliche HTTPS-Adresse, die an diesen Computer weiterleitet. Sofortige Online-Änderungen machen das meist unnötig."
 
 msgid "Network"
-msgstr ""
+msgstr "Netzwerk"
 
 msgid ""
 "Normally a clashing local file is kept under a new name. With this on, its "
 "changes are lost."
-msgstr ""
+msgstr "Normalerweise bleibt eine kollidierende lokale Datei unter einem neuen Namen erhalten. Ist diese Option aktiv, gehen ihre Änderungen verloren."
 
 msgid "Notify about every file synced"
-msgstr ""
+msgstr "Bei jeder synchronisierten Datei benachrichtigen"
 
 msgid "Online changes are then picked up at each sync check instead."
-msgstr ""
+msgstr "Online-Änderungen werden dann stattdessen bei jeder Synchronisierungsprüfung abgerufen."
 
 msgid ""
 "Only for SharePoint libraries that change files after upload, which makes "
 "every check fail."
-msgstr ""
+msgstr "Nur für SharePoint-Bibliotheken, die Dateien nach dem Hochladen ändern und dadurch jede Prüfung fehlschlagen lassen."
 
 msgid "Only for government or national cloud accounts."
-msgstr ""
+msgstr "Nur für Behörden- oder nationale Cloud-Konten."
 
 msgid ""
 "Only for reporting a problem. The log then holds sign-in tokens: don't share "
 "it without removing them."
-msgstr ""
+msgstr "Nur zum Melden eines Problems. Das Protokoll enthält dann Anmeldetoken: Entferne sie, bevor du es weitergibst."
 
 msgid "Only if your organisation registered its own app for the client."
-msgstr ""
+msgstr "Nur wenn deine Organisation eine eigene App für den Client registriert hat."
 
 msgid ""
 "Only when SharePoint reports the wrong size for files, so good downloads get "
 "thrown away."
-msgstr ""
+msgstr "Nur wenn SharePoint die Dateigröße falsch angibt und dadurch korrekte Downloads verworfen werden."
 
 msgid "Overwrite local files on a conflict instead of keeping a copy"
-msgstr ""
+msgstr "Lokale Dateien bei Konflikten überschreiben, statt eine Kopie zu behalten"
 
 msgid "Permissions for new files"
-msgstr ""
+msgstr "Berechtigungen für neue Dateien"
 
 msgid "Permissions for new folders"
-msgstr ""
+msgstr "Berechtigungen für neue Ordner"
 
 msgid "Public address"
-msgstr ""
+msgstr "Öffentliche Adresse"
 
 msgid ""
 "Put an empty file named .nosync in the mount point while the drive is "
 "unplugged. If it's ever visible, syncing stops instead of deleting "
 "everything online."
-msgstr ""
+msgstr "Lege bei getrenntem Laufwerk eine leere Datei namens .nosync im Einbindungspunkt ab. Sobald sie sichtbar ist, wird die Synchronisierung angehalten, statt online alles zu löschen."
 
 msgid "Quiets the log when nothing is changing."
-msgstr ""
+msgstr "Reduziert Protokolleinträge, wenn sich nichts ändert."
 
 msgid "Record who created and last changed each file"
-msgstr ""
+msgstr "Speichern, wer jede Datei erstellt und zuletzt geändert hat"
 
 msgid "Remember server addresses for"
-msgstr ""
+msgstr "Serveradressen merken für"
 
 msgid "Renew the subscription every"
-msgstr ""
+msgstr "Abonnement erneuern alle"
 
 msgid ""
 "Required for a national cloud; otherwise only if your organisation asks."
-msgstr ""
+msgstr "Für eine nationale Cloud erforderlich; ansonsten nur auf Wunsch deiner Organisation."
 
 msgid "Retry a failed subscription after"
-msgstr ""
+msgstr "Fehlgeschlagenes Abonnement erneut versuchen nach"
 
 msgid ""
 "SharePoint rewrites Office, PDF and HTML files after upload. Normally the "
 "client puts your original back."
-msgstr ""
+msgstr "SharePoint schreibt Office-, PDF- und HTML-Dateien nach dem Hochladen um. Normalerweise stellt der Client das Original wieder her."
 
 msgid "Sign-in"
-msgstr ""
+msgstr "Anmeldung"
 
 msgid "Smallest first"
-msgstr ""
+msgstr "Kleinste zuerst"
 
 msgid "Stop and ask when this many items are deleted at once"
-msgstr ""
+msgstr "Anhalten und nachfragen, wenn so viele Elemente auf einmal gelöscht werden"
 
 msgid ""
 "Stored in the file's extended attributes (user.onedrive.createdBy, "
 "user.onedrive.lastModifiedBy)."
-msgstr ""
+msgstr "In den erweiterten Dateiattributen gespeichert (user.onedrive.createdBy, user.onedrive.lastModifiedBy)."
 
 msgid "Subscription lasts"
-msgstr ""
+msgstr "Abonnementdauer"
 
 msgid "Syncing"
-msgstr ""
+msgstr "Synchronisierung"
 
 msgid "The client can then only download. Uploads and online deletes fail."
-msgstr ""
+msgstr "Der Client kann dann nur herunterladen. Uploads und Online-Löschungen schlagen fehl."
 
 msgid ""
 "Then \"Projects/Old\" only skips that one folder, and a plain name only "
 "skips a folder at the top."
-msgstr ""
+msgstr "Dann überspringt „Projects/Old“ nur diesen einen Ordner, und ein einfacher Name überspringt nur einen Ordner ganz oben."
 
 msgid "Transfer files in this order"
-msgstr ""
+msgstr "Dateien in dieser Reihenfolge übertragen"
 
 msgid "Transfers"
-msgstr ""
+msgstr "Übertragungen"
 
 msgid "Trash folder"
-msgstr ""
+msgstr "Papierkorb-Ordner"
 
 msgid "Treat this computer as the source of truth"
-msgstr ""
+msgstr "Diesen Computer als maßgeblich behandeln"
 
 msgid "Upload every file in pieces"
-msgstr ""
+msgstr "Jede Datei in Teilen hochladen"
 
 msgid "Upload large files in pieces of"
-msgstr ""
+msgstr "Große Dateien in Teilen von"
 
 msgid "Use HTTP/1.1 only"
-msgstr ""
+msgstr "Nur HTTP/1.1 verwenden"
 
 msgid "Wait"
-msgstr ""
+msgstr "Warten"
 
 msgid "Wait before sending changes from busy apps"
-msgstr ""
+msgstr "Warten, bevor Änderungen aus aktiven Apps gesendet werden"
 
 msgid "Webhooks"
-msgstr ""
+msgstr "Webhooks"
 
 msgid ""
 "When only some folders are chosen, files sitting directly in the OneDrive "
 "folder still sync."
-msgstr ""
+msgstr "Wenn nur einige Ordner ausgewählt sind, werden Dateien direkt im OneDrive-Ordner trotzdem synchronisiert."
 
 msgid ""
 "When the same item differs here and online, this computer's copy wins "
 "instead of OneDrive's."
-msgstr ""
+msgstr "Wenn sich dasselbe Element hier und online unterscheidet, gilt die Kopie auf diesem Computer statt der in OneDrive."
 
 msgid "Where files deleted online go on this computer."
-msgstr ""
+msgstr "Wohin online gelöschte Dateien auf diesem Computer verschoben werden."
 
 msgid "With a OneDrive folder icon where the file manager supports it."
-msgstr ""
+msgstr "Mit einem OneDrive-Ordnersymbol, sofern der Dateimanager dies unterstützt."
 
 msgid "Write a log file"
-msgstr ""
+msgstr "Protokolldatei schreiben"
 
 msgid "checks"
-msgstr ""
+msgstr "Prüfungen"
 
 msgid "items"
-msgstr ""
+msgstr "Elemente"
 
 msgid "seconds"
-msgstr ""
+msgstr "Sekunden"
 
 #~ msgid ""
 #~ "What happens after you choose the new place:\n"
@@ -3767,32 +3767,32 @@ msgstr ""
 
 #: src/runner.rs
 msgid "OneDrive files"
-msgstr ""
+msgstr "OneDrive-Dateien"
 
 #: src/runner.rs
 msgid "Search your OneDrive, including files that aren't on this computer"
-msgstr ""
+msgstr "Durchsuche dein OneDrive, auch nach Dateien, die nicht auf diesem Computer liegen"
 
 #: src/runner.rs
 msgid "Top of OneDrive"
-msgstr ""
+msgstr "Oberste Ebene von OneDrive"
 
 #: src/runner.rs
 msgid "Open on the OneDrive website"
-msgstr ""
+msgstr "Auf der OneDrive-Website öffnen"
 
 #: ui/app.slint
 msgid "Search OneDrive from KRunner (Alt+Space)"
-msgstr ""
+msgstr "OneDrive in KRunner durchsuchen (Alt+Space)"
 
 #: ui/app.slint
 msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
-msgstr ""
+msgstr "Findet Dateien nach Namen oder Inhalt, auch wenn sie nicht auf diesem Computer liegen. Wenn diese Option aktiv ist, wird deine Eingabe in KRunner (mindestens drei Buchstaben) an Microsoft gesendet, um passende Dateien zu finden."
 
 #: src/ui.rs
 msgid "From the client's authors: {}"
-msgstr ""
+msgstr "Von den Entwicklern des Clients: {}"
 
 #: src/doctor.rs
 msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
-msgstr ""
+msgstr "{}: Im Service-Datei-Eintrag, der außerhalb dieser App eingerichtet wurde, ist der Beendigungsstatus 78 nicht in RestartPreventExitStatus aufgeführt. Deshalb wird der Client immer wieder gestartet, nachdem er eine vollständige Neusynchronisierung angefordert hat. Füge \"RestartPreventExitStatus=78\" zu dieser Datei hinzu oder lass diese App den Dienst verwalten."
