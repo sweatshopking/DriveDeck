@@ -3574,32 +3574,32 @@ msgstr "秒"
 
 #: src/runner.rs
 msgid "OneDrive files"
-msgstr ""
+msgstr "OneDrive のファイル"
 
 #: src/runner.rs
 msgid "Search your OneDrive, including files that aren't on this computer"
-msgstr ""
+msgstr "このコンピューターにないファイルも含めて OneDrive を検索"
 
 #: src/runner.rs
 msgid "Top of OneDrive"
-msgstr ""
+msgstr "OneDrive の最上位"
 
 #: src/runner.rs
 msgid "Open on the OneDrive website"
-msgstr ""
+msgstr "OneDrive のウェブサイトで開く"
 
 #: ui/app.slint
 msgid "Search OneDrive from KRunner (Alt+Space)"
-msgstr ""
+msgstr "KRunner から OneDrive を検索（Alt+Space）"
 
 #: ui/app.slint
 msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
-msgstr ""
+msgstr "このコンピューターにないファイルも含め、名前や内容でファイルを検索します。有効にすると、KRunner に入力した 3 文字以上の文字が、一致する項目を探すために Microsoft に送信されます。"
 
 #: src/ui.rs
 msgid "From the client's authors: {}"
-msgstr ""
+msgstr "クライアントの開発者から: {}"
 
 #: src/doctor.rs
 msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
-msgstr ""
+msgstr "{}: このアプリ以外で設定されたサービスファイルの RestartPreventExitStatus に終了コード 78 が含まれていません。そのため、クライアントが完全な再同期を求めた後も何度も起動されます。ファイルに \"RestartPreventExitStatus=78\" を追加するか、このアプリにサービスを管理させてください。"
