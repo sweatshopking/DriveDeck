@@ -151,30 +151,41 @@ fn decode_id(id: &str) -> (&str, Option<&Path>) {
     }
 }
 
-fn to_match(info: &AccountInfo, hit: &graph::Hit, rank: usize) -> Match {
+fn to_match(info: &AccountInfo, hit: &graph::Hit, rank: usize, query: &str) -> Match {
     let local = (!hit.path.is_empty())
         .then(|| info.sync_dir.join(&hit.path))
         .filter(|p| p.exists());
-    let place = if hit.parent.is_empty() {
-        crate::tr!("Top of OneDrive")
-    } else {
-        hit.parent.clone()
+    let subtext = match hit.parent.as_deref() {
+        // Microsoft didn't say which folder: just the account
+        None => info.name.clone(),
+        Some("") => format!("{} · {}", info.name, crate::tr!("Top of OneDrive")),
+        Some(p) => format!("{} · {p}", info.name),
     };
     let mut props = HashMap::new();
-    props.insert(
-        "subtext".to_string(),
-        text_value(format!("{} · {place}", info.name)),
-    );
+    props.insert("subtext".to_string(), text_value(subtext));
     props.insert("category".to_string(), text_value("OneDrive"));
     (
         encode_id(&hit.web_url, local.as_deref()),
         hit.name.clone(),
         icon_for(&hit.name, hit.folder).to_string(),
         CATEGORY_RELEVANCE,
-        // Microsoft's order, best first
-        (0.6 - 0.02 * rank as f64).max(0.1),
+        // Microsoft's order, best first; a name that has every word typed beats a match on
+        // the contents alone, whichever account it's in
+        (0.6 - 0.02 * rank as f64).max(0.1)
+            + if name_matches(&hit.name, query) {
+                0.3
+            } else {
+                0.0
+            },
         props,
     )
+}
+
+/// Whether every word of the query is in the name (case ignored)
+fn name_matches(name: &str, query: &str) -> bool {
+    let name = name.to_lowercase();
+    let mut words = query.split_whitespace().peekable();
+    words.peek().is_some() && words.all(|w| name.contains(&w.to_lowercase()))
 }
 
 /// Whether a query is long enough to be worth asking Microsoft about
@@ -255,7 +266,7 @@ fn search_all(query: &str) -> Vec<Match> {
                 .iter()
                 .flatten()
                 .enumerate()
-                .map(|(rank, hit)| to_match(info, hit, rank))
+                .map(|(rank, hit)| to_match(info, hit, rank, query))
         })
         .collect()
 }
@@ -551,9 +562,9 @@ mod tests {
             web_url: "https://x.sharepoint.com/p".into(),
             folder: false,
             path: "Docs/Plan.pptx".into(),
-            parent: "Docs".into(),
+            parent: Some("Docs".into()),
         };
-        let (id, text, icon, cat, rel, props) = to_match(&info, &hit, 0);
+        let (id, text, icon, cat, rel, props) = to_match(&info, &hit, 0, "budget");
         assert_eq!(
             (id.as_str(), text.as_str()),
             ("https://x.sharepoint.com/p", "Plan.pptx")
@@ -562,8 +573,19 @@ mod tests {
             (icon.as_str(), cat),
             ("x-office-presentation", CATEGORY_RELEVANCE)
         );
-        assert!(rel > to_match(&info, &hit, 5).4);
+        assert!(rel > to_match(&info, &hit, 5, "budget").4);
         assert!(props.contains_key("subtext") && props.contains_key("category"));
+        // the file named after the search comes before content matches, even ranked lower
+        assert!(to_match(&info, &hit, 5, "plan PPTX").4 > rel);
+        assert!(!name_matches("Plan.pptx", "plan budget") && !name_matches("Plan.pptx", "  "));
+        // folder not known: the account alone, never a made-up "top"
+        let unknown = graph::Hit {
+            parent: None,
+            path: String::new(),
+            ..hit
+        };
+        let sub = &to_match(&info, &unknown, 0, "x").5["subtext"];
+        assert_eq!(sub, &text_value("Work"));
     }
 
     #[test]

@@ -370,7 +370,12 @@ pub fn report() -> String {
                 "set up outside"
             }
         );
-        let _ = writeln!(r, "Phase: {:?}; service {:?}", status.phase, info.unit);
+        let _ = writeln!(
+            r,
+            "Phase: {:?}; service: {}",
+            status.phase,
+            info.unit.as_deref().unwrap_or("none")
+        );
         let cfg = core::ClientConfig::load(&info.confdir);
         for key in PLAIN_KEYS {
             if let Some(v) = cfg.get(key) {

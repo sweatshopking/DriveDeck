@@ -4264,6 +4264,18 @@ export component FileWindow inherits Window {
         // ---- who has access
         if root.mode == 2: Card {
             vertical-stretch: 1;
+            // nothing to list: say so in the box rather than leave it blank
+            if root.access-rows.length == 0 && !root.busy && root.msg == "": Text {
+                x: 0;
+                y: 0;
+                width: parent.width;
+                height: parent.height;
+                text: @tr("It isn't shared: only you can open it.");
+                horizontal-alignment: center;
+                vertical-alignment: center;
+                wrap: word-wrap;
+                color: Theme.subtle-text;
+            }
             VerticalLayout {
                 padding: 6px;
                 ListView {

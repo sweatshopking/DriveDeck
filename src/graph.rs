@@ -299,8 +299,9 @@ pub struct Hit {
     pub folder: bool,
     /// Its place in the drive, "Documents/Travel/Trip budget.xlsx" (empty if Microsoft didn't say)
     pub path: String,
-    /// The folder it sits in, "Documents/Travel" (empty at the top)
-    pub parent: String,
+    /// The folder it sits in, "Documents/Travel" ("" at the top; None if Microsoft didn't say,
+    /// which SharePoint libraries' search results often don't)
+    pub parent: Option<String>,
 }
 
 /// Looks for `query` in the names and contents of everything in the drive (Microsoft's own
@@ -328,16 +329,15 @@ fn hit_from_item(item: &Value) -> Option<Hit> {
     let name = item["name"].as_str().filter(|n| !n.is_empty())?.to_string();
     let web_url = item["webUrl"].as_str()?.to_string();
     // "/drive/root:/Documents/Travel" (or "/drives/<id>/root:/…"): what follows "root:" is the
-    // folder's place in the drive
+    // folder's place in the drive, with spaces and the like written as %20 etc.
     let parent = item["parentReference"]["path"]
         .as_str()
         .and_then(|p| p.split_once("root:"))
-        .map(|(_, rest)| rest.trim_matches('/').to_string())
-        .unwrap_or_default();
-    let path = if parent.is_empty() {
-        name.clone()
-    } else {
-        format!("{parent}/{name}")
+        .map(|(_, rest)| percent_decode(rest.trim_matches('/')));
+    let path = match parent.as_deref() {
+        None => String::new(),
+        Some("") => name.clone(),
+        Some(p) => format!("{p}/{name}"),
     };
     Some(Hit {
         name,
@@ -736,18 +736,23 @@ mod page_tests {
     #[test]
     fn search_results_read_the_way_microsoft_sends_them() {
         let personal = serde_json::json!({"name": "Trip budget.xlsx", "webUrl": "https://1drv.ms/x/abc",
-            "parentReference": {"path": "/drive/root:/Documents/Travel"}});
+            "parentReference": {"path": "/drive/root:/Documents/Travel%20plans"}});
         let h = hit_from_item(&personal).unwrap();
-        assert_eq!(h.path, "Documents/Travel/Trip budget.xlsx");
-        assert_eq!(h.parent, "Documents/Travel");
+        assert_eq!(h.path, "Documents/Travel plans/Trip budget.xlsx");
+        assert_eq!(h.parent.as_deref(), Some("Documents/Travel plans"));
         assert!(!h.folder);
         let business = serde_json::json!({"name": "Plans", "webUrl": "https://x.sharepoint.com/Plans", "folder": {"childCount": 2},
             "parentReference": {"path": "/drives/b!Ab12/root:"}});
         let h = hit_from_item(&business).unwrap();
         assert_eq!(
-            (h.path.as_str(), h.parent.as_str(), h.folder),
-            ("Plans", "", true)
+            (h.path.as_str(), h.parent.as_deref(), h.folder),
+            ("Plans", Some(""), true)
         );
+        // SharePoint often leaves the folder out: not known, so not "the top"
+        let sharepoint = serde_json::json!({"name": "Minutes.docx", "webUrl": "https://x.sharepoint.com/m",
+            "parentReference": {"driveId": "b!Ab12"}});
+        let h = hit_from_item(&sharepoint).unwrap();
+        assert_eq!((h.path.as_str(), h.parent), ("", None));
         // no web address or no name: nothing to open or show
         assert!(hit_from_item(&serde_json::json!({"name": "x"})).is_none());
         assert!(hit_from_item(&serde_json::json!({"webUrl": "https://x"})).is_none());

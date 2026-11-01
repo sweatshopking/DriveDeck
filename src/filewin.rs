@@ -318,11 +318,8 @@ fn load_access(weak: &slint::Weak<FileWindow>, acc: &AccountInfo, rel: &str) {
                         })
                         .collect();
                     ui.set_access_rows(ModelRc::new(VecModel::from(rows)));
-                    if list.is_empty() {
-                        say(ui, 3, crate::tr!("It isn't shared: only you can open it."));
-                    } else {
-                        say(ui, 3, "");
-                    }
+                    // an empty list is explained inside the list's box
+                    say(ui, 3, "");
                     ACCESS.with(|l| *l.borrow_mut() = list);
                 }
                 Err(e) => say(ui, 2, e),
