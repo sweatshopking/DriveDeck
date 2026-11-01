@@ -232,14 +232,18 @@ its own `msgid`; plural entries use `msgstr[0]`, `msgstr[1]`, and for ru `msgstr
 
 **Done notes:**
 
-Stage 1 only: added bundled Slint translations, locale selection, a shared PO parser and generated
+Stage 1: added bundled Slint translations, locale selection, a shared PO parser and generated
 Rust lookup, the `tr!` macro, catalog extraction, and coverage/placeholder tests. Added a German
 catalog for the annotated Slint UI and the Rust status, popup, tray, and selected settings and
 file-window messages; added German desktop and service-menu labels. Changed `build.rs`,
 `build_support/po.rs`, `src/i18n.rs`, the annotated UI and Rust strings, `po/`, the translation
 scripts, packaging desktop files, `README.md`, and this plan. German visual checks for clipping
-were not run. `cargo fmt --check`, Clippy, and all 125 tests pass. The other requested languages
-and remaining Rust user-facing messages are deferred until review.
+were not run. `cargo fmt --check`, Clippy, and all 125 tests pass.
+
+Stage 2 complete: filled every remaining message in the nl, ja, de, it, zh_CN, tr, pt_BR, fr, es,
+ru, and ko catalogs under `po/`. Each catalog reports 935 translated messages. Committed each
+language separately. Per-language `cargo test` and the final `cargo test -- --ignored` pass;
+`cargo fmt --check`, Clippy, and `cargo test --locked` pass as well.
 
 ---
 
