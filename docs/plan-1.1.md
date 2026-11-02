@@ -320,8 +320,13 @@ mean the Dutch is good; reading it back does.
 
 ### Done notes
 
-(Copilot: write here when finished: how many entries you rewrote, the commits, and any entry you
-weren't sure about, quoting its English.)
+Retranslated all 954 active entries in `po/nl/LC_MESSAGES/drivedeck.po`, including both forms of
+all 9 plural entries, in 10 file-order batches. The catalog contains 954 entries, not the 945
+estimated above. Commit messages use `Translations: nl redo, entries <first>-<last>` for ranges
+1-100, 101-200, 201-300, 301-400, 401-500, 501-600, 601-700, 701-800, 801-900, and 901-954.
+Updated this section in `docs/plan-1.1.md`. The term “tenant” in “Organization tenant” is
+translated as “organisatie” for clarity; no other entries remain uncertain. All four C6 checks
+pass.
 
 ---
 

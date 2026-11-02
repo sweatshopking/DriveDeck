@@ -4389,201 +4389,255 @@ msgstr "Vereist voor een nationale cloud; anders alleen als je organisatie dit v
 msgid "Retry a failed subscription after"
 msgstr "Een mislukte abonnementsaanvraag opnieuw proberen na"
 
+
 msgid ""
 "SharePoint rewrites Office, PDF and HTML files after upload. Normally the "
 "client puts your original back."
-msgstr "SharePoint rewrites Office, PDF en HTML bestanden na uploaden. Normally de client puts je original terug."
+msgstr "SharePoint past bestanden van Office, PDF en HTML na het uploaden aan. Normaal gesproken zet de client het origineel terug."
+
 
 msgid "Sign-in"
-msgstr "Aanmelding"
+msgstr "Aanmelden"
+
 
 msgid "Smallest first"
-msgstr "Smallest eerst"
+msgstr "Kleinste eerst"
+
 
 msgid "Stop and ask when this many items are deleted at once"
-msgstr "Stop en vragen wanneer dit veel items zijn verwijderd bij zodra"
+msgstr "Stoppen en vragen wanneer dit aantal bestanden en mappen tegelijk wordt verwijderd"
+
 
 msgid ""
 "Stored in the file's extended attributes (user.onedrive.createdBy, "
 "user.onedrive.lastModifiedBy)."
-msgstr "Stored in het bestand's extended attributes (gebruiker.onedrive.createdBy, gebruiker.onedrive.lastModifiedBy)."
+msgstr "Opgeslagen in de uitgebreide bestandskenmerken (user.onedrive.createdBy, user.onedrive.lastModifiedBy)."
+
 
 msgid "Subscription lasts"
-msgstr "Subscription lasts"
+msgstr "Abonnement loopt gedurende"
+
 
 msgid "Syncing"
-msgstr "Syncing"
+msgstr "Synchroniseren"
+
 
 msgid "The client can then only download. Uploads and online deletes fail."
-msgstr "De client kan dan alleen downloaden. Uploads en online deletes mislukken."
+msgstr "De client kan dan alleen downloaden. Uploaden en online verwijderen werken niet."
+
 
 msgid ""
 "Then \"Projects/Old\" only skips that one folder, and a plain name only "
 "skips a folder at the top."
-msgstr "Then \"Projects/Old\" alleen skips dat one map, en een plain naam alleen skips een map bij de top."
+msgstr "In dat geval slaat \"Projects/Old\" alleen die map over. Met alleen een mapnaam sla je alleen mappen in de hoofdmap over."
+
 
 msgid "Transfer files in this order"
-msgstr "Transfer bestanden in dit order"
+msgstr "Bestanden in deze volgorde overzetten"
+
 
 msgid "Transfers"
-msgstr "Transfers"
+msgstr "Overdrachten"
+
 
 msgid "Trash folder"
-msgstr "Trash map"
+msgstr "Prullenbakmap"
+
 
 msgid "Treat this computer as the source of truth"
-msgstr "Treat deze computer als de bron van truth"
+msgstr "Deze computer gebruiken als bron van waarheid"
+
 
 msgid "Upload every file in pieces"
-msgstr "Upload every bestand in pieces"
+msgstr "Elk bestand in delen uploaden"
+
 
 msgid "Upload large files in pieces of"
-msgstr "Upload large bestanden in pieces van"
+msgstr "Grote bestanden uploaden in delen van"
+
 
 msgid "Use HTTP/1.1 only"
-msgstr "Use HTTP/1.1 alleen"
+msgstr "Alleen HTTP/1.1 gebruiken"
+
 
 msgid "Wait"
-msgstr "Wait"
+msgstr "Wachten"
+
 
 msgid "Wait before sending changes from busy apps"
-msgstr "Wait voor sending wijzigingen van bezet apps"
+msgstr "Wacht met het versturen van wijzigingen vanuit apps die nog bezig zijn"
+
 
 msgid "Webhooks"
-msgstr "Webhooks"
+msgstr "Webmeldingen"
+
 
 msgid ""
 "When only some folders are chosen, files sitting directly in the OneDrive "
 "folder still sync."
-msgstr "When alleen enkele mappen zijn chosen, bestanden sitting directly in de OneDrive-map nog synchronisatie."
+msgstr "Als je maar een deel van de mappen kiest, worden bestanden die los in de OneDrive-map staan toch gesynchroniseerd."
+
 
 msgid ""
 "When the same item differs here and online, this computer's copy wins "
 "instead of OneDrive's."
-msgstr "When de same item differs hier en online, deze computer's kopiëren wins instead van OneDrive's."
+msgstr "Als hetzelfde bestand of dezelfde map hier en online verschilt, blijft de versie op deze computer behouden in plaats van die op OneDrive."
+
 
 msgid "Where files deleted online go on this computer."
-msgstr "Where bestanden verwijderd online go op deze computer."
+msgstr "Waar bestanden die online zijn verwijderd op deze computer terechtkomen."
+
 
 msgid "With a OneDrive folder icon where the file manager supports it."
-msgstr "With een OneDrive-map pictogram waar het bestand manager supports het."
+msgstr "Met een OneDrive-mappictogram, als de bestandsbeheerder dit ondersteunt."
+
 
 msgid "Write a log file"
-msgstr "Write een logboek bestand"
+msgstr "Een logboekbestand schrijven"
+
 
 msgid "checks"
-msgstr "checks"
+msgstr "controles"
+
 
 msgid "items"
-msgstr "items"
+msgstr "bestanden en mappen"
+
 
 msgid "seconds"
-msgstr "seconds"
+msgstr "seconden"
+
 
 #: src/runner.rs
 msgid "OneDrive files"
 msgstr "OneDrive-bestanden"
 
+
 #: src/runner.rs
 msgid "Search your OneDrive, including files that aren't on this computer"
-msgstr "Zoek in je OneDrive, ook naar bestanden die niet op deze computer staan"
+msgstr "Zoek in OneDrive, ook in bestanden die niet op deze computer staan."
+
 
 #: src/runner.rs
 msgid "Top of OneDrive"
-msgstr "Hoofdniveau van OneDrive"
+msgstr "Hoofdmap van OneDrive"
+
 
 #: src/runner.rs
 msgid "Open on the OneDrive website"
-msgstr "Openen op de OneDrive-website"
+msgstr "Op de OneDrive-website openen"
+
 
 #: ui/app.slint
 msgid "Search OneDrive from KRunner (Alt+Space)"
-msgstr "Zoek in OneDrive vanuit KRunner (Alt+Spatie)"
+msgstr "Zoek in OneDrive vanuit KRunner (Alt+Space)"
+
 
 #: ui/app.slint
 msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
-msgstr "Zoekt bestanden op naam of inhoud, ook als ze niet op deze computer staan. Als dit aanstaat, wordt wat je in KRunner typt (drie letters of meer) naar Microsoft gestuurd om overeenkomsten te zoeken."
+msgstr "Doorzoekt bestanden op naam of inhoud, ook als ze niet op deze computer staan. Als je dit inschakelt, stuurt KRunner alles wat je typt (minstens drie letters) naar Microsoft om overeenkomsten te zoeken."
+
 
 #: src/ui.rs
 msgid "From the client's authors: {}"
 msgstr "Van de makers van de client: {}"
 
+
 #: src/doctor.rs
 msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
-msgstr "{}: in het servicebestand (buiten deze app ingesteld) staat afsluitstatus 78 niet in RestartPreventExitStatus. Daarom wordt de client steeds opnieuw gestart nadat die om een volledige hersynchronisatie vraagt. Voeg \"RestartPreventExitStatus=78\" toe aan dat bestand of laat deze app de service beheren."
+msgstr "{}: in het servicebestand (dat buiten deze app is ingesteld) staat afsluitstatus 78 niet bij RestartPreventExitStatus. Daarom start de client telkens opnieuw nadat die om een volledige hersynchronisatie vraagt. Voeg \"RestartPreventExitStatus=78\" aan dat bestand toe of laat deze app de service beheren."
+
 
 #: src/core.rs
 msgid "Couldn't reach Microsoft OneDrive ({}). Check your internet connection; syncing carries on once it's back."
-msgstr "Kan Microsoft OneDrive niet bereiken ({}). Controleer je internetverbinding; de synchronisatie gaat verder zodra die terug is."
+msgstr "Kan Microsoft OneDrive niet bereiken ({}). Controleer je internetverbinding. De synchronisatie gaat verder zodra de verbinding is hersteld."
+
 
 #: src/core.rs
 msgid "Microsoft OneDrive reported an error: {}"
 msgstr "Microsoft OneDrive meldde een fout: {}"
 
+
 #: src/update.rs
 msgid "Couldn't ask GitHub about the new version."
-msgstr "Kon GitHub niet vragen naar de nieuwe versie."
+msgstr "Kan GitHub niet raadplegen voor de nieuwe versie."
+
 
 #: src/update.rs
 msgid "Couldn't download the update: {}"
-msgstr "Kon de update niet downloaden: {}"
+msgstr "Kan de update niet downloaden: {}"
+
 
 #: src/update.rs
 msgid "Couldn't put the new version in place: {}"
-msgstr "Kon de nieuwe versie niet op zijn plaats zetten: {}"
+msgstr "Kan de nieuwe versie niet op zijn plek zetten: {}"
+
 
 #: src/update.rs
 msgid "Couldn't update DriveDeck"
-msgstr "Kon DriveDeck niet bijwerken"
+msgstr "Kan DriveDeck niet bijwerken"
+
 
 #: src/update.rs
 msgid "DriveDeck updated"
 msgstr "DriveDeck bijgewerkt"
 
+
 #: src/update.rs
 msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed until you press Update now."
-msgstr "Kijkt één keer per dag op de GitHub-pagina van deze app. Er wordt niets gedownload of geïnstalleerd totdat je op Nu bijwerken drukt."
+msgstr "Deze app controleert eenmaal per dag de GitHub-pagina op nieuwe versies. Er wordt niets gedownload of geïnstalleerd totdat je op Nu bijwerken klikt."
+
 
 #: src/update.rs
 msgid "The download didn't match the release's checksum, so it wasn't installed."
-msgstr "De download kwam niet overeen met de controlesom van de release en is daarom niet geïnstalleerd."
+msgstr "De download heeft niet dezelfde controlesom als de uitgave en is daarom niet geïnstalleerd."
+
 
 #: src/update.rs
 msgid "The package manager couldn't install version {}."
 msgstr "De pakketbeheerder kon versie {} niet installeren."
 
+
 #: src/update.rs
 msgid "The release doesn't list a checksum for {}, so it wasn't installed."
-msgstr "De release geeft geen controlesom voor {}, daarom is het niet geïnstalleerd."
+msgstr "De uitgave bevat geen controlesom voor {}, dus de versie is niet geïnstalleerd."
+
 
 #: src/update.rs
 msgid "This copy can't update itself; the download page is open: {}"
-msgstr "Deze kopie kan zichzelf niet bijwerken; de downloadpagina is geopend: {}"
+msgstr "Deze versie kan zichzelf niet bijwerken. De downloadpagina is geopend: {}"
+
 
 #: src/update.rs
 msgid "This is the newest version."
 msgstr "Dit is de nieuwste versie."
 
+
 #: src/update.rs
 msgid "Update now"
 msgstr "Nu bijwerken"
+
 
 #: src/update.rs
 msgid "Update to version {} now"
 msgstr "Nu bijwerken naar versie {}"
 
+
 #: src/update.rs
 msgid "Updated to version {}."
 msgstr "Bijgewerkt naar versie {}."
 
+
 #: src/update.rs
 msgid "Version {} is installed. The tray icon restarts on it by itself; reopen any DriveDeck window that was open."
-msgstr "Versie {} is geïnstalleerd. Het systeemvakpictogram start er vanzelf mee opnieuw; open DriveDeck-vensters die open waren opnieuw."
+msgstr "Versie {} is geïnstalleerd. Het pictogram in het systeemvak start vanzelf opnieuw met deze versie. Open alle DriveDeck-vensters opnieuw die al open waren."
+
 
 #: src/update.rs
 msgid "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) and choose Update."
-msgstr "Versie {} van deze app is beschikbaar. Klik op het OneDrive-pictogram in het systeemvak (of klik er met rechts op) en kies Bijwerken."
+msgstr "Versie {} van deze app is beschikbaar. Klik op het OneDrive-pictogram in het systeemvak (of klik erop met de rechtermuisknop) en kies Bijwerken."
+
 
 #: src/update.rs
 msgid "{} The download page is open in your browser instead."
-msgstr "{} De downloadpagina is in plaats daarvan in je browser geopend."
+msgstr "{} De downloadpagina is in plaats daarvan geopend in je browser."
