@@ -2561,356 +2561,456 @@ msgstr "Er is een kopie geopend: {}"
 msgid "Restoring…"
 msgstr "Bezig met herstellen…"
 
+
 msgid ""
 "Restored. This computer gets it at the next sync (\"Sync now\" in the tray "
 "icon's menu does it right away)."
-msgstr "Restored. Deze computer krijgt het bij de next synchronisatie (\"Sync now\" in de systeemvakpictogram's menu doet het juiste away)."
+msgstr "Hersteld. Dit bestand verschijnt op deze computer bij de volgende synchronisatie. Kies \"Nu synchroniseren\" in het menu van het pictogram in het systeemvak om het meteen op te halen."
+
 
 msgid "Sending…"
-msgstr "Sending…"
+msgstr "Bezig met verzenden…"
+
 
 msgid "Invitation sent."
-msgstr "Invitation sent."
+msgstr "Uitnodiging verzonden."
+
 
 msgid "{} invitations sent."
-msgstr "{} invitations sent."
+msgstr "{} uitnodigingen verzonden."
+
 
 msgid "the top folder"
-msgstr "de top map"
+msgstr "de hoofdmap"
+
 
 msgid "{} or more"
-msgstr "{} van more"
+msgstr "{} of meer"
+
 
 msgid ""
 "There are Git repositories in this folder ({}). Syncing their .git folders "
 "can damage them, because the files arrive one at a time and out of order. "
 "Skip .git folders in Options, or keep repositories outside OneDrive."
-msgstr "Er zijn Git repositories in dit map ({}). Syncing their .git mappen kan damage them, omdat het bestands arrive one bij een time en out van order. Skip .git mappen in Options, van bewaren repositories outside OneDrive."
+msgstr "Deze map bevat Git-opslagplaatsen ({}). Synchronisatie van hun .git-mappen kan ze beschadigen, omdat bestanden een voor een en in willekeurige volgorde binnenkomen. Sla .git-mappen over in Opties of bewaar de opslagplaatsen buiten OneDrive."
+
 
 msgid ""
 "This folder is on a Windows drive, and Windows' OneDrive app uses it too. "
 "Files that Windows keeps online-only can't be opened from Linux, and the two "
 "apps can undo each other's changes. A separate folder for Linux is safer."
-msgstr "Deze map is op een Windows schijf, en Windows' OneDrive app uses het too. Files dat Windows keeps online-alleen kan niet zijn geopend van Linux, en de two apps kan undo each andere's wijzigingen. Een separate map voor Linux is safer."
+msgstr "Deze map staat op een Windows-schijf en wordt ook door de OneDrive-app voor Windows gebruikt. Bestanden die Windows alleen online bewaart, kun je niet openen vanuit Linux. De twee apps kunnen elkaars wijzigingen ongedaan maken. Een aparte map voor Linux is veiliger."
+
 
 msgid ""
 "This folder is on a Windows (NTFS) drive. If Windows' OneDrive app also "
 "syncs it, files that Windows keeps online-only can't be opened from Linux, "
 "and the two apps can undo each other's changes. A separate folder for Linux "
 "is safer."
-msgstr "Deze map is op een Windows (NTFS) schijf. If Windows' OneDrive app ook syncs het, bestanden dat Windows keeps online-alleen kan niet zijn geopend van Linux, en de two apps kan undo each andere's wijzigingen. Een separate map voor Linux is safer."
+msgstr "Deze map staat op een Windows-schijf (NTFS). Als de OneDrive-app voor Windows die map ook synchroniseert, kun je bestanden die Windows alleen online bewaart niet openen vanuit Linux. De twee apps kunnen elkaars wijzigingen ongedaan maken. Een aparte map voor Linux is veiliger."
+
 
 msgid "Couldn't make {}: {}"
-msgstr "Kon niet maken {}: {}"
+msgstr "Kan {} niet maken: {}"
+
 
 msgid "Couldn't reach Microsoft. Check your internet connection and try again."
-msgstr "Kon niet reach Microsoft. Check je internet connection en probeer het opnieuw."
+msgstr "Kan geen verbinding maken met Microsoft. Controleer je internetverbinding en probeer het opnieuw."
+
 
 msgid "{} (Microsoft says: {})"
-msgstr "{} (Microsoft says: {})"
+msgstr "{} (Microsoft zegt: {})"
+
 
 msgid ""
 "Microsoft no longer accepts this sign-in. Open Settings and sign in again."
-msgstr "Microsoft geen longer accepts dit aanmelding. Open Instellingen en opnieuw aanmelden."
+msgstr "Microsoft accepteert deze aanmelding niet meer. Open Instellingen en meld je opnieuw aan."
+
 
 msgid ""
 "This account doesn't have permission to do that. Check that you have access "
 "to this file or site."
-msgstr "Dit account doet niet hebben permission naar doen dat. Check dat je hebben access naar dit bestand van site."
+msgstr "Dit account heeft hiervoor geen toestemming. Controleer of je toegang hebt tot dit bestand of deze site."
+
 
 msgid ""
 "That item could not be found in OneDrive. It may have been moved or deleted."
-msgstr "Dat item kon niet zijn gevonden in OneDrive. Het kan hebben geweest verplaatst van verwijderd."
+msgstr "Dit onderdeel is niet gevonden in OneDrive. Misschien is het verplaatst of verwijderd."
+
 
 msgid "OneDrive changed while this was running. Refresh and try again."
-msgstr "OneDrive gewijzigd terwijl dit was actief. Refresh en probeer het opnieuw."
+msgstr "OneDrive is tijdens deze actie gewijzigd. Vernieuw de lijst en probeer het opnieuw."
+
 
 msgid "That item is locked. Close it elsewhere or try again later."
-msgstr "Dat item is locked. Close het elsewhere van probeer het opnieuw later."
+msgstr "Dit onderdeel is vergrendeld. Sluit het op een andere plek of probeer het later opnieuw."
+
 
 msgid "Microsoft is busy right now. Try again in a minute."
-msgstr "Microsoft is bezet juiste now. Try opnieuw in een minute."
+msgstr "Microsoft is op dit moment druk. Probeer het over een minuut opnieuw."
+
 
 msgid ""
 "Your OneDrive storage is full. Free up space or get more storage, then try "
 "again."
-msgstr "Je OneDrive storage is volledige. Free omhoog ruimte van krijgen more storage, dan probeer het opnieuw."
+msgstr "Je OneDrive-opslagruimte is vol. Maak ruimte vrij of neem extra opslagruimte en probeer het opnieuw."
+
 
 msgid "Microsoft is having a problem right now. Try again later."
-msgstr "Microsoft is having een probleem juiste now. Probeer het later opnieuw."
+msgstr "Microsoft heeft op dit moment een probleem. Probeer het later opnieuw."
+
 
 msgid "Microsoft couldn't complete that request. Try again later."
-msgstr "Microsoft niet kon complete dat request. Probeer het later opnieuw."
+msgstr "Microsoft kon het verzoek niet uitvoeren. Probeer het later opnieuw."
+
 
 msgid "Microsoft sent an unexpected reply ({}). Try again later."
-msgstr "Microsoft sent een onverwacht reply ({}). Probeer het later opnieuw."
+msgstr "Microsoft gaf een onverwacht antwoord ({}). Probeer het later opnieuw."
+
 
 msgid ""
 "Azure Germany closed on October 29, 2021. Migrate this account to a "
 "supported Microsoft cloud and select that cloud here."
-msgstr "Azure Germany gesloten op October 29, 2021. Migrate dit account naar een supported Microsoft cloud en select dat cloud hier."
+msgstr "Azure Germany is op 29 oktober 2021 gesloten. Verplaats dit account naar een ondersteunde Microsoft-cloud en kies die cloud hier."
+
 
 msgid "This account isn't signed in."
 msgstr "Dit account is niet aangemeld."
 
+
 msgid "Microsoft repeated a page while listing items. Try again later."
-msgstr "Microsoft repeated een page terwijl listing items. Probeer het later opnieuw."
+msgstr "Microsoft gaf bij het ophalen van onderdelen twee keer dezelfde pagina. Probeer het later opnieuw."
+
 
 msgid "Microsoft sent an unexpected reply. Try again later."
-msgstr "Microsoft sent een onverwacht reply. Probeer het later opnieuw."
+msgstr "Microsoft gaf een onverwacht antwoord. Probeer het later opnieuw."
+
 
 msgid "Microsoft sent too many pages for this list. Try again later."
-msgstr "Microsoft sent too veel pages voor dit list. Probeer het later opnieuw."
+msgstr "Microsoft gaf te veel pagina's voor deze lijst. Probeer het later opnieuw."
+
 
 msgid "OneDrive didn't return a web address."
-msgstr "OneDrive didn't terugsturen een web adres."
+msgstr "OneDrive gaf geen webadres terug."
+
 
 msgid "Couldn't check libraries on {}: {}"
-msgstr "Kon niet controle libraries op {}: {}"
+msgstr "Kan bibliotheken op {} niet controleren: {}"
+
 
 msgid "Microsoft returned a library without an ID."
-msgstr "Microsoft teruggestuurd een bibliotheek zonder een ID."
+msgstr "Microsoft gaf een bibliotheek zonder id terug."
+
 
 msgid ""
 "That doesn't look like a SharePoint address. Copy it from your browser's "
 "address bar — it starts with https://"
-msgstr "Dat doet niet look zoals een SharePoint adres. Copy het van je browser's adres bar — het starts met https://"
+msgstr "Dit lijkt geen SharePoint-adres. Kopieer het uit de adresbalk van je browser; het begint met https://"
+
 
 msgid "Couldn't open that site with this account: {}"
-msgstr "Kon niet openen dat site met dit account: {}"
+msgstr "Kan deze site niet openen met dit account: {}"
+
 
 msgid "Microsoft didn't return the site."
-msgstr "Microsoft didn't terugsturen de site."
+msgstr "Microsoft heeft geen site teruggegeven."
+
 
 msgid "{} already exists and isn't a regular file."
-msgstr "{} al bestaat en is niet een gewoon bestand."
+msgstr "{} bestaat al en is geen normaal bestand."
+
 
 msgid "Couldn't find where to save that version."
-msgstr "Kon niet vinden waar naar opslaan dat versie."
+msgstr "Kan niet bepalen waar deze versie moet worden opgeslagen."
+
 
 msgid "Couldn't save it: {}"
-msgstr "Kon niet opslaan het: {}"
+msgstr "Kan dit niet opslaan: {}"
+
 
 msgid "Couldn't allocate a temporary file for that version download."
-msgstr "Kon niet toewijzen een tijdelijk bestand voor dat versie downloaden."
+msgstr "Kan geen tijdelijk bestand maken om deze versie te downloaden."
+
 
 msgid "The download stopped: {}"
-msgstr "De downloaden gestopt: {}"
+msgstr "Het downloaden is gestopt: {}"
+
 
 msgid "Couldn't finish saving that version: {}"
-msgstr "Kon niet voltooien saving dat versie: {}"
+msgstr "Kan deze versie niet helemaal opslaan: {}"
+
 
 msgid "Someone"
 msgstr "Iemand"
 
+
 msgid "Couldn't check what kind of account this is, so no link was made: {}"
-msgstr "Kon niet controle wat soort van account dit is, dus geen koppeling was gemaakt: {}"
+msgstr "Kan niet vaststellen wat voor account dit is. Daarom is er geen koppeling gemaakt: {}"
+
 
 msgid "less than a minute left"
-msgstr "less than een minute gelaten"
+msgstr "minder dan een minuut"
+
 
 msgid "1 min left"
 msgid_plural "{n} min left"
-msgstr[0] "1 min gelaten"
-msgstr[1] "{n} min gelaten"
+msgstr[0] "1 minuut over"
+msgstr[1] "{n} minuten over"
+
 
 msgid "1 h left"
 msgid_plural "{n} h left"
-msgstr[0] "1 h gelaten"
-msgstr[1] "{n} h gelaten"
+msgstr[0] "1 uur over"
+msgstr[1] "{n} uur over"
+
 
 msgid "1 h {0} min left"
 msgid_plural "{n} h {0} min left"
-msgstr[0] "1 h {0} min gelaten"
-msgstr[1] "{n} h {0} min gelaten"
+msgstr[0] "1 uur en {0} min over"
+msgstr[1] "{n} uur en {0} min over"
+
 
 msgid "No accounts yet"
-msgstr "Geen accounts yet"
+msgstr "Nog geen accounts"
+
 
 msgid "1 account needs attention"
 msgid_plural "{n} accounts need attention"
-msgstr[0] "1 account heeft nodig attention"
-msgstr[1] "{n} accounts moet attention"
+msgstr[0] "1 account heeft aandacht nodig"
+msgstr[1] "{n} accounts hebben aandacht nodig"
+
 
 msgid "Syncing 1 large file"
 msgid_plural "Syncing {n} large files"
-msgstr[0] "Syncing 1 large bestand"
-msgstr[1] "Syncing {n} large bestanden"
+msgstr[0] "1 groot bestand synchroniseren"
+msgstr[1] "{n} grote bestanden synchroniseren"
+
 
 msgid "Not syncing right now"
-msgstr "Not synchroniseren juiste now"
+msgstr "Nu niet aan het synchroniseren"
+
 
 msgid "All accounts"
-msgstr "All accounts"
+msgstr "Alle accounts"
+
 
 msgid "Uploading"
-msgstr "Uploading"
+msgstr "Uploaden"
+
 
 msgid "Downloading"
-msgstr "Downloading"
+msgstr "Downloaden"
+
 
 msgid "Uploaded"
-msgstr "Uploaded"
+msgstr "Geüpload"
+
 
 msgid "Downloaded"
-msgstr "Downloaded"
+msgstr "Gedownload"
+
 
 msgid "Deleted"
-msgstr "Deleted"
+msgstr "Verwijderd"
+
 
 msgid "New folder"
-msgstr "New map"
+msgstr "Nieuwe map"
+
 
 msgid "{} {}"
 msgstr "{} {}"
 
+
 msgid "in {}"
 msgstr "in {}"
 
+
 msgid "That isn't inside any of your OneDrive folders."
-msgstr "Dat is niet inside elke van je OneDrive-maps."
+msgstr "Dit staat niet in een van je OneDrive-mappen."
+
 
 msgid "Anyone with the link"
-msgstr "Anyone met de koppeling"
+msgstr "Iedereen met de koppeling"
+
 
 msgid "People in your organization with the link"
-msgstr "People in je organization met de koppeling"
+msgstr "Personen in je organisatie met de koppeling"
+
 
 msgid "Link copied"
-msgstr "Link gekopieerd"
+msgstr "Koppeling gekopieerd"
+
 
 msgid "Sharing link"
-msgstr "Sharing koppeling"
+msgstr "Koppeling voor delen"
+
 
 msgid "can view"
-msgstr "kan view"
+msgstr "kan bekijken"
+
 
 msgid "can edit"
-msgstr "kan edit"
+msgstr "kan bewerken"
+
 
 msgid "can change, add and delete files in"
-msgstr "kan wijziging, add en verwijderen bestanden in"
+msgstr "kan bestanden wijzigen, toevoegen en verwijderen in"
+
 
 msgid ""
 "{} {} \"{}\".\n"
 "{}"
 msgstr "{} {} \"{}\".\n{}"
 
+
 msgid "Couldn't create a link"
-msgstr "Kon niet maken een koppeling"
+msgstr "Kan geen koppeling maken"
+
 
 msgid "Couldn't create a link: {}"
-msgstr "Kon niet maken een koppeling: {}"
+msgstr "Kan geen koppeling maken: {}"
+
 
 msgid "Couldn't open it online"
-msgstr "Kon niet openen het online"
+msgstr "Kan het niet online openen"
+
 
 msgid "{} — {}"
 msgstr "{} — {}"
 
+
 msgid "{}. Open Settings to fix it."
-msgstr "{}. Open Instellingen naar fix het."
+msgstr "{}. Open Instellingen om dit op te lossen."
+
 
 msgid "No accounts yet — open Settings to add one"
-msgstr "Geen accounts yet — openen Instellingen naar add one"
+msgstr "Nog geen accounts — open Instellingen om er een toe te voegen"
+
 
 msgid "Version {} is out — get it…"
-msgstr "Version {} is out — krijgen het…"
+msgstr "Versie {} is beschikbaar — nu downloaden…"
+
 
 msgid "How to fix this…"
-msgstr "How naar fix dit…"
+msgstr "Zo los je dit op…"
+
 
 msgid "Show activity…"
-msgstr "Show activity…"
+msgstr "Activiteit tonen…"
+
 
 msgid "For 1 hour"
-msgstr "For 1 hour"
+msgstr "1 uur"
+
 
 msgid "For 4 hours"
-msgstr "For 4 hours"
+msgstr "4 uur"
+
 
 msgid "Until tomorrow morning"
-msgstr "Until tomorrow morning"
+msgstr "Tot morgenochtend"
+
 
 msgid "Settings and accounts…"
-msgstr "Settings en accounts…"
+msgstr "Instellingen en accounts…"
+
 
 msgid "Quit and stop syncing"
-msgstr "Quit en stoppen synchroniseren"
+msgstr "Afsluiten en synchronisatie stoppen"
+
 
 msgid "Quit tray icon"
-msgstr "Quit systeemvakpictogram"
+msgstr "Systeemvakpictogram afsluiten"
+
 
 msgid "Microsoft needs you to sign in again"
-msgstr "Microsoft heeft nodig je naar opnieuw aanmelden"
+msgstr "Je moet je opnieuw aanmelden bij Microsoft"
+
 
 msgid "The OneDrive Client for Linux isn't installed"
-msgstr "De OneDrive Client voor Linux is niet installed"
+msgstr "OneDrive Client for Linux is niet geïnstalleerd"
+
 
 msgid "The OneDrive Client for Linux ({}) is too old"
-msgstr "De OneDrive Client voor Linux ({}) is too oude"
+msgstr "OneDrive Client for Linux ({}) is te oud"
+
 
 msgid ""
 "{} were deleted on this computer, so syncing stopped before deleting them "
 "online. Click the OneDrive icon to choose what to do."
-msgstr "{} waren verwijderd op deze computer, dus synchronisatie is gestopt voor deleting them online. Click de OneDrive pictogram naar kiezen wat naar doen."
+msgstr "{} zijn op deze computer verwijderd. De synchronisatie is gestopt voordat ze online werden verwijderd. Klik op het OneDrive-pictogram om te kiezen wat je wilt doen."
+
 
 msgid "Microsoft needs you to sign in again. Open the tray menu to fix it."
-msgstr "Microsoft heeft nodig je naar opnieuw aanmelden. Open de systeemvak menu naar fix het."
+msgstr "Je moet je opnieuw aanmelden bij Microsoft. Open het menu van het pictogram in het systeemvak om dat te doen."
+
 
 msgid ""
 "The sync engine needs a full resync. Open Settings to review and apply it."
-msgstr "De synchronisatieprogramma heeft nodig een volledige hersynchronisatie. Open Instellingen naar review en apply het."
+msgstr "Voor het synchronisatieprogramma is een volledige hersynchronisatie nodig. Open Instellingen om die te bekijken en toe te passen."
+
 
 msgid ""
 "Syncing has stopped making progress, though it is still running. Click the "
 "OneDrive icon and choose Sync now to restart it."
-msgstr "Syncing heeft gestopt making progress, though het is nog actief. Click de OneDrive pictogram en kiezen Sync now naar opnieuw starten het."
+msgstr "De synchronisatie loopt nog, maar maakt geen voortgang meer. Klik op het OneDrive-pictogram en kies Nu synchroniseren om opnieuw te starten."
+
 
 msgid "Syncing hit an error. Open the tray menu for details."
-msgstr "Syncing hit een fout. Open de systeemvak menu voor details."
+msgstr "Er is een fout opgetreden bij het synchroniseren. Open het menu van het pictogram in het systeemvak voor meer informatie."
+
 
 msgid ""
 "Linux's limit on folders watched for changes ran out, so some changes on "
 "this computer won't sync right away. Open Settings to raise it."
-msgstr "Linux's limiet op mappen watched voor wijzigingen ran out, dus enkele wijzigingen op deze computer zal niet synchronisatie juiste away. Open Instellingen naar raise het."
+msgstr "Linux heeft het maximum bereikt voor mappen waarvan wijzigingen worden gevolgd. Daardoor worden sommige wijzigingen op deze computer niet meteen gesynchroniseerd. Open Instellingen om de limiet te verhogen."
+
 
 msgid ""
 "{} is full ({}). New and changed files won't upload until you free up space "
 "or get more storage."
-msgstr "{} is volledige ({}). New en gewijzigd bestanden zal niet uploaden tot je vrij omhoog ruimte van krijgen more storage."
+msgstr "{} is vol ({}). Nieuwe en gewijzigde bestanden worden pas weer geüpload als je ruimte vrijmaakt of extra opslagruimte neemt."
+
 
 msgid ""
 "{} is almost full ({}). Free up space or get more storage before uploads "
 "stop."
-msgstr "{} is almost volledige ({}). Free omhoog ruimte van krijgen more storage voor uploads stoppen."
+msgstr "{} is bijna vol ({}). Maak ruimte vrij of neem extra opslagruimte voordat je niets meer kunt uploaden."
+
 
 msgid "OneDrive: a new version is out"
-msgstr "OneDrive: een nieuwe versie is out"
+msgstr "OneDrive: er is een nieuwe versie beschikbaar"
+
 
 msgid ""
 "Version {} of this app is available. Click the OneDrive tray icon (or right-"
 "click it) to get it."
-msgstr "Version {} van dit app is beschikbaar. Click de OneDrive systeemvakpictogram (van juiste-click het) naar krijgen het."
+msgstr "Versie {} van deze app is beschikbaar. Klik op het OneDrive-pictogram in het systeemvak (of klik er met de rechtermuisknop op) om de versie op te halen."
+
 
 msgid "OneDrive: the sync engine has an update"
-msgstr "OneDrive: de synchronisatieprogramma heeft een bijwerken"
+msgstr "OneDrive: er is een update voor het synchronisatieprogramma"
+
 
 msgid ""
 "Version {} of the OneDrive Client for Linux is out (you have {}). Open "
 "Settings to update it."
-msgstr "Version {} van de OneDrive Client voor Linux is out (je hebben {}). Open Instellingen naar bijwerken het."
+msgstr "Versie {} van de OneDrive Client for Linux is beschikbaar (je hebt {}). Open Instellingen om bij te werken."
+
 
 msgid "Preview recovery needs attention"
-msgstr "Preview herstel heeft nodig attention"
+msgstr "Herstel van de voorbeeldinstellingen vereist aandacht."
+
 
 msgid ""
 "Sync services weren't started because preview settings couldn't be put back: "
 "{}"
-msgstr "Sync services waren niet gestart omdat voorbeeld instellingen niet kon zijn put terug: {}"
+msgstr "De synchronisatieservices zijn niet gestart omdat de voorbeeldinstellingen niet konden worden teruggezet: {}"
+
 
 msgid "Microsoft needs you to sign in again."
-msgstr "Microsoft heeft nodig je naar opnieuw aanmelden."
+msgstr "Je moet je opnieuw aanmelden bij Microsoft."
 
 msgid ""
 "Glass is on: your desktop blurs what's behind windows, so the window is see-"
