@@ -17,417 +17,516 @@ msgid ""
 "This app needs one more free program, the OneDrive Client for Linux (version "
 "2.5 or newer). It does the actual syncing in the background; this app is the "
 "window and tray icon for it."
-msgstr "Deze app heeft nog een gratis programma nodig: de OneDrive Client for Linux (versie 2.5 of nieuwer). Dat synchroniseert op de achtergrond; deze app is het venster en het systeemvakpictogram."
+msgstr "Deze app heeft nog een programma nodig: de OneDrive Client for Linux (versie 2.5 of hoger). Dat programma synchroniseert op de achtergrond; deze app biedt het venster en het pictogram in het systeemvak."
+
 
 #: ui/app.slint:488
 msgid "Updating…"
-msgstr "Bijwerken…"
+msgstr "Bezig met bijwerken…"
+
 
 #: ui/app.slint:488
 msgid "Installing…"
-msgstr "Installeren…"
+msgstr "Bezig met installeren…"
+
 
 #: ui/app.slint:488
 msgid "Update it for me"
-msgstr "Voor mij bijwerken"
+msgstr "Werk het voor mij bij"
+
 
 #: ui/app.slint:488
 msgid "Install it for me"
-msgstr "Voor mij installeren"
+msgstr "Installeer het voor mij"
+
 
 #: ui/app.slint:496
 msgid "Open installation instructions"
 msgstr "Installatie-instructies openen"
 
+
 #: ui/app.slint:502
 msgid "Check again"
 msgstr "Opnieuw controleren"
+
 
 #: ui/app.slint:509
 msgid "Not now"
 msgstr "Niet nu"
 
+
 #: ui/app.slint:537
 msgid "Some changes on this computer aren't being noticed"
 msgstr "Sommige wijzigingen op deze computer worden niet opgemerkt"
 
+
 #: ui/app.slint:550
 msgid "Raising it…"
-msgstr "Verhogen…"
+msgstr "Bezig met verhogen…"
+
 
 #: ui/app.slint:550
 msgid "Raise the limit"
-msgstr "De limiet verhogen"
+msgstr "Limiet verhogen"
+
 
 #: ui/app.slint:582
 msgid "Syncing is also set up outside this app"
-msgstr "Synchronisatie is ook buiten deze app ingesteld"
+msgstr "Ook buiten deze app is synchronisatie ingesteld"
+
 
 #: ui/app.slint:595
 msgid "Turning it off…"
-msgstr "Uitschakelen…"
+msgstr "Bezig met uitschakelen…"
+
 
 #: ui/app.slint:595
 msgid "Turn it off"
 msgstr "Uitschakelen"
 
+
 #: ui/app.slint:602
 msgid "Leave it as it is"
 msgstr "Zo laten"
+
 
 #: ui/app.slint:621
 msgid "DriveDeck for OneDrive"
 msgstr "DriveDeck voor OneDrive"
 
+
 #: ui/app.slint:920 ui/app.slint:3750
 msgid "Accounts"
 msgstr "Accounts"
+
 
 #: ui/app.slint:995
 msgid "Add account"
 msgstr "Account toevoegen"
 
+
 #: ui/app.slint:1007 ui/app.slint:2491
 msgid "App settings"
-msgstr "Appinstellingen"
+msgstr "App-instellingen"
+
 
 #: ui/app.slint:1046
 msgid "OK"
 msgstr "OK"
 
+
 #: ui/app.slint:1167
 msgid "Status"
 msgstr "Status"
+
 
 #: ui/app.slint:1167
 msgid "Folders"
 msgstr "Mappen"
 
+
 #: ui/app.slint:1167
 msgid "Options"
 msgstr "Opties"
+
 
 #: ui/app.slint:1167
 msgid "Activity"
 msgstr "Activiteit"
 
+
 #: ui/app.slint:1188
 msgid "This account isn't signed in"
 msgstr "Dit account is niet aangemeld"
+
 
 #: ui/app.slint:1191
 msgid ""
 "Sign in with your Microsoft account. Your browser will open so you can log "
 "in, then you'll come back here automatically."
-msgstr "Meld je aan met je Microsoft-account. Je browser wordt geopend. Na het aanmelden kom je automatisch hier terug."
+msgstr "Meld je aan met je Microsoft-account. Je browser wordt geopend zodat je kunt inloggen. Daarna kom je automatisch terug in deze app."
+
 
 #: ui/app.slint:1196
 msgid "Sign in…"
-msgstr "Sign in…"
+msgstr "Aanmelden…"
+
 
 #: ui/app.slint:1213 ui/app.slint:2388
 msgid "Name"
 msgstr "Naam"
 
+
 #: ui/app.slint:1218 ui/app.slint:2393
 msgid "Account name"
 msgstr "Accountnaam"
+
 
 #: ui/app.slint:1225
 msgid "Rename"
 msgstr "Naam wijzigen"
 
+
 #: ui/app.slint:1234
 msgid "Type"
 msgstr "Type"
+
 
 #: ui/app.slint:1246
 msgid "Folder"
 msgstr "Map"
 
+
 #: ui/app.slint:1257 ui/app.slint:4171
 msgid "Open"
 msgstr "Openen"
+
 
 #: ui/app.slint:1263
 msgid "Move…"
 msgstr "Verplaatsen…"
 
+
 #: ui/app.slint:1270
 msgid "Online ▾"
 msgstr "Online ▾"
+
 
 #: ui/app.slint:1280 ui/app.slint:3953 ui/app.slint:3971
 msgid "OneDrive website"
 msgstr "OneDrive-website"
 
+
 #: ui/app.slint:1286 ui/app.slint:3959 ui/app.slint:3980
 msgid "Recycle bin"
 msgstr "Prullenbak"
+
 
 #: ui/app.slint:1292 ui/app.slint:3965 ui/app.slint:3989
 msgid "Restore your OneDrive"
 msgstr "Je OneDrive herstellen"
 
+
 #: ui/app.slint:1303
 msgid "Last sync"
 msgstr "Laatste synchronisatie"
 
+
 #: ui/app.slint:1316
 msgid "Storage"
-msgstr "Opslag"
+msgstr "Opslagruimte"
+
 
 #: ui/app.slint:1351
 msgid "Delete them online too…"
 msgstr "Ook online verwijderen…"
 
+
 #: ui/app.slint:1358
 msgid "Download them again…"
 msgstr "Opnieuw downloaden…"
+
 
 #: ui/app.slint:1366
 msgid ""
 "Downloading them again needs a full resync, which is turned off for this "
 "account in Options."
-msgstr "Opnieuw downloaden vereist een volledige hersynchronisatie. Die staat uit voor dit account bij Opties."
+msgstr "Opnieuw downloaden vereist een volledige hersynchronisatie. Die optie is uitgeschakeld voor dit account in Opties."
+
 
 #: ui/app.slint:1380 ui/app.slint:1387
 msgid "Background sync"
 msgstr "Synchronisatie op de achtergrond"
 
+
 #: ui/app.slint:1383
 msgid "Keeps this folder in sync all the time, including after you restart."
-msgstr "Houdt deze map steeds gesynchroniseerd, ook nadat je de computer opnieuw start."
+msgstr "Houdt deze map voortdurend gesynchroniseerd, ook nadat je de computer opnieuw hebt opgestart."
+
 
 #: ui/app.slint:1399 ui/app.slint:3694
 msgid "Sync now"
 msgstr "Nu synchroniseren"
 
+
 #: ui/app.slint:1406
 msgid "Sign out"
 msgstr "Afmelden"
+
 
 #: ui/app.slint:1423
 msgid "Files changed in two places"
 msgstr "Bestanden op twee plekken gewijzigd"
 
+
 #: ui/app.slint:1434
 msgid ""
 "These files were changed here and online before they could sync, so both "
 "versions were kept. Compare them, then choose which to keep."
-msgstr "Deze bestanden zijn hier en online gewijzigd voordat ze konden synchroniseren. Beide versies zijn bewaard. Vergelijk ze en kies welke je wilt houden."
+msgstr "Deze bestanden zijn hier en online gewijzigd voordat ze konden synchroniseren. Daarom zijn beide versies bewaard. Vergelijk ze en kies welke je wilt houden."
+
 
 #: ui/app.slint:1481
 msgid "Compare"
 msgstr "Vergelijken"
 
+
 #: ui/app.slint:1487
 msgid "Keep… ▾"
 msgstr "Bewaren… ▾"
+
 
 #: ui/app.slint:1500
 msgid "Keep this computer's version"
 msgstr "De versie op deze computer bewaren"
 
+
 #: ui/app.slint:1506
 msgid "Keep the OneDrive version"
 msgstr "De OneDrive-versie bewaren"
 
+
 #: ui/app.slint:1512
 msgid "Keep both"
-msgstr "Beide bewaren"
+msgstr "Beide versies bewaren"
+
 
 #: ui/app.slint:1529
 msgid "Back up this computer's folders"
-msgstr "Mappen van deze computer back-uppen"
+msgstr "Een back-up maken van mappen op deze computer"
+
 
 #: ui/app.slint:1532
 msgid ""
 "Keep your important folders in OneDrive, so they're backed up and on your "
 "other devices. They stay where your apps expect them."
-msgstr "Bewaar je belangrijke mappen in OneDrive, zodat ze ook op je andere apparaten staan. Ze blijven op de plek waar je apps ze verwachten."
+msgstr "Bewaar je belangrijke mappen in OneDrive als back-up, zodat ze ook op je andere apparaten beschikbaar zijn. Ze blijven staan waar je apps ze verwachten."
+
 
 #: ui/app.slint:1568
 msgid "✓ Backed up"
-msgstr "✓ Geback-upt"
+msgstr "✓ Back-up gemaakt"
+
 
 #: ui/app.slint:1583
 msgid "Back up…"
-msgstr "Back-uppen…"
+msgstr "Back-up maken…"
+
 
 #: ui/app.slint:1590
 msgid "Stop…"
 msgstr "Stoppen…"
 
+
 #: ui/app.slint:1605
 msgid "Remove account from this computer…"
 msgstr "Account van deze computer verwijderen…"
+
 
 #: ui/app.slint:1629
 msgid "Sync everything"
 msgstr "Alles synchroniseren"
 
+
 #: ui/app.slint:1636
 msgid ""
 "Every folder in this account is kept on this computer. Untick to choose "
 "specific folders."
-msgstr "Elke map van dit account blijft op deze computer staan. Haal het vinkje weg om bepaalde mappen te kiezen."
+msgstr "Alle mappen in dit account staan op deze computer. Haal het vinkje weg om zelf mappen te kiezen."
+
 
 #: ui/app.slint:1636
 msgid ""
 "Only the ticked folders (and everything inside them) are kept on this "
 "computer."
-msgstr "Alleen de aangevinkte mappen en hun inhoud blijven op deze computer staan."
+msgstr "Alleen mappen met een vinkje en de inhoud ervan staan op deze computer."
+
 
 #: ui/app.slint:1639
 msgid "Also sync files that sit at the top level (outside any folder)"
-msgstr "Ook bestanden synchroniseren die los in de hoofdmap staan"
+msgstr "Ook losse bestanden in de hoofdmap synchroniseren"
+
 
 #: ui/app.slint:1657
 msgid "Loading subfolders for "
 msgstr "Submappen laden voor "
 
+
 #: ui/app.slint:1657
 msgid "Collapse "
-msgstr "Inklappen "
+msgstr "Samenvouwen "
+
 
 #: ui/app.slint:1657
 msgid "Expand "
-msgstr "Uitklappen "
+msgstr "Uitvouwen "
+
 
 #: ui/app.slint:1732
 msgid "Reload"
 msgstr "Opnieuw laden"
 
+
 #: ui/app.slint:1738
 msgid "Apply changes…"
 msgstr "Wijzigingen toepassen…"
+
 
 #: ui/app.slint:1761
 msgid "When to sync"
 msgstr "Wanneer synchroniseren"
 
+
 #: ui/app.slint:1766
 msgid "Full check every"
-msgstr "Volledige controle elke"
+msgstr "Volledige controle om de"
+
 
 #: ui/app.slint:1771
 msgid "How often to check for changes"
 msgstr "Hoe vaak op wijzigingen controleren"
 
+
 #: ui/app.slint:1772
 msgid "5 minutes"
 msgstr "5 minuten"
+
 
 #: ui/app.slint:1772
 msgid "10 minutes"
 msgstr "10 minuten"
 
+
 #: ui/app.slint:1772
 msgid "15 minutes"
 msgstr "15 minuten"
+
 
 #: ui/app.slint:1772
 msgid "30 minutes"
 msgstr "30 minuten"
 
+
 #: ui/app.slint:1772
 msgid "1 hour"
 msgstr "1 uur"
+
 
 #: ui/app.slint:1772
 msgid "2 hours"
 msgstr "2 uur"
 
+
 #: ui/app.slint:1780
 msgid ""
 "Changes on this computer are sent right away, and personal accounts also get "
 "online changes instantly. This sets how often a full check runs as well."
-msgstr "Wijzigingen op deze computer worden meteen verstuurd. Bij persoonlijke accounts komen online wijzigingen ook direct binnen. Dit bepaalt ook hoe vaak een volledige controle plaatsvindt."
+msgstr "Wijzigingen op deze computer worden meteen verstuurd. Bij persoonlijke accounts worden online wijzigingen ook direct opgehaald. Hiermee stel je ook in hoe vaak een volledige controle plaatsvindt."
+
 
 #: ui/app.slint:1785
 msgid "Only sync between"
 msgstr "Alleen synchroniseren tussen"
 
+
 #: ui/app.slint:1789
 msgid "Schedule start time"
-msgstr "Begintijd van schema"
+msgstr "Begintijd"
+
 
 #: ui/app.slint:1796
 msgid "and"
 msgstr "en"
 
+
 #: ui/app.slint:1800
 msgid "Schedule end time"
-msgstr "Eindtijd van schema"
+msgstr "Eindtijd"
+
 
 #: ui/app.slint:1811
 msgid ""
 "Use 24-hour times. The window can cross midnight (for example 23:00 to 07:00 "
 "for overnight only). \"Sync now\" still works outside it for an hour. Needs "
 "the tray icon running."
-msgstr "Gebruik de 24-uursnotatie. De periode mag over middernacht lopen (bijvoorbeeld 23:00 tot 07:00). ‘Nu synchroniseren’ werkt buiten deze periode nog een uur. Het systeemvakpictogram moet actief zijn."
+msgstr "Gebruik de 24-uursnotatie. De periode mag over middernacht lopen (bijvoorbeeld van 23:00 tot 07:00, alleen 's nachts). \"Nu synchroniseren\" werkt ook buiten die periode, gedurende een uur. Hiervoor moet het pictogram in het systeemvak actief zijn."
+
 
 #: ui/app.slint:1816
 msgid "Speed limit"
 msgstr "Snelheidslimiet"
 
+
 #: ui/app.slint:1821
 msgid "Sync speed limit"
-msgstr "Synchronisatiesnelheid"
+msgstr "Limiet voor de synchronisatiesnelheid"
+
 
 #: ui/app.slint:1822
 msgid "No limit"
 msgstr "Geen limiet"
 
+
 #: ui/app.slint:1822
 msgid "1 MB/s"
 msgstr "1 MB/s"
+
 
 #: ui/app.slint:1822
 msgid "2 MB/s"
 msgstr "2 MB/s"
 
+
 #: ui/app.slint:1822
 msgid "5 MB/s"
 msgstr "5 MB/s"
+
 
 #: ui/app.slint:1822
 msgid "10 MB/s"
 msgstr "10 MB/s"
 
+
 #: ui/app.slint:1822
 msgid "25 MB/s"
 msgstr "25 MB/s"
+
 
 #: ui/app.slint:1822
 msgid "50 MB/s"
 msgstr "50 MB/s"
 
+
 #: ui/app.slint:1830
 msgid "Applies to each file being transferred."
 msgstr "Geldt voor elk bestand dat wordt overgezet."
+
 
 #: ui/app.slint:1833
 msgid "Connect over IPv4 only"
 msgstr "Alleen via IPv4 verbinden"
 
+
 #: ui/app.slint:1837
 msgid ""
 "Can fix syncing that's slow to start or keeps timing out on some networks."
-msgstr "Kan helpen als synchronisatie traag start of op sommige netwerken steeds een time-out krijgt."
+msgstr "Dit kan helpen als synchroniseren langzaam op gang komt of op sommige netwerken steeds vastloopt."
+
 
 #: ui/app.slint:1847
 msgid "Direction"
 msgstr "Richting"
 
+
 #: ui/app.slint:1850
 msgid "Sync direction"
 msgstr "Synchronisatierichting"
 
+
 #: ui/app.slint:1851
 msgid "Both ways (normal)"
-msgstr "Beide richtingen (normaal)"
+msgstr "Beide richtingen (standaard)"
+
 
 #: ui/app.slint:1851
 msgid "Download only"
