@@ -3620,3 +3620,71 @@ msgstr "Microsoft OneDrive'a ulaşılamadı ({}). İnternet bağlantınızı kon
 #: src/core.rs
 msgid "Microsoft OneDrive reported an error: {}"
 msgstr "Microsoft OneDrive bir hata bildirdi: {}"
+
+#: src/update.rs
+msgid "Couldn't ask GitHub about the new version."
+msgstr "Yeni sürüm hakkında GitHub'a sorulamadı."
+
+#: src/update.rs
+msgid "Couldn't download the update: {}"
+msgstr "Güncelleme indirilemedi: {}"
+
+#: src/update.rs
+msgid "Couldn't put the new version in place: {}"
+msgstr "Yeni sürüm yerine konamadı: {}"
+
+#: src/update.rs
+msgid "Couldn't update DriveDeck"
+msgstr "DriveDeck güncellenemedi"
+
+#: src/update.rs
+msgid "DriveDeck updated"
+msgstr "DriveDeck güncellendi"
+
+#: src/update.rs
+msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed until you press Update now."
+msgstr "Bu uygulamanın GitHub sayfasına günde bir kez bakar. Şimdi güncelle'ye basana kadar hiçbir şey indirilmez veya kurulmaz."
+
+#: src/update.rs
+msgid "The download didn't match the release's checksum, so it wasn't installed."
+msgstr "İndirilen dosya sürümün sağlama toplamıyla eşleşmedi, bu yüzden kurulmadı."
+
+#: src/update.rs
+msgid "The package manager couldn't install version {}."
+msgstr "Paket yöneticisi {} sürümünü kuramadı."
+
+#: src/update.rs
+msgid "The release doesn't list a checksum for {}, so it wasn't installed."
+msgstr "Sürüm {} için bir sağlama toplamı içermiyor, bu yüzden kurulmadı."
+
+#: src/update.rs
+msgid "This copy can't update itself; the download page is open: {}"
+msgstr "Bu kopya kendini güncelleyemez; indirme sayfası açıldı: {}"
+
+#: src/update.rs
+msgid "This is the newest version."
+msgstr "Bu en yeni sürüm."
+
+#: src/update.rs
+msgid "Update now"
+msgstr "Şimdi güncelle"
+
+#: src/update.rs
+msgid "Update to version {} now"
+msgstr "Şimdi {} sürümüne güncelle"
+
+#: src/update.rs
+msgid "Updated to version {}."
+msgstr "{} sürümüne güncellendi."
+
+#: src/update.rs
+msgid "Version {} is installed. The tray icon restarts on it by itself; reopen any DriveDeck window that was open."
+msgstr "{} sürümü kuruldu. Sistem tepsisi simgesi kendiliğinden bu sürümle yeniden başlar; açık olan DriveDeck pencerelerini yeniden açın."
+
+#: src/update.rs
+msgid "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) and choose Update."
+msgstr "Bu uygulamanın {} sürümü çıktı. Sistem tepsisindeki OneDrive simgesine tıklayın (veya sağ tıklayın) ve Güncelle'yi seçin."
+
+#: src/update.rs
+msgid "{} The download page is open in your browser instead."
+msgstr "{} Bunun yerine indirme sayfası tarayıcınızda açıldı."

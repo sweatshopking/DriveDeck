@@ -3611,3 +3611,71 @@ msgstr "无法连接到 Microsoft OneDrive（{}）。请检查网络连接；连
 #: src/core.rs
 msgid "Microsoft OneDrive reported an error: {}"
 msgstr "Microsoft OneDrive 报告了一个错误：{}"
+
+#: src/update.rs
+msgid "Couldn't ask GitHub about the new version."
+msgstr "无法向 GitHub 查询新版本。"
+
+#: src/update.rs
+msgid "Couldn't download the update: {}"
+msgstr "无法下载更新：{}"
+
+#: src/update.rs
+msgid "Couldn't put the new version in place: {}"
+msgstr "无法放置新版本：{}"
+
+#: src/update.rs
+msgid "Couldn't update DriveDeck"
+msgstr "无法更新 DriveDeck"
+
+#: src/update.rs
+msgid "DriveDeck updated"
+msgstr "DriveDeck 已更新"
+
+#: src/update.rs
+msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed until you press Update now."
+msgstr "每天在 GitHub 上查看一次本应用的页面。在你按下“立即更新”之前，不会下载或安装任何内容。"
+
+#: src/update.rs
+msgid "The download didn't match the release's checksum, so it wasn't installed."
+msgstr "下载的文件与发布版的校验和不符，因此没有安装。"
+
+#: src/update.rs
+msgid "The package manager couldn't install version {}."
+msgstr "软件包管理器无法安装版本 {}。"
+
+#: src/update.rs
+msgid "The release doesn't list a checksum for {}, so it wasn't installed."
+msgstr "发布版没有列出 {} 的校验和，因此没有安装。"
+
+#: src/update.rs
+msgid "This copy can't update itself; the download page is open: {}"
+msgstr "此副本无法自行更新；已打开下载页面：{}"
+
+#: src/update.rs
+msgid "This is the newest version."
+msgstr "这已是最新版本。"
+
+#: src/update.rs
+msgid "Update now"
+msgstr "立即更新"
+
+#: src/update.rs
+msgid "Update to version {} now"
+msgstr "立即更新到版本 {}"
+
+#: src/update.rs
+msgid "Updated to version {}."
+msgstr "已更新到版本 {}。"
+
+#: src/update.rs
+msgid "Version {} is installed. The tray icon restarts on it by itself; reopen any DriveDeck window that was open."
+msgstr "版本 {} 已安装。托盘图标会自动以新版本重新启动；请重新打开之前打开的 DriveDeck 窗口。"
+
+#: src/update.rs
+msgid "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) and choose Update."
+msgstr "本应用的版本 {} 已发布。点击托盘中的 OneDrive 图标（或右键点击）并选择“更新”。"
+
+#: src/update.rs
+msgid "{} The download page is open in your browser instead."
+msgstr "{} 已改为在浏览器中打开下载页面。"

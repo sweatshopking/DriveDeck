@@ -3611,3 +3611,71 @@ msgstr "Microsoft OneDrive에 연결할 수 없습니다({}). 인터넷 연결�
 #: src/core.rs
 msgid "Microsoft OneDrive reported an error: {}"
 msgstr "Microsoft OneDrive에서 오류를 보고했습니다: {}"
+
+#: src/update.rs
+msgid "Couldn't ask GitHub about the new version."
+msgstr "새 버전에 대해 GitHub에 확인할 수 없었습니다."
+
+#: src/update.rs
+msgid "Couldn't download the update: {}"
+msgstr "업데이트를 다운로드할 수 없습니다: {}"
+
+#: src/update.rs
+msgid "Couldn't put the new version in place: {}"
+msgstr "새 버전을 설치 위치에 둘 수 없습니다: {}"
+
+#: src/update.rs
+msgid "Couldn't update DriveDeck"
+msgstr "DriveDeck을 업데이트할 수 없습니다"
+
+#: src/update.rs
+msgid "DriveDeck updated"
+msgstr "DriveDeck 업데이트됨"
+
+#: src/update.rs
+msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed until you press Update now."
+msgstr "하루에 한 번 GitHub에서 이 앱의 페이지를 확인합니다. 지금 업데이트를 누르기 전에는 아무것도 다운로드하거나 설치하지 않습니다."
+
+#: src/update.rs
+msgid "The download didn't match the release's checksum, so it wasn't installed."
+msgstr "다운로드한 파일이 릴리스의 체크섬과 일치하지 않아 설치하지 않았습니다."
+
+#: src/update.rs
+msgid "The package manager couldn't install version {}."
+msgstr "패키지 관리자가 버전 {}을(를) 설치하지 못했습니다."
+
+#: src/update.rs
+msgid "The release doesn't list a checksum for {}, so it wasn't installed."
+msgstr "릴리스에 {}의 체크섬이 없어 설치하지 않았습니다."
+
+#: src/update.rs
+msgid "This copy can't update itself; the download page is open: {}"
+msgstr "이 사본은 스스로 업데이트할 수 없습니다. 다운로드 페이지를 열었습니다: {}"
+
+#: src/update.rs
+msgid "This is the newest version."
+msgstr "최신 버전입니다."
+
+#: src/update.rs
+msgid "Update now"
+msgstr "지금 업데이트"
+
+#: src/update.rs
+msgid "Update to version {} now"
+msgstr "지금 버전 {}(으)로 업데이트"
+
+#: src/update.rs
+msgid "Updated to version {}."
+msgstr "버전 {}(으)로 업데이트했습니다."
+
+#: src/update.rs
+msgid "Version {} is installed. The tray icon restarts on it by itself; reopen any DriveDeck window that was open."
+msgstr "버전 {}이(가) 설치되었습니다. 트레이 아이콘은 자동으로 새 버전으로 다시 시작됩니다. 열려 있던 DriveDeck 창은 다시 여세요."
+
+#: src/update.rs
+msgid "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) and choose Update."
+msgstr "이 앱의 버전 {}을(를) 사용할 수 있습니다. 트레이의 OneDrive 아이콘을 클릭(또는 오른쪽 클릭)하고 업데이트를 선택하세요."
+
+#: src/update.rs
+msgid "{} The download page is open in your browser instead."
+msgstr "{} 대신 브라우저에서 다운로드 페이지를 열었습니다."

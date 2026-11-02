@@ -3620,3 +3620,71 @@ msgstr "Impossible de joindre Microsoft OneDrive ({}). Vérifiez votre connexion
 #: src/core.rs
 msgid "Microsoft OneDrive reported an error: {}"
 msgstr "Microsoft OneDrive a signalé une erreur : {}"
+
+#: src/update.rs
+msgid "Couldn't ask GitHub about the new version."
+msgstr "Impossible de demander la nouvelle version à GitHub."
+
+#: src/update.rs
+msgid "Couldn't download the update: {}"
+msgstr "Impossible de télécharger la mise à jour : {}"
+
+#: src/update.rs
+msgid "Couldn't put the new version in place: {}"
+msgstr "Impossible de mettre la nouvelle version en place : {}"
+
+#: src/update.rs
+msgid "Couldn't update DriveDeck"
+msgstr "Impossible de mettre à jour DriveDeck"
+
+#: src/update.rs
+msgid "DriveDeck updated"
+msgstr "DriveDeck mis à jour"
+
+#: src/update.rs
+msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed until you press Update now."
+msgstr "Consulte la page GitHub de cette application une fois par jour. Rien n’est téléchargé ni installé tant que vous n’appuyez pas sur Mettre à jour."
+
+#: src/update.rs
+msgid "The download didn't match the release's checksum, so it wasn't installed."
+msgstr "Le téléchargement ne correspond pas à la somme de contrôle de la version ; il n’a donc pas été installé."
+
+#: src/update.rs
+msgid "The package manager couldn't install version {}."
+msgstr "Le gestionnaire de paquets n’a pas pu installer la version {}."
+
+#: src/update.rs
+msgid "The release doesn't list a checksum for {}, so it wasn't installed."
+msgstr "La version publiée n’indique pas de somme de contrôle pour {} ; elle n’a donc pas été installée."
+
+#: src/update.rs
+msgid "This copy can't update itself; the download page is open: {}"
+msgstr "Cette copie ne peut pas se mettre à jour elle-même ; la page de téléchargement est ouverte : {}"
+
+#: src/update.rs
+msgid "This is the newest version."
+msgstr "C’est la version la plus récente."
+
+#: src/update.rs
+msgid "Update now"
+msgstr "Mettre à jour"
+
+#: src/update.rs
+msgid "Update to version {} now"
+msgstr "Mettre à jour vers la version {}"
+
+#: src/update.rs
+msgid "Updated to version {}."
+msgstr "Mis à jour vers la version {}."
+
+#: src/update.rs
+msgid "Version {} is installed. The tray icon restarts on it by itself; reopen any DriveDeck window that was open."
+msgstr "La version {} est installée. L’icône de la zone de notification redémarre dessus d’elle-même ; rouvrez les fenêtres DriveDeck qui étaient ouvertes."
+
+#: src/update.rs
+msgid "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) and choose Update."
+msgstr "La version {} de cette application est disponible. Cliquez sur l’icône OneDrive de la zone de notification (ou faites un clic droit) et choisissez Mettre à jour."
+
+#: src/update.rs
+msgid "{} The download page is open in your browser instead."
+msgstr "{} La page de téléchargement est ouverte dans votre navigateur à la place."

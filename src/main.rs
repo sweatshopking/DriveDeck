@@ -158,6 +158,7 @@ fn main() {
             ));
         }
         Some("--sync-now") => std::process::exit(run_sync_now()),
+        Some("--update") => std::process::exit(run_update()),
         Some("--version") => println!("{} {}", core::APP_NAME, env!("CARGO_PKG_VERSION")),
         Some("--doctor") if args.get(1).map(String::as_str) == Some("--report") => {
             print!("{}", doctor::report())
@@ -185,6 +186,7 @@ fn main() {
                 "--print-link <file> [--edit]",
                 "--status [--json]",
                 "--sync-now",
+                "--update",
                 "--doctor [--report]",
             ];
             println!("{} {}\n\nUsage:", core::APP_NAME, env!("CARGO_PKG_VERSION"));
@@ -275,6 +277,36 @@ fn status_exit_code(client_installed: bool, statuses: &[core::Status]) -> i32 {
         1
     } else {
         0
+    }
+}
+
+/// `--update`: installs the newest release the way the window's "Update now" does
+fn run_update() -> i32 {
+    use update::Outcome;
+    match update::install_latest() {
+        Outcome::Updated(v) => {
+            println!("{}", tr!("Updated to version {}.", v));
+            0
+        }
+        Outcome::UpToDate => {
+            println!("{}", tr!("This is the newest version."));
+            0
+        }
+        Outcome::OpenedPage => {
+            println!(
+                "{}",
+                tr!(
+                    "This copy can't update itself; the download page is open: {}",
+                    update::RELEASES_URL
+                )
+            );
+            1
+        }
+        Outcome::Cancelled => 1,
+        Outcome::Failed(e) => {
+            eprintln!("{e}");
+            1
+        }
     }
 }
 

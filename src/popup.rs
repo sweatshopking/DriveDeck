@@ -1022,9 +1022,7 @@ pub fn run(at: Option<(i32, i32)>) {
             });
         }
     });
-    ui.on_get_update(|| {
-        launch(|| core::run_detached("xdg-open", &[crate::update::RELEASES_URL]));
-    });
+    ui.on_get_update(crate::update::update_now);
     ui.on_view_online(|i, page| {
         let page = match page {
             1 => crate::graph::WebPage::RecycleBin,

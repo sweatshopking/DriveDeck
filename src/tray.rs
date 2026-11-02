@@ -366,11 +366,9 @@ impl ksni::Tray for Tray {
         if let Some(v) = &self.update {
             m.push(
                 StandardItem {
-                    label: crate::tr!("Version {} is out — get it…", v),
+                    label: crate::tr!("Update to version {} now", v),
                     icon_name: "system-software-update".into(),
-                    activate: Box::new(|_: &mut Self| {
-                        core::run_detached("xdg-open", &[crate::update::RELEASES_URL])
-                    }),
+                    activate: Box::new(|_: &mut Self| crate::update::update_now()),
                     ..Default::default()
                 }
                 .into(),
@@ -1397,7 +1395,7 @@ fn check_for_update(handle: &ksni::blocking::Handle<Tray>) {
         share::notify(
             &crate::tr!("OneDrive: a new version is out"),
             &crate::tr!(
-                "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) to get it.",
+                "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) and choose Update.",
                 v
             ),
         );

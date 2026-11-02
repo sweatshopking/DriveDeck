@@ -6455,10 +6455,7 @@ pub fn run(account: Option<String>) {
                 .set_app_msg(ss(crate::tr!("Couldn't save the setting: {}", e)));
         }
     });
-    on!(on_app_get_update, |_c| core::run_detached(
-        "xdg-open",
-        &[crate::update::RELEASES_URL]
-    ));
+    on!(on_app_get_update, |_c| crate::update::update_now());
     on!(on_app_stop_on_quit_toggled, |c| {
         let on = c.borrow().ui().get_app_stop_on_quit();
         let mut s = AppSettings::load();

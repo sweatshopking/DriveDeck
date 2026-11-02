@@ -2605,7 +2605,7 @@ export component AppWindow inherits Window {
                                 }
                             }
                             Hint {
-                                text: @tr("Looks at this app's page on GitHub once a day. Nothing is downloaded or installed by itself.");
+                                text: @tr("Looks at this app's page on GitHub once a day. Nothing is downloaded or installed until you press Update now.");
                             }
                             if root.app-update != "": HorizontalLayout {
                                 spacing: 8px;
@@ -2616,7 +2616,7 @@ export component AppWindow inherits Window {
                                     font-weight: 600;
                                 }
                                 Button {
-                                    text: @tr("Get it");
+                                    text: @tr("Update now");
                                     primary: true;
                                     clicked => {
                                         root.app-get-update();
@@ -3744,7 +3744,7 @@ export component PopupPanel inherits Window {
                             horizontal-stretch: 1;
                         }
                         Button {
-                            text: @tr("Get it");
+                            text: @tr("Update now");
                             primary: true;
                             clicked => {
                                 root.get-update();

@@ -3620,3 +3620,71 @@ msgstr "Kan Microsoft OneDrive niet bereiken ({}). Controleer je internetverbind
 #: src/core.rs
 msgid "Microsoft OneDrive reported an error: {}"
 msgstr "Microsoft OneDrive meldde een fout: {}"
+
+#: src/update.rs
+msgid "Couldn't ask GitHub about the new version."
+msgstr "Kon GitHub niet vragen naar de nieuwe versie."
+
+#: src/update.rs
+msgid "Couldn't download the update: {}"
+msgstr "Kon de update niet downloaden: {}"
+
+#: src/update.rs
+msgid "Couldn't put the new version in place: {}"
+msgstr "Kon de nieuwe versie niet op zijn plaats zetten: {}"
+
+#: src/update.rs
+msgid "Couldn't update DriveDeck"
+msgstr "Kon DriveDeck niet bijwerken"
+
+#: src/update.rs
+msgid "DriveDeck updated"
+msgstr "DriveDeck bijgewerkt"
+
+#: src/update.rs
+msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed until you press Update now."
+msgstr "Kijkt één keer per dag op de GitHub-pagina van deze app. Er wordt niets gedownload of geïnstalleerd totdat je op Nu bijwerken drukt."
+
+#: src/update.rs
+msgid "The download didn't match the release's checksum, so it wasn't installed."
+msgstr "De download kwam niet overeen met de controlesom van de release en is daarom niet geïnstalleerd."
+
+#: src/update.rs
+msgid "The package manager couldn't install version {}."
+msgstr "De pakketbeheerder kon versie {} niet installeren."
+
+#: src/update.rs
+msgid "The release doesn't list a checksum for {}, so it wasn't installed."
+msgstr "De release geeft geen controlesom voor {}, daarom is het niet geïnstalleerd."
+
+#: src/update.rs
+msgid "This copy can't update itself; the download page is open: {}"
+msgstr "Deze kopie kan zichzelf niet bijwerken; de downloadpagina is geopend: {}"
+
+#: src/update.rs
+msgid "This is the newest version."
+msgstr "Dit is de nieuwste versie."
+
+#: src/update.rs
+msgid "Update now"
+msgstr "Nu bijwerken"
+
+#: src/update.rs
+msgid "Update to version {} now"
+msgstr "Nu bijwerken naar versie {}"
+
+#: src/update.rs
+msgid "Updated to version {}."
+msgstr "Bijgewerkt naar versie {}."
+
+#: src/update.rs
+msgid "Version {} is installed. The tray icon restarts on it by itself; reopen any DriveDeck window that was open."
+msgstr "Versie {} is geïnstalleerd. Het systeemvakpictogram start er vanzelf mee opnieuw; open DriveDeck-vensters die open waren opnieuw."
+
+#: src/update.rs
+msgid "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) and choose Update."
+msgstr "Versie {} van deze app is beschikbaar. Klik op het OneDrive-pictogram in het systeemvak (of klik er met rechts op) en kies Bijwerken."
+
+#: src/update.rs
+msgid "{} The download page is open in your browser instead."
+msgstr "{} De downloadpagina is in plaats daarvan in je browser geopend."

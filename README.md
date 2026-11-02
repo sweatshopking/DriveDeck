@@ -91,8 +91,14 @@ the app in your own language.
   Microsoft.
 - **Screenshots saved straight to OneDrive.** A switch in *App settings* points Spectacle or
   Flameshot at a folder in your OneDrive, and puts their setting back when you switch it off.
+- **Updates in one click.** When a new version is out, *Update now* (in the tray menu or the window)
+  downloads it, checks it against the release's checksums and puts it in place; the tray restarts on
+  it by itself. AppImages update without a password; .deb and .rpm installs ask once. AUR users
+  update through the AUR as before.
+- **Errors in plain words.** When Microsoft can't be reached or reports a problem, the status says
+  so in a sentence instead of showing the sync engine's raw error.
 - **From the terminal:** `drivedeck --status` (with `--json` for scripts and status bars),
-  `--sync-now` and `--print-link <file>`.
+  `--sync-now`, `--print-link <file>` and `--update`.
 - **In your language:** German, Spanish, French, Italian, Portuguese (Brazil), Dutch, Japanese,
   Chinese (Simplified), Russian, Turkish and Korean, picked from your system's language. The
   translations are machine-drafted; corrections are welcome (see `po/README.md`).
@@ -142,7 +148,8 @@ The biggest update before 1.0. Everything below was new since 0.3.5:
 - **Pauses on a metered connection or in power saver**, and carries on by itself afterwards.
 - **Quick links** to the OneDrive website, its recycle bin and *Restore your OneDrive*.
 - **Stop syncing on Quit**, if you'd like the tray's *Quit* to stop everything.
-- **Tells you when a new version is out** (once a day; you can switch it off).
+- **Tells you when a new version is out** (once a day; you can switch it off), and from 1.5.0 on
+  installs it when you press *Update now*.
 - **A new look**: a new icon, and tray icons that show a green check when everything is synced.
 - **Even more careful with your files**: nothing is ever overwritten while moving or backing up
   folders, two sync engines never run on one account, and settings files that can't be read are never
