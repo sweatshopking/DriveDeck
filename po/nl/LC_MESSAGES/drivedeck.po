@@ -1620,319 +1620,404 @@ msgstr "E-mailadressen om uit te nodigen"
 msgid "name@example.com, another@example.com"
 msgstr "name@example.com, another@example.com"
 
+
 #: ui/app.slint:4212
 msgid ""
 "Separate addresses with commas. Each person gets an email and signs in to "
 "open it. People outside your organization can only be added if your IT team "
 "allows it."
-msgstr "Scheid adressen met komma's. Iedereen krijgt een e-mail en meldt zich aan om het te openen. Mensen buiten je organisatie kun je alleen toevoegen als je IT-team dit toestaat."
+msgstr "Scheid adressen met komma's. Iedereen krijgt een e-mail en meldt zich aan om de uitnodiging te openen. Je kunt mensen buiten je organisatie alleen toevoegen als je IT-team dit toestaat."
+
 
 #: ui/app.slint:4212
 msgid ""
 "Separate addresses with commas. Each person gets an email and signs in with "
 "a Microsoft account to open it."
-msgstr "Scheid adressen met komma's. Iedereen krijgt een e-mail en meldt zich met een Microsoft-account aan om het te openen."
+msgstr "Scheid adressen met komma's. Iedereen krijgt een e-mail en meldt zich met een Microsoft-account aan om de uitnodiging te openen."
+
 
 #: ui/app.slint:4220 ui/app.slint:4230
 msgid "Can edit"
 msgstr "Kan bewerken"
 
+
 #: ui/app.slint:4224
 msgid "They can change it (and add or delete files in a folder)."
-msgstr "Deze persoon kan het wijzigen en bestanden toevoegen of verwijderen als het om een map gaat."
+msgstr "Deze persoon kan het bestand wijzigen en, als het om een map gaat, bestanden toevoegen of verwijderen."
+
 
 #: ui/app.slint:4224
 msgid "They can view and download it, but not change it."
 msgstr "Deze persoon kan het bekijken en downloaden, maar niet wijzigen."
 
+
 #: ui/app.slint:4234
 msgid "Message (optional)"
 msgstr "Bericht (optioneel)"
+
 
 #: ui/app.slint:4238
 msgid "Invitation message"
 msgstr "Uitnodigingsbericht"
 
+
 #: ui/app.slint:4287
 msgid "Keep"
 msgstr "Bewaren"
+
 
 #: ui/app.slint:4293
 msgid "Stop it"
 msgstr "Stoppen"
 
+
 #: ui/app.slint:4293
 msgid "Stop sharing"
 msgstr "Delen stoppen"
 
+
 #: ui/app.slint:4296
 msgid "Stop sharing with "
 msgstr "Delen stoppen met "
+
 
 #: ui/app.slint:4314
 msgid ""
 "Stopping a link makes it stop working for everyone who has it. Stopping a "
 "person's access takes the file away from their \"Shared\" list. Access that "
 "comes from a folder above can only be changed on that folder."
-msgstr "Als je een koppeling stopt, werkt die voor niemand meer. Als je iemands toegang stopt, verdwijnt het bestand uit diens lijst ‘Gedeeld’. Toegang via een bovenliggende map kun je alleen in die map wijzigen."
+msgstr "Als je een koppeling uitschakelt, werkt die niet meer voor iedereen die hem heeft. Als je iemands toegang intrekt, verdwijnt het bestand uit diens lijst met gedeelde bestanden. Toegang via een bovenliggende map kun je alleen in die map wijzigen."
+
 
 #: ui/app.slint:4333
 msgid "Send invitation"
 msgstr "Uitnodiging versturen"
 
+
 #: ui/app.slint:4365
 msgid "Restore this version?"
 msgstr "Deze versie herstellen?"
+
 
 #: ui/app.slint:4369
 msgid "The version from "
 msgstr "De versie van "
 
+
 #: ui/app.slint:4369
 msgid ""
 " becomes the current one, online and on this computer. The current version "
 "is kept in the history, so you can switch back."
-msgstr " wordt online en op deze computer de huidige versie. De huidige versie blijft in de geschiedenis staan, zodat je kunt terugschakelen."
+msgstr " wordt online en op deze computer de huidige versie. De huidige versie blijft in de geschiedenis staan, zodat je kunt teruggaan."
+
 
 msgid "needs a full path, starting with / or ~/"
-msgstr "heeft nodig een volledig pad, starting met / van ~/"
+msgstr "moet een volledig pad zijn dat begint met / of ~/"
+
 
 msgid "needs a public https:// address"
-msgstr "heeft nodig een openbare https:// adres"
+msgstr "moet een openbaar https://-adres zijn"
+
 
 msgid "needs an IP address, like 0.0.0.0 or 127.0.0.1"
-msgstr "heeft nodig een IP adres, zoals 0.0.0.0 van 127.0.0.1"
+msgstr "moet een IP-adres zijn, bijvoorbeeld 0.0.0.0 of 127.0.0.1"
+
 
 msgid "needs a tenant ID (a GUID) or a domain like contoso.onmicrosoft.com"
-msgstr "heeft nodig een tenant ID (een GUID) van een domain zoals contoso.onmicrosoft.com"
+msgstr "moet een organisatie-id (GUID) of een domeinnaam zijn, zoals contoso.onmicrosoft.com"
+
 
 msgid "needs an application ID like d50ca740-c83f-4d1b-b616-12c519384f0c"
-msgstr "heeft nodig een applicatie ID zoals d50ca740-c83f-4d1b-b616-12c519384f0c"
+msgstr "moet een toepassings-id zijn, bijvoorbeeld d50ca740-c83f-4d1b-b616-12c519384f0c"
+
 
 msgid "can't contain quotes or line breaks"
-msgstr "kan niet bevatten aanhalingstekens van regel breaks"
+msgstr "mag geen aanhalingstekens of regeleinden bevatten"
+
 
 msgid "needs three digits from 0 to 7, like 700 or 644"
-msgstr "heeft nodig three cijfers van 0 naar 7, zoals 700 van 644"
+msgstr "moet uit drie cijfers van 0 tot en met 7 bestaan, bijvoorbeeld 700 of 644"
+
 
 msgid "needs a whole number from {} to {}{}"
-msgstr "heeft nodig een heel getal van {} naar {}{}"
+msgstr "moet een geheel getal tussen {} en {}{} zijn"
+
 
 msgid "needs a number from {} to {}{}"
-msgstr "heeft nodig een getal van {} naar {}{}"
+msgstr "moet een getal tussen {} en {}{} zijn"
+
 
 msgid "isn't one of the choices"
-msgstr "is niet one van de keuzes"
+msgstr "is geen van de beschikbare opties"
+
 
 msgid "Couldn't read {}: {}"
-msgstr "Kon niet lezen {}: {}"
+msgstr "Kan {} niet lezen: {}"
+
 
 msgid "Couldn't update {}: {}"
-msgstr "Kon niet bijwerken {}: {}"
+msgstr "Kan {} niet bijwerken: {}"
+
 
 msgid "Couldn't enumerate {}: {}"
-msgstr "Kon niet opsommen {}: {}"
+msgstr "Kan de inhoud van {} niet opvragen: {}"
+
 
 msgid "Couldn't inspect {}: {}"
-msgstr "Kon niet bekijken {}: {}"
+msgstr "Kan {} niet controleren: {}"
+
 
 msgid "Couldn't find a filesystem for {}."
-msgstr "Kon niet vinden een bestandsystem voor {}."
+msgstr "Er is geen bestandssysteem gevonden voor {}."
+
 
 msgid "Couldn't resolve the OneDrive folder {}: {}"
-msgstr "Kon niet oplossen de OneDrive-map {}: {}"
+msgstr "Kan de OneDrive-map {} niet vinden: {}"
+
 
 msgid "Couldn't check the mounted drive for {}: {}"
-msgstr "Kon niet controle de aangekoppelde schijf voor {}: {}"
+msgstr "Kan niet controleren of de schijf voor {} is aangekoppeld: {}"
+
 
 msgid "Couldn't check whether the drive for {} is mounted."
-msgstr "Kon niet controle van de schijf voor {} is aangekoppeld."
+msgstr "Kan niet controleren of de schijf voor {} is aangekoppeld."
+
 
 msgid ""
 "The drive for {} isn't mounted. Connect it before backing up this folder."
-msgstr "De schijf voor {} is niet aangekoppeld. Connect het voor backing omhoog dit map."
+msgstr "De schijf voor {} is niet aangekoppeld. Sluit de schijf aan voordat je een back-up van deze map maakt."
+
 
 msgid "Couldn't check the sync-folder rules in {}: {}"
-msgstr "Kon niet controle de synchronisatieregels voor mappen in {}: {}"
+msgstr "Kan de regels voor synchronisatiemappen in {} niet controleren: {}"
+
 
 msgid "Unknown folder."
-msgstr "Unknown map."
+msgstr "Onbekende map."
+
 
 msgid "This computer doesn't have a {} folder set up."
-msgstr "Deze computer doet niet hebben een {} map set omhoog."
+msgstr "Op deze computer is geen map {} ingesteld."
+
 
 msgid ""
 "The OneDrive folder {} isn't available. Connect its drive and try again."
-msgstr "De OneDrive-map {} is niet beschikbaar. Connect zijn schijf en probeer het opnieuw."
+msgstr "De OneDrive-map {} is niet beschikbaar. Sluit de schijf aan en probeer het opnieuw."
+
 
 msgid ""
 "Your {} folder is set to {}, which holds everything in your home folder, so "
 "it can't be backed up. Point {} at its own folder in your desktop's settings "
 "first."
-msgstr "Je {} map is set naar {}, which bevat alles in je persoonlijke map, dus het kan niet zijn backed omhoog. Point {} bij zijn eigen map in je bureaublad's instellingen eerst."
+msgstr "De map {} staat ingesteld op {}, de map waarin alles uit je persoonlijke map staat. Daarvan kun je geen back-up maken. Stel {} eerst in op een eigen map via de bureaubladinstellingen."
+
 
 msgid "Your {} folder can't be backed up: {}"
-msgstr "Je {} map kan niet zijn backed omhoog: {}"
+msgstr "Van de map {} kan geen back-up worden gemaakt: {}"
+
 
 msgid "{} doesn't exist."
-msgstr "{} doet niet bestaan."
+msgstr "{} bestaat niet."
+
 
 msgid "{} is already a link to somewhere else, so it's left alone."
-msgstr "{} is al een koppeling naar somewhere anders, dus het's gelaten alone."
+msgstr "{} is al een koppeling naar een andere locatie. Die laten we ongemoeid."
+
 
 msgid "{} isn't a folder."
-msgstr "{} is niet een map."
+msgstr "{} is geen map."
+
 
 msgid "Your {} folder overlaps the OneDrive folder for account \"{}\" ({})."
-msgstr "Je {} map overlaps de OneDrive-map voor account \"{}\" ({})."
+msgstr "De map {} valt geheel of gedeeltelijk samen met de OneDrive-map van account \"{}\" ({})."
+
 
 msgid ""
 "This account only downloads, so nothing here would be backed up. Change its "
 "direction under Options first."
-msgstr "Dit account alleen downloads, dus niets hier zou zijn backed omhoog. Change zijn direction under Options eerst."
+msgstr "Dit account downloadt alleen; er wordt dus geen back-up gemaakt. Wijzig eerst de synchronisatierichting in Opties."
+
 
 msgid ""
 "This account only syncs the folders you chose, and \"{}\" isn't one of them. "
 "Add it under Folders first (you can create it online)."
-msgstr "Dit account alleen syncs de maps je chose, en \"{}\" is niet one van them. Add het under Folders eerst (je kan maken het online)."
+msgstr "Dit account synchroniseert alleen de mappen die je hebt gekozen. \"{}\" hoort daar niet bij. Voeg de map eerst toe bij Mappen (je kunt die online aanmaken)."
+
 
 msgid ""
 "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or "
 "rename it before backing up this folder."
-msgstr "Er is een symbolische koppeling called \"{}\" in je OneDrive-map. Resolve van rename het voor backing omhoog dit map."
+msgstr "Er staat een symbolische koppeling met de naam \"{}\" in je OneDrive-map. Los die eerst op of geef hem een andere naam voordat je van deze map een back-up maakt."
+
 
 msgid "There's a file called \"{}\" in your OneDrive folder. Rename it first."
-msgstr "Er is een bestand called \"{}\" in je OneDrive-map. Rename het eerst."
+msgstr "Er staat een bestand met de naam \"{}\" in je OneDrive-map. Geef dat bestand eerst een andere naam."
+
 
 msgid "The suffix for {} is too long to make a collision-safe name."
-msgstr "De suffix voor {} is too long naar maken een collision-veilig naam."
+msgstr "Het achtervoegsel van {} is te lang om een naam te maken die geen conflict veroorzaakt."
+
 
 msgid "The name for {} is too long to make a collision-safe copy."
-msgstr "De naam voor {} is too long naar maken een collision-veilig kopiëren."
+msgstr "De naam van {} is te lang om een unieke kopie te maken."
+
 
 msgid "Couldn't find an unused name for {} after 10,000 attempts."
-msgstr "Kon niet vinden een unused naam voor {} na 10,000 pogingen."
+msgstr "Na 10,000 pogingen kon geen vrije naam voor {} worden gevonden."
+
 
 msgid "Couldn't prepare a safe copy: {}"
-msgstr "Kon niet voorbereiden een veilig kopiëren: {}"
+msgstr "Kan geen veilige kopie voorbereiden: {}"
+
 
 msgid "{} has no usable name"
-msgstr "{} heeft geen usable naam"
+msgstr "{} heeft geen bruikbare naam"
+
 
 msgid "Copying {} failed (is there enough space?)"
-msgstr "Copying {} mislukt (is daar voldoende ruimte?)"
+msgstr "Kopiëren van {} is mislukt (is er genoeg ruimte?)"
+
 
 msgid "The copy was published, but couldn't clean up {}: {}"
-msgstr "De kopiëren was geplaatst, maar niet kon clean omhoog {}: {}"
+msgstr "De kopie is op zijn plek gezet, maar {} kon niet worden opgeruimd: {}"
+
 
 msgid "The destination changed during copy ({}); couldn't clean up {}: {}"
-msgstr "De bestemming gewijzigd tijdens kopiëren ({}); niet kon clean omhoog {}: {}"
+msgstr "De bestemming is tijdens het kopiëren gewijzigd ({}); {} kon niet worden opgeruimd: {}"
+
 
 msgid "Couldn't publish the completed copy: {}"
-msgstr "Kon niet plaatsen de completed kopiëren: {}"
+msgstr "Kan de voltooide kopie niet op zijn plek zetten: {}"
+
 
 msgid "Couldn't find an unused destination for {} after 10,000 attempts."
-msgstr "Kon niet vinden een unused bestemming voor {} na 10,000 pogingen."
+msgstr "Na 10,000 pogingen is geen vrije bestemming voor {} gevonden."
+
 
 msgid ""
 "Couldn't protect this account from another operation, so the folder wasn't "
 "backed up: {}"
-msgstr "Kon niet beschermen dit account van andere bewerking, dus de map was niet backed omhoog: {}"
+msgstr "Kan dit account niet beschermen tegen een andere actie. Daarom is er geen back-up van de map gemaakt: {}"
+
 
 msgid ""
 "A one-time sync is running. Wait for it to finish before backing up this "
 "folder."
-msgstr "Een eenmalige synchronisatie is actief. Wait voor het naar voltooien voor backing omhoog dit map."
+msgstr "Er wordt een eenmalige synchronisatie uitgevoerd. Wacht tot die klaar is voordat je een back-up van deze map maakt."
+
 
 msgid "Couldn't stop the sync engine, so the folder wasn't changed: {}"
-msgstr "Kon niet stoppen de synchronisatieprogramma, dus de map was niet gewijzigd: {}"
+msgstr "Kan het synchronisatieprogramma niet stoppen. Daarom is de map niet gewijzigd: {}"
+
 
 msgid ""
 "The folder backup finished, but the sync engine couldn't be restarted: {}"
-msgstr "De mapback-omhoog voltooid, maar de synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+msgstr "De back-up van de map is voltooid, maar het synchronisatieprogramma kon niet opnieuw worden gestart: {}"
+
 
 msgid "{}; the sync engine couldn't be restarted: {}"
-msgstr "{}; de synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+msgstr "{}; het synchronisatieprogramma kon niet opnieuw worden gestart: {}"
+
 
 msgid ""
 "The source folder changed after the backup was reviewed. Review it again "
 "before continuing."
-msgstr "De bron map gewijzigd na de backup was reviewed. Review het opnieuw voor continuing."
+msgstr "De bronmap is gewijzigd nadat je de back-up hebt gecontroleerd. Controleer de map opnieuw voordat je verdergaat."
+
 
 msgid ""
 "The OneDrive folder or its mounted drive changed after the backup was "
 "reviewed. Connect the right drive and review again."
-msgstr "De OneDrive-map van zijn aangekoppelde schijf gewijzigd na de backup was reviewed. Connect de juiste schijf en review opnieuw."
+msgstr "De OneDrive-map of de schijf waarop die staat, is gewijzigd nadat je de back-up hebt gecontroleerd. Sluit de juiste schijf aan en controleer alles opnieuw."
+
 
 msgid "The source folder has no usable name."
-msgstr "De bron map heeft geen usable naam."
+msgstr "De bronmap heeft geen bruikbare naam."
+
 
 msgid "The backup paths changed or overlap. Review the folder backup again."
-msgstr "De backup paths gewijzigd van overlappen. Review de mapback-omhoog opnieuw."
+msgstr "De paden voor de back-up zijn gewijzigd of overlappen elkaar. Controleer de mapback-up opnieuw."
+
 
 msgid ""
 "The OneDrive destination became a symbolic link after review. Resolve it and "
 "review the backup again."
-msgstr "De OneDrive bestemming became een symbolische koppeling na review. Resolve het en review de backup opnieuw."
+msgstr "De OneDrive-bestemming is na controle een symbolische koppeling geworden. Los dit op en controleer de back-up opnieuw."
+
 
 msgid ""
 "The OneDrive destination became a file after review. Review the backup again."
-msgstr "De OneDrive bestemming became een bestand na review. Review de backup opnieuw."
+msgstr "De OneDrive-bestemming is na controle een bestand geworden. Controleer de back-up opnieuw."
+
 
 msgid ""
 "The destination filesystem changed after the backup was reviewed. Review the "
 "backup again."
-msgstr "De bestemming bestandssysteem gewijzigd na de backup was reviewed. Review de backup opnieuw."
+msgstr "Het bestandssysteem van de bestemming is gewijzigd nadat je de back-up hebt gecontroleerd. Controleer de back-up opnieuw."
+
 
 msgid "Couldn't create {}: {}"
-msgstr "Kon niet maken {}: {}"
+msgstr "Kan {} niet maken: {}"
+
 
 msgid ""
 "The destination filesystem changed while preparing the backup. No files were "
 "moved."
-msgstr "De bestemming bestandssysteem gewijzigd terwijl preparing de backup. Geen bestanden waren verplaatst."
+msgstr "Het bestandssysteem van de bestemming is gewijzigd tijdens het voorbereiden van de back-up. Er zijn geen bestanden verplaatst."
+
 
 msgid ""
 "Stopped at \"{}\": {}. Everything moved so far is in {}; the rest is still "
 "in {}."
-msgstr "Stopped bij \"{}\": {}. Alles verplaatst dus far is in {}; de rest is nog in {}."
+msgstr "Gestopt bij \"{}\": {}. Alles wat tot nu toe is verplaatst, staat in {}; de rest staat nog in {}."
+
 
 msgid ""
 "Stopped at \"{}\": {}. Your {} folder is still in {}; completed copies are "
 "in {}."
-msgstr "Stopped bij \"{}\": {}. Je {} map is nog in {}; completed kopieën zijn in {}."
+msgstr "Gestopt bij \"{}\": {}. Je map {} staat nog in {}; de voltooide kopieën staan in {}."
+
 
 msgid "Everything was moved, but {} couldn't be replaced: {}"
-msgstr "Alles was verplaatst, maar {} niet kon zijn replaced: {}"
+msgstr "Alles is verplaatst, maar {} kon niet worden vervangen: {}"
+
 
 msgid "Everything was copied, but {} couldn't be renamed: {}"
-msgstr "Alles was gekopieerd, maar {} niet kon zijn renamed: {}"
+msgstr "Alles is gekopieerd, maar {} kon geen andere naam krijgen: {}"
+
 
 msgid "Your files are in {}, but the link at {} couldn't be made: {}"
-msgstr "Je bestanden zijn in {}, maar de koppeling bij {} niet kon zijn gemaakt: {}"
+msgstr "Je bestanden staan in {}, maar de koppeling op {} kon niet worden gemaakt: {}"
+
 
 msgid "Your files are in {}, but the backup couldn't be recorded: {}"
-msgstr "Je bestanden zijn in {}, maar de backup niet kon zijn recorded: {}"
+msgstr "Je bestanden staan in {}, maar de back-up kon niet worden vastgelegd: {}"
+
 
 msgid "That folder isn't being backed up."
-msgstr "Dat map is niet wordt backed omhoog."
+msgstr "Van die map wordt geen back-up gemaakt."
+
 
 msgid "Couldn't inspect the link: {}"
-msgstr "Kon niet bekijken de koppeling: {}"
+msgstr "Kan de koppeling niet controleren: {}"
+
 
 msgid ""
 "{} now points somewhere unexpected, so the backup record was kept. Resolve "
 "the link before stopping the backup."
-msgstr "{} now points somewhere onverwacht, dus de terug-upregistratie was bewaard. Resolve de koppeling voor stopping de backup."
+msgstr "{} verwijst nu naar een onverwachte plek. De registratie van de back-up is daarom bewaard. Los de koppeling eerst op voordat je de back-up stopt."
+
 
 msgid "Couldn't remove the link: {}"
-msgstr "Kon niet verwijderen de koppeling: {}"
+msgstr "Kan de koppeling niet verwijderen: {}"
+
 
 msgid ""
 "This installs the OneDrive client from your system's own software "
 "collection, the same place your other programs come from. Your normal "
 "software updates keep it up to date."
-msgstr "Deze installs de OneDrive-client van je systeem's eigen software collection, de same place je andere programs come van. Je normal software updates bewaren het omhoog naar date."
+msgstr "Hiermee installeer je de OneDrive-client uit de softwareverzameling van je systeem, waar ook je andere programma's vandaan komen. Via de gewone software-updates blijft de client bijgewerkt."
+
 
 msgid ""
 "{} comes with an old version of the OneDrive client that its author no "
@@ -1944,7 +2029,8 @@ msgid ""
 "\n"
 "After that, your normal software updates keep it up to date, like any other "
 "program."
-msgstr "{} comes met een oude versie van de OneDrive-client dat zijn author geen longer supports. So dit doet two things:\n\n• Adds de place de client's author recommends getting het van naar je computer's list van software sources. Het's zoals adding een trusted app store.\n• Installs de huidige versie van de client van daar.\n\nAfter dat, je normal software updates bewaren het omhoog naar date, zoals elke andere program."
+msgstr "{} wordt geleverd met een oude versie van de OneDrive-client die de maker niet meer ondersteunt. Daarom gebeuren er twee dingen:\n\n• De softwarebron die de maker aanbeveelt, wordt toegevoegd aan de lijst met softwarebronnen op je computer. Dat is vergelijkbaar met het toevoegen van een vertrouwde appwinkel.\n• De actuele versie van de client wordt daarvandaan geïnstalleerd.\n\nDaarna blijft de client, net als andere programma's, bijgewerkt via je gewone software-updates."
+
 
 msgid ""
 "Arch doesn't include the OneDrive client, but the AUR does. The AUR is a "
@@ -1954,18 +2040,22 @@ msgid ""
 "\n"
 "Your normal software updates don't cover the AUR, so this app checks for new "
 "versions of the client and offers to update it for you."
-msgstr "Arch doet niet include de OneDrive-client, maar de AUR doet. De AUR is een collection van install recipes shared door Arch users. Deze downloads de client's recipe, builds de program op je computer en installs het. Any tools needed naar build het zijn installed eerst. Het takes een few minutes.\n\nJe normal software updates niet cover de AUR, dus dit app checks voor nieuwe versions van de client en offers naar bijwerken het voor je."
+msgstr "Arch bevat de OneDrive-client niet, maar de AUR wel. De AUR is een verzameling installatie-instructies die Arch-gebruikers delen. Hiermee download je de instructies voor de client, bouw je het programma op je computer en installeer je het. Eerst worden de benodigde hulpprogramma's geïnstalleerd. Dit duurt een paar minuten.\n\nJe gewone software-updates werken de AUR niet bij. Daarom controleert deze app of er een nieuwe versie van de client is en kun je die ermee bijwerken."
+
 
 msgid "to install the OneDrive client (plus a few small parts it needs)"
-msgstr "naar install de OneDrive-client (plus een few small parts het heeft nodig)"
+msgstr "om de OneDrive-client te installeren (met een paar benodigde onderdelen)"
+
 
 msgid ""
 "to add that software source and install the OneDrive client (plus a few "
 "small parts it needs)"
-msgstr "naar add dat software bron en install de OneDrive-client (plus een few small parts het heeft nodig)"
+msgstr "om die softwarebron toe te voegen en de OneDrive-client te installeren (met een paar benodigde onderdelen)"
+
 
 msgid "to install the build tools and the OneDrive client"
-msgstr "naar install de build tools en de OneDrive-client"
+msgstr "om de hulpprogramma's om te bouwen en de OneDrive-client te installeren"
+
 
 msgid ""
 "{}\n"
@@ -1975,47 +2065,57 @@ msgid ""
 "your computer's own password window, not into this app. Your computer checks "
 "it once and then forgets it: it isn't saved, and this app never sees it or "
 "sends it anywhere. It's only used {}. Nothing else is changed."
-msgstr "{}\n\nWhy je wachtwoord? Installing software wijzigingen de heel computer, niet just je account, dus je computer checks dat het's really je. Je type het into je computer's eigen wachtwoord window, niet into dit app. Je computer checks het zodra en dan forgets het: het is niet opgeslagen, en dit app never sees het van sends het anywhere. Het's alleen gebruikt {}. Niets anders is gewijzigd."
+msgstr "{}\n\nWaarom is je wachtwoord nodig? Door software te installeren, verander je de hele computer en niet alleen je account. Daarom controleert je computer of jij het echt bent. Je voert het wachtwoord in het eigen wachtwoordvenster van je computer in, niet in deze app. Je computer controleert het één keer en vergeet het daarna: het wordt niet opgeslagen en deze app ziet of verstuurt het nooit. Het wordt alleen gebruikt {}. Verder verandert er niets."
+
 
 msgid "The app can install it for you."
-msgstr "De app kan install het voor je."
+msgstr "De app kan de client voor je installeren."
+
 
 msgid ""
 "The copy that comes with your system is too old, so the app gets the current "
 "version for you."
-msgstr "De kopiëren dat comes met je systeem is too oude, dus de app krijgt de huidige versie voor je."
+msgstr "De versie die bij je systeem zit, is verouderd. Daarom installeert de app de actuele versie voor je."
+
 
 msgid ""
 "On Arch it comes from the AUR (install recipes shared by Arch users). The "
 "app can build and install it for you."
-msgstr "On Arch het comes van de AUR (install recipes shared door Arch users). De app kan build en install het voor je."
+msgstr "Op Arch komt de client uit de AUR (installatie-instructies die Arch-gebruikers delen). De app kan de client voor je bouwen en installeren."
+
 
 msgid ""
 "On Fedora Silverblue, Kinoite and other image-based versions: open a "
 "terminal and run {} then restart."
-msgstr "On Fedora Silverblue, Kinoite en andere image-based versions: openen een terminal en uitvoeren {} dan opnieuw starten."
+msgstr "Op Fedora Silverblue, Kinoite en andere imageversies: open een terminal, voer {} uit en start daarna opnieuw op."
+
 
 msgid "Open a terminal and run {}"
-msgstr "Open een terminal en uitvoeren {}"
+msgstr "Open een terminal en voer {} uit"
+
 
 msgid ""
 "This version of openSUSE only has an old OneDrive client. The instructions "
 "show how to get a current one."
-msgstr "Deze versie van openSUSE alleen heeft een oude OneDrive-client. De instructions show how naar krijgen een huidige one."
+msgstr "Deze versie van openSUSE bevat alleen een oude OneDrive-client. In de instructies lees je hoe je een actuele versie installeert."
+
 
 msgid ""
 "The app can't install it automatically on this version of your system. The "
 "instructions show how to install it yourself."
-msgstr "De app kan niet install het automatically op dit versie van je systeem. De instructions show how naar install het yourself."
+msgstr "De app kan de client niet automatisch installeren op deze versie van je systeem. In de instructies lees je hoe je dat zelf doet."
+
 
 msgid "The instructions cover every major distribution."
-msgstr "De instructions cover every major distribution."
+msgstr "De instructies gelden voor alle grote Linux-distributies."
+
 
 msgid "Couldn't look in {}: {}"
-msgstr "Kon niet look in {}: {}"
+msgstr "Kan {} niet doorzoeken: {}"
+
 
 msgid "Stopped looking after {} items, so there may be more copies than shown."
-msgstr "Stopped looking na {} items, dus daar kan zijn more kopieën than shown."
+msgstr "Het zoeken is gestopt na {} bestanden en mappen. Er kunnen dus meer kopieën zijn dan hier worden getoond."
 
 msgid "{} item(s) couldn't be read, so there may be more copies than shown."
 msgstr "{} item(s) niet kon zijn lezen, dus daar kan zijn more kopieën than shown."
