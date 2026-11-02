@@ -237,6 +237,158 @@ fn search_account(info: &AccountInfo, query: &str) -> Result<Vec<graph::Hit>, St
     graph::search(&t, info.drive_id.as_deref(), query, PER_ACCOUNT)
 }
 
+// ---------------------------------------------------------------- names on this computer
+
+/// Microsoft's search misses files it hasn't indexed (often recent ones), so file and folder
+/// names in the synced folders are searched too: a list kept in memory, read again in the
+/// background once it's older than this.
+const INDEX_AGE: Duration = Duration::from_secs(10 * 60);
+/// Reading a huge folder stops here; what was read so far is still searched
+const INDEX_MAX_ENTRIES: usize = 500_000;
+const INDEX_MAX_TIME: Duration = Duration::from_secs(20);
+
+struct NameIndex {
+    built: Instant,
+    /// (lower-case name, full path, is a folder)
+    entries: Vec<(String, PathBuf, bool)>,
+}
+
+type Indexes = HashMap<PathBuf, (Option<Arc<NameIndex>>, bool)>;
+
+fn indexes() -> &'static Mutex<Indexes> {
+    static I: std::sync::OnceLock<Mutex<Indexes>> = std::sync::OnceLock::new();
+    I.get_or_init(|| Mutex::new(HashMap::new()))
+}
+
+/// Every name under `dir`, skipping hidden entries (.git and the like), common build folders
+/// and symbolic links, within the size and time limits.
+fn read_names(dir: &Path, max: usize, time: Duration) -> Vec<(String, PathBuf, bool)> {
+    let until = Instant::now() + time;
+    let mut out = Vec::new();
+    let mut todo = vec![dir.to_path_buf()];
+    while let Some(d) = todo.pop() {
+        let Ok(list) = std::fs::read_dir(&d) else {
+            continue;
+        };
+        for e in list.flatten() {
+            let name = e.file_name().to_string_lossy().into_owned();
+            if name.starts_with('.') || matches!(name.as_str(), "node_modules" | "__pycache__") {
+                continue;
+            }
+            let Ok(t) = e.file_type() else { continue };
+            if t.is_symlink() {
+                continue;
+            }
+            if t.is_dir() {
+                todo.push(e.path());
+            }
+            out.push((name.to_lowercase(), e.path(), t.is_dir()));
+            if out.len() >= max || Instant::now() > until {
+                return out;
+            }
+        }
+    }
+    out
+}
+
+/// The names in `dir`: read now the first time, then refreshed in the background
+fn name_index(dir: &Path) -> Arc<NameIndex> {
+    let build = |dir: &Path| {
+        Arc::new(NameIndex {
+            built: Instant::now(),
+            entries: read_names(dir, INDEX_MAX_ENTRIES, INDEX_MAX_TIME),
+        })
+    };
+    let mut map = indexes().lock().unwrap_or_else(|e| e.into_inner());
+    let (current, refreshing) = map.entry(dir.to_path_buf()).or_insert((None, false));
+    match current.clone() {
+        Some(idx) => {
+            if idx.built.elapsed() > INDEX_AGE && !*refreshing {
+                *refreshing = true;
+                let dir = dir.to_path_buf();
+                std::thread::spawn(move || {
+                    let fresh = build(&dir);
+                    indexes()
+                        .lock()
+                        .unwrap_or_else(|e| e.into_inner())
+                        .insert(dir, (Some(fresh), false));
+                });
+            }
+            idx
+        }
+        None => {
+            drop(map);
+            let idx = build(dir);
+            indexes()
+                .lock()
+                .unwrap_or_else(|e| e.into_inner())
+                .insert(dir.to_path_buf(), (Some(idx.clone()), false));
+            idx
+        }
+    }
+}
+
+/// Files and folders in the account's synced folder whose names have every word typed:
+/// names starting with what was typed first, then shorter names.
+fn local_hits(info: &AccountInfo, query: &str, limit: usize) -> Vec<(PathBuf, bool)> {
+    if !info.sync_dir.is_dir() {
+        return Vec::new();
+    }
+    let idx = name_index(&info.sync_dir);
+    best_names(&idx.entries, query, limit)
+}
+
+fn best_names(
+    entries: &[(String, PathBuf, bool)],
+    query: &str,
+    limit: usize,
+) -> Vec<(PathBuf, bool)> {
+    let words: Vec<String> = query.split_whitespace().map(str::to_lowercase).collect();
+    if words.is_empty() {
+        return Vec::new();
+    }
+    let first = words.join(" ");
+    let mut found: Vec<&(String, PathBuf, bool)> = entries
+        .iter()
+        .filter(|(n, ..)| words.iter().all(|w| n.contains(w.as_str())))
+        .collect();
+    found.sort_by_key(|(n, ..)| (!n.starts_with(&first), n.len()));
+    found
+        .into_iter()
+        .take(limit)
+        .map(|(_, p, d)| (p.clone(), *d))
+        .collect()
+}
+
+fn local_match(info: &AccountInfo, path: &Path, folder: bool, rank: usize) -> Match {
+    let name = path
+        .file_name()
+        .map(|n| n.to_string_lossy().into_owned())
+        .unwrap_or_default();
+    let parent = path
+        .parent()
+        .and_then(|p| p.strip_prefix(&info.sync_dir).ok())
+        .map(|p| p.to_string_lossy().into_owned())
+        .unwrap_or_default();
+    let subtext = if parent.is_empty() {
+        format!("{} · {}", info.name, crate::tr!("Top of OneDrive"))
+    } else {
+        format!("{} · {parent}", info.name)
+    };
+    let mut props = HashMap::new();
+    props.insert("subtext".to_string(), text_value(subtext));
+    props.insert("category".to_string(), text_value("OneDrive"));
+    (
+        encode_id("", Some(path)),
+        name.clone(),
+        icon_for(&name, folder).to_string(),
+        CATEGORY_RELEVANCE,
+        // a name match on this computer is as good as it gets
+        (0.95 - 0.01 * rank as f64).max(0.5),
+        props,
+    )
+}
+
 /// Every signed-in account searched at once; whoever answers in time is included
 fn search_all(query: &str) -> Vec<Match> {
     let accounts = accounts();
@@ -258,17 +410,34 @@ fn search_all(query: &str) -> Vec<Match> {
             Err(_) => break,
         }
     }
-    answers.sort_by_key(|(n, ..)| *n);
-    answers
-        .iter()
-        .flat_map(|(_, info, found)| {
-            found
+    let mut out = Vec::new();
+    // every account's own names, then whatever Microsoft sent back in time
+    for (n, info) in accounts.iter().enumerate() {
+        let found = answers
+            .iter()
+            .find(|(m, ..)| *m == n)
+            .and_then(|(_, _, f)| f.as_ref().ok());
+        let local = local_hits(info, query, PER_ACCOUNT);
+        let shown: std::collections::HashSet<&PathBuf> = local.iter().map(|(p, _)| p).collect();
+        out.extend(
+            local
                 .iter()
-                .flatten()
                 .enumerate()
-                .map(|(rank, hit)| to_match(info, hit, rank, query))
-        })
-        .collect()
+                .map(|(rank, (p, folder))| local_match(info, p, *folder, rank)),
+        );
+        // Microsoft's own results (contents, files not on this computer), minus ones listed above
+        out.extend(
+            found
+                .into_iter()
+                .flatten()
+                .filter(|hit| {
+                    hit.path.is_empty() || !shown.contains(&info.sync_dir.join(&hit.path))
+                })
+                .enumerate()
+                .map(|(rank, hit)| to_match(info, hit, rank, query)),
+        );
+    }
+    out
 }
 
 // ---------------------------------------------------------------- opening a result
@@ -277,6 +446,8 @@ fn search_all(query: &str) -> Vec<Match> {
 enum Open {
     Url(String),
     File(PathBuf),
+    /// A file found on this computer: its web address is asked for when it's wanted
+    Lookup(PathBuf),
 }
 
 /// What Run should open. KRunner hands back the id we gave it, but anything on the session bus
@@ -286,14 +457,18 @@ fn open_for(id: &str, action: &str, sync_dirs: &[PathBuf]) -> Option<Open> {
     let online = url
         .starts_with("https://")
         .then(|| Open::Url(url.to_string()));
-    if action == "online" {
-        return online;
-    }
     let inside = |p: &Path| {
         !p.components().any(|c| c == Component::ParentDir)
             && sync_dirs.iter().any(|d| p.starts_with(d))
             && p.exists()
     };
+    if action == "online" {
+        return match (online, local) {
+            (Some(o), _) => Some(o),
+            (None, Some(p)) if inside(p) => Some(Open::Lookup(p.to_path_buf())),
+            _ => None,
+        };
+    }
     match local {
         Some(p) if inside(p) => Some(Open::File(p.to_path_buf())),
         _ => online,
@@ -305,6 +480,7 @@ fn run(id: &str, action: &str) {
     match open_for(id, action, &dirs) {
         Some(Open::Url(u)) => core::run_detached("xdg-open", &[&u]),
         Some(Open::File(p)) => core::open_path(&p),
+        Some(Open::Lookup(p)) => crate::share::view_online(&p),
         None => {}
     }
 }
@@ -586,6 +762,61 @@ mod tests {
         };
         let sub = &to_match(&info, &unknown, 0, "x").5["subtext"];
         assert_eq!(sub, &text_value("Work"));
+    }
+
+    #[test]
+    fn names_on_this_computer_are_found_by_every_word() {
+        let dir = std::env::temp_dir().join(format!("drivedeck-names-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        for f in [
+            "Afuna tikhale onyezimira.docx",
+            "Baha'i/Afuna Tikhale Chichewa.docx",
+            "Baha'i/Other.txt",
+            ".git/afuna-object",
+            "node_modules/afuna.js",
+        ] {
+            let p = dir.join(f);
+            std::fs::create_dir_all(p.parent().unwrap()).unwrap();
+            std::fs::write(&p, "x").unwrap();
+        }
+        let names = read_names(&dir, 1000, Duration::from_secs(5));
+        // hidden folders and build folders aren't read
+        assert!(
+            names
+                .iter()
+                .all(|(n, ..)| !n.contains("object") && n != "afuna.js")
+        );
+        let found = best_names(&names, "AFUNA", 8);
+        assert_eq!(found.len(), 2);
+        // both start with what was typed, so the shorter name comes first
+        assert_eq!(found[0].0, dir.join("Baha'i/Afuna Tikhale Chichewa.docx"));
+        // a name starting with the words beats one that only contains them
+        let other = best_names(&names, "chichewa", 8);
+        assert_eq!(other.len(), 1);
+        assert_eq!(best_names(&names, "tikhale chichewa", 8).len(), 1);
+        assert!(best_names(&names, "  ", 8).is_empty());
+        assert_eq!(best_names(&names, "afuna", 1).len(), 1);
+        // a local result opens the file, and its web address is looked up for "online"
+        let id = encode_id("", Some(&found[0].0));
+        let dirs = [dir.clone()];
+        assert_eq!(
+            open_for(&id, "", &dirs),
+            Some(Open::File(found[0].0.clone()))
+        );
+        assert_eq!(
+            open_for(&id, "online", &dirs),
+            Some(Open::Lookup(found[0].0.clone()))
+        );
+        // ...but never for a path outside the synced folders
+        assert_eq!(
+            open_for(
+                &encode_id("", Some(Path::new("/etc/passwd"))),
+                "online",
+                &dirs
+            ),
+            None
+        );
+        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]
