@@ -2117,349 +2117,449 @@ msgstr "Kan {} niet doorzoeken: {}"
 msgid "Stopped looking after {} items, so there may be more copies than shown."
 msgstr "Het zoeken is gestopt na {} bestanden en mappen. Er kunnen dus meer kopieën zijn dan hier worden getoond."
 
+
 msgid "{} item(s) couldn't be read, so there may be more copies than shown."
-msgstr "{} item(s) niet kon zijn lezen, dus daar kan zijn more kopieën than shown."
+msgstr "Er konden {} bestanden niet worden gelezen. Er kunnen dus meer kopieën zijn dan hier worden getoond."
+
 
 msgid ""
 "There's no Trash to move it to on this computer, so it was left as it is. "
 "Delete it yourself if you're sure."
-msgstr "Er is geen Trash naar verplaatsen het naar op deze computer, dus het was gelaten als het is. Delete het yourself als je're sure."
+msgstr "Deze computer heeft geen Prullenbak waarheen het bestand kan worden verplaatst. Daarom is het blijven staan. Verwijder het zelf als je zeker weet dat je dat wilt."
+
 
 msgid "The file extension is too long to make a Keep Both copy safely."
-msgstr "De bestand extension is too long naar maken een Keep Both kopiëren veilig."
+msgstr "De bestandsextensie is te lang om veilig een kopie te maken met de optie \"Beide versies bewaren\"."
+
 
 msgid "The filename is too long to make a Keep Both copy safely."
-msgstr "De filename is too long naar maken een Keep Both kopiëren veilig."
+msgstr "De bestandsnaam is te lang om veilig een kopie te maken met de optie \"Beide versies bewaren\"."
+
 
 msgid "That copy isn't there any more."
-msgstr "Dat kopiëren is niet daar elke more."
+msgstr "Die kopie bestaat niet meer."
+
 
 msgid ""
 "The OneDrive version changed since this list was loaded. Refresh the list "
 "and choose again."
-msgstr "De OneDrive versie gewijzigd since dit list was loaded. Refresh de list en kiezen opnieuw."
+msgstr "De OneDrive-versie is gewijzigd nadat deze lijst is geladen. Vernieuw de lijst en probeer het opnieuw."
+
 
 msgid "Couldn't replace it: {}"
-msgstr "Kon niet replace het: {}"
+msgstr "Kan het bestand niet vervangen: {}"
+
 
 msgid ""
 "\"{}\" is now this computer's version. OneDrive's version stays in its "
 "version history."
-msgstr "\"{}\" is now deze computer's versie. OneDrive's versie stays in zijn versie geschiedenis."
+msgstr "\"{}\" is nu de versie op deze computer. De OneDrive-versie blijft in de versiegeschiedenis staan."
+
 
 msgid ""
 "Kept OneDrive's version of \"{}\". This computer's copy is in the Trash."
-msgstr "Kept OneDrive's versie van \"{}\". Deze computer's kopiëren is in de Trash."
+msgstr "De OneDrive-versie van \"{}\" is bewaard. De kopie op deze computer staat in de Prullenbak."
+
 
 msgid "Couldn't rename it: {}"
-msgstr "Kon niet rename het: {}"
+msgstr "Kan het bestand geen andere naam geven: {}"
+
 
 msgid "Couldn't find an unused name for the local copy after 10,000 attempts."
-msgstr "Kon niet vinden een unused naam voor de lokale kopiëren na 10,000 pogingen."
+msgstr "Na 10.000 pogingen is geen vrije naam voor de lokale kopie gevonden."
+
 
 msgid "Kept both: this computer's version is \"{}\"."
-msgstr "Kept both: deze computer's versie is \"{}\"."
+msgstr "Beide versies zijn bewaard: de versie op deze computer heeft de naam \"{}\"."
+
 
 msgid "{} is damaged ({}) and no copy could be kept ({}), so it isn't replaced"
-msgstr "{} is beschadigd ({}) en geen kopiëren kon zijn bewaard ({}), dus het is niet replaced"
+msgstr "{} is beschadigd ({}). Er kon geen kopie worden bewaard ({}), dus het is niet vervangen."
+
 
 msgid ""
 "{} isn't plain UTF-8 text, so it wasn't changed. Edit it by hand, or save it "
 "as UTF-8 and try again."
-msgstr "{} is niet plain UTF-8 text, dus het was niet gewijzigd. Edit het door hand, van opslaan het als UTF-8 en probeer het opnieuw."
+msgstr "{} is geen gewone UTF-8-tekst en is daarom niet gewijzigd. Pas het handmatig aan of sla het op als UTF-8 en probeer het opnieuw."
+
 
 msgid "the OneDrive Client for Linux isn't installed"
-msgstr "de OneDrive Client voor Linux is niet installed"
+msgstr "de OneDrive Client for Linux is niet geïnstalleerd"
+
 
 msgid "{} isn't a regular managed unit file"
-msgstr "{} is niet een gewoon managed unitbestand"
+msgstr "{} is geen normaal servicebestand dat door DriveDeck wordt beheerd"
+
 
 msgid "{} already belongs to another unit or account"
-msgstr "{} al belongs naar andere eenheid van account"
+msgstr "{} hoort al bij een andere service of een ander account"
+
 
 msgid "systemd couldn't reload the user unit files: {}"
-msgstr "systemd niet kon herladen de gebruiker-unitbestanden: {}"
+msgstr "systemd kon de servicebestanden van de gebruiker niet opnieuw inlezen: {}"
+
 
 msgid "couldn't identify the current process for the busy marker"
-msgstr "niet kon vaststellen de huidige proces voor de bezet markering"
+msgstr "kan het huidige proces voor de bezetmelding niet vinden"
+
 
 msgid "this account is already in use by another operation"
-msgstr "dit account is al in gebruik door andere bewerking"
+msgstr "dit account wordt al gebruikt door een andere actie"
+
 
 msgid "The local folder must be a full path, like /home/you/OneDrive."
-msgstr "De lokale map moet zijn een volledig pad, zoals /home/you/OneDrive."
+msgstr "De lokale map moet een volledig pad zijn, bijvoorbeeld /home/you/OneDrive."
+
 
 msgid ""
 "The sync engine can't use a folder whose name contains double quotes. Pick "
 "or rename a folder without them."
-msgstr "De synchronisatieprogramma kan niet gebruiken een map whose naam bevat double aanhalingstekens. Pick van rename een map zonder them."
+msgstr "Het synchronisatieprogramma kan geen map gebruiken waarvan de naam dubbele aanhalingstekens bevat. Kies een map zonder die tekens of geef de map een andere naam."
+
 
 msgid ""
 "Couldn't safely resolve that folder path. Check its parent directories and "
 "try again."
-msgstr "Kon niet veilig oplossen dat mappad. Check zijn bovenliggende mappen en probeer het opnieuw."
+msgstr "Kan het pad naar die map niet veilig bepalen. Controleer de bovenliggende mappen en probeer het opnieuw."
+
 
 msgid ""
 "Couldn't safely resolve your home folder. Check the home-folder "
 "configuration."
-msgstr "Kon niet veilig oplossen je persoonlijke map. Check de persoonlijke-map configuratie."
+msgstr "Kan de persoonlijke map niet veilig bepalen. Controleer de instellingen van de persoonlijke map."
+
 
 msgid "everything in your home folder"
 msgstr "alles in je persoonlijke map"
 
+
 msgid "everything on this computer"
 msgstr "alles op deze computer"
+
 
 msgid ""
 "Syncing {} would upload {}. Pick or create a folder inside your home folder, "
 "like {}."
-msgstr "Syncing {} zou uploaden {}. Pick van maken een map inside je persoonlijke map, zoals {}."
+msgstr "Als je {} synchroniseert, wordt {} geüpload. Kies of maak een map in je persoonlijke map, bijvoorbeeld {}."
+
 
 msgid "Couldn't safely resolve the application settings folders."
-msgstr "Kon niet veilig oplossen de applicatie instellingenmaps."
+msgstr "Kan de mappen met app-instellingen niet veilig bepalen."
+
 
 msgid "{} holds your settings. Pick a different folder."
-msgstr "{} bevat je instellingen. Pick een andere map."
+msgstr "{} bevat je instellingen. Kies een andere map."
+
 
 msgid ""
 "{} is a system folder. Pick a folder in your home folder or on a drive of "
 "your own."
-msgstr "{} is een systeem map. Pick een map in je persoonlijke map van op een schijf van je eigen."
+msgstr "{} is een systeemmap. Kies een map in je persoonlijke map of op een eigen schijf."
+
 
 msgid "{} is a file, not a folder."
-msgstr "{} is een bestand, niet een map."
+msgstr "{} is een bestand, geen map."
+
 
 msgid "{} isn't a folder"
-msgstr "{} is niet een map"
+msgstr "{} is geen map"
+
 
 msgid ""
 "“{}” didn't upload: it's open for editing in SharePoint or Office (by "
 "someone else, or by you on another device), which locks it. Your changes are "
 "still on this PC. Once it's closed there, press “Sync now” to upload them."
-msgstr "“{}” didn't uploaden: het's openen voor editing in SharePoint van Office (door someone anders, van door je op andere device), which locks het. Je wijzigingen zijn nog op dit PC. Once het's gesloten daar, press “Sync now” naar uploaden them."
+msgstr "“{}” is niet geüpload: iemand bewerkt het bestand in SharePoint of Office en daardoor is het vergrendeld. Dat kan iemand anders zijn of jij op een ander apparaat. Je wijzigingen staan nog op deze computer. Zodra het bestand daar is gesloten, kies je “Nu synchroniseren” om je wijzigingen te uploaden."
+
 
 msgid ""
 "“{}” didn't upload: it's shared with you as read-only, so your changes stay "
 "only on this PC."
-msgstr "“{}” didn't uploaden: het's shared met je als alleen-lezen, dus je wijzigingen stay alleen op dit PC."
+msgstr "“{}” is niet geüpload: het is met je gedeeld als alleen-lezen, dus je wijzigingen staan alleen op deze computer."
+
 
 msgid ""
 "“{}” isn't on this PC: it's shared as view-only, without permission to "
 "download. Open it on the OneDrive website instead."
-msgstr "“{}” is niet op dit PC: het's shared als alleen-bekijken, zonder permission naar downloaden. Open het op de OneDrive website instead."
+msgstr "“{}” staat niet op deze computer: je mag het alleen bekijken en niet downloaden. Open het in plaats daarvan op de OneDrive-website."
+
 
 msgid ""
 "“{}” didn't upload: OneDrive turned it away for now. Your changes are still "
 "on this PC. Press “Sync now” to try again."
-msgstr "“{}” didn't uploaden: OneDrive turned het away voor now. Je wijzigingen zijn nog op dit PC. Press “Sync now” naar probeer het opnieuw."
+msgstr "“{}” is niet geüpload: OneDrive heeft de upload voorlopig geweigerd. Je wijzigingen staan nog op deze computer. Kies “Nu synchroniseren” om het opnieuw te proberen."
+
 
 msgid "…and 1 more file."
 msgid_plural "…and {n} more files."
-msgstr[0] "…en 1 more bestand."
-msgstr[1] "…en {n} more bestanden."
+msgstr[0] "…en nog 1 bestand."
+msgstr[1] "…en nog {n} bestanden."
+
 
 msgid ""
 "{} were deleted on this computer. Syncing stopped before deleting them "
 "online too, in case that was a mistake.\n"
 "If it was a mistake, put them back (for example from the Trash) and press "
 "“Sync now”. Otherwise choose what to do below."
-msgstr "{} waren verwijderd op deze computer. Syncing gestopt voor deleting them online too, in case dat was een mistake.\nIf het was een mistake, put them terug (voor example van de Trash) en press “Sync now”. Otherwise kiezen wat naar doen below."
+msgstr "{} zijn op deze computer verwijderd. De synchronisatie is gestopt voordat ze ook online werden verwijderd, voor het geval dit een vergissing was.\nAls dit een vergissing was, zet de bestanden dan terug (bijvoorbeeld vanuit de Prullenbak) en kies “Nu synchroniseren”. Kies anders hieronder wat je wilt doen."
+
 
 msgid "“{}” and what was in it ({} items in all)"
-msgstr "“{}” en wat was in het ({} items in alle)"
+msgstr "“{}” en alles erin ({} onderdelen in totaal)"
+
 
 msgid "“{}” and what was in it"
-msgstr "“{}” en wat was in het"
+msgstr "“{}” en alles erin"
+
 
 msgid "{} items"
-msgstr "{} items"
+msgstr "{} onderdelen"
+
 
 msgid "Many items"
-msgstr "Many items"
+msgstr "Veel onderdelen"
+
 
 msgid "Starting…"
-msgstr "Starting…"
+msgstr "Bezig met starten…"
+
 
 msgid "Syncing…"
-msgstr "Syncing…"
+msgstr "Bezig met synchroniseren…"
+
 
 msgid "1 file not synced"
 msgid_plural "{n} files not synced"
-msgstr[0] "1 bestand niet synced"
-msgstr[1] "{n} bestanden niet synced"
+msgstr[0] "1 bestand niet gesynchroniseerd"
+msgstr[1] "{n} bestanden niet gesynchroniseerd"
+
 
 msgid "Up to date ({})"
-msgstr "Up naar date ({})"
+msgstr "Gesynchroniseerd ({})"
+
 
 msgid "Up to date"
-msgstr "Up naar date"
+msgstr "Gesynchroniseerd"
+
 
 msgid "Error"
-msgstr "Error"
+msgstr "Fout"
+
 
 msgid "Stopped"
-msgstr "Stopped"
+msgstr "Gestopt"
+
 
 msgid "Background sync off"
-msgstr "Background synchronisatie off"
+msgstr "Synchronisatie op de achtergrond uit"
+
 
 msgid "Paused until {}"
-msgstr "Paused tot {}"
+msgstr "Gepauzeerd tot {}"
+
 
 msgid "Paused"
-msgstr "Paused"
+msgstr "Gepauzeerd"
+
 
 msgid "Paused: {}"
-msgstr "Paused: {}"
+msgstr "Gepauzeerd: {}"
+
 
 msgid "Paused by schedule until {}"
-msgstr "Paused door schedule tot {}"
+msgstr "Volgens schema gepauzeerd tot {}"
+
 
 msgid "Applying changes…"
-msgstr "Applying wijzigingen…"
+msgstr "Bezig met toepassen…"
+
 
 msgid "Signed out"
-msgstr "Signed out"
+msgstr "Afgemeld"
+
 
 msgid "Needs a full resync"
-msgstr "Needs een volledige hersynchronisatie"
+msgstr "Volledige hersynchronisatie nodig"
+
 
 msgid "Stopped to protect your files"
-msgstr "Stopped naar beschermen je bestanden"
+msgstr "Gestopt om je bestanden te beschermen"
+
 
 msgid "Not responding since {}"
-msgstr "Not responding since {}"
+msgstr "Reageert niet sinds {}"
+
 
 msgid "Not responding"
-msgstr "Not responding"
+msgstr "Reageert niet"
+
 
 msgid "Waiting for first sync"
-msgstr "Waiting voor eerst synchronisatie"
+msgstr "Wachten op de eerste synchronisatie"
+
 
 msgid "Couldn't ask for the password: {}"
-msgstr "Kon niet vragen voor de wachtwoord: {}"
+msgstr "Kan het wachtwoord niet opvragen: {}"
+
 
 msgid "Nothing was changed (the password window was closed)."
-msgstr "Niets was gewijzigd (de wachtwoord window was gesloten)."
+msgstr "Er is niets gewijzigd (het wachtwoordvenster is gesloten)."
+
 
 msgid "Nothing was changed: your computer didn't allow it."
-msgstr "Niets was gewijzigd: je computer didn't toestaan het."
+msgstr "Er is niets gewijzigd: je computer heeft dit niet toegestaan."
+
 
 msgid "That didn't work: {}"
-msgstr "Dat didn't work: {}"
+msgstr "Dat is niet gelukt: {}"
+
 
 msgid "This account is busy with another task. Try again when it has finished."
-msgstr "Dit account is bezet met andere taak. Try opnieuw wanneer het heeft voltooid."
+msgstr "Dit account is bezig met een andere taak. Probeer het opnieuw zodra die klaar is."
+
 
 msgid "Couldn't save the sync override: {}"
-msgstr "Kon niet opslaan de synchronisatie override: {}"
+msgstr "Kan de tijdelijke synchronisatie-instelling niet opslaan: {}"
+
 
 msgid "Couldn't save the pause setting: {}"
-msgstr "Kon niet opslaan de pauzeren instelling: {}"
+msgstr "Kan de pauze-instelling niet opslaan: {}"
+
 
 msgid "OneDrive Client for Linux {} is installed; {} is out."
-msgstr "OneDrive Client voor Linux {} is installed; {} is out."
+msgstr "OneDrive Client for Linux {} is geïnstalleerd; versie {} is beschikbaar."
+
 
 msgid "OneDrive Client for Linux {} is installed."
-msgstr "OneDrive Client voor Linux {} is installed."
+msgstr "OneDrive Client for Linux {} is geïnstalleerd."
+
 
 msgid "OneDrive Client for Linux {} is too old for this app."
-msgstr "OneDrive Client voor Linux {} is too oude voor dit app."
+msgstr "OneDrive Client for Linux {} is te oud voor deze app."
+
 
 msgid "The OneDrive Client for Linux isn't installed."
-msgstr "De OneDrive Client voor Linux is niet installed."
+msgstr "De OneDrive Client for Linux is niet geïnstalleerd."
+
 
 msgid "The tray icon is running."
-msgstr "De systeemvakpictogram is actief."
+msgstr "Het pictogram in het systeemvak is actief."
+
 
 msgid ""
 "The tray icon isn't running, so pauses, schedules and notifications aren't "
 "working."
-msgstr "De systeemvakpictogram is niet actief, dus pauses, schedules en notifications zijn niet working."
+msgstr "Het pictogram in het systeemvak is niet actief. Pauzes, schema's en meldingen werken daarom niet."
+
 
 msgid "No accounts are set up yet."
-msgstr "Geen accounts zijn set omhoog yet."
+msgstr "Er zijn nog geen accounts ingesteld."
+
 
 msgid "{}: {}"
 msgstr "{}: {}"
 
+
 msgid "{}: ran out of folder watches; some changes aren't noticed."
-msgstr "{}: ran out van map watches; enkele wijzigingen zijn niet noticed."
+msgstr "{}: kan niet alle mappen meer in de gaten houden; sommige wijzigingen worden daarom niet opgemerkt."
+
 
 msgid "{}: only {} free on its drive."
-msgstr "{}: alleen {} vrij op zijn schijf."
+msgstr "{}: er is nog maar {} vrije ruimte op de schijf."
+
 
 msgid ""
 "Your OneDrive folders hold {} folders, more than half of Linux's limit on "
 "watched folders ({}). Other programs need some too."
-msgstr "Je OneDrive-maps bevat {} mappen, more than half van Linux's limiet op watched mappen ({}). Other programs moet enkele too."
+msgstr "Je OneDrive-mappen bevatten {} mappen. Dat is meer dan de helft van het maximumaantal mappen waarvan Linux wijzigingen kan volgen ({}). Andere programma's hebben ook ruimte nodig."
+
 
 msgid "{} is started outside this app."
-msgstr "{} is gestart outside dit app."
+msgstr "{} wordt buiten deze app gestart."
+
 
 msgid "Today"
-msgstr "Today"
+msgstr "Vandaag"
+
 
 msgid "Yesterday"
-msgstr "Yesterday"
+msgstr "Gisteren"
+
 
 msgid "\"{}\" isn't an email address."
-msgstr "\"{}\" is niet een e-mail adres."
+msgstr "\"{}\" is geen e-mailadres."
+
 
 msgid "Type at least one email address."
-msgstr "Type minstens one e-mail adres."
+msgstr "Voer ten minste één e-mailadres in."
+
 
 msgid "This version identifier and file extension are too long to save safely."
-msgstr "Deze versie identifier en bestand extension zijn too long naar opslaan veilig."
+msgstr "De versienaam en bestandsextensie zijn samen te lang om veilig op te slaan."
+
 
 msgid "This file name is too long to save a version copy safely."
-msgstr "Deze bestand naam is too long naar opslaan een versie kopiëren veilig."
+msgstr "Deze bestandsnaam is te lang om veilig een versie te bewaren."
+
 
 msgid "No version history for folders"
-msgstr "Geen versie geschiedenis voor mappen"
+msgstr "Mappen hebben geen versiegeschiedenis"
+
 
 msgid ""
 "\"{}\" is a folder. Open a file inside it to see its versions, or the "
 "recycle bin online for deleted items."
-msgstr "\"{}\" is een map. Open een bestand inside het naar see zijn versions, van de recycle bin online voor verwijderd items."
+msgstr "\"{}\" is een map. Open een bestand erin om de versies te bekijken, of open de online prullenbak om verwijderde bestanden te zien."
+
 
 msgid "Couldn't share it"
-msgstr "Kon niet share het"
+msgstr "Kan niet delen"
+
 
 msgid "That's the whole of \"{}\". Share a file or folder inside it instead."
-msgstr "Dat's de heel van \"{}\". Share een bestand van map inside het instead."
+msgstr "Dit is de hele inhoud van \"{}\". Deel in plaats daarvan een bestand of map erin."
+
 
 msgid "Can view"
-msgstr "Can view"
+msgstr "Kan bekijken"
+
 
 msgid "  ·  until {}"
 msgstr "  ·  tot {}"
 
+
 msgid "  ·  from a folder above"
-msgstr "  ·  van een map above"
+msgstr "  ·  via een bovenliggende map"
+
 
 msgid "Checking who has access…"
-msgstr "Checking wie heeft access…"
+msgstr "Bezig met controleren wie toegang heeft…"
+
 
 msgid "It isn't shared: only you can open it."
-msgstr "Het is niet shared: alleen je kan openen het."
+msgstr "Dit is niet gedeeld. Alleen jij kunt het openen."
+
 
 msgid "  ·  saved by {}"
 msgstr "  ·  opgeslagen door {}"
 
+
 msgid ""
 "There's only the current version so far. OneDrive keeps older ones as the "
 "file changes."
-msgstr "Er is alleen de huidige versie dus far. OneDrive keeps older ones als het bestand wijzigingen."
+msgstr "Tot nu toe is er alleen de huidige versie. OneDrive bewaart oudere versies wanneer het bestand verandert."
+
 
 msgid "Downloading that version…"
-msgstr "Downloading dat versie…"
+msgstr "Bezig met downloaden van die versie…"
+
 
 msgid "Opened a copy: {}"
-msgstr "Opened een kopiëren: {}"
+msgstr "Er is een kopie geopend: {}"
+
 
 msgid "Restoring…"
-msgstr "Restoring…"
+msgstr "Bezig met herstellen…"
 
 msgid ""
 "Restored. This computer gets it at the next sync (\"Sync now\" in the tray "
