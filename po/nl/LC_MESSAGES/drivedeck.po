@@ -1071,45 +1071,55 @@ msgstr "Een vinkje, pijlen of waarschuwing bij bestanden in je OneDrive-mappen. 
 msgid "Adding…"
 msgstr "Bezig met toevoegen…"
 
+
 #: ui/app.slint:2573
 msgid "Add badges to Dolphin…"
-msgstr "Markeringen aan Dolphin toevoegen…"
+msgstr "Synchronisatiemarkeringen voor Dolphin toevoegen…"
+
 
 #: ui/app.slint:2581
 msgid ""
 "Dolphin needs a small plugin installed for everyone on this computer, so it "
 "asks for your password once."
-msgstr "Dolphin heeft een kleine invoegtoepassing nodig die voor iedereen op deze computer wordt geïnstalleerd. Je wachtwoord wordt één keer gevraagd."
+msgstr "Dolphin heeft een kleine uitbreiding nodig die voor iedereen op deze computer wordt geïnstalleerd. Daarvoor moet je één keer je wachtwoord invoeren."
+
 
 #: ui/app.slint:2587
 msgid "Tell me when a new version is out"
-msgstr "Melden als er een nieuwe versie is"
+msgstr "Mij laten weten wanneer er een nieuwe versie is"
+
 
 #: ui/app.slint:2594
 msgid ""
 "Looks at this app's page on GitHub once a day. Nothing is downloaded or "
 "installed by itself."
-msgstr "Controleert dagelijks de GitHub-pagina van deze app. Er wordt niets vanzelf gedownload of geïnstalleerd."
+msgstr "Controleert eenmaal per dag de GitHub-pagina van deze app. Er wordt niets automatisch gedownload of geïnstalleerd."
+
 
 #: ui/app.slint:2600 ui/app.slint:3727
 msgid "Version "
 msgstr "Versie "
 
+
 #: ui/app.slint:2600
 msgid " is out."
 msgstr " is beschikbaar."
+
 
 #: ui/app.slint:2605 ui/app.slint:3733
 msgid "Get it"
 msgstr "Downloaden"
 
+
 #: ui/app.slint:2616
 msgid "Add to my applications menu"
 msgstr "Toevoegen aan het toepassingenmenu"
 
+
 #: ui/app.slint:2632
 msgid "Something not right?"
 msgstr "Gaat er iets mis?"
+
 
 #: ui/app.slint:2635
 msgid ""
@@ -1117,57 +1127,70 @@ msgid ""
 "report is for a bug report: it leaves out your file names, email address, "
 "user and computer names and sign-in details, and opens so you can read it "
 "before sharing."
-msgstr "Controleert de synchronisatie, het systeemvakpictogram en alle accounts. Het rapport is bedoeld voor een bugmelding. Het bevat geen bestandsnamen, e-mailadres, gebruikers- of computernamen of aanmeldgegevens, en wordt geopend zodat je het kunt lezen voordat je het deelt."
+msgstr "Controleert in één keer het synchronisatieprogramma, het pictogram in het systeemvak en alle accounts. Het rapport is bedoeld voor een foutmelding. Het bevat geen bestandsnamen, e-mailadres, gebruikers- of computernamen of aanmeldgegevens. Je kunt het eerst bekijken voordat je het deelt."
+
 
 #: ui/app.slint:2641
 msgid "Checking…"
-msgstr "Controleren…"
+msgstr "Bezig met controleren…"
+
 
 #: ui/app.slint:2641
 msgid "Check for problems"
-msgstr "Op problemen controleren"
+msgstr "Controleren op problemen"
+
 
 #: ui/app.slint:2648
 msgid "Make a problem report"
 msgstr "Probleemrapport maken"
 
+
 #: ui/app.slint:2667
 msgid "Appearance"
 msgstr "Uiterlijk"
+
 
 #: ui/app.slint:2670
 msgid ""
 "Colours, light or dark mode, text size and animations follow your desktop's "
 "settings."
-msgstr "Kleuren, lichte of donkere modus, tekstgrootte en animaties volgen de instellingen van je bureaublad."
+msgstr "Kleuren, lichte of donkere weergave, tekstgrootte en animaties volgen de instellingen van je bureaublad."
+
 
 #: ui/app.slint:2675 ui/app.slint:2680
 msgid "Glass effect"
 msgstr "Glaseffect"
 
+
 #: ui/app.slint:2681
 msgid "Automatic"
 msgstr "Automatisch"
+
 
 #: ui/app.slint:2681
 msgid "On"
 msgstr "Aan"
 
+
 #: ui/app.slint:2681
 msgid "Off"
 msgstr "Uit"
+
 
 #: ui/app.slint:2701
 msgid "About"
 msgstr "Over"
 
+
 #: ui/app.slint:2704
 msgid "DriveDeck for OneDrive "
 msgstr "DriveDeck voor OneDrive "
 
+
 #: ui/app.slint:2708
 msgid "The easiest, most complete way to use OneDrive on Linux."
 msgstr "De eenvoudigste en meest complete manier om OneDrive op Linux te gebruiken."
+
 
 #: ui/app.slint:2716
 msgid ""
@@ -1176,61 +1199,75 @@ msgid ""
 "OneDrive is a trademark of Microsoft."
 msgstr "Vrije software onder de GNU GPL v3. De OneDrive Client for Linux van abraunegg (GPL v3) verzorgt de synchronisatie. Niet gemaakt door of verbonden aan Microsoft. OneDrive is een handelsmerk van Microsoft."
 
+
 #: ui/app.slint:2722
 msgid "Project page"
 msgstr "Projectpagina"
+
 
 #: ui/app.slint:2728
 msgid "Sync engine (abraunegg/onedrive)"
 msgstr "Synchronisatieprogramma (abraunegg/onedrive)"
 
+
 #: ui/app.slint:2741 ui/app.slint:2907 ui/app.slint:2953
 msgid "Uninstall"
 msgstr "Verwijderen"
+
 
 #: ui/app.slint:2744
 msgid ""
 "Remove this app, and choose whether to keep your OneDrive setup for the "
 "command-line client or remove that too. Your synced files always stay on "
 "this computer."
-msgstr "Verwijder deze app en kies of je de OneDrive-instellingen voor de opdrachtregelclient wilt bewaren of ook wilt verwijderen. Je gesynchroniseerde bestanden blijven altijd op deze computer staan."
+msgstr "Verwijdert deze app. Kies zelf of je de instellingen voor de OneDrive-opdrachtregelclient wilt bewaren of ook wilt verwijderen. Je gesynchroniseerde bestanden blijven altijd op deze computer staan."
+
 
 #: ui/app.slint:2749
 msgid "Uninstall…"
 msgstr "Verwijderen…"
 
+
 #: ui/app.slint:2780
 msgid "Sign in to Microsoft"
 msgstr "Aanmelden bij Microsoft"
+
 
 #: ui/app.slint:2788
 msgid "Address from the blank sign-in page"
 msgstr "Adres van de lege aanmeldpagina"
 
+
 #: ui/app.slint:2799
 msgid "Copy link"
 msgstr "Koppeling kopiëren"
+
 
 #: ui/app.slint:2805
 msgid "Open sign-in page again"
 msgstr "Aanmeldpagina opnieuw openen"
 
+
 #: ui/app.slint:2811
 msgid "Finish sign-in"
-msgstr "Aanmelden voltooien"
+msgstr "Aanmelden afronden"
+
 
 #: ui/app.slint:2818 ui/app.slint:2971 ui/app.slint:3137 ui/app.slint:4341
 msgid "Close"
 msgstr "Sluiten"
+
 
 #: ui/app.slint:2818 ui/app.slint:2874 ui/app.slint:2946 ui/app.slint:3026
 #: ui/app.slint:3178 ui/app.slint:3230 ui/app.slint:3316
 msgid "Cancel"
 msgstr "Annuleren"
 
+
 #: ui/app.slint:2880
 msgid "Apply"
 msgstr "Toepassen"
+
 
 #: ui/app.slint:2913
 msgid ""
@@ -1238,45 +1275,54 @@ msgid ""
 "options)? Your synced files stay on this computer either way."
 msgstr "Wat wil je doen met je OneDrive-instellingen (aanmeldingen, gekozen mappen en opties)? Je gesynchroniseerde bestanden blijven hoe dan ook op deze computer staan."
 
+
 #: ui/app.slint:2917
 msgid "Keep my OneDrive setup"
 msgstr "Mijn OneDrive-instellingen bewaren"
+
 
 #: ui/app.slint:2918
 msgid ""
 "Only this app is removed. Your accounts keep syncing in the background with "
 "the OneDrive Client for Linux, which you can keep using from the command "
 "line."
-msgstr "Alleen deze app wordt verwijderd. Je accounts blijven op de achtergrond synchroniseren met de OneDrive Client for Linux. Je kunt die via de opdrachtregel blijven gebruiken."
+msgstr "Alleen deze app wordt verwijderd. Je accounts blijven op de achtergrond synchroniseren met de OneDrive Client for Linux. Je kunt die client via de opdrachtregel blijven gebruiken."
+
 
 #: ui/app.slint:2926
 msgid "Remove everything"
 msgstr "Alles verwijderen"
+
 
 #: ui/app.slint:2927
 msgid ""
 "Also stop all background syncing, sign out, and delete every OneDrive sync "
 "configuration on this computer, including ones made with the command-line "
 "client."
-msgstr "Stop ook alle synchronisatie op de achtergrond, meld je af en verwijder alle OneDrive-synchronisatie-instellingen op deze computer, ook die van de opdrachtregelclient."
+msgstr "Stop ook de synchronisatie op de achtergrond, meld je af en verwijder alle OneDrive-synchronisatie-instellingen op deze computer, ook de instellingen van de opdrachtregelclient."
+
 
 #: ui/app.slint:2998
 msgid "Move your OneDrive folder"
 msgstr "Je OneDrive-map verplaatsen"
 
+
 #: ui/app.slint:3002
 msgid "This moves the folder that holds this account's files, now "
 msgstr "Hiermee verplaats je de map met de bestanden van dit account, nu "
+
 
 #: ui/app.slint:3002
 msgid ""
 ", to a new place — for example another hard drive with more space. Your "
 "files stay in OneDrive the whole time, and nothing is downloaded again."
-msgstr ", naar een nieuwe plek — bijvoorbeeld een grotere harde schijf. Je bestanden blijven ondertussen in OneDrive en worden niet opnieuw gedownload."
+msgstr " , naar een nieuwe plek, bijvoorbeeld naar een andere harde schijf met meer ruimte. Je bestanden blijven ondertussen in OneDrive staan en worden niet opnieuw gedownload."
+
 
 #: ui/app.slint:3006
 msgid "What happens after you choose the new place:"
-msgstr "Dit gebeurt nadat je de nieuwe plek hebt gekozen:"
+msgstr "Wat er gebeurt nadat je de nieuwe locatie kiest:"
+
 
 #: ui/app.slint:3011
 msgid ""
@@ -1286,7 +1332,8 @@ msgid ""
 "for a big folder.\n"
 "3. A check runs to confirm everything matches online (a dry run, nothing "
 "changes). Press Apply and syncing carries on from the new place."
-msgstr "1. De synchronisatie van dit account wordt gepauzeerd.\n2. De bestanden gaan naar de nieuwe plek. Op dezelfde schijf worden ze meteen verplaatst. Naar een andere schijf worden ze gekopieerd; dat kan bij een grote map even duren.\n3. Er wordt gecontroleerd of alles overeenkomt met de online versie. Er verandert nog niets. Druk op Toepassen om vanaf de nieuwe plek verder te synchroniseren."
+msgstr "1. De synchronisatie voor dit account wordt gepauzeerd.\n2. De bestanden worden naar de nieuwe locatie verplaatst. Op dezelfde schijf gaat dat meteen. Naar een andere schijf worden ze gekopieerd; bij een grote map kan dat even duren.\n3. Er wordt gecontroleerd of alles overeenkomt met de online versie. Dit is een proef waarbij niets verandert. Klik op Toepassen om vanaf de nieuwe locatie verder te synchroniseren."
+
 
 #: ui/app.slint:3015
 msgid ""
@@ -1295,7 +1342,8 @@ msgid ""
 "you've checked your files are in the new place, delete the old folder "
 "yourself to free up the space. Until then, it isn't synced any more and "
 "changes made in it won't reach OneDrive."
-msgstr "Bij verplaatsen naar een andere schijf blijft de oude map precies zoals die is. Er wordt niets verwijderd, zodat er geen bestanden verloren gaan als kopiëren mislukt. Verwijder de oude map zelf om ruimte vrij te maken nadat je hebt gecontroleerd of je bestanden op de nieuwe plek staan. Tot die tijd wordt de oude map niet meer gesynchroniseerd en bereiken wijzigingen OneDrive niet."
+msgstr "Als je naar een andere schijf verhuist, blijft de oude map precies zoals die is. Er wordt nooit iets voor je verwijderd, dus je raakt geen bestanden kwijt als het kopiëren mislukt. Controleer of je bestanden op de nieuwe plek staan en verwijder daarna zelf de oude map om ruimte vrij te maken. Tot die tijd wordt de oude map niet meer gesynchroniseerd en komen wijzigingen daarin niet bij OneDrive terecht."
+
 
 #: ui/app.slint:3020
 msgid ""
@@ -1303,222 +1351,274 @@ msgid ""
 "that already has things in it (like the top of a drive) and a folder named "
 "like the current one is made inside it. Make sure the new drive has enough "
 "free space and is always connected (mounted automatically)."
-msgstr "Kies een lege map als nieuwe OneDrive-map. Kies je een map waar al bestanden in staan (zoals de hoofdmap van een schijf), dan wordt daarin een map met de huidige naam gemaakt. Zorg dat de nieuwe schijf genoeg ruimte heeft en altijd is aangesloten (automatisch wordt aangekoppeld)."
+msgstr "Kies een lege map als nieuwe OneDrive-map. Kies je een map waar al bestanden in staan (zoals de hoofdmap van een schijf), dan wordt daarin een map met de huidige naam gemaakt. Zorg dat de nieuwe schijf genoeg vrije ruimte heeft en altijd is aangesloten (automatisch wordt aangekoppeld)."
+
 
 #: ui/app.slint:3032
 msgid "Choose new location…"
 msgstr "Nieuwe locatie kiezen…"
 
+
 #: ui/app.slint:3114
 msgid "All settings in use"
-msgstr "Alle gebruikte instellingen"
+msgstr "Alle actieve instellingen"
+
 
 #: ui/app.slint:3118
 msgid ""
 "What the sync engine reads from this account's config file, including the "
 "defaults for anything not set."
-msgstr "Wat het synchronisatieprogramma uit het instellingenbestand van dit account leest, inclusief standaardwaarden voor instellingen die niet zijn opgegeven."
+msgstr "Welke instellingen het synchronisatieprogramma uit het instellingenbestand van dit account leest, inclusief standaardwaarden voor instellingen die niet zijn opgegeven."
+
 
 #: ui/app.slint:3163
 msgid "Remove account"
 msgstr "Account verwijderen"
 
+
 #: ui/app.slint:3171
 msgid "Also sign out and delete this account's sync settings"
 msgstr "Ook afmelden en de synchronisatie-instellingen van dit account verwijderen"
+
 
 #: ui/app.slint:3184
 msgid "Remove"
 msgstr "Verwijderen"
 
+
 #: ui/app.slint:3221
 msgid "I'll install it myself"
 msgstr "Ik installeer het zelf"
+
 
 #: ui/app.slint:3262
 msgid "Skip developer folders"
 msgstr "Ontwikkelmappen overslaan"
 
+
 #: ui/app.slint:3266
 msgid ".git"
 msgstr ".git"
+
 
 #: ui/app.slint:3270
 msgid "node_modules"
 msgstr "node_modules"
 
+
 #: ui/app.slint:3274
 msgid "target"
 msgstr "target"
+
 
 #: ui/app.slint:3278
 msgid "__pycache__"
 msgstr "__pycache__"
 
+
 #: ui/app.slint:3282
 msgid ".venv"
 msgstr ".venv"
+
 
 #: ui/app.slint:3286
 msgid "venv"
 msgstr "venv"
 
+
 #: ui/app.slint:3290
 msgid ".gradle"
 msgstr ".gradle"
+
 
 #: ui/app.slint:3294
 msgid ".idea"
 msgstr ".idea"
 
+
 #: ui/app.slint:3298
 msgid ".cache"
 msgstr ".cache"
+
 
 #: ui/app.slint:3302
 msgid "build"
 msgstr "build"
 
+
 #: ui/app.slint:3306
 msgid "dist"
 msgstr "dist"
+
 
 #: ui/app.slint:3310
 msgid ""
 "build and dist are common folder names too, so select them only if you mean "
 "to skip them."
-msgstr "build en dist zijn ook gewone mapnamen. Selecteer ze alleen als je die wilt overslaan."
+msgstr "build en dist zijn ook gewone mapnamen. Selecteer ze alleen als je die mappen wilt overslaan."
+
 
 #: ui/app.slint:3322
 msgid "Add"
 msgstr "Toevoegen"
 
+
 #: ui/app.slint:3559
 msgid "Show "
 msgstr "Tonen "
+
 
 #: ui/app.slint:3559
 msgid " in its folder"
 msgstr " in de map"
 
+
 #: ui/app.slint:3703
 msgid "Pause syncing"
 msgstr "Synchronisatie pauzeren"
+
 
 #: ui/app.slint:3711
 msgid "Settings and accounts"
 msgstr "Instellingen en accounts"
 
+
 #: ui/app.slint:3727
 msgid " of this app is out."
 msgstr " van deze app is beschikbaar."
+
 
 #: ui/app.slint:3812
 msgid "Not synced ("
 msgstr "Niet gesynchroniseerd ("
 
+
 #: ui/app.slint:3830
 msgid "Syncing now"
 msgstr "Bezig met synchroniseren"
+
 
 #: ui/app.slint:3830
 msgid "Syncing now ("
 msgstr "Bezig met synchroniseren ("
 
+
 #: ui/app.slint:3835
 msgid "No large files are transferring right now."
 msgstr "Er worden nu geen grote bestanden overgezet."
+
 
 #: ui/app.slint:3849
 msgid "Recent files"
 msgstr "Recente bestanden"
 
+
 #: ui/app.slint:3854
 msgid "Show recent files for account"
-msgstr "Recente bestanden van account tonen"
+msgstr "Recente bestanden van dit account tonen"
+
 
 #: ui/app.slint:3866
 msgid "Nothing has synced recently."
 msgstr "Er is onlangs niets gesynchroniseerd."
 
+
 #: ui/app.slint:3880
 msgid "Open folder"
 msgstr "Map openen"
+
 
 #: ui/app.slint:3894
 msgid "View online"
 msgstr "Online bekijken"
 
+
 #: ui/app.slint:3911
 msgid "Pause for 1 hour"
 msgstr "1 uur pauzeren"
+
 
 #: ui/app.slint:3917
 msgid "Pause for 4 hours"
 msgstr "4 uur pauzeren"
 
+
 #: ui/app.slint:3923
 msgid "Pause until tomorrow morning"
 msgstr "Tot morgenochtend pauzeren"
+
 
 #: ui/app.slint:3930
 msgid "Resume syncing"
 msgstr "Synchronisatie hervatten"
 
+
 #: ui/app.slint:4019
 msgid "Version history — "
 msgstr "Versiegeschiedenis — "
+
 
 #: ui/app.slint:4019
 msgid "Who has access — "
 msgstr "Wie heeft toegang — "
 
+
 #: ui/app.slint:4019
 msgid "Share — "
 msgstr "Delen — "
+
 
 #: ui/app.slint:4079
 msgid "Version history"
 msgstr "Versiegeschiedenis"
 
+
 #: ui/app.slint:4079
 msgid "Who has access"
 msgstr "Wie heeft toegang"
 
+
 #: ui/app.slint:4079
 msgid "Share with people"
-msgstr "Met mensen delen"
+msgstr "Met personen delen"
+
 
 #: ui/app.slint:4105
 msgid "Getting the saved versions…"
 msgstr "Opgeslagen versies ophalen…"
 
+
 #: ui/app.slint:4154
 msgid "Current"
 msgstr "Huidig"
 
+
 #: ui/app.slint:4178 ui/app.slint:4382
 msgid "Restore"
 msgstr "Herstellen"
+
 
 #: ui/app.slint:4192
 msgid ""
 "\"Open\" saves a copy of that version and opens it, without changing "
 "anything. \"Restore\" makes it the current version everywhere; the version "
 "it replaces is kept here too, so nothing is lost."
-msgstr "Met ‘Openen’ bewaar en open je een kopie van die versie. Er verandert niets. Met ‘Herstellen’ wordt die versie overal de huidige versie. De vervangen versie blijft ook bewaard, dus er gaat niets verloren."
+msgstr "Met \"Openen\" bewaar je een kopie van die versie en open je die, zonder iets te veranderen. Met \"Herstellen\" maak je die versie overal actueel. De versie die deze vervangt, blijft hier ook bewaard. Er gaat dus niets verloren."
+
 
 #: ui/app.slint:4201
 msgid "Invite people by email"
-msgstr "Mensen per e-mail uitnodigen"
+msgstr "Personen per e-mail uitnodigen"
+
 
 #: ui/app.slint:4205
 msgid "Email addresses to invite"
-msgstr "Uit te nodigen e-mailadressen"
+msgstr "E-mailadressen om uit te nodigen"
+
 
 #: ui/app.slint:4207
 msgid "name@example.com, another@example.com"
-msgstr "naam@voorbeeld.nl, ander@voorbeeld.nl"
+msgstr "name@example.com, another@example.com"
 
 #: ui/app.slint:4212
 msgid ""
