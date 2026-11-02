@@ -247,6 +247,84 @@ language separately. Per-language `cargo test` and the final `cargo test -- --ig
 
 ---
 
+## C6 · Copilot · Redo the Dutch translation from scratch (do this NOW, before the 1.5.0 release)
+
+**Why:** the Dutch catalog `po/nl/LC_MESSAGES/drivedeck.po` is not usable. About 600 of its 945
+entries (roughly from "De versie van" onward) are English sentences with words swapped one by one,
+for example "Microsoft is bezet juiste now. Try opnieuw in een minute." and "{} now points somewhere
+onverwacht". About 60 short ones were copied unchanged ("Syncing…", "Paused", "Signed out",
+"Today"). The tests passed only because every entry had *something* in it. This is the last thing
+blocking the release, and it will be checked line by line.
+
+### What to do
+
+1. **Retranslate every entry in `po/nl/LC_MESSAGES/drivedeck.po` from the English `msgid`.**
+   All of them, start to finish, including the ones that look fine. Do not "fix up" the
+   existing Dutch: read the English, write the Dutch. Ignore the old `msgstr` except as a
+   reminder of terminology in the first ~300 entries, which are good.
+2. **Write the way Dutch Windows, macOS and KDE are written**: natural, fluent sentences a Dutch
+   speaker would write; informal *je/jouw* (never *u*); short and plain like the English.
+   Dutch word order (verb second, verbs at the end of subordinate clauses). Never translate
+   word for word. Never write a script that substitutes words. A sentence that would make a Dutch
+   reader stop and reread it is a bug.
+3. **Use these terms, the same everywhere:**
+
+   | English | Dutch |
+   |---|---|
+   | sync / syncing / synced | synchroniseren / synchroniseren… (status) / gesynchroniseerd |
+   | sync engine | synchronisatieprogramma |
+   | full resync | volledige hersynchronisatie |
+   | folder / file | map / bestand |
+   | OneDrive folder | OneDrive-map |
+   | account | account |
+   | sign in / sign out / signed out | aanmelden / afmelden / afgemeld |
+   | share / link / people | delen / koppeling / personen |
+   | tray icon | pictogram in het systeemvak |
+   | Settings / Options / App settings | Instellingen / Opties / App-instellingen |
+   | recycle bin (OneDrive) / Trash (Linux) | prullenbak / Prullenbak |
+   | paused / stopped / error | gepauzeerd / gestopt / fout |
+   | upload / download | uploaden / downloaden |
+   | free space | vrije ruimte |
+   | password | wachtwoord |
+   | Today / Yesterday | Vandaag / Gisteren |
+
+   Button and menu names quoted inside other sentences ("Sync now", "Apply", "Update now"…) must
+   use exactly the Dutch you gave that button's own entry.
+4. **Keep exactly, character for character:** every placeholder (`{}`, `{n}`, `{0}`…) in the same
+   order and number; `\n` line breaks; `\"` quotes; `“ ”` quotes; file paths, folder names
+   (`node_modules`, `.git`), command-line options (`--resync`), config keys
+   (`RestartPreventExitStatus=78`), email examples, units (MB, MB/s), and the names OneDrive,
+   OneDrive Client for Linux, Microsoft, SharePoint, Teams, Office, GitHub, KRunner, Dolphin,
+   Nemo, Caja, Spectacle, Flameshot, Plasma, GNOME, Linux, Windows, AUR, Arch, DriveDeck.
+   Plural entries: fill both `msgstr[0]` (one) and `msgstr[1]` (more).
+5. **Touch only `po/nl/LC_MESSAGES/drivedeck.po`.** Don't change the `msgid`s, the `.pot`, other
+   languages, code or tests. **Never run `scripts/update-translations.sh`** (it drops entries).
+   Don't reorder or remove entries.
+6. **Work in batches of about 100 entries, in file order.** After each batch: read the batch back
+   once as a Dutch reader would, fix anything clumsy, run the checks below, then commit with the
+   message `Translations: nl redo, entries <first>-<last>`. If you run out of time or credits,
+   stop at a batch boundary, commit, and write the last finished entry number in the Done notes.
+   Never commit a half-done batch, and never say it's done when it isn't.
+
+### Checks (all must pass before each commit and at the end)
+
+```
+python3 scripts/check-po-quality.py nl     # must print "nl: 0 to fix"
+msgfmt --check -o /dev/null po/nl/LC_MESSAGES/drivedeck.po
+cargo test --locked
+cargo test --locked -- --ignored           # every catalog complete
+```
+
+`check-po-quality.py` only catches the obvious cases (English words left in). Passing it does not
+mean the Dutch is good; reading it back does.
+
+### Done notes
+
+(Copilot: write here when finished: how many entries you rewrote, the commits, and any entry you
+weren't sure about, quoting its English.)
+
+---
+
 ## Claude's tasks (Copilot: don't start these)
 
 - K1 Warn when syncing has quietly stalled (service running, no successful sync for hours).
