@@ -3012,366 +3012,466 @@ msgstr "De synchronisatieservices zijn niet gestart omdat de voorbeeldinstelling
 msgid "Microsoft needs you to sign in again."
 msgstr "Je moet je opnieuw aanmelden bij Microsoft."
 
+
 msgid ""
 "Glass is on: your desktop blurs what's behind windows, so the window is see-"
 "through."
-msgstr "Glass is op: je bureaublad blurs wat's behind windows, dus de window is see-through."
+msgstr "Het glaseffect is ingeschakeld: je bureaublad vervaagt de achtergrond achter vensters, zodat het venster doorzichtig is."
+
 
 msgid "Glass is off because your desktop asks for high contrast."
-msgstr "Glass is off omdat je bureaublad asks voor high contrast."
+msgstr "Het glaseffect is uitgeschakeld omdat je bureaublad hoog contrast vereist."
+
 
 msgid ""
 "Glass is off: your desktop doesn't blur what's behind windows, so the window "
 "stays solid and easy to read. If yours does (Hyprland with blur switched on, "
 "for example), choose On."
-msgstr "Glass is off: je bureaublad doet niet blur wat's behind windows, dus de window stays solid en easy naar lezen. If yours doet (Hyprland met blur switched op, voor example), kiezen On."
+msgstr "Het glaseffect is uitgeschakeld: je bureaublad vervaagt de achtergrond achter vensters niet, dus het venster blijft ondoorzichtig en goed leesbaar. Doet jouw bureaublad dat wel (bijvoorbeeld Hyprland met vervaging ingeschakeld), kies dan Aan."
+
 
 msgid ""
 "Always see-through. If the window looks washed out, your desktop doesn't "
 "blur behind it: choose Automatic."
-msgstr "Always see-through. If de window looks washed out, je bureaublad doet niet blur behind het: kiezen Automatic."
+msgstr "Altijd doorzichtig. Als het venster vaal oogt, vervaagt je bureaublad de achtergrond er niet achter. Kies dan Automatisch."
+
 
 msgid "Always solid."
-msgstr "Always solid."
+msgstr "Altijd ondoorzichtig."
+
 
 msgid "The sync service stopped with an error. Try \"Sync now\"."
-msgstr "De synchronisatieservice gestopt met een fout. Try \"Sync now\"."
+msgstr "De synchronisatieservice is gestopt door een fout. Probeer \"Nu synchroniseren\"."
+
 
 msgid ""
 "The sync engine needs a full resync before it can continue. Open the Folders "
 "tab and press \"Apply changes…\", or turn on \"Allow full resyncs\" in "
 "Options and save."
-msgstr "De synchronisatieprogramma heeft nodig een volledige hersynchronisatie voor het kan continue. Open de Folders tab en press \"Apply wijzigingen…\", van turn op \"Allow volledige hersynchronisaties\" in Options en opslaan."
+msgstr "Het synchronisatieprogramma heeft een volledige hersynchronisatie nodig voordat het verder kan. Open het tabblad Mappen en kies \"Wijzigingen toepassen…\", of schakel \"Volledige hersynchronisatie toestaan\" in bij Opties en sla de instellingen op."
+
 
 msgid ""
 "Microsoft no longer accepts the saved sign-in (this happens after a password "
 "change, or when access is revoked). Sign in again to continue."
-msgstr "Microsoft geen longer accepts de opgeslagen aanmelding (dit happens na een wachtwoord wijziging, van wanneer access is revoked). Opnieuw aanmelden naar continue."
+msgstr "Microsoft accepteert de opgeslagen aanmelding niet meer (dit kan gebeuren nadat je je wachtwoord wijzigt of de toegang wordt ingetrokken). Meld je opnieuw aan om verder te gaan."
+
 
 msgid ""
 "The sync engine is running but has stopped making progress, so changes "
 "aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, "
 "check your network connection."
-msgstr "De synchronisatieprogramma is actief maar heeft gestopt making progress, dus wijzigingen zijn niet synchroniseren. Press \"Sync now\" naar opnieuw starten het. If dit keeps happening, controle je network connection."
+msgstr "Het synchronisatieprogramma draait nog, maar maakt geen voortgang meer. Er worden daardoor geen wijzigingen gesynchroniseerd. Kies \"Nu synchroniseren\" om het opnieuw te starten. Controleer je netwerkverbinding als dit blijft gebeuren."
+
 
 msgid "Everything in this account"
 msgstr "Alles in dit account"
 
+
 msgid "comes"
-msgstr "comes"
+msgstr "komen"
+
 
 msgid "Newly ticked folders"
-msgstr "Newly ticked mappen"
+msgstr "Nieuw aangevinkte mappen"
+
 
 msgid "come"
-msgstr "come"
+msgstr "komen"
+
 
 msgid "at least {}"
-msgstr "minstens {}"
+msgstr "ten minste {}"
+
 
 msgid ""
 "{} {} to {}, more than the {} free on this drive. Some files won't fit; free "
 "up space or tick less."
-msgstr "{} {} naar {}, more than de {} vrij op dit schijf. Sommige bestanden zal niet fit; vrij omhoog ruimte van tick less."
+msgstr "{} {} naar {}, meer dan de {} vrije ruimte op deze schijf. Sommige bestanden passen niet. Maak ruimte vrij of vink minder mappen aan."
+
 
 msgid "{}: {}. Free on this drive: {}."
-msgstr "{}: {}. Free op dit schijf: {}."
+msgstr "{}: {}. Vrije ruimte op deze schijf: {}."
+
 
 msgid "{} of {} used"
 msgstr "{} van {} gebruikt"
 
+
 msgid "{} used"
 msgstr "{} gebruikt"
 
+
 msgid "{} (set by hand)"
-msgstr "{} (set door hand)"
+msgstr "{} (handmatig ingesteld)"
+
 
 msgid "needs \"Treat this computer as the source of truth\" on too"
-msgstr "heeft nodig \"Treat deze computer als de bron van truth\" op too"
+msgstr "Vereist dat \"Deze computer als bron van waarheid gebruiken\" ook is ingeschakeld"
+
 
 msgid "can't be used with Upload only"
-msgstr "kan niet zijn gebruikt met Upload alleen"
+msgstr "kan niet worden gebruikt met Alleen uploaden"
+
 
 msgid "needs an address"
-msgstr "heeft nodig een adres"
+msgstr "vereist een adres"
+
 
 msgid "couldn't create it: {}"
-msgstr "niet kon maken het: {}"
+msgstr "kon niet worden aangemaakt: {}"
+
 
 msgid "Couldn't run the client: {}"
-msgstr "Kon niet uitvoeren de client: {}"
+msgstr "Kan de client niet uitvoeren: {}"
+
 
 msgid ""
 "Turn on \"Write a log file\" under Advanced and save first. Until then the "
 "app reads the system journal instead."
-msgstr "Turn op \"Write een logboek bestand\" under Advanced en opslaan eerst. Until dan de app reads de systeem logboek instead."
+msgstr "Schakel \"Logboekbestand schrijven\" in onder Geavanceerd en sla de instellingen eerst op. Tot die tijd leest de app het systeemlogboek."
+
 
 msgid ""
 "{} doesn't exist yet. The client creates it when it next writes to the log."
-msgstr "{} doet niet bestaan yet. De client creates het wanneer het next writes naar de logboek."
+msgstr "{} bestaat nog niet. De client maakt het bestand aan zodra er voor het eerst iets naar het logboek wordt geschreven."
+
 
 msgid ""
 "Folders to skip: remove the empty entry (two | in a row, or one at an end)."
-msgstr "Folders naar skip: verwijderen de lege entry (two | in een row, van one bij een end)."
+msgstr "Mappen om over te slaan: verwijder de lege waarde (twee | achter elkaar of een | aan het begin of einde)."
+
 
 msgid ""
 "Folders to skip: \".*\" isn't allowed (it would hide all your changes). To "
 "skip hidden folders, use \"Don't sync hidden files and folders\"."
-msgstr "Folders naar skip: \".*\" is niet allowed (het zou hide alle je wijzigingen). To skip hidden mappen, gebruiken \"Niet synchronisatie hidden bestanden en mappen\"."
+msgstr "Mappen om over te slaan: \".*\" is niet toegestaan (hiermee verberg je al je wijzigingen). Gebruik \"Verborgen bestanden en mappen niet synchroniseren\" om verborgen mappen over te slaan."
+
 
 msgid "Changes {}'s save folder. Turning this off puts it back."
-msgstr "Changes {}'s opslaan map. Turning dit off puts het terug."
+msgstr "Wijzig de opslagmap van {}. Schakel dit uit om de oorspronkelijke map terug te zetten."
+
 
 msgid "No supported screenshot tool was found."
-msgstr "Geen supported screenshot tool was gevonden."
+msgstr "Er is geen ondersteund programma voor schermafbeeldingen gevonden."
+
 
 msgid "Add a OneDrive account before turning this on."
-msgstr "Add een OneDrive-account voor turning dit op."
+msgstr "Voeg een OneDrive-account toe voordat je dit inschakelt."
+
 
 msgid "Couldn't change the screenshot folder: {}"
-msgstr "Kon niet wijziging de screenshot map: {}"
+msgstr "Kan de map voor schermafbeeldingen niet wijzigen: {}"
+
 
 msgid "The screenshot folder path contains a character the tool can't save."
-msgstr "De screenshot mappad bevat een character de tool kan niet opslaan."
+msgstr "Het pad naar de map voor schermafbeeldingen bevat een teken dat het programma niet kan opslaan."
+
 
 msgid "Couldn't save the setting: {}"
-msgstr "Kon niet opslaan de instelling: {}"
+msgstr "Kan de instelling niet opslaan: {}"
+
 
 msgid "{}. Couldn't clear the saved setting either: {}"
-msgstr "{}. Kon niet wissen de opgeslagen instelling either: {}"
+msgstr "{}. Ook de opgeslagen instelling kon niet worden gewist: {}"
+
 
 msgid "Screenshots will be saved in {}."
-msgstr "Screenshots zal zijn opgeslagen in {}."
+msgstr "Schermafbeeldingen worden opgeslagen in {}."
+
 
 msgid "Couldn't restore {}: {}"
-msgstr "Kon niet herstellen {}: {}"
+msgstr "Kan {} niet terugzetten: {}"
+
 
 msgid ""
 "The screenshot tool's save folder was changed since, so it was left as it is."
-msgstr "De screenshot tool's opslaan map was gewijzigd since, dus het was gelaten als het is."
+msgstr "De opslagmap van het programma voor schermafbeeldingen is inmiddels gewijzigd. Daarom is die niet aangepast."
+
 
 msgid "{} changed while DriveDeck was updating it, so it was left as it is."
-msgstr "{} gewijzigd terwijl DriveDeck was updating het, dus het was gelaten als het is."
+msgstr "{} is gewijzigd terwijl DriveDeck het bijwerkte. Daarom is het niet aangepast."
+
 
 msgid "{} isn't a regular file."
-msgstr "{} is niet een gewoon bestand."
+msgstr "{} is geen normaal bestand."
+
 
 msgid "Couldn't write {}: {}"
-msgstr "Kon niet schrijven {}: {}"
+msgstr "Kan {} niet schrijven: {}"
+
 
 msgid ""
 "Schedule times must be two different 24-hour times like 23:00 and 07:00."
-msgstr "Schedule times moet zijn two andere 24-hour times zoals 23:00 en 07:00."
+msgstr "De begin- en eindtijd moeten twee verschillende tijden in 24-uursnotatie zijn, bijvoorbeeld 23:00 en 07:00."
+
 
 msgid "The number of items for a big delete {}."
-msgstr "De getal van items voor een big verwijderen {}."
+msgstr "Aantal bestanden en mappen voor een grote verwijdering: {}."
+
 
 msgid "Nothing was saved: fix the settings marked in red under Advanced."
-msgstr "Niets was opgeslagen: fix de instellingen marked in red under Advanced."
+msgstr "Niets is opgeslagen. Los de problemen bij de rood gemarkeerde instellingen onder Geavanceerd op."
+
 
 msgid "Couldn't save settings: {}"
-msgstr "Kon niet opslaan instellingen: {}"
+msgstr "Kan de instellingen niet opslaan: {}"
+
 
 msgid "Couldn't save: {}"
-msgstr "Kon niet opslaan: {}"
+msgstr "Kan niet opslaan: {}"
+
 
 msgid ""
 "Saved, except the settings marked * — they need a full resync, which is "
 "turned off for this account."
-msgstr "Saved, except de instellingen marked * — they moet een volledige hersynchronisatie, which is turned off voor dit account."
+msgstr "Opgeslagen, behalve de instellingen met *: daarvoor is een volledige hersynchronisatie nodig, maar die is uitgeschakeld voor dit account."
+
 
 msgid ""
 "The settings marked * weren't saved: they need a full resync, which is "
 "turned off for this account. Check the preview for the new direction."
-msgstr "De instellingen marked * waren niet opgeslagen: they moet een volledige hersynchronisatie, which is turned off voor dit account. Check het voorbeeld voor de nieuwe direction."
+msgstr "De instellingen met * zijn niet opgeslagen: daarvoor is een volledige hersynchronisatie nodig, maar die is uitgeschakeld voor dit account. Bekijk het voorbeeld voor de nieuwe synchronisatierichting."
+
 
 msgid ""
 "Files here that aren't online are deleted, including new files you put in "
 "this folder from now on."
-msgstr "Files hier dat zijn niet online zijn verwijderd, including nieuwe bestanden je put in dit map van now op."
+msgstr "Bestanden in deze map die niet online staan, worden verwijderd. Dat geldt ook voor nieuwe bestanden die je vanaf nu in deze map zet."
+
 
 msgid "Change sync direction"
-msgstr "Change synchronisatie direction"
+msgstr "Synchronisatierichting wijzigen"
+
 
 msgid "Saved. The settings marked * need a full resync — check the preview."
-msgstr "Saved. De instellingen marked * moet een volledige hersynchronisatie — controle het voorbeeld."
+msgstr "Opgeslagen. Voor de instellingen met * is een volledige hersynchronisatie nodig. Bekijk het voorbeeld."
+
 
 msgid "Apply file settings"
-msgstr "Apply bestand instellingen"
+msgstr "Bestandsinstellingen toepassen"
+
 
 msgid "Counting everything inside the deleted folders, that's {} items in all."
-msgstr "Counting alles inside de verwijderd mappen, dat's {} items in alle."
+msgstr "Als je alles in de verwijderde mappen meetelt, zijn dat in totaal {} bestanden en mappen."
+
 
 msgid ""
 "Items deleted online go to the OneDrive recycle bin, where they can be "
 "restored for a while."
-msgstr "Items verwijderd online go naar de OneDrive recycle bin, waar they kan zijn restored voor een terwijl."
+msgstr "Bestanden en mappen die online worden verwijderd, gaan naar de OneDrive-prullenbak. Je kunt ze daar een tijdlang terughalen."
+
 
 msgid "Delete them online too"
-msgstr "Delete them online too"
+msgstr "Ook online verwijderen"
+
 
 msgid "Download them again"
-msgstr "Download them opnieuw"
+msgstr "Opnieuw downloaden"
+
 
 msgid "The deleted items are downloaded again from OneDrive."
-msgstr "De verwijderd items zijn gedownload opnieuw van OneDrive."
+msgstr "De verwijderde bestanden worden opnieuw uit OneDrive gedownload."
+
 
 msgid "Couldn't read the folder-selection rules: {}"
-msgstr "Kon niet lezen de map-selection regels: {}"
+msgstr "Kan de regels voor mapselectie niet lezen: {}"
+
 
 msgid "Sign in to choose folders."
-msgstr "Sign in naar kiezen mappen."
+msgstr "Meld je aan om mappen te kiezen."
+
 
 msgid "Couldn't load folders: {}"
-msgstr "Kon niet laden mappen: {}"
+msgstr "Kan mappen niet laden: {}"
+
 
 msgid ""
 "Full resyncs are turned off for this account (Options), so folder choices "
 "are locked."
-msgstr "Full resyncs zijn turned off voor dit account (Options), dus map keuzes zijn locked."
+msgstr "Volledige hersynchronisatie is uitgeschakeld voor dit account (Opties), dus je kunt geen mappen kiezen."
+
 
 msgid "Tick at least one folder, or choose \"Sync everything\"."
-msgstr "Tick minstens one map, van kiezen \"Sync alles\"."
+msgstr "Vink ten minste één map aan of kies \"Alles synchroniseren\"."
+
 
 msgid "Change synced folders"
-msgstr "Change synced mappen"
+msgstr "Gesynchroniseerde mappen wijzigen"
+
 
 msgid "Preparing the preview…"
-msgstr "Preparing het voorbeeld…"
+msgstr "Voorbeeld voorbereiden…"
+
 
 msgid "Checking the sync service…"
-msgstr "Checking de synchronisatieservice…"
+msgstr "Synchronisatieservice controleren…"
+
 
 msgid ""
 "Couldn't protect this account from a second sync process, so the preview was "
 "not started: {}"
-msgstr "Kon niet beschermen dit account van een tweede synchronisatieproces, dus het voorbeeld was niet gestart: {}"
+msgstr "Kan dit account niet beschermen tegen een tweede synchronisatieproces, dus is het voorbeeld niet gestart: {}"
+
 
 msgid "Couldn't safely prepare the preview because {} couldn't be read: {}"
-msgstr "Kon niet veilig voorbereiden het voorbeeld omdat {} niet kon zijn lezen: {}"
+msgstr "Kan het voorbeeld niet veilig voorbereiden omdat {} niet kon worden gelezen: {}"
+
 
 msgid "Preview state disappeared before it could be saved."
-msgstr "Preview status disappeared voor het kon zijn opgeslagen."
+msgstr "De voorbeeldstatus is verdwenen voordat die kon worden opgeslagen."
+
 
 msgid ""
 "Couldn't safely start the preview because its recovery record couldn't be "
 "saved: {}"
-msgstr "Kon niet veilig starten het voorbeeld omdat zijn herstelregistratie niet kon zijn opgeslagen: {}"
+msgstr "Kan het voorbeeld niet veilig starten omdat de herstelregistratie niet kon worden opgeslagen: {}"
+
 
 msgid "Couldn't pause the sync engine, so no preview was run: {}"
-msgstr "Kon niet pauzeren de synchronisatieprogramma, dus geen voorbeeld was uitvoeren: {}"
+msgstr "Kan het synchronisatieprogramma niet pauzeren, dus is er geen voorbeeld uitgevoerd: {}"
+
 
 msgid "Couldn't write the folder list: {}"
-msgstr "Kon niet schrijven de map list: {}"
+msgstr "Kan de mappenlijst niet schrijven: {}"
+
 
 msgid "Couldn't write the settings: {}"
-msgstr "Kon niet schrijven de instellingen: {}"
+msgstr "Kan de instellingen niet schrijven: {}"
+
 
 msgid "Couldn't start the sync engine: {}"
-msgstr "Kon niet starten de synchronisatieprogramma: {}"
+msgstr "Kan het synchronisatieprogramma niet starten: {}"
+
 
 msgid "Couldn't clear the recovery record: {}"
-msgstr "Kon niet wissen de herstelregistratie: {}"
+msgstr "Kan de herstelregistratie niet wissen: {}"
+
 
 msgid "Couldn't restore preview settings: {}"
-msgstr "Kon niet herstellen voorbeeld instellingen: {}"
+msgstr "Kan de voorbeeldinstellingen niet terugzetten: {}"
+
 
 msgid "Couldn't read the preview recovery record: {}"
-msgstr "Kon niet lezen het voorbeeld herstelregistratie: {}"
+msgstr "Kan de herstelregistratie van het voorbeeld niet lezen: {}"
+
 
 msgid "The preview recovery record is damaged: {}"
-msgstr "Het voorbeeld herstelregistratie is beschadigd: {}"
+msgstr "De herstelregistratie van het voorbeeld is beschadigd: {}"
+
 
 msgid "Couldn't clear the committed preview record: {}"
-msgstr "Kon niet wissen de bevestigde voorbeeld registratie: {}"
+msgstr "Kan de vastgelegde voorbeeldregistratie niet wissen: {}"
+
 
 msgid "Restoring the previous settings…"
-msgstr "Restoring de vorige instellingen…"
+msgstr "Vorige instellingen terugzetten…"
+
 
 msgid "Cancelling…"
-msgstr "Cancelling…"
+msgstr "Annuleren…"
+
 
 msgid "Resync started."
-msgstr "Resync gestart."
+msgstr "Hersynchronisatie gestart."
+
 
 msgid "The account disappeared and preview settings couldn't be restored: {}"
-msgstr "De account disappeared en voorbeeld instellingen niet kon zijn restored: {}"
+msgstr "Het account is verdwenen en de voorbeeldinstellingen konden niet worden teruggezet: {}"
+
 
 msgid "The recovery record couldn't be committed: {}; the sync job was stopped"
-msgstr "De herstelregistratie niet kon zijn bevestigde: {}; de synchronisatie taak was gestopt"
+msgstr "De herstelregistratie kon niet worden vastgelegd: {}; de synchronisatietaak is gestopt"
+
 
 msgid ""
 "The sync job started, but its recovery state couldn't be saved or stopped: "
 "{}; {}. Restart this app to retry recovery. No other sync operation will "
 "start for this account in this session."
-msgstr "De synchronisatie taak gestart, maar zijn herstel status niet kon zijn opgeslagen van gestopt: {}; {}. Restart dit app naar opnieuw proberen herstel. Geen andere synchronisatie bewerking zal starten voor dit account in dit session."
+msgstr "De synchronisatietaak is gestart, maar de herstelstatus kon niet worden opgeslagen of de taak kon niet worden gestopt: {}; {}. Start deze app opnieuw om het herstel opnieuw te proberen. In deze sessie wordt geen andere synchronisatieactie voor dit account gestart."
+
 
 msgid ""
 "{}. The recovery record couldn't be refreshed, so syncing remains paused: {}"
-msgstr "{}. De herstelregistratie niet kon zijn refreshed, dus synchroniseren remains paused: {}"
+msgstr "{}. De herstelregistratie kon niet worden bijgewerkt, dus de synchronisatie blijft gepauzeerd: {}"
+
 
 msgid ""
 "{}. Preview settings couldn't be fully restored; syncing remains paused. {}"
-msgstr "{}. Preview instellingen niet kon zijn fully restored; synchroniseren remains paused. {}"
+msgstr "{}. De voorbeeldinstellingen konden niet volledig worden teruggezet; de synchronisatie blijft gepauzeerd. {}"
+
 
 msgid "{}. The previous sync service couldn't be restarted: {}"
-msgstr "{}. De vorige synchronisatieservice niet kon zijn opnieuw gestart: {}"
+msgstr "{}. De vorige synchronisatieservice kon niet opnieuw worden gestart: {}"
+
 
 msgid "Preparing sign-in…"
-msgstr "Preparing aanmelding…"
+msgstr "Aanmelden voorbereiden…"
+
 
 msgid ""
 "Opening the Microsoft sign-in page in your browser…\n"
 "\n"
 "Log in and approve access. This window updates by itself when you're done."
-msgstr "Opening de Microsoft aanmelding page in je browser…\n\nLog in en approve access. Deze window updates door itself wanneer je're done."
+msgstr "De aanmeldpagina van Microsoft wordt geopend in je browser…\n\nMeld je aan en geef toegang. Dit venster wordt vanzelf bijgewerkt zodra je klaar bent."
+
 
 msgid ""
 "Couldn't protect this account from a second sync process, so sign-in was not "
 "started: {}"
-msgstr "Kon niet beschermen dit account van een tweede synchronisatieproces, dus aanmelding was niet gestart: {}"
+msgstr "Kan dit account niet beschermen tegen een tweede synchronisatieproces. Daarom is het aanmelden niet gestart: {}"
+
 
 msgid "Couldn't stop the sync engine before signing in: {}"
-msgstr "Kon niet stoppen de synchronisatieprogramma voor aanmelden in: {}"
+msgstr "Kan het synchronisatieprogramma niet stoppen voordat je je aanmeldt: {}"
+
 
 msgid ""
 "The sign-in was cancelled, but the previously running sync engine couldn't "
 "be restarted: {}"
-msgstr "De aanmelding was cancelled, maar de previously actief synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+msgstr "De aanmelding is geannuleerd, maar het synchronisatieprogramma dat al actief was, kon niet opnieuw worden gestart: {}"
+
 
 msgid ""
 "Couldn't start the sign-in process: {}. The previously running sync engine "
 "also couldn't be restarted: {}"
-msgstr "Kon niet starten de aanmelding proces: {}. De previously actief synchronisatieprogramma ook niet kon zijn opnieuw gestart: {}"
+msgstr "Kan het aanmeldproces niet starten: {}. Ook het synchronisatieprogramma dat al actief was, kon niet opnieuw worden gestart: {}"
+
 
 msgid "Couldn't start the sign-in process: {}"
-msgstr "Kon niet starten de aanmelding proces: {}"
+msgstr "Kan het aanmeldproces niet starten: {}"
+
 
 msgid ""
 "The sign-in window closed, but the previously running sync engine couldn't "
 "be restarted: {}"
-msgstr "De aanmelding window gesloten, maar de previously actief synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+msgstr "Het aanmeldvenster is gesloten, maar het synchronisatieprogramma dat al actief was, kon niet opnieuw worden gestart: {}"
+
 
 msgid ""
 "This account's settings folder was removed during sign-in. Add the account "
 "again to sign in."
-msgstr "Dit account's instellingenmap was verwijderd tijdens aanmelding. Add het account opnieuw naar sign in."
+msgstr "De instellingenmap van dit account is tijdens het aanmelden verwijderd. Voeg het account opnieuw toe om je aan te melden."
+
 
 msgid ""
 "Your browser couldn't hand the sign-in back automatically.\n"
 "\n"
 "After you log in you'll end up on a blank page. Copy that page's full "
 "address from the address bar and paste it below."
-msgstr "Je browser niet kon hand de aanmelding terug automatically.\n\nAfter je logboek in je'll end omhoog op een blank page. Copy dat page's volledige adres van de adres bar en paste het below."
+msgstr "Je browser kon je niet automatisch terugbrengen na het aanmelden.\n\nNa het aanmelden kom je op een lege pagina terecht. Kopieer het volledige adres uit de adresbalk en plak het hieronder."
+
 
 msgid "Signed in. Your files will start syncing in a moment."
-msgstr "Signed in. Je bestanden zal starten synchroniseren in een moment."
+msgstr "Aangemeld. Je bestanden worden zo gesynchroniseerd."
+
 
 msgid "Signed in."
-msgstr "Signed in."
+msgstr "Aangemeld."
+
 
 msgid "The sign-in didn't finish."
-msgstr "De aanmelding didn't voltooien."
+msgstr "Het aanmelden is niet voltooid."
 
 msgid ""
 "Sign-in didn't complete.\n"
