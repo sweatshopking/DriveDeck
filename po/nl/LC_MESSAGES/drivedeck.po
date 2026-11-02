@@ -17,7 +17,7 @@ msgid ""
 "This app needs one more free program, the OneDrive Client for Linux (version "
 "2.5 or newer). It does the actual syncing in the background; this app is the "
 "window and tray icon for it."
-msgstr "Deze app heeft nog een programma nodig: de OneDrive Client for Linux (versie 2.5 of hoger). Dat programma synchroniseert op de achtergrond; deze app biedt het venster en het pictogram in het systeemvak."
+msgstr "Deze app heeft nog één gratis programma nodig: de OneDrive Client for Linux (versie 2.5 of hoger). Dat programma synchroniseert op de achtergrond; deze app biedt het venster en het pictogram in het systeemvak."
 
 
 #: ui/app.slint:488
