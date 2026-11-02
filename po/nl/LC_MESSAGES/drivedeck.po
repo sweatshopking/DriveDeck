@@ -3473,152 +3473,192 @@ msgstr "Aangemeld."
 msgid "The sign-in didn't finish."
 msgstr "Het aanmelden is niet voltooid."
 
+
 msgid ""
 "Sign-in didn't complete.\n"
 "\n"
 "{}"
-msgstr "Aanmelding didn't complete.\n\n{}"
+msgstr "Het aanmelden is niet voltooid.\n\n{}"
+
 
 msgid ""
 "Sign-in failed, and the previously running sync engine couldn't be "
 "restarted: {}"
-msgstr "Aanmelding mislukt, en de previously actief synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+msgstr "De aanmelding is mislukt en het synchronisatieprogramma dat al actief was, kon niet opnieuw worden gestart: {}"
+
 
 msgid ""
 "Microsoft didn't accept the sign-in. Please try again, and make sure you "
 "finish logging in in the browser."
-msgstr "Microsoft didn't accepteren de aanmelding. Please probeer het opnieuw, en maken sure je voltooien logging in in de browser."
+msgstr "Microsoft accepteerde de aanmelding niet. Probeer het opnieuw en maak de aanmelding helemaal af in je browser."
+
 
 msgid "The sign-in timed out. Please try again."
-msgstr "De aanmelding timed out. Please probeer het opnieuw."
+msgstr "De aanmelding is verlopen. Probeer het opnieuw."
+
 
 msgid "Microsoft reported a problem: {}"
-msgstr "Microsoft reported een probleem: {}"
+msgstr "Microsoft heeft een probleem gemeld: {}"
+
 
 msgid "Sync was enabled, but the tray couldn't be set to start at login: {}"
-msgstr "Sync was enabled, maar de systeemvak niet kon zijn set naar starten bij login: {}"
+msgstr "Synchronisatie is ingeschakeld, maar het pictogram in het systeemvak kon niet zo worden ingesteld dat het start wanneer je je aanmeldt: {}"
+
 
 msgid "Sign-in finished, but setup wasn't fully completed: {}"
-msgstr "Aanmelding voltooid, maar setup was niet fully completed: {}"
+msgstr "Je bent aangemeld, maar de instellingen zijn niet helemaal voltooid: {}"
+
 
 msgid ""
 "That doesn't look like the right address — it should contain \"code=\". Copy "
 "the whole address of the blank page you land on after logging in."
-msgstr "Dat doet niet look zoals de juiste adres — het moet bevatten \"code=\". Copy de heel adres van de blank page je land op na logging in."
+msgstr "Dit lijkt niet het juiste adres. Het moet \"code=\" bevatten. Kopieer het volledige adres van de lege pagina die verschijnt nadat je je aanmeldt."
+
 
 msgid "Finishing sign-in…"
-msgstr "Finishing aanmelding…"
+msgstr "Aanmelding afronden…"
+
 
 msgid "Couldn't find this account's settings folder: {}"
-msgstr "Kon niet vinden dit account's instellingenmap: {}"
+msgstr "Kan de instellingenmap van dit account niet vinden: {}"
+
 
 msgid "Couldn't protect this account from another sync operation: {}"
-msgstr "Kon niet beschermen dit account van andere synchronisatie bewerking: {}"
+msgstr "Kan dit account niet beschermen tegen een andere synchronisatieactie: {}"
+
 
 msgid "Couldn't stop background syncing, so you weren't signed out: {}"
-msgstr "Kon niet stoppen background synchroniseren, dus je waren niet afgemeld: {}"
+msgstr "Kan de synchronisatie op de achtergrond niet stoppen, dus ben je niet afgemeld: {}"
+
 
 msgid "Couldn't remove the saved sign-in: {}"
-msgstr "Kon niet verwijderen de opgeslagen aanmelding: {}"
+msgstr "Kan de opgeslagen aanmelding niet verwijderen: {}"
+
 
 msgid "Signed out. Your files are still on this computer."
-msgstr "Signed out. Je bestanden zijn nog op deze computer."
+msgstr "Afgemeld. Je bestanden staan nog op deze computer."
+
 
 msgid ""
 "Signed out. Your files are still on this computer. (The sync engine "
 "reported: {})"
-msgstr "Signed out. Je bestanden zijn nog op deze computer. (De synchronisatieprogramma reported: {})"
+msgstr "Afgemeld. Je bestanden staan nog op deze computer. (Het synchronisatieprogramma meldde: {})"
+
 
 msgid ""
 "The account was left intact because its sync service couldn't be stopped: {}"
-msgstr "De account was gelaten intact omdat zijn synchronisatieservice niet kon zijn gestopt: {}"
+msgstr "Het account is niet gewijzigd omdat de synchronisatieservice niet kon worden gestopt: {}"
+
 
 msgid "The service stopped, but couldn't remove {}: {}"
-msgstr "De service gestopt, maar niet kon verwijderen {}: {}"
+msgstr "De service is gestopt, maar {} kon niet worden verwijderd: {}"
+
 
 msgid "The service stopped, but systemd couldn't reload its units: {}"
-msgstr "De service gestopt, maar systemd niet kon herladen zijn eenheden: {}"
+msgstr "De service is gestopt, maar systemd kon de servicebestanden niet opnieuw inlezen: {}"
+
 
 msgid "Couldn't delete {}: {}"
-msgstr "Kon niet verwijderen {}: {}"
+msgstr "Kan {} niet verwijderen: {}"
+
 
 msgid ""
 "Add and sign in to a work or school OneDrive account first. Its sign-in is "
 "reused to reach SharePoint."
-msgstr "Add en sign in naar een work van school OneDrive-account eerst. Its aanmelding is reused naar reach SharePoint."
+msgstr "Voeg eerst een werk- of schoolaccount voor OneDrive toe en meld je aan. Die aanmelding wordt ook gebruikt voor SharePoint."
+
 
 msgid "{}  ·  this computer's copy from {}"
-msgstr "{}  ·  deze computer's kopiëren van {}"
+msgstr "{}  ·  kopie op deze computer van {}"
+
 
 msgid "In OneDrive: {}"
 msgstr "In OneDrive: {}"
 
+
 msgid "Backed up to \"{}\""
-msgstr "Backed omhoog naar \"{}\""
+msgstr "Back-up gemaakt in \"{}\""
+
 
 msgid "Not set up on this computer"
-msgstr "Not set omhoog op deze computer"
+msgstr "Niet ingesteld op deze computer"
+
 
 msgid "Set to your whole home folder, so it can't be backed up"
-msgstr "Set naar je heel persoonlijke map, dus het kan niet zijn backed omhoog"
+msgstr "Ingesteld op je hele persoonlijke map; daarvan kan geen back-up worden gemaakt"
+
 
 msgid "Looking at your {} folder…"
-msgstr "Looking bij je {} map…"
+msgstr "Bezig met zoeken in je map {}…"
+
 
 msgid "1 file"
 msgid_plural "{n} files"
 msgstr[0] "1 bestand"
 msgstr[1] "{n} bestanden"
 
+
 msgid ""
 "Your {} folder ({}) moves into OneDrive, at {}, and everything in it "
 "uploads: {}, {}. Your apps keep finding it in the same place."
-msgstr "Je {} map ({}) moves into OneDrive, bij {}, en alles in het uploads: {}, {}. Je apps bewaren finding het in de same place."
+msgstr "Je map {} ({}) wordt naar OneDrive verplaatst, naar {}, en alles erin wordt geüpload: {}, {}. Je apps vinden de map nog steeds op dezelfde plek."
+
 
 msgid "OneDrive is on the same drive, so the move is instant."
-msgstr "OneDrive is op de same schijf, dus de verplaatsen is instant."
+msgstr "OneDrive staat op dezelfde schijf, dus de map wordt meteen verplaatst."
+
 
 msgid "The desktop shows the new place after you next log in."
-msgstr "De bureaublad shows de nieuwe place na je next logboek in."
+msgstr "Het bureaublad toont de nieuwe plek zodra je je weer aanmeldt."
+
 
 msgid ""
 "To undo it later, press Stop: your files stay in OneDrive and the folder "
 "here starts empty again, as on Windows."
-msgstr "To undo het later, press Stop: je bestanden stay in OneDrive en de map hier starts lege opnieuw, als op Windows."
+msgstr "Als je dit later ongedaan wilt maken, kies je Stoppen. Je bestanden blijven in OneDrive en deze map wordt weer leeg, net als in Windows."
+
 
 msgid ""
 "OneDrive is on another drive, so the files are copied. Nothing is deleted: "
 "your original folder is kept, renamed \"{}\". Once you've checked everything "
 "is in OneDrive, delete it yourself to free the space. "
-msgstr "OneDrive is op andere schijf, dus het bestands zijn gekopieerd. Niets is verwijderd: je original map is bewaard, renamed \"{}\". Once je've gecontroleerd alles is in OneDrive, verwijderen het yourself naar vrij de ruimte. "
+msgstr "OneDrive staat op een andere schijf, dus de bestanden worden gekopieerd. Er wordt niets verwijderd: je oorspronkelijke map blijft bestaan onder de naam \"{}\". Controleer of alles in OneDrive staat en verwijder de oude map daarna zelf om ruimte vrij te maken. "
+
 
 msgid ""
 "OneDrive already has this folder: your files join what's there, and any "
 "whose name is taken get \"{}\" added."
-msgstr "OneDrive al heeft dit map: je bestanden join wat's daar, en elke whose naam is taken krijgen \"{}\" added."
+msgstr "OneDrive bevat deze map al. Je bestanden worden eraan toegevoegd. Als een naam al in gebruik is, wordt \"{}\" toegevoegd."
+
 
 msgid "Back up your {} folder"
-msgstr "Back omhoog je {} map"
+msgstr "Een back-up maken van je map {}"
+
 
 msgid "Stop backing up {}?"
-msgstr "Stop backing omhoog {}?"
+msgstr "Stoppen met een back-up van {}?"
+
 
 msgid ""
 "Your files stay in OneDrive, at {}, and keep syncing there. Your {} folder "
 "on this computer starts empty again, and new files you put in it won't be "
 "backed up."
-msgstr "Je bestanden stay in OneDrive, bij {}, en bewaren synchroniseren daar. Je {} map op deze computer starts lege opnieuw, en nieuwe bestanden je put in het zal niet zijn backed omhoog."
+msgstr "Je bestanden blijven in OneDrive staan op {} en worden daar gesynchroniseerd. De map {} op deze computer wordt weer leeg. Van nieuwe bestanden die je daarin zet, wordt geen back-up gemaakt."
+
 
 msgid ""
 "Nothing is moved back or deleted. To have the files here again, move them "
 "from {} yourself."
-msgstr "Niets is verplaatst terug van verwijderd. To hebben het bestands hier opnieuw, verplaatsen them van {} yourself."
+msgstr "Niets wordt teruggezet of verwijderd. Als je de bestanden weer op deze computer wilt hebben, verplaats ze dan zelf vanuit {}."
+
 
 msgid "Stop backing up"
-msgstr "Stop backing omhoog"
+msgstr "Stoppen met back-uppen"
+
 
 msgid "{} is now backed up to OneDrive."
-msgstr "{} is now backed omhoog naar OneDrive."
+msgstr "Er wordt nu een back-up van {} gemaakt in OneDrive."
+
 
 msgid ""
 "1 name was already taken in OneDrive, so it was saved with \"(from …)\" "
@@ -3626,219 +3666,279 @@ msgid ""
 msgid_plural ""
 "{n} names were already taken in OneDrive, so they were saved with \"(from …)"
 "\" added."
-msgstr[0] "1 naam was al taken in OneDrive, dus het was opgeslagen met \"(van …)\" added."
-msgstr[1] "{n} namen waren al taken in OneDrive, dus they waren opgeslagen met \"(van …)\" added."
+msgstr[0] "1 naam was al in gebruik in OneDrive. De bestandsnaam is daarom aangevuld met \"(from …)\"."
+msgstr[1] "{n} namen waren al in gebruik in OneDrive. De bestandsnamen zijn daarom aangevuld met \"(from …)\"."
+
 
 msgid ""
 "Your original folder is kept at {}: delete it yourself once you've checked "
 "your files in OneDrive."
-msgstr "Je original map is bewaard bij {}: verwijderen het yourself zodra je've gecontroleerd je bestanden in OneDrive."
+msgstr "Je oorspronkelijke map blijft staan in {}. Verwijder die zelf nadat je je bestanden in OneDrive hebt gecontroleerd."
+
 
 msgid ""
 "The desktop's folder setting couldn't be updated ({}); the link at the old "
 "place still works."
-msgstr "De bureaublad's map instelling niet kon zijn bijgewerkt ({}); de koppeling bij de oude place nog works."
+msgstr "De mapinstelling van het bureaublad kon niet worden bijgewerkt ({}). De koppeling op de oude plek werkt nog."
+
 
 msgid "Stopped. Your files are still in OneDrive at {}."
-msgstr "Stopped. Je bestanden zijn nog in OneDrive bij {}."
+msgstr "Gestopt. Je bestanden staan nog in OneDrive op {}."
+
 
 msgid "Couldn't inspect the selected folder {}: {}"
-msgstr "Kon niet bekijken de geselecteerde map {}: {}"
+msgstr "Kan de gekozen map {} niet controleren: {}"
+
 
 msgid "Couldn't clear the empty destination {}: {}"
-msgstr "Kon niet wissen de lege bestemming {}: {}"
+msgstr "Kan de lege doelmap {} niet wissen: {}"
+
 
 msgid "The destination {} changed after review."
-msgstr "De bestemming {} gewijzigd na review."
+msgstr "De bestemming {} is na controle gewijzigd."
+
 
 msgid ""
 "Copying to {} failed (is there enough space?). The original remains in {}."
-msgstr "Copying naar {} mislukt (is daar voldoende ruimte?). De original remains in {}."
+msgstr "Kopiëren naar {} is mislukt (is er genoeg ruimte?). Het origineel staat nog in {}."
+
 
 msgid "Choose where to move the OneDrive folder"
-msgstr "Choose waar naar verplaatsen de OneDrive-map"
+msgstr "Kies waar je de OneDrive-map naartoe wilt verplaatsen"
+
 
 msgid ""
 "No folder chooser is available on this desktop, so the folder can't be moved "
 "from here."
-msgstr "Geen map chooser is beschikbaar op dit bureaublad, dus de map kan niet zijn verplaatst van hier."
+msgstr "Op dit bureaublad kun je geen map kiezen. Daarom kun je de map niet vanaf hier verplaatsen."
+
 
 msgid "Couldn't safely resolve the selected destination folder."
-msgstr "Kon niet veilig oplossen de geselecteerde doelmap."
+msgstr "Kan de gekozen doelmap niet veilig bepalen."
+
 
 msgid ""
 "{} is a symbolic link. Move the actual sync folder or choose a new folder in "
 "Options first."
-msgstr "{} is een symbolische koppeling. Move de actual synchronisatie map van kiezen een nieuwe map in Options eerst."
+msgstr "{} is een symbolische koppeling. Verplaats de echte synchronisatiemap of kies eerst een nieuwe map in Opties."
+
 
 msgid "{} isn't there (is its drive connected?), so there's nothing to move."
-msgstr "{} is niet daar (is zijn schijf connected?), dus er is niets naar verplaatsen."
+msgstr "{} bestaat niet (is de schijf aangesloten?). Er is dus niets om te verplaatsen."
+
 
 msgid "That folder overlaps with \"{}\" ({}). Pick a separate folder."
-msgstr "Dat map overlaps met \"{}\" ({}). Pick een separate map."
+msgstr "Deze map overlapt met \"{}\" ({}). Kies een aparte map."
+
 
 msgid "{} already exists and isn't empty. Pick an empty folder."
-msgstr "{} al bestaat en is niet lege. Pick een lege map."
+msgstr "{} bestaat al en is niet leeg. Kies een lege map."
+
 
 msgid "Moving the folder to {}… The sync engine is paused meanwhile."
-msgstr "Moving de map naar {}… De synchronisatieprogramma is paused meanwhile."
+msgstr "De map wordt verplaatst naar {}… Het synchronisatieprogramma is intussen gepauzeerd."
+
 
 msgid "Couldn't stop the sync engine: {}"
-msgstr "Kon niet stoppen de synchronisatieprogramma: {}"
+msgstr "Kan het synchronisatieprogramma niet stoppen: {}"
+
 
 msgid "Couldn't recheck {}: {}"
-msgstr "Kon niet recheck {}: {}"
+msgstr "Kan {} niet opnieuw controleren: {}"
+
 
 msgid ""
 "The current sync folder changed while the destination was being reviewed. "
 "Refresh and try again."
-msgstr "De huidige synchronisatie map gewijzigd terwijl de bestemming was wordt reviewed. Refresh en probeer het opnieuw."
+msgstr "De huidige synchronisatiemap is gewijzigd terwijl de bestemming werd gecontroleerd. Vernieuw de gegevens en probeer het opnieuw."
+
 
 msgid ""
 "The destination drive changed while the folder move was being reviewed. "
 "Connect the intended drive and try again."
-msgstr "De bestemming schijf gewijzigd terwijl de map verplaatsen was wordt reviewed. Connect de bedoelde schijf en probeer het opnieuw."
+msgstr "De doelschijf is gewijzigd terwijl het verplaatsen van de map werd gecontroleerd. Sluit de juiste schijf aan en probeer het opnieuw."
+
 
 msgid "Couldn't move the folder: {}"
-msgstr "Kon niet verplaatsen de map: {}"
+msgstr "Kan de map niet verplaatsen: {}"
+
 
 msgid "Couldn't save the new folder in the settings: {}"
-msgstr "Kon niet opslaan de nieuwe map in de instellingen: {}"
+msgstr "Kan de nieuwe map niet opslaan in de instellingen: {}"
+
 
 msgid ""
 "Couldn't save the new folder in the settings: {}; rollback also failed: {}"
-msgstr "Kon niet opslaan de nieuwe map in de instellingen: {}; rollback ook mislukt: {}"
+msgstr "Kan de nieuwe map niet opslaan in de instellingen: {}; ook het terugzetten is mislukt: {}"
+
 
 msgid ""
 "The folder operation finished, but the sync engine couldn't be restarted: {}"
-msgstr "De map bewerking voltooid, maar de synchronisatieprogramma niet kon zijn opnieuw gestart: {}"
+msgstr "De map is verplaatst, maar het synchronisatieprogramma kon niet opnieuw worden gestart: {}"
+
 
 msgid ""
 "Folder moved. The sync engine needs a full resync to carry on there — check "
 "the preview."
-msgstr "Folder verplaatst. De synchronisatieprogramma heeft nodig een volledige hersynchronisatie naar carry op daar — controle het voorbeeld."
+msgstr "De map is verplaatst. Om daar verder te synchroniseren is een volledige hersynchronisatie nodig. Bekijk het voorbeeld."
+
 
 msgid ""
 "Folder copied. Your old folder ({}) was left untouched and is no longer "
 "synced: once you've checked your files in the new place, delete it yourself "
 "to free the space. Next, check the preview to carry on syncing."
-msgstr "Folder gekopieerd. Je oude map ({}) was gelaten untouched en is geen longer synced: zodra je've gecontroleerd je bestanden in de nieuwe place, verwijderen het yourself naar vrij de ruimte. Next, controle het voorbeeld naar carry op synchroniseren."
+msgstr "De map is gekopieerd. Je oude map ({}) is niet gewijzigd en wordt niet meer gesynchroniseerd. Controleer of je bestanden op de nieuwe plek staan en verwijder de oude map daarna zelf om ruimte vrij te maken. Bekijk vervolgens het voorbeeld om de synchronisatie voort te zetten."
+
 
 msgid "Finish moving the folder"
-msgstr "Finish moving de map"
+msgstr "Verplaatsen voltooien"
+
 
 msgid ""
 "Your files are already in the new folder, so little or nothing should need "
 "to transfer."
-msgstr "Je bestanden zijn al in de nieuwe map, dus little van niets moet moet naar transfer."
+msgstr "Je bestanden staan al in de nieuwe map, dus er hoeft weinig of niets te worden overgezet."
+
 
 msgid "Add and sign in to a work or school account first."
-msgstr "Add en sign in naar een work van school account eerst."
+msgstr "Voeg eerst een werk- of schoolaccount toe en meld je aan."
+
 
 msgid "Checking the OneDrive client…"
-msgstr "Checking de OneDrive-client…"
+msgstr "OneDrive-client controleren…"
+
 
 msgid "Give the account a name and pick a local folder."
-msgstr "Give het account een naam en kies een lokale map."
+msgstr "Geef het account een naam en kies een lokale map."
+
 
 msgid ""
 "A national cloud account needs your organisation's tenant (ask its IT team)."
-msgstr "Een nationale cloud account heeft nodig je organisation's tenant (vragen zijn IT team)."
+msgstr "Voor een account in een nationale cloud heb je de organisatiegegevens nodig (vraag dit na bij het IT-team)."
+
 
 msgid "The tenant {}."
-msgstr "De tenant {}."
+msgstr "Organisatie {}."
+
 
 msgid "You already have an account called \"{}\". Pick a different name."
-msgstr "Je al hebben een account called \"{}\". Pick een andere naam."
+msgstr "Je hebt al een account met de naam \"{}\". Kies een andere naam."
+
 
 msgid "Search for and pick a library first."
-msgstr "Search voor en kies een bibliotheek eerst."
+msgstr "Zoek eerst een bibliotheek en kies die."
+
 
 msgid "Couldn't copy the sign-in: {}"
-msgstr "Kon niet kopiëren de aanmelding: {}"
+msgstr "Kan de aanmelding niet kopiëren: {}"
+
 
 msgid "Created the account but couldn't find it again — try reopening the app."
-msgstr "Created het account maar niet kon vinden het opnieuw — probeer reopening de app."
+msgstr "Het account is aangemaakt, maar niet teruggevonden. Probeer de app opnieuw te openen."
+
 
 msgid "Couldn't create the autostart folder: {}"
-msgstr "Kon niet maken de autostart map: {}"
+msgstr "Kan de opstartmap niet aanmaken: {}"
+
 
 msgid "OneDrive sync status"
-msgstr "OneDrive synchronisatie status"
+msgstr "Synchronisatiestatus van OneDrive"
+
 
 msgid "Couldn't save the autostart setting: {}"
-msgstr "Kon niet opslaan de autostart instelling: {}"
+msgstr "Kan de instelling voor automatisch starten niet opslaan: {}"
+
 
 msgid "Couldn't remove {}: {}"
-msgstr "Kon niet verwijderen {}: {}"
+msgstr "Kan {} niet verwijderen: {}"
+
 
 msgid "Checking the sync engine…"
-msgstr "Checking de synchronisatieprogramma…"
+msgstr "Synchronisatieprogramma controleren…"
+
 
 msgid "Sync engine: OneDrive Client for Linux {} ({})"
-msgstr "Sync programma: OneDrive Client voor Linux {} ({})"
+msgstr "Synchronisatieprogramma: OneDrive Client for Linux {} ({})"
+
 
 msgid ""
 "Sync engine: OneDrive Client for Linux {} ({}) — too old, please update it."
-msgstr "Sync programma: OneDrive Client voor Linux {} ({}) — too oude, please bijwerken het."
+msgstr "Synchronisatieprogramma: OneDrive Client for Linux {} ({}) — te oud, werk het bij."
+
 
 msgid "Sync engine: the OneDrive Client for Linux isn't installed."
-msgstr "Sync programma: de OneDrive Client voor Linux is niet installed."
+msgstr "Synchronisatieprogramma: OneDrive Client for Linux is niet geïnstalleerd."
+
 
 msgid ""
 "Added. Look for \"DriveDeck for OneDrive\" in your applications menu. Right-"
 "clicking a file in Dolphin now also shows a OneDrive menu with \"Copy view-"
 "only link\", \"Copy editing link\" and \"View on the OneDrive website\"."
-msgstr "Added. Look voor \"DriveDeck voor OneDrive\" in je applications menu. Right-clicking een bestand in Dolphin now ook shows een OneDrive menu met \"Copy alleen-bekijken koppeling\", \"Copy editing koppeling\" en \"View op de OneDrive website\"."
+msgstr "Toegevoegd. Zoek \"DriveDeck voor OneDrive\" in het toepassingenmenu. Als je in Dolphin met de rechtermuisknop op een bestand klikt, staat er nu ook een OneDrive-menu met \"Koppeling om alleen te bekijken kopiëren\", \"Koppeling om te bewerken kopiëren\" en \"Op de OneDrive-website bekijken\"."
+
 
 msgid "Couldn't add it: {}"
-msgstr "Kon niet add het: {}"
+msgstr "Kan dit niet toevoegen: {}"
+
 
 msgid "Found the OneDrive client ({}). You're ready to sync."
-msgstr "Found de OneDrive-client ({}). Je're ready naar synchronisatie."
+msgstr "De OneDrive-client is gevonden ({}). Je kunt nu synchroniseren."
+
 
 msgid "Your OneDrive Client for Linux ({}) is too old"
-msgstr "Je OneDrive Client voor Linux ({}) is too oude"
+msgstr "Je OneDrive Client for Linux ({}) is te oud"
+
 
 msgid "Your computer will ask for your password…"
-msgstr "Je computer zal vragen voor je wachtwoord…"
+msgstr "Je computer vraagt om je wachtwoord…"
+
 
 msgid ""
 "Nothing was changed: your computer didn't allow it (the password wasn't "
 "accepted, or no password window could be shown)."
-msgstr "Niets was gewijzigd: je computer didn't toestaan het (de wachtwoord was niet accepted, van geen wachtwoord window kon zijn shown)."
+msgstr "Er is niets gewijzigd: je computer heeft dit niet toegestaan (het wachtwoord is niet geaccepteerd of er kon geen wachtwoordvenster worden getoond)."
+
 
 msgid "Couldn't start the installer: {}"
-msgstr "Kon niet starten de installer: {}"
+msgstr "Kan het installatieprogramma niet starten: {}"
+
 
 msgid "The OneDrive client is updated to {}."
 msgstr "De OneDrive-client is bijgewerkt naar {}."
 
+
 msgid "The OneDrive client is installed. You're ready to sync."
-msgstr "De OneDrive-client is installed. Je're ready naar synchronisatie."
+msgstr "De OneDrive-client is geïnstalleerd. Je kunt nu synchroniseren."
+
 
 msgid ""
 "It finished, but the OneDrive client still isn't working. The instructions "
 "show how to install it by hand."
-msgstr "Het voltooid, maar de OneDrive-client nog is niet working. De instructions show how naar install het door hand."
+msgstr "De installatie is voltooid, maar de OneDrive-client werkt nog niet. In de instructies lees je hoe je die handmatig installeert."
+
 
 msgid "Couldn't open OneDrive settings"
-msgstr "Kon niet openen OneDrive instellingen"
+msgstr "Kan de OneDrive-instellingen niet openen"
+
 
 msgid "The window couldn't open ({})."
-msgstr "De window niet kon openen ({})."
+msgstr "Het venster kon niet worden geopend ({})."
+
 
 msgid "Couldn't save the account name: {}"
-msgstr "Kon niet opslaan het account naam: {}"
+msgstr "Kan de accountnaam niet opslaan: {}"
+
 
 msgid "Renamed."
-msgstr "Renamed."
+msgstr "Naam gewijzigd."
+
 
 msgid "Syncing now…"
-msgstr "Syncing now…"
+msgstr "Bezig met synchroniseren…"
+
 
 msgid "Saved as {}. It opens now: read it before sharing it."
-msgstr "Saved als {}. Het opens now: lezen het voor sharing het."
+msgstr "Opgeslagen als {}. Het wordt nu geopend. Lees het door voordat je het deelt."
 
 msgid "Couldn't remove {}"
 msgstr "Kon niet verwijderen {}"
