@@ -55,7 +55,17 @@ sync client, syncing issues should go to the original app, which is linked above
     <td><img src="docs/screenshots/versions-light.png" alt="Version history of a file"></td>
     <td><img src="docs/screenshots/share-dark.png" alt="Sharing a file with people"></td>
   </tr>
+  <tr>
+    <td><img src="docs/screenshots/access-light.png" alt="Who has access to a file, with Stop sharing"></td>
+    <td></td>
+  </tr>
 </table>
+
+## New in 1.5.1
+
+- **KRunner search finds files by name straight away.** Microsoft's search can miss files it
+  hasn't indexed yet; names in your synced folders are now searched on this computer too, first,
+  with Microsoft's results (contents, files that aren't on this computer) after them.
 
 ## New in 1.5.0
 
@@ -86,9 +96,9 @@ the app in your own language.
 - **Keeps the sync engine up to date,** not just installed. It notices new releases from the
   client's own authors, not only the AUR, and shows their important note (for example "the first
   sync will take a long time") before you update.
-- **Search OneDrive from KRunner** (Plasma's Alt+Space). Finds files by name or content, including
-  ones that aren't on this computer. Off until you switch it on, because what you type is sent to
-  Microsoft.
+- **Search OneDrive from KRunner** (Plasma's Alt+Space). Finds files by name (on this computer first)
+  or content, including ones that aren't on this computer. Off until you switch it on, because what
+  you type is sent to Microsoft.
 - **Screenshots saved straight to OneDrive.** A switch in *App settings* points Spectacle or
   Flameshot at a folder in your OneDrive, and puts their setting back when you switch it off.
 - **Updates in one click.** When a new version is out, *Update now* (in the tray menu or the window)
