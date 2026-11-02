@@ -3940,354 +3940,454 @@ msgstr "Bezig met synchroniseren…"
 msgid "Saved as {}. It opens now: read it before sharing it."
 msgstr "Opgeslagen als {}. Het wordt nu geopend. Lees het door voordat je het deelt."
 
+
 msgid "Couldn't remove {}"
-msgstr "Kon niet verwijderen {}"
+msgstr "Kan {} niet verwijderen"
+
 
 msgid "Added. Close every Dolphin window and open it again to see the badges."
-msgstr "Added. Close every Dolphin window en openen het opnieuw naar see de badges."
+msgstr "Toegevoegd. Sluit alle Dolphin-vensters en open ze opnieuw om de synchronisatiemarkeringen te zien."
+
 
 msgid "Once it's installed, this note goes away by itself."
-msgstr "Once het's installed, dit note goes away door itself."
+msgstr "Na de installatie verdwijnt deze melding vanzelf."
+
 
 msgid "Couldn't save that: {}"
-msgstr "Kon niet opslaan dat: {}"
+msgstr "Kan dit niet opslaan: {}"
+
 
 msgid "The app file {} will be deleted."
-msgstr "De app bestand {} zal zijn verwijderd."
+msgstr "Het bestand van de app {} wordt verwijderd."
+
 
 msgid ""
 "The app's package will then be removed; your computer will ask for your "
 "password."
-msgstr "De app's package zal dan zijn verwijderd; je computer zal vragen voor je wachtwoord."
+msgstr "Daarna wordt het pakket van de app verwijderd. Je computer vraagt om je wachtwoord."
+
 
 msgid "Afterwards, remove the \"{}\" package with your software manager."
-msgstr "Afterwards, verwijderen de \"{}\" package met je software manager."
+msgstr "Verwijder daarna het pakket \"{}\" met je pakketbeheerder."
+
 
 msgid "This copy isn't installed, so only your settings are removed."
-msgstr "Deze kopiëren is niet installed, dus alleen je instellingen zijn verwijderd."
+msgstr "Deze kopie is niet geïnstalleerd. Alleen je instellingen worden verwijderd."
+
 
 msgid ""
 "The tray icon didn't close. Log out and back in once this is done to be sure "
 "it's gone."
-msgstr "De systeemvakpictogram didn't sluiten. Log out en terug in zodra dit is done naar zijn sure het's gone."
+msgstr "Het pictogram in het systeemvak is niet afgesloten. Meld je na afloop een keer af en weer aan om zeker te weten dat het weg is."
+
 
 msgid ""
 "Your accounts keep syncing in the background with the OneDrive Client for "
 "Linux."
-msgstr "Je accounts bewaren synchroniseren in de background met de OneDrive Client voor Linux."
+msgstr "Je accounts blijven op de achtergrond synchroniseren met de OneDrive Client for Linux."
+
 
 msgid ""
 "{} was left untouched because its settings folder couldn't be checked: {}"
-msgstr "{} was gelaten untouched omdat zijn instellingenmap niet kon zijn gecontroleerd: {}"
+msgstr "{} is niet aangeraakt omdat de instellingenmap niet kon worden gecontroleerd: {}"
+
 
 msgid ""
 "{} was left untouched because its one-time sync job couldn't be stopped: {}"
-msgstr "{} was gelaten untouched omdat zijn eenmalige synchronisatie taak niet kon zijn gestopt: {}"
+msgstr "{} is niet aangeraakt omdat de eenmalige synchronisatietaak niet kon worden gestopt: {}"
+
 
 msgid "{} was left untouched because its sync service couldn't be stopped: {}"
-msgstr "{} was gelaten untouched omdat zijn synchronisatieservice niet kon zijn gestopt: {}"
+msgstr "{} is niet aangeraakt omdat de synchronisatieservice niet kon worden gestopt: {}"
+
 
 msgid ""
 "{} was stopped, but its service couldn't be disabled. Its files and service "
 "were left intact: {}"
-msgstr "{} was gestopt, maar zijn service niet kon zijn disabled. Its bestanden en service waren gelaten intact: {}"
+msgstr "{} is gestopt, maar de service kon niet worden uitgeschakeld. De bestanden en service zijn intact gelaten: {}"
+
 
 msgid ""
 "{} was stopped, but its service file couldn't be removed. Its account files "
 "were left intact: {}"
-msgstr "{} was gestopt, maar zijn service bestand niet kon zijn verwijderd. Its account bestanden waren gelaten intact: {}"
+msgstr "{} is gestopt, maar het servicebestand kon niet worden verwijderd. De accountbestanden zijn intact gelaten: {}"
+
 
 msgid ""
 "{} was stopped and disabled, but its custom service file at {} was left in "
 "place."
-msgstr "{} was gestopt en disabled, maar zijn aangepaste service bestand bij {} was gelaten in place."
+msgstr "{} is gestopt en uitgeschakeld, maar het aangepaste servicebestand op {} is blijven staan."
+
 
 msgid ""
 "{}: signed out and its sync settings removed. The files in {} are still "
 "there."
-msgstr "{}: afgemeld en zijn synchronisatie-instellingen verwijderd. De bestanden in {} zijn nog daar."
+msgstr "{}: afgemeld en de synchronisatie-instellingen verwijderd. De bestanden in {} staan er nog."
+
 
 msgid ""
 "{} also holds files that aren't the OneDrive client's, so they and the "
 "folder were kept."
-msgstr "{} ook bevat bestanden dat zijn niet de OneDrive-client's, dus they en de map waren bewaard."
+msgstr "{} bevat ook bestanden die niet van de OneDrive-client zijn. Die bestanden en de map zijn daarom bewaard."
+
 
 msgid ""
 "The account services were removed, but systemd couldn't reload its unit "
 "list: {}"
-msgstr "De account services waren verwijderd, maar systemd niet kon herladen zijn eenheid list: {}"
+msgstr "De accountservices zijn verwijderd, maar systemd kon de lijst met services niet opnieuw inlezen: {}"
+
 
 msgid "Couldn't delete {}: {}. Delete it yourself to finish."
-msgstr "Kon niet verwijderen {}: {}. Delete het yourself naar voltooien."
+msgstr "Kan {} niet verwijderen: {}. Verwijder het zelf om dit af te ronden."
+
 
 msgid ""
 "The package wasn't removed (the password prompt may have been cancelled). "
 "Remove \"{}\" with your software manager to finish."
-msgstr "De package was niet verwijderd (de wachtwoord prompt kan hebben geweest cancelled). Remove \"{}\" met je software manager naar voltooien."
+msgstr "Het pakket is niet verwijderd (misschien heb je het wachtwoordvenster gesloten). Verwijder \"{}\" met je pakketbeheerder om dit af te ronden."
+
 
 msgid "Remove the \"{}\" package with your software manager to finish."
-msgstr "Remove de \"{}\" package met je software manager naar voltooien."
+msgstr "Verwijder het pakket \"{}\" met je pakketbeheerder om dit af te ronden."
+
 
 msgid "0 means never. Too low cuts off large transfers."
-msgstr "0 means never. Too low cuts off large transfers."
+msgstr "0 betekent nooit. Een te lage waarde beperkt grote overdrachten."
+
 
 msgid "0 syncs files of any size."
-msgstr "0 syncs bestanden van elke size."
+msgstr "0 synchroniseert bestanden van elke grootte."
+
 
 msgid ""
 "10 to 60 MB, in steps of 5. Bigger pieces can be faster on fast, steady "
 "connections."
-msgstr "10 naar 60 MB, in steps van 5. Bigger pieces kan zijn faster op fast, steady connections."
+msgstr "10 tot 60 MB, in stappen van 5. Grotere blokken kunnen sneller zijn op een snelle, stabiele verbinding."
+
 
 msgid "600 means only you can read them."
-msgstr "600 means alleen je kan lezen them."
+msgstr "600 betekent dat alleen jij de bestanden kunt lezen."
+
 
 msgid "700 means only you can open them."
-msgstr "700 means alleen je kan openen them."
+msgstr "700 betekent dat alleen jij de bestanden kunt openen."
+
 
 msgid "Add the OneDrive folder to the file manager's sidebar"
-msgstr "Add de OneDrive-map naar het bestand manager's sidebar"
+msgstr "OneDrive-map toevoegen aan de zijbalk van de bestandsbeheerder"
+
 
 msgid "Also delete the emptied folders"
-msgstr "Also verwijderen de emptied mappen"
+msgstr "Ook de lege mappen verwijderen"
+
 
 msgid "Always sync files at the top of the OneDrive folder"
-msgstr "Always synchronisatie bestanden bij de top van de OneDrive-map"
+msgstr "Bestanden in de hoofdmap van OneDrive altijd synchroniseren"
+
 
 msgid "Application ID"
-msgstr "Application ID"
+msgstr "Toepassings-id"
+
 
 msgid "As found"
-msgstr "As gevonden"
+msgstr "Zoals gevonden"
+
 
 msgid "Ask for read-only access"
-msgstr "Ask voor alleen-lezen access"
+msgstr "Alleen-lezen toegang aanvragen"
+
 
 msgid "By name, A to Z"
-msgstr "By naam, Een naar Z"
+msgstr "Op naam, A tot Z"
+
 
 msgid "By name, Z to A"
-msgstr "By naam, Z naar Een"
+msgstr "Op naam, Z tot A"
+
 
 msgid "Can fix transfers that stall on some networks and proxies."
-msgstr "Can fix transfers dat stall op enkele networks en proxies."
+msgstr "Kan helpen bij overdrachten die op sommige netwerken of via proxyservers vastlopen."
+
 
 msgid ""
 "Counted in sync checks (set under When to sync). Lower catches missed online "
 "changes sooner but uses more data."
-msgstr "Counted in synchronisatie checks (set under When naar synchronisatie). Lower catches missed online wijzigingen sooner maar uses more data."
+msgstr "Wordt geteld bij synchronisatiecontroles (ingesteld onder Wanneer synchroniseren). Een lagere waarde spoort gemiste online wijzigingen sneller op, maar gebruikt meer gegevens."
+
 
 msgid "Delete files here after they upload"
-msgstr "Delete bestanden hier na they uploaden"
+msgstr "Bestanden hier verwijderen nadat ze zijn geüpload"
+
 
 msgid "Delete permanently online (skip the OneDrive recycle bin)"
-msgstr "Delete permanently online (skip de OneDrive recycle bin)"
+msgstr "Online definitief verwijderen (de OneDrive-prullenbak overslaan)"
+
 
 msgid "Don't check downloads"
-msgstr "Niet controle downloads"
+msgstr "Downloads niet controleren"
+
 
 msgid "Don't check for new client versions"
-msgstr "Niet controle voor nieuwe client versions"
+msgstr "Niet controleren op nieuwe versies van de client"
+
 
 msgid "Don't check uploads"
-msgstr "Niet controle uploads"
+msgstr "Uploads niet controleren"
+
 
 msgid "Don't get instant online changes"
-msgstr "Niet krijgen instant online wijzigingen"
+msgstr "Geen directe online wijzigingen ophalen"
+
 
 msgid "Don't set permissions on downloaded files"
-msgstr "Niet set permissions op gedownload bestanden"
+msgstr "Geen machtigingen instellen voor gedownloade bestanden"
+
 
 msgid "Don't sync files larger than"
-msgstr "Niet synchronisatie bestanden larger than"
+msgstr "Bestanden groter dan niet synchroniseren"
+
 
 msgid "Don't sync if the drive isn't mounted"
-msgstr "Niet synchronisatie als de schijf is niet aangekoppeld"
+msgstr "Niet synchroniseren als de schijf niet is aangekoppeld"
+
 
 msgid "Downloads stop rather than fill the disk."
-msgstr "Downloads stoppen rather than fill de disk."
+msgstr "Downloads worden gestopt voordat ze de schijf vullen."
+
 
 msgid "Drop idle connections after"
-msgstr "Drop idle connections na"
+msgstr "Inactieve verbindingen verbreken na"
+
 
 msgid "Files transferred at once"
-msgstr "Files transferred bij zodra"
+msgstr "Aantal bestanden dat tegelijk wordt overgezet"
+
 
 msgid "Folders to skip must match the whole path"
-msgstr "Folders naar skip moet match de heel pad"
+msgstr "Mappen om over te slaan moeten overeenkomen met het volledige pad"
+
 
 msgid ""
 "For moving files to OneDrive, usually with Upload only. Leaves the folders "
 "behind."
-msgstr "For moving bestanden naar OneDrive, usually met Upload alleen. Leaves de maps behind."
+msgstr "Voor het verplaatsen van bestanden naar OneDrive, meestal met Alleen uploaden. De lege mappen blijven staan."
+
 
 msgid "Full online check every"
-msgstr "Full online controle every"
+msgstr "Volledige online controle om de"
+
 
 msgid "Get online changes through a webhook"
-msgstr "Get online wijzigingen through een webhook"
+msgstr "Online wijzigingen ophalen via een webhook"
+
 
 msgid "Give up connecting after"
-msgstr "Give omhoog connecting na"
+msgstr "Verbinding verbreken na"
+
 
 msgid "Give up on any single request after"
-msgstr "Give omhoog op elke single request na"
+msgstr "Een verzoek afbreken na"
+
 
 msgid "Give up when no data arrives for"
-msgstr "Give omhoog wanneer geen data arrives voor"
+msgstr "Afbreken als er geen gegevens binnenkomen gedurende"
+
 
 msgid ""
 "Helps with apps that save on every keystroke (Obsidian and other note apps)."
-msgstr "Helps met apps dat opslaan op every keystroke (Obsidian en andere note apps)."
+msgstr "Handig voor apps die opslaan bij elke toetsaanslag (zoals Obsidian en andere notitie-apps)."
+
 
 msgid "Identify as"
-msgstr "Identify als"
+msgstr "Herkennen als"
+
 
 msgid "In addition to the system journal the app already reads."
-msgstr "In addition naar de systeem logboek de app al reads."
+msgstr "In aanvulling op het systeemlogboek dat de app al leest."
+
 
 msgid "Items deleted here can't be restored online afterwards."
-msgstr "Items verwijderd hier kan niet zijn restored online afterwards."
+msgstr "Bestanden die hier worden verwijderd, kunnen daarna niet online worden teruggezet."
+
 
 msgid ""
 "Items online that aren't on this computer are deleted online instead of "
 "downloaded. Check with a dry run first."
-msgstr "Items online dat zijn niet op deze computer zijn verwijderd online instead van gedownload. Check met een dry uitvoeren eerst."
+msgstr "Bestanden en mappen die online staan maar niet op deze computer, worden online verwijderd in plaats van gedownload. Controleer dit eerst met een proef."
+
 
 msgid "Keep SharePoint's changed copy as a new version"
-msgstr "Keep SharePoint's gewijzigd kopiëren als een nieuwe versie"
+msgstr "De gewijzigde SharePoint-kopie als nieuwe versie bewaren"
+
 
 msgid "Keep this much disk space free"
-msgstr "Keep dit much disk ruimte vrij"
+msgstr "Deze hoeveelheid schijfruimte vrijhouden"
+
 
 msgid ""
 "Keeps file dates exactly right online, at the cost of a little speed for "
 "small files."
-msgstr "Keeps bestand dates exactly juiste online, bij de cost van een little speed voor small bestanden."
+msgstr "Houdt online bestandsdatums precies gelijk, maar maakt kleine bestanden iets trager."
+
 
 msgid "Largest first"
-msgstr "Largest eerst"
+msgstr "Grootste eerst"
+
 
 msgid "Leave empty for the app's own folder (~/.local/share/drivedeck/logs)."
-msgstr "Leave lege voor de app's eigen map (~/.local/share/drivedeck/logs)."
+msgstr "Laat leeg om de eigen map van de app te gebruiken (~/.local/share/drivedeck/logs)."
+
 
 msgid "Leave empty for the client's own name, which Microsoft throttles least."
-msgstr "Leave lege voor de client's eigen naam, which Microsoft throttles least."
+msgstr "Laat leeg om de standaardnaam van de client te gebruiken. Microsoft beperkt die naam het minst."
+
 
 msgid ""
 "Leaves permissions to the folder (needed on drives that don't support Linux "
 "permissions, like NTFS or exFAT)."
-msgstr "Leaves permissions naar de map (needed op drives dat niet support Linux permissions, zoals NTFS van exFAT)."
+msgstr "Machtigingen overnemen van de map (nodig op schijven die geen Linux-machtigingen ondersteunen, zoals NTFS of exFAT)."
+
 
 msgid "Listen on address"
-msgstr "Listen op adres"
+msgstr "Luisteren op adres"
+
 
 msgid "Listen on port"
-msgstr "Listen op port"
+msgstr "Luisteren op poort"
+
 
 msgid "Log all network traffic"
-msgstr "Log alle network traffic"
+msgstr "Al het netwerkverkeer vastleggen"
+
 
 msgid "Log folder"
-msgstr "Log map"
+msgstr "Logboekmap"
+
 
 msgid "Log routine checks only every"
-msgstr "Log routine checks alleen every"
+msgstr "Gewone controles alleen om de"
+
 
 msgid "Log the speed of each transfer"
-msgstr "Log de speed van each transfer"
+msgstr "De snelheid van elke overdracht vastleggen"
+
 
 msgid "Logging"
-msgstr "Logging"
+msgstr "Logboek"
+
 
 msgid "Lower this if a router or firewall cuts connections that sit idle."
-msgstr "Lower dit als een router van firewall cuts connections dat sit idle."
+msgstr "Verlaag deze waarde als een router of firewall inactieve verbindingen verbreekt."
+
 
 msgid "MB"
 msgstr "MB"
 
+
 msgid "Make OneDrive match this computer exactly"
-msgstr "Make OneDrive match deze computer exactly"
+msgstr "OneDrive precies gelijk maken aan deze computer"
+
 
 msgid "More than 8 rarely helps and can get you throttled by Microsoft."
-msgstr "More than 8 rarely helps en kan krijgen je throttled door Microsoft."
+msgstr "Meer dan 8 helpt zelden en kan ervoor zorgen dat Microsoft je gebruik beperkt."
+
 
 msgid ""
 "Needs a public https address that forwards to this computer. Instant online "
 "changes usually make this unnecessary."
-msgstr "Needs een openbare https adres dat forwards naar deze computer. Instant online wijzigingen usually maken dit unnecessary."
+msgstr "Vereist een openbaar https-adres dat naar deze computer doorstuurt. Directe online wijzigingen maken dit meestal overbodig."
+
 
 msgid "Network"
-msgstr "Network"
+msgstr "Netwerk"
+
 
 msgid ""
 "Normally a clashing local file is kept under a new name. With this on, its "
 "changes are lost."
-msgstr "Normally een clashing lokale bestand is bewaard under een nieuwe naam. With dit op, zijn wijzigingen zijn lost."
+msgstr "Normaal gesproken krijgt een lokaal bestand dat botst een nieuwe naam. Als je dit inschakelt, gaan wijzigingen aan dat bestand verloren."
+
 
 msgid "Notify about every file synced"
-msgstr "Notify about every bestand synced"
+msgstr "Een melding geven voor elk gesynchroniseerd bestand"
+
 
 msgid "Online changes are then picked up at each sync check instead."
-msgstr "Online wijzigingen zijn dan picked omhoog bij each synchronisatie controle instead."
+msgstr "Online wijzigingen worden dan pas opgehaald bij de volgende synchronisatiecontrole."
+
 
 msgid ""
 "Only for SharePoint libraries that change files after upload, which makes "
 "every check fail."
-msgstr "Alleen voor SharePoint libraries dat wijziging bestanden na uploaden, which maakt every controle mislukken."
+msgstr "Alleen voor SharePoint-bibliotheken die bestanden na het uploaden wijzigen. Daardoor mislukt elke controle."
+
 
 msgid "Only for government or national cloud accounts."
-msgstr "Alleen voor overheids van nationale cloud accounts."
+msgstr "Alleen voor accounts van overheden of nationale clouds."
+
 
 msgid ""
 "Only for reporting a problem. The log then holds sign-in tokens: don't share "
 "it without removing them."
-msgstr "Alleen voor reporting een probleem. De logboek dan bevat aanmelding tokens: niet share het zonder removing them."
+msgstr "Alleen bedoeld voor het melden van een probleem. Het logboek bevat dan aanmeldgegevens. Deel het niet voordat je die hebt verwijderd."
+
 
 msgid "Only if your organisation registered its own app for the client."
-msgstr "Alleen als je organisation registered zijn eigen app voor de client."
+msgstr "Alleen als je organisatie zelf een app voor de client heeft geregistreerd."
+
 
 msgid ""
 "Only when SharePoint reports the wrong size for files, so good downloads get "
 "thrown away."
-msgstr "Alleen wanneer SharePoint reports de verkeerde size voor bestanden, dus good downloads krijgen thrown away."
+msgstr "Alleen wanneer SharePoint de verkeerde bestandsgrootte meldt. Anders worden goede downloads weggegooid."
+
 
 msgid "Overwrite local files on a conflict instead of keeping a copy"
-msgstr "Overwrite lokale bestanden op een conflict instead van keeping een kopiëren"
+msgstr "Lokale bestanden bij een conflict overschrijven in plaats van een kopie te bewaren"
+
 
 msgid "Permissions for new files"
-msgstr "Permissions voor nieuwe bestanden"
+msgstr "Machtigingen voor nieuwe bestanden"
+
 
 msgid "Permissions for new folders"
-msgstr "Permissions voor nieuwe mappen"
+msgstr "Machtigingen voor nieuwe mappen"
+
 
 msgid "Public address"
-msgstr "Public adres"
+msgstr "Openbaar adres"
+
 
 msgid ""
 "Put an empty file named .nosync in the mount point while the drive is "
 "unplugged. If it's ever visible, syncing stops instead of deleting "
 "everything online."
-msgstr "Put een lege bestand named .nosync in de aankoppelpunt wijs terwijl de schijf is unplugged. If het's ever visible, synchroniseren stops instead van deleting alles online."
+msgstr "Maak een leeg bestand met de naam .nosync in de map die als koppelpunt dient wanneer de schijf is losgekoppeld. Als het bestand ooit zichtbaar wordt, stopt de synchronisatie in plaats van alles online te verwijderen."
+
 
 msgid "Quiets the log when nothing is changing."
-msgstr "Quiets de logboek wanneer niets is changing."
+msgstr "Houdt het logboek rustig wanneer er niets verandert."
+
 
 msgid "Record who created and last changed each file"
-msgstr "Record wie gemaakt en last gewijzigd each bestand"
+msgstr "Vastleggen wie elk bestand heeft gemaakt en voor het laatst heeft gewijzigd"
+
 
 msgid "Remember server addresses for"
-msgstr "Remember server addresses voor"
+msgstr "Serveradressen onthouden gedurende"
+
 
 msgid "Renew the subscription every"
-msgstr "Renew de subscription every"
+msgstr "Abonnement vernieuwen om de"
+
 
 msgid ""
 "Required for a national cloud; otherwise only if your organisation asks."
-msgstr "Required voor een nationale cloud; otherwise alleen als je organisation asks."
+msgstr "Vereist voor een nationale cloud; anders alleen als je organisatie dit vraagt."
+
 
 msgid "Retry a failed subscription after"
-msgstr "Retry een mislukt subscription na"
+msgstr "Een mislukte abonnementsaanvraag opnieuw proberen na"
 
 msgid ""
 "SharePoint rewrites Office, PDF and HTML files after upload. Normally the "
