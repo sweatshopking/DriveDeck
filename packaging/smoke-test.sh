@@ -43,9 +43,10 @@ case "$kind" in
         apt-get update -qq
         # What every Linux desktop already has, and AppImages deliberately take from the system
         # rather than bundling (fonts, X11/Wayland and EGL must match the desktop), plus the
-        # test tools.
+        # test tools. libxkbcommon(-x11) is left out on purpose: the AppImage must bring it,
+        # because the AppImage catalog's test system doesn't have it.
         apt-get install -y -qq --no-install-recommends fontconfig fonts-dejavu-core \
-            libx11-6 libx11-xcb1 libxcursor1 libxrandr2 libxi6 libxkbcommon0 libxkbcommon-x11-0 \
+            libx11-6 libx11-xcb1 libxcursor1 libxrandr2 libxi6 \
             libwayland-client0 libwayland-cursor0 libwayland-egl1 libegl1 \
             xvfb imagemagick >/dev/null
         image=("$DIST"/DriveDeck-*-"$ARCH".AppImage)
