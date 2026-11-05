@@ -155,11 +155,44 @@ fn release_json(url: &str) -> Result<Option<serde_json::Value>, ()> {
 }
 
 /// The newer version, if there is one (None also when GitHub couldn't be asked).
+/// The window's check, so it also tells the tray (see `hint_file`).
 pub fn newer_version() -> Option<String> {
-    latest_version()
+    let found = latest_version()
         .ok()
         .flatten()
-        .filter(|l| is_newer(l, env!("CARGO_PKG_VERSION")))
+        .filter(|l| is_newer(l, env!("CARGO_PKG_VERSION")));
+    if let Some(v) = &found {
+        write_hint(v);
+    }
+    found
+}
+
+/// Where the window leaves the newer version it found, for the tray (which only checks once a
+/// day by itself). In the runtime directory, so a reboot clears it.
+fn hint_file() -> PathBuf {
+    crate::core::runtime_dir().join("update-available")
+}
+
+fn write_hint(version: &str) {
+    let file = hint_file();
+    if let Some(dir) = file.parent() {
+        let _ = std::fs::create_dir_all(dir);
+    }
+    let _ = crate::core::atomic_write(&file, version.as_bytes());
+}
+
+/// What the window found, if it is still newer than this running copy (after an update the
+/// leftover file names the version just installed, or an older one, and is ignored).
+pub fn hinted_version() -> Option<String> {
+    hint_checked(
+        &std::fs::read_to_string(hint_file()).ok()?,
+        env!("CARGO_PKG_VERSION"),
+    )
+}
+
+fn hint_checked(text: &str, current: &str) -> Option<String> {
+    let v = text.trim();
+    (is_newer(v, current)).then(|| v.trim_start_matches('v').to_string())
 }
 
 // ---------------------------------------------------------------- updating this app
@@ -613,6 +646,16 @@ mod tests {
         );
         assert_eq!(sum_for(&sums, "other"), None);
         assert_eq!(sum_for("xyz  DriveDeck", "DriveDeck"), None);
+    }
+
+    #[test]
+    fn the_windows_hint_counts_only_while_it_is_newer() {
+        assert_eq!(hint_checked("1.6.0\n", "1.5.1"), Some("1.6.0".into()));
+        assert_eq!(hint_checked("v1.6.0", "1.5.1"), Some("1.6.0".into()));
+        assert_eq!(hint_checked("1.5.1", "1.5.1"), None);
+        assert_eq!(hint_checked("1.5.0", "1.5.1"), None);
+        assert_eq!(hint_checked("garbage", "1.5.1"), None);
+        assert_eq!(hint_checked("", "1.5.1"), None);
     }
 
     #[test]
