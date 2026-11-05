@@ -1012,14 +1012,14 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
         round = round.wrapping_add(1);
         let settings = AppSettings::load();
         // a window that found a new version tells us at once, without waiting for the daily look
-        if settings.check_updates.unwrap_or(true) {
-            if let Some(v) = crate::update::hinted_version() {
-                let _ = handle.update(|t: &mut Tray| {
-                    if t.update.as_deref() != Some(v.as_str()) {
-                        t.update = Some(v);
-                    }
-                });
-            }
+        if let Some(v) =
+            crate::update::hinted_version().filter(|_| settings.check_updates.unwrap_or(true))
+        {
+            let _ = handle.update(|t: &mut Tray| {
+                if t.update.as_deref() != Some(v.as_str()) {
+                    t.update = Some(v);
+                }
+            });
         }
         // The lookup may use desktop D-Bus; do it on this polling thread once per round so
         // ksni callbacks only ever read the cache.
