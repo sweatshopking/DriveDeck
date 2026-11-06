@@ -71,5 +71,5 @@ PATH="$tmp/bin:$PATH" XDG_RUNTIME_DIR="$tmp/runtime" HOME="$tmp/home" dbus-run-s
         echo "error: expected $expected, got $opened" >&2
         exit 1
     }
-    printf '%s\n' "$opened"
+    echo "$opened"
 ' -- "$BIN" "$tmp"
