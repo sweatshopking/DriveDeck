@@ -3738,5 +3738,11 @@ msgstr "Инструмент буфера обмена не найден. Исп
 msgid "Saved as {}."
 msgstr "Сохранено как {}."
 
+msgid "Search OneDrive from the GNOME overview"
+msgstr "Поиск в OneDrive из обзора GNOME"
+
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr "Ввод в обзоре выполняет поиск в OneDrive. Введённый текст отправляется в Microsoft."
+
 msgid "The report (you can edit or delete anything here)"
 msgstr "Отчёт (здесь можно изменить или удалить что угодно)"

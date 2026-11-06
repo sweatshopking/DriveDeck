@@ -5316,6 +5316,8 @@ fn prepare_app_page(ctx: &Shared) {
     ui.set_app_badges(settings.show_badges.unwrap_or(true));
     ui.set_app_krunner_supported(core::which("krunner").is_some());
     ui.set_app_krunner(settings.krunner_search == Some(true));
+    ui.set_app_gnome_search_supported(crate::gnomesearch::provider_file_exists());
+    ui.set_app_gnome_search(settings.gnome_search == Some(true));
     ui.set_app_dolphin_offer(crate::badges::dolphin_offer());
     let check = settings.check_updates.unwrap_or(true);
     ui.set_app_check_updates(check);
@@ -6501,6 +6503,16 @@ pub fn run(account: Option<String>) {
             ui.set_app_krunner(!on);
         }
         // the tray adds or removes KRunner's plugin description within a few seconds
+    });
+    on!(on_app_gnome_search_toggled, |c| {
+        let ui = c.borrow().ui();
+        let on = ui.get_app_gnome_search();
+        let mut s = AppSettings::load();
+        s.gnome_search = on.then_some(true);
+        if let Err(e) = s.save() {
+            ui.set_app_msg(ss(crate::tr!("Couldn't save the setting: {}", e)));
+            ui.set_app_gnome_search(!on);
+        }
     });
     on!(on_app_badges_toggled, |c| {
         let ui = c.borrow().ui();

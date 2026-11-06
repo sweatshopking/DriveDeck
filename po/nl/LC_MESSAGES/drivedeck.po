@@ -4681,5 +4681,11 @@ msgstr "Geen klembordprogramma gevonden. Gebruik in plaats daarvan Als bestand o
 msgid "Saved as {}."
 msgstr "Opgeslagen als {}."
 
+msgid "Search OneDrive from the GNOME overview"
+msgstr "OneDrive zoeken vanuit het GNOME-overzicht"
+
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr "Typen in het overzicht zoekt in je OneDrive. Wat je typt wordt naar Microsoft gestuurd."
+
 msgid "The report (you can edit or delete anything here)"
 msgstr "Het rapport (je kunt hier alles bewerken of verwijderen)"

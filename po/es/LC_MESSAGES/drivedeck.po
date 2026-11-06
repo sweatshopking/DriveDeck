@@ -3728,5 +3728,11 @@ msgstr "No se encontró una herramienta del portapapeles. Usa Guardar como archi
 msgid "Saved as {}."
 msgstr "Guardado como {}."
 
+msgid "Search OneDrive from the GNOME overview"
+msgstr "Buscar en OneDrive desde la vista general de GNOME"
+
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr "Al escribir en la vista general se busca en tu OneDrive. Lo que escribas se envía a Microsoft."
+
 msgid "The report (you can edit or delete anything here)"
 msgstr "El informe (puedes editar o borrar cualquier cosa aquí)"

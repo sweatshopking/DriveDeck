@@ -18,6 +18,7 @@ mod doctor;
 mod filewin;
 mod folderchecks;
 mod glass;
+mod gnomesearch;
 mod graph;
 mod i18n;
 mod popup;
@@ -159,6 +160,7 @@ fn main() {
         }
         Some("--sync-now") => std::process::exit(run_sync_now()),
         Some("--update") => std::process::exit(run_update()),
+        Some("--gnome-search-test") => gnomesearch::test_service(),
         Some("--version") => println!("{} {}", core::APP_NAME, env!("CARGO_PKG_VERSION")),
         Some("--doctor") if args.get(1).map(String::as_str) == Some("--report") => {
             print!("{}", doctor::report())

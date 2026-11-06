@@ -264,6 +264,7 @@ It covers what the OneDrive app on Windows does, and then some. In short:
   content, including ones that aren't on this computer, and opens the synced copy, or the file
   on the OneDrive website. Off until you turn it on in *App settings*, because what you type
   there is sent to Microsoft.
+- **GNOME overview search** works with the deb/rpm packages once switched on in *App settings*.
 ### Settings and control
 
 - **Every client setting, in plain words.** An *Advanced* section covers the rest of the client's

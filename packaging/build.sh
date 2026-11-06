@@ -133,6 +133,8 @@ stage_tree() {
     chmod 755 "$dest/usr/share/kio/servicemenus/$APP.desktop"
     install -Dm644 "$ROOT/packaging/$APP-servicemenu-office.desktop" "$dest/usr/share/kio/servicemenus/$APP-office.desktop"
     chmod 755 "$dest/usr/share/kio/servicemenus/$APP-office.desktop"
+    install -Dm644 "$ROOT/packaging/io.github.sweatshopking.DriveDeck.search-provider.ini" \
+        "$dest/usr/share/gnome-shell/search-providers/io.github.sweatshopking.DriveDeck.search-provider.ini"
     install -Dm644 "$ROOT/LICENSE" "$dest/usr/share/licenses/$APP/LICENSE"
     install -Dm644 "$ROOT/packaging/THIRD-PARTY.md" "$dest/usr/share/doc/$APP/THIRD-PARTY.md"
     # Dolphin (Plasma 6) badges; harmless elsewhere: nothing else loads it

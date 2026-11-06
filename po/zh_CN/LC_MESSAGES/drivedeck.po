@@ -3719,5 +3719,11 @@ msgstr "未找到剪贴板工具。请改用保存为文件。"
 msgid "Saved as {}."
 msgstr "已保存为 {}。"
 
+msgid "Search OneDrive from the GNOME overview"
+msgstr "从 GNOME 概览搜索 OneDrive"
+
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr "在概览中输入即可搜索 OneDrive。你输入的内容会发送给 Microsoft。"
+
 msgid "The report (you can edit or delete anything here)"
 msgstr "报告（你可以在这里编辑或删除任何内容）"

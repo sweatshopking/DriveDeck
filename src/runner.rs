@@ -26,7 +26,7 @@ const PATH: &str = "/runner";
 /// Shorter searches would ask Microsoft after every other keystroke and match nearly everything
 const MIN_LETTERS: usize = 3;
 /// KRunner asks again after each keystroke; only the last one of a burst is worth a request
-const DEBOUNCE: Duration = Duration::from_millis(300);
+pub(crate) const DEBOUNCE: Duration = Duration::from_millis(300);
 /// The answer is waited for this long in all (KRunner drops slow runners' results anyway)
 const WAIT: Duration = Duration::from_secs(4);
 const PER_ACCOUNT: usize = 8;
@@ -96,7 +96,7 @@ fn restart_krunner() {
 // ---------------------------------------------------------------- what a search returns
 
 /// KRunner's `RemoteMatch`: id, text, icon, category relevance, relevance, properties
-type Match = (
+pub(crate) type Match = (
     String,
     String,
     String,
@@ -114,7 +114,7 @@ fn text_value(s: impl Into<String>) -> OwnedValue {
         .unwrap_or_else(|_| OwnedValue::from(false))
 }
 
-fn icon_for(name: &str, folder: bool) -> &'static str {
+pub(crate) fn icon_for(name: &str, folder: bool) -> &'static str {
     if folder {
         return "folder";
     }
@@ -189,7 +189,7 @@ fn name_matches(name: &str, query: &str) -> bool {
 }
 
 /// Whether a query is long enough to be worth asking Microsoft about
-fn worth_asking(query: &str) -> bool {
+pub(crate) fn worth_asking(query: &str) -> bool {
     query.trim().chars().count() >= MIN_LETTERS
 }
 
@@ -390,7 +390,7 @@ fn local_match(info: &AccountInfo, path: &Path, folder: bool, rank: usize) -> Ma
 }
 
 /// Every signed-in account searched at once; whoever answers in time is included
-fn search_all(query: &str) -> Vec<Match> {
+pub(crate) fn search_all(query: &str) -> Vec<Match> {
     let accounts = accounts();
     let (tx, rx) = std::sync::mpsc::channel();
     for (n, info) in accounts.iter().cloned().enumerate() {
@@ -443,7 +443,7 @@ fn search_all(query: &str) -> Vec<Match> {
 // ---------------------------------------------------------------- opening a result
 
 #[derive(Debug, PartialEq)]
-enum Open {
+pub(crate) enum Open {
     Url(String),
     File(PathBuf),
     /// A file found on this computer: its web address is asked for when it's wanted
@@ -452,7 +452,7 @@ enum Open {
 
 /// What Run should open. KRunner hands back the id we gave it, but anything on the session bus
 /// can call Run, so only a https address, or a file inside one of the sync folders, is opened.
-fn open_for(id: &str, action: &str, sync_dirs: &[PathBuf]) -> Option<Open> {
+pub(crate) fn open_for(id: &str, action: &str, sync_dirs: &[PathBuf]) -> Option<Open> {
     let (url, local) = decode_id(id);
     let online = url
         .starts_with("https://")
@@ -475,7 +475,7 @@ fn open_for(id: &str, action: &str, sync_dirs: &[PathBuf]) -> Option<Open> {
     }
 }
 
-fn run(id: &str, action: &str) {
+pub(crate) fn run(id: &str, action: &str) {
     let dirs: Vec<PathBuf> = accounts().into_iter().map(|a| a.sync_dir).collect();
     match open_for(id, action, &dirs) {
         Some(Open::Url(u)) => core::run_detached("xdg-open", &[&u]),
@@ -495,10 +495,10 @@ struct Slot<T> {
     closed: bool,
 }
 
-struct Sender<T>(Arc<Mutex<Slot<T>>>);
-struct Receiver<T>(Arc<Mutex<Slot<T>>>);
+pub(crate) struct Sender<T>(Arc<Mutex<Slot<T>>>);
+pub(crate) struct Receiver<T>(Arc<Mutex<Slot<T>>>);
 
-fn hand_over<T>() -> (Sender<T>, Receiver<T>) {
+pub(crate) fn hand_over<T>() -> (Sender<T>, Receiver<T>) {
     let slot = Arc::new(Mutex::new(Slot {
         value: None,
         waker: None,
@@ -508,7 +508,7 @@ fn hand_over<T>() -> (Sender<T>, Receiver<T>) {
 }
 
 impl<T> Sender<T> {
-    fn send(self, value: T) {
+    pub(crate) fn send(self, value: T) {
         self.0.lock().unwrap_or_else(|e| e.into_inner()).value = Some(value);
     }
 }

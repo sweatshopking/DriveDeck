@@ -3912,5 +3912,11 @@ msgstr "Kein Zwischenablageprogramm gefunden. Verwende stattdessen Als Datei spe
 msgid "Saved as {}."
 msgstr "Gespeichert als {}."
 
+msgid "Search OneDrive from the GNOME overview"
+msgstr "OneDrive in der GNOME-Übersicht durchsuchen"
+
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr "Wenn du in der Übersicht tippst, wird dein OneDrive durchsucht. Deine Eingabe wird an Microsoft gesendet."
+
 msgid "The report (you can edit or delete anything here)"
 msgstr "Der Bericht (du kannst hier alles bearbeiten oder löschen)"

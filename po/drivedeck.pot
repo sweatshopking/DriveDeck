@@ -1,6 +1,12 @@
 #
 msgid ""
 msgstr ""
+
+msgid "Search OneDrive from the GNOME overview"
+msgstr ""
+
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2026-10-30 06:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"

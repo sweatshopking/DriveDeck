@@ -3728,5 +3728,11 @@ msgstr "Nessuno strumento per gli appunti trovato. Usa invece Salva come file."
 msgid "Saved as {}."
 msgstr "Salvato come {}."
 
+msgid "Search OneDrive from the GNOME overview"
+msgstr "Cerca in OneDrive dalla panoramica di GNOME"
+
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr "Digitando nella panoramica cerchi nel tuo OneDrive. Ciò che digiti viene inviato a Microsoft."
+
 msgid "The report (you can edit or delete anything here)"
 msgstr "Il rapporto (qui puoi modificare o eliminare qualsiasi cosa)"

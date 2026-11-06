@@ -859,7 +859,10 @@ export component AppWindow inherits Window {
     // search OneDrive from KRunner (shown only where KRunner is installed)
     in-out property <bool> app-krunner;
     in property <bool> app-krunner-supported;
+    in property <bool> app-gnome-search-supported;
+    in-out property <bool> app-gnome-search;
     callback app-krunner-toggled();
+    callback app-gnome-search-toggled();
     in property <bool> app-dolphin-offer;
     in property <bool> app-dolphin-busy;
     in property <string> app-badges-msg;
@@ -2606,6 +2609,16 @@ export component AppWindow inherits Window {
                             }
                             if root.app-krunner-supported: Hint {
                                 text: @tr("Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches.");
+                            }
+                            if root.app-gnome-search-supported: CheckBox {
+                                text: @tr("Search OneDrive from the GNOME overview");
+                                checked <=> root.app-gnome-search;
+                                toggled => {
+                                    root.app-gnome-search-toggled();
+                                }
+                            }
+                            if root.app-gnome-search-supported: Hint {
+                                text: @tr("Typing in the overview searches your OneDrive. What you type is sent to Microsoft.");
                             }
                             CheckBox {
                                 text: @tr("Tell me when a new version is out");

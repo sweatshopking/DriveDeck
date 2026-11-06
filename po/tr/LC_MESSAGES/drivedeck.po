@@ -3728,5 +3728,11 @@ msgstr "Pano aracı bulunamadı. Bunun yerine Dosya olarak kaydet'i kullanın."
 msgid "Saved as {}."
 msgstr "{} olarak kaydedildi."
 
+msgid "Search OneDrive from the GNOME overview"
+msgstr "GNOME genel bakışından OneDrive'da ara"
+
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr "Genel bakışta yazdıklarınız OneDrive'da aranır. Yazdıklarınız Microsoft'a gönderilir."
+
 msgid "The report (you can edit or delete anything here)"
 msgstr "Rapor (burada her şeyi düzenleyebilir veya silebilirsiniz)"

@@ -3728,5 +3728,11 @@ msgstr "Aucun outil de presse-papiers trouvé. Utilisez plutôt Enregistrer dans
 msgid "Saved as {}."
 msgstr "Enregistré sous {}."
 
+msgid "Search OneDrive from the GNOME overview"
+msgstr "Rechercher dans OneDrive depuis la vue d'ensemble GNOME"
+
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr "La saisie dans la vue d'ensemble recherche dans votre OneDrive. Votre saisie est envoyée à Microsoft."
+
 msgid "The report (you can edit or delete anything here)"
 msgstr "Le rapport (vous pouvez tout modifier ou supprimer ici)"

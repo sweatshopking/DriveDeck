@@ -353,6 +353,29 @@ pass.
 
 ---
 
+## C8 · Copilot · GNOME search provider
+
+### Done notes
+
+1. Shared KRunner search helpers and result data with the new provider in `src/runner.rs` and added `src/gnomesearch.rs`, without changing KRunner behavior.
+2. Added the opt-in GNOME SearchProvider2 service, five-second setting/provider-file loop, safe activation, Office search launch, and test hook in `src/gnomesearch.rs` and `src/main.rs`.
+3. Added the default-off `gnome_search` setting in `src/core.rs`.
+4. Added the package-only settings checkbox, hint, provider-file visibility, and save callback in `ui/app.slint` and `src/ui.rs`.
+5. Started the provider from the tray in `src/tray.rs`; inspected `src/uninstall.rs` and made no change because it removes user-owned files only and does not remove package-owned system files.
+6. Installed the exact provider file in deb/rpm staging in `packaging/build.sh`, `packaging/drivedeck.spec.in`, and `packaging/io.github.sweatshopking.DriveDeck.search-provider.ini`; documented package support in `README.md`.
+7. Added translated GNOME strings by hand in `po/drivedeck.pot` and all 11 catalogs, plus the private-bus check in `scripts/gnome-search-check.sh`.
+
+Tests:
+
+- Term joining and Office URL encoding passed in `src/gnomesearch.rs`.
+- Result metadata dictionaries passed for file, folder, and web-only hits in `src/gnomesearch.rs`.
+- Activation rejected non-HTTPS and outside-sync-folder paths in `src/gnomesearch.rs`.
+- Provider-file existence decisions passed in `src/gnomesearch.rs`.
+- `scripts/gnome-search-check.sh` passed on a private session bus; `ls /run/user/1000/doc` returned `by-app`.
+- `cargo fmt --check`, Clippy, `cargo test --locked` (159 passed, 1 ignored), translation completeness, and PO quality all passed.
+
+---
+
 ## Claude's tasks (Copilot: don't start these)
 
 - K1 Warn when syncing has quietly stalled (service running, no successful sync for hours).

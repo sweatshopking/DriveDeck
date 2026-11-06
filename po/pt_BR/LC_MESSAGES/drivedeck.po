@@ -3728,5 +3728,11 @@ msgstr "Nenhuma ferramenta de área de transferência foi encontrada. Use Salvar
 msgid "Saved as {}."
 msgstr "Salvo como {}."
 
+msgid "Search OneDrive from the GNOME overview"
+msgstr "Pesquisar no OneDrive pela visão geral do GNOME"
+
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr "Digitar na visão geral pesquisa seu OneDrive. O que você digitar será enviado à Microsoft."
+
 msgid "The report (you can edit or delete anything here)"
 msgstr "O relatório (você pode editar ou apagar qualquer coisa aqui)"

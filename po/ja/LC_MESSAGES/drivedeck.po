@@ -3719,5 +3719,11 @@ msgstr "クリップボードのツールが見つかりません。代わりに
 msgid "Saved as {}."
 msgstr "{} として保存しました。"
 
+msgid "Search OneDrive from the GNOME overview"
+msgstr "GNOMEの概要からOneDriveを検索"
+
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr "概要で入力するとOneDriveを検索します。入力した内容はMicrosoftに送信されます。"
+
 msgid "The report (you can edit or delete anything here)"
 msgstr "レポート（ここでは何でも編集または削除できます）"

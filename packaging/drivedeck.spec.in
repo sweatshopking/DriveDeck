@@ -47,4 +47,5 @@ cp -a %{stage}/. %{buildroot}/
 /usr/share/icons/hicolor/scalable/status/drivedeck-*.svg
 /usr/share/kio/servicemenus/drivedeck.desktop
 /usr/share/kio/servicemenus/drivedeck-office.desktop
+/usr/share/gnome-shell/search-providers/io.github.sweatshopking.DriveDeck.search-provider.ini
 @PLUGIN@

@@ -1467,6 +1467,7 @@ pub fn run() {
     share::refresh_user_icons();
     // answers KRunner's searches while the user has that switched on
     crate::runner::start();
+    crate::gnomesearch::start();
     core::repair_managed_units();
     if recovered.is_ok() {
         core::start_idle_units(&AppSettings::load());
