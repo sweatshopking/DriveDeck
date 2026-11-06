@@ -61,6 +61,20 @@ sync client, syncing issues should go to the original app, which is linked above
   </tr>
 </table>
 
+## New in 1.6.0
+
+- **Report a bug, built in.** *App settings → Something not right? → Report a bug…* collects what
+  a fix needs (versions, how it was installed, your distribution, desktop and kernel, the sync
+  engine's recent status lines) and shows you the whole report before anything leaves your
+  computer. File names, your email address, user and computer names and sign-in details are left
+  out, and you can edit or delete anything in it. Then open a pre-filled GitHub issue, copy it or
+  save it as a file. Nothing is sent by the app itself. From a terminal: `drivedeck --report-bug`.
+- **Search OneDrive from the GNOME overview** (deb and rpm packages). Off by default; switch it on
+  in *App settings*. What you type is sent to Microsoft only while it's on.
+- **The tray hears about updates sooner.** When the window finds a new version, the tray menu
+  offers *Update to version X now* straight away, and drops the offer again if the release is
+  withdrawn.
+
 ## New in 1.5.1
 
 - **KRunner search finds files by name straight away.** Microsoft's search can miss files it
