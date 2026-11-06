@@ -2661,7 +2661,7 @@ export component AppWindow inherits Window {
                             }
                         }
                     }
-                    Card {
+                    if !root.app-bug-visible: Card {
                         VerticalLayout {
                             padding: 14px;
                             spacing: 8px;
