@@ -5,10 +5,13 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BIN="$ROOT/target/debug/drivedeck"
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
-mkdir -p "$tmp/runtime" "$tmp/home/.config/onedrive"
+mkdir -p "$tmp/runtime" "$tmp/home/.config/onedrive" "$tmp/bin"
+# A stand-in xdg-open that only records the address, so the check never opens a real browser
+printf '#!/bin/sh\nprintf "%%s\\n" "$1" >> "%s/opened"\n' "$tmp" > "$tmp/bin/xdg-open"
+chmod +x "$tmp/bin/xdg-open"
 chmod 700 "$tmp/runtime"
 
-XDG_RUNTIME_DIR="$tmp/runtime" HOME="$tmp/home" dbus-run-session -- bash -c '
+PATH="$tmp/bin:$PATH" DISPLAY= WAYLAND_DISPLAY= XDG_RUNTIME_DIR="$tmp/runtime" HOME="$tmp/home" dbus-run-session -- bash -c '
     set -euo pipefail
     "$1" --gnome-search-test >"$2/provider.log" 2>&1 &
     pid=$!
@@ -41,3 +44,8 @@ XDG_RUNTIME_DIR="$tmp/runtime" HOME="$tmp/home" dbus-run-session -- bash -c '
         --object-path /io/github/sweatshopking/DriveDeck/GnomeSearch \
         --method org.gnome.Shell.SearchProvider2.LaunchSearch "['\''x'\'']" 0
 ' -- "$BIN" "$tmp"
+# LaunchSearch must have asked for exactly the Office search page; ActivateResult of a bad
+# address must have opened nothing
+sleep 0.3
+test "$(cat "$tmp/opened")" = "https://www.office.com/search?q=x"
+echo "LaunchSearch opened (recorded, not a real browser): $(cat "$tmp/opened")"
