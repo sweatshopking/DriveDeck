@@ -157,14 +157,26 @@ fn release_json(url: &str) -> Result<Option<serde_json::Value>, ()> {
 /// The newer version, if there is one (None also when GitHub couldn't be asked).
 /// The window's check, so it also tells the tray (see `hint_file`).
 pub fn newer_version() -> Option<String> {
-    let found = latest_version()
+    let answer = latest_version();
+    let found = answer
+        .as_ref()
         .ok()
+        .cloned()
         .flatten()
         .filter(|l| is_newer(l, env!("CARGO_PKG_VERSION")));
-    if let Some(v) = &found {
-        write_hint(v);
+    match (&found, &answer) {
+        (Some(v), _) => write_hint(v),
+        // GitHub answered and there is nothing newer (a withdrawn release, or already updated)
+        (None, Ok(_)) => clear_hint(),
+        // couldn't ask: leave what's there
+        (None, Err(())) => {}
     }
     found
+}
+
+/// Forgets the version the window found: GitHub has just said there is nothing newer.
+pub fn clear_hint() {
+    let _ = std::fs::remove_file(hint_file());
 }
 
 /// Where the window leaves the newer version it found, for the tray (which only checks once a

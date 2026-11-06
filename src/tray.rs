@@ -1386,14 +1386,20 @@ fn check_for_update(handle: &ksni::blocking::Handle<Tray>) {
     check_for_client_update();
     let latest = match crate::update::latest_version() {
         Ok(Some(v)) => v,
-        // nothing to offer: look again tomorrow, as usual
-        Ok(None) => return,
+        // nothing to offer: forget any version offered before, and look again tomorrow
+        Ok(None) => {
+            crate::update::clear_hint();
+            handle.update(|t: &mut Tray| t.update = None);
+            return;
+        }
         Err(()) => {
             UPDATE_CHECK_FAILED.store(true, Ordering::Relaxed);
             return;
         }
     };
     if !crate::update::is_newer(&latest, env!("CARGO_PKG_VERSION")) {
+        crate::update::clear_hint();
+        handle.update(|t: &mut Tray| t.update = None);
         return;
     }
     let v = latest;
