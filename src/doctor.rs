@@ -503,7 +503,7 @@ pub struct BugIssue {
     pub needs_paste: bool,
 }
 
-fn percent_encode(s: &str) -> String {
+pub(crate) fn percent_encode(s: &str) -> String {
     let mut out = String::new();
     for byte in s.as_bytes() {
         if byte.is_ascii_alphanumeric() || b"-_.~".contains(byte) {
@@ -516,7 +516,11 @@ fn percent_encode(s: &str) -> String {
 }
 
 pub fn bug_title(description: &str) -> String {
-    let first = description.lines().next().unwrap_or_default();
+    let first = description
+        .lines()
+        .map(str::trim)
+        .find(|l| !l.is_empty())
+        .unwrap_or_default();
     if first.is_empty() {
         return "Bug report".into();
     }
@@ -692,6 +696,11 @@ mod tests {
     #[test]
     fn issue_titles_use_first_line_and_are_limited() {
         assert_eq!(bug_title(""), "Bug report");
+        assert_eq!(bug_title("  \n\n"), "Bug report");
+        assert_eq!(
+            bug_title("  \nThe tray crashes"),
+            "Bug report: The tray crashes"
+        );
         assert_eq!(
             bug_title("first line\nsecond line"),
             "Bug report: first line"

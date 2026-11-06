@@ -9,6 +9,7 @@ use std::time::Duration;
 use zbus::zvariant::{OwnedValue, Value};
 
 use crate::core::{self, AppSettings};
+use crate::doctor::percent_encode;
 use crate::runner::{self, Match};
 
 const SERVICE: &str = "io.github.sweatshopking.DriveDeck.GnomeSearch";
@@ -32,18 +33,6 @@ fn text_value(s: impl Into<String>) -> OwnedValue {
 
 fn terms_text(terms: &[String]) -> String {
     terms.join(" ")
-}
-
-fn percent_encode(s: &str) -> String {
-    let mut out = String::new();
-    for byte in s.as_bytes() {
-        if byte.is_ascii_alphanumeric() || b"-_.~".contains(byte) {
-            out.push(*byte as char);
-        } else {
-            out.push_str(&format!("%{byte:02X}"));
-        }
-    }
-    out
 }
 
 fn office_url(terms: &[String]) -> String {
@@ -130,6 +119,8 @@ impl GnomeSearch {
             if current(&newest) && runner::worth_asking(&query) {
                 let found = runner::search_all(&query);
                 let mut metas = metas.lock().unwrap_or_else(|e| e.into_inner());
+                // only the newest search's results are ever asked about
+                metas.clear();
                 ids = found
                     .iter()
                     .map(|item| {
@@ -168,13 +159,16 @@ impl GnomeSearch {
     }
 
     fn activate_result(&self, identifier: String, _terms: Vec<String>, _timestamp: u32) {
-        let dirs: Vec<PathBuf> = crate::core::discover(&AppSettings::load())
-            .into_iter()
-            .map(|a| a.sync_dir)
-            .collect();
-        if activation_allowed(&identifier, &dirs) {
-            runner::run(&identifier, "");
-        }
+        // may look up an address online: not on the D-Bus thread
+        std::thread::spawn(move || {
+            let dirs: Vec<PathBuf> = crate::core::discover(&AppSettings::load())
+                .into_iter()
+                .map(|a| a.sync_dir)
+                .collect();
+            if activation_allowed(&identifier, &dirs) {
+                runner::run(&identifier, "");
+            }
+        });
     }
 
     fn launch_search(&self, terms: Vec<String>, _timestamp: u32) {

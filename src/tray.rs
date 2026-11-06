@@ -964,6 +964,8 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
     tray_started();
     let mut replaced_seen = false;
     let mut had_stalls = false;
+    // the version last taken from the window's hint file
+    let mut from_hint: Option<String> = None;
     let mut round = 0u32;
     // first look for a new version a minute in (not in the rush of logging in), then daily
     let mut next_update_check = Instant::now() + Duration::from_secs(60);
@@ -1011,15 +1013,17 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
         }
         round = round.wrapping_add(1);
         let settings = AppSettings::load();
-        // a window that found a new version tells us at once, without waiting for the daily look
-        if let Some(v) =
-            crate::update::hinted_version().filter(|_| settings.check_updates.unwrap_or(true))
-        {
-            let _ = handle.update(|t: &mut Tray| {
-                if t.update.as_deref() != Some(v.as_str()) {
-                    t.update = Some(v);
-                }
+        // a window that found a new version tells us at once, without waiting for the daily look;
+        // when the window later finds nothing newer it removes the hint, and the offer goes
+        let hinted =
+            crate::update::hinted_version().filter(|_| settings.check_updates.unwrap_or(true));
+        if hinted != from_hint {
+            let _ = handle.update(|t: &mut Tray| match &hinted {
+                Some(v) => t.update = Some(v.clone()),
+                None if t.update == from_hint => t.update = None,
+                None => {}
             });
+            from_hint = hinted;
         }
         // The lookup may use desktop D-Bus; do it on this polling thread once per round so
         // ksni callbacks only ever read the cache.

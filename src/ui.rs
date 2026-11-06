@@ -6393,7 +6393,10 @@ pub fn run(account: Option<String>) {
         bg(crate::doctor::bug_report_details, |ctx, details| {
             let ui = ctx.borrow().ui();
             ui.set_app_bug_busy(false);
-            ui.set_app_bug_report(ss(details));
+            // cancelled while it was being collected: don't bring the text back
+            if ui.get_app_bug_visible() {
+                ui.set_app_bug_report(ss(details));
+            }
         });
     });
     on!(on_app_bug_open, |c| {
