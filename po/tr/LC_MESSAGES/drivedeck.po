@@ -3688,3 +3688,45 @@ msgstr "Bu uygulamanın {} sürümü çıktı. Sistem tepsisindeki OneDrive simg
 #: src/update.rs
 msgid "{} The download page is open in your browser instead."
 msgstr "{} Bunun yerine indirme sayfası tarayıcınızda açıldı."
+
+msgid "Report a bug…"
+msgstr "Hata bildir…"
+
+msgid "Report a bug"
+msgstr "Hata bildir"
+
+msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
+msgstr "Hata raporuna konulacaklar bunlardır. Hiçbir şey gönderilmedi. Okuyun, paylaşmak istemediklerinizi çıkarın ve nasıl göndereceğinizi seçin."
+
+msgid "What were you doing, and what went wrong?"
+msgstr "Ne yapıyordunuz ve ne ters gitti?"
+
+msgid "Open GitHub issue"
+msgstr "GitHub sorununu aç"
+
+msgid "Copy to clipboard"
+msgstr "Panoya kopyala"
+
+msgid "Save as a file"
+msgstr "Dosya olarak kaydet"
+
+msgid "The full report was copied to your clipboard. Paste it below the line in the GitHub issue."
+msgstr "Tam rapor panoya kopyalandı. GitHub sorununda bu satırın altına yapıştırın."
+
+msgid "No clipboard tool found. The report was saved as {}. Attach it to the GitHub issue."
+msgstr "Pano aracı bulunamadı. Rapor {} olarak kaydedildi. GitHub sorununa ekleyin."
+
+msgid "Nothing is sent until you submit the issue in your browser."
+msgstr "Sorunu tarayıcınızda gönderene kadar hiçbir şey gönderilmez."
+
+msgid "Copied to clipboard."
+msgstr "Panoya kopyalandı."
+
+msgid "No clipboard tool found. Use Save as a file instead."
+msgstr "Pano aracı bulunamadı. Bunun yerine Dosya olarak kaydet'i kullanın."
+
+msgid "Saved as {}."
+msgstr "{} olarak kaydedildi."
+
+msgid "The report (you can edit or delete anything here)"
+msgstr "Rapor (burada her şeyi düzenleyebilir veya silebilirsiniz)"

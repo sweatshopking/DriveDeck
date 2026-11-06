@@ -3688,3 +3688,45 @@ msgstr "È disponibile la versione {} di questa app. Fai clic sull'icona di OneD
 #: src/update.rs
 msgid "{} The download page is open in your browser instead."
 msgstr "{} Al suo posto, la pagina di download è aperta nel browser."
+
+msgid "Report a bug…"
+msgstr "Segnala un problema…"
+
+msgid "Report a bug"
+msgstr "Segnala un problema"
+
+msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
+msgstr "Questo verrà inserito nella segnalazione del problema. Non è stato inviato nulla. Leggila, rimuovi ciò che non vuoi condividere e scegli come inviarla."
+
+msgid "What were you doing, and what went wrong?"
+msgstr "Cosa stavi facendo e cosa è andato storto?"
+
+msgid "Open GitHub issue"
+msgstr "Apri problema GitHub"
+
+msgid "Copy to clipboard"
+msgstr "Copia negli appunti"
+
+msgid "Save as a file"
+msgstr "Salva come file"
+
+msgid "The full report was copied to your clipboard. Paste it below the line in the GitHub issue."
+msgstr "La segnalazione completa è stata copiata negli appunti. Incollala sotto la riga nel problema GitHub."
+
+msgid "No clipboard tool found. The report was saved as {}. Attach it to the GitHub issue."
+msgstr "Nessuno strumento per gli appunti trovato. La segnalazione è stata salvata come {}. Allegala al problema GitHub."
+
+msgid "Nothing is sent until you submit the issue in your browser."
+msgstr "Non viene inviato nulla finché non invii il problema dal browser."
+
+msgid "Copied to clipboard."
+msgstr "Copiato negli appunti."
+
+msgid "No clipboard tool found. Use Save as a file instead."
+msgstr "Nessuno strumento per gli appunti trovato. Usa invece Salva come file."
+
+msgid "Saved as {}."
+msgstr "Salvato come {}."
+
+msgid "The report (you can edit or delete anything here)"
+msgstr "Il rapporto (qui puoi modificare o eliminare qualsiasi cosa)"

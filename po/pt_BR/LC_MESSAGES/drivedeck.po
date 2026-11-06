@@ -3688,3 +3688,45 @@ msgstr "A versão {} deste aplicativo está disponível. Clique no ícone do One
 #: src/update.rs
 msgid "{} The download page is open in your browser instead."
 msgstr "{} Em vez disso, a página de download está aberta no seu navegador."
+
+msgid "Report a bug…"
+msgstr "Relatar um erro…"
+
+msgid "Report a bug"
+msgstr "Relatar um erro"
+
+msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
+msgstr "Isto será colocado no relatório de erro. Nada foi enviado. Leia, remova o que não quiser compartilhar e escolha como enviar."
+
+msgid "What were you doing, and what went wrong?"
+msgstr "O que você estava fazendo e o que deu errado?"
+
+msgid "Open GitHub issue"
+msgstr "Abrir problema no GitHub"
+
+msgid "Copy to clipboard"
+msgstr "Copiar para a área de transferência"
+
+msgid "Save as a file"
+msgstr "Salvar como arquivo"
+
+msgid "The full report was copied to your clipboard. Paste it below the line in the GitHub issue."
+msgstr "O relatório completo foi copiado para a área de transferência. Cole-o abaixo da linha no problema do GitHub."
+
+msgid "No clipboard tool found. The report was saved as {}. Attach it to the GitHub issue."
+msgstr "Nenhuma ferramenta de área de transferência foi encontrada. O relatório foi salvo como {}. Anexe-o ao problema do GitHub."
+
+msgid "Nothing is sent until you submit the issue in your browser."
+msgstr "Nada é enviado até você enviar o problema no navegador."
+
+msgid "Copied to clipboard."
+msgstr "Copiado para a área de transferência."
+
+msgid "No clipboard tool found. Use Save as a file instead."
+msgstr "Nenhuma ferramenta de área de transferência foi encontrada. Use Salvar como arquivo."
+
+msgid "Saved as {}."
+msgstr "Salvo como {}."
+
+msgid "The report (you can edit or delete anything here)"
+msgstr "O relatório (você pode editar ou apagar qualquer coisa aqui)"

@@ -330,6 +330,29 @@ pass.
 
 ---
 
+## C7 · Copilot · Report a bug
+
+### Done notes
+
+1. Added the “Report a bug…” button, background report generation, review panel, editable description, full report view, and Cancel action in `ui/app.slint` and `src/ui.rs`.
+2. Added `bug_report_body` with the user's description, scrubbed diagnostics, install source, kernel version, and OneDrive client version in `src/doctor.rs`.
+3. Added the encoded GitHub issue URL builder, title handling, length limit, clipboard fallback, and browser launch in `src/doctor.rs` and `src/ui.rs`.
+4. Reused `share::copy_to_clipboard` for the report actions and long-URL fallback in `src/ui.rs`.
+5. Refactored report saving into shared create-new, mode-0600 text writing and used it for reviewed reports in `src/doctor.rs` and `src/ui.rs`.
+6. Added `--report-bug` and its help entry in `src/main.rs`.
+7. Added privacy, URL, title, report-body, and save-file tests in `src/doctor.rs`, plus translated strings in `po/drivedeck.pot` and all 11 `po/*/LC_MESSAGES/drivedeck.po` catalogs.
+8. Added the required C7 Done notes and ran the validation commands; `cargo fmt --check`, `cargo test --locked`, the ignored translation test, and `python3 scripts/check-po-quality.py` passed.
+
+`cargo clippy --locked --all-targets --features test-driver -- -D warnings` is blocked by the pre-existing `clippy::collapsible-if` warning in `src/tray.rs:1015-1023`. That file is outside the permitted C7 file list, so it was not changed.
+
+### C7 fixes
+
+- Bug 1: made `bug_issue_url` use the supplied report exactly once, preserve its start when shortening, and added short and long decoded-body tests in `src/doctor.rs`.
+- Bug 2: split report details from composition, made the reviewed report editable, and made open, copy, and save use the exact edited text in `src/doctor.rs`, `src/ui.rs`, and `ui/app.slint`; added the translated label to `po/drivedeck.pot` and all 11 catalogs.
+- Cleanup: changed URL truncation to accumulate encoded character lengths incrementally in `src/doctor.rs`.
+
+---
+
 ## Claude's tasks (Copilot: don't start these)
 
 - K1 Warn when syncing has quietly stalled (service running, no successful sync for hours).

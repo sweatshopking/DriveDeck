@@ -828,6 +828,16 @@ export component AppWindow inherits Window {
     in property <bool> app-doctor-busy;
     callback app-doctor-check();
     callback app-doctor-report();
+    in-out property <bool> app-bug-visible;
+    in-out property <bool> app-bug-busy;
+    in-out property <string> app-bug-description;
+    in-out property <string> app-bug-report;
+    in property <string> app-bug-message;
+    callback app-bug-start();
+    callback app-bug-open();
+    callback app-bug-copy();
+    callback app-bug-save();
+    callback app-bug-cancel();
     // glass: 0 automatic, 1 on, 2 off
     in-out property <int> app-glass;
     in property <string> app-glass-note;
@@ -2665,11 +2675,77 @@ export component AppWindow inherits Window {
                                         root.app-doctor-report();
                                     }
                                 }
+                                Button {
+                                    text: @tr("Report a bug…");
+                                    enabled: !root.app-doctor-busy;
+                                    clicked => {
+                                        root.app-bug-start();
+                                    }
+                                }
                             }
                             if root.app-doctor != "": Text {
                                 text: root.app-doctor;
                                 wrap: word-wrap;
                                 font-size: 12px;
+                            }
+                        }
+                    }
+                    if root.app-bug-visible: Card {
+                        VerticalLayout {
+                            padding: 14px;
+                            spacing: 8px;
+                            Heading {
+                                text: @tr("Report a bug");
+                            }
+                            Hint {
+                                text: @tr("This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it.");
+                            }
+                            Text {
+                                text: @tr("What were you doing, and what went wrong?");
+                                font-weight: 600;
+                            }
+                            TextEdit {
+                                text <=> root.app-bug-description;
+                                height: 90px;
+                                wrap: word-wrap;
+                                enabled: !root.app-bug-busy;
+                            }
+                            Text {
+                                text: @tr("The report (you can edit or delete anything here)");
+                                font-weight: 600;
+                            }
+                            TextEdit {
+                                text <=> root.app-bug-report;
+                                height: 260px;
+                                wrap: word-wrap;
+                                enabled: !root.app-bug-busy;
+                            }
+                            if root.app-bug-message != "": Hint {
+                                text: root.app-bug-message;
+                            }
+                            HorizontalLayout {
+                                alignment: start;
+                                spacing: 8px;
+                                Button {
+                                    text: @tr("Open GitHub issue");
+                                    enabled: !root.app-bug-busy;
+                                    clicked => { root.app-bug-open(); }
+                                }
+                                Button {
+                                    text: @tr("Copy to clipboard");
+                                    enabled: !root.app-bug-busy;
+                                    clicked => { root.app-bug-copy(); }
+                                }
+                                Button {
+                                    text: @tr("Save as a file");
+                                    enabled: !root.app-bug-busy;
+                                    clicked => { root.app-bug-save(); }
+                                }
+                                Button {
+                                    text: @tr("Cancel");
+                                    enabled: !root.app-bug-busy;
+                                    clicked => { root.app-bug-cancel(); }
+                                }
                             }
                         }
                     }

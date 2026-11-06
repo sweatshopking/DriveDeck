@@ -6382,6 +6382,105 @@ pub fn run(account: Option<String>) {
             }
         });
     });
+    on!(on_app_bug_start, |c| {
+        let ui = c.borrow().ui();
+        ui.set_app_bug_visible(true);
+        ui.set_app_bug_busy(true);
+        ui.set_app_bug_description(ss(""));
+        ui.set_app_bug_message(ss(""));
+        bg(crate::doctor::bug_report_details, |ctx, details| {
+            let ui = ctx.borrow().ui();
+            ui.set_app_bug_busy(false);
+            ui.set_app_bug_report(ss(details));
+        });
+    });
+    on!(on_app_bug_open, |c| {
+        let ui = c.borrow().ui();
+        let description = ui.get_app_bug_description().to_string();
+        let details = ui.get_app_bug_report().to_string();
+        ui.set_app_bug_busy(true);
+        bg(
+            move || {
+                let report = crate::doctor::compose_bug_report(&description, &details);
+                let issue = crate::doctor::bug_issue_url(&description, &report);
+                let message = if issue.needs_paste {
+                    if crate::share::copy_to_clipboard(&report) {
+                        crate::tr!(
+                            "The full report was copied to your clipboard. Paste it below the line in the GitHub issue."
+                        )
+                    } else {
+                        match crate::doctor::save_text(&report) {
+                            Ok(file) => crate::tr!(
+                                "No clipboard tool found. The report was saved as {}. Attach it to the GitHub issue.",
+                                file.display()
+                            ),
+                            Err(e) => e,
+                        }
+                    }
+                } else {
+                    crate::tr!("Nothing is sent until you submit the issue in your browser.")
+                };
+                (report, issue.url, message)
+            },
+            |ctx, (_, url, message)| {
+                let ui = ctx.borrow().ui();
+                ui.set_app_bug_busy(false);
+                ui.set_app_bug_message(ss(message));
+                crate::core::run_detached("xdg-open", &[&url]);
+            },
+        );
+    });
+    on!(on_app_bug_copy, |c| {
+        let ui = c.borrow().ui();
+        let description = ui.get_app_bug_description().to_string();
+        let details = ui.get_app_bug_report().to_string();
+        ui.set_app_bug_busy(true);
+        bg(
+            move || {
+                let report = crate::doctor::compose_bug_report(&description, &details);
+                let message = if crate::share::copy_to_clipboard(&report) {
+                    crate::tr!("Copied to clipboard.")
+                } else {
+                    crate::tr!("No clipboard tool found. Use Save as a file instead.")
+                };
+                (report, message)
+            },
+            |ctx, (_, message)| {
+                let ui = ctx.borrow().ui();
+                ui.set_app_bug_busy(false);
+                ui.set_app_bug_message(ss(message));
+            },
+        );
+    });
+    on!(on_app_bug_save, |c| {
+        let ui = c.borrow().ui();
+        let description = ui.get_app_bug_description().to_string();
+        let details = ui.get_app_bug_report().to_string();
+        ui.set_app_bug_busy(true);
+        bg(
+            move || {
+                let report = crate::doctor::compose_bug_report(&description, &details);
+                crate::doctor::save_text(&report)
+            },
+            |ctx, result| {
+                let ui = ctx.borrow().ui();
+                ui.set_app_bug_busy(false);
+                match result {
+                    Ok(file) => {
+                        ui.set_app_bug_message(ss(crate::tr!("Saved as {}.", file.display())))
+                    }
+                    Err(e) => ui.set_app_bug_message(ss(e)),
+                }
+            },
+        );
+    });
+    on!(on_app_bug_cancel, |c| {
+        let ui = c.borrow().ui();
+        ui.set_app_bug_visible(false);
+        ui.set_app_bug_description(ss(""));
+        ui.set_app_bug_report(ss(""));
+        ui.set_app_bug_message(ss(""));
+    });
     on!(on_app_pause_toggled, |c| {
         let ui = c.borrow().ui();
         let mut s = AppSettings::load();

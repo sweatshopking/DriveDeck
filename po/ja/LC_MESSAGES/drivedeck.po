@@ -3679,3 +3679,45 @@ msgstr "このアプリのバージョン {} が利用できます。トレイ�
 #: src/update.rs
 msgid "{} The download page is open in your browser instead."
 msgstr "{} 代わりにブラウザーでダウンロードページを開きました。"
+
+msgid "Report a bug…"
+msgstr "バグを報告…"
+
+msgid "Report a bug"
+msgstr "バグを報告"
+
+msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
+msgstr "バグ報告に含まれる内容です。まだ何も送信されていません。内容を読み、共有したくないものを削除してから送信方法を選んでください。"
+
+msgid "What were you doing, and what went wrong?"
+msgstr "何をしていて、何が問題になりましたか？"
+
+msgid "Open GitHub issue"
+msgstr "GitHub の課題を開く"
+
+msgid "Copy to clipboard"
+msgstr "クリップボードにコピー"
+
+msgid "Save as a file"
+msgstr "ファイルとして保存"
+
+msgid "The full report was copied to your clipboard. Paste it below the line in the GitHub issue."
+msgstr "完全なレポートをクリップボードにコピーしました。GitHub の課題でこの行の下に貼り付けてください。"
+
+msgid "No clipboard tool found. The report was saved as {}. Attach it to the GitHub issue."
+msgstr "クリップボードのツールが見つかりません。レポートを {} として保存しました。GitHub の課題に添付してください。"
+
+msgid "Nothing is sent until you submit the issue in your browser."
+msgstr "ブラウザーで課題を送信するまで、何も送信されません。"
+
+msgid "Copied to clipboard."
+msgstr "クリップボードにコピーしました。"
+
+msgid "No clipboard tool found. Use Save as a file instead."
+msgstr "クリップボードのツールが見つかりません。代わりにファイルとして保存してください。"
+
+msgid "Saved as {}."
+msgstr "{} として保存しました。"
+
+msgid "The report (you can edit or delete anything here)"
+msgstr "レポート（ここでは何でも編集または削除できます）"

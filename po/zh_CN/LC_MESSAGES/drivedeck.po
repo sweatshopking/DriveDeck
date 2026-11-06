@@ -3679,3 +3679,45 @@ msgstr "本应用的版本 {} 已发布。点击托盘中的 OneDrive 图标（�
 #: src/update.rs
 msgid "{} The download page is open in your browser instead."
 msgstr "{} 已改为在浏览器中打开下载页面。"
+
+msgid "Report a bug…"
+msgstr "报告错误…"
+
+msgid "Report a bug"
+msgstr "报告错误"
+
+msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
+msgstr "以下内容将放入错误报告。尚未发送任何内容。请阅读报告，删除不想分享的内容，然后选择发送方式。"
+
+msgid "What were you doing, and what went wrong?"
+msgstr "你当时在做什么，哪里出了问题？"
+
+msgid "Open GitHub issue"
+msgstr "打开 GitHub 问题"
+
+msgid "Copy to clipboard"
+msgstr "复制到剪贴板"
+
+msgid "Save as a file"
+msgstr "保存为文件"
+
+msgid "The full report was copied to your clipboard. Paste it below the line in the GitHub issue."
+msgstr "完整报告已复制到剪贴板。请在 GitHub 问题中粘贴到此行下方。"
+
+msgid "No clipboard tool found. The report was saved as {}. Attach it to the GitHub issue."
+msgstr "未找到剪贴板工具。报告已保存为 {}。请将其附加到 GitHub 问题。"
+
+msgid "Nothing is sent until you submit the issue in your browser."
+msgstr "在浏览器中提交问题之前不会发送任何内容。"
+
+msgid "Copied to clipboard."
+msgstr "已复制到剪贴板。"
+
+msgid "No clipboard tool found. Use Save as a file instead."
+msgstr "未找到剪贴板工具。请改用保存为文件。"
+
+msgid "Saved as {}."
+msgstr "已保存为 {}。"
+
+msgid "The report (you can edit or delete anything here)"
+msgstr "报告（你可以在这里编辑或删除任何内容）"

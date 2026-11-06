@@ -3688,3 +3688,45 @@ msgstr "La versión {} de esta aplicación está disponible. Haz clic en el icon
 #: src/update.rs
 msgid "{} The download page is open in your browser instead."
 msgstr "{} En su lugar, la página de descarga está abierta en tu navegador."
+
+msgid "Report a bug…"
+msgstr "Informar de un error…"
+
+msgid "Report a bug"
+msgstr "Informar de un error"
+
+msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
+msgstr "Esto se incluirá en el informe de errores. No se ha enviado nada. Léelo, quita lo que no quieras compartir y elige cómo enviarlo."
+
+msgid "What were you doing, and what went wrong?"
+msgstr "¿Qué estabas haciendo y qué salió mal?"
+
+msgid "Open GitHub issue"
+msgstr "Abrir incidencia de GitHub"
+
+msgid "Copy to clipboard"
+msgstr "Copiar al portapapeles"
+
+msgid "Save as a file"
+msgstr "Guardar como archivo"
+
+msgid "The full report was copied to your clipboard. Paste it below the line in the GitHub issue."
+msgstr "El informe completo se copió al portapapeles. Pégalo debajo de la línea en la incidencia de GitHub."
+
+msgid "No clipboard tool found. The report was saved as {}. Attach it to the GitHub issue."
+msgstr "No se encontró una herramienta del portapapeles. El informe se guardó como {}. Adjúntalo a la incidencia de GitHub."
+
+msgid "Nothing is sent until you submit the issue in your browser."
+msgstr "No se enviará nada hasta que envíes la incidencia en tu navegador."
+
+msgid "Copied to clipboard."
+msgstr "Copiado al portapapeles."
+
+msgid "No clipboard tool found. Use Save as a file instead."
+msgstr "No se encontró una herramienta del portapapeles. Usa Guardar como archivo."
+
+msgid "Saved as {}."
+msgstr "Guardado como {}."
+
+msgid "The report (you can edit or delete anything here)"
+msgstr "El informe (puedes editar o borrar cualquier cosa aquí)"

@@ -3698,3 +3698,45 @@ msgstr "Доступна версия {} этого приложения. Наж
 #: src/update.rs
 msgid "{} The download page is open in your browser instead."
 msgstr "{} Вместо этого в браузере открыта страница загрузки."
+
+msgid "Report a bug…"
+msgstr "Сообщить об ошибке…"
+
+msgid "Report a bug"
+msgstr "Сообщить об ошибке"
+
+msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
+msgstr "Это будет добавлено в отчёт об ошибке. Ничего не отправлено. Прочитайте его, удалите нежелательные данные и выберите способ отправки."
+
+msgid "What were you doing, and what went wrong?"
+msgstr "Что вы делали и что пошло не так?"
+
+msgid "Open GitHub issue"
+msgstr "Открыть задачу GitHub"
+
+msgid "Copy to clipboard"
+msgstr "Копировать в буфер обмена"
+
+msgid "Save as a file"
+msgstr "Сохранить в файл"
+
+msgid "The full report was copied to your clipboard. Paste it below the line in the GitHub issue."
+msgstr "Полный отчёт скопирован в буфер обмена. Вставьте его ниже этой строки в задаче GitHub."
+
+msgid "No clipboard tool found. The report was saved as {}. Attach it to the GitHub issue."
+msgstr "Инструмент буфера обмена не найден. Отчёт сохранён как {}. Прикрепите его к задаче GitHub."
+
+msgid "Nothing is sent until you submit the issue in your browser."
+msgstr "Ничего не отправляется, пока вы не отправите задачу в браузере."
+
+msgid "Copied to clipboard."
+msgstr "Скопировано в буфер обмена."
+
+msgid "No clipboard tool found. Use Save as a file instead."
+msgstr "Инструмент буфера обмена не найден. Используйте сохранение в файл."
+
+msgid "Saved as {}."
+msgstr "Сохранено как {}."
+
+msgid "The report (you can edit or delete anything here)"
+msgstr "Отчёт (здесь можно изменить или удалить что угодно)"

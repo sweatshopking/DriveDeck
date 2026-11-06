@@ -163,6 +163,7 @@ fn main() {
         Some("--doctor") if args.get(1).map(String::as_str) == Some("--report") => {
             print!("{}", doctor::report())
         }
+        Some("--report-bug") => print!("{}", doctor::bug_report_body("")),
         Some("--doctor") => {
             let checks = doctor::checks();
             for c in &checks {
@@ -188,6 +189,7 @@ fn main() {
                 "--sync-now",
                 "--update",
                 "--doctor [--report]",
+                "--report-bug",
             ];
             println!("{} {}\n\nUsage:", core::APP_NAME, env!("CARGO_PKG_VERSION"));
             for u in usage {

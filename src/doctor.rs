@@ -6,6 +6,7 @@ use std::fmt::Write as _;
 use std::path::{Path, PathBuf};
 
 use crate::core::{self, Phase};
+use crate::uninstall::Installed;
 
 /// One finding: fine or worth a look
 pub struct Check {
@@ -327,8 +328,7 @@ fn scrub_names(s: &str) -> String {
         .join("\n")
 }
 
-pub fn report() -> String {
-    let snap = crate::ui::take_snapshot();
+fn report_for_snapshot(snap: &crate::ui::Snapshot) -> String {
     let private = Private::of(&snap.infos);
     let os = crate::clientinstall::os_release();
     // written as is: nothing personal in it, and a computer named after its distribution must
@@ -397,29 +397,171 @@ pub fn report() -> String {
     head + &private.scrub(&r)
 }
 
+pub fn report() -> String {
+    report_for_snapshot(&crate::ui::take_snapshot())
+}
+
 /// Writes the report to a new file in the home folder (only you can read it) and returns it.
 pub fn save_report() -> Result<PathBuf, String> {
-    let text = report();
+    save_text(&report())
+}
+
+pub fn save_text(text: &str) -> Result<PathBuf, String> {
     let file = core::home().join(format!(
         "drivedeck-report-{}.txt",
         chrono::Local::now().format("%Y-%m-%d-%H%M%S")
     ));
+    save_text_at(text, &file)?;
+    Ok(file)
+}
+
+fn save_text_at(text: &str, file: &Path) -> Result<(), String> {
     use std::io::Write;
     use std::os::unix::fs::OpenOptionsExt;
     let mut f = std::fs::OpenOptions::new()
         .write(true)
         .create_new(true)
         .mode(0o600)
-        .open(&file)
+        .open(file)
         .map_err(|e| format!("Couldn't write {}: {e}", file.display()))?;
     f.write_all(text.as_bytes())
         .map_err(|e| format!("Couldn't write {}: {e}", file.display()))?;
-    Ok(file)
+    Ok(())
+}
+
+fn install_name(installed: &Installed) -> &'static str {
+    match installed {
+        Installed::AppImage(_) => "AppImage",
+        Installed::BuildDirectory => "built from source",
+        Installed::Package(args) => {
+            if args.iter().any(|a| a == "pacman") {
+                "AUR"
+            } else if args.iter().any(|a| a == "apt-get" || a == "dpkg") {
+                "deb"
+            } else if args
+                .iter()
+                .any(|a| a == "dnf" || a == "zypper" || a == "rpm")
+            {
+                "rpm"
+            } else {
+                "unknown"
+            }
+        }
+        Installed::PackageManual => "unknown",
+    }
+}
+
+fn kernel_version() -> String {
+    std::fs::read_to_string("/proc/sys/kernel/osrelease")
+        .map(|s| s.trim().to_owned())
+        .ok()
+        .filter(|s| !s.is_empty())
+        .unwrap_or_else(|| "unknown".into())
+}
+
+fn client_version() -> Option<String> {
+    match core::check_client() {
+        core::ClientCheck::Ok { version, .. } | core::ClientCheck::TooOld { version, .. } => {
+            Some(version)
+        }
+        core::ClientCheck::Missing => None,
+    }
+}
+
+fn bug_report_details_for_snapshot(
+    snap: &crate::ui::Snapshot,
+    install: &str,
+    kernel: &str,
+    client: Option<&str>,
+) -> String {
+    let diagnostic = report_for_snapshot(snap);
+    let private = Private::of(&snap.infos);
+    let mut metadata = format!("== Install\n{install}\n== Kernel\n{kernel}\n",);
+    if let Some(version) = client {
+        let _ = writeln!(metadata, "== OneDrive client\n{version}");
+    }
+    private.scrub(&format!("{metadata}{diagnostic}"))
+}
+
+pub fn compose_bug_report(description: &str, details: &str) -> String {
+    format!("== What happened\n{description}\n\n{details}")
+}
+
+pub fn bug_report_details() -> String {
+    let snap = crate::ui::take_snapshot();
+    let install = install_name(&crate::uninstall::installed());
+    let client = client_version();
+    bug_report_details_for_snapshot(&snap, install, &kernel_version(), client.as_deref())
+}
+
+pub fn bug_report_body(description: &str) -> String {
+    compose_bug_report(description, &bug_report_details())
+}
+
+pub struct BugIssue {
+    pub url: String,
+    pub needs_paste: bool,
+}
+
+fn percent_encode(s: &str) -> String {
+    let mut out = String::new();
+    for byte in s.as_bytes() {
+        if byte.is_ascii_alphanumeric() || b"-_.~".contains(byte) {
+            out.push(*byte as char);
+        } else {
+            let _ = write!(out, "%{byte:02X}");
+        }
+    }
+    out
+}
+
+pub fn bug_title(description: &str) -> String {
+    let first = description.lines().next().unwrap_or_default();
+    if first.is_empty() {
+        return "Bug report".into();
+    }
+    let first: String = first.chars().take(68).collect();
+    format!("Bug report: {first}")
+}
+
+pub fn bug_issue_url(description: &str, report: &str) -> BugIssue {
+    let title = percent_encode(&bug_title(description));
+    let base = "https://github.com/sweatshopking/DriveDeck/issues/new?title=";
+    let body_prefix = "&body=";
+    let encoded_report = percent_encode(report);
+    let url_prefix = format!("{base}{title}{body_prefix}");
+    let full_url = format!("{url_prefix}{encoded_report}");
+    if full_url.len() <= 6000 {
+        return BugIssue {
+            url: full_url,
+            needs_paste: false,
+        };
+    }
+    let notice = "(The full report was copied to your clipboard: paste it below this line.)";
+    let encoded_notice = percent_encode(notice);
+    let encoded_newline = percent_encode("\n");
+    let available = 5999usize
+        .saturating_sub(url_prefix.len())
+        .saturating_sub(encoded_newline.len())
+        .saturating_sub(encoded_notice.len());
+    let mut encoded_prefix = String::new();
+    for ch in report.chars() {
+        let encoded_char = percent_encode(&ch.to_string());
+        if encoded_prefix.len() + encoded_char.len() > available {
+            break;
+        }
+        encoded_prefix.push_str(&encoded_char);
+    }
+    BugIssue {
+        url: format!("{url_prefix}{encoded_prefix}{encoded_newline}{encoded_notice}"),
+        needs_paste: true,
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::os::unix::fs::PermissionsExt;
 
     #[test]
     fn file_names_after_an_absolute_path_are_left_out() {
@@ -500,5 +642,160 @@ mod tests {
         assert!(!exit_status_listed("", 78));
         assert!(!exit_status_listed("126", 78));
         assert!(!exit_status_listed("780", 78));
+    }
+
+    #[test]
+    fn percent_encoding_handles_special_and_non_ascii_text() {
+        assert_eq!(
+            percent_encode(" spaces\n&=#%é日本"),
+            "%20spaces%0A%26%3D%23%25%C3%A9%E6%97%A5%E6%9C%AC"
+        );
+        assert_eq!(percent_encode(""), "");
+    }
+
+    #[test]
+    fn short_issue_url_keeps_the_whole_report() {
+        let issue = bug_issue_url("It stopped", "short report");
+        assert!(!issue.needs_paste);
+        assert!(issue.url.contains(&percent_encode("short report")));
+    }
+
+    #[test]
+    fn issue_url_contains_description_once_for_short_report() {
+        let description = "The screen froze";
+        let report = compose_bug_report(description, "details");
+        let issue = bug_issue_url(description, &report);
+        let body = issue.url.split("&body=").nth(1).expect("body");
+        assert_eq!(
+            decode_percent_encoding(body).matches(description).count(),
+            1
+        );
+    }
+
+    #[test]
+    fn long_issue_url_contains_description_once_and_needs_clipboard() {
+        let description = "The screen froze";
+        let report = compose_bug_report(description, &"x".repeat(20_000));
+        let issue = bug_issue_url(description, &report);
+        assert!(issue.needs_paste);
+        assert!(issue.url.len() < 6000);
+        let body = issue.url.split("&body=").nth(1).expect("body");
+        assert_eq!(
+            decode_percent_encoding(body).matches(description).count(),
+            1
+        );
+        assert!(issue.url.ends_with(&percent_encode(
+            "(The full report was copied to your clipboard: paste it below this line.)"
+        )));
+    }
+
+    #[test]
+    fn issue_titles_use_first_line_and_are_limited() {
+        assert_eq!(bug_title(""), "Bug report");
+        assert_eq!(
+            bug_title("first line\nsecond line"),
+            "Bug report: first line"
+        );
+        let title = bug_title(&"a".repeat(200));
+        assert!(title.len() <= 80);
+        assert!(title.starts_with("Bug report: "));
+    }
+
+    #[test]
+    fn bug_body_keeps_description_and_scrubs_fake_snapshot_data() {
+        let account = core::AccountInfo {
+            name: "Fake Account".into(),
+            confdir: "/home/fakeuser/.config/onedrive".into(),
+            unit: Some("fakeuser.service".into()),
+            managed: true,
+            sync_dir: "/home/fakeuser/OneDrive".into(),
+            drive_id: None,
+            kind: "personal".into(),
+            signed_in: true,
+        };
+        let status = core::Status {
+            phase: core::Phase::UpToDate,
+            last_complete: None,
+            stalled_since: None,
+            last_error: Some(
+                "sent to fakeuser@example.com with token abcdefghijklmnopqrstuvwxyz123456".into(),
+            ),
+            blocked: vec![],
+            big_delete: None,
+            unit: core::UnitState {
+                exists: true,
+                active: true,
+                starting: false,
+                retrying: false,
+                failed: false,
+                enabled: true,
+                exit_status: None,
+            },
+        };
+        let snap = crate::ui::Snapshot {
+            settings: core::AppSettings::default(),
+            infos: vec![account],
+            statuses: vec![status],
+        };
+        let details =
+            bug_report_details_for_snapshot(&snap, "built from source", "6.1.2", Some("2.5.0"));
+        let body = compose_bug_report("The screen froze while I was opening a folder.", &details);
+        assert!(body.contains("The screen froze while I was opening a folder."));
+        assert!(!body.contains("fakeuser@example.com"));
+        assert!(!body.contains("abcdefghijklmnopqrstuvwxyz123456"));
+        assert!(!body.contains("/home/fakeuser"));
+        assert!(body.contains("== Install\nbuilt from source"));
+        assert!(body.contains("== Kernel\n6.1.2"));
+        assert!(body.contains("== OneDrive client\n2.5.0"));
+    }
+
+    #[test]
+    fn compose_bug_report_puts_description_before_details() {
+        assert_eq!(
+            compose_bug_report("It froze", "== Install\nAppImage"),
+            "== What happened\nIt froze\n\n== Install\nAppImage"
+        );
+    }
+
+    #[test]
+    fn save_to_file_is_private_and_never_overwrites() {
+        let dir =
+            std::env::temp_dir().join(format!("drivedeck-doctor-test-{}", std::process::id()));
+        std::fs::create_dir(&dir).expect("temporary directory");
+        let file = dir.join("report.txt");
+        save_text_at("report", &file).expect("write report");
+        assert_eq!(
+            std::fs::metadata(&file)
+                .expect("metadata")
+                .permissions()
+                .mode()
+                & 0o777,
+            0o600
+        );
+        assert!(save_text_at("changed", &file).is_err());
+        assert_eq!(
+            std::fs::read_to_string(file).expect("read report"),
+            "report"
+        );
+        std::fs::remove_dir_all(dir).expect("remove temporary directory");
+    }
+
+    fn decode_percent_encoding(s: &str) -> String {
+        let mut out = Vec::new();
+        let bytes = s.as_bytes();
+        let mut i = 0;
+        while i < bytes.len() {
+            if bytes[i] == b'%' {
+                let value =
+                    u8::from_str_radix(std::str::from_utf8(&bytes[i + 1..i + 3]).expect("hex"), 16)
+                        .expect("percent byte");
+                out.push(value);
+                i += 3;
+            } else {
+                out.push(bytes[i]);
+                i += 1;
+            }
+        }
+        String::from_utf8(out).expect("UTF-8 body")
     }
 }

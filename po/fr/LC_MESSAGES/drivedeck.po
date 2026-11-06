@@ -3688,3 +3688,45 @@ msgstr "La version {} de cette application est disponible. Cliquez sur l’icôn
 #: src/update.rs
 msgid "{} The download page is open in your browser instead."
 msgstr "{} La page de téléchargement est ouverte dans votre navigateur à la place."
+
+msgid "Report a bug…"
+msgstr "Signaler un problème…"
+
+msgid "Report a bug"
+msgstr "Signaler un problème"
+
+msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
+msgstr "Voici ce qui sera ajouté au rapport de problème. Rien n'a été envoyé. Lisez-le, retirez ce que vous ne voulez pas partager, puis choisissez comment l'envoyer."
+
+msgid "What were you doing, and what went wrong?"
+msgstr "Que faisiez-vous et quel est le problème ?"
+
+msgid "Open GitHub issue"
+msgstr "Ouvrir le problème GitHub"
+
+msgid "Copy to clipboard"
+msgstr "Copier dans le presse-papiers"
+
+msgid "Save as a file"
+msgstr "Enregistrer dans un fichier"
+
+msgid "The full report was copied to your clipboard. Paste it below the line in the GitHub issue."
+msgstr "Le rapport complet a été copié dans le presse-papiers. Collez-le sous la ligne dans le problème GitHub."
+
+msgid "No clipboard tool found. The report was saved as {}. Attach it to the GitHub issue."
+msgstr "Aucun outil de presse-papiers trouvé. Le rapport a été enregistré sous {}. Joignez-le au problème GitHub."
+
+msgid "Nothing is sent until you submit the issue in your browser."
+msgstr "Rien n'est envoyé tant que vous n'avez pas envoyé le problème dans votre navigateur."
+
+msgid "Copied to clipboard."
+msgstr "Copié dans le presse-papiers."
+
+msgid "No clipboard tool found. Use Save as a file instead."
+msgstr "Aucun outil de presse-papiers trouvé. Utilisez plutôt Enregistrer dans un fichier."
+
+msgid "Saved as {}."
+msgstr "Enregistré sous {}."
+
+msgid "The report (you can edit or delete anything here)"
+msgstr "Le rapport (vous pouvez tout modifier ou supprimer ici)"
