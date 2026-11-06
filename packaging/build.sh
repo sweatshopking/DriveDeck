@@ -46,7 +46,7 @@ install_deps_ubuntu() {
     apt-get install -y -qq --no-install-recommends \
         ca-certificates curl git make gcc g++ pkg-config file dpkg-dev \
         xz-utils libdbus-1-dev \
-        libfontconfig1-dev libfreetype-dev libxkbcommon-dev libwayland-dev \
+        libfontconfig1-dev libfreetype-dev libxkbcommon-dev libxkbcommon-x11-dev libwayland-dev \
         libx11-dev libxcursor-dev libxrandr-dev libxi-dev libgl1-mesa-dev libegl1-mesa-dev \
         desktop-file-utils appstream >/dev/null
 }
@@ -56,7 +56,7 @@ install_deps_fedora() {
     dnf install -y -q \
         ca-certificates curl git make gcc gcc-c++ pkgconf-pkg-config file rpm-build \
         xz dbus-devel \
-        fontconfig-devel freetype-devel libxkbcommon-devel wayland-devel \
+        fontconfig-devel freetype-devel libxkbcommon-devel libxkbcommon-x11-devel wayland-devel \
         libX11-devel libXcursor-devel libXrandr-devel libXi-devel mesa-libGL-devel mesa-libEGL-devel \
         desktop-file-utils >/dev/null
 }
@@ -151,7 +151,7 @@ build_deb() {
     local linked
     linked="$(cd "$WORK" && dpkg-shlibdeps -O "$stage/usr/bin/$APP" 2>/dev/null | sed 's/^shlibs:Depends=//')"
     # libraries the window opens at runtime (dlopen), which shlibdeps can't see
-    local runtime="libxkbcommon0, libegl1, libwayland-client0, libwayland-egl1, libx11-6, libxcursor1, libxrandr2, libxi6, systemd, xdg-utils"
+    local runtime="libxkbcommon0, libxkbcommon-x11-0, libegl1, libwayland-client0, libwayland-egl1, libx11-6, libxcursor1, libxrandr2, libxi6, systemd, xdg-utils"
     cat >"$stage/DEBIAN/control" <<EOF
 Package: $APP
 Version: $VERSION
@@ -247,11 +247,16 @@ build_appimage() {
     chmod +x "$ld"
     # containers have no FUSE, so let the tool unpack itself
     export APPIMAGE_EXTRACT_AND_RUN=1
+    # The window opens these with dlopen, so linuxdeploy can't find them by itself; bundle them
+    # (with libxcb-xkb, which linuxdeploy pulls in), as not every system has libxkbcommon-x11.
+    local multiarch
+    multiarch="$(dpkg-architecture -qDEB_HOST_MULTIARCH)"
+    local dlopened=(--library "/usr/lib/$multiarch/libxkbcommon.so.0" --library "/usr/lib/$multiarch/libxkbcommon-x11.so.0")
     (
         cd "$WORK"
         LDAI_OUTPUT="$DIST/DriveDeck-${VERSION}-${ARCH}.AppImage" \
             "$ld" --appdir "$appdir" \
-            --executable "$BIN" \
+            --executable "$BIN" "${dlopened[@]}" \
             --desktop-file "$ROOT/packaging/$APP.desktop" \
             --icon-file "$ROOT/assets/$APP.svg" >"$WORK/linuxdeploy.log" 2>&1 || { tail -40 "$WORK/linuxdeploy.log"; exit 1; }
         bundled_sources "$appdir" >"$appdir/usr/share/licenses/$APP/BUNDLED-LIBRARIES.txt"
