@@ -355,24 +355,7 @@ several hundred MB per account, depending on how many files that account has.
 
 ## Install
 
-### 1. The OneDrive Client for Linux, version 2.5 or newer
-
-This is the free program that does the actual syncing; this app is the window and tray icon for it.
-It's a separate program, so it gets its own updates. You usually don't need to do anything: if it's
-missing or too old, the app says so and its **Install it for me** button installs it after asking
-for your password. If you'd rather install it yourself, choose
-*I'll install it myself*. The app notices the client within a few seconds of it being installed,
-wherever it came from.
-
-| Your system | What *Install it for me* does |
-|---|---|
-| Fedora | `dnf install onedrive` (the app's .rpm already pulls it in) |
-| openSUSE Tumbleweed, Leap 16 | `zypper install onedrive` (Leap 15 only has an old client, so there the app shows the instructions instead) |
-| Ubuntu 22.04+, Linux Mint, Debian 11+, Pop!_OS, Zorin, Raspberry Pi OS | These come with an old version of the client that its author no longer supports. So the app adds the place the author recommends getting it from to your computer's list of software sources (like adding a trusted app store), then installs the current version from there. Your normal software updates keep it up to date after that. This is the same setup as the client's [Ubuntu / Debian installation guide](https://github.com/abraunegg/onedrive/blob/master/docs/ubuntu-package-install.md). |
-| Arch, Manjaro, EndeavourOS, CachyOS | Arch doesn't include the client, but the AUR (install recipes shared by Arch users) does. The app builds it from there, which takes a few minutes. Normal software updates don't cover the AUR, so the app tells you when a newer client is out and updates it for you. |
-| Fedora Silverblue/Kinoite, SteamOS, anything else | No button; the app links to the client's [installation instructions](https://github.com/abraunegg/onedrive/blob/master/docs/install.md) |
-
-### 2. This app
+### 1. Install DriveDeck
 
 Download it from the [latest release](https://github.com/sweatshopking/DriveDeck/releases/latest):
 
@@ -392,10 +375,33 @@ DriveDeck used to be called "A GUI that works with OneDrive on Linux (unofficial
 DriveDeck replaces it, and your accounts and settings carry over by themselves. With the AppImage,
 start the new file once; you can then delete the old one.
 
+On first start, DriveDeck checks for the OneDrive sync engine and, if it's missing or too old,
+installs it for you (see below). That's the only step most people need.
+
+### 2. Optional: installing the sync engine yourself
+
+DriveDeck is the window and tray icon for the free
+[OneDrive Client for Linux](https://github.com/abraunegg/onedrive) (version 2.5 or newer), the
+separate program that does the actual syncing. **You don't have to install it yourself.** If it's
+missing or too old, DriveDeck says so and its **Install it for me** button installs it after asking
+for your password. The app notices the client within a few seconds of it being installed, wherever
+it came from.
+
+**Prefer to install it yourself?** Choose *I'll install it myself* in the app, or follow the table
+below. The client is a separate program, so it gets its own updates.
+
+| Your system | What *Install it for me* does (or what to do by hand) |
+|---|---|
+| Fedora | `dnf install onedrive` (the app's .rpm already pulls it in) |
+| openSUSE Tumbleweed, Leap 16 | `zypper install onedrive` (Leap 15 only has an old client, so there the app shows the instructions instead) |
+| Ubuntu 22.04+, Linux Mint, Debian 11+, Pop!_OS, Zorin, Raspberry Pi OS | These come with an old version of the client that its author no longer supports. So the app adds the place the author recommends getting it from to your computer's list of software sources (like adding a trusted app store), then installs the current version from there. Your normal software updates keep it up to date after that. This is the same setup as the client's [Ubuntu / Debian installation guide](https://github.com/abraunegg/onedrive/blob/master/docs/ubuntu-package-install.md). |
+| Arch, Manjaro, EndeavourOS, CachyOS | Arch doesn't include the client, but the AUR (install recipes shared by Arch users) does. The app builds it from there, which takes a few minutes. Normal software updates don't cover the AUR, so the app tells you when a newer client is out and updates it for you. |
+| Fedora Silverblue/Kinoite, SteamOS, anything else | No button; the app links to the client's [installation instructions](https://github.com/abraunegg/onedrive/blob/master/docs/install.md) |
+
 ### Requirements
 
 - 64-bit Linux with systemd (almost every desktop distribution)
-- The OneDrive Client for Linux 2.5 or newer (step 1)
+- The OneDrive Client for Linux 2.5 or newer (DriveDeck installs it for you; see "Optional" below)
 - For the tray icon, a system tray: built into KDE Plasma, Cinnamon, XFCE, MATE and Budgie. On GNOME, add
   the *AppIndicator and KStatusNotifierItem Support* extension (Ubuntu has it already). Without one,
   syncing, schedules and pauses still work; you just don't see the icon.
