@@ -1,36 +1,69 @@
 # DriveDeck for OneDrive
 
-**The easiest, most complete way to use OneDrive on Linux.**
+### OneDrive on Linux that just works, in your language.
 
-**Entirely unofficial — not endorsed by Microsoft at all.**
+**The easiest install. The lightest app. And the first OneDrive app for Linux that speaks 11 languages.**
 
-**Languages:** Translations into 11 languages are machine-drafted; corrections are welcome. See
-[po/README.md](po/README.md).
+[**⬇ Download the latest version**](https://github.com/sweatshopking/DriveDeck/releases/latest)
+· one file, double-click, done · `.deb` · `.rpm` · AppImage · x86-64 and ARM
 
-### [⬇ Download the latest version](https://github.com/sweatshopking/DriveDeck/releases/latest)
+**Entirely unofficial, and not endorsed by Microsoft at all.**
 
-## Why this app
+![Status page](docs/screenshots/status-light.png)
 
-- **The easiest way to get OneDrive on Linux.** Download one file for your system (.deb, .rpm or
-  AppImage) and open it. If the OneDrive client isn't installed yet, the app installs it for you on
-  most distributions. You never need a terminal or a configuration file: sign in with your browser,
-  tick your folders, done. Basically, I wanted my mom to be able to setup Onedrive on Linux and be able
-  to use it without needing my help. I also wanted it to be light and fast without the need for installing
-  additional python libraries, hence the choice to use Rust.
-- **Quick and light.** It's a small native program written in Rust, with no Python, Java or built-in
-  web browser to load. The tray icon uses about 10 MB of memory, the panel opens in about half a
-  second, and the settings window closes completely when you're done with it.
-- **Syncing that keeps going.** Each account syncs as a background service, so your files stay in sync
-  with the app closed, after a restart, and even if you never open the app again.
-- **Careful with your files.** Big changes are shown as a dry run first, syncing stops instead of
-  deleting a large number of files online, and nothing in the app runs a program you didn't ask for.
+## OneDrive shouldn't need English, a terminal or a config file
 
-**Sync OneDrive and SharePoint on Linux without the command line.** A settings window and tray icon for
-the excellent [OneDrive Client for Linux](https://github.com/abraunegg/onedrive) by abraunegg, which does
-the actual syncing. Install this app (it sets up the client for you), sign in, pick your folders, done. 
-The goal was to build a full featured GUI based program which any person can install and use without 
-needing the CLI at all or deep knowledge of Linux.
+Most Linux tools for OneDrive assume you read English and enjoy editing text files. DriveDeck
+doesn't. Every window, button, warning and notification is translated, and the app picks your
+language from your system by itself. Nothing to download, nothing to switch on.
 
+| | | | |
+|---|---|---|---|
+| 🇩🇪 Deutsch | 🇪🇸 Español | 🇫🇷 Français | 🇮🇹 Italiano |
+| 🇧🇷 Português (Brasil) | 🇳🇱 Nederlands | 🇯🇵 日本語 | 🇨🇳 简体中文 |
+| 🇷🇺 Русский | 🇹🇷 Türkçe | 🇰🇷 한국어 | 🇬🇧 English |
+
+- **The whole app, not just the menus.** Settings, tray panel, notifications, error explanations, the
+  folder picker, the sharing and version-history windows and the Dolphin right-click actions are all
+  translated, with proper plural forms for each language ("1 file" / "2 files" the way your language
+  says it).
+- **Built in, nothing extra to install.** Translations travel inside the `.deb`, `.rpm` and AppImage.
+  They work the moment you open the app, offline, on every distribution.
+- **Even the menu entry is translated**, so the app is called something you can read in your launcher.
+- **We looked: as far as we can find, no other OneDrive GUI for Linux comes close.** The few that
+  translate anything cover one or two languages; most are English-only. If you know of one that does
+  more, tell us and we'll fix this sentence.
+- **Honest about quality.** The translations were drafted by machine and checked by script (every
+  placeholder and plural form is tested), not yet by a native speaker for every language. If a phrase
+  reads oddly in your language, a fix is one small text-file edit, and corrections are very welcome.
+  See [po/README.md](po/README.md); adding a whole new language takes minutes.
+
+## Why DriveDeck is the better way to use OneDrive on Linux
+
+- **The easiest install, full stop.** Download one file for your system and open it. If the OneDrive
+  sync client isn't installed yet, the app installs it for you on most distributions. Sign in with your
+  browser, tick your folders, done. I built it so my mom could set up OneDrive on Linux without calling me.
+- **Quick and light.** A small native Rust program: no Python, no Java, no built-in web browser to
+  load. The tray icon sits at about 10 MB of memory, the panel opens in about half a second, and the
+  settings window closes completely when you're done with it.
+- **Syncing that never depends on the window.** Each account is a proper background service, so files
+  keep syncing with the app closed, after a restart, and even if you never open it again.
+- **It looks after you, not just your files.** It tells you when syncing has quietly stopped, warns
+  about Git repositories and Windows drives before they bite, takes an instant safety copy before a
+  full resync, shows a dry run before any big change, and stops instead of deleting a pile of files online.
+- **Everything Windows' OneDrive does, plus more.** Sync badges in Dolphin, Nemo and Caja, version
+  history, sharing by link or email, *Who has access* (and *Stop sharing*), Edit in Word/Excel/PowerPoint
+  on the web, folder backup, a tray panel, and search straight from KRunner or the GNOME overview.
+- **Updates itself in one click.** *Update now* downloads the new version, checks it against the
+  release checksums and swaps it in. It even keeps the sync engine itself up to date.
+- **Yours to control.** Every setting of the sync client in plain words, with a `--status --json` mode
+  for scripts, and a built-in *Report a bug* that shows you everything before anything leaves your computer.
+
+**Sync OneDrive and SharePoint on Linux without the command line.** DriveDeck is the window and tray
+icon for the excellent [OneDrive Client for Linux](https://github.com/abraunegg/onedrive) by abraunegg,
+which does the actual syncing. Install the app (it sets up the client for you), sign in, pick your
+folders. The goal was a full-featured program anyone can install and use without the CLI or deep
+knowledge of Linux, in whatever language they think in.
 
 I make ZERO, NONE, ABSOLUTELY NO SUGGESTION OR GUARANTEE this code is safe, does what it says, or won't harm
 your PC in some way. You are welcome and encouraged to review the source code 

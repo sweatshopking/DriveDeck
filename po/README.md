@@ -24,8 +24,8 @@ Copy the catalog to `po/<language>/LC_MESSAGES/drivedeck.po`, set its `Language`
 `Plural-Forms` headers, and translate each entry. Locale selection checks `LANGUAGE`,
 `LC_ALL`, `LC_MESSAGES`, then `LANG`; regional locales fall back to their base language and
 then English. Add the language's translated `Name` and `Comment` fields to the desktop files.
-The bundled catalogs cover German, Spanish, French, Italian, Brazilian Portuguese, Dutch, Polish,
-Japanese, Simplified Chinese, Russian, Turkish, Korean, Czech, Ukrainian, and Swedish. Their
+The bundled catalogs cover German, Spanish, French, Italian, Brazilian Portuguese, Dutch,
+Japanese, Simplified Chinese, Russian, Turkish and Korean. Their
 translations were drafted by machine; corrections are welcome.
 
 Do not translate log messages, quoted messages from the OneDrive client, configuration keys,
