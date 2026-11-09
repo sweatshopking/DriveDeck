@@ -1,6 +1,6 @@
 //! The panel a click on the tray icon opens: each account's status, files syncing now and
 //! recent files. It runs as its own short-lived process (`--popup [x y]`), so the tray itself
-//! stays small; it closes when it loses focus, on Esc, or when the tray icon is clicked again.
+//! stays small; it closes when it loses focus (after a few seconds' grace if the pointer never reached it), on Esc, or when the tray icon is clicked again.
 
 use std::cell::RefCell;
 use std::path::{Component, Path, PathBuf};
@@ -1130,6 +1130,9 @@ pub fn run(at: Option<(i32, i32)>) {
 
     // closes once it has had focus and loses it (a click elsewhere, another window opening)
     static FOCUSED: AtomicBool = AtomicBool::new(false);
+    // the pointer has been over the panel; counts focus changes so a late close can be cancelled
+    static USED: AtomicBool = AtomicBool::new(false);
+    static BLUR_GEN: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
     let placed_script = kwin_script.clone();
     {
         use slint::winit_030::winit::event::WindowEvent;
@@ -1169,9 +1172,20 @@ pub fn run(at: Option<(i32, i32)>) {
                 }
                 _ => {}
             }
+            // The pointer being over the panel means it's being used.
+            if matches!(
+                ev,
+                WindowEvent::CursorEntered { .. }
+                    | WindowEvent::CursorMoved { .. }
+                    | WindowEvent::MouseInput { .. }
+            ) {
+                USED.store(true, Ordering::Relaxed);
+                BLUR_GEN.fetch_add(1, Ordering::Relaxed); // cancels a pending close
+            }
             if let WindowEvent::Focused(f) = ev {
                 debug(&format!("focused {f}"));
                 if *f {
+                    BLUR_GEN.fetch_add(1, Ordering::Relaxed);
                     // placed and in front by now: KWin needn't keep the script
                     if !FOCUSED.swap(true, Ordering::Relaxed)
                         && let Some(name) = &placed_script
@@ -1180,7 +1194,19 @@ pub fn run(at: Option<(i32, i32)>) {
                     }
                 } else if FOCUSED.load(Ordering::Relaxed) && !LAUNCHING.load(Ordering::Relaxed) {
                     // (an action still waiting for its token closes the panel itself)
-                    close();
+                    if USED.load(Ordering::Relaxed) {
+                        close();
+                    } else {
+                        // Never touched yet: a desktop that gives focus to whatever the mouse is
+                        // over takes it away at once. Give the pointer time to arrive.
+                        let gen_now = BLUR_GEN.fetch_add(1, Ordering::Relaxed) + 1;
+                        debug("lost focus before use: waiting");
+                        slint::Timer::single_shot(Duration::from_secs(4), move || {
+                            if BLUR_GEN.load(Ordering::Relaxed) == gen_now {
+                                close();
+                            }
+                        });
+                    }
                 }
             }
             EventResult::Propagate
