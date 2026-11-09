@@ -4,5 +4,5 @@ __pycache__/
 
 # Claude Code personal files: they can store approved commands with
 # passwords or tokens in them, so they must never be committed.
-.claude/settings.local.json
+**/.claude/settings.local.json
 CLAUDE.local.md
