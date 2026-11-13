@@ -333,7 +333,11 @@ You can check syncing, start a sync, or print a sharing link without opening the
 ```sh
 drivedeck --status
 drivedeck --status --json
+drivedeck --status --json --files 20      # also files syncing now and the 20 most recent per account
 drivedeck --sync-now
+drivedeck --sync-now --account "Personal"
+drivedeck --pause 60                      # minutes; or "morning", or "resume"
+drivedeck --pause resume --account "Personal"
 drivedeck --print-link "/path/to/OneDrive/report.docx"
 drivedeck --print-link "/path/to/OneDrive/report.docx" --edit
 ```

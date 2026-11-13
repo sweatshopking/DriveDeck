@@ -3053,6 +3053,22 @@ fn compose_phase_with_cache(
 /// refuses to start until its failure is cleared, so that is cleared first. Repeated restarts of
 /// one unit within a few seconds, from the tray or the window, are dropped: the first one
 /// already starts a fresh sync.
+/// systemctl calls `unit_action` has started and not finished yet
+static UNIT_ACTIONS_IN_FLIGHT: std::sync::atomic::AtomicUsize =
+    std::sync::atomic::AtomicUsize::new(0);
+
+/// Waits (up to `limit`) for the systemctl calls `unit_action` started in the background. A
+/// command-line run (`--pause`, `--sync-now`) must call this before it exits, or the process
+/// ends first and the start/stop never happens.
+pub fn wait_for_unit_actions(limit: std::time::Duration) {
+    let until = std::time::Instant::now() + limit;
+    while UNIT_ACTIONS_IN_FLIGHT.load(std::sync::atomic::Ordering::SeqCst) > 0
+        && std::time::Instant::now() < until
+    {
+        std::thread::sleep(std::time::Duration::from_millis(50));
+    }
+}
+
 pub fn unit_action(verb: &'static str, unit: &str) {
     if verb != "stop" {
         // started on purpose: if it was held after a big delete, the user wants another try
@@ -3062,11 +3078,13 @@ pub fn unit_action(verb: &'static str, unit: &str) {
         return;
     }
     let unit = unit.to_string();
+    UNIT_ACTIONS_IN_FLIGHT.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
     std::thread::spawn(move || {
         if verb != "stop" {
             let _ = systemctl(&["reset-failed", &unit]);
         }
         let _ = systemctl(&[verb, &unit]);
+        UNIT_ACTIONS_IN_FLIGHT.fetch_sub(1, std::sync::atomic::Ordering::SeqCst);
     });
 }
 
