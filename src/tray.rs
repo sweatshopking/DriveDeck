@@ -776,6 +776,74 @@ fn tray_started() -> DateTime<Local> {
     *STARTED.get_or_init(Local::now)
 }
 
+/// A sync error that begins while the computer is still coming up (the network isn't there yet, the sync service
+/// restarts a few times) usually goes away on its own, and announcing it made every login start with an alarm. So an
+/// error is announced only once DriveDeck has been running this long...
+const ERROR_QUIET_AFTER_START: Duration = Duration::from_secs(150);
+/// ...and the error has lasted this long without clearing.
+const ERROR_MUST_LAST: Duration = Duration::from_secs(45);
+
+/// Whether a phase is one the tray tells the user about.
+fn needs_attention(p: Phase) -> bool {
+    matches!(
+        p,
+        Phase::Error | Phase::NeedsResync | Phase::SignedOut | Phase::BigDelete | Phase::Stalled
+    )
+}
+
+/// Decides when a plain "Syncing hit an error" is announced (the other problems, which need the user to act and are not
+/// started by a slow network, are announced as soon as they appear). The icon and the menu show an error at once; this
+/// is only about the notification.
+#[derive(Default)]
+struct ErrorWatch {
+    /// account key -> when its current error began (only errors that began while the tray was running)
+    since: HashMap<String, Instant>,
+    /// accounts already told about their current error
+    told: HashSet<String>,
+}
+
+impl ErrorWatch {
+    /// Drops accounts that are gone.
+    fn forget_except(&mut self, present: &HashSet<String>) {
+        self.since.retain(|k, _| present.contains(k));
+        self.told.retain(|k| present.contains(k));
+    }
+
+    /// Call once per poll for each account. `before`: its phase at the previous poll (None on the first poll).
+    /// True: announce the error now (once per error).
+    fn step(
+        &mut self,
+        key: &str,
+        phase: Phase,
+        before: Option<Phase>,
+        tray_age: Duration,
+        now: Instant,
+    ) -> bool {
+        if phase != Phase::Error {
+            self.since.remove(key);
+            self.told.remove(key);
+            return false;
+        }
+        if !self.since.contains_key(key) {
+            // an error already there when the tray started, or when we first looked, is not news (as always)
+            if before.is_some_and(|b| !needs_attention(b)) {
+                self.since.insert(key.to_string(), now);
+            } else {
+                return false;
+            }
+        }
+        if self.told.contains(key) {
+            return false;
+        }
+        let began = self.since[key];
+        if tray_age >= ERROR_QUIET_AFTER_START && now.duration_since(began) >= ERROR_MUST_LAST {
+            self.told.insert(key.to_string());
+            return true;
+        }
+        false
+    }
+}
+
 fn apply_one(a: &mut Acc, when: DateTime<Local>, ev: LogEvent) {
     core::track_blocked(&mut a.blocked, &ev);
     match &ev {
@@ -961,6 +1029,8 @@ fn set_device_held(confdir: &std::path::Path, held: bool) {
 fn poll(handle: ksni::blocking::Handle<Tray>) {
     let mut following: HashMap<String, Arc<FollowControl>> = HashMap::new();
     let mut last_phase: HashMap<String, Phase> = HashMap::new();
+    let mut error_watch = ErrorWatch::default();
+    let poll_started = Instant::now();
     tray_started();
     let mut replaced_seen = false;
     let mut had_stalls = false;
@@ -1205,6 +1275,7 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
             .unwrap_or_default();
         let present_phase_keys = phases.iter().map(|(key, ..)| key.clone()).collect();
         prune_phase_history(&mut last_phase, &present_phase_keys);
+        error_watch.forget_except(&present_phase_keys);
         for (key, name, phase, unit, retrying) in &phases {
             if *phase == Phase::BigDelete
                 && *retrying
@@ -1215,16 +1286,9 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
                 core::hold_for_big_delete(u);
             }
             let before = last_phase.insert(key.clone(), *phase);
-            let bad = |p: Phase| {
-                matches!(
-                    p,
-                    Phase::Error
-                        | Phase::NeedsResync
-                        | Phase::SignedOut
-                        | Phase::BigDelete
-                        | Phase::Stalled
-                )
-            };
+            let bad = needs_attention;
+            let error_news =
+                error_watch.step(key, *phase, before, poll_started.elapsed(), Instant::now());
             // A big delete is told about once until a sync finishes (the log decides, so a
             // quick fix-and-repeat between two polls isn't missed); "Sync now" while it's still
             // there stops again without telling again.
@@ -1236,9 +1300,11 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
                     })
                     .flatten()
                     .unwrap_or(true);
-            let newly_bad =
-                *phase != Phase::BigDelete && before.is_some_and(|b| bad(*phase) && !bad(b));
-            if big_delete_news || newly_bad {
+            // (a plain error is decided by error_watch: it waits out the start-up and has to last)
+            let newly_bad = *phase != Phase::BigDelete
+                && *phase != Phase::Error
+                && before.is_some_and(|b| bad(*phase) && !bad(b));
+            if big_delete_news || newly_bad || error_news {
                 let what = match (phase, unit) {
                     (Phase::BigDelete, Some(u)) => core::big_delete_what(&core::big_delete(u)),
                     _ => String::new(),
@@ -1666,6 +1732,108 @@ mod tests {
             history,
             HashMap::from([("account-b".into(), Phase::UpToDate)])
         );
+    }
+
+    /// Steps an ErrorWatch the way the tray's poll does: one phase per 3 s, from `start` (the tray's age at the first poll).
+    fn watch(phases: &[Phase], start: u64) -> Vec<(u64, usize)> {
+        let t0 = Instant::now();
+        let mut w = ErrorWatch::default();
+        let mut before = None;
+        let mut told = Vec::new();
+        for (i, p) in phases.iter().enumerate() {
+            let age = start + 3 * i as u64;
+            if w.step(
+                "a",
+                *p,
+                before,
+                Duration::from_secs(age),
+                t0 + Duration::from_secs(3 * i as u64),
+            ) {
+                told.push((age, i));
+            }
+            before = Some(*p);
+        }
+        told
+    }
+
+    fn run_of(p: Phase, n: usize) -> Vec<Phase> {
+        vec![p; n]
+    }
+
+    #[test]
+    fn a_login_error_that_clears_is_never_announced() {
+        // up to date, then a network error for 40 s (the computer is still coming up), then fine again
+        let mut ph = run_of(Phase::UpToDate, 2);
+        ph.extend(run_of(Phase::Error, 13));
+        ph.extend(run_of(Phase::Syncing, 5));
+        assert!(watch(&ph, 6).is_empty());
+    }
+
+    #[test]
+    fn an_error_that_lasts_is_announced_once_after_the_quiet_start() {
+        // the error begins 9 s after the tray starts and never clears
+        let mut ph = run_of(Phase::Syncing, 3);
+        ph.extend(run_of(Phase::Error, 200));
+        let told = watch(&ph, 0);
+        assert_eq!(told.len(), 1, "once: {told:?}");
+        // not before the tray has run 150 s, and it had lasted long enough by then
+        assert!(told[0].0 >= 150 && told[0].0 < 156, "{told:?}");
+    }
+
+    #[test]
+    fn a_later_error_waits_only_for_it_to_last() {
+        // the tray has been up for an hour: an error is announced once it has lasted 45 s, not at once
+        let mut ph = run_of(Phase::UpToDate, 2);
+        ph.extend(run_of(Phase::Error, 30));
+        let told = watch(&ph, 3600);
+        assert_eq!(told.len(), 1);
+        assert!(
+            told[0].0 - (3600 + 6) >= 45 && told[0].0 - (3600 + 6) < 48,
+            "{told:?}"
+        );
+    }
+
+    #[test]
+    fn each_new_error_is_announced_again() {
+        let mut ph = run_of(Phase::UpToDate, 1);
+        ph.extend(run_of(Phase::Error, 30));
+        ph.extend(run_of(Phase::UpToDate, 3));
+        ph.extend(run_of(Phase::Error, 30));
+        assert_eq!(watch(&ph, 3600).len(), 2);
+    }
+
+    #[test]
+    fn an_error_already_there_at_the_start_is_not_news() {
+        // as before: what was already wrong when the tray started (or when we first looked) is shown, not announced
+        assert!(watch(&run_of(Phase::Error, 200), 0).is_empty());
+        let mut ph = run_of(Phase::NeedsResync, 2);
+        ph.extend(run_of(Phase::Error, 100));
+        assert!(watch(&ph, 3600).is_empty());
+    }
+
+    #[test]
+    fn other_problems_are_not_held_back_by_the_error_watch() {
+        // they are announced by the tray as before (the watch never says yes for them)
+        for p in [
+            Phase::SignedOut,
+            Phase::NeedsResync,
+            Phase::BigDelete,
+            Phase::Stalled,
+        ] {
+            let mut ph = run_of(Phase::UpToDate, 2);
+            ph.extend(run_of(p, 100));
+            assert!(watch(&ph, 3600).is_empty(), "{p:?}");
+        }
+    }
+
+    #[test]
+    fn removed_accounts_drop_error_history() {
+        let t0 = Instant::now();
+        let mut w = ErrorWatch::default();
+        w.step("a", Phase::Error, Some(Phase::UpToDate), Duration::ZERO, t0);
+        w.step("b", Phase::Error, Some(Phase::UpToDate), Duration::ZERO, t0);
+        w.forget_except(&HashSet::from(["b".to_string()]));
+        assert!(!w.since.contains_key("a") && w.since.contains_key("b"));
     }
 
     #[test]
