@@ -6869,7 +6869,7 @@ pub fn run(account: Option<String>) {
 mod tests {
     #[test]
     fn apply_button_does_something_whenever_a_resync_is_asked_for() {
-        use super::{apply_action, ApplyAction::*};
+        use super::{ApplyAction::*, apply_action};
         // edits always win: they are written (and previewed) as before
         assert_eq!(apply_action(true, false), Folders);
         assert_eq!(apply_action(true, true), Folders);
