@@ -503,7 +503,7 @@ impl ksni::Tray for Tray {
                     icon_name: "folder-open".into(),
                     activate: Box::new(|t: &mut Self| {
                         if let Some(a) = t.accs.first() {
-                            core::open_path(&a.info.sync_dir);
+                            core::open_sync_dir(&a.info.sync_dir);
                         }
                     }),
                     ..Default::default()
@@ -517,7 +517,7 @@ impl ksni::Tray for Tray {
                             label: self.accs[i].info.name.replace('_', "__"),
                             activate: Box::new(move |t: &mut Self| {
                                 if let Some(a) = t.accs.get(i) {
-                                    core::open_path(&a.info.sync_dir);
+                                    core::open_sync_dir(&a.info.sync_dir);
                                 }
                             }),
                             ..Default::default()

@@ -613,6 +613,7 @@ fn show_status(c: &Ctx, i: usize) {
     ui.set_mv_from(ss(a.sync_dir.to_string_lossy()));
     ui.set_s_personal(a.kind == "personal");
     ui.set_s_status(ss(s.text(&prefs)));
+    ui.set_f_resync_needed(needs_resync(c));
     ui.set_s_tone(tone(s));
     ui.set_s_last(ss(s
         .last_complete
@@ -2238,18 +2239,57 @@ fn render_tree(ctx: &Shared) {
     ui.set_f_space_warn(warn);
     let dirty = folder_changes(&c, &ui).is_some();
     ui.set_f_dirty(dirty);
+    let resync = needs_resync(&c);
+    ui.set_f_resync_needed(resync);
     let msg = if !ui.get_f_allowed() {
         crate::tr!(
             "Full resyncs are turned off for this account (Options), so folder choices are locked."
         )
     } else if !ui.get_f_sync_all() && t.selected.is_empty() && !t.rows.is_empty() {
         crate::tr!("Tick at least one folder, or choose \"Sync everything\".")
+    } else if resync && !dirty {
+        crate::tr!(
+            "The sync engine needs a full resync. Press \"Apply changes…\" to review it and run it; your folder choices stay as they are."
+        )
     } else {
         String::new()
     };
-    if !msg.is_empty() || dirty {
+    if !msg.is_empty() || dirty || resync {
         ui.set_f_msg(ss(msg));
     }
+}
+
+/// What "Apply changes…" on the Folders tab does.
+#[derive(Debug, PartialEq, Eq)]
+enum ApplyAction {
+    /// Write the edited folder choices (a resync with a preview)
+    Folders,
+    /// No folder was edited but the sync engine asked for a full resync (changed settings or lists on disk): run that, keeping
+    /// the folders as they are. Before this the button stayed grey and the message told people to press it.
+    ResyncOnly,
+    Nothing,
+}
+
+fn apply_action(has_edits: bool, needs_resync: bool) -> ApplyAction {
+    if has_edits {
+        ApplyAction::Folders
+    } else if needs_resync {
+        ApplyAction::ResyncOnly
+    } else {
+        ApplyAction::Nothing
+    }
+}
+
+/// Whether the account on screen is waiting for a full resync.
+fn needs_resync(c: &Ctx) -> bool {
+    let Some(key) = c.current.as_deref() else {
+        return false;
+    };
+    c.accounts
+        .iter()
+        .position(|a| a.key() == key)
+        .and_then(|i| c.statuses.get(i))
+        .is_some_and(|s| s.phase == Phase::NeedsResync)
 }
 
 /// What the Folders tab would write, or None when nothing changed.
@@ -2350,8 +2390,25 @@ fn folder_check(ctx: &Shared, i: usize) {
 fn folders_apply(ctx: &Shared) {
     let Some(acc) = current(ctx) else { return };
     let ui = ctx.borrow().ui();
-    let Some((lines, root_files)) = folder_changes(&ctx.borrow(), &ui) else {
-        return;
+    let changes = folder_changes(&ctx.borrow(), &ui);
+    let resync = needs_resync(&ctx.borrow());
+    let (lines, root_files) = match (apply_action(changes.is_some(), resync), changes) {
+        (ApplyAction::Folders, Some(c)) => c,
+        (ApplyAction::ResyncOnly, _) => {
+            start_preview(
+                ctx,
+                &acc,
+                &crate::tr!("Run the full resync"),
+                PreviewChange {
+                    sync_list: None,
+                    config: Vec::new(),
+                    mode: PreviewMode::Resync,
+                    note: String::new(),
+                },
+            );
+            return;
+        }
+        _ => return,
     };
     let config = root_files
         .map(|r| vec![("sync_root_files".to_string(), r.then(|| "true".to_string()))])
@@ -6187,7 +6244,7 @@ pub fn run(account: Option<String>) {
     });
     on!(on_open_folder, |c| {
         if let Some(a) = current(c) {
-            core::open_path(&a.sync_dir);
+            core::open_sync_dir(&a.sync_dir);
         }
     });
     on!(on_sync_now, |c| {
@@ -6810,6 +6867,18 @@ pub fn run(account: Option<String>) {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn apply_button_does_something_whenever_a_resync_is_asked_for() {
+        use super::{apply_action, ApplyAction::*};
+        // edits always win: they are written (and previewed) as before
+        assert_eq!(apply_action(true, false), Folders);
+        assert_eq!(apply_action(true, true), Folders);
+        // the bug: a resync asked for with no folder edit left the button grey while the message said to press it
+        assert_eq!(apply_action(false, true), ResyncOnly);
+        // nothing to do: nothing happens
+        assert_eq!(apply_action(false, false), Nothing);
+    }
+
     #[test]
     fn space_note_counts_only_new_top_choices() {
         let node = |path: &str, size: Option<u64>| Node {

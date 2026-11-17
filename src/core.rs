@@ -3227,6 +3227,24 @@ pub fn open_path(p: &Path) {
     run_detached("xdg-open", &[&p.to_string_lossy()]);
 }
 
+/// Opens an account's synced folder. One that doesn't exist (a new account before its first sync, or a drive that isn't
+/// connected) is not handed to the file manager: KDE's helper would answer with an error window of its own, with no app icon
+/// (the generic Wayland "W") and no word about why. Say so with a notification instead. True when it was opened.
+pub fn open_sync_dir(p: &Path) -> bool {
+    if p.is_dir() {
+        open_path(p);
+        return true;
+    }
+    crate::share::notify(
+        &crate::tr!("This folder isn't there yet"),
+        &crate::tr!(
+            "{} doesn't exist yet. It is created when the account first syncs (sign in first), or the drive it lives on isn't connected.",
+            p.display()
+        ),
+    );
+    false
+}
+
 /// A `file://` URI for a path, percent-encoding everything but unreserved characters and `/`.
 pub fn file_uri(p: &Path) -> String {
     use std::os::unix::ffi::OsStrExt;

@@ -1017,8 +1017,9 @@ pub fn run(at: Option<(i32, i32)>) {
     ui.on_open_folder(|i| {
         if let Some(info) = with_state(|s| s.data.infos.get(i.max(0) as usize).cloned()).flatten() {
             launch(move || {
-                core::open_path(&info.sync_dir);
-                bring_forward(Opened::folder(folder_name(&info.sync_dir)));
+                if core::open_sync_dir(&info.sync_dir) {
+                    bring_forward(Opened::folder(folder_name(&info.sync_dir)));
+                }
             });
         }
     });

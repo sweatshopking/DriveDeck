@@ -713,6 +713,7 @@ export component AppWindow inherits Window {
     in property <bool> f-space-warn;
     in property <bool> f-loading;
     in property <bool> f-dirty;
+    in property <bool> f-resync-needed;      // the sync engine asked for a full resync: "Apply changes…" runs it even with no folder edits
     in property <bool> f-allowed;
     callback f-sync-all-toggled();
     callback f-root-toggled();
@@ -1754,7 +1755,7 @@ export component AppWindow inherits Window {
                                 Button {
                                     text: @tr("Apply changes…");
                                     primary: true;
-                                    enabled: root.f-dirty && root.f-allowed;
+                                    enabled: (root.f-dirty || root.f-resync-needed) && root.f-allowed;
                                     clicked => {
                                         root.f-apply();
                                     }
