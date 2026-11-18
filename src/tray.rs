@@ -35,6 +35,9 @@ struct Acc {
     /// new login doesn't repeat the same notification
     told_blocked: HashSet<String>,
     told_blocked_order: VecDeque<String>,
+    /// When each file was last announced: an editor that autosaves every minute locks the file, uploads it, and locks it
+    /// again, and each lock used to be a new notification
+    told_blocked_when: HashMap<String, DateTime<Local>>,
     /// Told about the current big delete; a finished sync means it's over
     told_big_delete: bool,
     /// Large files being uploaded or downloaded right now (file manager badges)
@@ -62,6 +65,7 @@ impl Acc {
             fresh_blocked: Vec::new(),
             told_blocked: HashSet::new(),
             told_blocked_order: VecDeque::new(),
+            told_blocked_when: HashMap::new(),
             told_big_delete: false,
             moving: HashSet::new(),
             stalled_since: None,
@@ -844,6 +848,12 @@ impl ErrorWatch {
     }
 }
 
+/// A file that was announced as blocked (locked by an editor) is announced again no sooner than this, even after it
+/// uploaded in between.
+fn lock_notice_gap() -> chrono::Duration {
+    chrono::Duration::minutes(30)
+}
+
 fn apply_one(a: &mut Acc, when: DateTime<Local>, ev: LogEvent) {
     core::track_blocked(&mut a.blocked, &ev);
     match &ev {
@@ -861,14 +871,19 @@ fn apply_one(a: &mut Acc, when: DateTime<Local>, ev: LogEvent) {
         LogEvent::Blocked { path, reason }
             if reason.needs_attention()
                 && when.timestamp() >= tray_started().timestamp()
-                && !a.told_blocked.contains(path) =>
+                && !a.told_blocked.contains(path)
+                && a.told_blocked_when
+                    .get(path)
+                    .is_none_or(|told| when.signed_duration_since(*told) >= lock_notice_gap()) =>
         {
             if a.told_blocked_order.len() >= core::MAX_TRACKED_BLOCKED
                 && let Some(oldest) = a.told_blocked_order.pop_front()
             {
                 a.told_blocked.remove(&oldest);
+                a.told_blocked_when.remove(&oldest);
             }
             a.told_blocked.insert(path.clone());
+            a.told_blocked_when.insert(path.clone(), when);
             a.told_blocked_order.push_back(path.clone());
             if a.fresh_blocked.len() >= core::MAX_TRACKED_BLOCKED {
                 a.fresh_blocked.remove(0);
@@ -1875,17 +1890,38 @@ mod tests {
         // view-only files never notify
         apply_one(&mut a, now, blocked("v.pdf", NoDownload));
         assert!(a.fresh_blocked.is_empty());
-        // once it uploads, a later block is news again
-        apply_one(
-            &mut a,
-            now,
-            LogEvent::File {
-                kind: "↑",
-                path: "a.docx".into(),
-            },
-        );
-        apply_one(&mut a, now, blocked("a.docx", Locked));
+        // an editor that autosaves locks it, uploads it and locks it again every minute: not news each time
+        let upload = || LogEvent::File {
+            kind: "↑",
+            path: "a.docx".into(),
+        };
+        for minute in 1..=29 {
+            let t = now + chrono::Duration::minutes(minute);
+            apply_one(&mut a, t, upload());
+            apply_one(&mut a, t, blocked("a.docx", Locked));
+        }
+        assert!(a.fresh_blocked.is_empty(), "no repeats within half an hour");
+        // after half an hour (and an upload in between) a lock is news again, once
+        let later = now + chrono::Duration::minutes(31);
+        apply_one(&mut a, later, upload());
+        apply_one(&mut a, later, blocked("a.docx", Locked));
         assert_eq!(a.fresh_blocked.len(), 1);
+        a.fresh_blocked.clear();
+        apply_one(&mut a, later, blocked("a.docx", Locked));
+        assert!(a.fresh_blocked.is_empty());
+    }
+
+    #[test]
+    fn several_locked_files_are_one_notification() {
+        use crate::core::BlockReason::Locked;
+        let mut a = acc();
+        let now = tray_started() + chrono::Duration::seconds(5);
+        for n in 0..4 {
+            apply_one(&mut a, now, blocked(&format!("f{n}.docx"), Locked));
+        }
+        // they wait together in one list: the poll sends one notification for the lot
+        assert_eq!(a.fresh_blocked.len(), 4);
+        assert!(core::blocked_text(&a.fresh_blocked).contains("f0.docx"));
     }
 
     #[test]
