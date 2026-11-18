@@ -1706,7 +1706,6 @@ export component AppWindow inherits Window {
                                         CheckBox {
                                             text: row.name;
                                             checked: row.checked;
-                                            enabled: !row.inherited;
                                             horizontal-stretch: 1;
                                             toggled => {
                                                 root.f-check(i);

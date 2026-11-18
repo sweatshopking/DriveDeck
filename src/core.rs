@@ -889,6 +889,20 @@ pub fn sync_list_folder(rule: &str) -> Option<String> {
     (r.len() > 1).then_some(r)
 }
 
+/// Turns a sync_list exclusion ("!/A/B", "!/A/B/*", "-/A/B/") into the folder it leaves out ("/A/B"), if it is a plain
+/// folder path from the top of the drive. A pattern ("!*.tmp", "!Junk", "!/A/*/Old") stays the user's own rule.
+pub fn sync_list_exclusion(rule: &str) -> Option<String> {
+    let rest = rule.strip_prefix('!').or_else(|| rule.strip_prefix('-'))?;
+    if !rest.starts_with('/') {
+        return None;
+    }
+    let r = rest.trim_end_matches("/*").trim_end_matches('/');
+    if r.contains(['*', '?', '[']) {
+        return None;
+    }
+    (r.len() > 1).then(|| r.to_string())
+}
+
 /// Filesystems that can't store Unix permissions, where the client must not try to set them.
 pub fn needs_disable_permission_set(dir: &Path) -> bool {
     let probe = dir

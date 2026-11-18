@@ -4,7 +4,7 @@
 //! results come back to the UI thread, where the shared [`Ctx`] lives.
 
 use std::cell::RefCell;
-use std::collections::{BTreeSet, HashMap};
+use std::collections::{BTreeMap, BTreeSet, HashMap};
 use std::fs;
 use std::io::{Read, Write};
 use std::os::fd::{AsRawFd, FromRawFd, OwnedFd};
@@ -39,6 +39,9 @@ struct Tree {
     selected: BTreeSet<String>,
     original: BTreeSet<String>,
     extra_rules: Vec<String>,
+    /// Folders left out inside a ticked one (sync_list "!/A/B/*"): path -> the rule as it is in the file
+    excluded: BTreeMap<String, String>,
+    excluded_original: BTreeSet<String>,
     sync_all_original: bool,
     root_files_original: bool,
     loaded_for: Option<String>,
@@ -77,33 +80,133 @@ impl Tree {
         Some(self.loading_requests)
     }
 
+    /// Whether `path` is in what syncs: a ticked folder at or above it, and none left out at or above it (the client lets
+    /// an exclusion win over an inclusion).
     fn covered(&self, path: &str) -> bool {
-        if self.selected.contains(path) {
-            return true;
-        }
-        let mut prefix = path;
-        while let Some(slash) = prefix.rfind('/') {
-            if slash == 0 {
+        let mut in_list = false;
+        for p in at_and_above(path) {
+            if self.excluded.contains_key(p) {
                 return false;
             }
-            prefix = &prefix[..slash];
-            if self.selected.contains(prefix) {
-                return true;
-            }
+            in_list |= self.selected.contains(p);
         }
-        false
+        in_list
     }
     /// Whether a folder above `path` is ticked (so `path` comes with it)
     fn under_selected(&self, path: &str) -> bool {
         path.rsplit_once('/')
             .is_some_and(|(parent, _)| !parent.is_empty() && self.covered(parent))
     }
-    fn inherited(&self, path: &str) -> bool {
+    /// Whether something inside `path` is different from `path` itself: ticked inside an unticked folder, or left out inside
+    /// a ticked one. Clicking such a folder ticks all of it.
+    fn partial(&self, path: &str) -> bool {
+        let prefix = format!("{path}/");
+        if self.covered(path) {
+            self.excluded
+                .range(prefix.clone()..)
+                .next()
+                .is_some_and(|(k, _)| k.starts_with(&prefix))
+        } else {
+            self.selected
+                .range(prefix.clone()..)
+                .next()
+                .is_some_and(|k| k.starts_with(&prefix))
+        }
+    }
+
+    /// Takes away every choice at or inside `path`.
+    fn drop_rules_under(&mut self, path: &str) {
         let prefix = format!("{path}/");
         self.selected
-            .range(prefix.clone()..)
-            .next()
-            .is_some_and(|selected| selected.starts_with(&prefix))
+            .retain(|s| s != path && !s.starts_with(&prefix));
+        self.excluded
+            .retain(|e, _| e != path && !e.starts_with(&prefix));
+    }
+
+    /// The nearest folder above `path` that is left out.
+    fn excluded_above(&self, path: &str) -> Option<String> {
+        at_and_above(path)
+            .skip(1)
+            .find(|p| self.excluded.contains_key(*p))
+            .map(str::to_string)
+    }
+
+    /// The sync_list this tree stands for: the client wants exclusions before inclusions.
+    fn rule_lines(&self) -> Vec<String> {
+        let (exclusions, other): (Vec<&String>, Vec<&String>) = self
+            .extra_rules
+            .iter()
+            .partition(|r| r.starts_with('!') || r.starts_with('-'));
+        let mut lines: Vec<String> = exclusions.into_iter().cloned().collect();
+        lines.extend(self.excluded.values().cloned());
+        lines.extend(self.selected.iter().cloned());
+        lines.extend(other.into_iter().cloned());
+        lines
+    }
+
+    /// A click on a folder's box. Unticked or part-ticked: tick all of it. Ticked: untick all of it, which inside a ticked
+    /// folder means leaving it out (the rest of that folder, and anything new in it, keeps syncing).
+    fn click(&mut self, path: &str) {
+        if self.partial(path) || !self.covered(path) {
+            self.tick(path);
+        } else {
+            self.drop_rules_under(path);
+            if self.covered(path) {
+                self.excluded.insert(path.to_string(), format!("!{path}/*"));
+            }
+        }
+    }
+
+    fn tick(&mut self, path: &str) {
+        self.drop_rules_under(path);
+        // inside a folder that is left out: bring back only the way down to this one, leaving out its other neighbours
+        // (when a folder's list isn't known the whole folder comes back, which is the safe side)
+        while let Some(out) = self.excluded_above(path) {
+            self.excluded.remove(&out);
+            let mut dir = out;
+            while dir != path {
+                let from = if dir == "/" { 1 } else { dir.len() + 1 };
+                let next =
+                    path[..path[from..].find('/').map_or(path.len(), |i| from + i)].to_string();
+                let Some(kids) = self.cache.get(&dir) else {
+                    break;
+                };
+                let leave: Vec<String> = kids
+                    .iter()
+                    .map(|k| join_path(&dir, &k.name))
+                    .filter(|child| *child != next)
+                    .collect();
+                for child in leave {
+                    let rule = format!("!{child}/*");
+                    self.excluded.insert(child, rule);
+                }
+                dir = next;
+            }
+        }
+        if !self.covered(path) {
+            self.selected.insert(path.to_string());
+        }
+    }
+}
+
+/// `path`, then each folder above it, down to the top-level one ("/A/B/C", "/A/B", "/A").
+fn at_and_above(path: &str) -> impl Iterator<Item = &str> {
+    let mut next = Some(path);
+    std::iter::from_fn(move || {
+        let now = next?;
+        next = match now.rfind('/') {
+            Some(i) if i > 0 => Some(&now[..i]),
+            _ => None,
+        };
+        Some(now)
+    })
+}
+
+fn join_path(dir: &str, name: &str) -> String {
+    if dir == "/" {
+        format!("/{name}")
+    } else {
+        format!("{dir}/{name}")
     }
 }
 
@@ -2102,6 +2205,10 @@ fn load_folders(ctx: &Shared, acc: &AccountInfo, force: bool) {
             ..Default::default()
         };
         for r in rules {
+            if let Some(out) = core::sync_list_exclusion(&r) {
+                t.excluded.insert(out, r);
+                continue;
+            }
             match core::sync_list_folder(&r) {
                 Some(f) if !r.contains('*') || r.ends_with("/*") => {
                     t.selected.insert(f);
@@ -2110,6 +2217,7 @@ fn load_folders(ctx: &Shared, acc: &AccountInfo, force: bool) {
             }
         }
         t.original = t.selected.clone();
+        t.excluded_original = t.excluded.keys().cloned().collect();
         t.sync_all_original = t.selected.is_empty();
         t.root_files_original = ClientConfig::load(&acc.confdir).get_bool("sync_root_files");
         c.tree = t;
@@ -2225,7 +2333,7 @@ fn render_tree(ctx: &Shared) {
             has_children: n.has_children,
             loading: n.loading,
             checked: t.covered(&n.path),
-            inherited: t.inherited(&n.path),
+            inherited: t.partial(&n.path),
             size: ss(n.size.map(graph::human_size).unwrap_or_default()),
         })
         .collect();
@@ -2297,7 +2405,9 @@ fn folder_changes(c: &Ctx, ui: &AppWindow) -> Option<(Vec<String>, Option<bool>)
     let t = &c.tree;
     let sync_all = ui.get_f_sync_all();
     let root_files = ui.get_f_root_files();
-    let list_changed = sync_all != t.sync_all_original || (!sync_all && t.selected != t.original);
+    let excluded_now: BTreeSet<String> = t.excluded.keys().cloned().collect();
+    let list_changed = sync_all != t.sync_all_original
+        || (!sync_all && (t.selected != t.original || excluded_now != t.excluded_original));
     let root_changed = !sync_all && root_files != t.root_files_original;
     if !list_changed && !root_changed {
         return None;
@@ -2310,14 +2420,7 @@ fn folder_changes(c: &Ctx, ui: &AppWindow) -> Option<(Vec<String>, Option<bool>)
     if sync_all {
         return Some((Vec::new(), root_changed.then_some(root_files)));
     }
-    // the client wants exclusions before inclusions
-    let (exclusions, other): (Vec<&String>, Vec<&String>) = t
-        .extra_rules
-        .iter()
-        .partition(|r| r.starts_with('!') || r.starts_with('-'));
-    let mut lines: Vec<String> = exclusions.into_iter().cloned().collect();
-    lines.extend(t.selected.iter().cloned());
-    lines.extend(other.into_iter().cloned());
+    let lines = t.rule_lines();
     Some((lines, root_changed.then_some(root_files)))
 }
 
@@ -2374,15 +2477,7 @@ fn folder_check(ctx: &Shared, i: usize) {
         let Some(path) = c.tree.rows.get(i).map(|n| n.path.clone()) else {
             return;
         };
-        if c.tree.inherited(&path) {
-            return;
-        }
-        if !c.tree.selected.remove(&path) {
-            // selecting a folder makes any ticked sub-folders redundant
-            let prefix = format!("{path}/");
-            c.tree.selected.retain(|s| !s.starts_with(&prefix));
-            c.tree.selected.insert(path);
-        }
+        c.tree.click(&path);
     }
     render_tree(ctx);
 }
@@ -6936,9 +7031,153 @@ mod tests {
         assert!(tree.covered("/A/B/C"));
         assert!(!tree.covered("/A/BC"));
         assert!(!tree.covered("/AB"));
-        assert!(tree.inherited("/A"));
-        assert!(!tree.inherited("/A/B"));
-        assert!(tree.inherited("/AB"));
+        assert!(tree.partial("/A"));
+        assert!(!tree.partial("/A/B"));
+        assert!(tree.partial("/AB"));
+    }
+
+    /// A tree with some folders listed the way the Folders tab has them after the user opened them.
+    fn tree_with(selected: &[&str], excluded: &[&str]) -> Tree {
+        let kids = |names: &[&str]| -> Vec<graph::Folder> {
+            names
+                .iter()
+                .map(|n| graph::Folder {
+                    name: (*n).into(),
+                    has_children: true,
+                    size: None,
+                })
+                .collect()
+        };
+        let mut t = Tree {
+            selected: selected.iter().map(|s| s.to_string()).collect(),
+            excluded: excluded
+                .iter()
+                .map(|e| (e.to_string(), format!("!{e}/*")))
+                .collect(),
+            ..Default::default()
+        };
+        t.cache.insert("/".into(), kids(&["Docs", "Pics", "Music"]));
+        t.cache
+            .insert("/Docs".into(), kids(&["Work", "Home", "Old"]));
+        t.cache.insert("/Docs/Work".into(), kids(&["A", "B"]));
+        t
+    }
+
+    #[test]
+    fn unticking_a_folder_inside_a_ticked_one_unticks_it() {
+        // this was the bug: the box flipped back on (it was only ever added to the choices)
+        let mut t = tree_with(&["/Docs"], &[]);
+        assert!(t.covered("/Docs/Old"));
+        t.click("/Docs/Old");
+        assert!(!t.covered("/Docs/Old"), "unticked");
+        assert!(t.covered("/Docs/Work") && t.covered("/Docs/Home") && t.covered("/Docs"));
+        // the folder above is now part-ticked, and the rest of it (new folders too) still comes
+        assert!(t.partial("/Docs"));
+        assert_eq!(t.excluded.keys().collect::<Vec<_>>(), ["/Docs/Old"]);
+        assert!(t.covered("/Docs/Future"));
+    }
+
+    #[test]
+    fn ticking_it_again_brings_it_back() {
+        let mut t = tree_with(&["/Docs"], &[]);
+        t.click("/Docs/Old");
+        t.click("/Docs/Old");
+        assert!(t.covered("/Docs/Old"));
+        assert!(t.excluded.is_empty());
+        assert_eq!(t.selected.iter().collect::<Vec<_>>(), ["/Docs"]);
+    }
+
+    #[test]
+    fn unticking_deeper_inside_a_ticked_folder() {
+        let mut t = tree_with(&["/Docs"], &[]);
+        t.click("/Docs/Work/B");
+        assert!(!t.covered("/Docs/Work/B") && t.covered("/Docs/Work/A") && t.covered("/Docs/Work"));
+        assert!(t.partial("/Docs") && t.partial("/Docs/Work"));
+    }
+
+    #[test]
+    fn unticking_the_folder_you_ticked_unticks_everything_in_it() {
+        // (a rules file can hold a folder and one inside it both)
+        let mut t = tree_with(&["/Docs", "/Docs/Work", "/Pics/2020"], &[]);
+        t.click("/Docs");
+        assert!(!t.covered("/Docs") && !t.covered("/Docs/Work"));
+        assert_eq!(t.selected.iter().collect::<Vec<_>>(), ["/Pics/2020"]);
+        // part-ticked (something left out inside) is not "ticked": a click ticks all of it, never leaves it half-done
+        let mut t = tree_with(&["/Docs"], &["/Docs/Old"]);
+        t.click("/Docs");
+        assert!(t.covered("/Docs/Old"));
+    }
+
+    #[test]
+    fn ticking_a_part_ticked_folder_ticks_all_of_it() {
+        // a folder whose sub-folder is ticked: it used to be greyed out and nothing happened
+        let mut t = tree_with(&["/Docs/Work"], &[]);
+        assert!(t.partial("/Docs") && !t.covered("/Docs"));
+        t.click("/Docs");
+        assert!(t.covered("/Docs") && t.covered("/Docs/Old") && !t.partial("/Docs"));
+        assert_eq!(t.selected.iter().collect::<Vec<_>>(), ["/Docs"]);
+        // and the same when it is ticked with something left out inside
+        let mut t = tree_with(&["/Docs"], &["/Docs/Old"]);
+        assert!(t.partial("/Docs"));
+        t.click("/Docs");
+        assert!(t.excluded.is_empty() && t.covered("/Docs/Old") && !t.partial("/Docs"));
+    }
+
+    #[test]
+    fn ticking_inside_a_left_out_folder_keeps_the_rest_of_it_out() {
+        // /Docs ticked, /Docs/Work left out; now tick /Docs/Work/A: only A of Work comes back
+        let mut t = tree_with(&["/Docs"], &["/Docs/Work"]);
+        assert!(!t.covered("/Docs/Work/A"));
+        t.click("/Docs/Work/A");
+        assert!(t.covered("/Docs/Work/A"));
+        assert!(!t.covered("/Docs/Work/B"), "the others in Work stay out");
+        assert!(t.covered("/Docs/Home"));
+        assert!(!t.excluded.contains_key("/Docs/Work") && t.excluded.contains_key("/Docs/Work/B"));
+    }
+
+    #[test]
+    fn a_left_out_folder_from_the_rules_file_shows_unticked() {
+        // sync_list: !/Docs/Old/*  then  /Docs  (it used to show ticked, as if it were in)
+        let t = tree_with(&["/Docs"], &["/Docs/Old"]);
+        assert!(!t.covered("/Docs/Old") && !t.covered("/Docs/Old/Deep"));
+        assert!(t.covered("/Docs/Work"));
+    }
+
+    #[test]
+    fn what_is_written_has_exclusions_first_and_keeps_the_users_own_rules() {
+        let mut t = tree_with(&["/Docs", "/Pics"], &[]);
+        t.extra_rules = vec!["!*.tmp".into(), "Music/Keep".into()];
+        t.click("/Docs/Old");
+        assert_eq!(
+            t.rule_lines(),
+            ["!*.tmp", "!/Docs/Old/*", "/Docs", "/Pics", "Music/Keep"]
+        );
+        // a left-out folder read from the file is written back as it was
+        let mut t = tree_with(&["/Docs"], &[]);
+        t.excluded.insert("/Docs/Old".into(), "!/Docs/Old".into());
+        assert_eq!(t.rule_lines(), ["!/Docs/Old", "/Docs"]);
+    }
+
+    #[test]
+    fn exclusions_are_read_from_the_rules() {
+        assert_eq!(
+            core::sync_list_exclusion("!/Docs/Old/*"),
+            Some("/Docs/Old".into())
+        );
+        assert_eq!(
+            core::sync_list_exclusion("!/Docs/Old"),
+            Some("/Docs/Old".into())
+        );
+        assert_eq!(
+            core::sync_list_exclusion("-/Docs/Old/"),
+            Some("/Docs/Old".into())
+        );
+        assert_eq!(
+            core::sync_list_exclusion("!*.tmp"),
+            None,
+            "a pattern stays the user's own rule"
+        );
+        assert_eq!(core::sync_list_exclusion("/Docs"), None);
     }
 
     #[test]
