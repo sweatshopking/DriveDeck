@@ -857,6 +857,9 @@ export component AppWindow inherits Window {
     in property <string> app-doctor;
     in property <bool> app-doctor-busy;
     callback app-doctor-check();
+    // the check found accounts that change file dates after uploads while LibreOffice is installed
+    in property <bool> app-doctor-dates;
+    callback app-doctor-keep-dates();
     callback app-doctor-report();
     in-out property <bool> app-bug-visible;
     in-out property <bool> app-bug-busy;
@@ -2734,6 +2737,16 @@ export component AppWindow inherits Window {
                                 text: root.app-doctor;
                                 wrap: word-wrap;
                                 font-size: 12px;
+                            }
+                            if root.app-doctor-dates: HorizontalLayout {
+                                alignment: start;
+                                Button {
+                                    text: @tr("Keep my file dates");
+                                    enabled: !root.app-doctor-busy;
+                                    clicked => {
+                                        root.app-doctor-keep-dates();
+                                    }
+                                }
                             }
                         }
                     }

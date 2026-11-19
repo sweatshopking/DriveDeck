@@ -389,7 +389,8 @@ DriveDeck is the window and tray icon for the free
 separate program that does the actual syncing. **You don't have to install it yourself.** If it's
 missing or too old, DriveDeck says so and its **Install it for me** button installs it after asking
 for your password. The app notices the client within a few seconds of it being installed, wherever
-it came from.
+it came from, Homebrew (`brew install onedrive-cli`) included. A client somewhere unusual can be
+picked by hand in *About > Choose the client…*, and changed again at any time.
 
 **Prefer to install it yourself?** Choose *I'll install it myself* in the app, or follow the table
 below. The client is a separate program, so it gets its own updates.
@@ -400,7 +401,7 @@ below. The client is a separate program, so it gets its own updates.
 | openSUSE Tumbleweed, Leap 16 | `zypper install onedrive` (Leap 15 only has an old client, so there the app shows the instructions instead) |
 | Ubuntu 22.04+, Linux Mint, Debian 11+, Pop!_OS, Zorin, Raspberry Pi OS | These come with an old version of the client that its author no longer supports. So the app adds the place the author recommends getting it from to your computer's list of software sources (like adding a trusted app store), then installs the current version from there. Your normal software updates keep it up to date after that. This is the same setup as the client's [Ubuntu / Debian installation guide](https://github.com/abraunegg/onedrive/blob/master/docs/ubuntu-package-install.md). |
 | Arch, Manjaro, EndeavourOS, CachyOS | Arch doesn't include the client, but the AUR (install recipes shared by Arch users) does. The app builds it from there, which takes a few minutes. Normal software updates don't cover the AUR, so the app tells you when a newer client is out and updates it for you. |
-| Fedora Silverblue/Kinoite, SteamOS, anything else | No button; the app links to the client's [installation instructions](https://github.com/abraunegg/onedrive/blob/master/docs/install.md) |
+| Fedora Silverblue/Kinoite, SteamOS, anything else | No button; the app links to the client's [installation instructions](https://github.com/abraunegg/onedrive/blob/master/docs/install.md). Homebrew's `onedrive-cli` works too, with no system changes: the app finds it by itself |
 
 ### Requirements
 

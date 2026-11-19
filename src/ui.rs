@@ -5565,6 +5565,35 @@ fn show_app_client(ctx: &Shared) {
     );
 }
 
+/// "Check for problems": runs the checks off the window's thread and shows them, after `first`
+/// (the outcome of a fix, or "").
+fn run_doctor(ctx: &Shared, first: String) {
+    ctx.borrow().ui().set_app_doctor_busy(true);
+    bg(
+        || {
+            let (checks, dates) = crate::doctor::checks_and_dates();
+            (
+                checks
+                    .iter()
+                    .map(crate::doctor::line)
+                    .collect::<Vec<_>>()
+                    .join("\n"),
+                dates,
+            )
+        },
+        move |ctx, (text, dates)| {
+            let ui = ctx.borrow().ui();
+            ui.set_app_doctor_busy(false);
+            ui.set_app_doctor_dates(dates);
+            ui.set_app_doctor(ss(if first.is_empty() {
+                text
+            } else {
+                format!("{first}\n\n{text}")
+            }));
+        },
+    );
+}
+
 /// After the client was chosen by hand or set back to automatic: point the sync services at it
 /// (only ones this app made, and only those whose program changed are restarted), then show it.
 fn client_changed(ctx: &Shared, msg: String) {
@@ -6644,21 +6673,36 @@ pub fn run(account: Option<String>) {
         }
     });
     on!(on_app_add_to_menu, |c| add_to_menu(c));
-    on!(on_app_doctor_check, |c| {
+    on!(on_app_doctor_check, |c| run_doctor(c, String::new()));
+    on!(on_app_doctor_keep_dates, |c| {
         c.borrow().ui().set_app_doctor_busy(true);
         bg(
             || {
-                crate::doctor::checks()
-                    .iter()
-                    .map(crate::doctor::line)
-                    .collect::<Vec<_>>()
-                    .join("\n")
+                let infos = take_snapshot().infos;
+                let (done, failed) =
+                    crate::doctor::keep_file_dates(&crate::doctor::dates_off(&infos));
+                // the client reads its config only when it starts
+                for a in &done {
+                    restart_if_running(a.clone());
+                }
+                let mut msg = if done.is_empty() {
+                    String::new()
+                } else {
+                    crate::tr!(
+                        "\"Keep my file dates\" is on for {}. Syncs that are running restart to pick it up.",
+                        done.iter()
+                            .map(|a| a.name.as_str())
+                            .collect::<Vec<_>>()
+                            .join(", ")
+                    )
+                };
+                for f in failed {
+                    msg.push('\n');
+                    msg.push_str(&crate::tr!("Couldn't change {}", f));
+                }
+                msg
             },
-            |ctx, text| {
-                let ui = ctx.borrow().ui();
-                ui.set_app_doctor_busy(false);
-                ui.set_app_doctor(ss(text));
-            },
+            run_doctor,
         );
     });
     on!(on_app_doctor_report, |c| {

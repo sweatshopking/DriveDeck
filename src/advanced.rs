@@ -471,8 +471,8 @@ pub const SPECS: &[Spec] = &[
     bool_opt(
         "force_session_upload",
         "Transfers",
-        "Upload every file in pieces",
-        "Keeps file dates exactly right online, at the cost of a little speed for small files.",
+        "Keep my file dates",
+        "After an upload the client normally changes the file's date on this computer to the time it reached OneDrive, so LibreOffice and other editors warn that someone else changed the file. This sends your own date with every upload instead, so it stays as it was. Small files upload a little slower.",
     ),
     // ---- network
     num(

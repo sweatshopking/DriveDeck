@@ -29,6 +29,50 @@ impl Check {
     }
 }
 
+/// LibreOffice from the distribution or as a Flatpak (it is the editor that warns about the dates)
+fn libreoffice_installed() -> bool {
+    let flatpak = "flatpak/app/org.libreoffice.LibreOffice";
+    core::which("soffice").is_some()
+        || core::which("libreoffice").is_some()
+        || core::data_home().join(flatpak).is_dir()
+        || Path::new("/var/lib").join(flatpak).is_dir()
+}
+
+/// Accounts whose client changes local file dates after uploads ("Keep my file dates" off), when
+/// LibreOffice is installed (whose "changed by someone else" warning this causes). Signed-out
+/// accounts don't upload, so they are left out.
+pub fn dates_off(infos: &[core::AccountInfo]) -> Vec<core::AccountInfo> {
+    dates_off_with(infos, libreoffice_installed())
+}
+
+fn dates_off_with(infos: &[core::AccountInfo], libreoffice: bool) -> Vec<core::AccountInfo> {
+    if !libreoffice {
+        return Vec::new();
+    }
+    infos
+        .iter()
+        .filter(|a| {
+            a.signed_in && !core::ClientConfig::load(&a.confdir).get_bool("force_session_upload")
+        })
+        .cloned()
+        .collect()
+}
+
+/// Turns "Keep my file dates" (force_session_upload) on for these accounts, in each one's client
+/// config. Returns the accounts changed, and the ones that couldn't be (name: why).
+pub fn keep_file_dates(accounts: &[core::AccountInfo]) -> (Vec<core::AccountInfo>, Vec<String>) {
+    let (mut done, mut failed) = (Vec::new(), Vec::new());
+    for a in accounts {
+        let mut cfg = core::ClientConfig::load(&a.confdir);
+        cfg.set("force_session_upload", Some("true"));
+        match cfg.save() {
+            Ok(()) => done.push(a.clone()),
+            Err(e) => failed.push(format!("{}: {e}", a.name)),
+        }
+    }
+    (done, failed)
+}
+
 pub fn line(c: &Check) -> String {
     format!("{} {}", if c.ok { "✓" } else { "⚠" }, c.text)
 }
@@ -37,11 +81,17 @@ pub fn line(c: &Check) -> String {
 const LOW_SPACE: u64 = 2 << 30;
 
 pub fn checks() -> Vec<Check> {
+    checks_named(true).0
+}
+
+/// As `checks`, and whether "Keep my file dates" can be turned on somewhere (the window then
+/// offers its button), from the same look at the accounts.
+pub fn checks_and_dates() -> (Vec<Check>, bool) {
     checks_named(true)
 }
 
-/// As `checks`; `names` false leaves out names of folders inside OneDrive (for a report)
-fn checks_named(names: bool) -> Vec<Check> {
+/// As `checks_and_dates`; `names` false leaves out names of folders inside OneDrive (for a report)
+fn checks_named(names: bool) -> (Vec<Check>, bool) {
     let mut out = Vec::new();
     match core::check_client() {
         core::ClientCheck::Ok { version, .. } => match crate::update::client_news() {
@@ -82,6 +132,14 @@ fn checks_named(names: bool) -> Vec<Check> {
     let snap = crate::ui::take_snapshot();
     if snap.infos.is_empty() {
         out.push(Check::warn(crate::tr!("No accounts are set up yet.")));
+    }
+    let dates = dates_off(&snap.infos);
+    if !dates.is_empty() {
+        let names: Vec<&str> = dates.iter().map(|a| a.name.as_str()).collect();
+        out.push(Check::warn(crate::tr!(
+            "LibreOffice is installed, and \"Keep my file dates\" is off for {}: after a document uploads, LibreOffice may warn that someone else changed it. Turn it on in each account's Advanced > Transfers, or with \"Keep my file dates\" under Check for problems.",
+            names.join(", ")
+        )));
     }
     let mut dirs = 0usize;
     for (info, status) in snap.infos.iter().zip(&snap.statuses) {
@@ -154,7 +212,7 @@ fn checks_named(names: bool) -> Vec<Check> {
             o.unit
         )));
     }
-    out
+    (out, !dates.is_empty())
 }
 
 /// Whether a RestartPreventExitStatus value ("78 126", "SIGTERM 78") names this exit status
@@ -365,7 +423,7 @@ fn report_for_snapshot(snap: &crate::ui::Snapshot) -> String {
     );
     let mut r = String::new();
     let _ = writeln!(r, "\n== Checks");
-    for c in checks_named(false) {
+    for c in checks_named(false).0 {
         let _ = writeln!(r, "{}", line(&c));
     }
     for (info, status) in snap.infos.iter().zip(&snap.statuses) {
@@ -574,7 +632,91 @@ pub fn bug_issue_url(description: &str, report: &str) -> BugIssue {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::fs;
     use std::os::unix::fs::PermissionsExt;
+
+    #[test]
+    fn keep_my_file_dates_is_offered_and_turned_on() {
+        let root = std::env::temp_dir().join(format!("lodg-dates-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&root);
+        let acc = |name: &str, signed_in: bool| {
+            let confdir = root.join(name);
+            fs::create_dir_all(&confdir).unwrap();
+            core::AccountInfo {
+                name: name.into(),
+                confdir,
+                unit: None,
+                managed: true,
+                sync_dir: root.join("od"),
+                drive_id: None,
+                kind: "personal".into(),
+                signed_in,
+            }
+        };
+        let off = acc("off", true);
+        fs::write(
+            off.confdir.join("config"),
+            "# mine\nsync_dir = \"~/OneDrive\"\nmonitor_interval = \"300\"\n",
+        )
+        .unwrap();
+        let no = acc("no", true);
+        fs::write(
+            no.confdir.join("config"),
+            "force_session_upload = \"false\"\n",
+        )
+        .unwrap();
+        let on = acc("on", true);
+        fs::write(
+            on.confdir.join("config"),
+            "force_session_upload = \"true\"\n",
+        )
+        .unwrap();
+        let out = acc("out", false); // signed out: doesn't upload, not offered
+        let all = vec![off.clone(), no.clone(), on.clone(), out.clone()];
+
+        // without LibreOffice nothing is offered; with it, the ones that change dates
+        assert!(dates_off_with(&all, false).is_empty());
+        let names = |v: Vec<core::AccountInfo>| v.into_iter().map(|a| a.name).collect::<Vec<_>>();
+        assert_eq!(names(dates_off_with(&all, true)), ["off", "no"]);
+
+        let (done, failed) = keep_file_dates(&dates_off_with(&all, true));
+        assert_eq!(names(done), ["off", "no"]);
+        assert!(failed.is_empty());
+        let off_cfg = fs::read_to_string(off.confdir.join("config")).unwrap();
+        assert!(
+            off_cfg.contains("# mine") && off_cfg.contains("monitor_interval = \"300\""),
+            "the rest is kept: {off_cfg}"
+        );
+        assert!(core::ClientConfig::load(&off.confdir).get_bool("force_session_upload"));
+        assert!(core::ClientConfig::load(&no.confdir).get_bool("force_session_upload"));
+        assert_eq!(
+            fs::read_to_string(no.confdir.join("config"))
+                .unwrap()
+                .matches("force_session_upload")
+                .count(),
+            1
+        );
+        assert!(
+            dates_off_with(&all, true).is_empty(),
+            "nothing left to offer"
+        );
+
+        // a config that can't be written is reported, not skipped silently
+        let ro = acc("ro", true);
+        fs::write(ro.confdir.join("config"), "sync_dir = \"~/x\"\n").unwrap();
+        fs::set_permissions(&ro.confdir, fs::Permissions::from_mode(0o500)).unwrap();
+        fs::set_permissions(ro.confdir.join("config"), fs::Permissions::from_mode(0o400)).unwrap();
+        let (done, failed) = keep_file_dates(std::slice::from_ref(&ro));
+        fs::set_permissions(&ro.confdir, fs::Permissions::from_mode(0o700)).unwrap();
+        if !done.is_empty() {
+            // running as root: permissions don't stop the write, nothing to check here
+            assert!(failed.is_empty());
+        } else {
+            assert_eq!(failed.len(), 1);
+            assert!(failed[0].starts_with("ro: "), "{failed:?}");
+        }
+        fs::remove_dir_all(&root).unwrap();
+    }
 
     #[test]
     fn file_names_after_an_absolute_path_are_left_out() {
