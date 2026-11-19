@@ -123,24 +123,163 @@ pub const MIN_CLIENT_VERSION: (u32, u32, u32) = (2, 5, 0);
 pub const CLIENT_INSTALL_URL: &str =
     "https://github.com/abraunegg/onedrive/blob/master/docs/install.md";
 
-/// The OneDrive Client for Linux installed on this computer: `onedrive` on PATH, or where a
-/// build from source puts it (a desktop session's PATH often lacks ~/.local/bin). The app never
-/// ships its own copy, so the client keeps getting updates from its own packages.
+/// The OneDrive Client for Linux installed on this computer: the one chosen in this app's settings
+/// (About > Choose the client), else `onedrive` on PATH, else where a build from source or
+/// Homebrew puts it (a desktop session's PATH often lacks ~/.local/bin and Homebrew's bin). The
+/// app never ships its own copy, so the client keeps getting updates from its own packages.
 pub fn client_binary() -> Option<PathBuf> {
     // lets the automated tests use a stand-in client
     if let Some(p) = std::env::var_os("DRIVEDECK_CLIENT") {
         return Some(PathBuf::from(p));
     }
-    which("onedrive").or_else(|| {
-        let home = std::env::var_os("HOME").map(PathBuf::from);
-        [
-            home.map(|h| h.join(".local/bin/onedrive")),
-            Some(PathBuf::from("/usr/local/bin/onedrive")),
-        ]
-        .into_iter()
-        .flatten()
-        .find(|p| executable_file(p))
-    })
+    find_client(
+        chosen_client_path(),
+        which("onedrive"),
+        std::env::var_os("HOME").map(PathBuf::from),
+        std::env::var_os("HOMEBREW_PREFIX").map(PathBuf::from),
+        executable_file,
+    )
+}
+
+/// `client_binary`'s order, with the lookups passed in (for tests): the chosen one (if it is
+/// still there and runnable: a removed one falls back to finding one, and the doctor says so),
+/// PATH, then the usual places outside a desktop session's PATH.
+fn find_client(
+    chosen: Option<PathBuf>,
+    on_path: Option<PathBuf>,
+    home: Option<PathBuf>,
+    brew_prefix: Option<PathBuf>,
+    runnable: impl Fn(&Path) -> bool,
+) -> Option<PathBuf> {
+    if let Some(c) = chosen.filter(|c| runnable(c)) {
+        return Some(c);
+    }
+    if on_path.is_some() {
+        return on_path;
+    }
+    [
+        home.as_ref().map(|h| h.join(".local/bin/onedrive")),
+        Some(PathBuf::from("/usr/local/bin/onedrive")),
+        // Homebrew on Linux: its own prefix if set, the shared install, a per-user install
+        brew_prefix
+            .filter(|p| p.is_absolute())
+            .map(|p| p.join("bin/onedrive")),
+        Some(PathBuf::from("/home/linuxbrew/.linuxbrew/bin/onedrive")),
+        home.as_ref().map(|h| h.join(".linuxbrew/bin/onedrive")),
+    ]
+    .into_iter()
+    .flatten()
+    .find(|p| runnable(p))
+}
+
+/// The client chosen by hand in this app's settings ("client_path"), if any. Read on its own, not
+/// through `AppSettings::load`: this runs often, and a damaged settings file must not be copied
+/// aside again on every lookup (`load` does that).
+pub fn chosen_client_path() -> Option<PathBuf> {
+    let text = fs::read_to_string(AppSettings::path()).ok()?;
+    chosen_client_from(&text)
+}
+
+fn chosen_client_from(settings_json: &str) -> Option<PathBuf> {
+    let v: serde_json::Value = serde_json::from_str(settings_json).ok()?;
+    let p = PathBuf::from(v.get("client_path")?.as_str()?);
+    p.is_absolute().then_some(p)
+}
+
+/// Runs `<client> --version` (at most `limit`; a program that doesn't answer is stopped) and
+/// returns what it printed (the first 64 KiB). Err(()) when it couldn't be run or didn't answer
+/// in time.
+fn client_version_of(path: &Path, limit: std::time::Duration) -> Result<String, ()> {
+    let mut child = Command::new(path)
+        .arg("--version")
+        .stdin(Stdio::null())
+        .stdout(Stdio::piped())
+        .stderr(Stdio::null())
+        .spawn()
+        .map_err(|_| ())?;
+    let mut out = child.stdout.take().ok_or(())?;
+    // read on a thread, and drain everything past what is kept: a full pipe must not keep the
+    // program from exiting
+    let reader = std::thread::spawn(move || {
+        let mut buf = Vec::new();
+        let _ = std::io::Read::read_to_end(&mut std::io::Read::take(&mut out, 64 * 1024), &mut buf);
+        let _ = std::io::copy(&mut out, &mut std::io::sink());
+        buf
+    });
+    let until = std::time::Instant::now() + limit;
+    loop {
+        match child.try_wait() {
+            Ok(Some(_)) => break,
+            Ok(None) if std::time::Instant::now() < until => {
+                std::thread::sleep(std::time::Duration::from_millis(25))
+            }
+            _ => {
+                let _ = child.kill();
+                let _ = child.wait();
+                return Err(());
+            }
+        }
+    }
+    Ok(String::from_utf8_lossy(&reader.join().unwrap_or_default()).to_string())
+}
+
+/// How long `onedrive --version` may take before the program is taken not to be the client
+const CLIENT_VERSION_LIMIT: std::time::Duration = std::time::Duration::from_secs(10);
+
+/// Checks a program picked by hand as the client: an absolute path to a runnable file that says it
+/// is the OneDrive Client for Linux 2.5.0 or newer. Ok(version text) or Err(what's wrong, for the
+/// user).
+pub fn validate_client(path: &Path) -> Result<String, String> {
+    if !path.is_absolute() {
+        return Err(crate::tr!("That isn't a full path to a program."));
+    }
+    // a copy the desktop's file chooser made for a sandboxed app: the sync service can't run it
+    if path.starts_with("/run/user")
+        && path
+            .components()
+            .nth(4)
+            .is_some_and(|c| c.as_os_str() == "doc")
+    {
+        return Err(crate::tr!(
+            "That is a temporary copy made by the file chooser, not the program itself. Choose it again from its real folder (for Homebrew: /home/linuxbrew/.linuxbrew/bin)."
+        ));
+    }
+    if !executable_file(path) {
+        return Err(crate::tr!(
+            "{} isn't a program this computer can run.",
+            path.display()
+        ));
+    }
+    // the real client says "onedrive v2.5.7": any other program with a version number isn't it
+    let said = client_version_of(path, CLIENT_VERSION_LIMIT).map(|t| {
+        t.to_lowercase()
+            .contains("onedrive")
+            .then(|| parse_client_version(&t))
+            .flatten()
+    });
+    match said {
+        Err(()) => Err(crate::tr!(
+            "{} didn't answer when asked for its version, so it isn't the OneDrive client.",
+            path.display()
+        )),
+        Ok(None) => Err(crate::tr!(
+            "{} doesn't say it is the OneDrive Client for Linux.",
+            path.display()
+        )),
+        Ok(Some((v, label))) if v < MIN_CLIENT_VERSION => Err(crate::tr!(
+            "That is version {} of the OneDrive client; this app needs 2.5.0 or newer.",
+            label
+        )),
+        Ok(Some((_, label))) => Ok(label),
+    }
+}
+
+/// Saves (or, with None, forgets) the client chosen by hand, in this app's own settings; the
+/// client's configuration is never touched. Callers then re-point the sync services.
+pub fn set_chosen_client(path: Option<&Path>) -> std::io::Result<()> {
+    let mut s = AppSettings::load();
+    s.client_path = path.map(Path::to_path_buf);
+    s.save()
 }
 
 fn executable_file(path: &Path) -> bool {
@@ -178,20 +317,15 @@ impl ClientCheck {
     }
 }
 
-/// Looks for the client and checks its version (`onedrive --version`).
+/// Looks for the client and checks its version (`onedrive --version`, which may not hang this).
 pub fn check_client() -> ClientCheck {
     let Some(path) = client_binary() else {
         return ClientCheck::Missing;
     };
-    let out = Command::new(&path)
-        .arg("--version")
-        .stdin(Stdio::null())
-        .stderr(Stdio::null())
-        .output();
-    let text = out
-        .map(|o| String::from_utf8_lossy(&o.stdout).to_string())
-        .unwrap_or_default();
-    match parse_client_version(&text) {
+    match client_version_of(&path, CLIENT_VERSION_LIMIT)
+        .ok()
+        .and_then(|t| parse_client_version(&t))
+    {
         Some((v, label)) if v >= MIN_CLIENT_VERSION => ClientCheck::Ok {
             path,
             version: label,
@@ -451,6 +585,11 @@ pub struct AppSettings {
     pub gnome_search: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub screenshot_save: Option<ScreenshotSave>,
+    /// The OneDrive client chosen by hand (About > Choose the client); None = found automatically.
+    /// Kept as chosen, not resolved: Homebrew's bin/onedrive is a link into a versioned folder
+    /// that changes with every upgrade.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub client_path: Option<PathBuf>,
     /// Prevents a fallback/default value from overwriting settings that could not be loaded.
     #[serde(skip)]
     load_error: Option<String>,
@@ -3625,6 +3764,182 @@ mod tests {
             ..AppSettings::default()
         };
         assert!(settings.save().is_err());
+    }
+
+    #[test]
+    fn client_lookup_order() {
+        let p = |s: &str| Some(PathBuf::from(s));
+        let only =
+            |ok: &'static [&'static str]| move |x: &Path| ok.iter().any(|o| Path::new(o) == x);
+        // chosen by hand wins, even over PATH
+        assert_eq!(
+            find_client(
+                p("/opt/od/onedrive"),
+                p("/usr/bin/onedrive"),
+                p("/home/me"),
+                None,
+                only(&["/opt/od/onedrive"])
+            ),
+            p("/opt/od/onedrive")
+        );
+        // chosen but gone: falls back to PATH, then the usual places
+        assert_eq!(
+            find_client(
+                p("/opt/gone/onedrive"),
+                p("/usr/bin/onedrive"),
+                p("/home/me"),
+                None,
+                only(&[])
+            ),
+            p("/usr/bin/onedrive")
+        );
+        // Homebrew: the shared install, a per-user one, and HOMEBREW_PREFIX (GitHub report, 2026-11)
+        assert_eq!(
+            find_client(
+                None,
+                None,
+                p("/home/me"),
+                None,
+                only(&["/home/linuxbrew/.linuxbrew/bin/onedrive"])
+            ),
+            p("/home/linuxbrew/.linuxbrew/bin/onedrive")
+        );
+        assert_eq!(
+            find_client(
+                None,
+                None,
+                p("/home/me"),
+                None,
+                only(&["/home/me/.linuxbrew/bin/onedrive"])
+            ),
+            p("/home/me/.linuxbrew/bin/onedrive")
+        );
+        assert_eq!(
+            find_client(
+                None,
+                None,
+                p("/home/me"),
+                p("/opt/brew"),
+                only(&["/opt/brew/bin/onedrive"])
+            ),
+            p("/opt/brew/bin/onedrive")
+        );
+        // a relative HOMEBREW_PREFIX is ignored (it would depend on the current folder)
+        assert_eq!(
+            find_client(
+                None,
+                None,
+                p("/home/me"),
+                p("brew"),
+                only(&["brew/bin/onedrive"])
+            ),
+            None
+        );
+        // a source build in ~/.local/bin comes before Homebrew, as before
+        assert_eq!(
+            find_client(
+                None,
+                None,
+                p("/home/me"),
+                None,
+                only(&[
+                    "/home/me/.local/bin/onedrive",
+                    "/home/linuxbrew/.linuxbrew/bin/onedrive"
+                ])
+            ),
+            p("/home/me/.local/bin/onedrive")
+        );
+        assert_eq!(find_client(None, None, None, None, only(&[])), None);
+    }
+
+    #[test]
+    fn chosen_client_is_read_without_loading_settings() {
+        assert_eq!(
+            chosen_client_from(r#"{"client_path": "/home/linuxbrew/.linuxbrew/bin/onedrive"}"#),
+            Some(PathBuf::from("/home/linuxbrew/.linuxbrew/bin/onedrive"))
+        );
+        assert_eq!(
+            chosen_client_from(r#"{"client_path": "bin/onedrive"}"#),
+            None
+        );
+        assert_eq!(chosen_client_from(r#"{"client_path": 5}"#), None);
+        assert_eq!(chosen_client_from(r#"{}"#), None);
+        assert_eq!(chosen_client_from("not json {"), None);
+        // and it survives a round trip through the settings file format; absent = not written
+        let s = AppSettings {
+            client_path: Some(PathBuf::from("/a b/onedrive")),
+            ..AppSettings::default()
+        };
+        let text = serde_json::to_string(&s).unwrap();
+        assert_eq!(
+            chosen_client_from(&text),
+            Some(PathBuf::from("/a b/onedrive"))
+        );
+        assert!(
+            !serde_json::to_string(&AppSettings::default())
+                .unwrap()
+                .contains("client_path")
+        );
+    }
+
+    #[test]
+    fn a_client_chosen_by_hand_is_checked() {
+        use std::os::unix::fs::PermissionsExt;
+        let dir = std::env::temp_dir().join(format!("lodg-pick-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&dir);
+        fs::create_dir_all(&dir).unwrap();
+        let script = |name: &str, body: &str| {
+            let p = dir.join(name);
+            fs::write(&p, format!("#!/bin/sh\n{body}\n")).unwrap();
+            fs::set_permissions(&p, fs::Permissions::from_mode(0o755)).unwrap();
+            p
+        };
+        let good = script("good", "echo 'onedrive v2.5.7'");
+        assert_eq!(validate_client(&good).unwrap(), "2.5.7");
+        let python = script("python", "echo 'Python 3.12.1'");
+        assert!(
+            validate_client(&python)
+                .unwrap_err()
+                .contains("doesn't say"),
+            "any program with a version number isn't the client"
+        );
+        let old = script("old", "echo 'onedrive v2.4.25'");
+        assert!(
+            validate_client(&old)
+                .unwrap_err()
+                .contains("2.5.0 or newer")
+        );
+        let other = script("other", "echo 'hello'");
+        assert!(validate_client(&other).unwrap_err().contains("doesn't say"));
+        let plain = dir.join("plain");
+        fs::write(&plain, "x").unwrap();
+        assert!(validate_client(&plain).unwrap_err().contains("can run"));
+        assert!(
+            validate_client(&dir).unwrap_err().contains("can run"),
+            "a folder isn't a program"
+        );
+        assert!(
+            validate_client(Path::new("onedrive")).is_err(),
+            "not a full path"
+        );
+        assert!(
+            validate_client(Path::new("/run/user/1000/doc/abc123/onedrive"))
+                .unwrap_err()
+                .contains("temporary copy")
+        );
+        // one that never answers is stopped, not waited on
+        let hang = script("hang", "exec sleep 30");
+        let t = std::time::Instant::now();
+        assert!(client_version_of(&hang, std::time::Duration::from_millis(300)).is_err());
+        assert!(t.elapsed() < std::time::Duration::from_secs(5));
+        // lots of output doesn't block it
+        let chatty = script("chatty", "yes onedrive v2.5.9 | head -c 200000");
+        assert!(
+            client_version_of(&chatty, std::time::Duration::from_secs(10))
+                .unwrap()
+                .contains("v2.5.9")
+        );
+        fs::remove_dir_all(&dir).unwrap();
     }
 
     #[test]

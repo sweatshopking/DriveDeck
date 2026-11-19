@@ -332,6 +332,19 @@ pub fn klipper_set(text: &str) -> bool {
 /// `start`. Blocks until the dialog closes. `None` means the portal isn't available, so the caller
 /// should try something else; `Some(None)` means the user cancelled.
 pub fn choose_folder(title: &str, start: &std::path::Path) -> Option<Option<std::path::PathBuf>> {
+    choose_path(title, start, true)
+}
+
+/// As `choose_folder`, for one file (a program, when picking the OneDrive client by hand).
+pub fn choose_file(title: &str, start: &std::path::Path) -> Option<Option<std::path::PathBuf>> {
+    choose_path(title, start, false)
+}
+
+fn choose_path(
+    title: &str,
+    start: &std::path::Path,
+    directory: bool,
+) -> Option<Option<std::path::PathBuf>> {
     use std::os::unix::ffi::OsStrExt;
     use zbus::proxy::CacheProperties;
 
@@ -359,7 +372,7 @@ pub fn choose_folder(title: &str, start: &std::path::Path) -> Option<Option<std:
     folder.push(0); // the portal wants a NUL-terminated byte string
     let mut options: HashMap<&str, Value> = HashMap::new();
     options.insert("handle_token", token.as_str().into());
-    options.insert("directory", true.into());
+    options.insert("directory", directory.into());
     options.insert("modal", true.into());
     options.insert("current_folder", folder.into());
     c.call_method(

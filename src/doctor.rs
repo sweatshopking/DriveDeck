@@ -63,6 +63,15 @@ fn checks_named(names: bool) -> Vec<Check> {
             "The OneDrive Client for Linux isn't installed."
         ))),
     }
+    // chosen by hand (About > Choose the client…) but no longer there: another one is used, or none
+    if let Some(chosen) = core::chosen_client_path()
+        && core::client_binary().as_deref() != Some(chosen.as_path())
+    {
+        out.push(Check::warn(crate::tr!(
+            "The OneDrive client you chose ({}) isn't there any more. Choose it again in About, or press \"Find it automatically\".",
+            chosen.display()
+        )));
+    }
     if crate::dbus::name_owner_pid(core::TRAY_BUS_NAME).is_some() {
         out.push(Check::ok(crate::tr!("The tray icon is running.")));
     } else {

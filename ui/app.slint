@@ -460,6 +460,9 @@ component ClientBanner inherits Rectangle {
     callback recheck();
     callback install();
     callback not-now();
+    callback choose();
+    in property <bool> choosing;
+    in property <string> choose-msg;
     border-radius: 12px;
     border-width: 1px;
     border-color: Theme.warn.with-alpha(0.6);
@@ -515,6 +518,26 @@ component ClientBanner inherits Rectangle {
         }
         if root.install-msg != "": Hint {
             text: root.install-msg;
+        }
+        // its own row: with the buttons above, one row would be too wide for a narrow window
+        if !root.update: HorizontalLayout {
+            alignment: start;
+            spacing: 8px;
+            Text {
+                text: @tr("Installed it another way (for example with Homebrew)?");
+                vertical-alignment: center;
+                font-size: 12px;
+            }
+            Button {
+                text: root.choosing ? @tr("Checking…") : @tr("Choose it…");
+                enabled: !root.installing && !root.choosing;
+                clicked => {
+                    root.choose();
+                }
+            }
+        }
+        if root.choose-msg != "": Hint {
+            text: root.choose-msg;
         }
     }
 }
@@ -822,6 +845,12 @@ export component AppWindow inherits Window {
     in-out property <bool> app-autostart;
     in property <string> app-version;
     in property <string> app-client;
+    // the client chosen by hand (About > Choose the client…); busy while one is being checked
+    in property <bool> app-client-chosen;
+    in-out property <bool> app-client-busy;
+    in property <string> app-client-msg;
+    callback app-client-choose();
+    callback app-client-auto();
     in property <bool> app-is-appimage;
     in property <string> app-msg;
     // "Check for problems" (doctor.rs): one finding per line; empty until asked
@@ -1090,6 +1119,11 @@ export component AppWindow inherits Window {
                     }
                     install => {
                         root.client-install();
+                    }
+                    choosing: root.app-client-busy;
+                    choose-msg: root.app-client-msg;
+                    choose => {
+                        root.app-client-choose();
                     }
                 }
             }
@@ -2814,6 +2848,30 @@ export component AppWindow inherits Window {
                             Text {
                                 text: root.app-client;
                                 wrap: word-wrap;
+                            }
+                            HorizontalLayout {
+                                alignment: start;
+                                spacing: 8px;
+                                Button {
+                                    text: root.app-client-busy ? @tr("Checking…") : @tr("Choose the client…");
+                                    enabled: !root.app-client-busy;
+                                    clicked => {
+                                        root.app-client-choose();
+                                    }
+                                }
+                                if root.app-client-chosen: Button {
+                                    text: @tr("Find it automatically");
+                                    enabled: !root.app-client-busy;
+                                    clicked => {
+                                        root.app-client-auto();
+                                    }
+                                }
+                            }
+                            Hint {
+                                text: @tr("For a client this app didn't find by itself, for example one installed with Homebrew. Sync services this app set up are switched to the one you choose; the client's own settings aren't changed.");
+                            }
+                            if root.app-client-msg != "": Hint {
+                                text: root.app-client-msg;
                             }
                             Hint {
                                 text: @tr("Free software under the GNU GPL v3. Syncing is done by the OneDrive Client for Linux by abraunegg (GPL v3). Not made by or affiliated with Microsoft. OneDrive is a trademark of Microsoft.");

@@ -4386,6 +4386,24 @@ fn pick_folder(
     near: &Path,
     done: impl FnOnce(&Shared, Result<Option<String>, ()>) + Send + 'static,
 ) {
+    pick_path(title, near, true, done)
+}
+
+/// As `pick_folder`, for one file (the OneDrive client, chosen by hand).
+fn pick_file(
+    title: String,
+    near: &Path,
+    done: impl FnOnce(&Shared, Result<Option<String>, ()>) + Send + 'static,
+) {
+    pick_path(title, near, false, done)
+}
+
+fn pick_path(
+    title: String,
+    near: &Path,
+    directory: bool,
+    done: impl FnOnce(&Shared, Result<Option<String>, ()>) + Send + 'static,
+) {
     let start = near
         .ancestors()
         .find(|p| p.is_absolute() && p.is_dir())
@@ -4395,23 +4413,38 @@ fn pick_folder(
         .to_string();
     bg(
         move || {
-            if let Some(picked) = crate::dbus::choose_folder(&title, Path::new(&start)) {
+            let portal = if directory {
+                crate::dbus::choose_folder(&title, Path::new(&start))
+            } else {
+                crate::dbus::choose_file(&title, Path::new(&start))
+            };
+            if let Some(picked) = portal {
                 return Ok(picked.map(|p| p.to_string_lossy().to_string()));
             }
-            let tries: [(&str, Vec<String>); 2] = [
-                (
-                    "kdialog",
-                    vec!["--getexistingdirectory".into(), start.clone()],
-                ),
-                (
-                    "zenity",
-                    vec![
-                        "--file-selection".into(),
-                        "--directory".into(),
-                        format!("--filename={start}/"),
-                    ],
-                ),
-            ];
+            let tries: [(&str, Vec<String>); 2] = if directory {
+                [
+                    (
+                        "kdialog",
+                        vec!["--getexistingdirectory".into(), start.clone()],
+                    ),
+                    (
+                        "zenity",
+                        vec![
+                            "--file-selection".into(),
+                            "--directory".into(),
+                            format!("--filename={start}/"),
+                        ],
+                    ),
+                ]
+            } else {
+                [
+                    ("kdialog", vec!["--getopenfilename".into(), start.clone()]),
+                    (
+                        "zenity",
+                        vec!["--file-selection".into(), format!("--filename={start}/")],
+                    ),
+                ]
+            };
             for (prog, args) in tries {
                 if core::which(prog).is_none() {
                     continue;
@@ -5481,25 +5514,134 @@ fn prepare_app_page(ctx: &Shared) {
     ui.set_app_version(ss(env!("CARGO_PKG_VERSION")));
     ui.set_app_is_appimage(std::env::var("APPIMAGE").is_ok());
     ui.set_app_msg(ss(""));
+    ui.set_app_client_chosen(settings.client_path.is_some());
+    ui.set_app_client_msg(ss(""));
+    show_app_client(ctx);
+}
+
+/// The About card's "Sync engine" line (which client, which version, chosen or found).
+fn show_app_client(ctx: &Shared) {
+    let ui = ctx.borrow().ui();
     ui.set_app_client(ss(crate::tr!("Checking the sync engine…")));
-    bg(core::check_client, |ctx, check| {
-        let client = match check {
-            core::ClientCheck::Ok { path, version } => crate::tr!(
-                "Sync engine: OneDrive Client for Linux {} ({})",
-                version,
-                path.display()
-            ),
-            core::ClientCheck::TooOld { path, version } => crate::tr!(
-                "Sync engine: OneDrive Client for Linux {} ({}) — too old, please update it.",
-                version,
-                path.display()
-            ),
-            core::ClientCheck::Missing => {
-                crate::tr!("Sync engine: the OneDrive Client for Linux isn't installed.")
+    bg(
+        || (core::check_client(), core::chosen_client_path()),
+        |ctx, (check, chosen)| {
+            let using = match &check {
+                core::ClientCheck::Ok { path, .. } | core::ClientCheck::TooOld { path, .. } => {
+                    Some(path.clone())
+                }
+                core::ClientCheck::Missing => None,
+            };
+            // chosen by hand, or chosen but gone (deleted, moved): then the one found is used
+            let how = match &chosen {
+                Some(c) if using.as_ref() == Some(c) => crate::tr!(" Chosen by you."),
+                Some(c) if using.is_none() => {
+                    crate::tr!(" The one you chose ({}) isn't there any more.", c.display())
+                }
+                Some(c) => crate::tr!(
+                    " The one you chose ({}) isn't there any more, so this one is used.",
+                    c.display()
+                ),
+                None => String::new(),
+            };
+            let client = match check {
+                core::ClientCheck::Ok { path, version } => crate::tr!(
+                    "Sync engine: OneDrive Client for Linux {} ({})",
+                    version,
+                    path.display()
+                ),
+                core::ClientCheck::TooOld { path, version } => crate::tr!(
+                    "Sync engine: OneDrive Client for Linux {} ({}) — too old, please update it.",
+                    version,
+                    path.display()
+                ),
+                core::ClientCheck::Missing => {
+                    crate::tr!("Sync engine: the OneDrive Client for Linux isn't installed.")
+                }
+            };
+            ctx.borrow().ui().set_app_client(ss(client + &how));
+            ctx.borrow().ui().set_app_client_chosen(chosen.is_some());
+        },
+    );
+}
+
+/// After the client was chosen by hand or set back to automatic: point the sync services at it
+/// (only ones this app made, and only those whose program changed are restarted), then show it.
+fn client_changed(ctx: &Shared, msg: String) {
+    ctx.borrow().ui().set_app_client_msg(ss(msg));
+    put_client_to_work(false);
+    check_client();
+    show_app_client(ctx);
+}
+
+/// "Choose the client…": pick a program, check it really is the client (2.5.0 or newer), then
+/// keep it in this app's settings. Nothing is saved when it isn't the client.
+fn choose_client(ctx: &Shared) {
+    let ui = ctx.borrow().ui();
+    if ui.get_app_client_busy() {
+        return;
+    }
+    ui.set_app_client_busy(true);
+    ui.set_app_client_msg(ss(""));
+    let near = core::client_binary()
+        .and_then(|p| p.parent().map(Path::to_path_buf))
+        .unwrap_or_else(|| PathBuf::from("/home/linuxbrew/.linuxbrew/bin"));
+    pick_file(
+        crate::tr!("Choose the OneDrive client (the program called onedrive)"),
+        &near,
+        |ctx, picked| match picked {
+            Ok(Some(p)) => {
+                let path = PathBuf::from(p);
+                bg(
+                    move || {
+                        let r = core::validate_client(&path);
+                        match r {
+                            Ok(v) => core::set_chosen_client(Some(&path))
+                                .map(|()| (v, path))
+                                .map_err(|e| crate::tr!("Couldn't save the setting: {}", e)),
+                            Err(e) => Err(e),
+                        }
+                    },
+                    |ctx, r| {
+                        ctx.borrow().ui().set_app_client_busy(false);
+                        match r {
+                            Ok((version, path)) => client_changed(
+                                ctx,
+                                crate::tr!(
+                                    "Using the OneDrive client {} from {}. Sync services set up by this app now use it.",
+                                    version,
+                                    path.display()
+                                ),
+                            ),
+                            Err(e) => ctx.borrow().ui().set_app_client_msg(ss(e)),
+                        }
+                    },
+                );
             }
-        };
-        ctx.borrow().ui().set_app_client(ss(client));
-    });
+            Ok(None) => ctx.borrow().ui().set_app_client_busy(false),
+            Err(()) => {
+                let ui = ctx.borrow().ui();
+                ui.set_app_client_busy(false);
+                ui.set_app_client_msg(ss(crate::tr!(
+                    "No file chooser is available on this desktop."
+                )));
+            }
+        },
+    );
+}
+
+/// "Find it automatically": forget the client chosen by hand.
+fn auto_client(ctx: &Shared) {
+    match core::set_chosen_client(None) {
+        Ok(()) => client_changed(
+            ctx,
+            crate::tr!("The OneDrive client is found automatically again."),
+        ),
+        Err(e) => ctx
+            .borrow()
+            .ui()
+            .set_app_client_msg(ss(crate::tr!("Couldn't save the setting: {}", e))),
+    }
 }
 
 /// For AppImages: add a menu entry, icon and Dolphin actions for the current user.
@@ -6722,6 +6864,8 @@ pub fn run(account: Option<String>) {
         }
     });
     on!(on_app_get_update, |_c| crate::update::update_now());
+    on!(on_app_client_choose, |c| choose_client(c));
+    on!(on_app_client_auto, |c| auto_client(c));
     on!(on_app_stop_on_quit_toggled, |c| {
         let on = c.borrow().ui().get_app_stop_on_quit();
         let mut s = AppSettings::load();
