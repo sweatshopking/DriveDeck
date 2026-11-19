@@ -147,7 +147,13 @@ fn main() {
             .get(1)
             .iter()
             .for_each(|p| share::view_online(std::path::Path::new(p))),
-        Some("--status") => std::process::exit(run_status(args.iter().any(|a| a == "--json"))),
+        Some("--status") => std::process::exit(run_status(
+            args.iter().any(|a| a == "--json"),
+            flag_value(&args, "--files")
+                .and_then(|n| n.parse::<usize>().ok())
+                .unwrap_or(0)
+                .min(RECENT_FILES_MAX),
+        )),
         Some("--print-link") => {
             let Some(path) = args.get(1) else {
                 eprintln!("Usage: {} --print-link <file> [--edit]", core::APP_ID);
@@ -158,7 +164,11 @@ fn main() {
                 args.iter().any(|a| a == "--edit"),
             ));
         }
-        Some("--sync-now") => std::process::exit(run_sync_now()),
+        Some("--sync-now") => std::process::exit(run_sync_now(flag_value(&args, "--account"))),
+        Some("--pause") => std::process::exit(run_pause(
+            args.get(1).map(String::as_str),
+            flag_value(&args, "--account"),
+        )),
         Some("--update") => std::process::exit(run_update()),
         Some("--gnome-search-test") => gnomesearch::test_service(),
         Some("--version") => println!("{} {}", core::APP_NAME, env!("CARGO_PKG_VERSION")),
@@ -187,8 +197,9 @@ fn main() {
                 "--view-online <file>",
                 "--office-online <file>",
                 "--print-link <file> [--edit]",
-                "--status [--json]",
-                "--sync-now",
+                "--status [--json [--files <n>]]",
+                "--sync-now [--account <account>]",
+                "--pause <minutes|morning|resume> [--account <account>]",
                 "--update",
                 "--doctor [--report]",
                 "--report-bug",
@@ -212,7 +223,42 @@ fn main() {
     }
 }
 
-fn run_status(json: bool) -> i32 {
+/// Recent files `--status --json --files <n>` lists at most, per account
+const RECENT_FILES_MAX: usize = 200;
+
+/// The value after `flag` on the command line, as in `--account <config dir>`
+fn flag_value<'a>(args: &'a [String], flag: &str) -> Option<&'a str> {
+    args.iter()
+        .position(|a| a == flag)
+        .and_then(|i| args.get(i + 1))
+        .map(String::as_str)
+}
+
+/// The accounts `--account` picks (its config folder, as `key` in `--status --json`, or its name;
+/// no `--account` = all of them), or an error naming the ones there are.
+fn pick_accounts<'a>(
+    infos: &'a [core::AccountInfo],
+    statuses: &'a [core::Status],
+    account: Option<&str>,
+) -> Result<Vec<(&'a core::AccountInfo, &'a core::Status)>, String> {
+    let all = infos.iter().zip(statuses);
+    let Some(want) = account else {
+        return Ok(all.collect());
+    };
+    let picked: Vec<_> = all
+        .filter(|(i, _)| i.key() == want || i.name == want)
+        .collect();
+    if picked.is_empty() {
+        let names: Vec<&str> = infos.iter().map(|i| i.name.as_str()).collect();
+        return Err(format!(
+            "No account called \"{want}\". Accounts: {}",
+            names.join(", ")
+        ));
+    }
+    Ok(picked)
+}
+
+fn run_status(json: bool, files: usize) -> i32 {
     if core::client_binary().is_none() {
         eprintln!(
             "The OneDrive Client for Linux isn't installed. See {}",
@@ -223,7 +269,23 @@ fn run_status(json: bool) -> i32 {
 
     let snapshot = ui::take_snapshot();
     if json {
-        match status_json(&snapshot.infos, &snapshot.statuses, &snapshot.settings) {
+        // recent files and transfers come from the client's log: only read when asked for
+        let activity: Option<Vec<_>> = (files > 0).then(|| {
+            snapshot
+                .infos
+                .iter()
+                .map(|i| match &i.unit {
+                    Some(u) => core::account_files(u, files),
+                    None => (Vec::new(), Vec::new()),
+                })
+                .collect()
+        });
+        match status_json(
+            &snapshot.infos,
+            &snapshot.statuses,
+            &snapshot.settings,
+            activity.as_deref(),
+        ) {
             Ok(output) => println!("{output}"),
             Err(e) => {
                 eprintln!("Couldn't format account status: {e}");
@@ -239,17 +301,33 @@ fn run_status(json: bool) -> i32 {
     status_exit_code(true, &snapshot.statuses)
 }
 
+/// What a recent-file symbol from the log means, in a word scripts can match on
+fn activity_word(kind: &str) -> &'static str {
+    match kind {
+        "↑" => "uploaded",
+        "↓" => "downloaded",
+        "✕" => "deleted",
+        "+" => "created",
+        _ => "changed",
+    }
+}
+
+/// `--status --json`. The first seven fields are the original set; the rest were added for
+/// status bars and desktop shells (Glaze) and only ever grow. `files` (when given, per account as
+/// in `infos`) adds "transfers" and "recent".
 fn status_json(
     infos: &[core::AccountInfo],
     statuses: &[core::Status],
     settings: &core::AppSettings,
+    files: Option<&[(Vec<core::FileActivity>, Vec<core::Transfer>)]>,
 ) -> Result<String, serde_json::Error> {
     let accounts: Vec<_> = infos
         .iter()
         .zip(statuses)
-        .map(|(info, status)| {
+        .enumerate()
+        .map(|(n, (info, status))| {
             let prefs = settings.prefs(&info.confdir);
-            serde_json::json!({
+            let mut v = serde_json::json!({
                 "account": info.name,
                 "folder": info.sync_dir.display().to_string(),
                 "phase": format!("{:?}", status.phase).to_lowercase(),
@@ -257,7 +335,42 @@ fn status_json(
                 "last_complete": status.last_complete.as_ref().map(|time| time.to_rfc3339()),
                 "last_error": status.last_error.as_deref(),
                 "not_synced": status.unsynced_changes(),
-            })
+                // added in 1.7
+                "key": info.key(),
+                "kind": info.kind,
+                "kind_label": info.kind_label(),
+                "signed_in": info.signed_in,
+                "background": status.unit.enabled,
+                "paused_until": prefs
+                    .paused()
+                    .then(|| chrono::TimeZone::timestamp_opt(&chrono::Local, prefs.pause_until, 0).single())
+                    .flatten()
+                    .map(|t| t.to_rfc3339()),
+            });
+            if let Some((recent, transfers)) = files.and_then(|f| f.get(n)) {
+                v["transfers"] = transfers
+                    .iter()
+                    .map(|t| {
+                        serde_json::json!({
+                            "direction": if t.up { "up" } else { "down" },
+                            "path": t.path,
+                            "percent": t.percent,
+                            "eta": t.eta,
+                        })
+                    })
+                    .collect();
+                v["recent"] = recent
+                    .iter()
+                    .map(|f| {
+                        serde_json::json!({
+                            "when": f.when.to_rfc3339(),
+                            "action": activity_word(f.kind),
+                            "path": f.path,
+                        })
+                    })
+                    .collect();
+            }
+            v
         })
         .collect();
     serde_json::to_string(&accounts)
@@ -314,7 +427,7 @@ fn run_update() -> i32 {
     }
 }
 
-fn run_sync_now() -> i32 {
+fn run_sync_now(account: Option<&str>) -> i32 {
     if core::client_binary().is_none() {
         eprintln!(
             "The OneDrive Client for Linux isn't installed. See {}",
@@ -323,9 +436,16 @@ fn run_sync_now() -> i32 {
         return 2;
     }
     let snapshot = ui::take_snapshot();
+    let picked = match pick_accounts(&snapshot.infos, &snapshot.statuses, account) {
+        Ok(p) => p,
+        Err(e) => {
+            eprintln!("{e}");
+            return 2;
+        }
+    };
     let mut started = 0;
     let mut errors = Vec::new();
-    for (info, status) in snapshot.infos.iter().zip(&snapshot.statuses) {
+    for (info, status) in picked {
         if !info.signed_in || status.phase == core::Phase::Resyncing {
             continue;
         }
@@ -343,6 +463,67 @@ fn run_sync_now() -> i32 {
     for error in &errors {
         eprintln!("{error}");
     }
+    // systemctl runs on a background thread: let it finish before this process ends
+    core::wait_for_unit_actions(std::time::Duration::from_secs(90));
+    if errors.is_empty() { 0 } else { 1 }
+}
+
+/// `--pause <minutes|morning|resume> [--account <account>]`: what the panel's pause buttons do.
+/// Without `--account`, every signed-in account that syncs in the background, as in the panel.
+fn run_pause(how: Option<&str>, account: Option<&str>) -> i32 {
+    let secs: i64 = match how {
+        Some("resume") => 0,
+        Some("morning") => -1,
+        Some(m) => match m.parse::<i64>() {
+            Ok(m) if (1..=60 * 24 * 7).contains(&m) => m * 60,
+            _ => {
+                eprintln!(
+                    "--pause takes a number of minutes (1 to 10080), \"morning\" or \"resume\""
+                );
+                return 2;
+            }
+        },
+        None => {
+            eprintln!("--pause takes a number of minutes, \"morning\" or \"resume\"");
+            return 2;
+        }
+    };
+    let snapshot = ui::take_snapshot();
+    let picked = match pick_accounts(&snapshot.infos, &snapshot.statuses, account) {
+        Ok(p) => p,
+        Err(e) => {
+            eprintln!("{e}");
+            return 2;
+        }
+    };
+    let mut done = 0;
+    let mut errors = Vec::new();
+    for (info, status) in picked {
+        // a named account is paused even if its background sync is off (it may be turned on
+        // later); "all" means the ones syncing in the background, as in the panel
+        if !info.signed_in || (account.is_none() && !status.unit.enabled) {
+            continue;
+        }
+        match core::pause(info, secs) {
+            Ok(_) => {
+                println!(
+                    "{} {}.",
+                    if secs == 0 { "Resumed" } else { "Paused" },
+                    info.name
+                );
+                done += 1;
+            }
+            Err(e) => errors.push(format!("{}: {e}", info.name)),
+        }
+    }
+    if done == 0 && errors.is_empty() {
+        println!("No accounts to change.");
+    }
+    for error in &errors {
+        eprintln!("{error}");
+    }
+    // systemctl runs on a background thread: let it finish before this process ends
+    core::wait_for_unit_actions(std::time::Duration::from_secs(90));
     if errors.is_empty() { 0 } else { 1 }
 }
 
@@ -409,6 +590,7 @@ mod tests {
                 &[personal, account("Work")],
                 &[current, signed_out],
                 &settings,
+                None,
             )
             .unwrap(),
         )
@@ -424,14 +606,23 @@ mod tests {
                 .collect::<Vec<_>>(),
             [
                 "account",
+                "background",
                 "folder",
+                "key",
+                "kind",
+                "kind_label",
                 "last_complete",
                 "last_error",
                 "not_synced",
+                "paused_until",
                 "phase",
+                "signed_in",
                 "text",
             ]
         );
+        assert_eq!(accounts[0]["key"], "/tmp/drivedeck-test-config");
+        assert!(accounts[0]["paused_until"].is_null());
+        assert!(accounts[0].get("recent").is_none());
         assert_eq!(accounts[0]["account"], "Personal");
         assert_eq!(accounts[0]["folder"], "/home/test/OneDrive");
         assert_eq!(accounts[0]["phase"], "uptodate");
@@ -442,6 +633,70 @@ mod tests {
         assert_eq!(accounts[1]["phase"], "signedout");
         assert!(accounts[1]["last_complete"].is_null());
         assert!(accounts[1]["last_error"].is_null());
+    }
+
+    #[test]
+    fn status_json_files_add_transfers_and_recent() {
+        let when = Local.with_ymd_and_hms(2025, 6, 12, 9, 31, 0).unwrap();
+        let files = vec![(
+            vec![
+                core::FileActivity {
+                    when,
+                    kind: "↑",
+                    path: "Documents/a.docx".into(),
+                },
+                core::FileActivity {
+                    when,
+                    kind: "+",
+                    path: "Pictures/2026".into(),
+                },
+            ],
+            vec![core::Transfer {
+                up: false,
+                path: "Videos/big.mp4".into(),
+                percent: 42,
+                eta: Some("2 min".into()),
+                when,
+            }],
+        )];
+        let v: serde_json::Value = serde_json::from_str(
+            &status_json(
+                &[account("Personal")],
+                &[status(core::Phase::Syncing)],
+                &core::AppSettings::default(),
+                Some(&files),
+            )
+            .unwrap(),
+        )
+        .unwrap();
+        let a = &v[0];
+        assert_eq!(a["transfers"][0]["direction"], "down");
+        assert_eq!(a["transfers"][0]["percent"], 42);
+        assert_eq!(a["transfers"][0]["eta"], "2 min");
+        assert_eq!(a["recent"][0]["action"], "uploaded");
+        assert_eq!(a["recent"][1]["action"], "created");
+        assert_eq!(a["recent"][1]["path"], "Pictures/2026");
+    }
+
+    #[test]
+    fn accounts_are_picked_by_config_folder_or_name() {
+        let mut work = account("Work");
+        work.confdir = "/tmp/drivedeck-test-work".into();
+        let infos = [account("Personal"), work];
+        let sts = [status(core::Phase::UpToDate), status(core::Phase::UpToDate)];
+        assert_eq!(pick_accounts(&infos, &sts, None).unwrap().len(), 2);
+        assert_eq!(
+            pick_accounts(&infos, &sts, Some("Work")).unwrap()[0].0.name,
+            "Work"
+        );
+        assert_eq!(
+            pick_accounts(&infos, &sts, Some("/tmp/drivedeck-test-work")).unwrap()[0]
+                .0
+                .name,
+            "Work"
+        );
+        let err = pick_accounts(&infos, &sts, Some("Nope")).unwrap_err();
+        assert!(err.contains("Personal, Work"), "{err}");
     }
 
     #[test]
