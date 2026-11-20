@@ -403,6 +403,26 @@ below. The client is a separate program, so it gets its own updates.
 | Arch, Manjaro, EndeavourOS, CachyOS | Arch doesn't include the client, but the AUR (install recipes shared by Arch users) does. The app builds it from there, which takes a few minutes. Normal software updates don't cover the AUR, so the app tells you when a newer client is out and updates it for you. |
 | Fedora Silverblue/Kinoite, SteamOS, anything else | No button; the app links to the client's [installation instructions](https://github.com/abraunegg/onedrive/blob/master/docs/install.md). Homebrew's `onedrive-cli` works too, with no system changes: the app finds it by itself |
 
+**Homebrew users:** the `onedrive-cli` formula also offers `brew services start onedrive-cli`. If
+DriveDeck runs your syncing, leave that off, or the same account is synced by two copies of the
+client at once. DriveDeck warns you if it finds it switched on, and can turn it off for you
+(`brew services start onedrive-cli` turns it back on).
+
+### If LibreOffice says someone else changed your file
+
+If you edit documents in your OneDrive folder with LibreOffice, it may warn when you save that the
+file was changed by someone else since you opened it, even though nobody else touched it. That
+comes from the sync client: after it uploads a file, it sets the file's date on your computer to
+the upload time, so LibreOffice thinks the file changed under it. To fix it:
+
+1. Open DriveDeck and choose your account.
+2. In its **Advanced** section, under *Transfers*, switch on **Keep my file dates**, then **Save**.
+
+Or, in *App settings > Something not right?*, press **Check for problems**: if LibreOffice is
+installed, it lists the accounts that have this off and offers a **Keep my file dates** button that
+turns it on for all of them. Syncing restarts by itself. Uploads then go up in pieces, which can be a little slower for many small
+files; nothing else changes. It's off by default because most people never see the message.
+
 ### Requirements
 
 - 64-bit Linux with systemd (almost every desktop distribution)

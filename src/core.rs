@@ -1762,18 +1762,79 @@ fn description_name(text: &str) -> Option<String> {
 /// (`systemctl enable onedrive@<user>`). The admin may have set it up on purpose, or an older
 /// onedrive package left it behind; it keeps starting whatever this app does, so we only report
 /// it, and switch it off only when asked.
+/// Homebrew's own service for the client (`brew services start onedrive-cli`) counts too: it
+/// syncs the default account alongside this app's service for it.
 #[derive(Debug, Clone, PartialEq)]
 pub struct OutsideStart {
     pub unit: String,
-    pub system: bool,
+    pub kind: OutsideKind,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub enum OutsideKind {
+    /// `systemctl --global enable`: at login, for everyone
+    Everyone,
+    /// `systemctl enable onedrive@<user>`: at boot
+    Boot,
+    /// `brew services start`: a user unit Homebrew wrote, switched on or running
+    Homebrew,
+}
+
+impl OutsideKind {
+    /// Switching it off needs the administrator's password
+    pub fn needs_password(self) -> bool {
+        self != OutsideKind::Homebrew
+    }
 }
 
 pub fn outside_starts() -> Vec<OutsideStart> {
-    outside_starts_in(
+    let mut out = outside_starts_in(
         Path::new("/etc/systemd/user"),
         Path::new("/etc/systemd/system"),
         &login_name(),
-    )
+    );
+    for unit in homebrew_sync_units(&user_unit_dir()) {
+        let st = unit_state(&unit);
+        if st.enabled || st.active {
+            out.push(OutsideStart {
+                unit,
+                kind: OutsideKind::Homebrew,
+            });
+        }
+    }
+    out
+}
+
+/// User units Homebrew's `brew services` wrote (homebrew.<formula>.service) that run the
+/// OneDrive client, whatever the formula is called.
+fn homebrew_sync_units(dir: &Path) -> Vec<String> {
+    let Ok(rd) = fs::read_dir(dir) else {
+        return vec![];
+    };
+    let mut out: Vec<String> = rd
+        .flatten()
+        .filter_map(|e| {
+            let n = e.file_name().to_string_lossy().into_owned();
+            if !(n.starts_with("homebrew.") && n.ends_with(".service")) {
+                return None;
+            }
+            // a unit file is small; anything big isn't one of these
+            let meta = e.metadata().ok()?;
+            if !meta.is_file() || meta.len() > 64 * 1024 {
+                return None;
+            }
+            let text = fs::read_to_string(e.path()).ok()?;
+            let line = text
+                .lines()
+                .find(|l| l.trim_start().starts_with("ExecStart="))?;
+            let words = shell_words(line.split_once('=')?.1);
+            // ExecStart= may start with systemd's prefixes (-, @, +, !, :)
+            let program = words.first()?.trim_start_matches(['-', '@', '+', '!', ':']);
+            (Path::new(program).file_name()? == "onedrive").then_some(n)
+        })
+        .collect();
+    out.sort();
+    out
 }
 
 fn login_name() -> String {
@@ -1821,13 +1882,18 @@ fn outside_starts_in(user_dir: &Path, system_dir: &Path, login: &str) -> Vec<Out
                 } else {
                     unit.starts_with("onedrive") && unit.ends_with(".service")
                 };
-                if ours && !out.iter().any(|o| o.unit == unit && o.system == system) {
-                    out.push(OutsideStart { unit, system });
+                let kind = if system {
+                    OutsideKind::Boot
+                } else {
+                    OutsideKind::Everyone
+                };
+                if ours && !out.iter().any(|o| o.unit == unit && o.kind == kind) {
+                    out.push(OutsideStart { unit, kind });
                 }
             }
         }
     }
-    out.sort_by(|a, b| (a.system, &a.unit).cmp(&(b.system, &b.unit)));
+    out.sort_by(|a, b| (a.kind, &a.unit).cmp(&(b.kind, &b.unit)));
     out
 }
 
@@ -3521,11 +3587,11 @@ mod tests {
             vec![
                 OutsideStart {
                     unit: "onedrive.service".into(),
-                    system: false
+                    kind: OutsideKind::Everyone
                 },
                 OutsideStart {
                     unit: "onedrive@josh.service".into(),
-                    system: true
+                    kind: OutsideKind::Boot
                 },
             ]
         );
@@ -3533,6 +3599,53 @@ mod tests {
             outside_starts_in(&root.join("none"), &root.join("none"), "josh"),
             vec![]
         );
+        let _ = fs::remove_dir_all(&root);
+    }
+
+    #[test]
+    fn homebrew_sync_service_found() {
+        let root = std::env::temp_dir().join(format!("lodg-brew-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&root);
+        fs::create_dir_all(&root).unwrap();
+        let unit = |name: &str, exec: &str| {
+            fs::write(
+                root.join(name),
+                format!(
+                    "[Unit]\nDescription=Homebrew generated unit\n\n[Service]\nExecStart={exec}\n"
+                ),
+            )
+            .unwrap();
+        };
+        // what brew services writes for onedrive-cli, quoted or not
+        unit(
+            "homebrew.onedrive-cli.service",
+            "\"/home/linuxbrew/.linuxbrew/opt/onedrive-cli/bin/onedrive\" \"--monitor\"",
+        );
+        unit(
+            "homebrew.onedrive-other.service",
+            "-/home/me/.linuxbrew/bin/onedrive --monitor",
+        );
+        // other Homebrew services, and units that only mention onedrive, are not it
+        unit(
+            "homebrew.redis.service",
+            "/home/linuxbrew/.linuxbrew/opt/redis/bin/redis-server",
+        );
+        unit(
+            "homebrew.backup.service",
+            "/usr/bin/rsync -a /home/me/OneDrive /mnt/b/onedrive",
+        );
+        unit("onedrive.service", "/usr/bin/onedrive --monitor");
+        fs::create_dir_all(root.join("homebrew.dir.service")).unwrap();
+        assert_eq!(
+            homebrew_sync_units(&root),
+            vec![
+                "homebrew.onedrive-cli.service".to_string(),
+                "homebrew.onedrive-other.service".to_string()
+            ]
+        );
+        assert!(homebrew_sync_units(&root.join("none")).is_empty());
+        assert!(!OutsideKind::Homebrew.needs_password());
+        assert!(OutsideKind::Boot.needs_password() && OutsideKind::Everyone.needs_password());
         let _ = fs::remove_dir_all(&root);
     }
 

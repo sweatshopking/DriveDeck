@@ -5731,15 +5731,21 @@ fn outside_start_text(found: &[core::OutsideStart], kept: &[String]) -> String {
     if found.iter().all(|o| kept.contains(&o.unit)) {
         return String::new();
     }
-    let names = |system: bool| {
+    use core::OutsideKind;
+    // the ones the user chose to leave alone aren't brought up again
+    let names = |kind: OutsideKind| {
         found
             .iter()
-            .filter(|o| o.system == system)
+            .filter(|o| o.kind == kind && !kept.contains(&o.unit))
             .map(|o| o.unit.as_str())
             .collect::<Vec<_>>()
             .join(", ")
     };
-    let (everyone, boot) = (names(false), names(true));
+    let (everyone, boot, brew) = (
+        names(OutsideKind::Everyone),
+        names(OutsideKind::Boot),
+        names(OutsideKind::Homebrew),
+    );
     let mut parts = Vec::new();
     if !everyone.is_empty() {
         parts.push(format!(
@@ -5751,24 +5757,53 @@ fn outside_start_text(found: &[core::OutsideStart], kept: &[String]) -> String {
             "A system service, {boot}, starts syncing for you when the computer starts."
         ));
     }
-    parts.push(
-        "Whoever looks after this computer may have set this up on purpose, or an older \
-         onedrive package left it behind. While it's there, OneDrive keeps syncing even \
-         when the account is turned off here."
-            .into(),
-    );
+    if !everyone.is_empty() || !boot.is_empty() {
+        parts.push(
+            "Whoever looks after this computer may have set this up on purpose, or an older \
+             onedrive package left it behind. While it's there, OneDrive keeps syncing even \
+             when the account is turned off here."
+                .into(),
+        );
+    }
+    if !brew.is_empty() {
+        parts.push(format!(
+            "Homebrew's own service for the client, {brew}, is switched on (brew services). \
+             It syncs your main account by itself. If this app syncs that account too, the \
+             same files are synced twice at once: let one of them do it."
+        ));
+    }
     parts.join(" ")
+}
+
+/// The small print under the outside-start banner's buttons, for what it lists.
+fn outside_start_hint(found: &[core::OutsideStart]) -> &'static str {
+    let password = found.iter().any(|o| o.kind.needs_password());
+    let brew = found.iter().any(|o| !o.kind.needs_password());
+    match (password, brew) {
+        (true, true) => {
+            "Turning it off asks for your password and changes nothing else. It can be switched \
+             back on with systemctl, and Homebrew's with brew services start."
+        }
+        (false, true) => {
+            "Turning it off changes nothing else. brew services start switches it back on."
+        }
+        _ => {
+            "Turning it off asks for your password and changes nothing else. It can be switched \
+             back on with systemctl."
+        }
+    }
 }
 
 fn show_outside_starts() {
     bg(core::outside_starts, |ctx, found| {
         let kept = AppSettings::load().outside_start_kept;
         let ui = ctx.borrow().ui();
-        ui.set_outside_start(ss(outside_start_text(&found, &kept)));
-        ui.set_outside_start_hint(ss(
-            "Turning it off asks for your password and changes nothing else. It can be switched \
-             back on with systemctl.",
-        ));
+        let shown: Vec<core::OutsideStart> = found
+            .into_iter()
+            .filter(|o| !kept.contains(&o.unit))
+            .collect();
+        ui.set_outside_start(ss(outside_start_text(&shown, &kept)));
+        ui.set_outside_start_hint(ss(outside_start_hint(&shown)));
     });
 }
 
@@ -5846,18 +5881,31 @@ fn turn_off_outside_starts(ctx: &Shared) {
     ui.set_outside_start_busy(true);
     bg(
         || {
-            let found = core::outside_starts();
-            let everyone: Vec<&str> = found
-                .iter()
-                .filter(|o| !o.system)
-                .map(|o| o.unit.as_str())
-                .collect();
-            let boot: Vec<&str> = found
-                .iter()
-                .filter(|o| o.system)
-                .map(|o| o.unit.as_str())
-                .collect();
-            if found.is_empty() {
+            use core::OutsideKind;
+            // only what the banner showed: not the ones the user chose to leave as they are
+            let kept = AppSettings::load().outside_start_kept;
+            let mut found = core::outside_starts();
+            found.retain(|o| !kept.contains(&o.unit));
+            let of = |kind: OutsideKind| -> Vec<&str> {
+                found
+                    .iter()
+                    .filter(|o| o.kind == kind)
+                    .map(|o| o.unit.as_str())
+                    .collect()
+            };
+            let (everyone, boot, brew) = (
+                of(OutsideKind::Everyone),
+                of(OutsideKind::Boot),
+                of(OutsideKind::Homebrew),
+            );
+            // Homebrew's is the user's own unit: no password. `brew services start` undoes it.
+            for unit in &brew {
+                let (ok, out) = core::systemctl(&["disable", "--now", "--", unit]);
+                if !ok {
+                    return Err(crate::tr!("That didn't work: {}", out.trim()));
+                }
+            }
+            if everyone.is_empty() && boot.is_empty() {
                 return Ok(());
             }
             // the first argument says how many of the rest are for-everyone units
@@ -7150,6 +7198,48 @@ pub fn run(account: Option<String>) {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn homebrew_sync_service_is_reported_without_a_password() {
+        use crate::core::{OutsideKind, OutsideStart};
+        let o = |unit: &str, kind| OutsideStart {
+            unit: unit.into(),
+            kind,
+        };
+        let brew = vec![o("homebrew.onedrive-cli.service", OutsideKind::Homebrew)];
+        let text = super::outside_start_text(&brew, &[]);
+        assert!(text.contains("homebrew.onedrive-cli.service") && text.contains("twice"));
+        // nothing about an administrator or an old package: it's the user's own Homebrew service
+        assert!(!text.contains("older onedrive package"), "{text}");
+        let hint = super::outside_start_hint(&brew);
+        assert!(!hint.contains("password") && hint.contains("brew services start"));
+        // chosen to be left alone: the banner stays away
+        assert_eq!(
+            super::outside_start_text(&brew, &["homebrew.onedrive-cli.service".into()]),
+            ""
+        );
+        // a system one left alone earlier isn't brought up again when Homebrew's appears
+        let mixed = vec![
+            o("onedrive@josh.service", OutsideKind::Boot),
+            brew[0].clone(),
+        ];
+        let text = super::outside_start_text(&mixed, &["onedrive@josh.service".into()]);
+        assert!(
+            text.contains("homebrew.") && !text.contains("onedrive@josh"),
+            "{text}"
+        );
+        // mixed with a system one: the password is mentioned, and both are named
+        let both = vec![
+            o("onedrive@josh.service", OutsideKind::Boot),
+            brew[0].clone(),
+        ];
+        let text = super::outside_start_text(&both, &[]);
+        assert!(text.contains("onedrive@josh.service") && text.contains("homebrew."));
+        let hint = super::outside_start_hint(&both);
+        assert!(hint.contains("password") && hint.contains("brew services start"));
+        assert!(super::outside_start_hint(&both[..1]).contains("password"));
+        assert!(!super::outside_start_hint(&both[..1]).contains("brew"));
+    }
+
     #[test]
     fn apply_button_does_something_whenever_a_resync_is_asked_for() {
         use super::{ApplyAction::*, apply_action};

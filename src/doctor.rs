@@ -207,10 +207,14 @@ fn checks_named(names: bool) -> (Vec<Check>, bool) {
         )));
     }
     for o in core::outside_starts() {
-        out.push(Check::warn(crate::tr!(
-            "{} is started outside this app.",
-            o.unit
-        )));
+        out.push(Check::warn(if o.kind == core::OutsideKind::Homebrew {
+            crate::tr!(
+                "{} (Homebrew's brew services) also syncs your main account. If this app syncs it too, the same files are synced twice; turn one off.",
+                o.unit
+            )
+        } else {
+            crate::tr!("{} is started outside this app.", o.unit)
+        }));
     }
     (out, !dates.is_empty())
 }
