@@ -1341,14 +1341,17 @@ pub fn run(at: Option<(i32, i32)>) {
     if let Some(name) = kwin_script {
         crate::dbus::kwin_unload_script(&name);
     }
-    // the tray reads this: the panel is gone, so a click on the icon opens a new one
-    {
-        use std::io::{IsTerminal, Write};
+    // off the screen now: a SIGTERM (logging out, shutting down) ends the process at once, even with work left
+    // SAFETY: restoring the default action
+    unsafe {
+        libc::signal(libc::SIGTERM, libc::SIG_DFL);
+    }
+    // the tray reads this (and asks for it): the panel is gone, so a click on the icon opens a new one
+    if std::env::var_os(NOTIFY_CLOSED_ENV).is_some() {
+        use std::io::Write;
         let mut out = std::io::stdout();
-        if !out.is_terminal() {
-            let _ = writeln!(out, "{CLOSED_LINE}");
-            let _ = out.flush();
-        }
+        let _ = writeln!(out, "{CLOSED_LINE}");
+        let _ = out.flush();
     }
     finish_pending(Duration::from_secs(75));
     // Sync now and Pause hand their systemctl calls to threads of their own (core::unit_action)
@@ -1357,3 +1360,5 @@ pub fn run(at: Option<(i32, i32)>) {
 
 /// What the panel prints when it has closed (read by the tray, src/tray.rs toggle_popup).
 pub const CLOSED_LINE: &str = "drivedeck-panel-closed";
+/// Set by the tray when it starts the panel: print CLOSED_LINE on closing.
+pub const NOTIFY_CLOSED_ENV: &str = "DRIVEDECK_PANEL_NOTIFY_CLOSED";

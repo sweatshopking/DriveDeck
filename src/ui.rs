@@ -131,7 +131,6 @@ impl Tree {
             .map(str::to_string)
     }
 
-    /// The sync_list this tree stands for: the client wants exclusions before inclusions.
     /// Folders that were left out and were opened up to tick a folder inside them: their own files sync now too (the
     /// client can't leave out a folder's files while a folder inside it syncs), though some folders in them stay out.
     fn opened_up(&self) -> Vec<String> {
@@ -142,6 +141,7 @@ impl Tree {
             .collect()
     }
 
+    /// The sync_list this tree stands for: the client wants exclusions before inclusions.
     fn rule_lines(&self) -> Vec<String> {
         let (exclusions, other): (Vec<&String>, Vec<&String>) = self
             .extra_rules
@@ -5958,10 +5958,19 @@ done"#;
                 }
             }
             // Homebrew's is the user's own unit: no password. `brew services start` undoes it.
+            let elevated_done = !everyone.is_empty() || !boot.is_empty();
             for unit in &brew {
                 let (ok, out) = core::systemctl(&["disable", "--now", "--", unit]);
                 if !ok {
-                    return Err(crate::tr!("That didn't work: {}", out.trim()));
+                    return Err(if elevated_done {
+                        crate::tr!(
+                            "The others were turned off, but {} wasn't: {}",
+                            unit,
+                            out.trim()
+                        )
+                    } else {
+                        crate::tr!("That didn't work: {}", out.trim())
+                    });
                 }
             }
             Ok(())

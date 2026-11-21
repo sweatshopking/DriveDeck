@@ -993,15 +993,13 @@ pub fn write_sync_list(confdir: &Path, entries: &[String]) -> std::io::Result<()
     };
     if entries.is_empty() {
         if let Some(text) = existing {
-            // keep any rules the user wrote by hand, which syncing everything can't honour. In a file this app wrote, a
-            // folder left out ("!/A/B/*") is the Folders tab's own choice too, not a hand-written rule.
-            let ours = text.starts_with(&format!("# Written by {APP_NAME}."));
-            let own_rules = text.lines().map(str::trim).any(|l| {
-                !l.is_empty()
-                    && !l.starts_with('#')
-                    && sync_list_folder(l).is_none()
-                    && !(ours && sync_list_exclusion(l).is_some())
-            });
+            // keep any rules the user wrote by hand, which syncing everything can't honour. Folders the Folders tab left
+            // out are kept aside too: a hand-added "!/Private" in a file this app wrote looks just the same, and a copy
+            // too many costs nothing (review: telling them apart by the file's first line lost such a rule).
+            let own_rules = text
+                .lines()
+                .map(str::trim)
+                .any(|l| !l.is_empty() && !l.starts_with('#') && sync_list_folder(l).is_none());
             if own_rules {
                 fs::copy(&p, confdir.join("sync_list.saved"))?;
             }
@@ -3782,16 +3780,18 @@ mod tests {
                 .unwrap()
                 .contains("!/Junk/*")
         );
-        // review: folders the Folders tab left out are its own choices, not rules to keep aside
+        // a left-out folder added by hand to a file this app wrote is kept aside too
         let _ = fs::remove_file(dir.join("sync_list.saved"));
-        write_sync_list(&dir, &["!/Docs/Old/*".into(), "/Docs".into()]).unwrap();
+        write_sync_list(&dir, &["/Docs".into()]).unwrap();
+        let mut text = fs::read_to_string(dir.join("sync_list")).unwrap();
+        text.push_str("!/Private\n");
+        fs::write(dir.join("sync_list"), text).unwrap();
         write_sync_list(&dir, &[]).unwrap();
-        assert!(!dir.join("sync_list").exists());
-        assert!(!dir.join("sync_list.saved").exists());
-        // a pattern is still the user's own, even in a file this app wrote
-        write_sync_list(&dir, &["!*.tmp".into(), "/Docs".into()]).unwrap();
-        write_sync_list(&dir, &[]).unwrap();
-        assert!(dir.join("sync_list.saved").exists());
+        assert!(
+            fs::read_to_string(dir.join("sync_list.saved"))
+                .unwrap()
+                .contains("!/Private")
+        );
         fs::remove_dir_all(&dir).unwrap();
     }
 

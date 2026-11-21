@@ -172,7 +172,7 @@ fn toggle_popup(at: Option<(i32, i32)>) {
         return;
     }
     let mut c = Command::new(core::self_command());
-    c.arg("--popup");
+    c.arg("--popup").env(crate::popup::NOTIFY_CLOSED_ENV, "1");
     if let Some((x, y)) = at {
         c.args([x.to_string(), y.to_string()]);
     }
@@ -830,21 +830,25 @@ fn needs_attention(p: Phase) -> bool {
 /// is only about the notification.
 #[derive(Default)]
 struct ErrorWatch {
-    /// account key -> when its current error began (only errors that began while the tray was running)
-    since: HashMap<String, Instant>,
-    /// accounts already told about their current error
-    told: HashSet<String>,
-    /// account key -> when its error last went away: it counts as over only once it has stayed away for
-    /// ERROR_MUST_LAST, so an error that keeps coming back between short sync attempts is one error (announced once)
-    clear_since: HashMap<String, Instant>,
+    errors: HashMap<String, ErrorTrack>,
+}
+
+/// One account's current error (only errors that began while the tray was running).
+struct ErrorTrack {
+    /// time spent in Error so far: an error that keeps coming back between short sync attempts adds up, and two short
+    /// blips stay short (review: measuring from the first one's start announced two 3 s blips 41 s apart)
+    in_error: Duration,
+    /// the previous poll, if it found the error
+    last_error: Option<Instant>,
+    /// when it last went away: it counts as over once it has stayed away for ERROR_MUST_LAST
+    cleared: Option<Instant>,
+    told: bool,
 }
 
 impl ErrorWatch {
     /// Drops accounts that are gone.
     fn forget_except(&mut self, present: &HashSet<String>) {
-        self.since.retain(|k, _| present.contains(k));
-        self.told.retain(|k| present.contains(k));
-        self.clear_since.retain(|k, _| present.contains(k));
+        self.errors.retain(|k, _| present.contains(k));
     }
 
     /// Call once per poll for each account. `before`: its phase at the previous poll (None on the first poll).
@@ -858,31 +862,37 @@ impl ErrorWatch {
         now: Instant,
     ) -> bool {
         if phase != Phase::Error {
-            if self.since.contains_key(key) {
-                let cleared = *self.clear_since.entry(key.to_string()).or_insert(now);
+            if let Some(t) = self.errors.get_mut(key) {
+                t.last_error = None;
+                let cleared = *t.cleared.get_or_insert(now);
                 if now.duration_since(cleared) >= ERROR_MUST_LAST {
-                    self.since.remove(key);
-                    self.told.remove(key);
-                    self.clear_since.remove(key);
+                    self.errors.remove(key);
                 }
             }
             return false;
         }
-        self.clear_since.remove(key);
-        if !self.since.contains_key(key) {
+        let Some(t) = self.errors.get_mut(key) else {
             // an error already there when the tray started, or when we first looked, is not news (as always)
             if before.is_some_and(|b| !needs_attention(b)) {
-                self.since.insert(key.to_string(), now);
-            } else {
-                return false;
+                self.errors.insert(
+                    key.to_string(),
+                    ErrorTrack {
+                        in_error: Duration::ZERO,
+                        last_error: Some(now),
+                        cleared: None,
+                        told: false,
+                    },
+                );
             }
-        }
-        if self.told.contains(key) {
             return false;
+        };
+        t.cleared = None;
+        if let Some(last) = t.last_error {
+            t.in_error += now.duration_since(last);
         }
-        let began = self.since[key];
-        if tray_age >= ERROR_QUIET_AFTER_START && now.duration_since(began) >= ERROR_MUST_LAST {
-            self.told.insert(key.to_string());
+        t.last_error = Some(now);
+        if !t.told && tray_age >= ERROR_QUIET_AFTER_START && t.in_error >= ERROR_MUST_LAST {
+            t.told = true;
             return true;
         }
         false
@@ -893,6 +903,24 @@ impl ErrorWatch {
 /// uploaded in between.
 fn lock_notice_gap() -> chrono::Duration {
     chrono::Duration::minutes(30)
+}
+
+/// When each locked file was announced only matters for half an hour (lock_notice_gap); and never more of them than
+/// the cap. Run whenever one is added or a file moves.
+fn prune_told_blocked_when(a: &mut Acc, when: DateTime<Local>) {
+    a.told_blocked_when
+        .retain(|_, told| when.signed_duration_since(*told) < lock_notice_gap());
+    while a.told_blocked_when.len() > core::MAX_TRACKED_BLOCKED {
+        let Some(oldest) = a
+            .told_blocked_when
+            .iter()
+            .min_by_key(|(_, t)| **t)
+            .map(|(p, _)| p.clone())
+        else {
+            break;
+        };
+        a.told_blocked_when.remove(&oldest);
+    }
 }
 
 fn apply_one(a: &mut Acc, when: DateTime<Local>, ev: LogEvent) {
@@ -925,6 +953,7 @@ fn apply_one(a: &mut Acc, when: DateTime<Local>, ev: LogEvent) {
             }
             a.told_blocked.insert(path.clone());
             a.told_blocked_when.insert(path.clone(), when);
+            prune_told_blocked_when(a, when);
             a.told_blocked_order.push_back(path.clone());
             if a.fresh_blocked.len() >= core::MAX_TRACKED_BLOCKED {
                 a.fresh_blocked.remove(0);
@@ -937,20 +966,7 @@ fn apply_one(a: &mut Acc, when: DateTime<Local>, ev: LogEvent) {
         LogEvent::File { path, .. } => {
             a.told_blocked.remove(path);
             a.told_blocked_order.retain(|notified| notified != path);
-            // when each was told only matters for half an hour; and never more of them than the cap
-            a.told_blocked_when
-                .retain(|_, told| when.signed_duration_since(*told) < lock_notice_gap());
-            while a.told_blocked_when.len() > core::MAX_TRACKED_BLOCKED {
-                let Some(oldest) = a
-                    .told_blocked_when
-                    .iter()
-                    .min_by_key(|(_, t)| **t)
-                    .map(|(p, _)| p.clone())
-                else {
-                    break;
-                };
-                a.told_blocked_when.remove(&oldest);
-            }
+            prune_told_blocked_when(a, when);
         }
         _ => {}
     }
@@ -1883,6 +1899,13 @@ mod tests {
         }
         let told = watch(&ph, 3600);
         assert_eq!(told.len(), 1, "{told:?}");
+        // review: two blips of one poll each, 41 s apart, are not an error that lasted
+        let mut ph = run_of(Phase::UpToDate, 2);
+        ph.push(Phase::Error);
+        ph.extend(run_of(Phase::UpToDate, 13));
+        ph.push(Phase::Error);
+        ph.extend(run_of(Phase::UpToDate, 5));
+        assert!(watch(&ph, 3600).is_empty());
         // a short gap is still the same error: not told twice
         let mut ph = run_of(Phase::UpToDate, 1);
         ph.extend(run_of(Phase::Error, 30));
@@ -1922,7 +1945,7 @@ mod tests {
         w.step("a", Phase::Error, Some(Phase::UpToDate), Duration::ZERO, t0);
         w.step("b", Phase::Error, Some(Phase::UpToDate), Duration::ZERO, t0);
         w.forget_except(&HashSet::from(["b".to_string()]));
-        assert!(!w.since.contains_key("a") && w.since.contains_key("b"));
+        assert!(!w.errors.contains_key("a") && w.errors.contains_key("b"));
     }
 
     #[test]
