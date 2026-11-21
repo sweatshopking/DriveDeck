@@ -112,6 +112,37 @@ mod tests {
         assert_eq!(eta_words("01:30:00").as_deref(), Some("1 h 30 min left"));
         assert_eq!(eta_words("--:--:--"), None);
     }
+
+    // issue #3: the panel closed and the process ended while "View online" was still looking up
+    // the address, so the browser never opened. Both cases in one test: PENDING is shared.
+    #[test]
+    fn closing_waits_for_work_started_from_the_panel() {
+        use std::sync::Arc;
+        use std::sync::atomic::AtomicBool;
+        let done = Arc::new(AtomicBool::new(false));
+        let d = done.clone();
+        keep_pending(std::thread::spawn(move || {
+            std::thread::sleep(Duration::from_millis(300));
+            d.store(true, Ordering::SeqCst);
+        }));
+        finish_pending(Duration::from_secs(5));
+        assert!(
+            done.load(Ordering::SeqCst),
+            "returned before the work finished"
+        );
+
+        // something stuck is not waited for forever
+        let started = std::time::Instant::now();
+        keep_pending(std::thread::spawn(|| {
+            std::thread::sleep(Duration::from_secs(3))
+        }));
+        finish_pending(Duration::from_millis(200));
+        let waited = started.elapsed();
+        assert!(
+            waited >= Duration::from_millis(200) && waited < Duration::from_secs(2),
+            "{waited:?}"
+        );
+    }
 }
 
 /// Fills the panel from fresh data, keeping the lists' scroll position and selection.
@@ -728,14 +759,54 @@ fn open_settings(account: Option<&AccountInfo>) {
 }
 
 fn view_online(info: AccountInfo, page: crate::graph::WebPage) {
-    std::thread::spawn(move || {
+    if let Some(u) = crate::graph::fixed_web_page(&info.kind, info.drive_id.as_deref(), page) {
+        core::run_detached("xdg-open", &[&u]);
+        return;
+    }
+    // the lookup outlives the panel: it closes at once, and the process waits for this (finish_pending)
+    keep_pending(std::thread::spawn(move || {
         let url = crate::graph::token(&info.confdir)
             .and_then(|t| crate::graph::web_page(&t, info.drive_id.as_deref(), page));
         match url {
             Ok(u) => core::run_detached("xdg-open", &[&u]),
-            Err(e) => crate::share::notify("Couldn't open OneDrive online", &e),
+            Err(e) => crate::share::notify(&crate::tr!("Couldn't open OneDrive online"), &e),
         }
-    });
+    }));
+}
+
+/// Work started from the panel that must finish even when the panel closes first (a website lookup,
+/// starting or pausing syncs): the process exits when the panel closes, which would end it halfway.
+static PENDING: std::sync::Mutex<Vec<std::thread::JoinHandle<()>>> =
+    std::sync::Mutex::new(Vec::new());
+
+fn keep_pending(h: std::thread::JoinHandle<()>) {
+    if let Ok(mut p) = PENDING.lock() {
+        p.retain(|h| !h.is_finished());
+        p.push(h);
+    }
+}
+
+/// After the panel has closed: waits for that work, at most `limit` (each web request has its own
+/// 30 s limit; a lookup is a token refresh and one request).
+fn finish_pending(limit: Duration) {
+    let started = std::time::Instant::now();
+    loop {
+        let left = PENDING
+            .lock()
+            .map(|mut p| {
+                p.retain(|h| !h.is_finished());
+                p.len()
+            })
+            .unwrap_or(0);
+        if left == 0 {
+            return;
+        }
+        if started.elapsed() >= limit {
+            debug(&format!("gave up waiting for {left} task(s)"));
+            return;
+        }
+        std::thread::sleep(Duration::from_millis(50));
+    }
 }
 
 fn with_state<R>(f: impl FnOnce(&State) -> R) -> Option<R> {
@@ -938,7 +1009,7 @@ pub fn run(at: Option<(i32, i32)>) {
                 ui.set_summary_tone(1);
             }
             let weak = weak.clone();
-            std::thread::spawn(move || {
+            keep_pending(std::thread::spawn(move || {
                 let mut started = 0;
                 let mut errors = Vec::new();
                 for i in &infos {
@@ -967,7 +1038,7 @@ pub fn run(at: Option<(i32, i32)>) {
                         }
                     }
                 });
-            });
+            }));
         });
     }
     {
@@ -988,7 +1059,7 @@ pub fn run(at: Option<(i32, i32)>) {
                 return;
             }
             let weak = weak.clone();
-            std::thread::spawn(move || {
+            keep_pending(std::thread::spawn(move || {
                 let mut errors = Vec::new();
                 for i in &infos {
                     if let Err(e) = core::pause(i, secs as i64) {
@@ -1007,7 +1078,7 @@ pub fn run(at: Option<(i32, i32)>) {
                         ui.set_summary_tone(2);
                     }
                 });
-            });
+            }));
         });
     }
     ui.on_settings(|i| {
@@ -1270,4 +1341,17 @@ pub fn run(at: Option<(i32, i32)>) {
     if let Some(name) = kwin_script {
         crate::dbus::kwin_unload_script(&name);
     }
+    // the tray reads this: the panel is gone, so a click on the icon opens a new one
+    {
+        use std::io::{IsTerminal, Write};
+        let mut out = std::io::stdout();
+        if !out.is_terminal() {
+            let _ = writeln!(out, "{CLOSED_LINE}");
+            let _ = out.flush();
+        }
+    }
+    finish_pending(Duration::from_secs(75));
 }
+
+/// What the panel prints when it has closed (read by the tray, src/tray.rs toggle_popup).
+pub const CLOSED_LINE: &str = "drivedeck-panel-closed";

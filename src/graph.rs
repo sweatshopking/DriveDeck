@@ -714,6 +714,15 @@ fn sharepoint_site(library_url: &str) -> Option<String> {
         .or_else(|| Some(format!("https://{host}")))
 }
 
+/// The address of a page that is the same for every account of its kind, so no lookup is needed:
+/// a personal account's recycle bin and restore page (its home page is its own address).
+pub fn fixed_web_page(kind: &str, drive_id: Option<&str>, page: WebPage) -> Option<String> {
+    if kind != "personal" || drive_id.is_some() || page == WebPage::Home {
+        return None;
+    }
+    Some(web_page_for("", page))
+}
+
 /// The address of a page of the OneDrive website for an account.
 pub fn web_page(tok: &Token, drive_id: Option<&str>, page: WebPage) -> Result<String, String> {
     let home = web_url(tok, drive_id)?;
@@ -733,6 +742,33 @@ fn web_page_for(home: &str, page: WebPage) -> String {
 
 #[cfg(test)]
 mod page_tests {
+    #[test]
+    fn personal_recycle_bin_and_restore_need_no_lookup() {
+        use super::{WebPage, fixed_web_page};
+        assert_eq!(
+            fixed_web_page("personal", None, WebPage::RecycleBin).as_deref(),
+            Some("https://onedrive.live.com/?v=recyclebin")
+        );
+        assert_eq!(
+            fixed_web_page("personal", None, WebPage::Restore).as_deref(),
+            Some("https://onedrive.live.com/?v=restore")
+        );
+        // the home page is the account's own address
+        assert_eq!(fixed_web_page("personal", None, WebPage::Home), None);
+        // work, school and SharePoint addresses depend on the site
+        assert_eq!(fixed_web_page("business", None, WebPage::RecycleBin), None);
+        assert_eq!(
+            fixed_web_page("sharepoint", Some("b!x"), WebPage::RecycleBin),
+            None
+        );
+        assert_eq!(
+            fixed_web_page("personal", Some("b!x"), WebPage::RecycleBin),
+            None
+        );
+        // not known yet: look it up
+        assert_eq!(fixed_web_page("", None, WebPage::RecycleBin), None);
+    }
+
     #[test]
     fn search_results_read_the_way_microsoft_sends_them() {
         let personal = serde_json::json!({"name": "Trip budget.xlsx", "webUrl": "https://1drv.ms/x/abc",

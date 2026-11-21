@@ -182,10 +182,27 @@ fn toggle_popup(at: Option<(i32, i32)>) {
     {
         c.env("XDG_ACTIVATION_TOKEN", token);
     }
-    let Ok(mut child) = c.stdout(Stdio::null()).stderr(Stdio::null()).spawn() else {
+    // stdout: the panel says when it has closed (it may still be finishing work, see below)
+    let Ok(mut child) = c.stdout(Stdio::piped()).stderr(Stdio::null()).spawn() else {
         return;
     };
     let pid = child.id();
+    let hidden = Arc::new(AtomicBool::new(false));
+    if let Some(out) = child.stdout.take() {
+        let hidden = hidden.clone();
+        // reads to the end, so the panel can never block on a full pipe
+        thread::spawn(move || {
+            for line in BufReader::new(out).lines() {
+                match line {
+                    Ok(l) if l.trim() == crate::popup::CLOSED_LINE => {
+                        hidden.store(true, Ordering::Relaxed);
+                    }
+                    Ok(_) => {}
+                    Err(_) => break,
+                }
+            }
+        });
+    }
     let raw_fd = unsafe { libc::syscall(libc::SYS_pidfd_open, pid as libc::pid_t, 0) };
     let pidfd = if raw_fd >= 0 {
         // SAFETY: pidfd_open returned a new owned file descriptor.
@@ -197,10 +214,30 @@ fn toggle_popup(at: Option<(i32, i32)>) {
     p.open = Some((pid, Instant::now(), pidfd, close_tx));
     drop(p);
     thread::spawn(move || {
+        // The panel has gone from the screen: it no longer counts as open, so the next click opens
+        // a new one (rather than "closing" this one, which may still be opening a web page).
+        let forget = || {
+            let mut p = POPUP.lock().unwrap();
+            if p.open
+                .as_ref()
+                .is_some_and(|(open_pid, _, _, _)| *open_pid == pid)
+            {
+                p.open = None;
+                // closed by itself (focus moved away); one closed by a click above isn't recorded,
+                // so clicking again right away reopens it
+                p.closed = Some(Instant::now());
+            }
+        };
+        let mut forgotten = false;
         loop {
             match child.try_wait() {
                 Ok(Some(_)) | Err(_) => break,
                 Ok(None) => {}
+            }
+            if hidden.load(Ordering::Relaxed) {
+                forget();
+                forgotten = true;
+                break;
             }
             match close_rx.recv_timeout(Duration::from_millis(100)) {
                 Ok(()) => {
@@ -220,15 +257,8 @@ fn toggle_popup(at: Option<(i32, i32)>) {
             }
         }
         let _ = child.wait();
-        let mut p = POPUP.lock().unwrap();
-        if p.open
-            .as_ref()
-            .is_some_and(|(open_pid, _, _, _)| *open_pid == pid)
-        {
-            p.open = None;
-            // closed by itself (focus moved away); one closed by a click above isn't recorded,
-            // so clicking again right away reopens it
-            p.closed = Some(Instant::now());
+        if !forgotten {
+            forget();
         }
     });
 }

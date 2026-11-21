@@ -379,13 +379,29 @@ fn scrub_tokens(s: &str) -> String {
             run.push(c);
             continue;
         }
-        let long_id = run.len() >= 24 && run.chars().any(|c| c.is_ascii_digit());
-        out.push_str(if long_id { "<id>" } else { &run });
+        out.push_str(&scrub_run(&run));
         run.clear();
         out.push(c);
     }
     out.pop();
     out
+}
+
+/// One run of id-like characters. A setting written `Name=value` (`RestartPreventExitStatus=78`,
+/// `drive_id=b!…`) keeps its name, which is never private; only a long value is hidden.
+fn scrub_run(run: &str) -> String {
+    let long_id = |r: &str| r.len() >= 24 && r.chars().any(|c| c.is_ascii_digit());
+    if let Some((name, value)) = run.split_once('=')
+        && !name.is_empty()
+        && name.chars().all(|c| c.is_ascii_alphabetic() || c == '_')
+    {
+        return format!("{name}={}", if long_id(value) { "<id>" } else { value });
+    }
+    if long_id(run) {
+        "<id>".into()
+    } else {
+        run.into()
+    }
 }
 
 /// What the client says about a file ends with its name: keep the message, not the name
@@ -791,6 +807,21 @@ mod tests {
             "onedrive v2.5.12 monitor_interval = 300"
         );
         assert_eq!(scrub_emails("a@b and x@y.org."), "a@b and <email>.");
+    }
+
+    // issue #3: the doctor's own advice reached the report as `Add "<id>" to that file`
+    #[test]
+    fn setting_names_stay_and_only_long_values_are_hidden() {
+        let advice = "Add \"RestartPreventExitStatus=78\" to that file";
+        assert_eq!(scrub_tokens(advice), advice);
+        assert_eq!(
+            scrub_tokens("drive_id=b!Ab12Cd34Ef56Gh78Ij90Kl12Mn34"),
+            "drive_id=<id>"
+        );
+        // ids and tokens alone are still hidden, also with base64 padding
+        assert_eq!(scrub_tokens("id 01H5FV3A56Y2GOVW7725BZO354PWSE"), "id <id>");
+        assert_eq!(scrub_tokens("t=Ab12Cd34Ef56Gh78Ij90Kl12Mn34=="), "t=<id>");
+        assert_eq!(scrub_tokens("Ab12Cd34Ef56Gh78Ij90Kl12Mn34=="), "<id>");
     }
 
     #[test]
