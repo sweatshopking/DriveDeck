@@ -33,6 +33,29 @@ def read_ids(path):
     return ids
 
 
+def without_test_modules(text):
+    """Drops `#[cfg(test)] mod … { … }` blocks. Only those: other test-only items stay, and code
+    after a test module (it isn't always at the end of the file) is still read. The sources are
+    rustfmt-formatted, so a top-level module ends at the first line that is just `}`."""
+    lines = text.splitlines(keepends=True)
+    kept = []
+    index = 0
+    while index < len(lines):
+        if lines[index].strip() == "#[cfg(test)]":
+            following = index + 1
+            while following < len(lines) and lines[following].lstrip().startswith("#["):
+                following += 1
+            if following < len(lines) and re.match(r"(pub(\([^)]*\))?\s+)?mod\s+\w+\s*\{", lines[following]):
+                end = following
+                while end < len(lines) and lines[end].rstrip("\n") != "}":
+                    end += 1
+                index = end + 1
+                continue
+        kept.append(lines[index])
+        index += 1
+    return "".join(kept)
+
+
 def call_arguments(source, start):
     closers = [")"]
     quoted = False
@@ -67,7 +90,7 @@ def call_arguments(source, start):
 
 
 def advanced_messages(path):
-    source = path.read_text().split("#[cfg(test)]", 1)[0]
+    source = without_test_modules(path.read_text())
     found = set()
 
     def literal(expression):
@@ -95,7 +118,7 @@ def advanced_messages(path):
 
 
 def backup_messages(path):
-    source = path.read_text().split("#[cfg(test)]", 1)[0]
+    source = without_test_modules(path.read_text())
     found = set()
     for spec in re.findall(r"\bKnown\s*\{([^}]*)\}", source, re.DOTALL):
         label = re.search(r'\blabel\s*:\s*("(?:\\.|[^"\\])*")', spec)
@@ -110,7 +133,7 @@ def main():
     additions = []
     call = re.compile(r"(?<![A-Za-z0-9_])tr!\s*\(")
     for source in sorted(Path("src").rglob("*.rs")):
-        text = source.read_text().split("#[cfg(test)]", 1)[0]
+        text = without_test_modules(source.read_text())
         for match in call.finditer(text):
             arguments = call_arguments(text, match.end())
             if not arguments:

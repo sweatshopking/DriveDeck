@@ -263,6 +263,10 @@ mod tests {
                 if untranslated && !complete {
                     continue;
                 }
+                if complete && translation.fuzzy {
+                    // the build leaves fuzzy entries out, so they show in English
+                    problems.push(format!("fuzzy (needs checking) {:?}", source.id));
+                }
                 if let Some(plural) = source.plural.as_deref() {
                     if translation.plural_translations.len() < nplurals(language) {
                         problems.push(format!("plural forms missing for {:?}", source.id));
@@ -306,12 +310,131 @@ mod tests {
         assert!(problems.is_empty(), "{}", problems.join("\n\n"));
     }
 
-    // On when the translation round is finished (cargo test -- --ignored); see po/README.md.
+    // New or changed text is translated into every shipped language in the same change, so a
+    // release never shows some of it in English.
     #[test]
-    #[ignore = "needs every string translated in every language"]
     fn every_language_is_complete() {
         let problems = catalog_problems(true);
         assert!(problems.is_empty(), "{}", problems.join("\n\n"));
+    }
+
+    /// Literal strings passed to `tr!` (Rust) or `@tr` (Slint). Test modules are skipped the way
+    /// scripts/extract-rust-translations.py skips them: rustfmt ends a top-level module at the
+    /// first line that is just `}`.
+    fn literal_tr_calls(source: &str, call: &str) -> Vec<String> {
+        let mut kept = String::new();
+        let mut lines = source.lines().peekable();
+        while let Some(line) = lines.next() {
+            if line.trim() == "#[cfg(test)]" {
+                while lines
+                    .peek()
+                    .is_some_and(|l| l.trim_start().starts_with("#["))
+                {
+                    lines.next();
+                }
+                let item = lines.peek().copied().unwrap_or_default().trim_start();
+                let item = item.strip_prefix("pub ").unwrap_or(item);
+                if item.starts_with("mod ") && item.trim_end().ends_with('{') {
+                    for l in lines.by_ref() {
+                        if l == "}" {
+                            break;
+                        }
+                    }
+                    continue;
+                }
+            }
+            kept.push_str(line);
+            kept.push('\n');
+        }
+        let mut found = Vec::new();
+        let mut rest = kept.as_str();
+        while let Some(at) = rest.find(call) {
+            let before = rest[..at].chars().next_back();
+            rest = &rest[at + call.len()..];
+            if before.is_some_and(|c| c.is_alphanumeric() || c == '_') {
+                continue;
+            }
+            let Some(text) = rest.trim_start().strip_prefix('"') else {
+                continue;
+            };
+            let mut value = String::new();
+            let mut chars = text.chars();
+            while let Some(c) = chars.next() {
+                match c {
+                    '"' => break,
+                    '\\' => match chars.next() {
+                        Some('n') => value.push('\n'),
+                        Some('t') => value.push('\t'),
+                        Some('0') => value.push('\0'),
+                        Some('u') => {
+                            let code: String =
+                                chars.by_ref().skip(1).take_while(|&c| c != '}').collect();
+                            value.extend(
+                                u32::from_str_radix(&code, 16).ok().and_then(char::from_u32),
+                            );
+                        }
+                        Some('\n') => {
+                            let skipped: String =
+                                chars.clone().take_while(|c| c.is_whitespace()).collect();
+                            for _ in skipped.chars() {
+                                chars.next();
+                            }
+                        }
+                        Some(other) => value.push(other),
+                        None => break,
+                    },
+                    c => value.push(c),
+                }
+            }
+            found.push(value);
+        }
+        found
+    }
+
+    #[test]
+    fn the_catalog_has_every_translatable_string() {
+        let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+        let catalog =
+            po::parse(&std::fs::read_to_string(root.join("po/drivedeck.pot")).unwrap()).unwrap();
+        let known: std::collections::BTreeSet<_> =
+            catalog.iter().map(|entry| entry.id.as_str()).collect();
+        let mut sources = vec![(root.join("ui/app.slint"), "@tr(")];
+        let mut dirs = vec![root.join("src")];
+        while let Some(dir) = dirs.pop() {
+            for entry in std::fs::read_dir(dir).unwrap() {
+                let path = entry.unwrap().path();
+                if path.is_dir() {
+                    dirs.push(path);
+                } else if path.extension().is_some_and(|e| e == "rs") {
+                    sources.push((path, "tr!("));
+                }
+            }
+        }
+        let mut missing = Vec::new();
+        let mut seen = 0;
+        for (path, call) in sources {
+            for text in literal_tr_calls(&std::fs::read_to_string(&path).unwrap(), call) {
+                seen += 1;
+                if !known.contains(text.as_str()) {
+                    missing.push(format!("{}: {text:?}", path.display()));
+                }
+            }
+        }
+        assert!(
+            seen > 500,
+            "only {seen} strings found: is the scan still working?"
+        );
+        assert!(
+            missing.is_empty(),
+            "not in po/drivedeck.pot (run scripts/update-translations.sh):\n{}",
+            missing.join("\n")
+        );
+    }
+
+    #[test]
+    fn literal_tr_calls_skip_tests_but_not_what_follows_them() {
+        let source = "fn a() { tr!(\"One\") }\n#[cfg(test)]\nmod tests {\n    fn t() { tr!(\"Test\") }\n}\nfn b() { tr!(\n    \"Two \\\"quoted\\\"\" ) ; xtr!(\"No\") }\n";
+        assert_eq!(literal_tr_calls(source, "tr!("), ["One", "Two \"quoted\""]);
     }
 
     #[test]

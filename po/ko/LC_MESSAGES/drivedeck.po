@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-30 06:36+0000\n"
+"POT-Creation-Date: 2026-11-21 08:19+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -12,1387 +12,1356 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ui/app.slint:477
-msgid ""
-"This app needs one more free program, the OneDrive Client for Linux (version "
-"2.5 or newer). It does the actual syncing in the background; this app is the "
-"window and tray icon for it."
+#: ui/app.slint:480
+msgid "This app needs one more free program, the OneDrive Client for Linux (version 2.5 or newer). It does the actual syncing in the background; this app is the window and tray icon for it."
 msgstr "이 앱에는 OneDrive Client for Linux(버전 2.5 이상)가 추가로 필요합니다. 실제 동기화는 백그라운드에서 이 프로그램이 수행하며, 이 앱은 이를 위한 창과 트레이 아이콘을 제공합니다."
 
-#: ui/app.slint:488
+#: ui/app.slint:491
 msgid "Updating…"
 msgstr "업데이트 중…"
 
-#: ui/app.slint:488
+#: ui/app.slint:491
 msgid "Installing…"
 msgstr "설치 중…"
 
-#: ui/app.slint:488
+#: ui/app.slint:491
 msgid "Update it for me"
 msgstr "대신 업데이트"
 
-#: ui/app.slint:488
+#: ui/app.slint:491
 msgid "Install it for me"
 msgstr "대신 설치"
 
-#: ui/app.slint:496
+#: ui/app.slint:499
 msgid "Open installation instructions"
 msgstr "설치 안내 열기"
 
-#: ui/app.slint:502
+#: ui/app.slint:505
 msgid "Check again"
 msgstr "다시 확인"
 
-#: ui/app.slint:509
+#: ui/app.slint:512
 msgid "Not now"
 msgstr "나중에"
 
-#: ui/app.slint:537
-msgid "Some changes on this computer aren't being noticed"
-msgstr "이 컴퓨터의 일부 변경 사항이 감지되지 않고 있습니다"
-
-#: ui/app.slint:550
-msgid "Raising it…"
-msgstr "한도 늘리는 중…"
-
-#: ui/app.slint:550
-msgid "Raise the limit"
-msgstr "한도 늘리기"
-
-#: ui/app.slint:582
-msgid "Syncing is also set up outside this app"
-msgstr "이 앱 외부에서도 동기화가 설정되어 있습니다"
-
-#: ui/app.slint:595
-msgid "Turning it off…"
-msgstr "끄는 중…"
-
-#: ui/app.slint:595
-msgid "Turn it off"
-msgstr "끄기"
-
-#: ui/app.slint:602
-msgid "Leave it as it is"
-msgstr "그대로 두기"
-
-#: ui/app.slint:621
-msgid "DriveDeck for OneDrive"
-msgstr "OneDrive용 DriveDeck"
-
-#: ui/app.slint:920 ui/app.slint:3750
-msgid "Accounts"
-msgstr "계정"
-
-#: ui/app.slint:995
-msgid "Add account"
-msgstr "계정 추가"
-
-#: ui/app.slint:1007 ui/app.slint:2491
-msgid "App settings"
-msgstr "앱 설정"
-
-#: ui/app.slint:1046
-msgid "OK"
-msgstr "확인"
-
-#: ui/app.slint:1167
-msgid "Status"
-msgstr "상태"
-
-#: ui/app.slint:1167
-msgid "Folders"
-msgstr "폴더"
-
-#: ui/app.slint:1167
-msgid "Options"
-msgstr "옵션"
-
-#: ui/app.slint:1167
-msgid "Activity"
-msgstr "활동"
-
-#: ui/app.slint:1188
-msgid "This account isn't signed in"
-msgstr "이 계정은 로그인되어 있지 않습니다"
-
-#: ui/app.slint:1191
-msgid ""
-"Sign in with your Microsoft account. Your browser will open so you can log "
-"in, then you'll come back here automatically."
-msgstr "Microsoft 계정으로 로그인하세요. 브라우저가 열리면 로그인한 뒤 자동으로 이 화면으로 돌아옵니다."
-
-#: ui/app.slint:1196
-msgid "Sign in…"
-msgstr "로그인…"
-
-#: ui/app.slint:1213 ui/app.slint:2388
-msgid "Name"
-msgstr "이름"
-
-#: ui/app.slint:1218 ui/app.slint:2393
-msgid "Account name"
-msgstr "계정 이름"
-
-#: ui/app.slint:1225
-msgid "Rename"
-msgstr "이름 변경"
-
-#: ui/app.slint:1234
-msgid "Type"
-msgstr "유형"
-
-#: ui/app.slint:1246
-msgid "Folder"
-msgstr "폴더"
-
-#: ui/app.slint:1257 ui/app.slint:4171
-msgid "Open"
-msgstr "열기"
-
-#: ui/app.slint:1263
-msgid "Move…"
-msgstr "이동…"
-
-#: ui/app.slint:1270
-msgid "Online ▾"
-msgstr "온라인 ▾"
-
-#: ui/app.slint:1280 ui/app.slint:3953 ui/app.slint:3971
-msgid "OneDrive website"
-msgstr "OneDrive 웹사이트"
-
-#: ui/app.slint:1286 ui/app.slint:3959 ui/app.slint:3980
-msgid "Recycle bin"
-msgstr "휴지통"
-
-#: ui/app.slint:1292 ui/app.slint:3965 ui/app.slint:3989
-msgid "Restore your OneDrive"
-msgstr "OneDrive 복원"
-
-#: ui/app.slint:1303
-msgid "Last sync"
-msgstr "마지막 동기화"
-
-#: ui/app.slint:1316
-msgid "Storage"
-msgstr "저장 공간"
-
-#: ui/app.slint:1351
-msgid "Delete them online too…"
-msgstr "온라인에서도 삭제…"
-
-#: ui/app.slint:1358
-msgid "Download them again…"
-msgstr "다시 다운로드…"
-
-#: ui/app.slint:1366
-msgid ""
-"Downloading them again needs a full resync, which is turned off for this "
-"account in Options."
-msgstr "다시 다운로드하려면 전체 재동기화가 필요하지만, 이 계정의 옵션에서 꺼져 있습니다."
-
-#: ui/app.slint:1380 ui/app.slint:1387
-msgid "Background sync"
-msgstr "백그라운드 동기화"
-
-#: ui/app.slint:1383
-msgid "Keeps this folder in sync all the time, including after you restart."
-msgstr "재시작한 후에도 이 폴더를 항상 동기화합니다."
-
-#: ui/app.slint:1399 ui/app.slint:3694
-msgid "Sync now"
-msgstr "지금 동기화"
-
-#: ui/app.slint:1406
-msgid "Sign out"
-msgstr "로그아웃"
-
-#: ui/app.slint:1423
-msgid "Files changed in two places"
-msgstr "두 곳에서 변경된 파일"
-
-#: ui/app.slint:1434
-msgid ""
-"These files were changed here and online before they could sync, so both "
-"versions were kept. Compare them, then choose which to keep."
-msgstr "동기화 전에 이 컴퓨터와 온라인에서 파일이 변경되어 두 버전이 모두 보관되었습니다. 비교한 다음 보관할 버전을 선택하세요."
-
-#: ui/app.slint:1481
-msgid "Compare"
-msgstr "비교"
-
-#: ui/app.slint:1487
-msgid "Keep… ▾"
-msgstr "보관… ▾"
-
-#: ui/app.slint:1500
-msgid "Keep this computer's version"
-msgstr "이 컴퓨터 버전 보관"
-
-#: ui/app.slint:1506
-msgid "Keep the OneDrive version"
-msgstr "OneDrive 버전 보관"
-
-#: ui/app.slint:1512
-msgid "Keep both"
-msgstr "둘 다 보관"
-
-#: ui/app.slint:1529
-msgid "Back up this computer's folders"
-msgstr "이 컴퓨터의 폴더 백업"
-
-#: ui/app.slint:1532
-msgid ""
-"Keep your important folders in OneDrive, so they're backed up and on your "
-"other devices. They stay where your apps expect them."
-msgstr "중요한 폴더를 OneDrive에 보관해 백업하고 다른 장치에서도 사용할 수 있습니다. 앱에서 기대하는 위치는 그대로 유지됩니다."
-
-#: ui/app.slint:1568
-msgid "✓ Backed up"
-msgstr "✓ 백업됨"
-
-#: ui/app.slint:1583
-msgid "Back up…"
-msgstr "백업…"
-
-#: ui/app.slint:1590
-msgid "Stop…"
-msgstr "중지…"
-
-#: ui/app.slint:1605
-msgid "Remove account from this computer…"
-msgstr "이 컴퓨터에서 계정 제거…"
-
-#: ui/app.slint:1629
-msgid "Sync everything"
-msgstr "모두 동기화"
-
-#: ui/app.slint:1636
-msgid ""
-"Every folder in this account is kept on this computer. Untick to choose "
-"specific folders."
-msgstr "이 계정의 모든 폴더를 이 컴퓨터에 보관합니다. 선택을 해제하면 특정 폴더를 선택할 수 있습니다."
-
-#: ui/app.slint:1636
-msgid ""
-"Only the ticked folders (and everything inside them) are kept on this "
-"computer."
-msgstr "선택한 폴더와 그 안의 모든 항목만 이 컴퓨터에 보관합니다."
-
-#: ui/app.slint:1639
-msgid "Also sync files that sit at the top level (outside any folder)"
-msgstr "폴더 밖 최상위 위치의 파일도 동기화"
-
-#: ui/app.slint:1657
-msgid "Loading subfolders for "
-msgstr "하위 폴더 불러오는 중: "
-
-#: ui/app.slint:1657
-msgid "Collapse "
-msgstr "접기 "
-
-#: ui/app.slint:1657
-msgid "Expand "
-msgstr "펼치기 "
-
-#: ui/app.slint:1732
-msgid "Reload"
-msgstr "새로고침"
-
-#: ui/app.slint:1738
-msgid "Apply changes…"
-msgstr "변경 사항 적용…"
-
-#: ui/app.slint:1761
-msgid "When to sync"
-msgstr "동기화 시간"
-
-#: ui/app.slint:1766
-msgid "Full check every"
-msgstr "전체 확인 주기"
-
-#: ui/app.slint:1771
-msgid "How often to check for changes"
-msgstr "변경 사항 확인 빈도"
-
-#: ui/app.slint:1772
-msgid "5 minutes"
-msgstr "5분"
-
-#: ui/app.slint:1772
-msgid "10 minutes"
-msgstr "10분"
-
-#: ui/app.slint:1772
-msgid "15 minutes"
-msgstr "15분"
-
-#: ui/app.slint:1772
-msgid "30 minutes"
-msgstr "30분"
-
-#: ui/app.slint:1772
-msgid "1 hour"
-msgstr "1시간"
-
-#: ui/app.slint:1772
-msgid "2 hours"
-msgstr "2시간"
-
-#: ui/app.slint:1780
-msgid ""
-"Changes on this computer are sent right away, and personal accounts also get "
-"online changes instantly. This sets how often a full check runs as well."
-msgstr "이 컴퓨터의 변경 사항은 즉시 전송되며 개인 계정은 온라인 변경 사항도 즉시 가져옵니다. 이 설정은 전체 확인 주기도 지정합니다."
-
-#: ui/app.slint:1785
-msgid "Only sync between"
-msgstr "다음 시간에만 동기화"
-
-#: ui/app.slint:1789
-msgid "Schedule start time"
-msgstr "예약 시작 시간"
-
-#: ui/app.slint:1796
-msgid "and"
-msgstr "부터"
-
-#: ui/app.slint:1800
-msgid "Schedule end time"
-msgstr "예약 종료 시간"
-
-#: ui/app.slint:1811
-msgid ""
-"Use 24-hour times. The window can cross midnight (for example 23:00 to 07:00 "
-"for overnight only). \"Sync now\" still works outside it for an hour. Needs "
-"the tray icon running."
-msgstr "24시간 형식으로 입력하세요. 자정을 넘는 시간대도 가능합니다(예: 밤에만 동기화하려면 23:00부터 07:00까지). 시간대 밖에서도 “지금 동기화”는 한 시간 동안 작동합니다. 트레이 아이콘이 실행 중이어야 합니다."
-
-#: ui/app.slint:1816
-msgid "Speed limit"
-msgstr "속도 제한"
-
-#: ui/app.slint:1821
-msgid "Sync speed limit"
-msgstr "동기화 속도 제한"
-
-#: ui/app.slint:1822
-msgid "No limit"
-msgstr "제한 없음"
-
-#: ui/app.slint:1822
-msgid "1 MB/s"
-msgstr "1 MB/s"
-
-#: ui/app.slint:1822
-msgid "2 MB/s"
-msgstr "2 MB/s"
-
-#: ui/app.slint:1822
-msgid "5 MB/s"
-msgstr "5 MB/s"
-
-#: ui/app.slint:1822
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
-#: ui/app.slint:1822
-msgid "25 MB/s"
-msgstr "25 MB/s"
-
-#: ui/app.slint:1822
-msgid "50 MB/s"
-msgstr "50 MB/s"
-
-#: ui/app.slint:1830
-msgid "Applies to each file being transferred."
-msgstr "전송 중인 각 파일에 적용됩니다."
-
-#: ui/app.slint:1833
-msgid "Connect over IPv4 only"
-msgstr "IPv4로만 연결"
-
-#: ui/app.slint:1837
-msgid ""
-"Can fix syncing that's slow to start or keeps timing out on some networks."
-msgstr "일부 네트워크에서 동기화 시작이 느리거나 계속 시간 초과되는 문제를 해결할 수 있습니다."
-
-#: ui/app.slint:1847
-msgid "Direction"
-msgstr "방향"
-
-#: ui/app.slint:1850
-msgid "Sync direction"
-msgstr "동기화 방향"
-
-#: ui/app.slint:1851
-msgid "Both ways (normal)"
-msgstr "양방향(일반)"
-
-#: ui/app.slint:1851
-msgid "Download only"
-msgstr "다운로드만"
-
-#: ui/app.slint:1851
-msgid "Upload only"
-msgstr "업로드만"
-
-#: ui/app.slint:1862
-msgid ""
-"Keeps this computer a copy of what's online. Changes you make here aren't "
-"sent to OneDrive."
-msgstr "온라인 파일의 사본을 이 컴퓨터에 보관합니다. 여기서 변경한 내용은 OneDrive로 전송되지 않습니다."
-
-#: ui/app.slint:1862
-msgid ""
-"Sends what you change here to OneDrive, but doesn't download changes made "
-"online. Good for backing up this computer."
-msgstr "여기서 변경한 내용을 OneDrive로 보내지만 온라인 변경 사항은 다운로드하지 않습니다. 이 컴퓨터를 백업하는 데 적합합니다."
-
-#: ui/app.slint:1862
-msgid "Changes made here go to OneDrive, and changes made online come here."
-msgstr "여기서 변경한 내용은 OneDrive로 전송되고 온라인 변경 사항은 이 컴퓨터로 가져옵니다."
-
-#: ui/app.slint:1865
-msgid "Also delete files here that aren't online"
-msgstr "온라인에 없는 파일도 여기서 삭제"
-
-#: ui/app.slint:1869
-msgid ""
-"This deletes files you put in this folder yourself, since they aren't "
-"online. You'll see exactly what would be deleted before anything happens."
-msgstr "이 폴더에 직접 추가한 파일은 온라인에 없으므로 삭제됩니다. 작업 전에 삭제될 항목을 정확히 확인할 수 있습니다."
-
-#: ui/app.slint:1875
-msgid "Keep files online when I delete them here"
-msgstr "여기서 삭제한 파일을 온라인에 보관"
-
-#: ui/app.slint:1879
-msgid ""
-"Changing the direction is checked first with a dry run, so you can see what "
-"would happen."
-msgstr "방향 변경은 먼저 시험 실행으로 확인하므로 결과를 미리 볼 수 있습니다."
-
-#: ui/app.slint:1889
-msgid "Files"
-msgstr "파일"
-
-#: ui/app.slint:1892
-msgid ""
-"When a file is deleted online, move it to this computer's Trash instead of "
-"deleting it"
-msgstr "온라인에서 삭제된 파일을 이 컴퓨터에서 삭제하지 않고 휴지통으로 이동"
-
-#: ui/app.slint:1896
-msgid "Show desktop notifications for synced files"
-msgstr "동기화된 파일의 데스크톱 알림 표시"
-
-#: ui/app.slint:1900
-msgid "Don't sync hidden files and folders (names starting with a dot) *"
-msgstr "숨김 파일 및 폴더(이름이 점으로 시작)를 동기화하지 않음 *"
-
-#: ui/app.slint:1906
-msgid "Never sync files named *"
-msgstr "다음 이름의 파일을 동기화하지 않음 *"
-
-#: ui/app.slint:1910
-msgid "File name patterns to skip"
-msgstr "건너뛸 파일 이름 패턴"
-
-#: ui/app.slint:1916
-msgid "Separate patterns with | — for example  *.tmp|~*|Thumbs.db"
-msgstr "패턴은 |로 구분하세요. 예: *.tmp|~*|Thumbs.db"
-
-#: ui/app.slint:1921
-msgid "Never sync folders named *"
-msgstr "다음 이름의 폴더를 동기화하지 않음 *"
-
-#: ui/app.slint:1925
-msgid "Folder names or paths to skip"
-msgstr "건너뛸 폴더 이름 또는 경로"
-
-#: ui/app.slint:1930
-msgid "Add developer folders…"
-msgstr "개발자 폴더 추가…"
-
-#: ui/app.slint:1937
-msgid ""
-"A name skips every folder called that; a path like Projects/Old skips that "
-"folder."
-msgstr "이름을 입력하면 해당 이름의 모든 폴더를 건너뜁니다. Projects/Old와 같은 경로는 해당 폴더만 건너뜁니다."
-
-#: ui/app.slint:1940
-msgid "Don't sync symbolic links *"
-msgstr "심볼릭 링크를 동기화하지 않음 *"
-
-#: ui/app.slint:1944
-msgid "Skip any folder that holds a file named .nosync *"
-msgstr ".nosync라는 파일이 있는 폴더를 건너뜀 *"
-
-#: ui/app.slint:1948
-msgid "Sync shared folders I've added to My files *"
-msgstr "내 파일에 추가한 공유 폴더 동기화 *"
-
-#: ui/app.slint:1959
-msgid "Safety"
-msgstr "안전"
-
-#: ui/app.slint:1962
-msgid "Allow full resyncs for this account"
-msgstr "이 계정의 전체 재동기화 허용"
-
-#: ui/app.slint:1966
-msgid ""
-"Changing which folders sync, or the settings marked *, makes the sync engine "
-"rebuild its view of everything (a full resync). You always get a preview of "
-"what would be downloaded, uploaded or deleted before anything happens. Turn "
-"this off to lock those settings."
-msgstr "동기화할 폴더나 * 표시된 설정을 변경하면 동기화 엔진이 모든 항목의 상태를 다시 구성합니다(전체 재동기화). 작업 전에 다운로드, 업로드 또는 삭제될 항목을 항상 미리 볼 수 있습니다. 이 옵션을 끄면 해당 설정이 잠깁니다."
-
-#: ui/app.slint:1971
-msgid "Stop and ask when more than"
-msgstr "다음 개수보다 많이 삭제되면 중지하고 확인"
-
-#: ui/app.slint:1975
-msgid "Number of deleted items that stops syncing"
-msgstr "동기화를 중지하는 삭제 항목 수"
-
-#: ui/app.slint:1982
-msgid "items are deleted at once"
-msgstr "개 항목이 한 번에 삭제됨"
-
-#: ui/app.slint:1990
-msgid ""
-"Protects against deleting a lot online by accident, for example when a "
-"folder is moved out of OneDrive or a drive goes missing. Items inside "
-"deleted folders count too. The client's default is 1000."
-msgstr "폴더를 OneDrive 밖으로 옮기거나 드라이브가 사라졌을 때처럼 온라인 항목이 실수로 대량 삭제되는 것을 방지합니다. 삭제된 폴더 안의 항목도 포함됩니다. 클라이언트 기본값은 1000입니다."
-
-#: ui/app.slint:2005
-msgid "Advanced"
-msgstr "고급"
-
-#: ui/app.slint:2008
-msgid "Fine-tune the sync engine. Most people never need these."
-msgstr "동기화 엔진을 세부 조정합니다. 대부분은 변경할 필요가 없습니다."
-
-#: ui/app.slint:2012
-msgid "Shown"
-msgstr "표시됨"
-
-#: ui/app.slint:2012
-msgid "Hidden"
-msgstr "숨김"
-
-#: ui/app.slint:2013
-msgid "Show advanced settings"
-msgstr "고급 설정 표시"
-
-#: ui/app.slint:2022
-msgid "Search advanced settings"
-msgstr "고급 설정 검색"
-
-#: ui/app.slint:2023
-msgid "Search settings (threads, timeout, log…)"
-msgstr "설정 검색(스레드, 시간 제한, 로그…)"
-
-#: ui/app.slint:2090
-msgid "⚠ Can lose data"
-msgstr "⚠ 데이터가 손실될 수 있음"
-
-#: ui/app.slint:2094
-msgid "Full resync"
-msgstr "전체 재동기화"
-
-#: ui/app.slint:2098
-msgid "Sign in again"
-msgstr "다시 로그인"
-
-#: ui/app.slint:2107
-msgid "Reset "
-msgstr "초기화 "
-
-#: ui/app.slint:2107
-msgid " to the default"
-msgstr " 기본값으로"
-
-#: ui/app.slint:2112
-msgid "↺ Reset to default"
-msgstr "↺ 기본값으로 재설정"
-
-#: ui/app.slint:2170
-msgid "No setting matches \""
-msgstr "일치하는 설정이 없습니다: \""
-
-#: ui/app.slint:2177
-msgid "Show all settings in use"
-msgstr "사용 중인 모든 설정 표시"
-
-#: ui/app.slint:2183
-msgid "Open log folder"
-msgstr "로그 폴더 열기"
-
-#: ui/app.slint:2203
-msgid "Save"
-msgstr "저장"
-
-#: ui/app.slint:2220
-msgid "When"
-msgstr "시간"
-
-#: ui/app.slint:2220
-msgid "What"
-msgstr "항목"
-
-#: ui/app.slint:2220
-msgid "File"
-msgstr "파일"
-
-#: ui/app.slint:2227
-msgid "Recent uploads, downloads and deletions from the sync log."
-msgstr "동기화 로그의 최근 업로드, 다운로드 및 삭제 항목입니다."
-
-#: ui/app.slint:2232
-msgid "Show in folder"
-msgstr "폴더에서 보기"
-
-#: ui/app.slint:2239
-msgid "Refresh"
-msgstr "새로고침"
-
-#: ui/app.slint:2256
-msgid "Welcome — let's add your OneDrive"
-msgstr "환영합니다 — OneDrive를 추가해 보세요"
-
-#: ui/app.slint:2256
-msgid "Add an account"
-msgstr "계정 추가"
-
-#: ui/app.slint:2261
-msgid "What would you like to sync?"
-msgstr "무엇을 동기화하시겠습니까?"
-
-#: ui/app.slint:2265 ui/app.slint:3581 ui/app.slint:3670
-msgid "OneDrive"
-msgstr "OneDrive"
-
-#: ui/app.slint:2266
-msgid ""
-"A personal Microsoft account (Outlook, Hotmail, Live) or a work or school "
-"account."
-msgstr "개인 Microsoft 계정(Outlook, Hotmail, Live) 또는 회사/학교 계정입니다."
-
-#: ui/app.slint:2273
-msgid "SharePoint library"
-msgstr "SharePoint 라이브러리"
-
-#: ui/app.slint:2274
-msgid ""
-"A document library from a SharePoint or Teams site. You'll need a work or "
-"school account added first."
-msgstr "SharePoint 또는 Teams 사이트의 문서 라이브러리입니다. 먼저 회사 또는 학교 계정을 추가해야 합니다."
-
-#: ui/app.slint:2288
-msgid "1. Find the library"
-msgstr "1. 라이브러리 찾기"
-
-#: ui/app.slint:2293
-msgid "Using account"
-msgstr "사용 계정"
-
-#: ui/app.slint:2298
-msgid "Work or school account for this library"
-msgstr "이 라이브러리에 사용할 회사 또는 학교 계정"
-
-#: ui/app.slint:2308
-msgid "Site"
-msgstr "사이트"
-
-#: ui/app.slint:2313
-msgid "SharePoint site address or name"
-msgstr "SharePoint 사이트 주소 또는 이름"
-
-#: ui/app.slint:2316
-msgid "Paste the site's address, or type part of its name"
-msgstr "사이트 주소를 붙여넣거나 이름 일부를 입력하세요"
-
-#: ui/app.slint:2322
-msgid "Find"
-msgstr "찾기"
-
-#: ui/app.slint:2330
-msgid ""
-"Copy the address from your browser while viewing the SharePoint site or "
-"library. Leave it empty to list the sites you belong to — only sites this "
-"account can already open appear."
-msgstr "SharePoint 사이트나 라이브러리를 보고 있을 때 브라우저에서 주소를 복사하세요. 비워 두면 소속된 사이트가 표시됩니다. 이 계정으로 이미 열 수 있는 사이트만 나타납니다."
-
-#: ui/app.slint:2383
-msgid "2. Where to keep it"
-msgstr "2. 저장 위치"
-
-#: ui/app.slint:2383
-msgid "Name and folder"
-msgstr "이름 및 폴더"
-
-#: ui/app.slint:2395
-msgid "e.g. Personal, Work"
-msgstr "예: 개인, 회사"
-
-#: ui/app.slint:2401
-msgid "Local folder"
-msgstr "로컬 폴더"
-
-#: ui/app.slint:2406
-msgid "Local folder for synced files"
-msgstr "동기화된 파일을 저장할 로컬 폴더"
-
-#: ui/app.slint:2410
-msgid "Browse…"
-msgstr "찾아보기…"
-
-#: ui/app.slint:2417
-msgid ""
-"Best to pick an empty or new folder. Anything already in it will be uploaded."
-msgstr "비어 있거나 새 폴더를 선택하는 것이 좋습니다. 폴더 안의 기존 항목은 업로드됩니다."
-
-#: ui/app.slint:2422 ui/app.slint:2427
-msgid "Microsoft cloud"
-msgstr "Microsoft 클라우드"
-
-#: ui/app.slint:2428
-msgid "Worldwide (normal)"
-msgstr "전 세계(일반)"
-
-#: ui/app.slint:2428
-msgid "US Government (GCC High)"
-msgstr "미국 정부(GCC High)"
-
-#: ui/app.slint:2428
-msgid "US Government (DoD)"
-msgstr "미국 정부(DoD)"
-
-#: ui/app.slint:2428
-msgid "Germany"
-msgstr "독일"
-
-#: ui/app.slint:2428
-msgid "China (21Vianet)"
-msgstr "중국(21Vianet)"
-
-#: ui/app.slint:2438
-msgid "Tenant"
-msgstr "테넌트"
-
-#: ui/app.slint:2443
-msgid "Organization tenant"
-msgstr "조직 테넌트"
-
-#: ui/app.slint:2449
-msgid ""
-"Only for government and national cloud accounts. Your IT team can tell you "
-"the tenant."
-msgstr "정부 및 국가 클라우드 계정에만 해당합니다. 테넌트는 IT 담당자에게 문의하세요."
-
-#: ui/app.slint:2457
-msgid "Back"
-msgstr "뒤로"
-
-#: ui/app.slint:2463
-msgid "Add library"
-msgstr "라이브러리 추가"
-
-#: ui/app.slint:2463
-msgid "Continue and sign in…"
-msgstr "계속하고 로그인…"
-
-#: ui/app.slint:2498
-msgid "Show the tray icon when I log in"
-msgstr "로그인할 때 트레이 아이콘 표시"
-
-#: ui/app.slint:2505
-msgid ""
-"Syncing itself keeps running in the background either way. The tray icon "
-"shows status and runs sync schedules."
-msgstr "어느 쪽이든 동기화는 백그라운드에서 계속 실행됩니다. 트레이 아이콘은 상태를 표시하고 동기화 일정을 실행합니다."
-
-#: ui/app.slint:2508
-msgid "Stop syncing when I quit the tray icon"
-msgstr "트레이 아이콘을 종료할 때 동기화 중지"
-
-#: ui/app.slint:2515
-msgid ""
-"\"Quit\" in the tray icon's menu then stops syncing too. It starts again the "
-"next time the app opens or you log in."
-msgstr "트레이 아이콘 메뉴에서 “종료”를 선택하면 동기화도 중지됩니다. 앱을 다시 열거나 로그인하면 다시 시작됩니다."
-
-#: ui/app.slint:2518
-msgid "Pause syncing on a metered network"
-msgstr "데이터 통신량 제한 네트워크에서 동기화 일시 중지"
-
-#: ui/app.slint:2525
-msgid ""
-"Saves your data allowance on a phone hotspot or a connection you've marked "
-"as metered in your network settings."
-msgstr "휴대폰 핫스팟이나 네트워크 설정에서 데이터 통신량 제한으로 지정한 연결에서 데이터 사용량을 줄입니다."
-
-#: ui/app.slint:2528
-msgid "Pause syncing while power saver is on"
-msgstr "절전 모드가 켜져 있는 동안 동기화 일시 중지"
-
-#: ui/app.slint:2535
-msgid ""
-"Syncing carries on by itself afterwards. \"Sync now\" still syncs for an "
-"hour if you need it to."
-msgstr "이후 동기화는 자동으로 다시 시작됩니다. 필요한 경우 “지금 동기화”를 누르면 한 시간 동안 동기화됩니다."
-
-#: ui/app.slint:2538
-msgid "Save screenshots to OneDrive"
-msgstr "스크린샷을 OneDrive에 저장"
-
-#: ui/app.slint:2547
-msgid "Save screenshots in"
-msgstr "스크린샷 저장 위치"
-
-#: ui/app.slint:2552
-msgid "OneDrive account for screenshots"
-msgstr "스크린샷에 사용할 OneDrive 계정"
-
-#: ui/app.slint:2561
-msgid "Show sync badges on files in Dolphin, Nemo and Caja"
-msgstr "Dolphin, Nemo 및 Caja의 파일에 동기화 배지 표시"
-
-#: ui/app.slint:2568
-msgid ""
-"A small tick, arrows or warning sign on the files in your OneDrive folders. "
-"File manager windows that are already open show them once they're reopened."
-msgstr "OneDrive 폴더의 파일에 작은 체크 표시, 화살표 또는 경고 표시를 보여 줍니다. 이미 열려 있는 파일 관리자 창에는 다시 열면 표시됩니다."
-
-#: ui/app.slint:2573
-msgid "Adding…"
-msgstr "추가 중…"
-
-#: ui/app.slint:2573
-msgid "Add badges to Dolphin…"
-msgstr "Dolphin에 배지 추가…"
-
-#: ui/app.slint:2581
-msgid ""
-"Dolphin needs a small plugin installed for everyone on this computer, so it "
-"asks for your password once."
-msgstr "Dolphin에서 이 컴퓨터의 모든 사용자가 사용할 수 있는 작은 플러그인을 설치해야 하므로 암호를 한 번 요청합니다."
-
-#: ui/app.slint:2587
-msgid "Tell me when a new version is out"
-msgstr "새 버전이 나오면 알림"
-
-#: ui/app.slint:2594
-msgid ""
-"Looks at this app's page on GitHub once a day. Nothing is downloaded or "
-"installed by itself."
-msgstr "하루에 한 번 GitHub에서 이 앱의 페이지를 확인합니다. 자동으로 다운로드하거나 설치하지 않습니다."
-
-#: ui/app.slint:2600 ui/app.slint:3727
-msgid "Version "
-msgstr "버전 "
-
-#: ui/app.slint:2600
-msgid " is out."
-msgstr " 출시되었습니다."
-
-#: ui/app.slint:2605 ui/app.slint:3733
-msgid "Get it"
-msgstr "다운로드"
-
-#: ui/app.slint:2616
-msgid "Add to my applications menu"
-msgstr "애플리케이션 메뉴에 추가"
-
-#: ui/app.slint:2632
-msgid "Something not right?"
-msgstr "문제가 있나요?"
-
-#: ui/app.slint:2635
-msgid ""
-"Checks the sync engine, the tray icon and every account in one go. The "
-"report is for a bug report: it leaves out your file names, email address, "
-"user and computer names and sign-in details, and opens so you can read it "
-"before sharing."
-msgstr "동기화 엔진, 트레이 아이콘 및 모든 계정을 한 번에 확인합니다. 버그 보고서용으로 파일 이름, 이메일 주소, 사용자 및 컴퓨터 이름, 로그인 정보를 제외합니다. 공유 전에 내용을 읽을 수 있도록 보고서를 엽니다."
-
-#: ui/app.slint:2641
+#: ui/app.slint:527
+msgid "Installed it another way (for example with Homebrew)?"
+msgstr "다른 방법으로 설치했나요(예: Homebrew)?"
+
+#: ui/app.slint:532 ui/app.slint:2716 ui/app.slint:2870
 msgid "Checking…"
 msgstr "확인 중…"
 
-#: ui/app.slint:2641
+#: ui/app.slint:532
+msgid "Choose it…"
+msgstr "선택…"
+
+#: ui/app.slint:560
+msgid "Some changes on this computer aren't being noticed"
+msgstr "이 컴퓨터의 일부 변경 사항이 감지되지 않고 있습니다"
+
+#: ui/app.slint:573
+msgid "Raising it…"
+msgstr "한도 늘리는 중…"
+
+#: ui/app.slint:573
+msgid "Raise the limit"
+msgstr "한도 늘리기"
+
+#: ui/app.slint:605
+msgid "Syncing is also set up outside this app"
+msgstr "이 앱 외부에서도 동기화가 설정되어 있습니다"
+
+#: ui/app.slint:618
+msgid "Turning it off…"
+msgstr "끄는 중…"
+
+#: ui/app.slint:618
+msgid "Turn it off"
+msgstr "끄기"
+
+#: ui/app.slint:625
+msgid "Leave it as it is"
+msgstr "그대로 두기"
+
+#: ui/app.slint:644
+msgid "DriveDeck for OneDrive"
+msgstr "OneDrive용 DriveDeck"
+
+#: ui/app.slint:970 ui/app.slint:3925
+msgid "Accounts"
+msgstr "계정"
+
+#: ui/app.slint:1045
+msgid "Add account"
+msgstr "계정 추가"
+
+#: ui/app.slint:1057 ui/app.slint:2546
+msgid "App settings"
+msgstr "앱 설정"
+
+#: ui/app.slint:1096
+msgid "OK"
+msgstr "확인"
+
+#: ui/app.slint:1222
+msgid "Status"
+msgstr "상태"
+
+#: ui/app.slint:1222
+msgid "Folders"
+msgstr "폴더"
+
+#: ui/app.slint:1222
+msgid "Options"
+msgstr "옵션"
+
+#: ui/app.slint:1222
+msgid "Activity"
+msgstr "활동"
+
+#: ui/app.slint:1243
+msgid "This account isn't signed in"
+msgstr "이 계정은 로그인되어 있지 않습니다"
+
+#: ui/app.slint:1246
+msgid "Sign in with your Microsoft account. Your browser will open so you can log in, then you'll come back here automatically."
+msgstr "Microsoft 계정으로 로그인하세요. 브라우저가 열리면 로그인한 뒤 자동으로 이 화면으로 돌아옵니다."
+
+#: ui/app.slint:1251
+msgid "Sign in…"
+msgstr "로그인…"
+
+#: ui/app.slint:1268 ui/app.slint:2443
+msgid "Name"
+msgstr "이름"
+
+#: ui/app.slint:1273 ui/app.slint:2448
+msgid "Account name"
+msgstr "계정 이름"
+
+#: ui/app.slint:1280
+msgid "Rename"
+msgstr "이름 변경"
+
+#: ui/app.slint:1289
+msgid "Type"
+msgstr "유형"
+
+#: ui/app.slint:1301
+msgid "Folder"
+msgstr "폴더"
+
+#: ui/app.slint:1312 ui/app.slint:4346
+msgid "Open"
+msgstr "열기"
+
+#: ui/app.slint:1318
+msgid "Move…"
+msgstr "이동…"
+
+#: ui/app.slint:1325
+msgid "Online ▾"
+msgstr "온라인 ▾"
+
+#: ui/app.slint:1335 ui/app.slint:4128 ui/app.slint:4146
+msgid "OneDrive website"
+msgstr "OneDrive 웹사이트"
+
+#: ui/app.slint:1341 ui/app.slint:4134 ui/app.slint:4155
+msgid "Recycle bin"
+msgstr "휴지통"
+
+#: ui/app.slint:1347 ui/app.slint:4140 ui/app.slint:4164
+msgid "Restore your OneDrive"
+msgstr "OneDrive 복원"
+
+#: ui/app.slint:1358
+msgid "Last sync"
+msgstr "마지막 동기화"
+
+#: ui/app.slint:1371
+msgid "Storage"
+msgstr "저장 공간"
+
+#: ui/app.slint:1406
+msgid "Delete them online too…"
+msgstr "온라인에서도 삭제…"
+
+#: ui/app.slint:1413
+msgid "Download them again…"
+msgstr "다시 다운로드…"
+
+#: ui/app.slint:1421
+msgid "Downloading them again needs a full resync, which is turned off for this account in Options."
+msgstr "다시 다운로드하려면 전체 재동기화가 필요하지만, 이 계정의 옵션에서 꺼져 있습니다."
+
+#: ui/app.slint:1435 ui/app.slint:1442
+msgid "Background sync"
+msgstr "백그라운드 동기화"
+
+#: ui/app.slint:1438
+msgid "Keeps this folder in sync all the time, including after you restart."
+msgstr "재시작한 후에도 이 폴더를 항상 동기화합니다."
+
+#: ui/app.slint:1454 ui/app.slint:3869
+msgid "Sync now"
+msgstr "지금 동기화"
+
+#: ui/app.slint:1461
+msgid "Sign out"
+msgstr "로그아웃"
+
+#: ui/app.slint:1478
+msgid "Files changed in two places"
+msgstr "두 곳에서 변경된 파일"
+
+#: ui/app.slint:1489
+msgid "These files were changed here and online before they could sync, so both versions were kept. Compare them, then choose which to keep."
+msgstr "동기화 전에 이 컴퓨터와 온라인에서 파일이 변경되어 두 버전이 모두 보관되었습니다. 비교한 다음 보관할 버전을 선택하세요."
+
+#: ui/app.slint:1536
+msgid "Compare"
+msgstr "비교"
+
+#: ui/app.slint:1542
+msgid "Keep… ▾"
+msgstr "보관… ▾"
+
+#: ui/app.slint:1555
+msgid "Keep this computer's version"
+msgstr "이 컴퓨터 버전 보관"
+
+#: ui/app.slint:1561
+msgid "Keep the OneDrive version"
+msgstr "OneDrive 버전 보관"
+
+#: ui/app.slint:1567
+msgid "Keep both"
+msgstr "둘 다 보관"
+
+#: ui/app.slint:1584
+msgid "Back up this computer's folders"
+msgstr "이 컴퓨터의 폴더 백업"
+
+#: ui/app.slint:1587
+msgid "Keep your important folders in OneDrive, so they're backed up and on your other devices. They stay where your apps expect them."
+msgstr "중요한 폴더를 OneDrive에 보관해 백업하고 다른 장치에서도 사용할 수 있습니다. 앱에서 기대하는 위치는 그대로 유지됩니다."
+
+#: ui/app.slint:1623
+msgid "✓ Backed up"
+msgstr "✓ 백업됨"
+
+#: ui/app.slint:1638
+msgid "Back up…"
+msgstr "백업…"
+
+#: ui/app.slint:1645
+msgid "Stop…"
+msgstr "중지…"
+
+#: ui/app.slint:1660
+msgid "Remove account from this computer…"
+msgstr "이 컴퓨터에서 계정 제거…"
+
+#: ui/app.slint:1684
+msgid "Sync everything"
+msgstr "모두 동기화"
+
+#: ui/app.slint:1691
+msgid "Every folder in this account is kept on this computer. Untick to choose specific folders."
+msgstr "이 계정의 모든 폴더를 이 컴퓨터에 보관합니다. 선택을 해제하면 특정 폴더를 선택할 수 있습니다."
+
+#: ui/app.slint:1691
+msgid "Only the ticked folders (and everything inside them) are kept on this computer."
+msgstr "선택한 폴더와 그 안의 모든 항목만 이 컴퓨터에 보관합니다."
+
+#: ui/app.slint:1694
+msgid "Also sync files that sit at the top level (outside any folder)"
+msgstr "폴더 밖 최상위 위치의 파일도 동기화"
+
+#: ui/app.slint:1712
+msgid "Loading subfolders for "
+msgstr "하위 폴더 불러오는 중: "
+
+#: ui/app.slint:1712
+msgid "Collapse "
+msgstr "접기 "
+
+#: ui/app.slint:1712
+msgid "Expand "
+msgstr "펼치기 "
+
+#. row.inherited: some folders inside are ticked differently from this one
+#: ui/app.slint:1745
+msgid "{} (partly)"
+msgstr "{} (일부)"
+
+#: ui/app.slint:1787
+msgid "Reload"
+msgstr "새로고침"
+
+#: ui/app.slint:1793
+msgid "Apply changes…"
+msgstr "변경 사항 적용…"
+
+#: ui/app.slint:1816
+msgid "When to sync"
+msgstr "동기화 시간"
+
+#: ui/app.slint:1821
+msgid "Full check every"
+msgstr "전체 확인 주기"
+
+#: ui/app.slint:1826
+msgid "How often to check for changes"
+msgstr "변경 사항 확인 빈도"
+
+#: ui/app.slint:1827
+msgid "5 minutes"
+msgstr "5분"
+
+#: ui/app.slint:1827
+msgid "10 minutes"
+msgstr "10분"
+
+#: ui/app.slint:1827
+msgid "15 minutes"
+msgstr "15분"
+
+#: ui/app.slint:1827
+msgid "30 minutes"
+msgstr "30분"
+
+#: ui/app.slint:1827
+msgid "1 hour"
+msgstr "1시간"
+
+#: ui/app.slint:1827
+msgid "2 hours"
+msgstr "2시간"
+
+#: ui/app.slint:1835
+msgid "Changes on this computer are sent right away, and personal accounts also get online changes instantly. This sets how often a full check runs as well."
+msgstr "이 컴퓨터의 변경 사항은 즉시 전송되며 개인 계정은 온라인 변경 사항도 즉시 가져옵니다. 이 설정은 전체 확인 주기도 지정합니다."
+
+#: ui/app.slint:1840
+msgid "Only sync between"
+msgstr "다음 시간에만 동기화"
+
+#: ui/app.slint:1844
+msgid "Schedule start time"
+msgstr "예약 시작 시간"
+
+#: ui/app.slint:1851
+msgid "and"
+msgstr "부터"
+
+#: ui/app.slint:1855
+msgid "Schedule end time"
+msgstr "예약 종료 시간"
+
+#: ui/app.slint:1866
+msgid "Use 24-hour times. The window can cross midnight (for example 23:00 to 07:00 for overnight only). \"Sync now\" still works outside it for an hour. Needs the tray icon running."
+msgstr "24시간 형식으로 입력하세요. 자정을 넘는 시간대도 가능합니다(예: 밤에만 동기화하려면 23:00부터 07:00까지). 시간대 밖에서도 “지금 동기화”는 한 시간 동안 작동합니다. 트레이 아이콘이 실행 중이어야 합니다."
+
+#: ui/app.slint:1871
+msgid "Speed limit"
+msgstr "속도 제한"
+
+#: ui/app.slint:1876
+msgid "Sync speed limit"
+msgstr "동기화 속도 제한"
+
+#: ui/app.slint:1877
+msgid "No limit"
+msgstr "제한 없음"
+
+#: ui/app.slint:1877
+msgid "1 MB/s"
+msgstr "1 MB/s"
+
+#: ui/app.slint:1877
+msgid "2 MB/s"
+msgstr "2 MB/s"
+
+#: ui/app.slint:1877
+msgid "5 MB/s"
+msgstr "5 MB/s"
+
+#: ui/app.slint:1877
+msgid "10 MB/s"
+msgstr "10 MB/s"
+
+#: ui/app.slint:1877
+msgid "25 MB/s"
+msgstr "25 MB/s"
+
+#: ui/app.slint:1877
+msgid "50 MB/s"
+msgstr "50 MB/s"
+
+#: ui/app.slint:1885
+msgid "Applies to each file being transferred."
+msgstr "전송 중인 각 파일에 적용됩니다."
+
+#: ui/app.slint:1888
+msgid "Connect over IPv4 only"
+msgstr "IPv4로만 연결"
+
+#: ui/app.slint:1892
+msgid "Can fix syncing that's slow to start or keeps timing out on some networks."
+msgstr "일부 네트워크에서 동기화 시작이 느리거나 계속 시간 초과되는 문제를 해결할 수 있습니다."
+
+#: ui/app.slint:1902
+msgid "Direction"
+msgstr "방향"
+
+#: ui/app.slint:1905
+msgid "Sync direction"
+msgstr "동기화 방향"
+
+#: ui/app.slint:1906
+msgid "Both ways (normal)"
+msgstr "양방향(일반)"
+
+#: ui/app.slint:1906
+msgid "Download only"
+msgstr "다운로드만"
+
+#: ui/app.slint:1906
+msgid "Upload only"
+msgstr "업로드만"
+
+#: ui/app.slint:1917
+msgid "Keeps this computer a copy of what's online. Changes you make here aren't sent to OneDrive."
+msgstr "온라인 파일의 사본을 이 컴퓨터에 보관합니다. 여기서 변경한 내용은 OneDrive로 전송되지 않습니다."
+
+#: ui/app.slint:1917
+msgid "Sends what you change here to OneDrive, but doesn't download changes made online. Good for backing up this computer."
+msgstr "여기서 변경한 내용을 OneDrive로 보내지만 온라인 변경 사항은 다운로드하지 않습니다. 이 컴퓨터를 백업하는 데 적합합니다."
+
+#: ui/app.slint:1917
+msgid "Changes made here go to OneDrive, and changes made online come here."
+msgstr "여기서 변경한 내용은 OneDrive로 전송되고 온라인 변경 사항은 이 컴퓨터로 가져옵니다."
+
+#: ui/app.slint:1920
+msgid "Also delete files here that aren't online"
+msgstr "온라인에 없는 파일도 여기서 삭제"
+
+#: ui/app.slint:1924
+msgid "This deletes files you put in this folder yourself, since they aren't online. You'll see exactly what would be deleted before anything happens."
+msgstr "이 폴더에 직접 추가한 파일은 온라인에 없으므로 삭제됩니다. 작업 전에 삭제될 항목을 정확히 확인할 수 있습니다."
+
+#: ui/app.slint:1930
+msgid "Keep files online when I delete them here"
+msgstr "여기서 삭제한 파일을 온라인에 보관"
+
+#: ui/app.slint:1934
+msgid "Changing the direction is checked first with a dry run, so you can see what would happen."
+msgstr "방향 변경은 먼저 시험 실행으로 확인하므로 결과를 미리 볼 수 있습니다."
+
+#: ui/app.slint:1944
+msgid "Files"
+msgstr "파일"
+
+#: ui/app.slint:1947
+msgid "When a file is deleted online, move it to this computer's Trash instead of deleting it"
+msgstr "온라인에서 삭제된 파일을 이 컴퓨터에서 삭제하지 않고 휴지통으로 이동"
+
+#: ui/app.slint:1951
+msgid "Show desktop notifications for synced files"
+msgstr "동기화된 파일의 데스크톱 알림 표시"
+
+#: ui/app.slint:1955
+msgid "Don't sync hidden files and folders (names starting with a dot) *"
+msgstr "숨김 파일 및 폴더(이름이 점으로 시작)를 동기화하지 않음 *"
+
+#: ui/app.slint:1961
+msgid "Never sync files named *"
+msgstr "다음 이름의 파일을 동기화하지 않음 *"
+
+#: ui/app.slint:1965
+msgid "File name patterns to skip"
+msgstr "건너뛸 파일 이름 패턴"
+
+#: ui/app.slint:1971
+msgid "Separate patterns with | — for example  *.tmp|~*|Thumbs.db"
+msgstr "패턴은 |로 구분하세요. 예: *.tmp|~*|Thumbs.db"
+
+#: ui/app.slint:1976
+msgid "Never sync folders named *"
+msgstr "다음 이름의 폴더를 동기화하지 않음 *"
+
+#: ui/app.slint:1980
+msgid "Folder names or paths to skip"
+msgstr "건너뛸 폴더 이름 또는 경로"
+
+#: ui/app.slint:1985
+msgid "Add developer folders…"
+msgstr "개발자 폴더 추가…"
+
+#: ui/app.slint:1992
+msgid "A name skips every folder called that; a path like Projects/Old skips that folder."
+msgstr "이름을 입력하면 해당 이름의 모든 폴더를 건너뜁니다. Projects/Old와 같은 경로는 해당 폴더만 건너뜁니다."
+
+#: ui/app.slint:1995
+msgid "Don't sync symbolic links *"
+msgstr "심볼릭 링크를 동기화하지 않음 *"
+
+#: ui/app.slint:1999
+msgid "Skip any folder that holds a file named .nosync *"
+msgstr ".nosync라는 파일이 있는 폴더를 건너뜀 *"
+
+#: ui/app.slint:2003
+msgid "Sync shared folders I've added to My files *"
+msgstr "내 파일에 추가한 공유 폴더 동기화 *"
+
+#: ui/app.slint:2014
+msgid "Safety"
+msgstr "안전"
+
+#: ui/app.slint:2017
+msgid "Allow full resyncs for this account"
+msgstr "이 계정의 전체 재동기화 허용"
+
+#: ui/app.slint:2021
+msgid "Changing which folders sync, or the settings marked *, makes the sync engine rebuild its view of everything (a full resync). You always get a preview of what would be downloaded, uploaded or deleted before anything happens. Turn this off to lock those settings."
+msgstr "동기화할 폴더나 * 표시된 설정을 변경하면 동기화 엔진이 모든 항목의 상태를 다시 구성합니다(전체 재동기화). 작업 전에 다운로드, 업로드 또는 삭제될 항목을 항상 미리 볼 수 있습니다. 이 옵션을 끄면 해당 설정이 잠깁니다."
+
+#: ui/app.slint:2026
+msgid "Stop and ask when more than"
+msgstr "다음 개수보다 많이 삭제되면 중지하고 확인"
+
+#: ui/app.slint:2030
+msgid "Number of deleted items that stops syncing"
+msgstr "동기화를 중지하는 삭제 항목 수"
+
+#: ui/app.slint:2037
+msgid "items are deleted at once"
+msgstr "개 항목이 한 번에 삭제됨"
+
+#: ui/app.slint:2045
+msgid "Protects against deleting a lot online by accident, for example when a folder is moved out of OneDrive or a drive goes missing. Items inside deleted folders count too. The client's default is 1000."
+msgstr "폴더를 OneDrive 밖으로 옮기거나 드라이브가 사라졌을 때처럼 온라인 항목이 실수로 대량 삭제되는 것을 방지합니다. 삭제된 폴더 안의 항목도 포함됩니다. 클라이언트 기본값은 1000입니다."
+
+#: ui/app.slint:2060
+msgid "Advanced"
+msgstr "고급"
+
+#: ui/app.slint:2063
+msgid "Fine-tune the sync engine. Most people never need these."
+msgstr "동기화 엔진을 세부 조정합니다. 대부분은 변경할 필요가 없습니다."
+
+#: ui/app.slint:2067
+msgid "Shown"
+msgstr "표시됨"
+
+#: ui/app.slint:2067
+msgid "Hidden"
+msgstr "숨김"
+
+#: ui/app.slint:2068
+msgid "Show advanced settings"
+msgstr "고급 설정 표시"
+
+#: ui/app.slint:2077
+msgid "Search advanced settings"
+msgstr "고급 설정 검색"
+
+#: ui/app.slint:2078
+msgid "Search settings (threads, timeout, log…)"
+msgstr "설정 검색(스레드, 시간 제한, 로그…)"
+
+#: ui/app.slint:2145
+msgid "⚠ Can lose data"
+msgstr "⚠ 데이터가 손실될 수 있음"
+
+#: ui/app.slint:2149
+msgid "Full resync"
+msgstr "전체 재동기화"
+
+#: ui/app.slint:2153
+msgid "Sign in again"
+msgstr "다시 로그인"
+
+#: ui/app.slint:2162
+msgid "Reset "
+msgstr "초기화 "
+
+#: ui/app.slint:2162
+msgid " to the default"
+msgstr " 기본값으로"
+
+#: ui/app.slint:2167
+msgid "↺ Reset to default"
+msgstr "↺ 기본값으로 재설정"
+
+#: ui/app.slint:2225
+msgid "No setting matches \""
+msgstr "일치하는 설정이 없습니다: \""
+
+#: ui/app.slint:2232
+msgid "Show all settings in use"
+msgstr "사용 중인 모든 설정 표시"
+
+#: ui/app.slint:2238
+msgid "Open log folder"
+msgstr "로그 폴더 열기"
+
+#: ui/app.slint:2258
+msgid "Save"
+msgstr "저장"
+
+#: ui/app.slint:2275
+msgid "When"
+msgstr "시간"
+
+#: ui/app.slint:2275
+msgid "What"
+msgstr "항목"
+
+#: ui/app.slint:2275
+msgid "File"
+msgstr "파일"
+
+#: ui/app.slint:2282
+msgid "Recent uploads, downloads and deletions from the sync log."
+msgstr "동기화 로그의 최근 업로드, 다운로드 및 삭제 항목입니다."
+
+#: ui/app.slint:2287
+msgid "Show in folder"
+msgstr "폴더에서 보기"
+
+#: ui/app.slint:2294
+msgid "Refresh"
+msgstr "새로고침"
+
+#: ui/app.slint:2311
+msgid "Welcome — let's add your OneDrive"
+msgstr "환영합니다 — OneDrive를 추가해 보세요"
+
+#: ui/app.slint:2311
+msgid "Add an account"
+msgstr "계정 추가"
+
+#: ui/app.slint:2316
+msgid "What would you like to sync?"
+msgstr "무엇을 동기화하시겠습니까?"
+
+#: ui/app.slint:2320 ui/app.slint:3756 ui/app.slint:3845
+msgid "OneDrive"
+msgstr "OneDrive"
+
+#: ui/app.slint:2321
+msgid "A personal Microsoft account (Outlook, Hotmail, Live) or a work or school account."
+msgstr "개인 Microsoft 계정(Outlook, Hotmail, Live) 또는 회사/학교 계정입니다."
+
+#: ui/app.slint:2328
+msgid "SharePoint library"
+msgstr "SharePoint 라이브러리"
+
+#: ui/app.slint:2329
+msgid "A document library from a SharePoint or Teams site. You'll need a work or school account added first."
+msgstr "SharePoint 또는 Teams 사이트의 문서 라이브러리입니다. 먼저 회사 또는 학교 계정을 추가해야 합니다."
+
+#: ui/app.slint:2343
+msgid "1. Find the library"
+msgstr "1. 라이브러리 찾기"
+
+#: ui/app.slint:2348
+msgid "Using account"
+msgstr "사용 계정"
+
+#: ui/app.slint:2353
+msgid "Work or school account for this library"
+msgstr "이 라이브러리에 사용할 회사 또는 학교 계정"
+
+#: ui/app.slint:2363
+msgid "Site"
+msgstr "사이트"
+
+#: ui/app.slint:2368
+msgid "SharePoint site address or name"
+msgstr "SharePoint 사이트 주소 또는 이름"
+
+#: ui/app.slint:2371
+msgid "Paste the site's address, or type part of its name"
+msgstr "사이트 주소를 붙여넣거나 이름 일부를 입력하세요"
+
+#: ui/app.slint:2377
+msgid "Find"
+msgstr "찾기"
+
+#: ui/app.slint:2385
+msgid "Copy the address from your browser while viewing the SharePoint site or library. Leave it empty to list the sites you belong to — only sites this account can already open appear."
+msgstr "SharePoint 사이트나 라이브러리를 보고 있을 때 브라우저에서 주소를 복사하세요. 비워 두면 소속된 사이트가 표시됩니다. 이 계정으로 이미 열 수 있는 사이트만 나타납니다."
+
+#: ui/app.slint:2438
+msgid "2. Where to keep it"
+msgstr "2. 저장 위치"
+
+#: ui/app.slint:2438
+msgid "Name and folder"
+msgstr "이름 및 폴더"
+
+#: ui/app.slint:2450
+msgid "e.g. Personal, Work"
+msgstr "예: 개인, 회사"
+
+#: ui/app.slint:2456
+msgid "Local folder"
+msgstr "로컬 폴더"
+
+#: ui/app.slint:2461
+msgid "Local folder for synced files"
+msgstr "동기화된 파일을 저장할 로컬 폴더"
+
+#: ui/app.slint:2465
+msgid "Browse…"
+msgstr "찾아보기…"
+
+#: ui/app.slint:2472
+msgid "Best to pick an empty or new folder. Anything already in it will be uploaded."
+msgstr "비어 있거나 새 폴더를 선택하는 것이 좋습니다. 폴더 안의 기존 항목은 업로드됩니다."
+
+#: ui/app.slint:2477 ui/app.slint:2482
+msgid "Microsoft cloud"
+msgstr "Microsoft 클라우드"
+
+#: ui/app.slint:2483
+msgid "Worldwide (normal)"
+msgstr "전 세계(일반)"
+
+#: ui/app.slint:2483
+msgid "US Government (GCC High)"
+msgstr "미국 정부(GCC High)"
+
+#: ui/app.slint:2483
+msgid "US Government (DoD)"
+msgstr "미국 정부(DoD)"
+
+#: ui/app.slint:2483
+msgid "Germany"
+msgstr "독일"
+
+#: ui/app.slint:2483
+msgid "China (21Vianet)"
+msgstr "중국(21Vianet)"
+
+#: ui/app.slint:2493
+msgid "Tenant"
+msgstr "테넌트"
+
+#: ui/app.slint:2498
+msgid "Organization tenant"
+msgstr "조직 테넌트"
+
+#: ui/app.slint:2504
+msgid "Only for government and national cloud accounts. Your IT team can tell you the tenant."
+msgstr "정부 및 국가 클라우드 계정에만 해당합니다. 테넌트는 IT 담당자에게 문의하세요."
+
+#: ui/app.slint:2512
+msgid "Back"
+msgstr "뒤로"
+
+#: ui/app.slint:2518
+msgid "Add library"
+msgstr "라이브러리 추가"
+
+#: ui/app.slint:2518
+msgid "Continue and sign in…"
+msgstr "계속하고 로그인…"
+
+#: ui/app.slint:2553
+msgid "Show the tray icon when I log in"
+msgstr "로그인할 때 트레이 아이콘 표시"
+
+#: ui/app.slint:2560
+msgid "Syncing itself keeps running in the background either way. The tray icon shows status and runs sync schedules."
+msgstr "어느 쪽이든 동기화는 백그라운드에서 계속 실행됩니다. 트레이 아이콘은 상태를 표시하고 동기화 일정을 실행합니다."
+
+#: ui/app.slint:2563
+msgid "Stop syncing when I quit the tray icon"
+msgstr "트레이 아이콘을 종료할 때 동기화 중지"
+
+#: ui/app.slint:2570
+msgid "\"Quit\" in the tray icon's menu then stops syncing too. It starts again the next time the app opens or you log in."
+msgstr "트레이 아이콘 메뉴에서 “종료”를 선택하면 동기화도 중지됩니다. 앱을 다시 열거나 로그인하면 다시 시작됩니다."
+
+#: ui/app.slint:2573
+msgid "Pause syncing on a metered network"
+msgstr "데이터 통신량 제한 네트워크에서 동기화 일시 중지"
+
+#: ui/app.slint:2580
+msgid "Saves your data allowance on a phone hotspot or a connection you've marked as metered in your network settings."
+msgstr "휴대폰 핫스팟이나 네트워크 설정에서 데이터 통신량 제한으로 지정한 연결에서 데이터 사용량을 줄입니다."
+
+#: ui/app.slint:2583
+msgid "Pause syncing while power saver is on"
+msgstr "절전 모드가 켜져 있는 동안 동기화 일시 중지"
+
+#: ui/app.slint:2590
+msgid "Syncing carries on by itself afterwards. \"Sync now\" still syncs for an hour if you need it to."
+msgstr "이후 동기화는 자동으로 다시 시작됩니다. 필요한 경우 “지금 동기화”를 누르면 한 시간 동안 동기화됩니다."
+
+#: ui/app.slint:2593
+msgid "Save screenshots to OneDrive"
+msgstr "스크린샷을 OneDrive에 저장"
+
+#: ui/app.slint:2602
+msgid "Save screenshots in"
+msgstr "스크린샷 저장 위치"
+
+#: ui/app.slint:2607
+msgid "OneDrive account for screenshots"
+msgstr "스크린샷에 사용할 OneDrive 계정"
+
+#: ui/app.slint:2616
+msgid "Show sync badges on files in Dolphin, Nemo and Caja"
+msgstr "Dolphin, Nemo 및 Caja의 파일에 동기화 배지 표시"
+
+#: ui/app.slint:2623
+msgid "A small tick, arrows or warning sign on the files in your OneDrive folders. File manager windows that are already open show them once they're reopened."
+msgstr "OneDrive 폴더의 파일에 작은 체크 표시, 화살표 또는 경고 표시를 보여 줍니다. 이미 열려 있는 파일 관리자 창에는 다시 열면 표시됩니다."
+
+#: ui/app.slint:2628
+msgid "Adding…"
+msgstr "추가 중…"
+
+#: ui/app.slint:2628
+msgid "Add badges to Dolphin…"
+msgstr "Dolphin에 배지 추가…"
+
+#: ui/app.slint:2636
+msgid "Dolphin needs a small plugin installed for everyone on this computer, so it asks for your password once."
+msgstr "Dolphin에서 이 컴퓨터의 모든 사용자가 사용할 수 있는 작은 플러그인을 설치해야 하므로 암호를 한 번 요청합니다."
+
+#: ui/app.slint:2642
+msgid "Search OneDrive from KRunner (Alt+Space)"
+msgstr "KRunner에서 OneDrive 검색(Alt+Space)"
+
+#: ui/app.slint:2649
+msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
+msgstr "이 컴퓨터에 없는 파일을 포함해 이름이나 내용으로 파일을 찾습니다. 이 기능을 켜면 KRunner에 입력한 세 글자 이상의 텍스트가 일치 항목을 찾기 위해 Microsoft로 전송됩니다."
+
+#: ui/app.slint:2652
+msgid "Search OneDrive from the GNOME overview"
+msgstr "GNOME 개요에서 OneDrive 검색"
+
+#: ui/app.slint:2659
+msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
+msgstr "개요에서 입력하면 OneDrive를 검색합니다. 입력한 내용은 Microsoft로 전송됩니다."
+
+#: ui/app.slint:2662
+msgid "Tell me when a new version is out"
+msgstr "새 버전이 나오면 알림"
+
+#: ui/app.slint:2669
+msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed until you press Update now."
+msgstr "하루에 한 번 GitHub에서 이 앱의 페이지를 확인합니다. 지금 업데이트를 누르기 전에는 아무것도 다운로드하거나 설치하지 않습니다."
+
+#: ui/app.slint:2675 ui/app.slint:3902
+msgid "Version "
+msgstr "버전 "
+
+#: ui/app.slint:2675
+msgid " is out."
+msgstr " 출시되었습니다."
+
+#: ui/app.slint:2680 ui/app.slint:3908
+msgid "Update now"
+msgstr "지금 업데이트"
+
+#: ui/app.slint:2691
+msgid "Add to my applications menu"
+msgstr "애플리케이션 메뉴에 추가"
+
+#: ui/app.slint:2707
+msgid "Something not right?"
+msgstr "문제가 있나요?"
+
+#: ui/app.slint:2710
+msgid "Checks the sync engine, the tray icon and every account in one go. The report is for a bug report: it leaves out your file names, email address, user and computer names and sign-in details, and opens so you can read it before sharing."
+msgstr "동기화 엔진, 트레이 아이콘 및 모든 계정을 한 번에 확인합니다. 버그 보고서용으로 파일 이름, 이메일 주소, 사용자 및 컴퓨터 이름, 로그인 정보를 제외합니다. 공유 전에 내용을 읽을 수 있도록 보고서를 엽니다."
+
+#: ui/app.slint:2716
 msgid "Check for problems"
 msgstr "문제 확인"
 
-#: ui/app.slint:2648
+#: ui/app.slint:2723
 msgid "Make a problem report"
 msgstr "문제 보고서 만들기"
 
-#: ui/app.slint:2667
-msgid "Appearance"
-msgstr "모양"
+#: ui/app.slint:2730
+msgid "Report a bug…"
+msgstr "버그 신고…"
 
-#: ui/app.slint:2670
-msgid ""
-"Colours, light or dark mode, text size and animations follow your desktop's "
-"settings."
-msgstr "색상, 밝거나 어두운 모드, 글자 크기 및 애니메이션은 데스크톱 설정을 따릅니다."
+#: ui/app.slint:2745
+msgid "Keep my file dates"
+msgstr "내 파일 날짜 유지"
 
-#: ui/app.slint:2675 ui/app.slint:2680
-msgid "Glass effect"
-msgstr "유리 효과"
+#: ui/app.slint:2759
+msgid "Report a bug"
+msgstr "버그 신고"
 
-#: ui/app.slint:2681
-msgid "Automatic"
-msgstr "자동"
+#: ui/app.slint:2762
+msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
+msgstr "버그 보고서에 들어갈 내용입니다. 아무것도 전송되지 않았습니다. 내용을 읽고 공유하지 않을 항목을 지운 다음 전송 방법을 선택하세요."
 
-#: ui/app.slint:2681
-msgid "On"
-msgstr "켜기"
+#: ui/app.slint:2765
+msgid "What were you doing, and what went wrong?"
+msgstr "무엇을 하고 있었으며 어떤 문제가 발생했나요?"
 
-#: ui/app.slint:2681
-msgid "Off"
-msgstr "끄기"
+#: ui/app.slint:2775
+msgid "The report (you can edit or delete anything here)"
+msgstr "보고서 (여기에서 무엇이든 편집하거나 삭제할 수 있습니다)"
 
-#: ui/app.slint:2701
-msgid "About"
-msgstr "정보"
+#: ui/app.slint:2791
+msgid "Open GitHub issue"
+msgstr "GitHub 이슈 열기"
 
-#: ui/app.slint:2704
-msgid "DriveDeck for OneDrive "
-msgstr "OneDrive용 DriveDeck "
+#: ui/app.slint:2796
+msgid "Copy to clipboard"
+msgstr "클립보드에 복사"
 
-#: ui/app.slint:2708
-msgid "The easiest, most complete way to use OneDrive on Linux."
-msgstr "Linux에서 OneDrive를 가장 쉽고 완전하게 사용할 수 있는 방법입니다."
+#: ui/app.slint:2801
+msgid "Save as a file"
+msgstr "파일로 저장"
 
-#: ui/app.slint:2716
-msgid ""
-"Free software under the GNU GPL v3. Syncing is done by the OneDrive Client "
-"for Linux by abraunegg (GPL v3). Not made by or affiliated with Microsoft. "
-"OneDrive is a trademark of Microsoft."
-msgstr "GNU GPL v3에 따른 자유 소프트웨어입니다. 동기화는 abraunegg의 OneDrive Client for Linux(GPL v3)가 수행합니다. Microsoft에서 제작하거나 Microsoft와 제휴하지 않았습니다. OneDrive는 Microsoft의 상표입니다."
-
-#: ui/app.slint:2722
-msgid "Project page"
-msgstr "프로젝트 페이지"
-
-#: ui/app.slint:2728
-msgid "Sync engine (abraunegg/onedrive)"
-msgstr "동기화 엔진(abraunegg/onedrive)"
-
-#: ui/app.slint:2741 ui/app.slint:2907 ui/app.slint:2953
-msgid "Uninstall"
-msgstr "제거"
-
-#: ui/app.slint:2744
-msgid ""
-"Remove this app, and choose whether to keep your OneDrive setup for the "
-"command-line client or remove that too. Your synced files always stay on "
-"this computer."
-msgstr "이 앱을 제거하고 명령줄 클라이언트용 OneDrive 설정을 유지할지 함께 제거할지 선택합니다. 동기화된 파일은 항상 이 컴퓨터에 남습니다."
-
-#: ui/app.slint:2749
-msgid "Uninstall…"
-msgstr "제거…"
-
-#: ui/app.slint:2780
-msgid "Sign in to Microsoft"
-msgstr "Microsoft에 로그인"
-
-#: ui/app.slint:2788
-msgid "Address from the blank sign-in page"
-msgstr "로그인 후 빈 페이지의 주소"
-
-#: ui/app.slint:2799
-msgid "Copy link"
-msgstr "링크 복사"
-
-#: ui/app.slint:2805
-msgid "Open sign-in page again"
-msgstr "로그인 페이지 다시 열기"
-
-#: ui/app.slint:2811
-msgid "Finish sign-in"
-msgstr "로그인 완료"
-
-#: ui/app.slint:2818 ui/app.slint:2971 ui/app.slint:3137 ui/app.slint:4341
-msgid "Close"
-msgstr "닫기"
-
-#: ui/app.slint:2818 ui/app.slint:2874 ui/app.slint:2946 ui/app.slint:3026
-#: ui/app.slint:3178 ui/app.slint:3230 ui/app.slint:3316
+#: ui/app.slint:2806 ui/app.slint:2993 ui/app.slint:3049 ui/app.slint:3121
+#: ui/app.slint:3255 ui/app.slint:3353 ui/app.slint:3405 ui/app.slint:4563
 msgid "Cancel"
 msgstr "취소"
 
-#: ui/app.slint:2880
+#: ui/app.slint:2818
+msgid "Appearance"
+msgstr "모양"
+
+#: ui/app.slint:2821
+msgid "Colours, light or dark mode, text size and animations follow your desktop's settings."
+msgstr "색상, 밝거나 어두운 모드, 글자 크기 및 애니메이션은 데스크톱 설정을 따릅니다."
+
+#: ui/app.slint:2826 ui/app.slint:2831
+msgid "Glass effect"
+msgstr "유리 효과"
+
+#: ui/app.slint:2832
+msgid "Automatic"
+msgstr "자동"
+
+#: ui/app.slint:2832
+msgid "On"
+msgstr "켜기"
+
+#: ui/app.slint:2832
+msgid "Off"
+msgstr "끄기"
+
+#: ui/app.slint:2852
+msgid "About"
+msgstr "정보"
+
+#: ui/app.slint:2855
+msgid "DriveDeck for OneDrive "
+msgstr "OneDrive용 DriveDeck "
+
+#: ui/app.slint:2859
+msgid "The easiest, most complete way to use OneDrive on Linux."
+msgstr "Linux에서 OneDrive를 가장 쉽고 완전하게 사용할 수 있는 방법입니다."
+
+#: ui/app.slint:2870
+msgid "Choose the client…"
+msgstr "클라이언트 선택…"
+
+#: ui/app.slint:2877
+msgid "Find it automatically"
+msgstr "자동으로 찾기"
+
+#: ui/app.slint:2885
+msgid "For a client this app didn't find by itself, for example one installed with Homebrew. Sync services this app set up are switched to the one you choose; the client's own settings aren't changed."
+msgstr "이 앱이 스스로 찾지 못한 클라이언트(예: Homebrew로 설치한 클라이언트)를 지정합니다. 이 앱이 설정한 동기화 서비스는 선택한 클라이언트를 사용하도록 바뀌며, 클라이언트 자체 설정은 변경되지 않습니다."
+
+#: ui/app.slint:2891
+msgid "Free software under the GNU GPL v3. Syncing is done by the OneDrive Client for Linux by abraunegg (GPL v3). Not made by or affiliated with Microsoft. OneDrive is a trademark of Microsoft."
+msgstr "GNU GPL v3에 따른 자유 소프트웨어입니다. 동기화는 abraunegg의 OneDrive Client for Linux(GPL v3)가 수행합니다. Microsoft에서 제작하거나 Microsoft와 제휴하지 않았습니다. OneDrive는 Microsoft의 상표입니다."
+
+#: ui/app.slint:2897
+msgid "Project page"
+msgstr "프로젝트 페이지"
+
+#: ui/app.slint:2903
+msgid "Sync engine (abraunegg/onedrive)"
+msgstr "동기화 엔진(abraunegg/onedrive)"
+
+#: ui/app.slint:2916 ui/app.slint:3082 ui/app.slint:3128
+msgid "Uninstall"
+msgstr "제거"
+
+#: ui/app.slint:2919
+msgid "Remove this app, and choose whether to keep your OneDrive setup for the command-line client or remove that too. Your synced files always stay on this computer."
+msgstr "이 앱을 제거하고 명령줄 클라이언트용 OneDrive 설정을 유지할지 함께 제거할지 선택합니다. 동기화된 파일은 항상 이 컴퓨터에 남습니다."
+
+#: ui/app.slint:2924
+msgid "Uninstall…"
+msgstr "제거…"
+
+#: ui/app.slint:2955
+msgid "Sign in to Microsoft"
+msgstr "Microsoft에 로그인"
+
+#: ui/app.slint:2963
+msgid "Address from the blank sign-in page"
+msgstr "로그인 후 빈 페이지의 주소"
+
+#: ui/app.slint:2974
+msgid "Copy link"
+msgstr "링크 복사"
+
+#: ui/app.slint:2980
+msgid "Open sign-in page again"
+msgstr "로그인 페이지 다시 열기"
+
+#: ui/app.slint:2986
+msgid "Finish sign-in"
+msgstr "로그인 완료"
+
+#: ui/app.slint:2993 ui/app.slint:3146 ui/app.slint:3312 ui/app.slint:4528
+msgid "Close"
+msgstr "닫기"
+
+#: ui/app.slint:3055
 msgid "Apply"
 msgstr "적용"
 
-#: ui/app.slint:2913
-msgid ""
-"What should happen to your OneDrive setup (sign-ins, chosen folders and "
-"options)? Your synced files stay on this computer either way."
+#: ui/app.slint:3088
+msgid "What should happen to your OneDrive setup (sign-ins, chosen folders and options)? Your synced files stay on this computer either way."
 msgstr "OneDrive 설정(로그인, 선택한 폴더 및 옵션)을 어떻게 하시겠습니까? 어떤 경우에도 동기화된 파일은 이 컴퓨터에 남습니다."
 
-#: ui/app.slint:2917
+#: ui/app.slint:3092
 msgid "Keep my OneDrive setup"
 msgstr "OneDrive 설정 유지"
 
-#: ui/app.slint:2918
-msgid ""
-"Only this app is removed. Your accounts keep syncing in the background with "
-"the OneDrive Client for Linux, which you can keep using from the command "
-"line."
+#: ui/app.slint:3093
+msgid "Only this app is removed. Your accounts keep syncing in the background with the OneDrive Client for Linux, which you can keep using from the command line."
 msgstr "이 앱만 제거됩니다. 계정은 OneDrive Client for Linux를 통해 백그라운드에서 계속 동기화되며, 명령줄에서 계속 사용할 수 있습니다."
 
-#: ui/app.slint:2926
+#: ui/app.slint:3101
 msgid "Remove everything"
 msgstr "모두 제거"
 
-#: ui/app.slint:2927
-msgid ""
-"Also stop all background syncing, sign out, and delete every OneDrive sync "
-"configuration on this computer, including ones made with the command-line "
-"client."
+#: ui/app.slint:3102
+msgid "Also stop all background syncing, sign out, and delete every OneDrive sync configuration on this computer, including ones made with the command-line client."
 msgstr "모든 백그라운드 동기화도 중지하고 로그아웃한 다음, 명령줄 클라이언트로 만든 설정을 포함해 이 컴퓨터의 모든 OneDrive 동기화 구성을 삭제합니다."
 
-#: ui/app.slint:2998
+#: ui/app.slint:3173
 msgid "Move your OneDrive folder"
 msgstr "OneDrive 폴더 이동"
 
-#: ui/app.slint:3002
+#: ui/app.slint:3177
 msgid "This moves the folder that holds this account's files, now "
 msgstr "이 계정의 파일이 들어 있는 현재 폴더 "
 
-#: ui/app.slint:3002
-msgid ""
-", to a new place — for example another hard drive with more space. Your "
-"files stay in OneDrive the whole time, and nothing is downloaded again."
+#: ui/app.slint:3177
+msgid ", to a new place — for example another hard drive with more space. Your files stay in OneDrive the whole time, and nothing is downloaded again."
 msgstr "을(를) 새 위치로 이동합니다. 예를 들어 공간이 더 많은 다른 하드 드라이브를 선택할 수 있습니다. 파일은 계속 OneDrive에 있으며 다시 다운로드되지 않습니다."
 
-#: ui/app.slint:3006
+#: ui/app.slint:3181
 msgid "What happens after you choose the new place:"
 msgstr "새 위치를 선택한 후 진행되는 작업:"
 
-#: ui/app.slint:3011
+#: ui/app.slint:3186
 msgid ""
 "1. Syncing for this account pauses.\n"
-"2. The files go to the new place. On the same drive they're simply moved, "
-"which is instant. To another drive they're copied, which can take a while "
-"for a big folder.\n"
-"3. A check runs to confirm everything matches online (a dry run, nothing "
-"changes). Press Apply and syncing carries on from the new place."
-msgstr "1. 이 계정의 동기화가 일시 중지됩니다.\n2. 파일이 새 위치로 이동합니다. 같은 드라이브에서는 즉시 이동되고, 다른 드라이브에서는 복사되므로 큰 폴더의 경우 시간이 걸릴 수 있습니다.\n3. 온라인 항목과 모두 일치하는지 확인하는 시험 실행이 수행되며 아무것도 변경되지 않습니다. 적용을 누르면 새 위치에서 동기화가 계속됩니다."
+"2. The files go to the new place. On the same drive they're simply moved, which is instant. To another drive they're copied, which can take a while for a big folder.\n"
+"3. A check runs to confirm everything matches online (a dry run, nothing changes). Press Apply and syncing carries on from the new place."
+msgstr ""
+"1. 이 계정의 동기화가 일시 중지됩니다.\n"
+"2. 파일이 새 위치로 이동합니다. 같은 드라이브에서는 즉시 이동되고, 다른 드라이브에서는 복사되므로 큰 폴더의 경우 시간이 걸릴 수 있습니다.\n"
+"3. 온라인 항목과 모두 일치하는지 확인하는 시험 실행이 수행되며 아무것도 변경되지 않습니다. 적용을 누르면 새 위치에서 동기화가 계속됩니다."
 
-#: ui/app.slint:3015
-msgid ""
-"Moving to another drive leaves your old folder exactly as it was: nothing is "
-"ever deleted for you, so no files can be lost if the copy goes wrong. Once "
-"you've checked your files are in the new place, delete the old folder "
-"yourself to free up the space. Until then, it isn't synced any more and "
-"changes made in it won't reach OneDrive."
+#: ui/app.slint:3190
+msgid "Moving to another drive leaves your old folder exactly as it was: nothing is ever deleted for you, so no files can be lost if the copy goes wrong. Once you've checked your files are in the new place, delete the old folder yourself to free up the space. Until then, it isn't synced any more and changes made in it won't reach OneDrive."
 msgstr "다른 드라이브로 이동해도 이전 폴더는 그대로 유지됩니다. 어떤 파일도 자동으로 삭제되지 않으므로 복사에 문제가 생겨도 파일을 잃지 않습니다. 새 위치에 파일이 있는지 확인한 후 이전 폴더를 직접 삭제해 공간을 확보하세요. 그때까지 이전 폴더는 더 이상 동기화되지 않으며 변경 사항도 OneDrive에 반영되지 않습니다."
 
-#: ui/app.slint:3020
-msgid ""
-"Pick an empty folder to use it as the new OneDrive folder. Pick a folder "
-"that already has things in it (like the top of a drive) and a folder named "
-"like the current one is made inside it. Make sure the new drive has enough "
-"free space and is always connected (mounted automatically)."
+#: ui/app.slint:3195
+msgid "Pick an empty folder to use it as the new OneDrive folder. Pick a folder that already has things in it (like the top of a drive) and a folder named like the current one is made inside it. Make sure the new drive has enough free space and is always connected (mounted automatically)."
 msgstr "비어 있는 폴더를 새 OneDrive 폴더로 선택하세요. 드라이브 루트처럼 이미 항목이 있는 폴더를 선택하면 그 안에 현재 폴더와 같은 이름의 폴더가 만들어집니다. 새 드라이브에 충분한 공간이 있고 항상 연결되어 있는지(자동으로 마운트되는지) 확인하세요."
 
-#: ui/app.slint:3032
+#: ui/app.slint:3207
 msgid "Choose new location…"
 msgstr "새 위치 선택…"
 
-#: ui/app.slint:3114
+#: ui/app.slint:3289
 msgid "All settings in use"
 msgstr "사용 중인 모든 설정"
 
-#: ui/app.slint:3118
-msgid ""
-"What the sync engine reads from this account's config file, including the "
-"defaults for anything not set."
+#: ui/app.slint:3293
+msgid "What the sync engine reads from this account's config file, including the defaults for anything not set."
 msgstr "설정되지 않은 항목의 기본값을 포함해 동기화 엔진이 이 계정의 구성 파일에서 읽는 내용입니다."
 
-#: ui/app.slint:3163
+#: ui/app.slint:3338
 msgid "Remove account"
 msgstr "계정 제거"
 
-#: ui/app.slint:3171
+#: ui/app.slint:3346
 msgid "Also sign out and delete this account's sync settings"
 msgstr "로그아웃하고 이 계정의 동기화 설정도 삭제"
 
-#: ui/app.slint:3184
+#: ui/app.slint:3359
 msgid "Remove"
 msgstr "제거"
 
-#: ui/app.slint:3221
+#: ui/app.slint:3396
 msgid "I'll install it myself"
 msgstr "직접 설치하겠습니다"
 
-#: ui/app.slint:3262
+#: ui/app.slint:3437
 msgid "Skip developer folders"
 msgstr "개발자 폴더 건너뛰기"
 
-#: ui/app.slint:3266
+#: ui/app.slint:3441
 msgid ".git"
 msgstr ".git"
 
-#: ui/app.slint:3270
+#: ui/app.slint:3445
 msgid "node_modules"
 msgstr "node_modules"
 
-#: ui/app.slint:3274
+#: ui/app.slint:3449
 msgid "target"
 msgstr "target"
 
-#: ui/app.slint:3278
+#: ui/app.slint:3453
 msgid "__pycache__"
 msgstr "__pycache__"
 
-#: ui/app.slint:3282
+#: ui/app.slint:3457
 msgid ".venv"
 msgstr ".venv"
 
-#: ui/app.slint:3286
+#: ui/app.slint:3461
 msgid "venv"
 msgstr "venv"
 
-#: ui/app.slint:3290
+#: ui/app.slint:3465
 msgid ".gradle"
 msgstr ".gradle"
 
-#: ui/app.slint:3294
+#: ui/app.slint:3469
 msgid ".idea"
 msgstr ".idea"
 
-#: ui/app.slint:3298
+#: ui/app.slint:3473
 msgid ".cache"
 msgstr ".cache"
 
-#: ui/app.slint:3302
+#: ui/app.slint:3477
 msgid "build"
 msgstr "build"
 
-#: ui/app.slint:3306
+#: ui/app.slint:3481
 msgid "dist"
 msgstr "dist"
 
-#: ui/app.slint:3310
-msgid ""
-"build and dist are common folder names too, so select them only if you mean "
-"to skip them."
+#: ui/app.slint:3485
+msgid "build and dist are common folder names too, so select them only if you mean to skip them."
 msgstr "build와 dist는 흔한 폴더 이름이기도 하므로 실제로 건너뛰려는 경우에만 선택하세요."
 
-#: ui/app.slint:3322
+#: ui/app.slint:3497
 msgid "Add"
 msgstr "추가"
 
-#: ui/app.slint:3559
+#: ui/app.slint:3734
 msgid "Show "
 msgstr "표시 "
 
-#: ui/app.slint:3559
+#: ui/app.slint:3734
 msgid " in its folder"
 msgstr " 폴더에서"
 
-#: ui/app.slint:3703
+#: ui/app.slint:3878
 msgid "Pause syncing"
 msgstr "동기화 일시 중지"
 
-#: ui/app.slint:3711
+#: ui/app.slint:3886
 msgid "Settings and accounts"
 msgstr "설정 및 계정"
 
-#: ui/app.slint:3727
+#: ui/app.slint:3902
 msgid " of this app is out."
 msgstr " 버전이 출시되었습니다."
 
-#: ui/app.slint:3812
+#: ui/app.slint:3987
 msgid "Not synced ("
 msgstr "동기화되지 않음("
 
-#: ui/app.slint:3830
+#: ui/app.slint:4005
 msgid "Syncing now"
 msgstr "지금 동기화"
 
-#: ui/app.slint:3830
+#: ui/app.slint:4005
 msgid "Syncing now ("
 msgstr "지금 동기화("
 
-#: ui/app.slint:3835
+#: ui/app.slint:4010
 msgid "No large files are transferring right now."
 msgstr "현재 전송 중인 대용량 파일이 없습니다."
 
-#: ui/app.slint:3849
+#: ui/app.slint:4024
 msgid "Recent files"
 msgstr "최근 파일"
 
-#: ui/app.slint:3854
+#: ui/app.slint:4029
 msgid "Show recent files for account"
 msgstr "계정의 최근 파일 표시"
 
-#: ui/app.slint:3866
+#: ui/app.slint:4041
 msgid "Nothing has synced recently."
 msgstr "최근에 동기화된 항목이 없습니다."
 
-#: ui/app.slint:3880
+#: ui/app.slint:4055
 msgid "Open folder"
 msgstr "폴더 열기"
 
-#: ui/app.slint:3894
+#: ui/app.slint:4069
 msgid "View online"
 msgstr "온라인에서 보기"
 
-#: ui/app.slint:3911
+#: ui/app.slint:4086
 msgid "Pause for 1 hour"
 msgstr "1시간 동안 일시 중지"
 
-#: ui/app.slint:3917
+#: ui/app.slint:4092
 msgid "Pause for 4 hours"
 msgstr "4시간 동안 일시 중지"
 
-#: ui/app.slint:3923
+#: ui/app.slint:4098
 msgid "Pause until tomorrow morning"
 msgstr "내일 아침까지 일시 중지"
 
-#: ui/app.slint:3930
+#: ui/app.slint:4105
 msgid "Resume syncing"
 msgstr "동기화 다시 시작"
 
-#: ui/app.slint:4019
+#: ui/app.slint:4194
 msgid "Version history — "
 msgstr "버전 기록 — "
 
-#: ui/app.slint:4019
+#: ui/app.slint:4194
 msgid "Who has access — "
 msgstr "액세스 권한이 있는 사용자 — "
 
-#: ui/app.slint:4019
+#: ui/app.slint:4194
 msgid "Share — "
 msgstr "공유 — "
 
-#: ui/app.slint:4079
+#: ui/app.slint:4254
 msgid "Version history"
 msgstr "버전 기록"
 
-#: ui/app.slint:4079
+#: ui/app.slint:4254
 msgid "Who has access"
 msgstr "액세스 권한이 있는 사용자"
 
-#: ui/app.slint:4079
+#: ui/app.slint:4254
 msgid "Share with people"
 msgstr "사용자와 공유"
 
-#: ui/app.slint:4105
+#: ui/app.slint:4280
 msgid "Getting the saved versions…"
 msgstr "저장된 버전 가져오는 중…"
 
-#: ui/app.slint:4154
+#: ui/app.slint:4329
 msgid "Current"
 msgstr "현재"
 
-#: ui/app.slint:4178 ui/app.slint:4382
+#: ui/app.slint:4353 ui/app.slint:4569
 msgid "Restore"
 msgstr "복원"
 
-#: ui/app.slint:4192
-msgid ""
-"\"Open\" saves a copy of that version and opens it, without changing "
-"anything. \"Restore\" makes it the current version everywhere; the version "
-"it replaces is kept here too, so nothing is lost."
+#: ui/app.slint:4367
+msgid "\"Open\" saves a copy of that version and opens it, without changing anything. \"Restore\" makes it the current version everywhere; the version it replaces is kept here too, so nothing is lost."
 msgstr "“열기”는 해당 버전의 복사본을 저장하고 열며 아무것도 변경하지 않습니다. “복원”은 모든 위치에서 현재 버전으로 설정합니다. 대체된 버전도 이곳에 보관되므로 손실되지 않습니다."
 
-#: ui/app.slint:4201
+#: ui/app.slint:4376
 msgid "Invite people by email"
 msgstr "이메일로 사용자 초대"
 
-#: ui/app.slint:4205
+#: ui/app.slint:4380
 msgid "Email addresses to invite"
 msgstr "초대할 이메일 주소"
 
-#: ui/app.slint:4207
+#: ui/app.slint:4382
 msgid "name@example.com, another@example.com"
 msgstr "name@example.com, another@example.com"
 
-#: ui/app.slint:4212
-msgid ""
-"Separate addresses with commas. Each person gets an email and signs in to "
-"open it. People outside your organization can only be added if your IT team "
-"allows it."
+#: ui/app.slint:4387
+msgid "Separate addresses with commas. Each person gets an email and signs in to open it. People outside your organization can only be added if your IT team allows it."
 msgstr "주소를 쉼표로 구분하세요. 각 사용자에게 이메일이 전송되며, 로그인해야 열 수 있습니다. 조직 외부 사용자는 IT 부서에서 허용한 경우에만 추가할 수 있습니다."
 
-#: ui/app.slint:4212
-msgid ""
-"Separate addresses with commas. Each person gets an email and signs in with "
-"a Microsoft account to open it."
+#: ui/app.slint:4387
+msgid "Separate addresses with commas. Each person gets an email and signs in with a Microsoft account to open it."
 msgstr "주소를 쉼표로 구분하세요. 각 사용자에게 이메일이 전송되며, Microsoft 계정으로 로그인해야 열 수 있습니다."
 
-#: ui/app.slint:4220 ui/app.slint:4230
+#: ui/app.slint:4395 ui/app.slint:4405
 msgid "Can edit"
 msgstr "편집 가능"
 
-#: ui/app.slint:4224
+#: ui/app.slint:4399
 msgid "They can change it (and add or delete files in a folder)."
 msgstr "내용을 변경할 수 있습니다(폴더에서는 파일 추가 및 삭제도 가능)."
 
-#: ui/app.slint:4224
+#: ui/app.slint:4399
 msgid "They can view and download it, but not change it."
 msgstr "보기 및 다운로드는 가능하지만 변경할 수는 없습니다."
 
-#: ui/app.slint:4234
+#: ui/app.slint:4409
 msgid "Message (optional)"
 msgstr "메시지(선택 사항)"
 
-#: ui/app.slint:4238
+#: ui/app.slint:4413
 msgid "Invitation message"
 msgstr "초대 메시지"
 
-#: ui/app.slint:4287
+#: ui/app.slint:4434
+msgid "It isn't shared: only you can open it."
+msgstr "공유되지 않았습니다. 본인만 열 수 있습니다."
+
+#: ui/app.slint:4474
 msgid "Keep"
 msgstr "유지"
 
-#: ui/app.slint:4293
+#: ui/app.slint:4480
 msgid "Stop it"
 msgstr "중지"
 
-#: ui/app.slint:4293
+#: ui/app.slint:4480
 msgid "Stop sharing"
 msgstr "공유 중지"
 
-#: ui/app.slint:4296
+#: ui/app.slint:4483
 msgid "Stop sharing with "
 msgstr "다음 사용자와의 공유 중지: "
 
-#: ui/app.slint:4314
-msgid ""
-"Stopping a link makes it stop working for everyone who has it. Stopping a "
-"person's access takes the file away from their \"Shared\" list. Access that "
-"comes from a folder above can only be changed on that folder."
+#: ui/app.slint:4501
+msgid "Stopping a link makes it stop working for everyone who has it. Stopping a person's access takes the file away from their \"Shared\" list. Access that comes from a folder above can only be changed on that folder."
 msgstr "링크를 중지하면 링크를 가진 모든 사용자가 더 이상 사용할 수 없습니다. 사용자 액세스를 중지하면 해당 사용자의 “공유됨” 목록에서 파일이 사라집니다. 상위 폴더에서 상속된 액세스는 해당 폴더에서만 변경할 수 있습니다."
 
-#: ui/app.slint:4333
+#: ui/app.slint:4520
 msgid "Send invitation"
 msgstr "초대 보내기"
 
-#: ui/app.slint:4365
+#: ui/app.slint:4552
 msgid "Restore this version?"
 msgstr "이 버전을 복원하시겠습니까?"
 
-#: ui/app.slint:4369
+#: ui/app.slint:4556
 msgid "The version from "
 msgstr "버전 날짜: "
 
-#: ui/app.slint:4369
-msgid ""
-" becomes the current one, online and on this computer. The current version "
-"is kept in the history, so you can switch back."
+#: ui/app.slint:4556
+msgid " becomes the current one, online and on this computer. The current version is kept in the history, so you can switch back."
 msgstr "이 온라인 및 이 컴퓨터의 현재 버전이 됩니다. 현재 버전은 기록에 보관되므로 다시 전환할 수 있습니다."
 
 msgid "needs a full path, starting with / or ~/"
@@ -1449,8 +1418,7 @@ msgstr "{}의 마운트된 드라이브를 확인할 수 없습니다: {}"
 msgid "Couldn't check whether the drive for {} is mounted."
 msgstr "{}의 드라이브가 마운트되었는지 확인할 수 없습니다."
 
-msgid ""
-"The drive for {} isn't mounted. Connect it before backing up this folder."
+msgid "The drive for {} isn't mounted. Connect it before backing up this folder."
 msgstr "{}의 드라이브가 마운트되지 않았습니다. 이 폴더를 백업하기 전에 연결하세요."
 
 msgid "Couldn't check the sync-folder rules in {}: {}"
@@ -1462,14 +1430,10 @@ msgstr "알 수 없는 폴더입니다."
 msgid "This computer doesn't have a {} folder set up."
 msgstr "이 컴퓨터에는 {} 폴더가 설정되어 있지 않습니다."
 
-msgid ""
-"The OneDrive folder {} isn't available. Connect its drive and try again."
+msgid "The OneDrive folder {} isn't available. Connect its drive and try again."
 msgstr "OneDrive 폴더 {}를 사용할 수 없습니다. 해당 드라이브를 연결하고 다시 시도하세요."
 
-msgid ""
-"Your {} folder is set to {}, which holds everything in your home folder, so "
-"it can't be backed up. Point {} at its own folder in your desktop's settings "
-"first."
+msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "{} 폴더가 홈 폴더의 모든 항목을 포함하는 {}로 설정되어 있어 백업할 수 없습니다. 먼저 데스크톱 설정에서 {}를 전용 폴더로 지정하세요."
 
 msgid "Your {} folder can't be backed up: {}"
@@ -1487,19 +1451,13 @@ msgstr "{}은(는) 폴더가 아닙니다."
 msgid "Your {} folder overlaps the OneDrive folder for account \"{}\" ({})."
 msgstr "{} 폴더가 계정 “{}”의 OneDrive 폴더({})와 겹칩니다."
 
-msgid ""
-"This account only downloads, so nothing here would be backed up. Change its "
-"direction under Options first."
+msgid "This account only downloads, so nothing here would be backed up. Change its direction under Options first."
 msgstr "이 계정은 다운로드만 하므로 이곳의 항목은 백업되지 않습니다. 먼저 옵션에서 방향을 변경하세요."
 
-msgid ""
-"This account only syncs the folders you chose, and \"{}\" isn't one of them. "
-"Add it under Folders first (you can create it online)."
+msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
 msgstr "이 계정은 선택한 폴더만 동기화하며 “{}”은(는) 선택되지 않았습니다. 먼저 폴더 탭에서 추가하세요(온라인에서 만들 수도 있습니다)."
 
-msgid ""
-"There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or "
-"rename it before backing up this folder."
+msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "OneDrive 폴더에 “{}”이라는 심볼릭 링크가 있습니다. 이 폴더를 백업하기 전에 링크를 해결하거나 이름을 변경하세요."
 
 msgid "There's a file called \"{}\" in your OneDrive folder. Rename it first."
@@ -1535,34 +1493,25 @@ msgstr "완료된 복사본을 게시할 수 없습니다: {}"
 msgid "Couldn't find an unused destination for {} after 10,000 attempts."
 msgstr "10,000번 시도했지만 {}에 사용할 수 있는 대상을 찾지 못했습니다."
 
-msgid ""
-"Couldn't protect this account from another operation, so the folder wasn't "
-"backed up: {}"
+msgid "Couldn't protect this account from another operation, so the folder wasn't backed up: {}"
 msgstr "다른 작업으로부터 이 계정을 보호할 수 없어 폴더를 백업하지 않았습니다: {}"
 
-msgid ""
-"A one-time sync is running. Wait for it to finish before backing up this "
-"folder."
+msgid "A one-time sync is running. Wait for it to finish before backing up this folder."
 msgstr "일회성 동기화가 실행 중입니다. 이 폴더를 백업하기 전에 완료될 때까지 기다리세요."
 
 msgid "Couldn't stop the sync engine, so the folder wasn't changed: {}"
 msgstr "동기화 엔진을 중지할 수 없어 폴더를 변경하지 않았습니다: {}"
 
-msgid ""
-"The folder backup finished, but the sync engine couldn't be restarted: {}"
+msgid "The folder backup finished, but the sync engine couldn't be restarted: {}"
 msgstr "폴더 백업이 완료되었지만 동기화 엔진을 다시 시작할 수 없습니다: {}"
 
 msgid "{}; the sync engine couldn't be restarted: {}"
 msgstr "{}; 동기화 엔진을 다시 시작할 수 없습니다: {}"
 
-msgid ""
-"The source folder changed after the backup was reviewed. Review it again "
-"before continuing."
+msgid "The source folder changed after the backup was reviewed. Review it again before continuing."
 msgstr "백업을 검토한 뒤 원본 폴더가 변경되었습니다. 계속하기 전에 다시 검토하세요."
 
-msgid ""
-"The OneDrive folder or its mounted drive changed after the backup was "
-"reviewed. Connect the right drive and review again."
+msgid "The OneDrive folder or its mounted drive changed after the backup was reviewed. Connect the right drive and review again."
 msgstr "백업을 검토한 뒤 OneDrive 폴더 또는 마운트된 드라이브가 변경되었습니다. 올바른 드라이브를 연결하고 다시 검토하세요."
 
 msgid "The source folder has no usable name."
@@ -1571,36 +1520,25 @@ msgstr "원본 폴더에 사용할 수 있는 이름이 없습니다."
 msgid "The backup paths changed or overlap. Review the folder backup again."
 msgstr "백업 경로가 변경되었거나 서로 겹칩니다. 폴더 백업을 다시 검토하세요."
 
-msgid ""
-"The OneDrive destination became a symbolic link after review. Resolve it and "
-"review the backup again."
+msgid "The OneDrive destination became a symbolic link after review. Resolve it and review the backup again."
 msgstr "검토 후 OneDrive 대상이 심볼릭 링크로 바뀌었습니다. 링크를 해결하고 백업을 다시 검토하세요."
 
-msgid ""
-"The OneDrive destination became a file after review. Review the backup again."
+msgid "The OneDrive destination became a file after review. Review the backup again."
 msgstr "검토 후 OneDrive 대상이 파일로 바뀌었습니다. 백업을 다시 검토하세요."
 
-msgid ""
-"The destination filesystem changed after the backup was reviewed. Review the "
-"backup again."
+msgid "The destination filesystem changed after the backup was reviewed. Review the backup again."
 msgstr "백업을 검토한 뒤 대상 파일 시스템이 변경되었습니다. 백업을 다시 검토하세요."
 
 msgid "Couldn't create {}: {}"
 msgstr "{}을(를) 만들 수 없습니다: {}"
 
-msgid ""
-"The destination filesystem changed while preparing the backup. No files were "
-"moved."
+msgid "The destination filesystem changed while preparing the backup. No files were moved."
 msgstr "백업을 준비하는 동안 대상 파일 시스템이 변경되었습니다. 파일은 이동하지 않았습니다."
 
-msgid ""
-"Stopped at \"{}\": {}. Everything moved so far is in {}; the rest is still "
-"in {}."
+msgid "Stopped at \"{}\": {}. Everything moved so far is in {}; the rest is still in {}."
 msgstr "“{}”에서 중지됨: {}. 지금까지 이동한 항목은 {}에 있고 나머지는 여전히 {}에 있습니다."
 
-msgid ""
-"Stopped at \"{}\": {}. Your {} folder is still in {}; completed copies are "
-"in {}."
+msgid "Stopped at \"{}\": {}. Your {} folder is still in {}; completed copies are in {}."
 msgstr "“{}”에서 중지됨: {}. {} 폴더는 여전히 {}에 있고 완료된 복사본은 {}에 있습니다."
 
 msgid "Everything was moved, but {} couldn't be replaced: {}"
@@ -1621,48 +1559,43 @@ msgstr "해당 폴더는 백업되고 있지 않습니다."
 msgid "Couldn't inspect the link: {}"
 msgstr "링크를 확인할 수 없습니다: {}"
 
-msgid ""
-"{} now points somewhere unexpected, so the backup record was kept. Resolve "
-"the link before stopping the backup."
+msgid "{} now points somewhere unexpected, so the backup record was kept. Resolve the link before stopping the backup."
 msgstr "{}이(가) 예상하지 못한 위치를 가리키므로 백업 기록을 유지했습니다. 백업을 중지하기 전에 링크를 해결하세요."
 
 msgid "Couldn't remove the link: {}"
 msgstr "링크를 제거할 수 없습니다: {}"
 
-msgid ""
-"This installs the OneDrive client from your system's own software "
-"collection, the same place your other programs come from. Your normal "
-"software updates keep it up to date."
+msgid "This installs the OneDrive client from your system's own software collection, the same place your other programs come from. Your normal software updates keep it up to date."
 msgstr "시스템의 다른 프로그램과 같은 소프트웨어 저장소에서 OneDrive 클라이언트를 설치합니다. 일반 소프트웨어 업데이트를 통해 최신 상태로 유지됩니다."
 
 msgid ""
-"{} comes with an old version of the OneDrive client that its author no "
-"longer supports. So this does two things:\n"
+"{} comes with an old version of the OneDrive client that its author no longer supports. So this does two things:\n"
 "\n"
-"• Adds the place the client's author recommends getting it from to your "
-"computer's list of software sources. It's like adding a trusted app store.\n"
+"• Adds the place the client's author recommends getting it from to your computer's list of software sources. It's like adding a trusted app store.\n"
 "• Installs the current version of the client from there.\n"
 "\n"
-"After that, your normal software updates keep it up to date, like any other "
-"program."
-msgstr "{}에는 제작자가 더 이상 지원하지 않는 오래된 OneDrive 클라이언트가 포함되어 있습니다. 따라서 다음 두 가지 작업을 수행합니다:\n\n• 클라이언트 제작자가 권장하는 위치를 컴퓨터의 소프트웨어 저장소 목록에 추가합니다. 신뢰할 수 있는 앱 스토어를 추가하는 것과 같습니다.\n• 해당 저장소에서 최신 클라이언트를 설치합니다.\n\n이후에는 다른 프로그램과 마찬가지로 일반 소프트웨어 업데이트를 통해 최신 상태로 유지됩니다."
+"After that, your normal software updates keep it up to date, like any other program."
+msgstr ""
+"{}에는 제작자가 더 이상 지원하지 않는 오래된 OneDrive 클라이언트가 포함되어 있습니다. 따라서 다음 두 가지 작업을 수행합니다:\n"
+"\n"
+"• 클라이언트 제작자가 권장하는 위치를 컴퓨터의 소프트웨어 저장소 목록에 추가합니다. 신뢰할 수 있는 앱 스토어를 추가하는 것과 같습니다.\n"
+"• 해당 저장소에서 최신 클라이언트를 설치합니다.\n"
+"\n"
+"이후에는 다른 프로그램과 마찬가지로 일반 소프트웨어 업데이트를 통해 최신 상태로 유지됩니다."
 
 msgid ""
-"Arch doesn't include the OneDrive client, but the AUR does. The AUR is a "
-"collection of install recipes shared by Arch users. This downloads the "
-"client's recipe, builds the program on your computer and installs it. Any "
-"tools needed to build it are installed first. It takes a few minutes.\n"
+"Arch doesn't include the OneDrive client, but the AUR does. The AUR is a collection of install recipes shared by Arch users. This downloads the client's recipe, builds the program on your computer and installs it. Any tools needed to build it are installed first. It takes a few minutes.\n"
 "\n"
-"Your normal software updates don't cover the AUR, so this app checks for new "
-"versions of the client and offers to update it for you."
-msgstr "Arch에는 OneDrive 클라이언트가 포함되어 있지 않지만 AUR에서 받을 수 있습니다. AUR은 Arch 사용자가 공유하는 설치 레시피 모음입니다. 앱이 클라이언트 레시피를 다운로드하고 컴퓨터에서 프로그램을 빌드한 다음 설치합니다. 먼저 빌드에 필요한 도구를 설치하며 몇 분 정도 걸립니다.\n\n일반 소프트웨어 업데이트는 AUR을 포함하지 않으므로 이 앱이 클라이언트의 새 버전을 확인하고 업데이트를 제공합니다."
+"Your normal software updates don't cover the AUR, so this app checks for new versions of the client and offers to update it for you."
+msgstr ""
+"Arch에는 OneDrive 클라이언트가 포함되어 있지 않지만 AUR에서 받을 수 있습니다. AUR은 Arch 사용자가 공유하는 설치 레시피 모음입니다. 앱이 클라이언트 레시피를 다운로드하고 컴퓨터에서 프로그램을 빌드한 다음 설치합니다. 먼저 빌드에 필요한 도구를 설치하며 몇 분 정도 걸립니다.\n"
+"\n"
+"일반 소프트웨어 업데이트는 AUR을 포함하지 않으므로 이 앱이 클라이언트의 새 버전을 확인하고 업데이트를 제공합니다."
 
 msgid "to install the OneDrive client (plus a few small parts it needs)"
 msgstr "OneDrive 클라이언트와 필요한 몇 가지 구성 요소를 설치합니다"
 
-msgid ""
-"to add that software source and install the OneDrive client (plus a few "
-"small parts it needs)"
+msgid "to add that software source and install the OneDrive client (plus a few small parts it needs)"
 msgstr "해당 소프트웨어 저장소를 추가하고 OneDrive 클라이언트 및 필요한 구성 요소를 설치합니다"
 
 msgid "to install the build tools and the OneDrive client"
@@ -1671,42 +1604,31 @@ msgstr "빌드 도구와 OneDrive 클라이언트를 설치합니다"
 msgid ""
 "{}\n"
 "\n"
-"Why your password? Installing software changes the whole computer, not just "
-"your account, so your computer checks that it's really you. You type it into "
-"your computer's own password window, not into this app. Your computer checks "
-"it once and then forgets it: it isn't saved, and this app never sees it or "
-"sends it anywhere. It's only used {}. Nothing else is changed."
-msgstr "{}\n\n암호가 필요한 이유는 무엇인가요? 소프트웨어 설치는 계정뿐 아니라 컴퓨터 전체를 변경하므로 컴퓨터가 본인인지 확인합니다. 이 앱이 아니라 컴퓨터의 암호 창에 입력하세요. 컴퓨터가 한 번 확인한 뒤 암호를 잊으며 저장하지 않습니다. 이 앱은 암호를 보거나 어디에도 전송하지 않습니다. 암호는 {}에만 사용됩니다. 다른 항목은 변경되지 않습니다."
+"Why your password? Installing software changes the whole computer, not just your account, so your computer checks that it's really you. You type it into your computer's own password window, not into this app. Your computer checks it once and then forgets it: it isn't saved, and this app never sees it or sends it anywhere. It's only used {}. Nothing else is changed."
+msgstr ""
+"{}\n"
+"\n"
+"암호가 필요한 이유는 무엇인가요? 소프트웨어 설치는 계정뿐 아니라 컴퓨터 전체를 변경하므로 컴퓨터가 본인인지 확인합니다. 이 앱이 아니라 컴퓨터의 암호 창에 입력하세요. 컴퓨터가 한 번 확인한 뒤 암호를 잊으며 저장하지 않습니다. 이 앱은 암호를 보거나 어디에도 전송하지 않습니다. 암호는 {}에만 사용됩니다. 다른 항목은 변경되지 않습니다."
 
 msgid "The app can install it for you."
 msgstr "앱에서 대신 설치할 수 있습니다."
 
-msgid ""
-"The copy that comes with your system is too old, so the app gets the current "
-"version for you."
+msgid "The copy that comes with your system is too old, so the app gets the current version for you."
 msgstr "시스템에 포함된 버전이 너무 오래되어 앱에서 최신 버전을 가져옵니다."
 
-msgid ""
-"On Arch it comes from the AUR (install recipes shared by Arch users). The "
-"app can build and install it for you."
+msgid "On Arch it comes from the AUR (install recipes shared by Arch users). The app can build and install it for you."
 msgstr "Arch에서는 AUR(Arch 사용자가 공유하는 설치 레시피 모음)에서 가져옵니다. 앱에서 대신 빌드하고 설치할 수 있습니다."
 
-msgid ""
-"On Fedora Silverblue, Kinoite and other image-based versions: open a "
-"terminal and run {} then restart."
+msgid "On Fedora Silverblue, Kinoite and other image-based versions: open a terminal and run {} then restart."
 msgstr "Fedora Silverblue, Kinoite 및 기타 이미지 기반 버전에서는 터미널을 열고 {}을(를) 실행한 다음 재시작하세요."
 
 msgid "Open a terminal and run {}"
 msgstr "터미널을 열고 {}을(를) 실행하세요"
 
-msgid ""
-"This version of openSUSE only has an old OneDrive client. The instructions "
-"show how to get a current one."
+msgid "This version of openSUSE only has an old OneDrive client. The instructions show how to get a current one."
 msgstr "이 버전의 openSUSE에는 오래된 OneDrive 클라이언트만 있습니다. 안내에 최신 버전을 설치하는 방법이 나와 있습니다."
 
-msgid ""
-"The app can't install it automatically on this version of your system. The "
-"instructions show how to install it yourself."
+msgid "The app can't install it automatically on this version of your system. The instructions show how to install it yourself."
 msgstr "이 시스템 버전에서는 앱이 자동으로 설치할 수 없습니다. 안내에 직접 설치하는 방법이 나와 있습니다."
 
 msgid "The instructions cover every major distribution."
@@ -1721,9 +1643,7 @@ msgstr "{}개 항목을 확인한 후 검색을 중지했습니다. 표시된 �
 msgid "{} item(s) couldn't be read, so there may be more copies than shown."
 msgstr "{}개 항목을 읽을 수 없어 표시된 것보다 복사본이 더 있을 수 있습니다."
 
-msgid ""
-"There's no Trash to move it to on this computer, so it was left as it is. "
-"Delete it yourself if you're sure."
+msgid "There's no Trash to move it to on this computer, so it was left as it is. Delete it yourself if you're sure."
 msgstr "이 컴퓨터에는 이동할 휴지통이 없어 그대로 두었습니다. 확실하다면 직접 삭제하세요."
 
 msgid "The file extension is too long to make a Keep Both copy safely."
@@ -1735,21 +1655,16 @@ msgstr "파일 이름이 너무 길어 “둘 다 보관” 복사본을 안전�
 msgid "That copy isn't there any more."
 msgstr "해당 복사본이 더 이상 없습니다."
 
-msgid ""
-"The OneDrive version changed since this list was loaded. Refresh the list "
-"and choose again."
+msgid "The OneDrive version changed since this list was loaded. Refresh the list and choose again."
 msgstr "목록을 불러온 후 OneDrive 버전이 변경되었습니다. 목록을 새로고침하고 다시 선택하세요."
 
 msgid "Couldn't replace it: {}"
 msgstr "바꿀 수 없습니다: {}"
 
-msgid ""
-"\"{}\" is now this computer's version. OneDrive's version stays in its "
-"version history."
+msgid "\"{}\" is now this computer's version. OneDrive's version stays in its version history."
 msgstr "이제 “{}”은(는) 이 컴퓨터의 버전입니다. OneDrive 버전은 버전 기록에 남아 있습니다."
 
-msgid ""
-"Kept OneDrive's version of \"{}\". This computer's copy is in the Trash."
+msgid "Kept OneDrive's version of \"{}\". This computer's copy is in the Trash."
 msgstr "“{}”의 OneDrive 버전을 유지했습니다. 이 컴퓨터의 복사본은 휴지통에 있습니다."
 
 msgid "Couldn't rename it: {}"
@@ -1761,12 +1676,28 @@ msgstr "10,000번 시도했지만 로컬 복사본에 사용할 수 있는 이�
 msgid "Kept both: this computer's version is \"{}\"."
 msgstr "두 버전 모두 유지했습니다. 이 컴퓨터 버전의 이름은 “{}”입니다."
 
+msgid "That isn't a full path to a program."
+msgstr "프로그램의 전체 경로가 아닙니다."
+
+msgid "That is a temporary copy made by the file chooser, not the program itself. Choose it again from its real folder (for Homebrew: /home/linuxbrew/.linuxbrew/bin)."
+msgstr "파일 선택기가 만든 임시 사본이며 프로그램 자체가 아닙니다. 실제 폴더에서 다시 선택하세요(Homebrew: /home/linuxbrew/.linuxbrew/bin)."
+
+msgid "{} isn't a program this computer can run."
+msgstr "{}은(는) 이 컴퓨터에서 실행할 수 있는 프로그램이 아닙니다."
+
+msgid "{} didn't answer when asked for its version, so it isn't the OneDrive client."
+msgstr "{}이(가) 버전 확인 요청에 응답하지 않았으므로 OneDrive 클라이언트가 아닙니다."
+
+msgid "{} doesn't say it is the OneDrive Client for Linux."
+msgstr "{}은(는) OneDrive Client for Linux라고 밝히지 않습니다."
+
+msgid "That is version {} of the OneDrive client; this app needs 2.5.0 or newer."
+msgstr "OneDrive 클라이언트 버전 {}입니다. 이 앱에는 2.5.0 이상이 필요합니다."
+
 msgid "{} is damaged ({}) and no copy could be kept ({}), so it isn't replaced"
 msgstr "{}이(가) 손상되었고({}) 복사본도 보관할 수 없어({}) 바꾸지 않았습니다"
 
-msgid ""
-"{} isn't plain UTF-8 text, so it wasn't changed. Edit it by hand, or save it "
-"as UTF-8 and try again."
+msgid "{} isn't plain UTF-8 text, so it wasn't changed. Edit it by hand, or save it as UTF-8 and try again."
 msgstr "{}은(는) 일반 UTF-8 텍스트가 아니므로 변경하지 않았습니다. 직접 편집하거나 UTF-8로 저장한 뒤 다시 시도하세요."
 
 msgid "the OneDrive Client for Linux isn't installed"
@@ -1790,19 +1721,13 @@ msgstr "이 계정은 이미 다른 작업에서 사용 중입니다"
 msgid "The local folder must be a full path, like /home/you/OneDrive."
 msgstr "로컬 폴더는 /home/you/OneDrive와 같은 전체 경로여야 합니다."
 
-msgid ""
-"The sync engine can't use a folder whose name contains double quotes. Pick "
-"or rename a folder without them."
+msgid "The sync engine can't use a folder whose name contains double quotes. Pick or rename a folder without them."
 msgstr "동기화 엔진은 이름에 큰따옴표가 포함된 폴더를 사용할 수 없습니다. 큰따옴표가 없는 폴더를 선택하거나 이름을 변경하세요."
 
-msgid ""
-"Couldn't safely resolve that folder path. Check its parent directories and "
-"try again."
+msgid "Couldn't safely resolve that folder path. Check its parent directories and try again."
 msgstr "폴더 경로를 안전하게 확인할 수 없습니다. 상위 디렉터리를 확인하고 다시 시도하세요."
 
-msgid ""
-"Couldn't safely resolve your home folder. Check the home-folder "
-"configuration."
+msgid "Couldn't safely resolve your home folder. Check the home-folder configuration."
 msgstr "홈 폴더 경로를 안전하게 확인할 수 없습니다. 홈 폴더 설정을 확인하세요."
 
 msgid "everything in your home folder"
@@ -1811,9 +1736,7 @@ msgstr "홈 폴더의 모든 항목"
 msgid "everything on this computer"
 msgstr "이 컴퓨터의 모든 항목"
 
-msgid ""
-"Syncing {} would upload {}. Pick or create a folder inside your home folder, "
-"like {}."
+msgid "Syncing {} would upload {}. Pick or create a folder inside your home folder, like {}."
 msgstr "{}을(를) 동기화하면 {}이(가) 업로드됩니다. {}처럼 홈 폴더 안의 폴더를 선택하거나 만드세요."
 
 msgid "Couldn't safely resolve the application settings folders."
@@ -1822,9 +1745,7 @@ msgstr "앱 설정 폴더의 경로를 안전하게 확인할 수 없습니다."
 msgid "{} holds your settings. Pick a different folder."
 msgstr "{}에 설정이 들어 있습니다. 다른 폴더를 선택하세요."
 
-msgid ""
-"{} is a system folder. Pick a folder in your home folder or on a drive of "
-"your own."
+msgid "{} is a system folder. Pick a folder in your home folder or on a drive of your own."
 msgstr "{}은(는) 시스템 폴더입니다. 홈 폴더나 개인 드라이브의 폴더를 선택하세요."
 
 msgid "{} is a file, not a folder."
@@ -1833,25 +1754,16 @@ msgstr "{}은(는) 폴더가 아니라 파일입니다."
 msgid "{} isn't a folder"
 msgstr "{}은(는) 폴더가 아닙니다"
 
-msgid ""
-"“{}” didn't upload: it's open for editing in SharePoint or Office (by "
-"someone else, or by you on another device), which locks it. Your changes are "
-"still on this PC. Once it's closed there, press “Sync now” to upload them."
+msgid "“{}” didn't upload: it's open for editing in SharePoint or Office (by someone else, or by you on another device), which locks it. Your changes are still on this PC. Once it's closed there, press “Sync now” to upload them."
 msgstr "“{}”을(를) 업로드하지 못했습니다. 다른 사용자 또는 다른 장치의 사용자가 SharePoint나 Office에서 편집 중이어서 잠겨 있습니다. 변경 사항은 이 PC에 남아 있습니다. 해당 파일을 닫은 뒤 “지금 동기화”를 눌러 업로드하세요."
 
-msgid ""
-"“{}” didn't upload: it's shared with you as read-only, so your changes stay "
-"only on this PC."
+msgid "“{}” didn't upload: it's shared with you as read-only, so your changes stay only on this PC."
 msgstr "“{}”을(를) 업로드하지 못했습니다. 읽기 전용으로 공유된 파일이므로 변경 사항은 이 PC에만 남습니다."
 
-msgid ""
-"“{}” isn't on this PC: it's shared as view-only, without permission to "
-"download. Open it on the OneDrive website instead."
+msgid "“{}” isn't on this PC: it's shared as view-only, without permission to download. Open it on the OneDrive website instead."
 msgstr "“{}”은(는) 이 PC에 없습니다. 다운로드 권한 없이 보기 전용으로 공유되었습니다. OneDrive 웹사이트에서 여세요."
 
-msgid ""
-"“{}” didn't upload: OneDrive turned it away for now. Your changes are still "
-"on this PC. Press “Sync now” to try again."
+msgid "“{}” didn't upload: OneDrive turned it away for now. Your changes are still on this PC. Press “Sync now” to try again."
 msgstr "“{}”을(를) 업로드하지 못했습니다. OneDrive에서 일시적으로 거부했습니다. 변경 사항은 이 PC에 남아 있습니다. “지금 동기화”를 눌러 다시 시도하세요."
 
 msgid "…and 1 more file."
@@ -1859,11 +1771,11 @@ msgid_plural "…and {n} more files."
 msgstr[0] "…파일 1개 더"
 
 msgid ""
-"{} were deleted on this computer. Syncing stopped before deleting them "
-"online too, in case that was a mistake.\n"
-"If it was a mistake, put them back (for example from the Trash) and press "
-"“Sync now”. Otherwise choose what to do below."
-msgstr "이 컴퓨터에서 {}개가 삭제되었습니다. 실수일 수도 있어 온라인에서 삭제되기 전에 동기화를 중지했습니다.\n실수였다면 항목을 되돌린 다음(예: 휴지통에서 복원) “지금 동기화”를 누르세요. 그렇지 않다면 아래에서 작업을 선택하세요."
+"{} were deleted on this computer. Syncing stopped before deleting them online too, in case that was a mistake.\n"
+"If it was a mistake, put them back (for example from the Trash) and press “Sync now”. Otherwise choose what to do below."
+msgstr ""
+"이 컴퓨터에서 {}개가 삭제되었습니다. 실수일 수도 있어 온라인에서 삭제되기 전에 동기화를 중지했습니다.\n"
+"실수였다면 항목을 되돌린 다음(예: 휴지통에서 복원) “지금 동기화”를 누르세요. 그렇지 않다면 아래에서 작업을 선택하세요."
 
 msgid "“{}” and what was in it ({} items in all)"
 msgstr "“{}” 및 그 안의 모든 항목(총 {}개)"
@@ -1876,6 +1788,12 @@ msgstr "{}개 항목"
 
 msgid "Many items"
 msgstr "많은 항목"
+
+msgid "Couldn't reach Microsoft OneDrive ({}). Check your internet connection; syncing carries on once it's back."
+msgstr "Microsoft OneDrive에 연결할 수 없습니다({}). 인터넷 연결을 확인하세요. 연결이 돌아오면 동기화가 계속됩니다."
+
+msgid "Microsoft OneDrive reported an error: {}"
+msgstr "Microsoft OneDrive에서 오류를 보고했습니다: {}"
 
 msgid "Starting…"
 msgstr "시작 중…"
@@ -1956,6 +1874,12 @@ msgstr "동기화 재정의 설정을 저장할 수 없습니다: {}"
 msgid "Couldn't save the pause setting: {}"
 msgstr "일시 중지 설정을 저장할 수 없습니다: {}"
 
+msgid "This folder isn't there yet"
+msgstr "이 폴더는 아직 없습니다"
+
+msgid "{} doesn't exist yet. It is created when the account first syncs (sign in first), or the drive it lives on isn't connected."
+msgstr "{}이(가) 아직 없습니다. 계정이 처음 동기화될 때 만들어지거나(먼저 로그인하세요), 폴더가 있는 드라이브가 연결되어 있지 않습니다."
+
 msgid "OneDrive Client for Linux {} is installed; {} is out."
 msgstr "OneDrive Client for Linux {}이(가) 설치되어 있습니다. {} 버전을 사용할 수 있습니다."
 
@@ -1968,16 +1892,20 @@ msgstr "OneDrive Client for Linux {}은(는) 이 앱에 비해 너무 오래된 
 msgid "The OneDrive Client for Linux isn't installed."
 msgstr "OneDrive Client for Linux가 설치되어 있지 않습니다."
 
+msgid "The OneDrive client you chose ({}) isn't there any more. Choose it again in About, or press \"Find it automatically\"."
+msgstr "선택한 OneDrive 클라이언트({})가 더 이상 없습니다. 정보에서 다시 선택하거나 \"자동으로 찾기\"를 누르세요."
+
 msgid "The tray icon is running."
 msgstr "트레이 아이콘이 실행 중입니다."
 
-msgid ""
-"The tray icon isn't running, so pauses, schedules and notifications aren't "
-"working."
+msgid "The tray icon isn't running, so pauses, schedules and notifications aren't working."
 msgstr "트레이 아이콘이 실행 중이지 않아 일시 중지, 예약 및 알림이 작동하지 않습니다."
 
 msgid "No accounts are set up yet."
 msgstr "아직 설정된 계정이 없습니다."
+
+msgid "LibreOffice is installed, and \"Keep my file dates\" is off for {}: after a document uploads, LibreOffice may warn that someone else changed it. Turn it on in each account's Advanced > Transfers, or with \"Keep my file dates\" under Check for problems."
+msgstr "LibreOffice가 설치되어 있는데 {}에서 \"내 파일 날짜 유지\"가 꺼져 있습니다. 문서를 업로드한 뒤 LibreOffice가 다른 사람이 문서를 변경했다고 경고할 수 있습니다. 각 계정의 고급 > 전송에서 켜거나, 문제 확인의 \"내 파일 날짜 유지\"로 켜세요."
 
 msgid "{}: {}"
 msgstr "{}: {}"
@@ -1985,13 +1913,17 @@ msgstr "{}: {}"
 msgid "{}: ran out of folder watches; some changes aren't noticed."
 msgstr "{}: 폴더 감시 한도가 부족하여 일부 변경 사항을 감지하지 못합니다."
 
+msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
+msgstr "{}: 앱 외부에서 설정한 서비스 파일의 RestartPreventExitStatus에 종료 코드 78이 없어 클라이언트가 전체 재동기화를 요청한 뒤 계속 다시 시작됩니다. 해당 파일에 “RestartPreventExitStatus=78”을 추가하거나 앱에서 서비스를 관리하도록 하세요."
+
 msgid "{}: only {} free on its drive."
 msgstr "{}: 드라이브에 {}만 남았습니다."
 
-msgid ""
-"Your OneDrive folders hold {} folders, more than half of Linux's limit on "
-"watched folders ({}). Other programs need some too."
+msgid "Your OneDrive folders hold {} folders, more than half of Linux's limit on watched folders ({}). Other programs need some too."
 msgstr "OneDrive 폴더에 폴더 {}개가 있습니다. Linux의 폴더 감시 한도({})의 절반을 넘습니다. 다른 프로그램도 감시 한도를 사용합니다."
+
+msgid "{} (Homebrew's brew services) also syncs your main account. If this app syncs it too, the same files are synced twice; turn one off."
+msgstr "{}(Homebrew의 brew services)도 기본 계정을 동기화하고 있습니다. 이 앱도 동기화하면 같은 파일이 두 번 동기화됩니다. 둘 중 하나를 끄세요."
 
 msgid "{} is started outside this app."
 msgstr "{}은(는) 이 앱 외부에서 시작되었습니다."
@@ -2017,9 +1949,7 @@ msgstr "파일 이름이 너무 길어 버전 복사본을 안전하게 저장�
 msgid "No version history for folders"
 msgstr "폴더에는 버전 기록이 없습니다"
 
-msgid ""
-"\"{}\" is a folder. Open a file inside it to see its versions, or the "
-"recycle bin online for deleted items."
+msgid "\"{}\" is a folder. Open a file inside it to see its versions, or the recycle bin online for deleted items."
 msgstr "“{}”은(는) 폴더입니다. 폴더 안의 파일을 열어 버전을 확인하거나 온라인 휴지통에서 삭제된 항목을 확인하세요."
 
 msgid "Couldn't share it"
@@ -2040,15 +1970,10 @@ msgstr "  ·  상위 폴더에서 상속"
 msgid "Checking who has access…"
 msgstr "액세스 권한 확인 중…"
 
-msgid "It isn't shared: only you can open it."
-msgstr "공유되지 않았습니다. 본인만 열 수 있습니다."
-
 msgid "  ·  saved by {}"
 msgstr "  ·  저장한 사용자: {}"
 
-msgid ""
-"There's only the current version so far. OneDrive keeps older ones as the "
-"file changes."
+msgid "There's only the current version so far. OneDrive keeps older ones as the file changes."
 msgstr "현재 버전만 있습니다. 파일이 변경될 때 OneDrive가 이전 버전을 보관합니다."
 
 msgid "Downloading that version…"
@@ -2060,9 +1985,7 @@ msgstr "복사본을 열었습니다: {}"
 msgid "Restoring…"
 msgstr "복원 중…"
 
-msgid ""
-"Restored. This computer gets it at the next sync (\"Sync now\" in the tray "
-"icon's menu does it right away)."
+msgid "Restored. This computer gets it at the next sync (\"Sync now\" in the tray icon's menu does it right away)."
 msgstr "복원했습니다. 다음 동기화 때 이 컴퓨터에 반영됩니다(바로 반영하려면 트레이 아이콘 메뉴에서 “지금 동기화”를 선택하세요)."
 
 msgid "Sending…"
@@ -2080,23 +2003,13 @@ msgstr "최상위 폴더"
 msgid "{} or more"
 msgstr "{}개 이상"
 
-msgid ""
-"There are Git repositories in this folder ({}). Syncing their .git folders "
-"can damage them, because the files arrive one at a time and out of order. "
-"Skip .git folders in Options, or keep repositories outside OneDrive."
+msgid "There are Git repositories in this folder ({}). Syncing their .git folders can damage them, because the files arrive one at a time and out of order. Skip .git folders in Options, or keep repositories outside OneDrive."
 msgstr "이 폴더에 Git 저장소({})가 있습니다. .git 폴더의 파일은 순서와 상관없이 하나씩 도착하므로 동기화하면 저장소가 손상될 수 있습니다. 옵션에서 .git 폴더를 건너뛰거나 저장소를 OneDrive 밖에 두세요."
 
-msgid ""
-"This folder is on a Windows drive, and Windows' OneDrive app uses it too. "
-"Files that Windows keeps online-only can't be opened from Linux, and the two "
-"apps can undo each other's changes. A separate folder for Linux is safer."
+msgid "This folder is on a Windows drive, and Windows' OneDrive app uses it too. Files that Windows keeps online-only can't be opened from Linux, and the two apps can undo each other's changes. A separate folder for Linux is safer."
 msgstr "이 폴더는 Windows 드라이브에 있으며 Windows용 OneDrive 앱도 사용합니다. Windows가 온라인 전용으로 보관하는 파일은 Linux에서 열 수 없고 두 앱이 서로의 변경 사항을 되돌릴 수 있습니다. Linux용 별도 폴더를 사용하는 것이 더 안전합니다."
 
-msgid ""
-"This folder is on a Windows (NTFS) drive. If Windows' OneDrive app also "
-"syncs it, files that Windows keeps online-only can't be opened from Linux, "
-"and the two apps can undo each other's changes. A separate folder for Linux "
-"is safer."
+msgid "This folder is on a Windows (NTFS) drive. If Windows' OneDrive app also syncs it, files that Windows keeps online-only can't be opened from Linux, and the two apps can undo each other's changes. A separate folder for Linux is safer."
 msgstr "이 폴더는 Windows(NTFS) 드라이브에 있습니다. Windows용 OneDrive 앱도 동기화하면 Windows가 온라인 전용으로 보관하는 파일을 Linux에서 열 수 없고 두 앱이 서로의 변경 사항을 되돌릴 수 있습니다. Linux용 별도 폴더가 더 안전합니다."
 
 msgid "Couldn't make {}: {}"
@@ -2108,17 +2021,13 @@ msgstr "Microsoft에 연결할 수 없습니다. 인터넷 연결을 확인하�
 msgid "{} (Microsoft says: {})"
 msgstr "{} (Microsoft 메시지: {})"
 
-msgid ""
-"Microsoft no longer accepts this sign-in. Open Settings and sign in again."
+msgid "Microsoft no longer accepts this sign-in. Open Settings and sign in again."
 msgstr "Microsoft에서 이 로그인 정보를 더 이상 허용하지 않습니다. 설정을 열고 다시 로그인하세요."
 
-msgid ""
-"This account doesn't have permission to do that. Check that you have access "
-"to this file or site."
+msgid "This account doesn't have permission to do that. Check that you have access to this file or site."
 msgstr "이 계정에는 해당 작업을 수행할 권한이 없습니다. 이 파일이나 사이트에 액세스할 수 있는지 확인하세요."
 
-msgid ""
-"That item could not be found in OneDrive. It may have been moved or deleted."
+msgid "That item could not be found in OneDrive. It may have been moved or deleted."
 msgstr "OneDrive에서 항목을 찾을 수 없습니다. 이동되었거나 삭제되었을 수 있습니다."
 
 msgid "OneDrive changed while this was running. Refresh and try again."
@@ -2130,9 +2039,7 @@ msgstr "항목이 잠겨 있습니다. 다른 위치에서 닫거나 나중에 �
 msgid "Microsoft is busy right now. Try again in a minute."
 msgstr "현재 Microsoft가 바쁩니다. 1분 후 다시 시도하세요."
 
-msgid ""
-"Your OneDrive storage is full. Free up space or get more storage, then try "
-"again."
+msgid "Your OneDrive storage is full. Free up space or get more storage, then try again."
 msgstr "OneDrive 저장 공간이 가득 찼습니다. 공간을 확보하거나 저장 공간을 늘린 후 다시 시도하세요."
 
 msgid "Microsoft is having a problem right now. Try again later."
@@ -2144,9 +2051,7 @@ msgstr "Microsoft에서 요청을 완료하지 못했습니다. 나중에 다시
 msgid "Microsoft sent an unexpected reply ({}). Try again later."
 msgstr "Microsoft에서 예상하지 못한 응답을 보냈습니다({}). 나중에 다시 시도하세요."
 
-msgid ""
-"Azure Germany closed on October 29, 2021. Migrate this account to a "
-"supported Microsoft cloud and select that cloud here."
+msgid "Azure Germany closed on October 29, 2021. Migrate this account to a supported Microsoft cloud and select that cloud here."
 msgstr "Azure Germany는 2021년 10월 29일에 종료되었습니다. 이 계정을 지원되는 Microsoft 클라우드로 이전한 다음 여기에서 해당 클라우드를 선택하세요."
 
 msgid "This account isn't signed in."
@@ -2170,9 +2075,7 @@ msgstr "{}의 라이브러리를 확인할 수 없습니다: {}"
 msgid "Microsoft returned a library without an ID."
 msgstr "Microsoft에서 ID가 없는 라이브러리를 반환했습니다."
 
-msgid ""
-"That doesn't look like a SharePoint address. Copy it from your browser's "
-"address bar — it starts with https://"
+msgid "That doesn't look like a SharePoint address. Copy it from your browser's address bar — it starts with https://"
 msgstr "SharePoint 주소가 아닌 것 같습니다. 브라우저 주소 표시줄에서 복사하세요. https://로 시작합니다."
 
 msgid "Couldn't open that site with this account: {}"
@@ -2204,6 +2107,15 @@ msgstr "누군가"
 
 msgid "Couldn't check what kind of account this is, so no link was made: {}"
 msgstr "계정 유형을 확인할 수 없어 링크를 만들지 않았습니다: {}"
+
+msgid "Updated to version {}."
+msgstr "버전 {}(으)로 업데이트했습니다."
+
+msgid "This is the newest version."
+msgstr "최신 버전입니다."
+
+msgid "This copy can't update itself; the download page is open: {}"
+msgstr "이 사본은 스스로 업데이트할 수 없습니다. 다운로드 페이지를 열었습니다: {}"
 
 msgid "less than a minute left"
 msgstr "1분 미만 남음"
@@ -2261,6 +2173,37 @@ msgstr "{} {}"
 msgid "in {}"
 msgstr "{}에서"
 
+msgid "Couldn't open OneDrive online"
+msgstr "OneDrive 온라인을 열 수 없습니다"
+
+msgid "Checking OneDrive…"
+msgstr "OneDrive 확인 중…"
+
+msgid "Starting a sync…"
+msgstr "동기화 시작 중…"
+
+msgid "Couldn't start syncing: {}"
+msgstr "동기화를 시작할 수 없습니다: {}"
+
+msgid "Started {n} account; some couldn't start: {}"
+msgid_plural "Started {n} accounts; some couldn't start: {}"
+msgstr[0] "계정 {n}개를 시작했지만 일부는 시작하지 못했습니다: {}"
+
+msgid "Couldn't update every pause setting: {}"
+msgstr "일시 중지 설정을 모두 업데이트하지 못했습니다: {}"
+
+msgid "OneDrive files"
+msgstr "OneDrive 파일"
+
+msgid "Search your OneDrive, including files that aren't on this computer"
+msgstr "이 컴퓨터에 없는 파일을 포함해 OneDrive 검색"
+
+msgid "Top of OneDrive"
+msgstr "OneDrive 최상위"
+
+msgid "Open on the OneDrive website"
+msgstr "OneDrive 웹사이트에서 열기"
+
 msgid "That isn't inside any of your OneDrive folders."
 msgstr "OneDrive 폴더 안의 항목이 아닙니다."
 
@@ -2288,7 +2231,9 @@ msgstr "다음 위치의 파일을 변경, 추가 및 삭제 가능"
 msgid ""
 "{} {} \"{}\".\n"
 "{}"
-msgstr "{} {} “{}”.\n{}"
+msgstr ""
+"{} {} “{}”.\n"
+"{}"
 
 msgid "Couldn't create a link"
 msgstr "링크를 만들 수 없습니다"
@@ -2308,8 +2253,8 @@ msgstr "{}. 설정을 열어 해결하세요."
 msgid "No accounts yet — open Settings to add one"
 msgstr "계정이 아직 없습니다 — 설정을 열어 추가하세요"
 
-msgid "Version {} is out — get it…"
-msgstr "버전 {}이(가) 출시되었습니다 — 다운로드…"
+msgid "Update to version {} now"
+msgstr "지금 버전 {}(으)로 업데이트"
 
 msgid "How to fix this…"
 msgstr "해결 방법…"
@@ -2344,85 +2289,61 @@ msgstr "OneDrive Client for Linux가 설치되어 있지 않습니다"
 msgid "The OneDrive Client for Linux ({}) is too old"
 msgstr "OneDrive Client for Linux ({})이(가) 너무 오래되었습니다"
 
-msgid ""
-"{} were deleted on this computer, so syncing stopped before deleting them "
-"online. Click the OneDrive icon to choose what to do."
+msgid "{} were deleted on this computer, so syncing stopped before deleting them online. Click the OneDrive icon to choose what to do."
 msgstr "이 컴퓨터에서 {}이(가) 삭제되어 온라인에서도 삭제하기 전에 동기화를 중지했습니다. OneDrive 아이콘을 눌러 작업을 선택하세요."
 
 msgid "Microsoft needs you to sign in again. Open the tray menu to fix it."
 msgstr "Microsoft에 다시 로그인해야 합니다. 트레이 메뉴를 열어 해결하세요."
 
-msgid ""
-"The sync engine needs a full resync. Open Settings to review and apply it."
+msgid "The sync engine needs a full resync. Open Settings to review and apply it."
 msgstr "동기화 엔진에 전체 재동기화가 필요합니다. 설정을 열어 검토하고 적용하세요."
 
-msgid ""
-"Syncing has stopped making progress, though it is still running. Click the "
-"OneDrive icon and choose Sync now to restart it."
+msgid "Syncing has stopped making progress, though it is still running. Click the OneDrive icon and choose Sync now to restart it."
 msgstr "동기화가 실행 중이지만 진행되지 않습니다. OneDrive 아이콘을 클릭하고 “지금 동기화”를 선택해 다시 시작하세요."
 
 msgid "Syncing hit an error. Open the tray menu for details."
 msgstr "동기화 중 오류가 발생했습니다. 자세한 내용은 트레이 메뉴를 여세요."
 
-msgid ""
-"Linux's limit on folders watched for changes ran out, so some changes on "
-"this computer won't sync right away. Open Settings to raise it."
+msgid "Linux's limit on folders watched for changes ran out, so some changes on this computer won't sync right away. Open Settings to raise it."
 msgstr "Linux의 변경 사항 감시 폴더 한도에 도달하여 이 컴퓨터의 일부 변경 사항이 즉시 동기화되지 않습니다. 설정을 열어 한도를 늘리세요."
 
-msgid ""
-"{} is full ({}). New and changed files won't upload until you free up space "
-"or get more storage."
+msgid "{} is full ({}). New and changed files won't upload until you free up space or get more storage."
 msgstr "{}의 저장 공간이 가득 찼습니다({}). 공간을 확보하거나 저장 공간을 늘릴 때까지 새 파일과 변경된 파일이 업로드되지 않습니다."
 
-msgid ""
-"{} is almost full ({}). Free up space or get more storage before uploads "
-"stop."
+msgid "{} is almost full ({}). Free up space or get more storage before uploads stop."
 msgstr "{}의 저장 공간이 거의 가득 찼습니다({}). 업로드가 중지되기 전에 공간을 확보하거나 저장 공간을 늘리세요."
 
 msgid "OneDrive: a new version is out"
 msgstr "OneDrive: 새 버전 출시"
 
-msgid ""
-"Version {} of this app is available. Click the OneDrive tray icon (or right-"
-"click it) to get it."
-msgstr "이 앱의 버전 {}을(를) 사용할 수 있습니다. OneDrive 트레이 아이콘을 클릭하거나 마우스 오른쪽 버튼으로 눌러 다운로드하세요."
+msgid "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) and choose Update."
+msgstr "이 앱의 버전 {}을(를) 사용할 수 있습니다. 트레이의 OneDrive 아이콘을 클릭(또는 오른쪽 클릭)하고 업데이트를 선택하세요."
 
 msgid "OneDrive: the sync engine has an update"
 msgstr "OneDrive: 동기화 엔진 업데이트 사용 가능"
 
-msgid ""
-"Version {} of the OneDrive Client for Linux is out (you have {}). Open "
-"Settings to update it."
+msgid "Version {} of the OneDrive Client for Linux is out (you have {}). Open Settings to update it."
 msgstr "OneDrive Client for Linux 버전 {}이(가) 출시되었습니다(현재 버전 {}). 설정을 열어 업데이트하세요."
 
 msgid "Preview recovery needs attention"
 msgstr "미리보기 복구에 주의가 필요합니다"
 
-msgid ""
-"Sync services weren't started because preview settings couldn't be put back: "
-"{}"
+msgid "Sync services weren't started because preview settings couldn't be put back: {}"
 msgstr "미리보기 설정을 복원할 수 없어 동기화 서비스가 시작되지 않았습니다: {}"
 
 msgid "Microsoft needs you to sign in again."
 msgstr "Microsoft에 다시 로그인해야 합니다."
 
-msgid ""
-"Glass is on: your desktop blurs what's behind windows, so the window is see-"
-"through."
+msgid "Glass is on: your desktop blurs what's behind windows, so the window is see-through."
 msgstr "유리 효과가 켜져 있습니다. 데스크톱이 창 뒤를 흐리게 처리하므로 창이 투명하게 보입니다."
 
 msgid "Glass is off because your desktop asks for high contrast."
 msgstr "데스크톱에서 고대비를 요청하여 유리 효과가 꺼져 있습니다."
 
-msgid ""
-"Glass is off: your desktop doesn't blur what's behind windows, so the window "
-"stays solid and easy to read. If yours does (Hyprland with blur switched on, "
-"for example), choose On."
+msgid "Glass is off: your desktop doesn't blur what's behind windows, so the window stays solid and easy to read. If yours does (Hyprland with blur switched on, for example), choose On."
 msgstr "데스크톱에서 창 뒤를 흐리게 처리하지 않아 유리 효과가 꺼져 있습니다. 창은 불투명하게 유지되어 읽기 쉽습니다. 데스크톱에서 흐리게 처리할 수 있다면(예: 흐림 효과가 켜진 Hyprland) 켜기를 선택하세요."
 
-msgid ""
-"Always see-through. If the window looks washed out, your desktop doesn't "
-"blur behind it: choose Automatic."
+msgid "Always see-through. If the window looks washed out, your desktop doesn't blur behind it: choose Automatic."
 msgstr "항상 투명하게 표시합니다. 창이 흐릿해 보이면 데스크톱에서 배경 흐림을 지원하지 않는 것이므로 자동을 선택하세요."
 
 msgid "Always solid."
@@ -2431,21 +2352,13 @@ msgstr "항상 불투명하게 표시합니다."
 msgid "The sync service stopped with an error. Try \"Sync now\"."
 msgstr "동기화 서비스가 오류로 중지되었습니다. “지금 동기화”를 시도하세요."
 
-msgid ""
-"The sync engine needs a full resync before it can continue. Open the Folders "
-"tab and press \"Apply changes…\", or turn on \"Allow full resyncs\" in "
-"Options and save."
+msgid "The sync engine needs a full resync before it can continue. Open the Folders tab and press \"Apply changes…\", or turn on \"Allow full resyncs\" in Options and save."
 msgstr "계속하려면 동기화 엔진에 전체 재동기화가 필요합니다. 폴더 탭을 열고 “변경 사항 적용…”을 누르거나 옵션에서 “전체 재동기화 허용”을 켜고 저장하세요."
 
-msgid ""
-"Microsoft no longer accepts the saved sign-in (this happens after a password "
-"change, or when access is revoked). Sign in again to continue."
+msgid "Microsoft no longer accepts the saved sign-in (this happens after a password change, or when access is revoked). Sign in again to continue."
 msgstr "Microsoft에서 저장된 로그인 정보를 더 이상 허용하지 않습니다(암호 변경 또는 액세스 취소 후 발생할 수 있음). 계속하려면 다시 로그인하세요."
 
-msgid ""
-"The sync engine is running but has stopped making progress, so changes "
-"aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, "
-"check your network connection."
+msgid "The sync engine is running but has stopped making progress, so changes aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, check your network connection."
 msgstr "동기화 엔진은 실행 중이지만 진행되지 않아 변경 사항이 동기화되지 않습니다. “지금 동기화”를 눌러 다시 시작하세요. 계속 발생하면 네트워크 연결을 확인하세요."
 
 msgid "Everything in this account"
@@ -2463,9 +2376,7 @@ msgstr "합계"
 msgid "at least {}"
 msgstr "최소 {}"
 
-msgid ""
-"{} {} to {}, more than the {} free on this drive. Some files won't fit; free "
-"up space or tick less."
+msgid "{} {} to {}, more than the {} free on this drive. Some files won't fit; free up space or tick less."
 msgstr "{} {}에서 {}까지이며, 드라이브 여유 공간 {}보다 큽니다. 일부 파일은 들어가지 않습니다. 공간을 확보하거나 더 적게 선택하세요."
 
 msgid "{}: {}. Free on this drive: {}."
@@ -2495,22 +2406,16 @@ msgstr "만들 수 없습니다: {}"
 msgid "Couldn't run the client: {}"
 msgstr "클라이언트를 실행할 수 없습니다: {}"
 
-msgid ""
-"Turn on \"Write a log file\" under Advanced and save first. Until then the "
-"app reads the system journal instead."
+msgid "Turn on \"Write a log file\" under Advanced and save first. Until then the app reads the system journal instead."
 msgstr "먼저 고급 설정에서 “로그 파일 작성”을 켜고 저장하세요. 그때까지 앱은 시스템 저널을 읽습니다."
 
-msgid ""
-"{} doesn't exist yet. The client creates it when it next writes to the log."
+msgid "{} doesn't exist yet. The client creates it when it next writes to the log."
 msgstr "{}은(는) 아직 없습니다. 클라이언트가 다음에 로그를 기록할 때 만듭니다."
 
-msgid ""
-"Folders to skip: remove the empty entry (two | in a row, or one at an end)."
+msgid "Folders to skip: remove the empty entry (two | in a row, or one at an end)."
 msgstr "건너뛸 폴더: 빈 항목을 제거하세요(|가 연속으로 두 개 있거나 양 끝에 하나만 있는 경우)."
 
-msgid ""
-"Folders to skip: \".*\" isn't allowed (it would hide all your changes). To "
-"skip hidden folders, use \"Don't sync hidden files and folders\"."
+msgid "Folders to skip: \".*\" isn't allowed (it would hide all your changes). To skip hidden folders, use \"Don't sync hidden files and folders\"."
 msgstr "건너뛸 폴더: “.*”은(는) 허용되지 않습니다(모든 변경 사항이 숨겨집니다). 숨김 폴더를 건너뛰려면 “숨김 파일 및 폴더 동기화 안 함”을 사용하세요."
 
 msgid "Changes {}'s save folder. Turning this off puts it back."
@@ -2540,8 +2445,7 @@ msgstr "스크린샷은 {}에 저장됩니다."
 msgid "Couldn't restore {}: {}"
 msgstr "{}을(를) 복원할 수 없습니다: {}"
 
-msgid ""
-"The screenshot tool's save folder was changed since, so it was left as it is."
+msgid "The screenshot tool's save folder was changed since, so it was left as it is."
 msgstr "스크린샷 도구의 저장 폴더가 변경되어 그대로 두었습니다."
 
 msgid "{} changed while DriveDeck was updating it, so it was left as it is."
@@ -2553,8 +2457,7 @@ msgstr "{}은(는) 일반 파일이 아닙니다."
 msgid "Couldn't write {}: {}"
 msgstr "{}에 쓸 수 없습니다: {}"
 
-msgid ""
-"Schedule times must be two different 24-hour times like 23:00 and 07:00."
+msgid "Schedule times must be two different 24-hour times like 23:00 and 07:00."
 msgstr "예약 시간은 23:00 및 07:00처럼 서로 다른 24시간 형식 두 개여야 합니다."
 
 msgid "The number of items for a big delete {}."
@@ -2569,19 +2472,22 @@ msgstr "설정을 저장할 수 없습니다: {}"
 msgid "Couldn't save: {}"
 msgstr "저장할 수 없습니다: {}"
 
-msgid ""
-"Saved, except the settings marked * — they need a full resync, which is "
-"turned off for this account."
+msgid "Saved. Sign out and in again for the settings marked † to take effect."
+msgstr "저장했습니다. † 표시된 설정을 적용하려면 로그아웃했다가 다시 로그인하세요."
+
+msgid "Saved."
+msgstr "저장했습니다."
+
+msgid "Saved. The sync engine restarts to pick up the changes."
+msgstr "저장했습니다. 변경 사항을 적용하기 위해 동기화 엔진이 다시 시작됩니다."
+
+msgid "Saved, except the settings marked * — they need a full resync, which is turned off for this account."
 msgstr "저장했습니다. 단, * 표시된 설정은 전체 재동기화가 필요한데 이 계정에서는 꺼져 있습니다."
 
-msgid ""
-"The settings marked * weren't saved: they need a full resync, which is "
-"turned off for this account. Check the preview for the new direction."
+msgid "The settings marked * weren't saved: they need a full resync, which is turned off for this account. Check the preview for the new direction."
 msgstr "* 표시된 설정은 저장하지 않았습니다. 전체 재동기화가 필요하지만 이 계정에서는 꺼져 있습니다. 새 방향의 미리보기를 확인하세요."
 
-msgid ""
-"Files here that aren't online are deleted, including new files you put in "
-"this folder from now on."
+msgid "Files here that aren't online are deleted, including new files you put in this folder from now on."
 msgstr "온라인에 없는 이곳의 파일은 삭제됩니다. 앞으로 이 폴더에 추가하는 새 파일도 포함됩니다."
 
 msgid "Change sync direction"
@@ -2596,9 +2502,7 @@ msgstr "파일 설정 적용"
 msgid "Counting everything inside the deleted folders, that's {} items in all."
 msgstr "삭제된 폴더 안의 항목을 모두 포함하면 총 {}개입니다."
 
-msgid ""
-"Items deleted online go to the OneDrive recycle bin, where they can be "
-"restored for a while."
+msgid "Items deleted online go to the OneDrive recycle bin, where they can be restored for a while."
 msgstr "온라인에서 삭제된 항목은 OneDrive 휴지통으로 이동하며, 일정 기간 복원할 수 있습니다."
 
 msgid "Delete them online too"
@@ -2619,13 +2523,20 @@ msgstr "폴더를 선택하려면 로그인하세요."
 msgid "Couldn't load folders: {}"
 msgstr "폴더를 불러올 수 없습니다: {}"
 
-msgid ""
-"Full resyncs are turned off for this account (Options), so folder choices "
-"are locked."
+msgid "Full resyncs are turned off for this account (Options), so folder choices are locked."
 msgstr "이 계정에서 전체 재동기화가 꺼져 있어(옵션) 폴더 선택이 잠겨 있습니다."
 
 msgid "Tick at least one folder, or choose \"Sync everything\"."
 msgstr "폴더를 하나 이상 선택하거나 “모두 동기화”를 선택하세요."
+
+msgid "The sync engine needs a full resync. Press \"Apply changes…\" to review it and run it; your folder choices stay as they are."
+msgstr "동기화 엔진에 전체 재동기화가 필요합니다. \"변경 사항 적용…\"을 눌러 검토하고 실행하세요. 폴더 선택은 그대로 유지됩니다."
+
+msgid "The files directly in {} will sync too: a folder's own files can't be left out while a folder inside it syncs."
+msgstr "{} 바로 안에 있는 파일도 동기화됩니다. 안에 있는 폴더가 동기화되는 동안에는 폴더 자체의 파일만 제외할 수 없습니다."
+
+msgid "Run the full resync"
+msgstr "전체 재동기화 실행"
 
 msgid "Change synced folders"
 msgstr "동기화 폴더 변경"
@@ -2636,20 +2547,28 @@ msgstr "미리보기 준비 중…"
 msgid "Checking the sync service…"
 msgstr "동기화 서비스 확인 중…"
 
-msgid ""
-"Couldn't protect this account from a second sync process, so the preview was "
-"not started: {}"
+msgid "Couldn't protect this account from a second sync process, so the preview was not started: {}"
 msgstr "두 번째 동기화 프로세스로부터 계정을 보호할 수 없어 미리보기를 시작하지 않았습니다: {}"
 
 msgid "Couldn't safely prepare the preview because {} couldn't be read: {}"
 msgstr "{}을(를) 읽을 수 없어 미리보기를 안전하게 준비할 수 없습니다: {}"
 
+msgid "Checking what a full resync would do. Nothing is changed while this runs — it's a dry run. Large accounts can take several minutes."
+msgstr "전체 재동기화가 무엇을 할지 확인하는 중입니다. 이 동안에는 아무것도 바뀌지 않습니다(시험 실행). 큰 계정은 몇 분 걸릴 수 있습니다."
+
+msgid "Checking what syncing with the deletions would do. Nothing is changed while this runs — it's a dry run."
+msgstr "삭제를 포함해 동기화하면 무엇이 바뀔지 확인하는 중입니다. 이 동안에는 아무것도 바뀌지 않습니다(시험 실행)."
+
+msgid "Checking what syncing with the new settings would do. Nothing is changed while this runs — it's a dry run."
+msgstr "새 설정으로 동기화하면 무엇이 바뀔지 확인하는 중입니다. 이 동안에는 아무것도 바뀌지 않습니다(시험 실행)."
+
+msgid "Pausing background sync…"
+msgstr "백그라운드 동기화를 일시 중지하는 중…"
+
 msgid "Preview state disappeared before it could be saved."
 msgstr "저장하기 전에 미리보기 상태가 사라졌습니다."
 
-msgid ""
-"Couldn't safely start the preview because its recovery record couldn't be "
-"saved: {}"
+msgid "Couldn't safely start the preview because its recovery record couldn't be saved: {}"
 msgstr "복구 기록을 저장할 수 없어 미리보기를 안전하게 시작할 수 없습니다: {}"
 
 msgid "Couldn't pause the sync engine, so no preview was run: {}"
@@ -2694,18 +2613,13 @@ msgstr "계정이 사라져 미리보기 설정을 복원할 수 없습니다: {
 msgid "The recovery record couldn't be committed: {}; the sync job was stopped"
 msgstr "복구 기록을 적용할 수 없어 {} 동기화 작업을 중지했습니다"
 
-msgid ""
-"The sync job started, but its recovery state couldn't be saved or stopped: "
-"{}; {}. Restart this app to retry recovery. No other sync operation will "
-"start for this account in this session."
+msgid "The sync job started, but its recovery state couldn't be saved or stopped: {}; {}. Restart this app to retry recovery. No other sync operation will start for this account in this session."
 msgstr "동기화 작업이 시작되었지만 복구 상태를 저장하거나 중지할 수 없습니다: {}; {}. 복구를 다시 시도하려면 앱을 재시작하세요. 이 세션에서는 이 계정에 다른 동기화 작업을 시작하지 않습니다."
 
-msgid ""
-"{}. The recovery record couldn't be refreshed, so syncing remains paused: {}"
+msgid "{}. The recovery record couldn't be refreshed, so syncing remains paused: {}"
 msgstr "{}. 복구 기록을 새로 고칠 수 없어 동기화가 계속 일시 중지됩니다: {}"
 
-msgid ""
-"{}. Preview settings couldn't be fully restored; syncing remains paused. {}"
+msgid "{}. Preview settings couldn't be fully restored; syncing remains paused. {}"
 msgstr "{}. 미리보기 설정을 완전히 복원할 수 없어 동기화가 계속 일시 중지됩니다. {}"
 
 msgid "{}. The previous sync service couldn't be restarted: {}"
@@ -2718,45 +2632,40 @@ msgid ""
 "Opening the Microsoft sign-in page in your browser…\n"
 "\n"
 "Log in and approve access. This window updates by itself when you're done."
-msgstr "브라우저에서 Microsoft 로그인 페이지 여는 중…\n\n로그인하고 액세스를 승인하세요. 완료되면 이 창이 자동으로 업데이트됩니다."
+msgstr ""
+"브라우저에서 Microsoft 로그인 페이지 여는 중…\n"
+"\n"
+"로그인하고 액세스를 승인하세요. 완료되면 이 창이 자동으로 업데이트됩니다."
 
-msgid ""
-"Couldn't protect this account from a second sync process, so sign-in was not "
-"started: {}"
+msgid "Couldn't protect this account from a second sync process, so sign-in was not started: {}"
 msgstr "두 번째 동기화 프로세스로부터 계정을 보호할 수 없어 로그인을 시작하지 않았습니다: {}"
 
 msgid "Couldn't stop the sync engine before signing in: {}"
 msgstr "로그인 전에 동기화 엔진을 중지할 수 없습니다: {}"
 
-msgid ""
-"The sign-in was cancelled, but the previously running sync engine couldn't "
-"be restarted: {}"
+msgid "The sign-in was cancelled, but the previously running sync engine couldn't be restarted: {}"
 msgstr "로그인이 취소되었지만 이전에 실행 중이던 동기화 엔진을 다시 시작할 수 없습니다: {}"
 
-msgid ""
-"Couldn't start the sign-in process: {}. The previously running sync engine "
-"also couldn't be restarted: {}"
+msgid "Couldn't start the sign-in process: {}. The previously running sync engine also couldn't be restarted: {}"
 msgstr "로그인 절차를 시작할 수 없습니다: {}. 이전에 실행 중이던 동기화 엔진도 다시 시작할 수 없습니다: {}"
 
 msgid "Couldn't start the sign-in process: {}"
 msgstr "로그인 절차를 시작할 수 없습니다: {}"
 
-msgid ""
-"The sign-in window closed, but the previously running sync engine couldn't "
-"be restarted: {}"
+msgid "The sign-in window closed, but the previously running sync engine couldn't be restarted: {}"
 msgstr "로그인 창이 닫혔지만 이전에 실행 중이던 동기화 엔진을 다시 시작할 수 없습니다: {}"
 
-msgid ""
-"This account's settings folder was removed during sign-in. Add the account "
-"again to sign in."
+msgid "This account's settings folder was removed during sign-in. Add the account again to sign in."
 msgstr "로그인 중 이 계정의 설정 폴더가 제거되었습니다. 다시 로그인하려면 계정을 추가하세요."
 
 msgid ""
 "Your browser couldn't hand the sign-in back automatically.\n"
 "\n"
-"After you log in you'll end up on a blank page. Copy that page's full "
-"address from the address bar and paste it below."
-msgstr "브라우저에서 로그인 결과를 자동으로 전달하지 못했습니다.\n\n로그인하면 빈 페이지가 표시됩니다. 주소 표시줄에서 해당 페이지의 전체 주소를 복사해 아래에 붙여넣으세요."
+"After you log in you'll end up on a blank page. Copy that page's full address from the address bar and paste it below."
+msgstr ""
+"브라우저에서 로그인 결과를 자동으로 전달하지 못했습니다.\n"
+"\n"
+"로그인하면 빈 페이지가 표시됩니다. 주소 표시줄에서 해당 페이지의 전체 주소를 복사해 아래에 붙여넣으세요."
 
 msgid "Signed in. Your files will start syncing in a moment."
 msgstr "로그인했습니다. 잠시 후 파일 동기화가 시작됩니다."
@@ -2771,16 +2680,15 @@ msgid ""
 "Sign-in didn't complete.\n"
 "\n"
 "{}"
-msgstr "로그인이 완료되지 않았습니다.\n\n{}"
+msgstr ""
+"로그인이 완료되지 않았습니다.\n"
+"\n"
+"{}"
 
-msgid ""
-"Sign-in failed, and the previously running sync engine couldn't be "
-"restarted: {}"
+msgid "Sign-in failed, and the previously running sync engine couldn't be restarted: {}"
 msgstr "로그인에 실패했고 이전에 실행 중이던 동기화 엔진을 다시 시작할 수 없습니다: {}"
 
-msgid ""
-"Microsoft didn't accept the sign-in. Please try again, and make sure you "
-"finish logging in in the browser."
+msgid "Microsoft didn't accept the sign-in. Please try again, and make sure you finish logging in in the browser."
 msgstr "Microsoft에서 로그인을 허용하지 않았습니다. 다시 시도하고 브라우저에서 로그인을 완료했는지 확인하세요."
 
 msgid "The sign-in timed out. Please try again."
@@ -2795,9 +2703,7 @@ msgstr "동기화가 활성화되었지만 로그인 시 트레이가 시작되�
 msgid "Sign-in finished, but setup wasn't fully completed: {}"
 msgstr "로그인은 완료되었지만 설정이 완전히 완료되지 않았습니다: {}"
 
-msgid ""
-"That doesn't look like the right address — it should contain \"code=\". Copy "
-"the whole address of the blank page you land on after logging in."
+msgid "That doesn't look like the right address — it should contain \"code=\". Copy the whole address of the blank page you land on after logging in."
 msgstr "올바른 주소가 아닌 것 같습니다 — “code=”가 포함되어야 합니다. 로그인 후 표시되는 빈 페이지의 전체 주소를 복사하세요."
 
 msgid "Finishing sign-in…"
@@ -2818,13 +2724,10 @@ msgstr "저장된 로그인 정보를 제거할 수 없습니다: {}"
 msgid "Signed out. Your files are still on this computer."
 msgstr "로그아웃했습니다. 파일은 이 컴퓨터에 그대로 있습니다."
 
-msgid ""
-"Signed out. Your files are still on this computer. (The sync engine "
-"reported: {})"
+msgid "Signed out. Your files are still on this computer. (The sync engine reported: {})"
 msgstr "로그아웃했습니다. 파일은 이 컴퓨터에 그대로 있습니다. (동기화 엔진 메시지: {})"
 
-msgid ""
-"The account was left intact because its sync service couldn't be stopped: {}"
+msgid "The account was left intact because its sync service couldn't be stopped: {}"
 msgstr "동기화 서비스를 중지할 수 없어 계정을 변경하지 않았습니다: {}"
 
 msgid "The service stopped, but couldn't remove {}: {}"
@@ -2836,10 +2739,11 @@ msgstr "서비스를 중지했지만 systemd에서 유닛을 다시 불러올 �
 msgid "Couldn't delete {}: {}"
 msgstr "{}을(를) 삭제할 수 없습니다: {}"
 
-msgid ""
-"Add and sign in to a work or school OneDrive account first. Its sign-in is "
-"reused to reach SharePoint."
+msgid "Add and sign in to a work or school OneDrive account first. Its sign-in is reused to reach SharePoint."
 msgstr "먼저 회사 또는 학교 OneDrive 계정을 추가하고 로그인하세요. 이 로그인 정보를 SharePoint에 액세스할 때 사용합니다."
+
+msgid "Choose a folder to sync into"
+msgstr "동기화할 폴더 선택"
 
 msgid "{}  ·  this computer's copy from {}"
 msgstr "{}  ·  이 컴퓨터의 사본, {}부터"
@@ -2863,9 +2767,7 @@ msgid "1 file"
 msgid_plural "{n} files"
 msgstr[0] "파일 {n}개"
 
-msgid ""
-"Your {} folder ({}) moves into OneDrive, at {}, and everything in it "
-"uploads: {}, {}. Your apps keep finding it in the same place."
+msgid "Your {} folder ({}) moves into OneDrive, at {}, and everything in it uploads: {}, {}. Your apps keep finding it in the same place."
 msgstr "{} 폴더({})가 OneDrive의 {}로 이동하며, 폴더의 모든 항목이 업로드됩니다: {}, {}. 앱에서는 계속 같은 위치에서 찾을 수 있습니다."
 
 msgid "OneDrive is on the same drive, so the move is instant."
@@ -2874,20 +2776,13 @@ msgstr "OneDrive가 같은 드라이브에 있어 즉시 이동됩니다."
 msgid "The desktop shows the new place after you next log in."
 msgstr "다음에 로그인하면 데스크톱에 새 위치가 표시됩니다."
 
-msgid ""
-"To undo it later, press Stop: your files stay in OneDrive and the folder "
-"here starts empty again, as on Windows."
+msgid "To undo it later, press Stop: your files stay in OneDrive and the folder here starts empty again, as on Windows."
 msgstr "나중에 취소하려면 중지를 누르세요. Windows에서처럼 파일은 OneDrive에 남고 이 폴더는 다시 비워집니다."
 
-msgid ""
-"OneDrive is on another drive, so the files are copied. Nothing is deleted: "
-"your original folder is kept, renamed \"{}\". Once you've checked everything "
-"is in OneDrive, delete it yourself to free the space. "
+msgid "OneDrive is on another drive, so the files are copied. Nothing is deleted: your original folder is kept, renamed \"{}\". Once you've checked everything is in OneDrive, delete it yourself to free the space. "
 msgstr "OneDrive가 다른 드라이브에 있어 파일이 복사됩니다. 아무것도 삭제되지 않습니다. 원래 폴더는 “{}”으로 이름을 바꾸어 보관합니다. 모든 파일이 OneDrive에 있는지 확인한 후 직접 삭제해 공간을 확보하세요. "
 
-msgid ""
-"OneDrive already has this folder: your files join what's there, and any "
-"whose name is taken get \"{}\" added."
+msgid "OneDrive already has this folder: your files join what's there, and any whose name is taken get \"{}\" added."
 msgstr "OneDrive에 이미 이 폴더가 있습니다. 파일이 기존 항목에 합쳐지고 이름이 겹치는 항목에는 “{}”이(가) 추가됩니다."
 
 msgid "Back up your {} folder"
@@ -2896,15 +2791,10 @@ msgstr "{} 폴더 백업"
 msgid "Stop backing up {}?"
 msgstr "{} 백업을 중지하시겠습니까?"
 
-msgid ""
-"Your files stay in OneDrive, at {}, and keep syncing there. Your {} folder "
-"on this computer starts empty again, and new files you put in it won't be "
-"backed up."
+msgid "Your files stay in OneDrive, at {}, and keep syncing there. Your {} folder on this computer starts empty again, and new files you put in it won't be backed up."
 msgstr "파일은 OneDrive의 {}에 남아 계속 동기화됩니다. 이 컴퓨터의 {} 폴더는 다시 비워지며 새로 넣는 파일은 백업되지 않습니다."
 
-msgid ""
-"Nothing is moved back or deleted. To have the files here again, move them "
-"from {} yourself."
+msgid "Nothing is moved back or deleted. To have the files here again, move them from {} yourself."
 msgstr "아무것도 되돌아가거나 삭제되지 않습니다. 파일을 다시 여기에서 사용하려면 {}에서 직접 옮기세요."
 
 msgid "Stop backing up"
@@ -2913,22 +2803,14 @@ msgstr "백업 중지"
 msgid "{} is now backed up to OneDrive."
 msgstr "이제 {}이(가) OneDrive에 백업됩니다."
 
-msgid ""
-"1 name was already taken in OneDrive, so it was saved with \"(from …)\" "
-"added."
-msgid_plural ""
-"{n} names were already taken in OneDrive, so they were saved with \"(from …)"
-"\" added."
+msgid "1 name was already taken in OneDrive, so it was saved with \"(from …)\" added."
+msgid_plural "{n} names were already taken in OneDrive, so they were saved with \"(from …)\" added."
 msgstr[0] "OneDrive에서 이름이 이미 사용 중이어서 “(from …)”을 추가해 저장했습니다."
 
-msgid ""
-"Your original folder is kept at {}: delete it yourself once you've checked "
-"your files in OneDrive."
+msgid "Your original folder is kept at {}: delete it yourself once you've checked your files in OneDrive."
 msgstr "원래 폴더는 {}에 보관됩니다. OneDrive의 파일을 확인한 후 직접 삭제하세요."
 
-msgid ""
-"The desktop's folder setting couldn't be updated ({}); the link at the old "
-"place still works."
+msgid "The desktop's folder setting couldn't be updated ({}); the link at the old place still works."
 msgstr "데스크톱 폴더 설정을 업데이트할 수 없습니다({}). 이전 위치의 링크는 계속 작동합니다."
 
 msgid "Stopped. Your files are still in OneDrive at {}."
@@ -2943,24 +2825,19 @@ msgstr "빈 대상 {}을(를) 비울 수 없습니다: {}"
 msgid "The destination {} changed after review."
 msgstr "검토 후 대상 {}이(가) 변경되었습니다."
 
-msgid ""
-"Copying to {} failed (is there enough space?). The original remains in {}."
+msgid "Copying to {} failed (is there enough space?). The original remains in {}."
 msgstr "{}에 복사하지 못했습니다(공간이 충분한가요?). 원본은 {}에 그대로 있습니다."
 
 msgid "Choose where to move the OneDrive folder"
 msgstr "OneDrive 폴더를 이동할 위치 선택"
 
-msgid ""
-"No folder chooser is available on this desktop, so the folder can't be moved "
-"from here."
+msgid "No folder chooser is available on this desktop, so the folder can't be moved from here."
 msgstr "이 데스크톱에는 폴더 선택기가 없어 여기에서 폴더를 이동할 수 없습니다."
 
 msgid "Couldn't safely resolve the selected destination folder."
 msgstr "선택한 대상 폴더의 경로를 안전하게 확인할 수 없습니다."
 
-msgid ""
-"{} is a symbolic link. Move the actual sync folder or choose a new folder in "
-"Options first."
+msgid "{} is a symbolic link. Move the actual sync folder or choose a new folder in Options first."
 msgstr "{}은(는) 심볼릭 링크입니다. 실제 동기화 폴더를 이동하거나 먼저 옵션에서 새 폴더를 선택하세요."
 
 msgid "{} isn't there (is its drive connected?), so there's nothing to move."
@@ -2981,14 +2858,10 @@ msgstr "동기화 엔진을 중지할 수 없습니다: {}"
 msgid "Couldn't recheck {}: {}"
 msgstr "{}을(를) 다시 확인할 수 없습니다: {}"
 
-msgid ""
-"The current sync folder changed while the destination was being reviewed. "
-"Refresh and try again."
+msgid "The current sync folder changed while the destination was being reviewed. Refresh and try again."
 msgstr "대상을 검토하는 동안 현재 동기화 폴더가 변경되었습니다. 새로고침한 후 다시 시도하세요."
 
-msgid ""
-"The destination drive changed while the folder move was being reviewed. "
-"Connect the intended drive and try again."
+msgid "The destination drive changed while the folder move was being reviewed. Connect the intended drive and try again."
 msgstr "폴더 이동을 검토하는 동안 대상 드라이브가 변경되었습니다. 사용할 드라이브를 연결하고 다시 시도하세요."
 
 msgid "Couldn't move the folder: {}"
@@ -2997,31 +2870,22 @@ msgstr "폴더를 이동할 수 없습니다: {}"
 msgid "Couldn't save the new folder in the settings: {}"
 msgstr "새 폴더를 설정에 저장할 수 없습니다: {}"
 
-msgid ""
-"Couldn't save the new folder in the settings: {}; rollback also failed: {}"
+msgid "Couldn't save the new folder in the settings: {}; rollback also failed: {}"
 msgstr "새 폴더를 설정에 저장할 수 없습니다: {}. 변경 사항도 되돌릴 수 없습니다: {}"
 
-msgid ""
-"The folder operation finished, but the sync engine couldn't be restarted: {}"
+msgid "The folder operation finished, but the sync engine couldn't be restarted: {}"
 msgstr "폴더 작업이 완료되었지만 동기화 엔진을 다시 시작할 수 없습니다: {}"
 
-msgid ""
-"Folder moved. The sync engine needs a full resync to carry on there — check "
-"the preview."
+msgid "Folder moved. The sync engine needs a full resync to carry on there — check the preview."
 msgstr "폴더를 이동했습니다. 해당 위치에서 계속하려면 동기화 엔진을 전체 재동기화해야 합니다 — 미리보기를 확인하세요."
 
-msgid ""
-"Folder copied. Your old folder ({}) was left untouched and is no longer "
-"synced: once you've checked your files in the new place, delete it yourself "
-"to free the space. Next, check the preview to carry on syncing."
+msgid "Folder copied. Your old folder ({}) was left untouched and is no longer synced: once you've checked your files in the new place, delete it yourself to free the space. Next, check the preview to carry on syncing."
 msgstr "폴더를 복사했습니다. 이전 폴더({})는 변경하지 않았으며 더 이상 동기화되지 않습니다. 새 위치의 파일을 확인한 후 직접 삭제해 공간을 확보하세요. 그런 다음 미리보기를 확인하고 동기화를 계속하세요."
 
 msgid "Finish moving the folder"
 msgstr "폴더 이동 완료"
 
-msgid ""
-"Your files are already in the new folder, so little or nothing should need "
-"to transfer."
+msgid "Your files are already in the new folder, so little or nothing should need to transfer."
 msgstr "파일이 이미 새 폴더에 있으므로 전송할 항목이 거의 없거나 없습니다."
 
 msgid "Add and sign in to a work or school account first."
@@ -3033,8 +2897,7 @@ msgstr "OneDrive 클라이언트 확인 중…"
 msgid "Give the account a name and pick a local folder."
 msgstr "계정 이름을 입력하고 로컬 폴더를 선택하세요."
 
-msgid ""
-"A national cloud account needs your organisation's tenant (ask its IT team)."
+msgid "A national cloud account needs your organisation's tenant (ask its IT team)."
 msgstr "국가 클라우드 계정에는 조직의 테넌트가 필요합니다(IT 담당자에게 문의하세요)."
 
 msgid "The tenant {}."
@@ -3067,20 +2930,37 @@ msgstr "{}을(를) 제거할 수 없습니다: {}"
 msgid "Checking the sync engine…"
 msgstr "동기화 엔진 확인 중…"
 
+msgid " Chosen by you."
+msgstr " 직접 선택했습니다."
+
+msgid " The one you chose ({}) isn't there any more."
+msgstr " 선택한 클라이언트({})가 더 이상 없습니다."
+
+msgid " The one you chose ({}) isn't there any more, so this one is used."
+msgstr " 선택한 클라이언트({})가 더 이상 없어서 이것을 사용합니다."
+
 msgid "Sync engine: OneDrive Client for Linux {} ({})"
 msgstr "동기화 엔진: OneDrive Client for Linux {} ({})"
 
-msgid ""
-"Sync engine: OneDrive Client for Linux {} ({}) — too old, please update it."
+msgid "Sync engine: OneDrive Client for Linux {} ({}) — too old, please update it."
 msgstr "동기화 엔진: OneDrive Client for Linux {} ({}) — 너무 오래된 버전입니다. 업데이트하세요."
 
 msgid "Sync engine: the OneDrive Client for Linux isn't installed."
 msgstr "동기화 엔진: OneDrive Client for Linux가 설치되어 있지 않습니다."
 
-msgid ""
-"Added. Look for \"DriveDeck for OneDrive\" in your applications menu. Right-"
-"clicking a file in Dolphin now also shows a OneDrive menu with \"Copy view-"
-"only link\", \"Copy editing link\" and \"View on the OneDrive website\"."
+msgid "Choose the OneDrive client (the program called onedrive)"
+msgstr "OneDrive 클라이언트 선택(onedrive라는 프로그램)"
+
+msgid "Using the OneDrive client {} from {}. Sync services set up by this app now use it."
+msgstr "OneDrive 클라이언트 {}(위치: {})을(를) 사용합니다. 이 앱이 설정한 동기화 서비스가 이제 이것을 사용합니다."
+
+msgid "No file chooser is available on this desktop."
+msgstr "이 데스크톱에서는 파일 선택기를 사용할 수 없습니다."
+
+msgid "The OneDrive client is found automatically again."
+msgstr "OneDrive 클라이언트를 다시 자동으로 찾습니다."
+
+msgid "Added. Look for \"DriveDeck for OneDrive\" in your applications menu. Right-clicking a file in Dolphin now also shows a OneDrive menu with \"Copy view-only link\", \"Copy editing link\" and \"View on the OneDrive website\"."
 msgstr "추가했습니다. 애플리케이션 메뉴에서 “OneDrive용 DriveDeck”을 찾으세요. 이제 Dolphin에서 파일을 마우스 오른쪽 버튼으로 클릭하면 “보기 전용 링크 복사”, “편집 링크 복사”, “OneDrive 웹사이트에서 보기”가 있는 OneDrive 메뉴도 표시됩니다."
 
 msgid "Couldn't add it: {}"
@@ -3089,15 +2969,19 @@ msgstr "추가할 수 없습니다: {}"
 msgid "Found the OneDrive client ({}). You're ready to sync."
 msgstr "OneDrive 클라이언트({})를 찾았습니다. 동기화할 준비가 되었습니다."
 
+msgid "The others were turned off, but {} wasn't: {}"
+msgstr "나머지는 껐지만 {}은(는) 끄지 못했습니다: {}"
+
 msgid "Your OneDrive Client for Linux ({}) is too old"
 msgstr "OneDrive Client for Linux({})이(가) 너무 오래되었습니다"
+
+msgid "From the client's authors: {}"
+msgstr "클라이언트 제작자의 안내: {}"
 
 msgid "Your computer will ask for your password…"
 msgstr "컴퓨터에서 암호를 요청합니다…"
 
-msgid ""
-"Nothing was changed: your computer didn't allow it (the password wasn't "
-"accepted, or no password window could be shown)."
+msgid "Nothing was changed: your computer didn't allow it (the password wasn't accepted, or no password window could be shown)."
 msgstr "변경된 내용이 없습니다. 컴퓨터에서 허용하지 않았습니다(암호가 승인되지 않았거나 암호 창을 표시할 수 없음)."
 
 msgid "Couldn't start the installer: {}"
@@ -3109,9 +2993,7 @@ msgstr "OneDrive 클라이언트를 {}(으)로 업데이트했습니다."
 msgid "The OneDrive client is installed. You're ready to sync."
 msgstr "OneDrive 클라이언트를 설치했습니다. 동기화할 준비가 되었습니다."
 
-msgid ""
-"It finished, but the OneDrive client still isn't working. The instructions "
-"show how to install it by hand."
+msgid "It finished, but the OneDrive client still isn't working. The instructions show how to install it by hand."
 msgstr "완료되었지만 OneDrive 클라이언트가 여전히 작동하지 않습니다. 안내에 수동 설치 방법이 나와 있습니다."
 
 msgid "Couldn't open OneDrive settings"
@@ -3129,8 +3011,32 @@ msgstr "이름을 변경했습니다."
 msgid "Syncing now…"
 msgstr "지금 동기화 중…"
 
+msgid "\"Keep my file dates\" is on for {}. Syncs that are running restart to pick it up."
+msgstr "{}에서 \"내 파일 날짜 유지\"가 켜져 있습니다. 실행 중인 동기화는 적용을 위해 다시 시작됩니다."
+
+msgid "Couldn't change {}"
+msgstr "{}을(를) 변경할 수 없습니다"
+
 msgid "Saved as {}. It opens now: read it before sharing it."
 msgstr "{}(으)로 저장했습니다. 지금 열렸습니다. 공유하기 전에 내용을 확인하세요."
+
+msgid "The full report was copied to your clipboard. Paste it below the line in the GitHub issue."
+msgstr "전체 보고서를 클립보드에 복사했습니다. GitHub 이슈에서 이 줄 아래에 붙여 넣으세요."
+
+msgid "No clipboard tool found. The report was saved as {}. Attach it to the GitHub issue."
+msgstr "클립보드 도구를 찾을 수 없습니다. 보고서를 {}(으)로 저장했습니다. GitHub 이슈에 첨부하세요."
+
+msgid "Nothing is sent until you submit the issue in your browser."
+msgstr "브라우저에서 이슈를 제출할 때까지 아무것도 전송되지 않습니다."
+
+msgid "Copied to clipboard."
+msgstr "클립보드에 복사했습니다."
+
+msgid "No clipboard tool found. Use Save as a file instead."
+msgstr "클립보드 도구를 찾을 수 없습니다. 대신 파일로 저장하세요."
+
+msgid "Saved as {}."
+msgstr "{}(으)로 저장했습니다."
 
 msgid "Couldn't remove {}"
 msgstr "{}을(를) 제거할 수 없습니다"
@@ -3147,9 +3053,7 @@ msgstr "저장할 수 없습니다: {}"
 msgid "The app file {} will be deleted."
 msgstr "앱 파일 {}이(가) 삭제됩니다."
 
-msgid ""
-"The app's package will then be removed; your computer will ask for your "
-"password."
+msgid "The app's package will then be removed; your computer will ask for your password."
 msgstr "그런 다음 앱 패키지가 제거되며 컴퓨터에서 암호를 요청합니다."
 
 msgid "Afterwards, remove the \"{}\" package with your software manager."
@@ -3158,67 +3062,77 @@ msgstr "그런 다음 소프트웨어 관리자에서 “{}” 패키지를 제�
 msgid "This copy isn't installed, so only your settings are removed."
 msgstr "이 복사본은 설치되지 않았으므로 설정만 제거됩니다."
 
-msgid ""
-"The tray icon didn't close. Log out and back in once this is done to be sure "
-"it's gone."
+msgid "The tray icon didn't close. Log out and back in once this is done to be sure it's gone."
 msgstr "트레이 아이콘이 닫히지 않았습니다. 완료 후 로그아웃하고 다시 로그인하여 완전히 종료되었는지 확인하세요."
 
-msgid ""
-"Your accounts keep syncing in the background with the OneDrive Client for "
-"Linux."
+msgid "Your accounts keep syncing in the background with the OneDrive Client for Linux."
 msgstr "OneDrive Client for Linux를 사용해 계정이 백그라운드에서 계속 동기화됩니다."
 
-msgid ""
-"{} was left untouched because its settings folder couldn't be checked: {}"
+msgid "{} was left untouched because its settings folder couldn't be checked: {}"
 msgstr "설정 폴더를 확인할 수 없어 {}을(를) 변경하지 않았습니다: {}"
 
-msgid ""
-"{} was left untouched because its one-time sync job couldn't be stopped: {}"
+msgid "{} was left untouched because its one-time sync job couldn't be stopped: {}"
 msgstr "일회성 동기화 작업을 중지할 수 없어 {}을(를) 변경하지 않았습니다: {}"
 
 msgid "{} was left untouched because its sync service couldn't be stopped: {}"
 msgstr "동기화 서비스를 중지할 수 없어 {}을(를) 변경하지 않았습니다: {}"
 
-msgid ""
-"{} was stopped, but its service couldn't be disabled. Its files and service "
-"were left intact: {}"
+msgid "{} was stopped, but its service couldn't be disabled. Its files and service were left intact: {}"
 msgstr "{}을(를) 중지했지만 서비스를 비활성화할 수 없습니다. 파일과 서비스는 그대로 두었습니다: {}"
 
-msgid ""
-"{} was stopped, but its service file couldn't be removed. Its account files "
-"were left intact: {}"
+msgid "{} was stopped, but its service file couldn't be removed. Its account files were left intact: {}"
 msgstr "{}을(를) 중지했지만 서비스 파일을 제거할 수 없습니다. 계정 파일은 그대로 두었습니다: {}"
 
-msgid ""
-"{} was stopped and disabled, but its custom service file at {} was left in "
-"place."
+msgid "{} was stopped and disabled, but its custom service file at {} was left in place."
 msgstr "{}을(를) 중지하고 비활성화했지만 {}의 사용자 지정 서비스 파일은 그대로 두었습니다."
 
-msgid ""
-"{}: signed out and its sync settings removed. The files in {} are still "
-"there."
+msgid "{}: signed out and its sync settings removed. The files in {} are still there."
 msgstr "{}: 로그아웃하고 동기화 설정을 제거했습니다. {}의 파일은 그대로 있습니다."
 
-msgid ""
-"{} also holds files that aren't the OneDrive client's, so they and the "
-"folder were kept."
+msgid "{} also holds files that aren't the OneDrive client's, so they and the folder were kept."
 msgstr "{}에는 OneDrive 클라이언트 소유가 아닌 파일도 있어 해당 파일과 폴더를 유지했습니다."
 
-msgid ""
-"The account services were removed, but systemd couldn't reload its unit "
-"list: {}"
+msgid "The account services were removed, but systemd couldn't reload its unit list: {}"
 msgstr "계정 서비스를 제거했지만 systemd에서 유닛 목록을 다시 불러올 수 없습니다: {}"
 
 msgid "Couldn't delete {}: {}. Delete it yourself to finish."
 msgstr "{}을(를) 삭제할 수 없습니다: {}. 완료하려면 직접 삭제하세요."
 
-msgid ""
-"The package wasn't removed (the password prompt may have been cancelled). "
-"Remove \"{}\" with your software manager to finish."
+msgid "The package wasn't removed (the password prompt may have been cancelled). Remove \"{}\" with your software manager to finish."
 msgstr "패키지를 제거하지 않았습니다(암호 요청이 취소되었을 수 있음). 완료하려면 소프트웨어 관리자에서 “{}”을(를) 제거하세요."
 
 msgid "Remove the \"{}\" package with your software manager to finish."
 msgstr "완료하려면 소프트웨어 관리자에서 “{}” 패키지를 제거하세요."
+
+msgid "DriveDeck updated"
+msgstr "DriveDeck 업데이트됨"
+
+msgid "Version {} is installed. The tray icon restarts on it by itself; reopen any DriveDeck window that was open."
+msgstr "버전 {}이(가) 설치되었습니다. 트레이 아이콘은 자동으로 새 버전으로 다시 시작됩니다. 열려 있던 DriveDeck 창은 다시 여세요."
+
+msgid "Couldn't update DriveDeck"
+msgstr "DriveDeck을 업데이트할 수 없습니다"
+
+msgid "{} The download page is open in your browser instead."
+msgstr "{} 대신 브라우저에서 다운로드 페이지를 열었습니다."
+
+msgid "Couldn't ask GitHub about the new version."
+msgstr "새 버전에 대해 GitHub에 확인할 수 없었습니다."
+
+msgid "The release doesn't list a checksum for {}, so it wasn't installed."
+msgstr "릴리스에 {}의 체크섬이 없어 설치하지 않았습니다."
+
+msgid "Couldn't download the update: {}"
+msgstr "업데이트를 다운로드할 수 없습니다: {}"
+
+msgid "The download didn't match the release's checksum, so it wasn't installed."
+msgstr "다운로드한 파일이 릴리스의 체크섬과 일치하지 않아 설치하지 않았습니다."
+
+msgid "Couldn't put the new version in place: {}"
+msgstr "새 버전을 설치 위치에 둘 수 없습니다: {}"
+
+msgid "The package manager couldn't install version {}."
+msgstr "패키지 관리자가 버전 {}을(를) 설치하지 못했습니다."
 
 msgid "0 means never. Too low cuts off large transfers."
 msgstr "0은 사용 안 함을 의미합니다. 너무 낮게 설정하면 대용량 전송이 중단됩니다."
@@ -3226,9 +3140,7 @@ msgstr "0은 사용 안 함을 의미합니다. 너무 낮게 설정하면 대�
 msgid "0 syncs files of any size."
 msgstr "0이면 모든 크기의 파일을 동기화합니다."
 
-msgid ""
-"10 to 60 MB, in steps of 5. Bigger pieces can be faster on fast, steady "
-"connections."
+msgid "10 to 60 MB, in steps of 5. Bigger pieces can be faster on fast, steady connections."
 msgstr "10~60 MB 범위에서 5씩 조정합니다. 빠르고 안정적인 연결에서는 더 큰 단위가 빠를 수 있습니다."
 
 msgid "600 means only you can read them."
@@ -3239,6 +3151,9 @@ msgstr "700은 본인만 열 수 있음을 의미합니다."
 
 msgid "Add the OneDrive folder to the file manager's sidebar"
 msgstr "파일 관리자 사이드바에 OneDrive 폴더 추가"
+
+msgid "After an upload the client normally changes the file's date on this computer to the time it reached OneDrive, so LibreOffice and other editors warn that someone else changed the file. This sends your own date with every upload instead, so it stays as it was. Small files upload a little slower."
+msgstr "업로드 후 클라이언트는 보통 이 컴퓨터에 있는 파일의 날짜를 파일이 OneDrive에 도착한 시간으로 바꿉니다. 그래서 LibreOffice와 다른 편집기가 다른 사람이 파일을 변경했다고 경고합니다. 이 옵션은 업로드할 때마다 원래 날짜를 함께 보내므로 날짜가 그대로 유지됩니다. 작은 파일은 업로드가 조금 느려집니다."
 
 msgid "Also delete the emptied folders"
 msgstr "비워진 폴더도 삭제"
@@ -3264,9 +3179,7 @@ msgstr "이름순 내림차순"
 msgid "Can fix transfers that stall on some networks and proxies."
 msgstr "일부 네트워크 및 프록시에서 멈추는 전송 문제를 해결할 수 있습니다."
 
-msgid ""
-"Counted in sync checks (set under When to sync). Lower catches missed online "
-"changes sooner but uses more data."
+msgid "Counted in sync checks (set under When to sync). Lower catches missed online changes sooner but uses more data."
 msgstr "동기화 확인 횟수에 포함됩니다(동기화 시간에서 설정). 값을 낮추면 놓친 온라인 변경 사항을 더 빨리 찾지만 데이터를 더 사용합니다."
 
 msgid "Delete files here after they upload"
@@ -3308,9 +3221,7 @@ msgstr "동시에 전송할 파일 수"
 msgid "Folders to skip must match the whole path"
 msgstr "건너뛸 폴더는 전체 경로와 일치해야 함"
 
-msgid ""
-"For moving files to OneDrive, usually with Upload only. Leaves the folders "
-"behind."
+msgid "For moving files to OneDrive, usually with Upload only. Leaves the folders behind."
 msgstr "파일을 OneDrive로 옮길 때 사용하며 보통 업로드 전용과 함께 씁니다. 폴더는 그대로 둡니다."
 
 msgid "Full online check every"
@@ -3328,8 +3239,7 @@ msgstr "개별 요청 제한 시간"
 msgid "Give up when no data arrives for"
 msgstr "데이터가 도착하지 않을 때 제한 시간"
 
-msgid ""
-"Helps with apps that save on every keystroke (Obsidian and other note apps)."
+msgid "Helps with apps that save on every keystroke (Obsidian and other note apps)."
 msgstr "키 입력마다 저장하는 앱(Obsidian 및 기타 메모 앱)에 도움이 됩니다."
 
 msgid "Identify as"
@@ -3341,9 +3251,7 @@ msgstr "앱에서 이미 읽는 시스템 저널에 추가로 기록합니다."
 msgid "Items deleted here can't be restored online afterwards."
 msgstr "여기서 삭제한 항목은 나중에 온라인에서 복원할 수 없습니다."
 
-msgid ""
-"Items online that aren't on this computer are deleted online instead of "
-"downloaded. Check with a dry run first."
+msgid "Items online that aren't on this computer are deleted online instead of downloaded. Check with a dry run first."
 msgstr "온라인에 있지만 이 컴퓨터에는 없는 항목은 다운로드하지 않고 온라인에서 삭제합니다. 먼저 시험 실행으로 확인하세요."
 
 msgid "Keep SharePoint's changed copy as a new version"
@@ -3351,11 +3259,6 @@ msgstr "SharePoint에서 변경한 복사본을 새 버전으로 유지"
 
 msgid "Keep this much disk space free"
 msgstr "이만큼의 디스크 공간을 여유로 유지"
-
-msgid ""
-"Keeps file dates exactly right online, at the cost of a little speed for "
-"small files."
-msgstr "작은 파일의 속도를 약간 희생하여 온라인 파일 날짜를 정확하게 유지합니다."
 
 msgid "Largest first"
 msgstr "큰 파일부터"
@@ -3366,9 +3269,7 @@ msgstr "앱 자체 폴더(~/.local/share/drivedeck/logs)를 사용하려면 비�
 msgid "Leave empty for the client's own name, which Microsoft throttles least."
 msgstr "Microsoft가 제한을 가장 적게 적용하는 클라이언트 기본 이름을 사용하려면 비워 두세요."
 
-msgid ""
-"Leaves permissions to the folder (needed on drives that don't support Linux "
-"permissions, like NTFS or exFAT)."
+msgid "Leaves permissions to the folder (needed on drives that don't support Linux permissions, like NTFS or exFAT)."
 msgstr "폴더 권한을 사용합니다(NTFS 또는 exFAT처럼 Linux 권한을 지원하지 않는 드라이브에 필요)."
 
 msgid "Listen on address"
@@ -3404,17 +3305,13 @@ msgstr "OneDrive를 이 컴퓨터와 정확히 일치시키기"
 msgid "More than 8 rarely helps and can get you throttled by Microsoft."
 msgstr "8보다 큰 값은 거의 도움이 되지 않으며 Microsoft의 제한을 받을 수 있습니다."
 
-msgid ""
-"Needs a public https address that forwards to this computer. Instant online "
-"changes usually make this unnecessary."
+msgid "Needs a public https address that forwards to this computer. Instant online changes usually make this unnecessary."
 msgstr "이 컴퓨터로 전달되는 공개 https 주소가 필요합니다. 온라인 변경 사항을 즉시 가져오는 경우 보통 필요하지 않습니다."
 
 msgid "Network"
 msgstr "네트워크"
 
-msgid ""
-"Normally a clashing local file is kept under a new name. With this on, its "
-"changes are lost."
+msgid "Normally a clashing local file is kept under a new name. With this on, its changes are lost."
 msgstr "일반적으로 충돌하는 로컬 파일은 새 이름으로 보관됩니다. 이 옵션을 켜면 해당 파일의 변경 사항이 손실됩니다."
 
 msgid "Notify about every file synced"
@@ -3423,25 +3320,19 @@ msgstr "동기화되는 모든 파일 알림"
 msgid "Online changes are then picked up at each sync check instead."
 msgstr "대신 온라인 변경 사항은 각 동기화 확인 시 가져옵니다."
 
-msgid ""
-"Only for SharePoint libraries that change files after upload, which makes "
-"every check fail."
+msgid "Only for SharePoint libraries that change files after upload, which makes every check fail."
 msgstr "업로드 후 파일을 변경하여 매번 확인을 실패하게 만드는 SharePoint 라이브러리에만 해당합니다."
 
 msgid "Only for government or national cloud accounts."
 msgstr "정부 또는 국가 클라우드 계정에만 해당합니다."
 
-msgid ""
-"Only for reporting a problem. The log then holds sign-in tokens: don't share "
-"it without removing them."
+msgid "Only for reporting a problem. The log then holds sign-in tokens: don't share it without removing them."
 msgstr "문제 보고용으로만 사용하세요. 로그에 로그인 토큰이 포함되므로 제거하지 않고 공유하지 마세요."
 
 msgid "Only if your organisation registered its own app for the client."
 msgstr "조직에서 클라이언트용 앱을 직접 등록한 경우에만 해당합니다."
 
-msgid ""
-"Only when SharePoint reports the wrong size for files, so good downloads get "
-"thrown away."
+msgid "Only when SharePoint reports the wrong size for files, so good downloads get thrown away."
 msgstr "SharePoint가 파일 크기를 잘못 보고하여 정상적인 다운로드를 버리는 경우에만 해당합니다."
 
 msgid "Overwrite local files on a conflict instead of keeping a copy"
@@ -3456,10 +3347,7 @@ msgstr "새 폴더 권한"
 msgid "Public address"
 msgstr "공개 주소"
 
-msgid ""
-"Put an empty file named .nosync in the mount point while the drive is "
-"unplugged. If it's ever visible, syncing stops instead of deleting "
-"everything online."
+msgid "Put an empty file named .nosync in the mount point while the drive is unplugged. If it's ever visible, syncing stops instead of deleting everything online."
 msgstr "드라이브가 분리된 동안 마운트 지점에 .nosync라는 빈 파일을 두세요. 이 파일이 보이면 온라인 항목을 모두 삭제하지 않고 동기화를 중지합니다."
 
 msgid "Quiets the log when nothing is changing."
@@ -3474,16 +3362,13 @@ msgstr "서버 주소 기억 기간"
 msgid "Renew the subscription every"
 msgstr "구독 갱신 주기"
 
-msgid ""
-"Required for a national cloud; otherwise only if your organisation asks."
+msgid "Required for a national cloud; otherwise only if your organisation asks."
 msgstr "국가 클라우드에 필요하며, 그 외에는 조직에서 요청한 경우에만 필요합니다."
 
 msgid "Retry a failed subscription after"
 msgstr "실패한 구독 재시도 시간"
 
-msgid ""
-"SharePoint rewrites Office, PDF and HTML files after upload. Normally the "
-"client puts your original back."
+msgid "SharePoint rewrites Office, PDF and HTML files after upload. Normally the client puts your original back."
 msgstr "SharePoint는 업로드 후 Office, PDF 및 HTML 파일을 다시 작성합니다. 일반적으로 클라이언트가 원본 파일을 복원합니다."
 
 msgid "Sign-in"
@@ -3495,9 +3380,7 @@ msgstr "작은 파일부터"
 msgid "Stop and ask when this many items are deleted at once"
 msgstr "한 번에 이 개수보다 많은 항목을 삭제할 때 중지하고 확인"
 
-msgid ""
-"Stored in the file's extended attributes (user.onedrive.createdBy, "
-"user.onedrive.lastModifiedBy)."
+msgid "Stored in the file's extended attributes (user.onedrive.createdBy, user.onedrive.lastModifiedBy)."
 msgstr "파일의 확장 속성(user.onedrive.createdBy, user.onedrive.lastModifiedBy)에 저장됩니다."
 
 msgid "Subscription lasts"
@@ -3509,9 +3392,7 @@ msgstr "동기화 중"
 msgid "The client can then only download. Uploads and online deletes fail."
 msgstr "그러면 클라이언트는 다운로드만 할 수 있습니다. 업로드와 온라인 삭제는 실패합니다."
 
-msgid ""
-"Then \"Projects/Old\" only skips that one folder, and a plain name only "
-"skips a folder at the top."
+msgid "Then \"Projects/Old\" only skips that one folder, and a plain name only skips a folder at the top."
 msgstr "그러면 “Projects/Old”는 해당 폴더만 건너뛰고, 폴더 이름만 입력하면 최상위 폴더만 건너뜁니다."
 
 msgid "Transfer files in this order"
@@ -3525,9 +3406,6 @@ msgstr "휴지통 폴더"
 
 msgid "Treat this computer as the source of truth"
 msgstr "이 컴퓨터를 기준으로 사용"
-
-msgid "Upload every file in pieces"
-msgstr "모든 파일을 나누어 업로드"
 
 msgid "Upload large files in pieces of"
 msgstr "대용량 파일을 다음 단위로 나누어 업로드"
@@ -3544,14 +3422,10 @@ msgstr "사용 중인 앱의 변경 사항을 보내기 전에 대기"
 msgid "Webhooks"
 msgstr "웹훅"
 
-msgid ""
-"When only some folders are chosen, files sitting directly in the OneDrive "
-"folder still sync."
+msgid "When only some folders are chosen, files sitting directly in the OneDrive folder still sync."
 msgstr "일부 폴더만 선택해도 OneDrive 폴더 바로 아래에 있는 파일은 계속 동기화됩니다."
 
-msgid ""
-"When the same item differs here and online, this computer's copy wins "
-"instead of OneDrive's."
+msgid "When the same item differs here and online, this computer's copy wins instead of OneDrive's."
 msgstr "같은 항목이 이 컴퓨터와 온라인에서 다르면 OneDrive 버전 대신 이 컴퓨터의 복사본을 사용합니다."
 
 msgid "Where files deleted online go on this computer."
@@ -3572,158 +3446,35 @@ msgstr "개 항목"
 msgid "seconds"
 msgstr "초"
 
-#: src/runner.rs
-msgid "OneDrive files"
-msgstr "OneDrive 파일"
+msgid "Desktop"
+msgstr "바탕 화면"
 
-#: src/runner.rs
-msgid "Search your OneDrive, including files that aren't on this computer"
-msgstr "이 컴퓨터에 없는 파일을 포함해 OneDrive 검색"
+msgid "Documents"
+msgstr "문서"
 
-#: src/runner.rs
-msgid "Top of OneDrive"
-msgstr "OneDrive 최상위"
+msgid "Music"
+msgstr "음악"
 
-#: src/runner.rs
-msgid "Open on the OneDrive website"
-msgstr "OneDrive 웹사이트에서 열기"
+msgid "Pictures"
+msgstr "사진"
 
-#: ui/app.slint
-msgid "Search OneDrive from KRunner (Alt+Space)"
-msgstr "KRunner에서 OneDrive 검색(Alt+Space)"
+msgid "Videos"
+msgstr "비디오"
 
-#: ui/app.slint
-msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
-msgstr "이 컴퓨터에 없는 파일을 포함해 이름이나 내용으로 파일을 찾습니다. 이 기능을 켜면 KRunner에 입력한 세 글자 이상의 텍스트가 일치 항목을 찾기 위해 Microsoft로 전송됩니다."
+#~ msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed by itself."
+#~ msgstr "하루에 한 번 GitHub에서 이 앱의 페이지를 확인합니다. 자동으로 다운로드하거나 설치하지 않습니다."
 
-#: src/ui.rs
-msgid "From the client's authors: {}"
-msgstr "클라이언트 제작자의 안내: {}"
+#~ msgid "Get it"
+#~ msgstr "다운로드"
 
-#: src/doctor.rs
-msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
-msgstr "{}: 앱 외부에서 설정한 서비스 파일의 RestartPreventExitStatus에 종료 코드 78이 없어 클라이언트가 전체 재동기화를 요청한 뒤 계속 다시 시작됩니다. 해당 파일에 “RestartPreventExitStatus=78”을 추가하거나 앱에서 서비스를 관리하도록 하세요."
+#~ msgid "Version {} is out — get it…"
+#~ msgstr "버전 {}이(가) 출시되었습니다 — 다운로드…"
 
-#: src/core.rs
-msgid "Couldn't reach Microsoft OneDrive ({}). Check your internet connection; syncing carries on once it's back."
-msgstr "Microsoft OneDrive에 연결할 수 없습니다({}). 인터넷 연결을 확인하세요. 연결이 돌아오면 동기화가 계속됩니다."
+#~ msgid "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) to get it."
+#~ msgstr "이 앱의 버전 {}을(를) 사용할 수 있습니다. OneDrive 트레이 아이콘을 클릭하거나 마우스 오른쪽 버튼으로 눌러 다운로드하세요."
 
-#: src/core.rs
-msgid "Microsoft OneDrive reported an error: {}"
-msgstr "Microsoft OneDrive에서 오류를 보고했습니다: {}"
+#~ msgid "Keeps file dates exactly right online, at the cost of a little speed for small files."
+#~ msgstr "작은 파일의 속도를 약간 희생하여 온라인 파일 날짜를 정확하게 유지합니다."
 
-#: src/update.rs
-msgid "Couldn't ask GitHub about the new version."
-msgstr "새 버전에 대해 GitHub에 확인할 수 없었습니다."
-
-#: src/update.rs
-msgid "Couldn't download the update: {}"
-msgstr "업데이트를 다운로드할 수 없습니다: {}"
-
-#: src/update.rs
-msgid "Couldn't put the new version in place: {}"
-msgstr "새 버전을 설치 위치에 둘 수 없습니다: {}"
-
-#: src/update.rs
-msgid "Couldn't update DriveDeck"
-msgstr "DriveDeck을 업데이트할 수 없습니다"
-
-#: src/update.rs
-msgid "DriveDeck updated"
-msgstr "DriveDeck 업데이트됨"
-
-#: src/update.rs
-msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed until you press Update now."
-msgstr "하루에 한 번 GitHub에서 이 앱의 페이지를 확인합니다. 지금 업데이트를 누르기 전에는 아무것도 다운로드하거나 설치하지 않습니다."
-
-#: src/update.rs
-msgid "The download didn't match the release's checksum, so it wasn't installed."
-msgstr "다운로드한 파일이 릴리스의 체크섬과 일치하지 않아 설치하지 않았습니다."
-
-#: src/update.rs
-msgid "The package manager couldn't install version {}."
-msgstr "패키지 관리자가 버전 {}을(를) 설치하지 못했습니다."
-
-#: src/update.rs
-msgid "The release doesn't list a checksum for {}, so it wasn't installed."
-msgstr "릴리스에 {}의 체크섬이 없어 설치하지 않았습니다."
-
-#: src/update.rs
-msgid "This copy can't update itself; the download page is open: {}"
-msgstr "이 사본은 스스로 업데이트할 수 없습니다. 다운로드 페이지를 열었습니다: {}"
-
-#: src/update.rs
-msgid "This is the newest version."
-msgstr "최신 버전입니다."
-
-#: src/update.rs
-msgid "Update now"
-msgstr "지금 업데이트"
-
-#: src/update.rs
-msgid "Update to version {} now"
-msgstr "지금 버전 {}(으)로 업데이트"
-
-#: src/update.rs
-msgid "Updated to version {}."
-msgstr "버전 {}(으)로 업데이트했습니다."
-
-#: src/update.rs
-msgid "Version {} is installed. The tray icon restarts on it by itself; reopen any DriveDeck window that was open."
-msgstr "버전 {}이(가) 설치되었습니다. 트레이 아이콘은 자동으로 새 버전으로 다시 시작됩니다. 열려 있던 DriveDeck 창은 다시 여세요."
-
-#: src/update.rs
-msgid "Version {} of this app is available. Click the OneDrive tray icon (or right-click it) and choose Update."
-msgstr "이 앱의 버전 {}을(를) 사용할 수 있습니다. 트레이의 OneDrive 아이콘을 클릭(또는 오른쪽 클릭)하고 업데이트를 선택하세요."
-
-#: src/update.rs
-msgid "{} The download page is open in your browser instead."
-msgstr "{} 대신 브라우저에서 다운로드 페이지를 열었습니다."
-
-msgid "Report a bug…"
-msgstr "버그 신고…"
-
-msgid "Report a bug"
-msgstr "버그 신고"
-
-msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
-msgstr "버그 보고서에 들어갈 내용입니다. 아무것도 전송되지 않았습니다. 내용을 읽고 공유하지 않을 항목을 지운 다음 전송 방법을 선택하세요."
-
-msgid "What were you doing, and what went wrong?"
-msgstr "무엇을 하고 있었으며 어떤 문제가 발생했나요?"
-
-msgid "Open GitHub issue"
-msgstr "GitHub 이슈 열기"
-
-msgid "Copy to clipboard"
-msgstr "클립보드에 복사"
-
-msgid "Save as a file"
-msgstr "파일로 저장"
-
-msgid "The full report was copied to your clipboard. Paste it below the line in the GitHub issue."
-msgstr "전체 보고서를 클립보드에 복사했습니다. GitHub 이슈에서 이 줄 아래에 붙여 넣으세요."
-
-msgid "No clipboard tool found. The report was saved as {}. Attach it to the GitHub issue."
-msgstr "클립보드 도구를 찾을 수 없습니다. 보고서를 {}(으)로 저장했습니다. GitHub 이슈에 첨부하세요."
-
-msgid "Nothing is sent until you submit the issue in your browser."
-msgstr "브라우저에서 이슈를 제출할 때까지 아무것도 전송되지 않습니다."
-
-msgid "Copied to clipboard."
-msgstr "클립보드에 복사했습니다."
-
-msgid "No clipboard tool found. Use Save as a file instead."
-msgstr "클립보드 도구를 찾을 수 없습니다. 대신 파일로 저장하세요."
-
-msgid "Saved as {}."
-msgstr "{}(으)로 저장했습니다."
-
-msgid "Search OneDrive from the GNOME overview"
-msgstr "GNOME 개요에서 OneDrive 검색"
-
-msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
-msgstr "개요에서 입력하면 OneDrive를 검색합니다. 입력한 내용은 Microsoft로 전송됩니다."
-
-msgid "The report (you can edit or delete anything here)"
-msgstr "보고서 (여기에서 무엇이든 편집하거나 삭제할 수 있습니다)"
+#~ msgid "Upload every file in pieces"
+#~ msgstr "모든 파일을 나누어 업로드"

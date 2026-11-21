@@ -15,8 +15,9 @@ sh scripts/update-translations.sh
 
 The extractor reads annotated strings from `ui/app.slint`. The script adds strings used with
 Rust's `tr!` macro. Review `po/drivedeck.pot`, then merge it into every language catalog with `msgmerge`. Translate
-new entries, keeping every placeholder unchanged. The unit tests check catalog coverage and
-placeholders.
+new entries in every language in the same change, keeping every placeholder unchanged. The unit
+tests fail if a string in the code is missing from `po/drivedeck.pot`, if any language has an
+untranslated or fuzzy entry, or if a translation changes the placeholders.
 
 ## Adding a language
 
