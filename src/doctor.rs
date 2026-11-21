@@ -387,20 +387,25 @@ fn scrub_tokens(s: &str) -> String {
     out
 }
 
-/// One run of id-like characters. A setting written `Name=value` (`RestartPreventExitStatus=78`,
-/// `drive_id=b!…`) keeps its name, which is never private; only a long value is hidden.
+/// One run of id-like characters: hidden when it is long and has a digit. A setting written
+/// `Name=value` keeps its name, which is never private, and its value only when that is a few
+/// characters (`RestartPreventExitStatus=78`); a longer one (`resid=1A2B…!123`) is hidden whatever
+/// its own length, as the whole run always was.
 fn scrub_run(run: &str) -> String {
-    let long_id = |r: &str| r.len() >= 24 && r.chars().any(|c| c.is_ascii_digit());
-    if let Some((name, value)) = run.split_once('=')
-        && !name.is_empty()
-        && name.chars().all(|c| c.is_ascii_alphabetic() || c == '_')
-    {
-        return format!("{name}={}", if long_id(value) { "<id>" } else { value });
+    if !(run.len() >= 24 && run.chars().any(|c| c.is_ascii_digit())) {
+        return run.into();
     }
-    if long_id(run) {
-        "<id>".into()
-    } else {
-        run.into()
+    match run.split_once('=') {
+        Some((name, value))
+            if !name.is_empty() && name.chars().all(|c| c.is_ascii_alphabetic() || c == '_') =>
+        {
+            if value.len() <= 6 {
+                run.into()
+            } else {
+                format!("{name}=<id>")
+            }
+        }
+        _ => "<id>".into(),
     }
 }
 
@@ -822,6 +827,11 @@ mod tests {
         assert_eq!(scrub_tokens("id 01H5FV3A56Y2GOVW7725BZO354PWSE"), "id <id>");
         assert_eq!(scrub_tokens("t=Ab12Cd34Ef56Gh78Ij90Kl12Mn34=="), "t=<id>");
         assert_eq!(scrub_tokens("Ab12Cd34Ef56Gh78Ij90Kl12Mn34=="), "<id>");
+        // review: a shorter value after a short name was hidden as a whole run, and still is
+        assert_eq!(scrub_tokens("resid=1A2B3C4D5E6F7A8B!123"), "resid=<id>");
+        assert_eq!(scrub_tokens("sig=Ab12Cd34Ef56Gh78Ij90"), "sig=<id>");
+        // short runs were never hidden
+        assert_eq!(scrub_tokens("cid=EE7F19F0"), "cid=EE7F19F0");
     }
 
     #[test]

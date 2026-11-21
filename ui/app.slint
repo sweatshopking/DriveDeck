@@ -1741,7 +1741,8 @@ export component AppWindow inherits Window {
                                             }
                                         }
                                         CheckBox {
-                                            text: row.name;
+                                            // row.inherited: some folders inside are ticked differently from this one
+                                            text: row.inherited ? @tr("{} (partly)", row.name) : row.name;
                                             checked: row.checked;
                                             horizontal-stretch: 1;
                                             toggled => {

@@ -834,6 +834,9 @@ struct ErrorWatch {
     since: HashMap<String, Instant>,
     /// accounts already told about their current error
     told: HashSet<String>,
+    /// account key -> when its error last went away: it counts as over only once it has stayed away for
+    /// ERROR_MUST_LAST, so an error that keeps coming back between short sync attempts is one error (announced once)
+    clear_since: HashMap<String, Instant>,
 }
 
 impl ErrorWatch {
@@ -841,6 +844,7 @@ impl ErrorWatch {
     fn forget_except(&mut self, present: &HashSet<String>) {
         self.since.retain(|k, _| present.contains(k));
         self.told.retain(|k| present.contains(k));
+        self.clear_since.retain(|k, _| present.contains(k));
     }
 
     /// Call once per poll for each account. `before`: its phase at the previous poll (None on the first poll).
@@ -854,10 +858,17 @@ impl ErrorWatch {
         now: Instant,
     ) -> bool {
         if phase != Phase::Error {
-            self.since.remove(key);
-            self.told.remove(key);
+            if self.since.contains_key(key) {
+                let cleared = *self.clear_since.entry(key.to_string()).or_insert(now);
+                if now.duration_since(cleared) >= ERROR_MUST_LAST {
+                    self.since.remove(key);
+                    self.told.remove(key);
+                    self.clear_since.remove(key);
+                }
+            }
             return false;
         }
+        self.clear_since.remove(key);
         if !self.since.contains_key(key) {
             // an error already there when the tray started, or when we first looked, is not news (as always)
             if before.is_some_and(|b| !needs_attention(b)) {
@@ -926,6 +937,20 @@ fn apply_one(a: &mut Acc, when: DateTime<Local>, ev: LogEvent) {
         LogEvent::File { path, .. } => {
             a.told_blocked.remove(path);
             a.told_blocked_order.retain(|notified| notified != path);
+            // when each was told only matters for half an hour; and never more of them than the cap
+            a.told_blocked_when
+                .retain(|_, told| when.signed_duration_since(*told) < lock_notice_gap());
+            while a.told_blocked_when.len() > core::MAX_TRACKED_BLOCKED {
+                let Some(oldest) = a
+                    .told_blocked_when
+                    .iter()
+                    .min_by_key(|(_, t)| **t)
+                    .map(|(p, _)| p.clone())
+                else {
+                    break;
+                };
+                a.told_blocked_when.remove(&oldest);
+            }
         }
         _ => {}
     }
@@ -1840,11 +1865,30 @@ mod tests {
 
     #[test]
     fn each_new_error_is_announced_again() {
+        // new: after it had been gone for 45 s or more
+        let mut ph = run_of(Phase::UpToDate, 1);
+        ph.extend(run_of(Phase::Error, 30));
+        ph.extend(run_of(Phase::UpToDate, 16));
+        ph.extend(run_of(Phase::Error, 30));
+        assert_eq!(watch(&ph, 3600).len(), 2);
+    }
+
+    #[test]
+    fn an_error_that_keeps_coming_back_is_announced_once() {
+        // review: error, one poll of syncing, error again... it never lasted 45 s in one stretch, so it was never told
+        let mut ph = run_of(Phase::UpToDate, 2);
+        for _ in 0..10 {
+            ph.extend(run_of(Phase::Error, 10));
+            ph.push(Phase::Syncing);
+        }
+        let told = watch(&ph, 3600);
+        assert_eq!(told.len(), 1, "{told:?}");
+        // a short gap is still the same error: not told twice
         let mut ph = run_of(Phase::UpToDate, 1);
         ph.extend(run_of(Phase::Error, 30));
         ph.extend(run_of(Phase::UpToDate, 3));
         ph.extend(run_of(Phase::Error, 30));
-        assert_eq!(watch(&ph, 3600).len(), 2);
+        assert_eq!(watch(&ph, 3600).len(), 1);
     }
 
     #[test]
@@ -1931,6 +1975,36 @@ mod tests {
             apply_one(&mut a, t, blocked("a.docx", Locked));
         }
         assert!(a.fresh_blocked.is_empty(), "no repeats within half an hour");
+        // review: uploads used to leave every announced file in told_blocked_when for good
+        {
+            let mut b = acc();
+            let t0 = now + chrono::Duration::minutes(29);
+            for n in 0..core::MAX_TRACKED_BLOCKED + 50 {
+                let f = format!("doc-{n}.odt");
+                apply_one(&mut b, t0, blocked(&f, Locked));
+                apply_one(
+                    &mut b,
+                    t0,
+                    LogEvent::File {
+                        kind: "↑",
+                        path: f.clone(),
+                    },
+                );
+            }
+            assert!(b.told_blocked_when.len() <= core::MAX_TRACKED_BLOCKED);
+            apply_one(
+                &mut b,
+                t0 + chrono::Duration::hours(1),
+                LogEvent::File {
+                    kind: "↑",
+                    path: "x".into(),
+                },
+            );
+            assert!(
+                b.told_blocked_when.is_empty(),
+                "older than half an hour: dropped"
+            );
+        }
         // after half an hour (and an upload in between) a lock is news again, once
         let later = now + chrono::Duration::minutes(31);
         apply_one(&mut a, later, upload());

@@ -447,6 +447,17 @@ fn run_sync_now(account: Option<&str>) -> i32 {
     let mut errors = Vec::new();
     for (info, status) in picked {
         if !info.signed_in || status.phase == core::Phase::Resyncing {
+            // one asked for by name: say why nothing happened, and fail (scripts check the exit status)
+            if account.is_some() {
+                errors.push(if info.signed_in {
+                    format!(
+                        "{}: a full resync is running; try again when it has finished",
+                        info.name
+                    )
+                } else {
+                    format!("{}: not signed in", info.name)
+                });
+            }
             continue;
         }
         match core::sync_now(info) {
@@ -501,7 +512,14 @@ fn run_pause(how: Option<&str>, account: Option<&str>) -> i32 {
     for (info, status) in picked {
         // a named account is paused even if its background sync is off (it may be turned on
         // later); "all" means the ones syncing in the background, as in the panel
-        if !info.signed_in || (account.is_none() && !status.unit.enabled) {
+        if !info.signed_in {
+            // one asked for by name: say why nothing happened, and fail (scripts check the exit status)
+            if account.is_some() {
+                errors.push(format!("{}: not signed in", info.name));
+            }
+            continue;
+        }
+        if account.is_none() && !status.unit.enabled {
             continue;
         }
         match core::pause(info, secs) {

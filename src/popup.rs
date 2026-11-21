@@ -1351,6 +1351,8 @@ pub fn run(at: Option<(i32, i32)>) {
         }
     }
     finish_pending(Duration::from_secs(75));
+    // Sync now and Pause hand their systemctl calls to threads of their own (core::unit_action)
+    core::wait_for_unit_actions(Duration::from_secs(30));
 }
 
 /// What the panel prints when it has closed (read by the tray, src/tray.rs toggle_popup).

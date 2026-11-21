@@ -993,11 +993,15 @@ pub fn write_sync_list(confdir: &Path, entries: &[String]) -> std::io::Result<()
     };
     if entries.is_empty() {
         if let Some(text) = existing {
-            // keep any rules the user wrote by hand, which syncing everything can't honour
-            let own_rules = text
-                .lines()
-                .map(str::trim)
-                .any(|l| !l.is_empty() && !l.starts_with('#') && sync_list_folder(l).is_none());
+            // keep any rules the user wrote by hand, which syncing everything can't honour. In a file this app wrote, a
+            // folder left out ("!/A/B/*") is the Folders tab's own choice too, not a hand-written rule.
+            let ours = text.starts_with(&format!("# Written by {APP_NAME}."));
+            let own_rules = text.lines().map(str::trim).any(|l| {
+                !l.is_empty()
+                    && !l.starts_with('#')
+                    && sync_list_folder(l).is_none()
+                    && !(ours && sync_list_exclusion(l).is_some())
+            });
             if own_rules {
                 fs::copy(&p, confdir.join("sync_list.saved"))?;
             }
@@ -3271,6 +3275,23 @@ fn compose_phase_with_cache(
 static UNIT_ACTIONS_IN_FLIGHT: std::sync::atomic::AtomicUsize =
     std::sync::atomic::AtomicUsize::new(0);
 
+/// Counts as a systemctl call in flight (see `wait_for_unit_actions`) for as long as it lives: for work that decides
+/// on its own thread whether to call `unit_action` (create it before that thread starts, move it in).
+pub struct UnitActionPending(());
+
+impl UnitActionPending {
+    pub fn new() -> Self {
+        UNIT_ACTIONS_IN_FLIGHT.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
+        UnitActionPending(())
+    }
+}
+
+impl Drop for UnitActionPending {
+    fn drop(&mut self) {
+        UNIT_ACTIONS_IN_FLIGHT.fetch_sub(1, std::sync::atomic::Ordering::SeqCst);
+    }
+}
+
 /// Waits (up to `limit`) for the systemctl calls `unit_action` started in the background. A
 /// command-line run (`--pause`, `--sync-now`) must call this before it exits, or the process
 /// ends first and the start/stop never happens.
@@ -3761,6 +3782,16 @@ mod tests {
                 .unwrap()
                 .contains("!/Junk/*")
         );
+        // review: folders the Folders tab left out are its own choices, not rules to keep aside
+        let _ = fs::remove_file(dir.join("sync_list.saved"));
+        write_sync_list(&dir, &["!/Docs/Old/*".into(), "/Docs".into()]).unwrap();
+        write_sync_list(&dir, &[]).unwrap();
+        assert!(!dir.join("sync_list").exists());
+        assert!(!dir.join("sync_list.saved").exists());
+        // a pattern is still the user's own, even in a file this app wrote
+        write_sync_list(&dir, &["!*.tmp".into(), "/Docs".into()]).unwrap();
+        write_sync_list(&dir, &[]).unwrap();
+        assert!(dir.join("sync_list.saved").exists());
         fs::remove_dir_all(&dir).unwrap();
     }
 

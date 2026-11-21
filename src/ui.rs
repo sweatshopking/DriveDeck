@@ -132,6 +132,16 @@ impl Tree {
     }
 
     /// The sync_list this tree stands for: the client wants exclusions before inclusions.
+    /// Folders that were left out and were opened up to tick a folder inside them: their own files sync now too (the
+    /// client can't leave out a folder's files while a folder inside it syncs), though some folders in them stay out.
+    fn opened_up(&self) -> Vec<String> {
+        self.excluded_original
+            .iter()
+            .filter(|f| !self.excluded.contains_key(*f) && self.covered(f) && self.partial(f))
+            .cloned()
+            .collect()
+    }
+
     fn rule_lines(&self) -> Vec<String> {
         let (exclusions, other): (Vec<&String>, Vec<&String>) = self
             .extra_rules
@@ -144,10 +154,11 @@ impl Tree {
         lines
     }
 
-    /// A click on a folder's box. Unticked or part-ticked: tick all of it. Ticked: untick all of it, which inside a ticked
-    /// folder means leaving it out (the rest of that folder, and anything new in it, keeps syncing).
+    /// A click on a folder's box flips what the box shows. Unticked (also with ticked folders inside): tick all of it.
+    /// Ticked (also with folders left out inside): untick all of it, which inside a ticked folder means leaving it out
+    /// (the rest of that folder, and anything new in it, keeps syncing).
     fn click(&mut self, path: &str) {
-        if self.partial(path) || !self.covered(path) {
+        if !self.covered(path) {
             self.tick(path);
         } else {
             self.drop_rules_under(path);
@@ -2167,7 +2178,10 @@ fn big_delete_choose(ctx: &Shared, delete_online: bool) {
 
 fn restart_if_running(acc: AccountInfo) {
     let Some(unit) = acc.unit else { return };
+    // counted from now, so a window closed at once still waits for the check and the restart
+    let pending = core::UnitActionPending::new();
     std::thread::spawn(move || {
+        let _pending = pending;
         if core::unit_state(&unit).active {
             core::unit_action("restart", &unit);
         }
@@ -2358,6 +2372,14 @@ fn render_tree(ctx: &Shared) {
     } else if resync && !dirty {
         crate::tr!(
             "The sync engine needs a full resync. Press \"Apply changes…\" to review it and run it; your folder choices stay as they are."
+        )
+    } else if let opened = t.opened_up()
+        && !ui.get_f_sync_all()
+        && !opened.is_empty()
+    {
+        crate::tr!(
+            "The files directly in {} will sync too: a folder's own files can't be left out while a folder inside it syncs.",
+            opened.join(", ")
         )
     } else {
         String::new()
@@ -5898,6 +5920,43 @@ fn turn_off_outside_starts(ctx: &Shared) {
                 of(OutsideKind::Boot),
                 of(OutsideKind::Homebrew),
             );
+            // the ones needing the password first: when that window is closed, nothing has changed (review: Homebrew's
+            // used to be switched off already)
+            if !everyone.is_empty() || !boot.is_empty() {
+                // the first argument says how many of the rest are for-everyone units
+                let script = r#"n=$1; shift; i=0
+for u; do
+    if [ "$i" -lt "$n" ]; then systemctl --global disable -- "$u"
+    else systemctl disable --now -- "$u"; fi || exit
+    i=$((i + 1))
+done"#;
+                let out = Command::new(clientinstall::elevate())
+                    .args(["/bin/sh", "-c", script, "sh", &everyone.len().to_string()])
+                    .args(&everyone)
+                    .args(&boot)
+                    .stdin(Stdio::null())
+                    .output()
+                    .map_err(|e| crate::tr!("Couldn't ask for the password: {}", e))?;
+                match out.status.code() {
+                    Some(0) => {}
+                    Some(126) => {
+                        return Err(crate::tr!(
+                            "Nothing was changed (the password window was closed)."
+                        ));
+                    }
+                    Some(127) => {
+                        return Err(crate::tr!(
+                            "Nothing was changed: your computer didn't allow it."
+                        ));
+                    }
+                    _ => {
+                        return Err(crate::tr!(
+                            "That didn't work: {}",
+                            String::from_utf8_lossy(&out.stderr).trim()
+                        ));
+                    }
+                }
+            }
             // Homebrew's is the user's own unit: no password. `brew services start` undoes it.
             for unit in &brew {
                 let (ok, out) = core::systemctl(&["disable", "--now", "--", unit]);
@@ -5905,36 +5964,7 @@ fn turn_off_outside_starts(ctx: &Shared) {
                     return Err(crate::tr!("That didn't work: {}", out.trim()));
                 }
             }
-            if everyone.is_empty() && boot.is_empty() {
-                return Ok(());
-            }
-            // the first argument says how many of the rest are for-everyone units
-            let script = r#"n=$1; shift; i=0
-for u; do
-    if [ "$i" -lt "$n" ]; then systemctl --global disable -- "$u"
-    else systemctl disable --now -- "$u"; fi || exit
-    i=$((i + 1))
-done"#;
-            let out = Command::new(clientinstall::elevate())
-                .args(["/bin/sh", "-c", script, "sh", &everyone.len().to_string()])
-                .args(&everyone)
-                .args(&boot)
-                .stdin(Stdio::null())
-                .output()
-                .map_err(|e| crate::tr!("Couldn't ask for the password: {}", e))?;
-            match out.status.code() {
-                Some(0) => Ok(()),
-                Some(126) => Err(crate::tr!(
-                    "Nothing was changed (the password window was closed)."
-                )),
-                Some(127) => Err(crate::tr!(
-                    "Nothing was changed: your computer didn't allow it."
-                )),
-                _ => Err(crate::tr!(
-                    "That didn't work: {}",
-                    String::from_utf8_lossy(&out.stderr).trim()
-                )),
-            }
+            Ok(())
         },
         |ctx, r: Result<(), String>| {
             let ui = ctx.borrow().ui();
@@ -7194,6 +7224,8 @@ pub fn run(account: Option<String>) {
     ui.run().expect("event loop failed");
     let _ = fs::remove_file(instance_socket());
     CTX.with(|c| *c.borrow_mut() = None);
+    // a sync started, stopped or restarted just before the window closed still happens
+    core::wait_for_unit_actions(std::time::Duration::from_secs(30));
 }
 
 #[cfg(test)]
@@ -7380,10 +7412,12 @@ mod tests {
         t.click("/Docs");
         assert!(!t.covered("/Docs") && !t.covered("/Docs/Work"));
         assert_eq!(t.selected.iter().collect::<Vec<_>>(), ["/Pics/2020"]);
-        // part-ticked (something left out inside) is not "ticked": a click ticks all of it, never leaves it half-done
+        // ticked with something left out inside still shows ticked, so a click unticks all of it (review: it used to
+        // tick all of it, so the box stayed ticked and the left-out folder quietly came back)
         let mut t = tree_with(&["/Docs"], &["/Docs/Old"]);
         t.click("/Docs");
-        assert!(t.covered("/Docs/Old"));
+        assert!(!t.covered("/Docs") && !t.covered("/Docs/Old") && !t.covered("/Docs/Work"));
+        assert!(t.selected.is_empty() && t.excluded.is_empty());
     }
 
     #[test]
@@ -7394,11 +7428,6 @@ mod tests {
         t.click("/Docs");
         assert!(t.covered("/Docs") && t.covered("/Docs/Old") && !t.partial("/Docs"));
         assert_eq!(t.selected.iter().collect::<Vec<_>>(), ["/Docs"]);
-        // and the same when it is ticked with something left out inside
-        let mut t = tree_with(&["/Docs"], &["/Docs/Old"]);
-        assert!(t.partial("/Docs"));
-        t.click("/Docs");
-        assert!(t.excluded.is_empty() && t.covered("/Docs/Old") && !t.partial("/Docs"));
     }
 
     #[test]
@@ -7411,6 +7440,25 @@ mod tests {
         assert!(!t.covered("/Docs/Work/B"), "the others in Work stay out");
         assert!(t.covered("/Docs/Home"));
         assert!(!t.excluded.contains_key("/Docs/Work") && t.excluded.contains_key("/Docs/Work/B"));
+    }
+
+    #[test]
+    fn opening_up_a_left_out_folder_is_pointed_out() {
+        // its own files can't stay out once a folder inside it syncs: the Folders tab says so
+        let mut t = tree_with(&["/Docs"], &["/Docs/Work"]);
+        t.excluded_original = t.excluded.keys().cloned().collect();
+        assert!(t.opened_up().is_empty());
+        t.click("/Docs/Work/A");
+        assert_eq!(t.opened_up(), ["/Docs/Work"]);
+        // ticking the rest of it too needs no note: all of Work syncs, as asked
+        t.click("/Docs/Work/B");
+        assert!(t.opened_up().is_empty(), "{:?}", t.excluded);
+        // nor does unticking Work again: it is left out as before
+        let mut t = tree_with(&["/Docs"], &["/Docs/Work"]);
+        t.excluded_original = t.excluded.keys().cloned().collect();
+        t.click("/Docs/Work/A");
+        t.click("/Docs/Work");
+        assert!(!t.covered("/Docs/Work") && t.opened_up().is_empty());
     }
 
     #[test]
