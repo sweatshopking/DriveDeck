@@ -1517,7 +1517,9 @@ pub fn unsuitable_sync_folder(folder: &Path) -> Option<String> {
             ));
         }
     }
-    let user_mounts = ["/run/media/", "/media/", "/mnt/"];
+    // where your own drives and shares are mounted. On Fedora Atomic (Silverblue, Kinoite, Bazzite) /mnt is a link
+    // to /var/mnt, so a folder picked under /mnt resolves to /var/mnt/... (issue #4)
+    let user_mounts = ["/run/media/", "/media/", "/mnt/", "/var/mnt/"];
     let system = [
         "/bin", "/boot", "/dev", "/etc", "/lib", "/lib64", "/opt", "/proc", "/root", "/run",
         "/sbin", "/srv", "/sys", "/tmp", "/usr", "/var",
@@ -2148,6 +2150,11 @@ pub enum LogEvent {
     Syncing,
     Complete,
     Error(String),
+    /// The client couldn't reach Microsoft (no network yet after a resume, Wi-Fi gone, DNS down). It tries again on
+    /// its own; not an error worth an alarm (issue #5). The text is the reason, or empty to keep the one before.
+    Offline(String),
+    /// The client reached Microsoft again ("Successfully reached the Microsoft OneDrive Service")
+    Reachable,
     File {
         kind: &'static str,
         path: String,
@@ -2601,10 +2608,31 @@ pub fn parse_log(msg: &str) -> Option<LogEvent> {
     if msg.contains(WATCH_LIMIT_MSG) {
         return Some(LogEvent::WatchLimit);
     }
+    // can't reach Microsoft at all: the client says so either side of the API error, and tries again by itself
+    // ("Cannot connect to the Microsoft OneDrive Service - Network Connection Issue: <reason>", then "Microsoft
+    // OneDrive service is not reachable at this time. Will re-try on next sync attempt.")
+    if let Some(rest) = msg.strip_prefix("Cannot connect to the Microsoft OneDrive Service") {
+        let reason = rest.split_once(':').map(|(_, r)| r).unwrap_or("");
+        return Some(LogEvent::Offline(if network_detail(reason) {
+            api_error_text(reason)
+        } else {
+            String::new()
+        }));
+    }
+    if msg.contains("OneDrive service is not reachable at this time") {
+        return Some(LogEvent::Offline(String::new()));
+    }
+    if msg.starts_with("Successfully reached the Microsoft OneDrive Service") {
+        return Some(LogEvent::Reachable);
+    }
     // the client's API errors are a header ("...returned an error with the following message:")
     // and the reason on the next line; the reason replaces the header
     if let Some(detail) = msg.strip_prefix("Error Message:") {
-        return Some(LogEvent::Error(api_error_text(detail)));
+        return Some(if network_detail(detail) {
+            LogEvent::Offline(api_error_text(detail))
+        } else {
+            LogEvent::Error(api_error_text(detail))
+        });
     }
     if msg.starts_with("ERROR") || msg.contains("ERROR:") || msg.starts_with("Unable to ") {
         return Some(LogEvent::Error(msg.to_string()));
@@ -2636,21 +2664,29 @@ pub fn parse_log(msg: &str) -> Option<LogEvent> {
     None
 }
 
-/// The reason from an API error's "Error Message:" line, in plain words where we know it
-fn api_error_text(detail: &str) -> String {
-    // curl's errors end with " on handle 7F54...", which means nothing to anyone
+/// curl's errors end with " on handle 7F54...", which means nothing to anyone
+fn without_handle(detail: &str) -> &str {
     let detail = detail.trim();
-    let detail = match detail.rsplit_once(" on handle ") {
+    match detail.rsplit_once(" on handle ") {
         Some((d, h)) if !h.is_empty() && h.chars().all(|c| c.is_ascii_hexdigit()) => d,
         _ => detail,
-    };
-    let d = detail.to_lowercase();
-    if d.contains("could not resolve")
+    }
+}
+
+/// An API error that only means Microsoft couldn't be reached (no network, DNS down, a timeout)
+fn network_detail(detail: &str) -> bool {
+    let d = without_handle(detail).to_lowercase();
+    d.contains("could not resolve")
         || d.contains("couldn't resolve")
         || d.contains("couldn't connect")
         || d.contains("could not connect")
         || d.contains("timeout was reached")
-    {
+}
+
+/// The reason from an API error's "Error Message:" line, in plain words where we know it
+fn api_error_text(detail: &str) -> String {
+    let detail = without_handle(detail);
+    if network_detail(detail) {
         crate::tr!(
             "Couldn't reach Microsoft OneDrive ({}). Check your internet connection; syncing carries on once it's back.",
             detail
@@ -2952,6 +2988,9 @@ pub enum Phase {
     /// The service is running but the client has gone quiet for far longer than its
     /// monitor_interval: stuck (a hung network call, a wedged process)
     Stalled,
+    /// The client couldn't reach Microsoft and is waiting to try again (issue #5): no network yet after waking
+    /// from sleep, Wi-Fi gone. Not an error: it carries on by itself once it gets through.
+    Offline,
 }
 
 impl Phase {
@@ -2965,7 +3004,7 @@ impl Phase {
             | Phase::SignedOut
             | Phase::BigDelete
             | Phase::Stalled => "drivedeck-error",
-            Phase::Stopped | Phase::Off | Phase::Paused => "drivedeck-off",
+            Phase::Stopped | Phase::Off | Phase::Paused | Phase::Offline => "drivedeck-off",
         }
     }
 }
@@ -3039,6 +3078,7 @@ impl Status {
                 None => crate::tr!("Not responding"),
             },
             Phase::Unknown => crate::tr!("Waiting for first sync"),
+            Phase::Offline => crate::tr!("Waiting for the network"),
         }
     }
 }
@@ -3232,7 +3272,7 @@ fn compose_phase_with_cache(
     }
     let problem = matches!(
         log_phase,
-        Phase::Error | Phase::NeedsResync | Phase::SignedOut | Phase::BigDelete
+        Phase::Error | Phase::NeedsResync | Phase::SignedOut | Phase::BigDelete | Phase::Offline
     );
     if unit.retrying {
         // it failed and systemd will try again; say what went wrong rather than "Starting…"
@@ -3698,6 +3738,52 @@ mod tests {
     }
 
     #[test]
+    fn unreachable_is_offline_and_reaching_it_again_says_so() {
+        // the client's real lines around a network timeout (2.5.x, 2026-11-23)
+        assert!(matches!(
+            parse_log("Cannot connect to the Microsoft OneDrive Service - Network Connection Issue: Timeout was reached on handle 56144B648230"),
+            Some(LogEvent::Offline(t)) if t.contains("Timeout was reached") && !t.contains("handle")
+        ));
+        assert_eq!(
+            parse_log(
+                "Microsoft OneDrive service is not reachable at this time. Will re-try on next sync attempt."
+            ),
+            Some(LogEvent::Offline(String::new()))
+        );
+        assert_eq!(
+            parse_log("Successfully reached the Microsoft OneDrive Service"),
+            Some(LogEvent::Reachable)
+        );
+        // the header between them is still caught as an error line; the reason after it decides
+        assert!(matches!(
+            parse_log(
+                "ERROR: Microsoft OneDrive API returned an error with the following message:"
+            ),
+            Some(LogEvent::Error(_))
+        ));
+        for reason in [
+            "Couldn't connect to server",
+            "Could not connect to server",
+            "Couldn't resolve host name",
+        ] {
+            assert!(
+                matches!(
+                    parse_log(&format!("  Error Message:       {reason}")),
+                    Some(LogEvent::Offline(_))
+                ),
+                "{reason}"
+            );
+        }
+        // unreachable with no reason given: still waiting, the reason before kept
+        assert_eq!(
+            parse_log(
+                "Cannot connect to the Microsoft OneDrive Service - Network Connection Issue"
+            ),
+            Some(LogEvent::Offline(String::new()))
+        );
+    }
+
+    #[test]
     fn sync_folder_safety() {
         let home = home();
         let bad = |p: &Path| unsuitable_sync_folder(p).is_some();
@@ -3713,6 +3799,12 @@ mod tests {
         assert!(!bad(&home.join("Ünïcode & spaces #1")));
         assert!(!bad(Path::new("/run/media/me/USB/OneDrive")));
         assert!(!bad(Path::new("/mnt/data/OneDrive")));
+        // Fedora Atomic (Silverblue, Kinoite, Bazzite): /mnt is a link to /var/mnt, and a folder there resolves to it
+        // (issue #4: an NFS share at /mnt/NFS was refused as a system folder)
+        assert!(!bad(Path::new("/var/mnt/NFS/OneDrive")));
+        assert!(!bad(Path::new("/var/mnt/NFS")));
+        assert!(bad(Path::new("/var/lib/OneDrive")));
+        assert!(bad(Path::new("/var/mnt")));
     }
 
     #[test]
@@ -4185,11 +4277,18 @@ mod tests {
             ),
             Some(LogEvent::Error(_))
         ));
-        // an API error's reason is on the line after its header
+        // an API error's reason is on the line after its header; one that only means Microsoft couldn't be reached is
+        // waiting for the network, not an error (issue #5: no network yet after waking from sleep)
         assert_eq!(
             parse_log("  Error Message:       Could not resolve hostname on handle 7F5420052920"),
-            Some(LogEvent::Error(
+            Some(LogEvent::Offline(
                 "Couldn't reach Microsoft OneDrive (Could not resolve hostname). Check your internet connection; syncing carries on once it's back.".into()
+            ))
+        );
+        assert_eq!(
+            parse_log("  Error Message:       Something else went wrong on handle 7F5420052920"),
+            Some(LogEvent::Error(
+                "Microsoft OneDrive reported an error: Something else went wrong".into()
             ))
         );
         assert_eq!(

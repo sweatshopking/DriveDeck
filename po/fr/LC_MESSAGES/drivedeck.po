@@ -1855,6 +1855,9 @@ msgstr "Ne répond pas"
 msgid "Waiting for first sync"
 msgstr "En attente de la première synchronisation"
 
+msgid "Waiting for the network"
+msgstr "En attente du réseau"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "Impossible de demander le mot de passe : {}"
 

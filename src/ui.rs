@@ -415,6 +415,16 @@ fn log_state(unit: Option<&str>) -> LogState {
                 phase = Phase::Error;
                 err = Some(e);
             }
+            Some(LogEvent::Offline(e)) => {
+                phase = Phase::Offline;
+                if !e.is_empty() {
+                    err = Some(e);
+                }
+            }
+            Some(LogEvent::Reachable) if phase == Phase::Offline => {
+                phase = Phase::Syncing;
+                err = None;
+            }
             Some(LogEvent::NeedsResync) => phase = Phase::NeedsResync,
             Some(LogEvent::BigDelete) => phase = Phase::BigDelete,
             // a new run checks again; until it says otherwise, the old big delete no longer applies
@@ -488,7 +498,8 @@ pub(crate) fn tone(s: &Status) -> i32 {
         | Phase::SignedOut
         | Phase::BigDelete
         | Phase::Stalled => 2,
-        Phase::Off | Phase::Stopped | Phase::Paused => 3,
+        // waiting for the network: nothing wrong with the account, nothing moving either
+        Phase::Off | Phase::Stopped | Phase::Paused | Phase::Offline => 3,
     }
 }
 

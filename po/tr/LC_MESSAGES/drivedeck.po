@@ -1853,6 +1853,9 @@ msgstr "Yanıt vermiyor"
 msgid "Waiting for first sync"
 msgstr "İlk eşitleme bekleniyor"
 
+msgid "Waiting for the network"
+msgstr "Ağ bekleniyor"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "Parola istenemedi: {}"
 

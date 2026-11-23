@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-21 08:19+0000\n"
+"POT-Creation-Date: 2026-11-23 05:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1947,6 +1947,9 @@ msgid "Not responding"
 msgstr ""
 
 msgid "Waiting for first sync"
+msgstr ""
+
+msgid "Waiting for the network"
 msgstr ""
 
 msgid "Couldn't ask for the password: {}"

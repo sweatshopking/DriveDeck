@@ -1845,6 +1845,9 @@ msgstr "Keine Rückmeldung"
 msgid "Waiting for first sync"
 msgstr "Wartet auf die erste Synchronisierung"
 
+msgid "Waiting for the network"
+msgstr "Wartet auf das Netzwerk"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "Das Passwort konnte nicht abgefragt werden: {}"
 

@@ -263,36 +263,45 @@ fn toggle_popup(at: Option<(i32, i32)>) {
     });
 }
 
+/// The tray icon's one state for all the accounts: a problem first, then work in progress, then waiting for the
+/// network, then off; otherwise up to date.
+fn overall_of(ps: &[Phase], client_problem: bool) -> Phase {
+    if client_problem
+        || ps.iter().any(|p| {
+            matches!(
+                p,
+                Phase::Error
+                    | Phase::NeedsResync
+                    | Phase::SignedOut
+                    | Phase::BigDelete
+                    | Phase::Stalled
+            )
+        })
+    {
+        Phase::Error
+    } else if ps
+        .iter()
+        .any(|p| matches!(p, Phase::Syncing | Phase::Resyncing | Phase::Unknown))
+    {
+        Phase::Syncing
+    } else if ps.contains(&Phase::Offline) {
+        // can't reach Microsoft (issue #5): not "up to date", not an error either
+        Phase::Offline
+    } else if ps.is_empty()
+        || ps
+            .iter()
+            .all(|p| matches!(p, Phase::Off | Phase::Stopped | Phase::Paused))
+    {
+        Phase::Off
+    } else {
+        Phase::UpToDate
+    }
+}
+
 impl Tray {
     fn overall(&self) -> Phase {
         let ps: Vec<Phase> = self.accs.iter().map(|a| a.status().phase).collect();
-        if self.client_problem.is_some()
-            || ps.iter().any(|p| {
-                matches!(
-                    p,
-                    Phase::Error
-                        | Phase::NeedsResync
-                        | Phase::SignedOut
-                        | Phase::BigDelete
-                        | Phase::Stalled
-                )
-            })
-        {
-            Phase::Error
-        } else if ps
-            .iter()
-            .any(|p| matches!(p, Phase::Syncing | Phase::Resyncing | Phase::Unknown))
-        {
-            Phase::Syncing
-        } else if ps.is_empty()
-            || ps
-                .iter()
-                .all(|p| matches!(p, Phase::Off | Phase::Stopped | Phase::Paused))
-        {
-            Phase::Off
-        } else {
-            Phase::UpToDate
-        }
+        overall_of(&ps, self.client_problem.is_some())
     }
 
     /// One line per account: its status at a glance; a click opens its settings (where any
@@ -642,7 +651,7 @@ fn track_follower_event(moving: &mut HashSet<String>, ev: &LogEvent) -> bool {
             moving.remove(path);
             true
         }
-        LogEvent::Complete | LogEvent::ClientStart | LogEvent::Error(_) => {
+        LogEvent::Complete | LogEvent::ClientStart | LogEvent::Error(_) | LogEvent::Offline(_) => {
             moving.clear();
             true
         }
@@ -933,7 +942,9 @@ fn apply_one(a: &mut Acc, when: DateTime<Local>, ev: LogEvent) {
             a.moving.remove(path);
         }
         // a finished run or a new one: nothing is half-moved any more
-        LogEvent::Complete | LogEvent::ClientStart | LogEvent::Error(_) => a.moving.clear(),
+        LogEvent::Complete | LogEvent::ClientStart | LogEvent::Error(_) | LogEvent::Offline(_) => {
+            a.moving.clear()
+        }
         _ => {}
     }
     match &ev {
@@ -982,6 +993,19 @@ fn apply_one(a: &mut Acc, when: DateTime<Local>, ev: LogEvent) {
             a.log_phase = Phase::Error;
             a.last_error = Some(e);
         }
+        // can't reach Microsoft: waiting, not an error (no red icon, no "Syncing hit an error"; issue #5)
+        LogEvent::Offline(e) => {
+            a.log_phase = Phase::Offline;
+            if !e.is_empty() {
+                a.last_error = Some(e);
+            }
+        }
+        // through again: back to syncing until the run says how it went
+        LogEvent::Reachable if a.log_phase == Phase::Offline => {
+            a.log_phase = Phase::Syncing;
+            a.last_error = None;
+        }
+        LogEvent::Reachable => {}
         LogEvent::NeedsResync => a.log_phase = Phase::NeedsResync,
         LogEvent::NeedsLogin => {
             a.log_phase = Phase::SignedOut;
@@ -1680,6 +1704,64 @@ mod tests {
             },
             AccountPrefs::default(),
         )
+    }
+
+    #[test]
+    fn no_network_after_waking_waits_quietly_then_carries_on() {
+        // issue #5: the lines the client logs when it wakes before the network does, then gets through
+        let mut a = acc();
+        running(&mut a);
+        let now = Local::now();
+        for line in [
+            "Cannot connect to the Microsoft OneDrive Service - Network Connection Issue: Could not resolve hostname on handle 7F5420052920",
+            "ERROR: Microsoft OneDrive API returned an error with the following message:",
+            "  Error Message:       Could not resolve hostname on handle 7F5420052920",
+            "Microsoft OneDrive service is not reachable at this time. Will re-try on next sync attempt.",
+        ] {
+            apply_one(&mut a, now, core::parse_log(line).expect(line));
+        }
+        assert_eq!(a.status().phase, Phase::Offline);
+        assert!(
+            !needs_attention(Phase::Offline),
+            "no \"Syncing hit an error\" for it"
+        );
+        assert_eq!(Phase::Offline.icon(), "drivedeck-off");
+        assert!(
+            a.last_error
+                .as_deref()
+                .unwrap_or("")
+                .contains("Could not resolve hostname")
+        );
+        // through again: syncing, the reason gone; then the run finishes as usual
+        apply_one(
+            &mut a,
+            now,
+            core::parse_log("Successfully reached the Microsoft OneDrive Service").unwrap(),
+        );
+        assert_eq!(a.status().phase, Phase::Syncing);
+        assert_eq!(a.last_error, None);
+        apply_one(&mut a, now, LogEvent::Complete);
+        assert_eq!(a.status().phase, Phase::UpToDate);
+        // a real error is still an error, and reaching Microsoft doesn't clear it
+        apply_one(
+            &mut a,
+            now,
+            core::parse_log("  Error Message:       Something else went wrong").unwrap(),
+        );
+        apply_one(&mut a, now, LogEvent::Reachable);
+        assert_eq!(a.status().phase, Phase::Error);
+    }
+
+    #[test]
+    fn the_tray_icon_waits_for_the_network_too() {
+        use Phase::*;
+        assert_eq!(overall_of(&[Offline], false), Offline);
+        assert_eq!(overall_of(&[Offline, UpToDate], false), Offline);
+        assert_eq!(overall_of(&[Offline, Syncing], false), Syncing);
+        assert_eq!(overall_of(&[Offline, Error], false), Error);
+        assert_eq!(overall_of(&[Offline, Paused], false), Offline);
+        assert_eq!(overall_of(&[UpToDate], false), UpToDate);
+        assert_eq!(overall_of(&[Offline], true), Error);
     }
 
     fn running(a: &mut Acc) {
