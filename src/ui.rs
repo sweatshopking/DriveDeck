@@ -872,10 +872,6 @@ fn current_ctx(c: &Ctx) -> Option<AccountInfo> {
     c.accounts.iter().find(|a| a.key() == key).cloned()
 }
 
-/// What newly ticked folders add up to, against the free space where they'll go. Only the
-/// top of each new choice counts (a ticked folder inside another is already in it); folders
-/// whose size isn't known yet make it "at least". Turning on "Sync everything" counts the whole
-/// account. Returns the line to show and whether it won't fit.
 /// The line about folders found on this computer that aren't in OneDrive yet (among those listed so
 /// far), or "" when there are none.
 fn local_note(t: &Tree, sync_all: bool) -> String {
@@ -905,6 +901,10 @@ fn local_note(t: &Tree, sync_all: bool) -> String {
     )
 }
 
+/// What newly ticked folders add up to, against the free space where they'll go. Only the
+/// top of each new choice counts (a ticked folder inside another is already in it); folders
+/// whose size isn't known yet make it "at least". Turning on "Sync everything" counts the whole
+/// account. Returns the line to show and whether it won't fit.
 fn space_note(
     t: &Tree,
     sync_all: bool,
@@ -2885,6 +2885,14 @@ fn start_preview(ctx: &Shared, acc: &AccountInfo, title: &str, change: PreviewCh
     {
         return;
     }
+    // the drive with the OneDrive folder is away: the client would see an empty folder
+    if let Some(drive) = core::drive_missing(acc) {
+        ctx.borrow().ui().set_s_msg(ss(crate::tr!(
+            "The drive with this account's OneDrive folder ({}) isn't connected. Syncing starts again by itself when it is back.",
+            drive.display()
+        )));
+        return;
+    }
     let unit = acc.unit.clone();
     let cancelled = Arc::new(AtomicBool::new(false));
     let acc = acc.clone();
@@ -3578,7 +3586,30 @@ fn apply_preview_in_background(p: Preview, account: Option<AccountInfo>) -> Prev
             ),
         };
     };
+    // the drive with the OneDrive folder went while the preview was open: nothing is run
+    if let Some(drive) = core::drive_missing(&acc) {
+        return PreviewApplyResult::KeepPreview(
+            p,
+            crate::tr!(
+                "The drive with this account's OneDrive folder ({}) isn't connected. Syncing starts again by itself when it is back.",
+                drive.display()
+            ),
+        );
+    }
     let job = core::resync_unit(&acc.confdir);
+    // and if it goes while the job runs, systemd stops the job, as it does the sync service
+    let drive_binding: Vec<String> = core::drive_guard_of(&acc)
+        .map(|point| {
+            // systemd-run reads -p values with C escapes: the name's own backslashes (\x2d) are doubled
+            let unit = crate::driveguard::mount_unit(&point).replace('\\', "\\\\");
+            vec![
+                "-p".to_string(),
+                format!("BindsTo={unit}"),
+                "-p".to_string(),
+                format!("After={unit}"),
+            ]
+        })
+        .unwrap_or_default();
     // a full resync re-decides every file: keep a quick reflink copy first where the drive can
     let safety = if p.mode == PreviewMode::Resync {
         let others: Vec<PathBuf> = core::discover_with_states(&AppSettings::load())
@@ -3613,10 +3644,9 @@ fn apply_preview_in_background(p: Preview, account: Option<AccountInfo>) -> Prev
     }
     core::systemctl(&["reset-failed", &job]);
     let result = Command::new("systemd-run")
+        .args(["--user", "--collect", "--quiet"])
+        .args(&drive_binding)
         .args([
-            "--user",
-            "--collect",
-            "--quiet",
             &format!("--unit={job}"),
             &format!(
                 "--description={} ({})",

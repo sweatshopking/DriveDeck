@@ -3409,6 +3409,13 @@ fn compose_phase_with_cache(
     log_phase
 }
 
+/// The drive an account's (managed) unit waits for, if any
+pub fn drive_guard_of(acc: &AccountInfo) -> Option<PathBuf> {
+    let unit = acc.unit.as_ref()?;
+    let text = fs::read_to_string(user_unit_dir().join(unit)).ok()?;
+    crate::driveguard::from_unit(&text)
+}
+
 /// The drive an account's (managed) unit waits for, when it isn't there now
 pub fn drive_missing(acc: &AccountInfo) -> Option<PathBuf> {
     let unit = acc.unit.as_ref()?;

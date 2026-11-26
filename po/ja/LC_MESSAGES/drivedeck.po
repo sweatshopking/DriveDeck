@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:11+0000\n"
+"POT-Creation-Date: 2026-11-26 23:20+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1458,6 +1458,9 @@ msgstr "{} は {} の中にあるか、それを含んでいて、そのフォ�
 
 msgid "The OneDrive folder {} isn't available. Connect its drive and try again."
 msgstr "OneDriveフォルダー{}を利用できません。ドライブを接続して、もう一度お試しください。"
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
+msgstr "このアカウントの OneDrive フォルダーがあるドライブ ({}) が接続されていません。接続してからもう一度お試しください。"
 
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "{}フォルダーは{}に設定されています。ホームフォルダー全体を指しているため、バックアップできません。先にデスクトップの設定で{}を専用のフォルダーに設定してください。"

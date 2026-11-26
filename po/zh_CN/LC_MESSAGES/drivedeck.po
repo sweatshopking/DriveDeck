@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:11+0000\n"
+"POT-Creation-Date: 2026-11-26 23:20+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1458,6 +1458,9 @@ msgstr "{} 位于 {} 内或包含它，而该文件夹已在备份中。"
 
 msgid "The OneDrive folder {} isn't available. Connect its drive and try again."
 msgstr "OneDrive 文件夹 {} 当前不可用。请连接其所在驱动器后重试。"
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
+msgstr "此账户的 OneDrive 文件夹所在的驱动器（{}）未连接。请连接后重试。"
 
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "你的 {} 文件夹设置为 {}，它包含了主文件夹中的所有内容，因此无法备份。请先在桌面设置中将 {} 指向单独的文件夹。"

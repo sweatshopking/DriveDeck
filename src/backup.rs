@@ -470,6 +470,14 @@ fn plan_source(
         ));
     }
     ensure_user_mount_available(&acc.sync_dir)?;
+    // the drive the sync service waits for isn't there: the OneDrive folder seen now is the empty
+    // folder under its mount point, and anything moved there would be hidden when the drive is back
+    if let Some(drive) = core::drive_missing(acc) {
+        return Err(crate::tr!(
+            "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again.",
+            drive.display()
+        ));
+    }
     let sync_meta = fs::metadata(&acc.sync_dir)
         .map_err(|e| crate::tr!("Couldn't inspect {}: {}", acc.sync_dir.display(), e))?;
     let home = core::home();

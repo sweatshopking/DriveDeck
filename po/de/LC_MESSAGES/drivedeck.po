@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2026-11-26 23:11+0000\n"
+"POT-Creation-Date: 2026-11-26 23:20+0000\n"
 "Language: de\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1451,6 +1451,9 @@ msgstr "{} liegt in {} oder enthält diesen Ordner, und der wird bereits gesiche
 
 msgid "The OneDrive folder {} isn't available. Connect its drive and try again."
 msgstr "Der OneDrive-Ordner {} ist nicht verfügbar. Schließe das Laufwerk an und versuche es erneut."
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
+msgstr "Das Laufwerk mit dem OneDrive-Ordner dieses Kontos ({}) ist nicht verbunden. Schließe es an und versuche es erneut."
 
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "Dein Ordner {} ist auf {} eingestellt. Das umfasst deinen gesamten persönlichen Ordner und kann daher nicht gesichert werden. Stelle {} zuerst in den Desktop-Einstellungen auf einen eigenen Ordner ein."

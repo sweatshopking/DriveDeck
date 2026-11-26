@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:11+0000\n"
+"POT-Creation-Date: 2026-11-26 23:20+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1458,6 +1458,9 @@ msgstr "{} se trouve dans {} ou le contient, et ce dossier est déjà sauvegard�
 
 msgid "The OneDrive folder {} isn't available. Connect its drive and try again."
 msgstr "Le dossier OneDrive {} n'est pas disponible. Connectez son disque et réessayez."
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
+msgstr "Le disque contenant le dossier OneDrive de ce compte ({}) n’est pas connecté. Connectez-le et réessayez."
 
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "Votre dossier {} est défini sur {}, qui contient tout votre dossier personnel ; il ne peut donc pas être sauvegardé. Configurez d'abord {} pour utiliser son propre dossier dans les paramètres de votre bureau."

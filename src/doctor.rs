@@ -169,7 +169,7 @@ fn checks_named(names: bool) -> (Vec<Check>, bool) {
         if let Some(e) = &status.last_error {
             out.push(Check::warn(crate::tr!("{}: {}", info.name, e)));
         }
-        if first_sync_with_notices(&info.confdir, status) {
+        if info.signed_in && first_sync_with_notices(&info.confdir, status) {
             out.push(Check::warn(crate::tr!(
                 "{}: its first sync hasn't finished and the client's own notifications are on. If syncing stops partway, the client can show a notification for every file it hadn't downloaded yet (thousands, for a big OneDrive). Turn off \"Show desktop notifications for synced files\" in Options until the first sync is done.",
                 info.name

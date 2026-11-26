@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:11+0000\n"
+"POT-Creation-Date: 2026-11-26 23:20+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1458,6 +1458,9 @@ msgstr "{}은(는) {} 안에 있거나 그 폴더를 포함하며, 그 폴더는
 
 msgid "The OneDrive folder {} isn't available. Connect its drive and try again."
 msgstr "OneDrive 폴더 {}를 사용할 수 없습니다. 해당 드라이브를 연결하고 다시 시도하세요."
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
+msgstr "이 계정의 OneDrive 폴더가 있는 드라이브({})가 연결되어 있지 않습니다. 연결한 뒤 다시 시도하세요."
 
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "{} 폴더가 홈 폴더의 모든 항목을 포함하는 {}로 설정되어 있어 백업할 수 없습니다. 먼저 데스크톱 설정에서 {}를 전용 폴더로 지정하세요."

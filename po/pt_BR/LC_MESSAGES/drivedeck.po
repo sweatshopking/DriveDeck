@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:11+0000\n"
+"POT-Creation-Date: 2026-11-26 23:20+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1458,6 +1458,9 @@ msgstr "{} está dentro de {} ou a contém, e essa pasta já tem backup."
 
 msgid "The OneDrive folder {} isn't available. Connect its drive and try again."
 msgstr "A pasta do OneDrive {} não está disponível. Conecte a unidade e tente novamente."
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
+msgstr "A unidade com a pasta do OneDrive desta conta ({}) não está conectada. Conecte-a e tente de novo."
 
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "Sua pasta {} está definida como {}, que contém toda a sua pasta pessoal, então não é possível fazer backup dela. Primeiro, configure {} para usar uma pasta própria nas configurações da área de trabalho."

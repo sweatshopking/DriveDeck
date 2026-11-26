@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:11+0000\n"
+"POT-Creation-Date: 2026-11-26 23:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1579,6 +1579,9 @@ msgid "{} is inside, or holds, {}, which is already backed up."
 msgstr ""
 
 msgid "The OneDrive folder {} isn't available. Connect its drive and try again."
+msgstr ""
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr ""
 
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."

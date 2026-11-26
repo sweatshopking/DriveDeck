@@ -79,6 +79,65 @@ fn normal(path: &Path) -> PathBuf {
         .collect()
 }
 
+/// `path` with the links on its way followed (Fedora Atomic: /mnt and /home are links into /var), so it
+/// can be matched against the mount table. Resolving stops at the first mount point: nothing on the
+/// drive (or share) itself is looked at, so an unreachable share can't hang this. A path that isn't
+/// there is resolved as far as it goes.
+pub fn resolve(path: &Path, mounts: &[Mount]) -> PathBuf {
+    let mut todo: Vec<std::ffi::OsString> = normal(path)
+        .components()
+        .filter_map(|c| match c {
+            Component::Normal(n) => Some(n.to_os_string()),
+            _ => None,
+        })
+        .rev()
+        .collect();
+    let mut at = PathBuf::from("/");
+    let mut links = 0;
+    while let Some(part) = todo.pop() {
+        if part == ".." {
+            at.pop();
+            continue;
+        }
+        let next = at.join(&part);
+        if is_mount_point(&next, mounts) {
+            at = next;
+            break;
+        }
+        match std::fs::symlink_metadata(&next) {
+            Ok(m) if m.file_type().is_symlink() && links < 40 => {
+                links += 1;
+                let Ok(target) = std::fs::read_link(&next) else {
+                    at = next;
+                    break;
+                };
+                if target.is_absolute() {
+                    at = PathBuf::from("/");
+                }
+                todo.extend(
+                    target
+                        .components()
+                        .filter_map(|c| match c {
+                            Component::Normal(n) => Some(n.to_os_string()),
+                            Component::ParentDir => Some("..".into()),
+                            _ => None,
+                        })
+                        .rev(),
+                );
+            }
+            Ok(_) => at = next,
+            Err(_) => {
+                at = next;
+                break; // not there: the rest as written
+            }
+        }
+    }
+    while let Some(part) = todo.pop() {
+        at.push(part);
+    }
+    at
+}
+
 pub fn is_mount_point(point: &Path, mounts: &[Mount]) -> bool {
     let point = normal(point);
     mounts.iter().any(|m| m.point == point)
@@ -98,7 +157,10 @@ pub fn guard_mount(
     if !sync_dir.is_absolute() {
         return None;
     }
-    let sync_dir = normal(sync_dir);
+    // through any links on the way (on Fedora Atomic /mnt/NFS is really /var/mnt/NFS, as the mount table says)
+    let sync_dir = resolve(sync_dir, mounts);
+    let home = resolve(home, mounts);
+    let home = home.as_path();
     if let Some(prev) = previous {
         let prev = normal(prev);
         if prev != Path::new("/") && sync_dir.starts_with(&prev) && !is_mount_point(&prev, mounts) {
@@ -254,6 +316,66 @@ mod tests {
             ),
             Some(PathBuf::from("/mnt/barracuda"))
         );
+    }
+
+    #[test]
+    fn links_on_the_way_are_followed_up_to_the_drive() {
+        let base = std::env::temp_dir().join(format!("drivedeck-guard-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&base);
+        std::fs::create_dir_all(base.join("var/mnt/NFS")).unwrap();
+        std::fs::create_dir_all(base.join("var/home/me")).unwrap();
+        // as on Fedora Atomic: /mnt -> var/mnt (relative), /home -> /var/home (absolute)
+        std::os::unix::fs::symlink("var/mnt", base.join("mnt")).unwrap();
+        std::os::unix::fs::symlink(base.join("var/home"), base.join("home")).unwrap();
+        let share = base.join("var/mnt/NFS");
+        let ms = vec![
+            Mount {
+                point: "/".into(),
+                fstype: "btrfs".into(),
+            },
+            Mount {
+                point: share.clone(),
+                fstype: "nfs4".into(),
+            },
+        ];
+        // nothing inside the share is looked at: the rest is kept as written
+        assert_eq!(
+            resolve(&base.join("mnt/NFS/OneDrive/x"), &ms),
+            share.join("OneDrive/x")
+        );
+        assert_eq!(
+            resolve(&base.join("home/me/OneDrive"), &ms),
+            base.join("var/home/me/OneDrive")
+        );
+        assert_eq!(
+            resolve(&base.join("missing/a"), &ms),
+            base.join("missing/a")
+        );
+        assert_eq!(
+            guard_mount(
+                &base.join("mnt/NFS/OneDrive"),
+                &base.join("home/me"),
+                &ms,
+                None
+            ),
+            Some(share.clone())
+        );
+        // the share gone (the folder under it is a plain empty one now): the guard named before stays
+        let ms_gone = vec![Mount {
+            point: "/".into(),
+            fstype: "btrfs".into(),
+        }];
+        assert_eq!(
+            guard_mount(
+                &base.join("mnt/NFS/OneDrive"),
+                &base.join("home/me"),
+                &ms_gone,
+                Some(&share)
+            ),
+            Some(share.clone()),
+            "the previous guard is matched on the resolved folder, and kept"
+        );
+        let _ = std::fs::remove_dir_all(&base);
     }
 
     #[test]
