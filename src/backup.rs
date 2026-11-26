@@ -330,7 +330,12 @@ fn excluded_by_sync_list(acc: &AccountInfo, name: &str) -> Result<bool, String> 
 }
 
 /// Checks a folder can be backed up into this account, and measures it.
-pub fn plan(acc: &AccountInfo, all: &[AccountInfo], key: &str) -> Result<Plan, String> {
+pub fn plan(
+    acc: &AccountInfo,
+    all: &[AccountInfo],
+    settings: &AppSettings,
+    key: &str,
+) -> Result<Plan, String> {
     let known = FOLDERS
         .iter()
         .find(|k| k.key == key)
@@ -338,7 +343,7 @@ pub fn plan(acc: &AccountInfo, all: &[AccountInfo], key: &str) -> Result<Plan, S
     let label = known.label;
     let source = xdg_dir(key)
         .ok_or_else(|| crate::tr!("This computer doesn't have a {} folder set up.", label))?;
-    plan_source(acc, all, key, label, source)
+    plan_source(acc, all, settings, key, label, source)
 }
 
 /// The key a folder chosen by the user (not one of the desktop's own) is recorded under.
@@ -423,7 +428,14 @@ pub fn plan_custom(
             }
         }
     }
-    plan_source(acc, all, &custom_key(source), &name, source.to_path_buf())
+    plan_source(
+        acc,
+        all,
+        settings,
+        &custom_key(source),
+        &name,
+        source.to_path_buf(),
+    )
 }
 
 /// Folders directly in the home folder that could be backed up with `plan_custom`, for the list
@@ -459,6 +471,7 @@ pub fn candidates(
 fn plan_source(
     acc: &AccountInfo,
     all: &[AccountInfo],
+    settings: &AppSettings,
     key: &str,
     label: &str,
     source: PathBuf,
@@ -481,6 +494,12 @@ fn plan_source(
     let sync_meta = fs::metadata(&acc.sync_dir)
         .map_err(|e| crate::tr!("Couldn't inspect {}: {}", acc.sync_dir.display(), e))?;
     let home = core::home();
+    if is_custom(key) && (source == home || home.starts_with(&source)) {
+        return Err(crate::tr!(
+            "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it.",
+            source.display()
+        ));
+    }
     if source == home || home.starts_with(&source) {
         return Err(crate::tr!(
             "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first.",
@@ -547,6 +566,23 @@ fn plan_source(
         ));
     }
     let target = acc.sync_dir.join(&name);
+    // another folder already backed up there (two folders of the same name: ~/Work/Documents after
+    // Documents): they'd share one OneDrive folder and each show the other's files
+    for a in all {
+        if let Some(b) = settings
+            .prefs(&a.confdir)
+            .backups
+            .iter()
+            .find(|b| b.key != key && core::paths_overlap(&b.target, &target))
+        {
+            return Err(crate::tr!(
+                "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first.",
+                target.display(),
+                b.original.display(),
+                source.display()
+            ));
+        }
+    }
     match fs::symlink_metadata(&target) {
         Ok(meta) if meta.file_type().is_symlink() => {
             return Err(crate::tr!(
@@ -1202,6 +1238,27 @@ mod tests {
         let e = refused(&AppSettings::default(), &base.join("home/Stuff")).unwrap_err();
         assert!(e.contains("Never sync folders named"), "{e}");
         fs::remove_file(base.join("conf/config")).unwrap();
+        // two folders of the same name: the second can't share the first one's OneDrive folder
+        fs::create_dir_all(base.join("home/Other/Stuff")).unwrap();
+        let mut taken = AppSettings::default();
+        taken.prefs_mut(&acc.confdir).backups.push(Backup {
+            key: custom_key(&base.join("home/Stuff")),
+            original: base.join("home/Stuff"),
+            target: base.join("home/OneDrive/Stuff"),
+        });
+        let e = refused(&taken, &base.join("home/Other/Stuff")).unwrap_err();
+        assert!(e.contains("is already where"), "{e}");
+        // the home folder itself, chosen: said in words that fit a chosen folder
+        let e = plan_source(
+            &acc,
+            &all,
+            &AppSettings::default(),
+            &custom_key(&core::home()),
+            "x",
+            core::home(),
+        )
+        .unwrap_err();
+        assert!(e.contains("holds your whole home folder"), "{e}");
         // a plain folder is planned under its own key and name
         let p = refused(&AppSettings::default(), &base.join("home/Stuff")).unwrap();
         assert_eq!(p.key, custom_key(&base.join("home/Stuff")));

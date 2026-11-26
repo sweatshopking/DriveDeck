@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:20+0000\n"
+"POT-Creation-Date: 2026-11-26 23:43+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1462,6 +1462,9 @@ msgstr "OneDrive 폴더 {}를 사용할 수 없습니다. 해당 드라이브를
 msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr "이 계정의 OneDrive 폴더가 있는 드라이브({})가 연결되어 있지 않습니다. 연결한 뒤 다시 시도하세요."
 
+msgid "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it."
+msgstr "{}에는 홈 폴더 전체가 들어 있어 백업할 수 없습니다. 그 안의 폴더를 선택하세요."
+
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "{} 폴더가 홈 폴더의 모든 항목을 포함하는 {}로 설정되어 있어 백업할 수 없습니다. 먼저 데스크톱 설정에서 {}를 전용 폴더로 지정하세요."
 
@@ -1485,6 +1488,9 @@ msgstr "“{}”은(는) 이 계정에 백업할 수 없습니다({})."
 
 msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
 msgstr "이 계정은 선택한 폴더만 동기화하며 “{}”은(는) 포함되어 있지 않습니다. “{}”이라는 빈 폴더를 {}에 만들고 “폴더”에서 선택해 적용한 다음 다시 백업하세요."
+
+msgid "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first."
+msgstr "{}에는 이미 {}이(가) 백업되어 있어 {}을(를) 같은 곳에 둘 수 없습니다. 먼저 두 폴더 중 하나의 이름을 바꾸세요."
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "OneDrive 폴더에 “{}”이라는 심볼릭 링크가 있습니다. 이 폴더를 백업하기 전에 링크를 해결하거나 이름을 변경하세요."
@@ -2164,8 +2170,8 @@ msgstr "업로드되지 않음: 숨김 폴더는 건너뜁니다"
 msgid "won't upload: it has a .nosync file"
 msgstr "업로드되지 않음: .nosync 파일이 있습니다"
 
-msgid "won't upload: it's a link to another place"
-msgstr "업로드되지 않음: 다른 위치로 연결된 링크입니다"
+msgid "won't upload: left out by \"Don't sync symbolic links\" (Options)"
+msgstr "업로드되지 않음: “심볼릭 링크를 동기화하지 않음”으로 제외됨 (옵션)"
 
 msgid "won't upload: OneDrive doesn't allow this name"
 msgstr "업로드되지 않음: OneDrive에서 허용하지 않는 이름입니다"
@@ -3539,6 +3545,9 @@ msgstr "사진"
 
 msgid "Videos"
 msgstr "비디오"
+
+#~ msgid "won't upload: it's a link to another place"
+#~ msgstr "업로드되지 않음: 다른 위치로 연결된 링크입니다"
 
 #~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
 #~ msgstr "이 계정은 선택한 폴더만 동기화하며 “{}”은(는) 선택되지 않았습니다. 먼저 폴더 탭에서 추가하세요(온라인에서 만들 수도 있습니다)."

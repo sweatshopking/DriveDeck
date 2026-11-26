@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:20+0000\n"
+"POT-Creation-Date: 2026-11-26 23:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1584,6 +1584,9 @@ msgstr ""
 msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr ""
 
+msgid "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it."
+msgstr ""
+
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr ""
 
@@ -1606,6 +1609,9 @@ msgid "\"{}\" can't be backed up into this account ({})."
 msgstr ""
 
 msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
+msgstr ""
+
+msgid "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first."
 msgstr ""
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
@@ -2260,7 +2266,7 @@ msgstr ""
 msgid "won't upload: it has a .nosync file"
 msgstr ""
 
-msgid "won't upload: it's a link to another place"
+msgid "won't upload: left out by \"Don't sync symbolic links\" (Options)"
 msgstr ""
 
 msgid "won't upload: OneDrive doesn't allow this name"

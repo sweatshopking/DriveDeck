@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:20+0000\n"
+"POT-Creation-Date: 2026-11-26 23:43+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1462,6 +1462,9 @@ msgstr "Папка OneDrive {} недоступна. Подключите дис
 msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr "Диск с папкой OneDrive этой учётной записи ({}) не подключён. Подключите его и попробуйте снова."
 
+msgid "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it."
+msgstr "{} содержит всю вашу домашнюю папку, поэтому её нельзя сохранить. Выберите папку внутри неё."
+
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "Для папки {} указано значение {}, содержащее всю домашнюю папку, поэтому её нельзя включить в резервную копию. Сначала укажите для {} отдельную папку в настройках рабочего стола."
 
@@ -1485,6 +1488,9 @@ msgstr "Для «{}» нельзя создать резервную копию 
 
 msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
 msgstr "Эта учётная запись синхронизирует только выбранные папки, а «{}» не входит в их число. Создайте пустую папку «{}» в {}, отметьте её в разделе «Папки», примените изменения и снова создайте резервную копию."
+
+msgid "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first."
+msgstr "В {} уже сохраняется {}, поэтому {} не может попасть туда же. Сначала переименуйте одну из двух папок."
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "В папке OneDrive находится символическая ссылка «{}». Удалите её или переименуйте, прежде чем создавать резервную копию этой папки."
@@ -2168,8 +2174,8 @@ msgstr "не будет загружена: скрытые папки пропу
 msgid "won't upload: it has a .nosync file"
 msgstr "не будет загружена: в ней есть файл .nosync"
 
-msgid "won't upload: it's a link to another place"
-msgstr "не будет загружена: это ссылка на другое место"
+msgid "won't upload: left out by \"Don't sync symbolic links\" (Options)"
+msgstr "не будет загружена: исключена параметром «Не синхронизировать символические ссылки» (Параметры)"
 
 msgid "won't upload: OneDrive doesn't allow this name"
 msgstr "не будет загружена: OneDrive не допускает такое имя"
@@ -3563,6 +3569,9 @@ msgstr "Изображения"
 
 msgid "Videos"
 msgstr "Видео"
+
+#~ msgid "won't upload: it's a link to another place"
+#~ msgstr "не будет загружена: это ссылка на другое место"
 
 #~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
 #~ msgstr "Эта учётная запись синхронизирует только выбранные папки, а «{}» не входит в их число. Сначала добавьте её в разделе «Папки» (можно создать её в сети)."

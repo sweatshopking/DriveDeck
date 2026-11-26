@@ -375,28 +375,28 @@ pub const KEY_SINCE: &[(&str, (u32, u32, u32))] = &[
     ("mirror_local_state", (2, 5, 11)),
 ];
 
-/// Whether a client of this version accepts `key` in its config. An unknown version (no client, or it
-/// didn't say) is taken to be a current one.
+/// Whether a client of this version accepts `key` in its config. With the version unknown (no client, or
+/// it didn't answer in time) only the keys every 2.5 client knows count: a wrong guess stops it starting.
 pub fn client_knows(key: &str, client: Option<(u32, u32, u32)>) -> bool {
-    match (client, KEY_SINCE.iter().find(|(k, _)| *k == key)) {
-        (Some(version), Some((_, since))) => version >= *since,
-        _ => true,
+    match KEY_SINCE.iter().find(|(k, _)| *k == key) {
+        Some((_, since)) => client.is_some_and(|version| version >= *since),
+        None => true,
     }
 }
+
+type ClientSeen = Option<(
+    PathBuf,
+    Option<std::time::SystemTime>,
+    Option<(u32, u32, u32)>,
+)>;
+static CLIENT_SEEN: std::sync::Mutex<ClientSeen> = std::sync::Mutex::new(None);
 
 /// The installed client's version numbers, asked once per client program (path and change time),
 /// since asking runs it.
 pub fn client_numbers() -> Option<(u32, u32, u32)> {
-    use std::sync::Mutex;
-    type Seen = Option<(
-        PathBuf,
-        Option<std::time::SystemTime>,
-        Option<(u32, u32, u32)>,
-    )>;
-    static SEEN: Mutex<Seen> = Mutex::new(None);
     let path = client_binary()?;
     let changed = fs::metadata(&path).and_then(|m| m.modified()).ok();
-    if let Ok(seen) = SEEN.lock()
+    if let Ok(seen) = CLIENT_SEEN.lock()
         && let Some((p, c, v)) = seen.as_ref()
         && *p == path
         && *c == changed
@@ -407,10 +407,20 @@ pub fn client_numbers() -> Option<(u32, u32, u32)> {
         .ok()
         .and_then(|t| parse_client_version(&t))
         .map(|(n, _)| n);
-    if let Ok(mut seen) = SEEN.lock() {
+    if let Ok(mut seen) = CLIENT_SEEN.lock() {
         *seen = Some((path, changed, numbers));
     }
     numbers
+}
+
+/// The installed client's version numbers if they have been asked already (`client_numbers`), without
+/// running it: for the window's own thread, which mustn't wait on it.
+pub fn client_numbers_cached() -> Option<(u32, u32, u32)> {
+    let seen = CLIENT_SEEN.lock().ok()?;
+    let (p, _, v) = seen.as_ref()?;
+    (client_binary().as_ref() == Some(p))
+        .then_some(*v)
+        .flatten()
 }
 
 /// The exit status the client ends with when it needs a full resync: 126 before client 2.5.12, 78 from it
@@ -1662,7 +1672,6 @@ pub fn paths_overlap(a: &Path, b: &Path) -> bool {
     a.starts_with(&b) || b.starts_with(&a)
 }
 
-/// Makes a unit skip quietly, instead of failing every few seconds, if the client is uninstalled.
 /// The lines that keep an account's unit off its OneDrive folder while the drive holding it is
 /// absent (see driveguard), each ending in a newline; empty when it lives on the root or home drive.
 fn drive_guard_lines(confdir: &Path, previous: Option<&Path>) -> String {
@@ -1674,6 +1683,7 @@ fn drive_guard_lines(confdir: &Path, previous: Option<&Path>) -> String {
     }
 }
 
+/// Makes a unit skip quietly, instead of failing every few seconds, if the client is uninstalled.
 fn condition_line(program: &Path) -> String {
     format!(
         "ConditionPathExists={}",
@@ -2817,7 +2827,8 @@ pub fn icon_theme_path() -> Option<PathBuf> {
 /// Only the log lines that matter for status, however busy the log is, oldest first.
 /// Falls back to a plain tail on systems whose journalctl lacks --grep.
 pub fn journal_status_lines(unit: &str) -> Vec<String> {
-    let pattern = "Reading configuration file: |Starting a sync|Sync with Microsoft OneDrive is complete|ERROR|Error Message:|Unable to |--resync|--reauth|requires authentication|re-authenticate|re-authorise|invalid_grant";
+    // (the network lines too: "can't reach Microsoft" and "reached it again", issue #5)
+    let pattern = "Reading configuration file: |Starting a sync|Sync with Microsoft OneDrive is complete|ERROR|Error Message:|Unable to |--resync|--reauth|requires authentication|re-authenticate|re-authorise|invalid_grant|Cannot connect to the Microsoft OneDrive Service|not reachable at this time|Successfully reached the Microsoft OneDrive Service";
     let out = Command::new("journalctl")
         .args([
             "--user",
@@ -4307,7 +4318,8 @@ mod tests {
         assert!(!client_knows("mirror_local_state", Some((2, 5, 10))));
         // keys every 2.5 client knows, and an unknown version
         assert!(client_knows("sync_dir", Some((2, 5, 0))));
-        assert!(client_knows("force_session_upload", None));
+        assert!(!client_knows("force_session_upload", None));
+        assert!(client_knows("sync_dir", None));
         // every key in the table is one the Advanced section or this app writes
         for (k, _) in KEY_SINCE {
             assert!(

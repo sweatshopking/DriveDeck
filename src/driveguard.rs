@@ -79,11 +79,12 @@ fn normal(path: &Path) -> PathBuf {
         .collect()
 }
 
-/// `path` with the links on its way followed (Fedora Atomic: /mnt and /home are links into /var), so it
-/// can be matched against the mount table. Resolving stops at the first mount point: nothing on the
-/// drive (or share) itself is looked at, so an unreachable share can't hang this. A path that isn't
-/// there is resolved as far as it goes.
-pub fn resolve(path: &Path, mounts: &[Mount]) -> PathBuf {
+/// `path` with the links on its way followed (Fedora Atomic: /mnt and /home are links into /var; a
+/// ~/OneDrive that is a link to another drive), so it can be matched against the mount table. Links
+/// are followed through the mounts in `through` (the root one and the home folder's, which are always
+/// there); resolving stops at any other mount point, so nothing on another drive or share is looked at
+/// and an unreachable one can't hang this. A path that isn't there is resolved as far as it goes.
+pub fn resolve(path: &Path, mounts: &[Mount], through: &[PathBuf]) -> PathBuf {
     let mut todo: Vec<std::ffi::OsString> = normal(path)
         .components()
         .filter_map(|c| match c {
@@ -100,7 +101,7 @@ pub fn resolve(path: &Path, mounts: &[Mount]) -> PathBuf {
             continue;
         }
         let next = at.join(&part);
-        if is_mount_point(&next, mounts) {
+        if is_mount_point(&next, mounts) && !through.contains(&next) {
             at = next;
             break;
         }
@@ -157,9 +158,15 @@ pub fn guard_mount(
     if !sync_dir.is_absolute() {
         return None;
     }
-    // through any links on the way (on Fedora Atomic /mnt/NFS is really /var/mnt/NFS, as the mount table says)
-    let sync_dir = resolve(sync_dir, mounts);
-    let home = resolve(home, mounts);
+    // through any links on the way (on Fedora Atomic /mnt/NFS is really /var/mnt/NFS, as the mount table says;
+    // ~/OneDrive may be a link to another drive), through the root drive and the home folder's drive only
+    let root = vec![PathBuf::from("/")];
+    let home = resolve(home, mounts, &root);
+    let mut through = root;
+    if let Some(h) = holder(&home, mounts) {
+        through.push(h.point.clone());
+    }
+    let sync_dir = resolve(sync_dir, mounts, &through);
     let home = home.as_path();
     if let Some(prev) = previous {
         let prev = normal(prev);
@@ -234,12 +241,12 @@ mod tests {
 
     const INFO: &str = "\
 22 1 0:21 / / rw,relatime shared:1 - btrfs /dev/nvme0n1p2 rw
-23 22 0:22 /@home /home rw,relatime shared:2 - btrfs /dev/nvme0n1p2 rw
-40 22 8:17 / /mnt/barracuda rw,relatime shared:9 - btrfs /dev/sdb1 rw
-41 22 0:50 / /run/media/josh/My\\040Drive rw,nosuid - exfat /dev/sdc1 rw
-42 22 0:51 / /mnt/share rw - nfs4 server:/export rw
-43 22 0:52 / /mnt/auto rw - autofs systemd-1 rw
-44 43 0:53 / /mnt/auto rw - cifs //nas/x rw
+23 22 0:22 /@home /zz-home rw,relatime shared:2 - btrfs /dev/nvme0n1p2 rw
+40 22 8:17 / /zz-mnt/barracuda rw,relatime shared:9 - btrfs /dev/sdb1 rw
+41 22 0:50 / /zz-run/media/josh/My\\040Drive rw,nosuid - exfat /dev/sdc1 rw
+42 22 0:51 / /zz-mnt/share rw - nfs4 server:/export rw
+43 22 0:52 / /zz-mnt/auto rw - autofs systemd-1 rw
+44 43 0:53 / /zz-mnt/auto rw - cifs //nas/x rw
 ";
 
     fn m() -> Vec<Mount> {
@@ -250,7 +257,7 @@ mod tests {
     fn the_mount_table_is_read_with_escaped_names() {
         let ms = m();
         assert_eq!(ms.len(), 7);
-        assert_eq!(ms[3].point, PathBuf::from("/run/media/josh/My Drive"));
+        assert_eq!(ms[3].point, PathBuf::from("/zz-run/media/josh/My Drive"));
         assert_eq!(ms[3].fstype, "exfat");
         assert_eq!(unescape("a\\134b\\011c"), "a\\b\tc");
         assert_eq!(unescape("end\\04"), "end\\04"); // a cut-off escape stays as it was
@@ -258,33 +265,38 @@ mod tests {
 
     #[test]
     fn only_folders_on_other_drives_are_guarded() {
-        let home = Path::new("/home/josh");
+        let home = Path::new("/zz-home/josh");
         let ms = m();
         // the home folder's mount and the root one: nothing to wait for
         assert_eq!(
-            guard_mount(Path::new("/home/josh/OneDrive"), home, &ms, None),
+            guard_mount(Path::new("/zz-home/josh/OneDrive"), home, &ms, None),
             None
         );
         assert_eq!(
-            guard_mount(Path::new("/srv/OneDrive"), home, &ms, None),
+            guard_mount(Path::new("/zz-srv/OneDrive"), home, &ms, None),
             None
         );
         // a second disk, a USB drive (spaces in the name), a network share
         assert_eq!(
-            guard_mount(Path::new("/mnt/barracuda/OneDrive"), home, &ms, None),
-            Some(PathBuf::from("/mnt/barracuda"))
+            guard_mount(Path::new("/zz-mnt/barracuda/OneDrive"), home, &ms, None),
+            Some(PathBuf::from("/zz-mnt/barracuda"))
         );
         assert_eq!(
-            guard_mount(Path::new("/run/media/josh/My Drive/OD/"), home, &ms, None),
-            Some(PathBuf::from("/run/media/josh/My Drive"))
+            guard_mount(
+                Path::new("/zz-run/media/josh/My Drive/OD/"),
+                home,
+                &ms,
+                None
+            ),
+            Some(PathBuf::from("/zz-run/media/josh/My Drive"))
         );
         assert_eq!(
-            guard_mount(Path::new("/mnt/share"), home, &ms, None),
-            Some(PathBuf::from("/mnt/share"))
+            guard_mount(Path::new("/zz-mnt/share"), home, &ms, None),
+            Some(PathBuf::from("/zz-mnt/share"))
         );
         // automounted (unmounts when idle): left alone
         assert_eq!(
-            guard_mount(Path::new("/mnt/auto/OD"), home, &ms, None),
+            guard_mount(Path::new("/zz-mnt/auto/OD"), home, &ms, None),
             None
         );
         // a relative path is never guessed at
@@ -293,28 +305,33 @@ mod tests {
 
     #[test]
     fn a_guard_is_kept_while_its_drive_is_absent() {
-        let home = Path::new("/home/josh");
+        let home = Path::new("/zz-home/josh");
         let ms = m();
-        let gone = Path::new("/run/media/josh/Stick");
+        let gone = Path::new("/zz-run/media/josh/Stick");
         // unplugged: the folder now looks as if it were on the root disk; the old guard stays
         assert_eq!(
-            guard_mount(Path::new("/run/media/josh/Stick/OD"), home, &ms, Some(gone)),
+            guard_mount(
+                Path::new("/zz-run/media/josh/Stick/OD"),
+                home,
+                &ms,
+                Some(gone)
+            ),
             Some(gone.to_path_buf())
         );
         // the folder moved home: the old guard goes
         assert_eq!(
-            guard_mount(Path::new("/home/josh/OD"), home, &ms, Some(gone)),
+            guard_mount(Path::new("/zz-home/josh/OD"), home, &ms, Some(gone)),
             None
         );
         // the drive is back under another guard-worthy mount: the current one wins
         assert_eq!(
             guard_mount(
-                Path::new("/mnt/barracuda/OD"),
+                Path::new("/zz-mnt/barracuda/OD"),
                 home,
                 &ms,
-                Some(Path::new("/mnt/barracuda"))
+                Some(Path::new("/zz-mnt/barracuda"))
             ),
-            Some(PathBuf::from("/mnt/barracuda"))
+            Some(PathBuf::from("/zz-mnt/barracuda"))
         );
     }
 
@@ -340,17 +357,54 @@ mod tests {
         ];
         // nothing inside the share is looked at: the rest is kept as written
         assert_eq!(
-            resolve(&base.join("mnt/NFS/OneDrive/x"), &ms),
+            resolve(&base.join("mnt/NFS/OneDrive/x"), &ms, &[]),
             share.join("OneDrive/x")
         );
         assert_eq!(
-            resolve(&base.join("home/me/OneDrive"), &ms),
+            resolve(&base.join("home/me/OneDrive"), &ms, &[]),
             base.join("var/home/me/OneDrive")
         );
         assert_eq!(
-            resolve(&base.join("missing/a"), &ms),
+            resolve(&base.join("missing/a"), &ms, &[]),
             base.join("missing/a")
         );
+        // ~/OneDrive a link to another drive, with the home folder its own mount (Fedora Workstation,
+        // CachyOS): followed through the home folder's mount, stopping at the other drive
+        let home_mount = base.join("var/home");
+        let disk = base.join("disk");
+        std::fs::create_dir_all(disk.join("OneDrive")).unwrap();
+        std::os::unix::fs::symlink(disk.join("OneDrive"), base.join("var/home/me/OneDrive"))
+            .unwrap();
+        let ms_home = vec![
+            Mount {
+                point: "/".into(),
+                fstype: "btrfs".into(),
+            },
+            Mount {
+                point: home_mount.clone(),
+                fstype: "btrfs".into(),
+            },
+            Mount {
+                point: disk.clone(),
+                fstype: "ext4".into(),
+            },
+        ];
+        assert_eq!(
+            guard_mount(
+                &base.join("var/home/me/OneDrive"),
+                &base.join("var/home/me"),
+                &ms_home,
+                None
+            ),
+            Some(disk.clone()),
+            "a linked OneDrive folder on another drive is guarded"
+        );
+        // without the home folder's mount passed through, resolving stops there and misses the link
+        assert_eq!(
+            resolve(&base.join("var/home/me/OneDrive"), &ms_home, &[]),
+            base.join("var/home/me/OneDrive")
+        );
+        std::fs::remove_file(base.join("var/home/me/OneDrive")).unwrap();
         assert_eq!(
             guard_mount(
                 &base.join("mnt/NFS/OneDrive"),
@@ -410,7 +464,7 @@ mod tests {
         let unit = format!("[Unit]\nDescription=x\n{lines}\n[Service]\n");
         assert_eq!(from_unit(&unit), Some(point.to_path_buf()));
         assert_eq!(missing_drive(&unit, &m()), Some(point.to_path_buf()));
-        let here = format!("[Unit]\n{}\n", unit_lines(Path::new("/mnt/share")));
+        let here = format!("[Unit]\n{}\n", unit_lines(Path::new("/zz-mnt/share")));
         assert_eq!(missing_drive(&here, &m()), None);
         assert_eq!(missing_drive("[Unit]\n", &m()), None);
     }

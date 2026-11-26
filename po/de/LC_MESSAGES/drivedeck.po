@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2026-11-26 23:20+0000\n"
+"POT-Creation-Date: 2026-11-26 23:43+0000\n"
 "Language: de\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1455,6 +1455,9 @@ msgstr "Der OneDrive-Ordner {} ist nicht verfügbar. Schließe das Laufwerk an u
 msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr "Das Laufwerk mit dem OneDrive-Ordner dieses Kontos ({}) ist nicht verbunden. Schließe es an und versuche es erneut."
 
+msgid "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it."
+msgstr "{} enthält deinen ganzen Persönlichen Ordner und kann deshalb nicht gesichert werden. Wähle einen Ordner darin."
+
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "Dein Ordner {} ist auf {} eingestellt. Das umfasst deinen gesamten persönlichen Ordner und kann daher nicht gesichert werden. Stelle {} zuerst in den Desktop-Einstellungen auf einen eigenen Ordner ein."
 
@@ -1478,6 +1481,9 @@ msgstr "„{}“ kann nicht in diesem Konto gesichert werden ({})."
 
 msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
 msgstr "Dieses Konto synchronisiert nur die ausgewählten Ordner, und „{}“ ist nicht dabei. Lege einen leeren Ordner namens „{}“ in {} an, hake ihn unter „Ordner“ an, übernimm die Änderung und sichere dann erneut."
+
+msgid "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first."
+msgstr "Unter {} wird bereits {} gesichert, daher kann {} nicht auch dorthin. Benenne zuerst einen der beiden Ordner um."
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "In deinem OneDrive-Ordner gibt es einen symbolischen Link namens „{}“. Entferne oder benenne ihn um, bevor du diesen Ordner sicherst."
@@ -2156,8 +2162,8 @@ msgstr "wird nicht hochgeladen: versteckte Ordner werden übersprungen"
 msgid "won't upload: it has a .nosync file"
 msgstr "wird nicht hochgeladen: enthält eine .nosync-Datei"
 
-msgid "won't upload: it's a link to another place"
-msgstr "wird nicht hochgeladen: ist eine Verknüpfung zu einem anderen Ort"
+msgid "won't upload: left out by \"Don't sync symbolic links\" (Options)"
+msgstr "wird nicht hochgeladen: ausgeschlossen durch „Symbolische Verknüpfungen nicht synchronisieren“ (Optionen)"
 
 msgid "won't upload: OneDrive doesn't allow this name"
 msgstr "wird nicht hochgeladen: OneDrive erlaubt diesen Namen nicht"
@@ -3541,6 +3547,9 @@ msgstr "Bilder"
 
 msgid "Videos"
 msgstr "Videos"
+
+#~ msgid "won't upload: it's a link to another place"
+#~ msgstr "wird nicht hochgeladen: ist eine Verknüpfung zu einem anderen Ort"
 
 #~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
 #~ msgstr "Dieses Konto synchronisiert nur die ausgewählten Ordner. „{}“ ist nicht dabei. Füge ihn zuerst unter „Ordner“ hinzu (du kannst ihn online erstellen)."

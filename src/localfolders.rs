@@ -28,6 +28,8 @@ pub struct Rules {
     pub skip_dotfiles: bool,
     pub check_nosync: bool,
     pub download_only: bool,
+    /// The client leaves links out (skip_symlinks); by default it follows them and uploads what they point at
+    pub skip_symlinks: bool,
 }
 
 impl Rules {
@@ -39,6 +41,7 @@ impl Rules {
             skip_dotfiles: cfg.get_bool("skip_dotfiles"),
             check_nosync: cfg.get_bool("check_nosync"),
             download_only: cfg.get_bool("download_only"),
+            skip_symlinks: cfg.get_bool("skip_symlinks"),
         }
     }
 }
@@ -63,7 +66,9 @@ impl Blocked {
             }
             Blocked::Hidden => crate::tr!("won't upload: hidden folders are skipped"),
             Blocked::NoSync => crate::tr!("won't upload: it has a .nosync file"),
-            Blocked::Link => crate::tr!("won't upload: it's a link to another place"),
+            Blocked::Link => {
+                crate::tr!("won't upload: left out by \"Don't sync symbolic links\" (Options)")
+            }
             Blocked::BadName => crate::tr!("won't upload: OneDrive doesn't allow this name"),
         }
     }
@@ -127,7 +132,8 @@ pub fn list(sync_dir: &Path, path: &str, rules: &Rules) -> Vec<LocalDir> {
             continue; // not UTF-8: OneDrive can't take it and sync_list can't name it
         };
         let rel = join(path, &name);
-        let blocked = if is_link {
+        // a link is uploaded like a folder unless the account skips links (it isn't walked into here, though)
+        let blocked = if is_link && rules.skip_symlinks {
             Some(Blocked::Link)
         } else {
             above.or_else(|| blocked(sync_dir, &rel, rules))
@@ -498,12 +504,23 @@ mod tests {
             [
                 (".hidden", false, Some(Blocked::Hidden)),
                 ("Bad.", false, Some(Blocked::BadName)),
-                ("Link", false, Some(Blocked::Link)),
+                // followed by the client by default: it can be ticked (but isn't walked into here)
+                ("Link", false, None),
                 ("Plain", true, None),
                 ("Quiet", true, Some(Blocked::NoSync)),
                 ("Skipped", false, Some(Blocked::SkipDir)),
             ]
         );
+        // an account that skips links: the link can't be ticked
+        let no_links = Rules {
+            skip_symlinks: true,
+            ..rules.clone()
+        };
+        let link = list(&root, "/", &no_links)
+            .into_iter()
+            .find(|d| d.name == "Link")
+            .unwrap();
+        assert_eq!(link.blocked, Some(Blocked::Link));
         // a .nosync above counts for what's inside
         assert_eq!(
             blocked(&root, "/Quiet/Inner", &rules),

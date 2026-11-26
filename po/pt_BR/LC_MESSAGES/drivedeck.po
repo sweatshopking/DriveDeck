@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:20+0000\n"
+"POT-Creation-Date: 2026-11-26 23:43+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1462,6 +1462,9 @@ msgstr "A pasta do OneDrive {} não está disponível. Conecte a unidade e tente
 msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr "A unidade com a pasta do OneDrive desta conta ({}) não está conectada. Conecte-a e tente de novo."
 
+msgid "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it."
+msgstr "{} contém toda a sua pasta pessoal, então não pode ter backup. Escolha uma pasta dentro dela."
+
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "Sua pasta {} está definida como {}, que contém toda a sua pasta pessoal, então não é possível fazer backup dela. Primeiro, configure {} para usar uma pasta própria nas configurações da área de trabalho."
 
@@ -1485,6 +1488,9 @@ msgstr "Não é possível fazer backup de “{}” nesta conta ({})."
 
 msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
 msgstr "Esta conta só sincroniza as pastas que você escolheu, e “{}” não é uma delas. Crie uma pasta vazia chamada “{}” em {}, selecione-a em “Pastas”, aplique e faça o backup de novo."
+
+msgid "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first."
+msgstr "{} já guarda o backup de {}, então {} não pode ir para lá também. Renomeie primeiro uma das duas pastas."
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "Há um link simbólico chamado “{}” na sua pasta do OneDrive. Resolva-o ou renomeie-o antes de fazer backup desta pasta."
@@ -2164,8 +2170,8 @@ msgstr "não será enviada: pastas ocultas são ignoradas"
 msgid "won't upload: it has a .nosync file"
 msgstr "não será enviada: contém um arquivo .nosync"
 
-msgid "won't upload: it's a link to another place"
-msgstr "não será enviada: é um link para outro lugar"
+msgid "won't upload: left out by \"Don't sync symbolic links\" (Options)"
+msgstr "não será enviada: excluída por “Não sincronizar links simbólicos” (Opções)"
 
 msgid "won't upload: OneDrive doesn't allow this name"
 msgstr "não será enviada: o OneDrive não permite este nome"
@@ -3549,6 +3555,9 @@ msgstr "Imagens"
 
 msgid "Videos"
 msgstr "Vídeos"
+
+#~ msgid "won't upload: it's a link to another place"
+#~ msgstr "não será enviada: é um link para outro lugar"
 
 #~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
 #~ msgstr "Esta conta só sincroniza as pastas escolhidas, e “{}” não é uma delas. Primeiro, adicione-a em Pastas (você pode criá-la online)."

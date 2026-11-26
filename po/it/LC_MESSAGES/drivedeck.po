@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:20+0000\n"
+"POT-Creation-Date: 2026-11-26 23:43+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1462,6 +1462,9 @@ msgstr "La cartella OneDrive {} non è disponibile. Collega il disco e riprova."
 msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr "L'unità con la cartella OneDrive di questo account ({}) non è collegata. Collegala e riprova."
 
+msgid "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it."
+msgstr "{} contiene tutta la tua cartella home, quindi non può essere salvata. Scegli una cartella al suo interno."
+
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "La cartella {} è impostata su {}, che contiene tutta la cartella home e non può essere inclusa nel backup. Imposta {} sulla sua cartella nelle impostazioni del desktop."
 
@@ -1485,6 +1488,9 @@ msgstr "Impossibile eseguire il backup di «{}» in questo account ({})."
 
 msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
 msgstr "Questo account sincronizza solo le cartelle scelte, e «{}» non è tra queste. Crea una cartella vuota chiamata «{}» in {}, selezionala in «Cartelle», applica le modifiche, poi esegui di nuovo il backup."
+
+msgid "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first."
+msgstr "In {} c'è già il backup di {}, quindi {} non può andarci anche. Rinomina prima una delle due cartelle."
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "Nella cartella OneDrive c’è un collegamento simbolico chiamato «{}». Risolvilo o rinominalo prima di eseguire il backup."
@@ -2166,8 +2172,8 @@ msgstr "non verrà caricata: le cartelle nascoste vengono saltate"
 msgid "won't upload: it has a .nosync file"
 msgstr "non verrà caricata: contiene un file .nosync"
 
-msgid "won't upload: it's a link to another place"
-msgstr "non verrà caricata: è un collegamento a un altro percorso"
+msgid "won't upload: left out by \"Don't sync symbolic links\" (Options)"
+msgstr "non verrà caricata: esclusa da «Non sincronizzare i collegamenti simbolici» (Opzioni)"
 
 msgid "won't upload: OneDrive doesn't allow this name"
 msgstr "non verrà caricata: OneDrive non consente questo nome"
@@ -3551,6 +3557,9 @@ msgstr "Immagini"
 
 msgid "Videos"
 msgstr "Video"
+
+#~ msgid "won't upload: it's a link to another place"
+#~ msgstr "non verrà caricata: è un collegamento a un altro percorso"
 
 #~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
 #~ msgstr "Questo account sincronizza solo le cartelle selezionate e «{}» non è tra queste. Aggiungila in Cartelle (puoi crearla online)."

@@ -1249,14 +1249,17 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
                     set_drive_held(&info.confdir, true);
                 }
             } else if prefs.drive_held {
-                set_drive_held(&info.confdir, false);
-                if !st.active
-                    && !*resyncing
-                    && info.signed_in
-                    && !core::account_busy(&info.confdir)
-                    && !core::unit_held(unit)
-                    && prefs.sync_allowed()
+                // busy (a backup, a preview), held after a big delete, or not allowed just now (paused, outside
+                // its schedule, a metered network): try again on a later round, until it can start
+                if *resyncing
+                    || core::account_busy(&info.confdir)
+                    || core::unit_held(unit)
+                    || !prefs.sync_allowed()
                 {
+                    continue;
+                }
+                set_drive_held(&info.confdir, false);
+                if !st.active && info.signed_in {
                     core::run_detached("systemctl", &["--user", "start", unit]);
                 }
             }

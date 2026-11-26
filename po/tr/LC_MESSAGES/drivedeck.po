@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:20+0000\n"
+"POT-Creation-Date: 2026-11-26 23:43+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1462,6 +1462,9 @@ msgstr "{} OneDrive klasörü kullanılamıyor. Sürücüsünü bağlayıp yenid
 msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr "Bu hesabın OneDrive klasörünün bulunduğu sürücü ({}) bağlı değil. Bağlayıp yeniden deneyin."
 
+msgid "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it."
+msgstr "{} ana klasörünüzün tamamını içeriyor, bu yüzden yedeklenemez. İçindeki bir klasörü seçin."
+
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "{} klasörünüz {}, yani ana klasörünüzün tamamı olarak ayarlanmış; bu nedenle yedeklenemez. Önce masaüstü ayarlarında {} için yalnızca kendisine ait bir klasör seçin."
 
@@ -1485,6 +1488,9 @@ msgstr "“{}” bu hesaba yedeklenemez ({})."
 
 msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
 msgstr "Bu hesap yalnızca seçtiğiniz klasörleri eşitler ve “{}” bunlardan biri değil. “{}” adlı boş bir klasörü şu konumda oluşturun: {}. Ardından “Klasörler” altında seçip uygulayın ve yeniden yedekleyin."
+
+msgid "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first."
+msgstr "{} konumunda zaten {} yedekleniyor, bu yüzden {} oraya gidemez. Önce iki klasörden birinin adını değiştirin."
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "OneDrive klasörünüzde “{}” adlı bir sembolik bağlantı var. Bu klasörü yedeklemeden önce bağlantıyı çözün veya yeniden adlandırın."
@@ -2164,8 +2170,8 @@ msgstr "yüklenmeyecek: gizli klasörler atlanır"
 msgid "won't upload: it has a .nosync file"
 msgstr "yüklenmeyecek: içinde .nosync dosyası var"
 
-msgid "won't upload: it's a link to another place"
-msgstr "yüklenmeyecek: başka bir yere giden bir bağlantı"
+msgid "won't upload: left out by \"Don't sync symbolic links\" (Options)"
+msgstr "yüklenmeyecek: “Sembolik bağlantıları eşitleme” ile dışarıda bırakıldı (Seçenekler)"
 
 msgid "won't upload: OneDrive doesn't allow this name"
 msgstr "yüklenmeyecek: OneDrive bu ada izin vermiyor"
@@ -3538,6 +3544,9 @@ msgstr "Resimler"
 
 msgid "Videos"
 msgstr "Videolar"
+
+#~ msgid "won't upload: it's a link to another place"
+#~ msgstr "yüklenmeyecek: başka bir yere giden bir bağlantı"
 
 #~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
 #~ msgstr "Bu hesap yalnızca seçtiğiniz klasörleri eşitliyor; “{}” bunlardan biri değil. Önce Klasörler bölümünde ekleyin (çevrimiçi oluşturabilirsiniz)."

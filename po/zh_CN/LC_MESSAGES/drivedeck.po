@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:20+0000\n"
+"POT-Creation-Date: 2026-11-26 23:43+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1462,6 +1462,9 @@ msgstr "OneDrive 文件夹 {} 当前不可用。请连接其所在驱动器后�
 msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr "此账户的 OneDrive 文件夹所在的驱动器（{}）未连接。请连接后重试。"
 
+msgid "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it."
+msgstr "{} 包含你的整个主文件夹，因此无法备份。请选择其中的某个文件夹。"
+
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "你的 {} 文件夹设置为 {}，它包含了主文件夹中的所有内容，因此无法备份。请先在桌面设置中将 {} 指向单独的文件夹。"
 
@@ -1485,6 +1488,9 @@ msgstr "无法将“{}”备份到此帐户（{}）。"
 
 msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
 msgstr "此帐户只同步你选择的文件夹，“{}”不在其中。请新建一个名为“{}”的空文件夹，位置：{}；然后在“文件夹”中勾选并应用，再重新备份。"
+
+msgid "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first."
+msgstr "{} 已用于备份 {}，因此 {} 不能也放在那里。请先重命名两个文件夹中的一个。"
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "OneDrive 文件夹中有一个名为“{}”的符号链接。请先处理或重命名它，再备份此文件夹。"
@@ -2164,8 +2170,8 @@ msgstr "不会上传：隐藏文件夹会被跳过"
 msgid "won't upload: it has a .nosync file"
 msgstr "不会上传：其中有 .nosync 文件"
 
-msgid "won't upload: it's a link to another place"
-msgstr "不会上传：这是指向其他位置的链接"
+msgid "won't upload: left out by \"Don't sync symbolic links\" (Options)"
+msgstr "不会上传：已被“不同步符号链接”排除（选项）"
 
 msgid "won't upload: OneDrive doesn't allow this name"
 msgstr "不会上传：OneDrive 不允许此名称"
@@ -3528,6 +3534,9 @@ msgstr "图片"
 
 msgid "Videos"
 msgstr "视频"
+
+#~ msgid "won't upload: it's a link to another place"
+#~ msgstr "不会上传：这是指向其他位置的链接"
 
 #~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
 #~ msgstr "此账户仅同步你所选的文件夹，而“{}”不在其中。请先在“文件夹”中添加它（也可在线创建）。"

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:20+0000\n"
+"POT-Creation-Date: 2026-11-26 23:43+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1462,6 +1462,9 @@ msgstr "De OneDrive-map {} is niet beschikbaar. Sluit de schijf aan en probeer h
 msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr "De schijf met de OneDrive-map van dit account ({}) is niet aangesloten. Sluit hem aan en probeer het opnieuw."
 
+msgid "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it."
+msgstr "{} bevat je hele thuismap en kan dus geen back-up krijgen. Kies een map daarbinnen."
+
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "De map {} staat ingesteld op {}, de map waarin alles uit je persoonlijke map staat. Daarvan kun je geen back-up maken. Stel {} eerst in op een eigen map via de bureaubladinstellingen."
 
@@ -1485,6 +1488,9 @@ msgstr "Van \"{}\" kan in dit account geen back-up worden gemaakt ({})."
 
 msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
 msgstr "Dit account synchroniseert alleen de mappen die je hebt gekozen, en \"{}\" hoort daar niet bij. Maak een lege map met de naam \"{}\" in {}, vink die aan onder \"Mappen\", pas de wijziging toe en maak daarna opnieuw een back-up."
+
+msgid "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first."
+msgstr "In {} staat al de back-up van {}, dus {} kan daar niet ook naartoe. Geef eerst een van de twee mappen een andere naam."
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "Er staat een symbolische koppeling met de naam \"{}\" in je OneDrive-map. Los die eerst op of geef hem een andere naam voordat je van deze map een back-up maakt."
@@ -2166,8 +2172,8 @@ msgstr "wordt niet geüpload: verborgen mappen worden overgeslagen"
 msgid "won't upload: it has a .nosync file"
 msgstr "wordt niet geüpload: bevat een .nosync-bestand"
 
-msgid "won't upload: it's a link to another place"
-msgstr "wordt niet geüpload: het is een koppeling naar een andere plek"
+msgid "won't upload: left out by \"Don't sync symbolic links\" (Options)"
+msgstr "wordt niet geüpload: uitgesloten door \"Symbolische koppelingen niet synchroniseren\" (Opties)"
 
 msgid "won't upload: OneDrive doesn't allow this name"
 msgstr "wordt niet geüpload: OneDrive staat deze naam niet toe"
@@ -3551,6 +3557,9 @@ msgstr "Afbeeldingen"
 
 msgid "Videos"
 msgstr "Video's"
+
+#~ msgid "won't upload: it's a link to another place"
+#~ msgstr "wordt niet geüpload: het is een koppeling naar een andere plek"
 
 #~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
 #~ msgstr "Dit account synchroniseert alleen de mappen die je hebt gekozen. \"{}\" hoort daar niet bij. Voeg de map eerst toe bij Mappen (je kunt die online aanmaken)."

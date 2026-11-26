@@ -1117,18 +1117,37 @@ fn load_options(ctx: &Shared, acc: &AccountInfo) {
     ui.set_o_msg(ss(""));
 }
 
-/// The advanced options shown for an account: those that apply to its kind.
-fn adv_specs(acc: &AccountInfo) -> Vec<&'static advanced::Spec> {
-    // an option the installed client doesn't know would stop it from starting: not offered
-    let client = core::client_numbers();
-    advanced::SPECS
+thread_local! {
+    /// The advanced options shown now, and for which account: fixed when its options load, so the rows,
+    /// the search and saving all go by the same list even if the client changes meanwhile
+    static ADV_SHOWN: std::cell::RefCell<(String, Vec<&'static advanced::Spec>)> =
+        const { std::cell::RefCell::new((String::new(), Vec::new())) };
+}
+
+/// The advanced options for an account, worked out again (when its options load)
+fn adv_specs_fresh(acc: &AccountInfo) -> Vec<&'static advanced::Spec> {
+    // an option the installed client doesn't know would stop it from starting: not offered. (The version
+    // asked at start, off this thread; until then the newer options wait.)
+    let client = core::client_numbers_cached();
+    let specs: Vec<&'static advanced::Spec> = advanced::SPECS
         .iter()
         .filter(|s| advanced::applies(s, &acc.kind) && core::client_knows(s.key, client))
-        .collect()
+        .collect();
+    ADV_SHOWN.with(|a| *a.borrow_mut() = (acc.key(), specs.clone()));
+    specs
+}
+
+/// The advanced options shown for an account: those that apply to its kind and its client.
+fn adv_specs(acc: &AccountInfo) -> Vec<&'static advanced::Spec> {
+    let shown = ADV_SHOWN.with(|a| {
+        let a = a.borrow();
+        (a.0 == acc.key()).then(|| a.1.clone())
+    });
+    shown.unwrap_or_else(|| adv_specs_fresh(acc))
 }
 
 fn adv_rows(acc: &AccountInfo, cfg: &ClientConfig) -> Vec<AdvRow> {
-    let specs = adv_specs(acc);
+    let specs = adv_specs_fresh(acc);
     specs
         .iter()
         .map(|s| {
@@ -2370,11 +2389,13 @@ fn fetch_children(ctx: &Shared, acc: &AccountInfo, path: String, local_only: boo
         {
             let path = path.clone();
             move || {
-                let t = token_for(&confdir, cached)?;
-                let online = if local_only {
-                    Vec::new()
+                // a folder only on this computer is read from the disk: no sign-in (or network) needed
+                let (t, online) = if local_only {
+                    (cached, Vec::new())
                 } else {
-                    graph::list_folders(&as_graph(&t), drive.as_deref(), &path)?
+                    let t = token_for(&confdir, cached)?;
+                    let online = graph::list_folders(&as_graph(&t), drive.as_deref(), &path)?;
+                    (Some(t), online)
                 };
                 let rules = localfolders::Rules::load(&confdir);
                 let local = localfolders::list(&sync_dir, &path, &rules);
@@ -2393,7 +2414,9 @@ fn fetch_children(ctx: &Shared, acc: &AccountInfo, path: String, local_only: boo
                 }
                 match r {
                     Ok((t, folders)) => {
-                        c.tokens.insert(key.clone(), t);
+                        if let Some(t) = t {
+                            c.tokens.insert(key.clone(), t);
+                        }
                         c.tree.cache.insert(path.clone(), folders.clone());
                         let tree = &mut c.tree;
                         if path == "/" {
@@ -4859,7 +4882,7 @@ fn backup_plan(ctx: &Shared, what: PlanFor) {
     bg(
         move || {
             match what {
-                PlanFor::Known(key) => crate::backup::plan(&acc, &all, key),
+                PlanFor::Known(key) => crate::backup::plan(&acc, &all, &settings, key),
                 PlanFor::Custom(p) => crate::backup::plan_custom(&acc, &all, &settings, &p),
             }
             .map(|p| (acc, p))
@@ -7475,6 +7498,23 @@ pub fn run(account: Option<String>) {
             },
         );
     }
+    // the client's version (which options it knows), asked off this thread; options already showing are
+    // listed again if that changes what they offer
+    bg(core::client_numbers, |ctx, _| {
+        if let Some(acc) = current(ctx) {
+            let shown = adv_specs(&acc).len();
+            let now = advanced::SPECS
+                .iter()
+                .filter(|s| {
+                    advanced::applies(s, &acc.kind)
+                        && core::client_knows(s.key, core::client_numbers_cached())
+                })
+                .count();
+            if shown != now {
+                load_options(ctx, &acc);
+            }
+        }
+    });
     #[cfg(feature = "test-driver")]
     let _driver = crate::testdrive::start(&ui);
     ui.run().expect("event loop failed");

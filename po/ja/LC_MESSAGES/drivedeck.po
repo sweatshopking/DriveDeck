@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:20+0000\n"
+"POT-Creation-Date: 2026-11-26 23:43+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1462,6 +1462,9 @@ msgstr "OneDriveフォルダー{}を利用できません。ドライブを接�
 msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr "このアカウントの OneDrive フォルダーがあるドライブ ({}) が接続されていません。接続してからもう一度お試しください。"
 
+msgid "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it."
+msgstr "{} にはホームフォルダー全体が含まれているため、バックアップできません。その中のフォルダーを選んでください。"
+
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "{}フォルダーは{}に設定されています。ホームフォルダー全体を指しているため、バックアップできません。先にデスクトップの設定で{}を専用のフォルダーに設定してください。"
 
@@ -1485,6 +1488,9 @@ msgstr "「{}」はこのアカウントにバックアップできません ({}
 
 msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
 msgstr "このアカウントでは選択したフォルダーのみを同期し、「{}」は選ばれていません。「{}」という名前の空のフォルダーを {} に作成し、「フォルダー」で選んで適用してから、もう一度バックアップしてください。"
+
+msgid "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first."
+msgstr "{} には既に {} がバックアップされているため、{} はそこに置けません。先にどちらかのフォルダーの名前を変えてください。"
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "OneDriveフォルダーに「{}」というシンボリックリンクがあります。このフォルダーをバックアップする前に、リンクを解決するか名前を変更してください。"
@@ -2162,8 +2168,8 @@ msgstr "アップロードされません: 隠しフォルダーはスキップ�
 msgid "won't upload: it has a .nosync file"
 msgstr "アップロードされません: .nosync ファイルがあります"
 
-msgid "won't upload: it's a link to another place"
-msgstr "アップロードされません: 別の場所へのリンクです"
+msgid "won't upload: left out by \"Don't sync symbolic links\" (Options)"
+msgstr "アップロードされません: 「シンボリックリンクを同期しない」で除外されています (オプション)"
 
 msgid "won't upload: OneDrive doesn't allow this name"
 msgstr "アップロードされません: OneDrive ではこの名前を使えません"
@@ -3537,6 +3543,9 @@ msgstr "ピクチャ"
 
 msgid "Videos"
 msgstr "ビデオ"
+
+#~ msgid "won't upload: it's a link to another place"
+#~ msgstr "アップロードされません: 別の場所へのリンクです"
 
 #~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
 #~ msgstr "このアカウントでは選択したフォルダーのみを同期し、「{}」は選ばれていません。先に「フォルダー」で追加してください（オンラインで作成できます）。"

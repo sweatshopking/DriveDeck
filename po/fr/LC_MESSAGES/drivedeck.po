@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-26 23:20+0000\n"
+"POT-Creation-Date: 2026-11-26 23:43+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1462,6 +1462,9 @@ msgstr "Le dossier OneDrive {} n'est pas disponible. Connectez son disque et ré
 msgid "The drive with this account's OneDrive folder ({}) isn't connected. Connect it and try again."
 msgstr "Le disque contenant le dossier OneDrive de ce compte ({}) n’est pas connecté. Connectez-le et réessayez."
 
+msgid "{} holds your whole home folder, so it can't be backed up. Choose a folder inside it."
+msgstr "{} contient tout votre dossier personnel, il ne peut donc pas être sauvegardé. Choisissez un dossier à l’intérieur."
+
 msgid "Your {} folder is set to {}, which holds everything in your home folder, so it can't be backed up. Point {} at its own folder in your desktop's settings first."
 msgstr "Votre dossier {} est défini sur {}, qui contient tout votre dossier personnel ; il ne peut donc pas être sauvegardé. Configurez d'abord {} pour utiliser son propre dossier dans les paramètres de votre bureau."
 
@@ -1485,6 +1488,9 @@ msgstr "« {} » ne peut pas être sauvegardé dans ce compte ({})."
 
 msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
 msgstr "Ce compte ne synchronise que les dossiers que vous avez choisis, et « {} » n’en fait pas partie. Créez un dossier vide nommé « {} » dans {}, cochez-le dans « Dossiers », appliquez, puis relancez la sauvegarde."
+
+msgid "{} is already where {} is backed up, so {} can't go there too. Rename one of the two folders first."
+msgstr "{} accueille déjà la sauvegarde de {}, donc {} ne peut pas y aller aussi. Renommez d’abord l’un des deux dossiers."
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "Un lien symbolique nommé « {} » se trouve dans votre dossier OneDrive. Supprimez-le ou renommez-le avant de sauvegarder ce dossier."
@@ -2166,8 +2172,8 @@ msgstr "ne sera pas envoyé : les dossiers masqués sont ignorés"
 msgid "won't upload: it has a .nosync file"
 msgstr "ne sera pas envoyé : il contient un fichier .nosync"
 
-msgid "won't upload: it's a link to another place"
-msgstr "ne sera pas envoyé : c’est un lien vers un autre emplacement"
+msgid "won't upload: left out by \"Don't sync symbolic links\" (Options)"
+msgstr "ne sera pas envoyé : exclu par « Ne pas synchroniser les liens symboliques » (Options)"
 
 msgid "won't upload: OneDrive doesn't allow this name"
 msgstr "ne sera pas envoyé : OneDrive n’autorise pas ce nom"
@@ -3551,6 +3557,9 @@ msgstr "Images"
 
 msgid "Videos"
 msgstr "Vidéos"
+
+#~ msgid "won't upload: it's a link to another place"
+#~ msgstr "ne sera pas envoyé : c’est un lien vers un autre emplacement"
 
 #~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
 #~ msgstr "Ce compte synchronise uniquement les dossiers choisis, et « {} » n'en fait pas partie. Ajoutez-le d'abord dans Dossiers (vous pouvez le créer en ligne)."
