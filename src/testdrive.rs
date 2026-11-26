@@ -337,7 +337,7 @@ fn get_str(ui: &AppWindow, k: &str) -> Option<String> {
     let r = s!(
         "s_status" => get_s_status, "s_msg" => get_s_msg, "s_error" => get_s_error, "s_quota" => get_s_quota,
         "s_kind" => get_s_kind, "s_owner" => get_s_owner, "s_last" => get_s_last, "s_folder" => get_s_folder, "s_name" => get_s_name,
-        "si_text" => get_si_text, "f_msg" => get_f_msg, "o_msg" => get_o_msg, "p_text" => get_p_text, "p_warn" => get_p_warn,
+        "si_text" => get_si_text, "f_msg" => get_f_msg, "f_local" => get_f_local, "o_msg" => get_o_msg, "p_text" => get_p_text, "p_warn" => get_p_warn,
         "p_live" => get_p_live, "p_title" => get_p_title, "add_msg" => get_add_msg, "app_client" => get_app_client, "app_msg" => get_app_msg, "app_glass_note" => get_app_glass_note,
         "r_text" => get_r_text, "o_skip_files" => get_o_skip_files, "o_from" => get_o_from, "o_to" => get_o_to,
         "o_skip_dirs" => get_o_skip_dirs,
@@ -347,7 +347,8 @@ fn get_str(ui: &AppWindow, k: &str) -> Option<String> {
         "ci_text" => get_ci_text, "ci_title" => get_ci_title, "ci_action" => get_ci_action,
         "client_done" => get_client_done, "outside_start" => get_outside_start,
         "app_badges_msg" => get_app_badges_msg,
-        "outside_start_hint" => get_outside_start_hint
+        "outside_start_hint" => get_outside_start_hint,
+        "bk_title" => get_bk_title, "bk_text" => get_bk_text, "bk_warn" => get_bk_warn
     );
     r.or_else(|| {
         Some(match k {
@@ -356,6 +357,17 @@ fn get_str(ui: &AppWindow, k: &str) -> Option<String> {
             "f_dirty" => ui.get_f_dirty().to_string(),
             "f_loading" => ui.get_f_loading().to_string(),
             "f_sync_all" => ui.get_f_sync_all().to_string(),
+            "bk_visible" => ui.get_bk_visible().to_string(),
+            "b_busy" => ui.get_b_busy().to_string(),
+            "b_more" => ui.get_b_more().to_string(),
+            "b_rows" => {
+                use slint::Model;
+                ui.get_b_rows()
+                    .iter()
+                    .map(|r| format!("{} [{}] {}", r.label, r.state, r.detail))
+                    .collect::<Vec<_>>()
+                    .join("\n")
+            }
             "f_allowed" => ui.get_f_allowed().to_string(),
             "p_visible" => ui.get_p_visible().to_string(),
             "p_busy" => ui.get_p_busy().to_string(),
@@ -417,10 +429,15 @@ fn get_str(ui: &AppWindow, k: &str) -> Option<String> {
                     .iter()
                     .map(|r| {
                         format!(
-                            "{}{}{}",
+                            "{}{}{}{}",
                             "  ".repeat(r.depth as usize),
                             if r.checked { "[x] " } else { "[ ] " },
-                            r.name
+                            r.name,
+                            if r.note.is_empty() {
+                                String::new()
+                            } else {
+                                format!(" <{}>", r.note)
+                            }
                         )
                     })
                     .collect::<Vec<_>>()
@@ -505,6 +522,7 @@ fn set(ui: &AppWindow, k: &str, v: &str) -> bool {
         "o_skip_files" => ui.set_o_skip_files(s),
         "o_allow_resync" => ui.set_o_allow_resync(b),
         "f_sync_all" => ui.set_f_sync_all(b),
+        "b_more" => ui.set_b_more(b),
         "f_root_files" => ui.set_f_root_files(b),
         "r_delete_config" => ui.set_r_delete_config(b),
         "u_keep_setup" => ui.set_u_keep_setup(b),
@@ -549,6 +567,10 @@ fn call(ui: &AppWindow, name: &str, n: Option<i32>) -> bool {
         "f_sync_all_toggled" => ui.invoke_f_sync_all_toggled(),
         "f_root_toggled" => ui.invoke_f_root_toggled(),
         "f_expand" => ui.invoke_f_expand(n),
+        "b_start" => ui.invoke_b_start(n),
+        "b_stop" => ui.invoke_b_stop(n),
+        "b_more_toggled" => ui.invoke_b_more_toggled(),
+        "bk_confirm" => ui.invoke_bk_confirm(),
         "f_check" => ui.invoke_f_check(n),
         "f_reload" => ui.invoke_f_reload(),
         "f_apply" => ui.invoke_f_apply(),
@@ -797,6 +819,9 @@ fn fill_demo(ui: &AppWindow) {
                     _ => "",
                 }
                 .into(),
+                local_only: false,
+                blocked: false,
+                note: "".into(),
             }
         };
     ui.set_f_rows(ModelRc::new(VecModel::from(vec![
@@ -811,8 +836,27 @@ fn fill_demo(ui: &AppWindow) {
         folder("Screenshots", 1, false, false, false, false),
         folder("Wallpapers", 1, false, false, true, false),
         folder("Projects", 0, false, true, true, false),
+        FolderRow {
+            local_only: true,
+            note: crate::tr!("only on this computer").into(),
+            ..folder("Recipes", 0, false, true, false, false)
+        },
+        FolderRow {
+            local_only: true,
+            blocked: true,
+            note: crate::localfolders::Blocked::SkipDir.text().into(),
+            ..folder("Scratch", 0, false, false, false, false)
+        },
         folder("Videos", 0, false, true, false, false),
     ])));
+    ui.set_f_local(
+        crate::tr!(
+            "1 folder on this computer isn't in OneDrive yet (marked \"only on this computer\"). Tick it to upload it, then press \"Apply changes…\"."
+                | "{n} folders on this computer aren't in OneDrive yet (marked \"only on this computer\"). Tick the ones to upload, then press \"Apply changes…\"."
+                % 1
+        )
+        .into(),
+    );
     ui.set_f_sync_all(false);
     ui.set_f_root_files(true);
     ui.set_f_dirty(true);

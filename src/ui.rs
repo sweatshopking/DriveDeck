@@ -23,6 +23,7 @@ use crate::advanced::{self, Effect, Kind};
 use crate::clientinstall;
 use crate::core::{self, AccountInfo, AppSettings, ClientConfig, LogEvent, Phase, Status};
 use crate::graph;
+use crate::localfolders;
 
 slint::include_modules!();
 
@@ -35,7 +36,8 @@ const DEFAULT_SKIP_FILE: &str = "~*|.~*|*.tmp|*.swp|*.partial";
 #[derive(Default)]
 struct Tree {
     rows: Vec<Node>,
-    cache: HashMap<String, Vec<graph::Folder>>,
+    /// What's inside each listed folder: online, and only on this computer
+    cache: HashMap<String, Vec<localfolders::Entry>>,
     selected: BTreeSet<String>,
     original: BTreeSet<String>,
     extra_rules: Vec<String>,
@@ -58,6 +60,26 @@ struct Node {
     has_children: bool,
     loading: bool,
     size: Option<u64>,
+    /// On this computer, not in OneDrive yet (ticking it uploads it)
+    local_only: bool,
+    /// Why the client wouldn't upload it even when ticked
+    blocked: Option<localfolders::Blocked>,
+}
+
+impl Node {
+    fn from_entry(e: &localfolders::Entry, path: String, depth: usize) -> Self {
+        Node {
+            path,
+            name: e.name.clone(),
+            depth,
+            expanded: false,
+            has_children: e.has_children,
+            loading: false,
+            size: e.size,
+            local_only: e.local_only,
+            blocked: e.blocked,
+        }
+    }
 }
 
 impl Tree {
@@ -166,6 +188,28 @@ impl Tree {
                 self.excluded.insert(path.to_string(), format!("!{path}/*"));
             }
         }
+    }
+
+    /// Whether `path` was listed as only on this computer (also when its row is folded away).
+    fn local_only(&self, path: &str) -> bool {
+        let Some((parent, name)) = path.rsplit_once('/') else {
+            return false;
+        };
+        let parent = if parent.is_empty() { "/" } else { parent };
+        self.rows.iter().any(|n| n.path == path && n.local_only)
+            || self
+                .cache
+                .get(parent)
+                .is_some_and(|kids| kids.iter().any(|k| k.name == name && k.local_only))
+    }
+
+    /// A click from the Folders tab: as `click`, except that a folder the client would skip anyway (`blocked`) can be
+    /// unticked but not ticked, since a tick would do nothing.
+    fn click_row(&mut self, path: &str, blocked: bool) {
+        if blocked && !self.covered(path) {
+            return;
+        }
+        self.click(path);
     }
 
     fn tick(&mut self, path: &str) {
@@ -294,10 +338,23 @@ struct Ctx {
     rows: Rc<VecModel<FolderRow>>,
     /// The folder backup waiting for the user to confirm it
     backup_ask: Option<BackupAsk>,
+    /// What each row of the Status tab's backup card stands for, in order
+    backup_items: Vec<BackupItem>,
     /// Conflicting copies found in the open account's folder
     conflicts: Vec<crate::conflict::Conflict>,
     /// How much the open account holds online, once its quota has loaded
     quota_used: Option<u64>,
+}
+
+/// A row of the backup card.
+#[derive(Clone)]
+enum BackupItem {
+    /// One of the desktop's own folders ("DOCUMENTS"...)
+    Known(&'static str),
+    /// A folder the user chose, backed up to this account (its key)
+    Custom(String),
+    /// A folder in the home folder that could be backed up
+    Candidate(PathBuf),
 }
 
 enum BackupAsk {
@@ -808,6 +865,35 @@ fn current_ctx(c: &Ctx) -> Option<AccountInfo> {
 /// top of each new choice counts (a ticked folder inside another is already in it); folders
 /// whose size isn't known yet make it "at least". Turning on "Sync everything" counts the whole
 /// account. Returns the line to show and whether it won't fit.
+/// The line about folders found on this computer that aren't in OneDrive yet (among those listed so
+/// far), or "" when there are none.
+fn local_note(t: &Tree, sync_all: bool) -> String {
+    let found: Vec<&Node> = t
+        .rows
+        .iter()
+        .filter(|n| n.local_only && n.blocked.is_none())
+        .collect();
+    if found.is_empty() {
+        return String::new();
+    }
+    if sync_all {
+        return crate::tr!(
+            "1 folder on this computer isn't in OneDrive yet. With \"Sync everything\" on it uploads at the next sync."
+                | "{n} folders on this computer aren't in OneDrive yet. With \"Sync everything\" on they upload at the next sync."
+                    % found.len()
+        );
+    }
+    let waiting = found.iter().filter(|n| !t.covered(&n.path)).count();
+    if waiting == 0 {
+        return String::new();
+    }
+    crate::tr!(
+        "1 folder on this computer isn't in OneDrive yet (marked \"only on this computer\"). Tick it to upload it, then press \"Apply changes…\"."
+            | "{n} folders on this computer aren't in OneDrive yet (marked \"only on this computer\"). Tick the ones to upload, then press \"Apply changes…\"."
+                % waiting
+    )
+}
+
 fn space_note(
     t: &Tree,
     sync_all: bool,
@@ -828,6 +914,8 @@ fn space_note(
             .selected
             .iter()
             .filter(|p| !t.original.contains(*p) && !t.under_selected(p))
+            // a folder only on this computer uploads; nothing comes down
+            .filter(|p| !t.local_only(p))
             .collect();
         if fresh.is_empty() {
             return (String::new(), false);
@@ -2247,11 +2335,14 @@ fn load_folders(ctx: &Shared, acc: &AccountInfo, force: bool) {
             .set_f_msg(ss(crate::tr!("Sign in to choose folders.")));
         return;
     }
-    fetch_children(ctx, acc, "/".into());
+    fetch_children(ctx, acc, "/".into(), false);
 }
 
-fn fetch_children(ctx: &Shared, acc: &AccountInfo, path: String) {
+/// Lists what's inside `path`: the online folders (unless it is only on this computer), with the
+/// folders that are only on this computer added.
+fn fetch_children(ctx: &Shared, acc: &AccountInfo, path: String, local_only: bool) {
     let (key, confdir, drive) = (acc.key(), acc.confdir.clone(), acc.drive_id.clone());
+    let sync_dir = acc.sync_dir.clone();
     let (cached, generation) = {
         let mut c = ctx.borrow_mut();
         if c.tree.loaded_for.as_deref() != Some(key.as_str()) {
@@ -2267,8 +2358,14 @@ fn fetch_children(ctx: &Shared, acc: &AccountInfo, path: String) {
             let path = path.clone();
             move || {
                 let t = token_for(&confdir, cached)?;
-                let f = graph::list_folders(&as_graph(&t), drive.as_deref(), &path)?;
-                Ok::<_, String>((t, f))
+                let online = if local_only {
+                    Vec::new()
+                } else {
+                    graph::list_folders(&as_graph(&t), drive.as_deref(), &path)?
+                };
+                let rules = localfolders::Rules::load(&confdir);
+                let local = localfolders::list(&sync_dir, &path, &rules);
+                Ok::<_, String>((t, localfolders::merge(&online, local)))
             }
         },
         move |ctx, r| {
@@ -2289,15 +2386,7 @@ fn fetch_children(ctx: &Shared, acc: &AccountInfo, path: String) {
                         if path == "/" {
                             tree.rows = folders
                                 .iter()
-                                .map(|f| Node {
-                                    path: format!("/{}", f.name),
-                                    name: f.name.clone(),
-                                    depth: 0,
-                                    expanded: false,
-                                    has_children: f.has_children,
-                                    loading: false,
-                                    size: f.size,
-                                })
+                                .map(|f| Node::from_entry(f, format!("/{}", f.name), 0))
                                 .collect();
                         } else if let Some(i) = tree.rows.iter().position(|n| n.path == path) {
                             tree.rows[i].loading = false;
@@ -2306,15 +2395,7 @@ fn fetch_children(ctx: &Shared, acc: &AccountInfo, path: String) {
                             let depth = tree.rows[i].depth + 1;
                             let kids: Vec<Node> = folders
                                 .iter()
-                                .map(|f| Node {
-                                    path: format!("{path}/{}", f.name),
-                                    name: f.name.clone(),
-                                    depth,
-                                    expanded: false,
-                                    has_children: f.has_children,
-                                    loading: false,
-                                    size: f.size,
-                                })
+                                .map(|f| Node::from_entry(f, format!("{path}/{}", f.name), depth))
                                 .collect();
                             tree.rows.splice(i + 1..i + 1, kids);
                         }
@@ -2349,6 +2430,13 @@ fn render_tree(ctx: &Shared) {
             checked: t.covered(&n.path),
             inherited: t.partial(&n.path),
             size: ss(n.size.map(graph::human_size).unwrap_or_default()),
+            local_only: n.local_only,
+            blocked: n.blocked.is_some(),
+            note: ss(match n.blocked {
+                Some(b) => b.text(),
+                None if n.local_only => crate::tr!("only on this computer"),
+                None => String::new(),
+            }),
         })
         .collect();
     c.rows.set_vec(rows);
@@ -2359,6 +2447,7 @@ fn render_tree(ctx: &Shared) {
     };
     ui.set_f_space(ss(space));
     ui.set_f_space_warn(warn);
+    ui.set_f_local(ss(local_note(t, ui.get_f_sync_all())));
     let dirty = folder_changes(&c, &ui).is_some();
     ui.set_f_dirty(dirty);
     let resync = needs_resync(&c);
@@ -2466,15 +2555,7 @@ fn folder_expand(ctx: &Shared, i: usize) {
         } else if let Some(kids) = c.tree.cache.get(&n.path).cloned() {
             let nodes: Vec<Node> = kids
                 .iter()
-                .map(|f| Node {
-                    path: format!("{}/{}", n.path, f.name),
-                    name: f.name.clone(),
-                    depth: n.depth + 1,
-                    expanded: false,
-                    has_children: f.has_children,
-                    loading: false,
-                    size: f.size,
-                })
+                .map(|f| Node::from_entry(f, format!("{}/{}", n.path, f.name), n.depth + 1))
                 .collect();
             c.tree.rows.splice(i + 1..i + 1, nodes);
             c.tree.rows[i].expanded = true;
@@ -2484,22 +2565,24 @@ fn folder_expand(ctx: &Shared, i: usize) {
                 return;
             }
             c.tree.rows[i].loading = true;
-            Some(n.path)
+            Some((n.path, n.local_only))
         }
     };
     render_tree(ctx);
-    if let Some(p) = action {
-        fetch_children(ctx, &acc, p);
+    if let Some((p, local_only)) = action {
+        fetch_children(ctx, &acc, p, local_only);
     }
 }
 
 fn folder_check(ctx: &Shared, i: usize) {
     {
         let mut c = ctx.borrow_mut();
-        let Some(path) = c.tree.rows.get(i).map(|n| n.path.clone()) else {
+        let Some(n) = c.tree.rows.get(i) else {
             return;
         };
-        c.tree.click(&path);
+        let path = n.path.clone();
+        let blocked = n.blocked.is_some();
+        c.tree.click_row(&path, blocked);
     }
     render_tree(ctx);
 }
@@ -4599,11 +4682,13 @@ fn conflict_settle(ctx: &Shared, i: usize, choice: i32) {
 
 fn load_backups(ctx: &Shared, acc: &AccountInfo) {
     use crate::backup;
-    let c = ctx.borrow();
+    let mut c = ctx.borrow_mut();
     let home = core::home();
-    let rows: Vec<BackupRow> = backup::FOLDERS
+    let mut items = Vec::new();
+    let mut rows: Vec<BackupRow> = backup::FOLDERS
         .iter()
         .map(|k| {
+            items.push(BackupItem::Known(k.key));
             let (state, detail) = match backup::backed_up_by(&c.settings, &c.accounts, k.key) {
                 Some((a, b)) if a.key() == acc.key() => {
                     (1, crate::tr!("In OneDrive: {}", b.target.display()))
@@ -4625,24 +4710,117 @@ fn load_backups(ctx: &Shared, acc: &AccountInfo) {
             }
         })
         .collect();
-    c.ui().set_b_rows(ModelRc::new(VecModel::from(rows)));
+    // folders the user chose, backed up to this account
+    for b in c.settings.prefs(&acc.confdir).backups {
+        if !backup::is_custom(&b.key) {
+            continue;
+        }
+        let label = b
+            .original
+            .file_name()
+            .map(|n| n.to_string_lossy().to_string())
+            .unwrap_or_else(|| b.original.display().to_string());
+        rows.push(BackupRow {
+            label: ss(label),
+            detail: ss(crate::tr!("In OneDrive: {}", b.target.display())),
+            state: 1,
+        });
+        items.push(BackupItem::Custom(b.key.clone()));
+    }
+    let ui = c.ui();
+    if ui.get_b_more() {
+        let skip: Vec<PathBuf> = backup::FOLDERS
+            .iter()
+            .filter_map(|k| backup::xdg_dir(k.key))
+            .collect();
+        let sync_dirs: Vec<PathBuf> = c.accounts.iter().map(|a| a.sync_dir.clone()).collect();
+        let backed_up: Vec<PathBuf> = c
+            .accounts
+            .iter()
+            .flat_map(|a| c.settings.prefs(&a.confdir).backups)
+            .map(|b| b.original)
+            .collect();
+        for p in backup::candidates(&home, &skip, &sync_dirs, &backed_up) {
+            rows.push(BackupRow {
+                label: ss(p
+                    .file_name()
+                    .map(|n| n.to_string_lossy().to_string())
+                    .unwrap_or_default()),
+                detail: ss(p.display().to_string()),
+                state: 0,
+            });
+            items.push(BackupItem::Candidate(p));
+        }
+    }
+    ui.set_b_rows(ModelRc::new(VecModel::from(rows)));
+    c.backup_items = items;
+}
+
+fn backup_more_toggled(ctx: &Shared) {
+    if let Some(acc) = current(ctx) {
+        load_backups(ctx, &acc);
+    }
+}
+
+/// "Choose a folder…": back up any folder the user picks.
+fn backup_choose(ctx: &Shared) {
+    if current(ctx).is_none() {
+        return;
+    }
+    pick_folder(
+        crate::tr!("Choose a folder to back up to OneDrive"),
+        &core::home(),
+        |ctx, r| match r {
+            Ok(Some(p)) => backup_plan(ctx, PlanFor::Custom(PathBuf::from(p))),
+            Ok(None) => {}
+            Err(()) => ctx.borrow().ui().set_s_msg(ss(crate::tr!(
+                "No folder chooser is available on this desktop."
+            ))),
+        },
+    );
+}
+
+enum PlanFor {
+    Known(&'static str),
+    Custom(PathBuf),
 }
 
 fn backup_start(ctx: &Shared, i: usize) {
+    let item = ctx.borrow().backup_items.get(i).cloned();
+    match item {
+        Some(BackupItem::Known(key)) => backup_plan(ctx, PlanFor::Known(key)),
+        Some(BackupItem::Candidate(p)) => backup_plan(ctx, PlanFor::Custom(p)),
+        _ => {}
+    }
+}
+
+/// Works out what backing a folder up would do, then asks.
+fn backup_plan(ctx: &Shared, what: PlanFor) {
     let Some(acc) = current(ctx) else { return };
-    let Some(known) = crate::backup::FOLDERS.get(i) else {
-        return;
-    };
-    let key = known.key;
     let all = ctx.borrow().accounts.clone();
+    let settings = ctx.borrow().settings.clone();
     let ui = ctx.borrow().ui();
+    let looking_at = match &what {
+        PlanFor::Known(key) => crate::backup::FOLDERS
+            .iter()
+            .find(|k| k.key == *key)
+            .map(|k| crate::tr!(k.label))
+            .unwrap_or_default(),
+        PlanFor::Custom(p) => p
+            .file_name()
+            .map(|n| n.to_string_lossy().to_string())
+            .unwrap_or_default(),
+    };
     ui.set_b_busy(true);
-    ui.set_s_msg(ss(crate::tr!(
-        "Looking at your {} folder…",
-        crate::tr!(known.label)
-    )));
+    ui.set_s_msg(ss(crate::tr!("Looking at your {} folder…", looking_at)));
     bg(
-        move || crate::backup::plan(&acc, &all, key).map(|p| (acc, p)),
+        move || {
+            match what {
+                PlanFor::Known(key) => crate::backup::plan(&acc, &all, key),
+                PlanFor::Custom(p) => crate::backup::plan_custom(&acc, &all, &settings, &p),
+            }
+            .map(|p| (acc, p))
+        },
         |ctx, r| {
             let ui = ctx.borrow().ui();
             ui.set_b_busy(false);
@@ -4652,7 +4830,7 @@ fn backup_start(ctx: &Shared, i: usize) {
                 Err(e) => return ui.set_s_msg(ss(e)),
             };
             let size = graph::human_size(p.bytes);
-            let label = crate::tr!(p.label);
+            let label = p.shown_label();
             let files = crate::tr!("1 file" | "{n} files" % p.files);
             let mut text = crate::tr!(
                 "Your {} folder ({}) moves into OneDrive, at {}, and everything in it uploads: {}, {}. Your apps keep finding it in the same place.",
@@ -4707,20 +4885,31 @@ fn backup_start(ctx: &Shared, i: usize) {
 
 fn backup_stop(ctx: &Shared, i: usize) {
     let Some(acc) = current(ctx) else { return };
-    let Some(known) = crate::backup::FOLDERS.get(i) else {
-        return;
+    let key = match ctx.borrow().backup_items.get(i) {
+        Some(BackupItem::Known(key)) => key.to_string(),
+        Some(BackupItem::Custom(key)) => key.clone(),
+        _ => return,
     };
-    let target = ctx
+    let Some(b) = ctx
         .borrow()
         .settings
         .prefs(&acc.confdir)
         .backups
-        .iter()
-        .find(|b| b.key == known.key)
-        .map(|b| b.target.display().to_string())
-        .unwrap_or_default();
+        .into_iter()
+        .find(|b| b.key == key)
+    else {
+        return;
+    };
+    let target = b.target.display().to_string();
     let ui = ctx.borrow().ui();
-    let label = crate::tr!(known.label);
+    let label = match crate::backup::FOLDERS.iter().find(|k| k.key == key) {
+        Some(k) => crate::tr!(k.label),
+        None => b
+            .original
+            .file_name()
+            .map(|n| n.to_string_lossy().to_string())
+            .unwrap_or_default(),
+    };
     ui.set_bk_title(ss(crate::tr!("Stop backing up {}?", label)));
     ui.set_bk_text(ss(crate::tr!(
         "Your files stay in OneDrive, at {}, and keep syncing there. Your {} folder on this computer starts empty again, and new files you put in it won't be backed up.",
@@ -4732,7 +4921,7 @@ fn backup_stop(ctx: &Shared, i: usize) {
         target
     )));
     ui.set_bk_action(ss(crate::tr!("Stop backing up")));
-    ctx.borrow_mut().backup_ask = Some(BackupAsk::Stop(acc, known.key.to_string()));
+    ctx.borrow_mut().backup_ask = Some(BackupAsk::Stop(acc, key));
     ui.set_bk_visible(true);
 }
 
@@ -4746,10 +4935,7 @@ fn backup_confirm(ctx: &Shared) {
         move || {
             match ask {
             BackupAsk::Start(acc, p) => crate::backup::start(&acc, &p).map(|d| {
-                let mut msg = crate::tr!(
-                    "{} is now backed up to OneDrive.",
-                    crate::tr!(p.label)
-                );
+                let mut msg = crate::tr!("{} is now backed up to OneDrive.", p.shown_label());
                 if d.renamed > 0 {
                     msg.push(' ');
                     msg.push_str(&crate::tr!(
@@ -6512,6 +6698,7 @@ pub fn run(account: Option<String>) {
         preview_finishing: false,
         rows,
         backup_ask: None,
+        backup_items: Vec::new(),
         conflicts: Vec::new(),
         quota_used: None,
     }));
@@ -6714,6 +6901,8 @@ pub fn run(account: Option<String>) {
     on!(on_move_folder, |c| move_folder_start(c));
     on!(on_b_start, |c, i: i32| backup_start(c, i.max(0) as usize));
     on!(on_b_stop, |c, i: i32| backup_stop(c, i.max(0) as usize));
+    on!(on_b_more_toggled, |c| backup_more_toggled(c));
+    on!(on_b_choose, |c| backup_choose(c));
     on!(on_bk_confirm, |c| backup_confirm(c));
     on!(on_c_open, |c, i: i32| conflict_open(c, i.max(0) as usize));
     on!(on_c_settle, |c, i: i32, choice: i32| conflict_settle(
@@ -7303,6 +7492,8 @@ mod tests {
             has_children: true,
             loading: false,
             size,
+            local_only: false,
+            blocked: None,
         };
         let gb = 1 << 30;
         let mut t = Tree {
@@ -7357,13 +7548,15 @@ mod tests {
 
     /// A tree with some folders listed the way the Folders tab has them after the user opened them.
     fn tree_with(selected: &[&str], excluded: &[&str]) -> Tree {
-        let kids = |names: &[&str]| -> Vec<graph::Folder> {
+        let kids = |names: &[&str]| -> Vec<localfolders::Entry> {
             names
                 .iter()
-                .map(|n| graph::Folder {
+                .map(|n| localfolders::Entry {
                     name: (*n).into(),
                     has_children: true,
                     size: None,
+                    local_only: false,
+                    blocked: None,
                 })
                 .collect()
         };
@@ -7380,6 +7573,116 @@ mod tests {
             .insert("/Docs".into(), kids(&["Work", "Home", "Old"]));
         t.cache.insert("/Docs/Work".into(), kids(&["A", "B"]));
         t
+    }
+
+    fn local_entry(name: &str, blocked: Option<localfolders::Blocked>) -> localfolders::Entry {
+        localfolders::Entry {
+            name: name.into(),
+            has_children: false,
+            size: None,
+            local_only: true,
+            blocked,
+        }
+    }
+
+    fn local_node(path: &str, blocked: Option<localfolders::Blocked>) -> Node {
+        let name = path.rsplit('/').next().unwrap_or_default();
+        Node::from_entry(
+            &local_entry(name, blocked),
+            path.into(),
+            path.matches('/').count() - 1,
+        )
+    }
+
+    #[test]
+    fn a_folder_only_on_this_computer_ticks_into_the_rules() {
+        let mut t = tree_with(&["/Docs"], &[]);
+        t.rows.push(local_node("/New", None));
+        t.click_row("/New", false);
+        assert!(t.covered("/New"));
+        assert!(
+            t.rule_lines().contains(&"/New".to_string()),
+            "{:?}",
+            t.rule_lines()
+        );
+    }
+
+    #[test]
+    fn a_folder_the_client_would_skip_cant_be_ticked_but_can_be_unticked() {
+        let mut t = tree_with(&["/Docs"], &[]);
+        t.click_row("/Skipped", true);
+        assert!(!t.covered("/Skipped") && !t.selected.contains("/Skipped"));
+        // already in the rules (written by hand, or ticked before it was skipped): it can still be taken out
+        t.selected.insert("/Skipped".into());
+        t.click_row("/Skipped", true);
+        assert!(!t.covered("/Skipped"));
+        // inside a ticked folder: unticking leaves it out
+        t.click_row("/Docs/Hidden", true);
+        assert!(!t.covered("/Docs/Hidden"));
+    }
+
+    #[test]
+    fn opening_a_left_out_folder_leaves_out_its_local_only_folders_too() {
+        // /Docs ticked, /Docs/Work left out; Work also has a folder only on this computer. Ticking Work/A must keep that
+        // one out too, or it would upload without being asked for.
+        let mut t = tree_with(&["/Docs"], &["/Docs/Work"]);
+        t.cache
+            .get_mut("/Docs/Work")
+            .unwrap()
+            .push(local_entry("LocalOnly", None));
+        t.click_row("/Docs/Work/A", false);
+        assert!(t.covered("/Docs/Work/A"));
+        assert!(!t.covered("/Docs/Work/LocalOnly"));
+        assert!(!t.covered("/Docs/Work/B"));
+    }
+
+    #[test]
+    fn the_line_about_local_folders() {
+        let mut t = tree_with(&[], &[]);
+        assert_eq!(local_note(&t, false), "");
+        t.rows.push(local_node("/New", None));
+        t.rows.push(local_node("/Other", None));
+        t.rows
+            .push(local_node("/.hidden", Some(localfolders::Blocked::Hidden)));
+        let text = local_note(&t, false);
+        assert!(
+            text.starts_with("2 folders on this computer aren't in OneDrive yet"),
+            "{text}"
+        );
+        t.click_row("/New", false);
+        assert!(local_note(&t, false).starts_with("1 folder on this computer isn't"));
+        t.click_row("/Other", false);
+        assert_eq!(local_note(&t, false), "", "all ticked");
+        assert!(local_note(&t, true).contains("upload at the next sync"));
+        // only blocked ones: nothing to say
+        let mut t = tree_with(&[], &[]);
+        t.rows
+            .push(local_node("/.hidden", Some(localfolders::Blocked::Hidden)));
+        assert_eq!(local_note(&t, false), "");
+    }
+
+    #[test]
+    fn local_folders_add_nothing_to_the_download_size() {
+        let gb = 1u64 << 30;
+        let mut t = tree_with(&[], &[]);
+        let mut docs = local_node("/Docs", None);
+        docs.local_only = false;
+        docs.size = Some(2 * gb);
+        t.rows.push(docs);
+        t.rows.push(local_node("/New", None));
+        let dir = std::env::temp_dir();
+        t.selected.insert("/New".into());
+        assert_eq!(space_note(&t, false, None, &dir).0, "", "uploading only");
+        // also when its row is folded away: the folder lists remember it
+        t.cache
+            .get_mut("/Docs")
+            .unwrap()
+            .push(local_entry("Letters", None));
+        t.selected.insert("/Docs/Letters".into());
+        assert_eq!(space_note(&t, false, None, &dir).0, "");
+        t.selected.insert("/Docs".into());
+        let (text, _) = space_note(&t, false, None, &dir);
+        assert!(text.starts_with("Newly ticked folders: 2.0 GB"), "{text}");
     }
 
     #[test]

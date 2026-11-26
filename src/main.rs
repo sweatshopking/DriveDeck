@@ -21,6 +21,7 @@ mod glass;
 mod gnomesearch;
 mod graph;
 mod i18n;
+mod localfolders;
 mod popup;
 mod rename;
 mod runner;

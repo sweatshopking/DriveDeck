@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-21 08:19+0000\n"
+"POT-Creation-Date: 2026-11-25 22:04+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -12,1065 +12,1073 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ui/app.slint:480
+#: ui/app.slint:486
 msgid "This app needs one more free program, the OneDrive Client for Linux (version 2.5 or newer). It does the actual syncing in the background; this app is the window and tray icon for it."
 msgstr "Esta aplicación necesita otro programa gratuito, OneDrive Client for Linux (versión 2.5 o posterior). Se encarga de sincronizar tus archivos; esta aplicación muestra la ventana y el icono de la bandeja del sistema."
 
-#: ui/app.slint:491
+#: ui/app.slint:497
 msgid "Updating…"
 msgstr "Actualizando…"
 
-#: ui/app.slint:491
+#: ui/app.slint:497
 msgid "Installing…"
 msgstr "Instalando…"
 
-#: ui/app.slint:491
+#: ui/app.slint:497
 msgid "Update it for me"
 msgstr "Actualizarlo por mí"
 
-#: ui/app.slint:491
+#: ui/app.slint:497
 msgid "Install it for me"
 msgstr "Instalarlo por mí"
 
-#: ui/app.slint:499
+#: ui/app.slint:505
 msgid "Open installation instructions"
 msgstr "Abrir las instrucciones de instalación"
 
-#: ui/app.slint:505
+#: ui/app.slint:511
 msgid "Check again"
 msgstr "Volver a comprobar"
 
-#: ui/app.slint:512
+#: ui/app.slint:518
 msgid "Not now"
 msgstr "Ahora no"
 
-#: ui/app.slint:527
+#: ui/app.slint:533
 msgid "Installed it another way (for example with Homebrew)?"
 msgstr "¿Lo instalaste de otra forma (por ejemplo, con Homebrew)?"
 
-#: ui/app.slint:532 ui/app.slint:2716 ui/app.slint:2870
+#: ui/app.slint:538 ui/app.slint:2765 ui/app.slint:2919
 msgid "Checking…"
 msgstr "Comprobando…"
 
-#: ui/app.slint:532
+#: ui/app.slint:538
 msgid "Choose it…"
 msgstr "Elegirlo…"
 
-#: ui/app.slint:560
+#: ui/app.slint:566
 msgid "Some changes on this computer aren't being noticed"
 msgstr "Algunos cambios en este equipo no se están detectando"
 
-#: ui/app.slint:573
+#: ui/app.slint:579
 msgid "Raising it…"
 msgstr "Aumentando…"
 
-#: ui/app.slint:573
+#: ui/app.slint:579
 msgid "Raise the limit"
 msgstr "Aumentar el límite"
 
-#: ui/app.slint:605
+#: ui/app.slint:611
 msgid "Syncing is also set up outside this app"
 msgstr "La sincronización también está configurada fuera de esta aplicación"
 
-#: ui/app.slint:618
+#: ui/app.slint:624
 msgid "Turning it off…"
 msgstr "Desactivando…"
 
-#: ui/app.slint:618
+#: ui/app.slint:624
 msgid "Turn it off"
 msgstr "Desactivarlo"
 
-#: ui/app.slint:625
+#: ui/app.slint:631
 msgid "Leave it as it is"
 msgstr "Dejarlo como está"
 
-#: ui/app.slint:644
+#: ui/app.slint:650
 msgid "DriveDeck for OneDrive"
 msgstr "DriveDeck para OneDrive"
 
-#: ui/app.slint:970 ui/app.slint:3925
+#: ui/app.slint:983 ui/app.slint:3974
 msgid "Accounts"
 msgstr "Cuentas"
 
-#: ui/app.slint:1045
+#: ui/app.slint:1058
 msgid "Add account"
 msgstr "Añadir cuenta"
 
-#: ui/app.slint:1057 ui/app.slint:2546
+#: ui/app.slint:1070 ui/app.slint:2595
 msgid "App settings"
 msgstr "Ajustes de la aplicación"
 
-#: ui/app.slint:1096
+#: ui/app.slint:1109
 msgid "OK"
 msgstr "Aceptar"
 
-#: ui/app.slint:1222
+#: ui/app.slint:1235
 msgid "Status"
 msgstr "Estado"
 
-#: ui/app.slint:1222
+#: ui/app.slint:1235
 msgid "Folders"
 msgstr "Carpetas"
 
-#: ui/app.slint:1222
+#: ui/app.slint:1235
 msgid "Options"
 msgstr "Opciones"
 
-#: ui/app.slint:1222
+#: ui/app.slint:1235
 msgid "Activity"
 msgstr "Actividad"
 
-#: ui/app.slint:1243
+#: ui/app.slint:1256
 msgid "This account isn't signed in"
 msgstr "Esta cuenta no ha iniciado sesión"
 
-#: ui/app.slint:1246
+#: ui/app.slint:1259
 msgid "Sign in with your Microsoft account. Your browser will open so you can log in, then you'll come back here automatically."
 msgstr "Inicia sesión con tu cuenta de Microsoft. Se abrirá el navegador para que accedas y volverás aquí automáticamente."
 
-#: ui/app.slint:1251
+#: ui/app.slint:1264
 msgid "Sign in…"
 msgstr "Iniciar sesión…"
 
-#: ui/app.slint:1268 ui/app.slint:2443
+#: ui/app.slint:1281 ui/app.slint:2492
 msgid "Name"
 msgstr "Nombre"
 
-#: ui/app.slint:1273 ui/app.slint:2448
+#: ui/app.slint:1286 ui/app.slint:2497
 msgid "Account name"
 msgstr "Nombre de la cuenta"
 
-#: ui/app.slint:1280
+#: ui/app.slint:1293
 msgid "Rename"
 msgstr "Cambiar nombre"
 
-#: ui/app.slint:1289
+#: ui/app.slint:1302
 msgid "Type"
 msgstr "Tipo"
 
-#: ui/app.slint:1301
+#: ui/app.slint:1314
 msgid "Folder"
 msgstr "Carpeta"
 
-#: ui/app.slint:1312 ui/app.slint:4346
+#: ui/app.slint:1325 ui/app.slint:4395
 msgid "Open"
 msgstr "Abrir"
 
-#: ui/app.slint:1318
+#: ui/app.slint:1331
 msgid "Move…"
 msgstr "Mover…"
 
-#: ui/app.slint:1325
+#: ui/app.slint:1338
 msgid "Online ▾"
 msgstr "En línea ▾"
 
-#: ui/app.slint:1335 ui/app.slint:4128 ui/app.slint:4146
+#: ui/app.slint:1348 ui/app.slint:4177 ui/app.slint:4195
 msgid "OneDrive website"
 msgstr "Sitio web de OneDrive"
 
-#: ui/app.slint:1341 ui/app.slint:4134 ui/app.slint:4155
+#: ui/app.slint:1354 ui/app.slint:4183 ui/app.slint:4204
 msgid "Recycle bin"
 msgstr "Papelera de reciclaje"
 
-#: ui/app.slint:1347 ui/app.slint:4140 ui/app.slint:4164
+#: ui/app.slint:1360 ui/app.slint:4189 ui/app.slint:4213
 msgid "Restore your OneDrive"
 msgstr "Restaurar tu OneDrive"
 
-#: ui/app.slint:1358
+#: ui/app.slint:1371
 msgid "Last sync"
 msgstr "Última sincronización"
 
-#: ui/app.slint:1371
+#: ui/app.slint:1384
 msgid "Storage"
 msgstr "Almacenamiento"
 
-#: ui/app.slint:1406
+#: ui/app.slint:1419
 msgid "Delete them online too…"
 msgstr "Eliminar también en línea…"
 
-#: ui/app.slint:1413
+#: ui/app.slint:1426
 msgid "Download them again…"
 msgstr "Volver a descargarlos…"
 
-#: ui/app.slint:1421
+#: ui/app.slint:1434
 msgid "Downloading them again needs a full resync, which is turned off for this account in Options."
 msgstr "Volver a descargarlos requiere una sincronización completa, que está desactivada para esta cuenta en Opciones."
 
-#: ui/app.slint:1435 ui/app.slint:1442
+#: ui/app.slint:1448 ui/app.slint:1455
 msgid "Background sync"
 msgstr "Sincronización en segundo plano"
 
-#: ui/app.slint:1438
+#: ui/app.slint:1451
 msgid "Keeps this folder in sync all the time, including after you restart."
 msgstr "Mantiene esta carpeta sincronizada en todo momento, también después de reiniciar."
 
-#: ui/app.slint:1454 ui/app.slint:3869
+#: ui/app.slint:1467 ui/app.slint:3918
 msgid "Sync now"
 msgstr "Sincronizar ahora"
 
-#: ui/app.slint:1461
+#: ui/app.slint:1474
 msgid "Sign out"
 msgstr "Cerrar sesión"
 
-#: ui/app.slint:1478
+#: ui/app.slint:1491
 msgid "Files changed in two places"
 msgstr "Archivos modificados en dos sitios"
 
-#: ui/app.slint:1489
+#: ui/app.slint:1502
 msgid "These files were changed here and online before they could sync, so both versions were kept. Compare them, then choose which to keep."
 msgstr "Estos archivos se modificaron aquí y en línea antes de sincronizarse, así que se conservaron ambas versiones. Compáralas y elige cuál quieres conservar."
 
-#: ui/app.slint:1536
+#: ui/app.slint:1549
 msgid "Compare"
 msgstr "Comparar"
 
-#: ui/app.slint:1542
+#: ui/app.slint:1555
 msgid "Keep… ▾"
 msgstr "Conservar… ▾"
 
-#: ui/app.slint:1555
+#: ui/app.slint:1568
 msgid "Keep this computer's version"
 msgstr "Conservar la versión de este equipo"
 
-#: ui/app.slint:1561
+#: ui/app.slint:1574
 msgid "Keep the OneDrive version"
 msgstr "Conservar la versión de OneDrive"
 
-#: ui/app.slint:1567
+#: ui/app.slint:1580
 msgid "Keep both"
 msgstr "Conservar ambas"
 
-#: ui/app.slint:1584
+#: ui/app.slint:1597
 msgid "Back up this computer's folders"
 msgstr "Hacer copia de seguridad de las carpetas de este equipo"
 
-#: ui/app.slint:1587
+#: ui/app.slint:1600
 msgid "Keep your important folders in OneDrive, so they're backed up and on your other devices. They stay where your apps expect them."
 msgstr "Guarda tus carpetas importantes en OneDrive para tener una copia de seguridad y acceder a ellas desde tus otros dispositivos. Seguirán donde tus aplicaciones las esperan."
 
-#: ui/app.slint:1623
+#: ui/app.slint:1636
 msgid "✓ Backed up"
 msgstr "✓ Con copia de seguridad"
 
-#: ui/app.slint:1638
+#: ui/app.slint:1651
 msgid "Back up…"
 msgstr "Hacer copia de seguridad…"
 
-#: ui/app.slint:1645
+#: ui/app.slint:1658
 msgid "Stop…"
 msgstr "Detener…"
 
-#: ui/app.slint:1660
+#: ui/app.slint:1669
+msgid "Also list the other folders in my home folder"
+msgstr "Mostrar también las demás carpetas de mi carpeta personal"
+
+#: ui/app.slint:1677
+msgid "Choose a folder…"
+msgstr "Elegir una carpeta…"
+
+#: ui/app.slint:1691
 msgid "Remove account from this computer…"
 msgstr "Quitar la cuenta de este equipo…"
 
-#: ui/app.slint:1684
+#: ui/app.slint:1715
 msgid "Sync everything"
 msgstr "Sincronizar todo"
 
-#: ui/app.slint:1691
+#: ui/app.slint:1722
 msgid "Every folder in this account is kept on this computer. Untick to choose specific folders."
 msgstr "Todas las carpetas de esta cuenta se guardan en este equipo. Desmarca esta opción para elegir carpetas concretas."
 
-#: ui/app.slint:1691
+#: ui/app.slint:1722
 msgid "Only the ticked folders (and everything inside them) are kept on this computer."
 msgstr "Solo se guardan en este equipo las carpetas marcadas y todo lo que contienen."
 
-#: ui/app.slint:1694
+#: ui/app.slint:1725
 msgid "Also sync files that sit at the top level (outside any folder)"
 msgstr "Sincronizar también los archivos del nivel superior (fuera de cualquier carpeta)"
 
-#: ui/app.slint:1712
+#: ui/app.slint:1743
 msgid "Loading subfolders for "
 msgstr "Cargando subcarpetas de "
 
-#: ui/app.slint:1712
+#: ui/app.slint:1743
 msgid "Collapse "
 msgstr "Contraer "
 
-#: ui/app.slint:1712
+#: ui/app.slint:1743
 msgid "Expand "
 msgstr "Expandir "
 
 #. row.inherited: some folders inside are ticked differently from this one
-#: ui/app.slint:1745
+#: ui/app.slint:1776
 msgid "{} (partly)"
 msgstr "{} (en parte)"
 
-#: ui/app.slint:1787
+#: ui/app.slint:1836
 msgid "Reload"
 msgstr "Volver a cargar"
 
-#: ui/app.slint:1793
+#: ui/app.slint:1842
 msgid "Apply changes…"
 msgstr "Aplicar cambios…"
 
-#: ui/app.slint:1816
+#: ui/app.slint:1865
 msgid "When to sync"
 msgstr "Cuándo sincronizar"
 
-#: ui/app.slint:1821
+#: ui/app.slint:1870
 msgid "Full check every"
 msgstr "Comprobación completa cada"
 
-#: ui/app.slint:1826
+#: ui/app.slint:1875
 msgid "How often to check for changes"
 msgstr "Cada cuánto comprobar si hay cambios"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "5 minutes"
 msgstr "5 minutos"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "10 minutes"
 msgstr "10 minutos"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "15 minutes"
 msgstr "15 minutos"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "30 minutes"
 msgstr "30 minutos"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "1 hour"
 msgstr "1 hora"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "2 hours"
 msgstr "2 horas"
 
-#: ui/app.slint:1835
+#: ui/app.slint:1884
 msgid "Changes on this computer are sent right away, and personal accounts also get online changes instantly. This sets how often a full check runs as well."
 msgstr "Los cambios de este equipo se envían enseguida y las cuentas personales también reciben al instante los cambios en línea. Esto también establece cada cuánto se hace una comprobación completa."
 
-#: ui/app.slint:1840
+#: ui/app.slint:1889
 msgid "Only sync between"
 msgstr "Sincronizar solo entre"
 
-#: ui/app.slint:1844
+#: ui/app.slint:1893
 msgid "Schedule start time"
 msgstr "Hora de inicio"
 
-#: ui/app.slint:1851
+#: ui/app.slint:1900
 msgid "and"
 msgstr "y"
 
-#: ui/app.slint:1855
+#: ui/app.slint:1904
 msgid "Schedule end time"
 msgstr "Hora de finalización"
 
-#: ui/app.slint:1866
+#: ui/app.slint:1915
 msgid "Use 24-hour times. The window can cross midnight (for example 23:00 to 07:00 for overnight only). \"Sync now\" still works outside it for an hour. Needs the tray icon running."
 msgstr "Usa el formato de 24 horas. El horario puede cruzar la medianoche (por ejemplo, de 23:00 a 07:00 solo por la noche). «Sincronizar ahora» sigue funcionando durante una hora fuera del horario. Necesita que el icono de la bandeja esté activo."
 
-#: ui/app.slint:1871
+#: ui/app.slint:1920
 msgid "Speed limit"
 msgstr "Límite de velocidad"
 
-#: ui/app.slint:1876
+#: ui/app.slint:1925
 msgid "Sync speed limit"
 msgstr "Límite de velocidad de sincronización"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "No limit"
 msgstr "Sin límite"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "1 MB/s"
 msgstr "1 MB/s"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "2 MB/s"
 msgstr "2 MB/s"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "5 MB/s"
 msgstr "5 MB/s"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "10 MB/s"
 msgstr "10 MB/s"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "25 MB/s"
 msgstr "25 MB/s"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "50 MB/s"
 msgstr "50 MB/s"
 
-#: ui/app.slint:1885
+#: ui/app.slint:1934
 msgid "Applies to each file being transferred."
 msgstr "Se aplica a cada archivo que se transfiere."
 
-#: ui/app.slint:1888
+#: ui/app.slint:1937
 msgid "Connect over IPv4 only"
 msgstr "Conectarse solo mediante IPv4"
 
-#: ui/app.slint:1892
+#: ui/app.slint:1941
 msgid "Can fix syncing that's slow to start or keeps timing out on some networks."
 msgstr "Puede ayudar si la sincronización tarda en empezar o agota el tiempo de espera en algunas redes."
 
-#: ui/app.slint:1902
+#: ui/app.slint:1951
 msgid "Direction"
 msgstr "Dirección"
 
-#: ui/app.slint:1905
+#: ui/app.slint:1954
 msgid "Sync direction"
 msgstr "Dirección de sincronización"
 
-#: ui/app.slint:1906
+#: ui/app.slint:1955
 msgid "Both ways (normal)"
 msgstr "En ambos sentidos (normal)"
 
-#: ui/app.slint:1906
+#: ui/app.slint:1955
 msgid "Download only"
 msgstr "Solo descargar"
 
-#: ui/app.slint:1906
+#: ui/app.slint:1955
 msgid "Upload only"
 msgstr "Solo subir"
 
-#: ui/app.slint:1917
+#: ui/app.slint:1966
 msgid "Keeps this computer a copy of what's online. Changes you make here aren't sent to OneDrive."
 msgstr "Mantiene en este equipo una copia de lo que hay en línea. Los cambios que hagas aquí no se envían a OneDrive."
 
-#: ui/app.slint:1917
+#: ui/app.slint:1966
 msgid "Sends what you change here to OneDrive, but doesn't download changes made online. Good for backing up this computer."
 msgstr "Envía a OneDrive los cambios que hagas aquí, pero no descarga los cambios en línea. Es útil para hacer copias de seguridad de este equipo."
 
-#: ui/app.slint:1917
+#: ui/app.slint:1966
 msgid "Changes made here go to OneDrive, and changes made online come here."
 msgstr "Los cambios que hagas aquí se envían a OneDrive y los cambios en línea llegan a este equipo."
 
-#: ui/app.slint:1920
+#: ui/app.slint:1969
 msgid "Also delete files here that aren't online"
 msgstr "Eliminar también los archivos que no estén en línea"
 
-#: ui/app.slint:1924
+#: ui/app.slint:1973
 msgid "This deletes files you put in this folder yourself, since they aren't online. You'll see exactly what would be deleted before anything happens."
 msgstr "Esto elimina los archivos que hayas añadido tú a esta carpeta, porque no están en línea. Verás exactamente qué se eliminaría antes de que ocurra."
 
-#: ui/app.slint:1930
+#: ui/app.slint:1979
 msgid "Keep files online when I delete them here"
 msgstr "Conservar en línea los archivos que elimine aquí"
 
-#: ui/app.slint:1934
+#: ui/app.slint:1983
 msgid "Changing the direction is checked first with a dry run, so you can see what would happen."
 msgstr "Antes de cambiar la dirección se hace una simulación para que veas qué ocurriría."
 
-#: ui/app.slint:1944
+#: ui/app.slint:1993
 msgid "Files"
 msgstr "Archivos"
 
-#: ui/app.slint:1947
+#: ui/app.slint:1996
 msgid "When a file is deleted online, move it to this computer's Trash instead of deleting it"
 msgstr "Cuando se elimina un archivo en línea, moverlo a la Papelera de este equipo en vez de eliminarlo"
 
-#: ui/app.slint:1951
+#: ui/app.slint:2000
 msgid "Show desktop notifications for synced files"
 msgstr "Mostrar avisos del escritorio para los archivos sincronizados"
 
-#: ui/app.slint:1955
+#: ui/app.slint:2004
 msgid "Don't sync hidden files and folders (names starting with a dot) *"
 msgstr "No sincronizar archivos ni carpetas ocultos (nombres que empiezan por un punto) *"
 
-#: ui/app.slint:1961
+#: ui/app.slint:2010
 msgid "Never sync files named *"
 msgstr "No sincronizar archivos llamados *"
 
-#: ui/app.slint:1965
+#: ui/app.slint:2014
 msgid "File name patterns to skip"
 msgstr "Patrones de nombres de archivo que se omitirán"
 
-#: ui/app.slint:1971
+#: ui/app.slint:2020
 msgid "Separate patterns with | — for example  *.tmp|~*|Thumbs.db"
 msgstr "Separa los patrones con |; por ejemplo: *.tmp|~*|Thumbs.db"
 
-#: ui/app.slint:1976
+#: ui/app.slint:2025
 msgid "Never sync folders named *"
 msgstr "No sincronizar carpetas llamadas *"
 
-#: ui/app.slint:1980
+#: ui/app.slint:2029
 msgid "Folder names or paths to skip"
 msgstr "Nombres o rutas de carpetas que se omitirán"
 
-#: ui/app.slint:1985
+#: ui/app.slint:2034
 msgid "Add developer folders…"
 msgstr "Añadir carpetas de desarrollo…"
 
-#: ui/app.slint:1992
+#: ui/app.slint:2041
 msgid "A name skips every folder called that; a path like Projects/Old skips that folder."
 msgstr "Un nombre omite todas las carpetas con ese nombre; una ruta como Projects/Old omite solo esa carpeta."
 
-#: ui/app.slint:1995
+#: ui/app.slint:2044
 msgid "Don't sync symbolic links *"
 msgstr "No sincronizar enlaces simbólicos *"
 
-#: ui/app.slint:1999
+#: ui/app.slint:2048
 msgid "Skip any folder that holds a file named .nosync *"
 msgstr "Omitir cualquier carpeta que contenga un archivo llamado .nosync *"
 
-#: ui/app.slint:2003
+#: ui/app.slint:2052
 msgid "Sync shared folders I've added to My files *"
 msgstr "Sincronizar las carpetas compartidas que haya añadido a Mis archivos *"
 
-#: ui/app.slint:2014
+#: ui/app.slint:2063
 msgid "Safety"
 msgstr "Seguridad"
 
-#: ui/app.slint:2017
+#: ui/app.slint:2066
 msgid "Allow full resyncs for this account"
 msgstr "Permitir sincronizaciones completas para esta cuenta"
 
-#: ui/app.slint:2021
+#: ui/app.slint:2070
 msgid "Changing which folders sync, or the settings marked *, makes the sync engine rebuild its view of everything (a full resync). You always get a preview of what would be downloaded, uploaded or deleted before anything happens. Turn this off to lock those settings."
 msgstr "Al cambiar las carpetas sincronizadas o los ajustes marcados con *, el motor reconstruye su vista de todo (una sincronización completa). Siempre verás antes una vista previa de lo que se descargaría, subiría o eliminaría. Desactiva esto para bloquear esos ajustes."
 
-#: ui/app.slint:2026
+#: ui/app.slint:2075
 msgid "Stop and ask when more than"
 msgstr "Detener y preguntar si se eliminan más de"
 
-#: ui/app.slint:2030
+#: ui/app.slint:2079
 msgid "Number of deleted items that stops syncing"
 msgstr "Cantidad de elementos eliminados que detiene la sincronización"
 
-#: ui/app.slint:2037
+#: ui/app.slint:2086
 msgid "items are deleted at once"
 msgstr "elementos eliminados de una vez"
 
-#: ui/app.slint:2045
+#: ui/app.slint:2094
 msgid "Protects against deleting a lot online by accident, for example when a folder is moved out of OneDrive or a drive goes missing. Items inside deleted folders count too. The client's default is 1000."
 msgstr "Ayuda a evitar eliminaciones masivas accidentales en línea, por ejemplo, si se mueve una carpeta fuera de OneDrive o desaparece una unidad. También cuenta el contenido de las carpetas eliminadas. El valor predeterminado del cliente es 1000."
 
-#: ui/app.slint:2060
+#: ui/app.slint:2109
 msgid "Advanced"
 msgstr "Avanzado"
 
-#: ui/app.slint:2063
+#: ui/app.slint:2112
 msgid "Fine-tune the sync engine. Most people never need these."
 msgstr "Ajusta el motor de sincronización. La mayoría de las personas no necesita cambiar estos ajustes."
 
-#: ui/app.slint:2067
+#: ui/app.slint:2116
 msgid "Shown"
 msgstr "Visible"
 
-#: ui/app.slint:2067
+#: ui/app.slint:2116
 msgid "Hidden"
 msgstr "Oculto"
 
-#: ui/app.slint:2068
+#: ui/app.slint:2117
 msgid "Show advanced settings"
 msgstr "Mostrar ajustes avanzados"
 
-#: ui/app.slint:2077
+#: ui/app.slint:2126
 msgid "Search advanced settings"
 msgstr "Buscar ajustes avanzados"
 
-#: ui/app.slint:2078
+#: ui/app.slint:2127
 msgid "Search settings (threads, timeout, log…)"
 msgstr "Buscar ajustes (hilos, tiempo de espera, registro…)"
 
-#: ui/app.slint:2145
+#: ui/app.slint:2194
 msgid "⚠ Can lose data"
 msgstr "⚠ Puede causar pérdida de datos"
 
-#: ui/app.slint:2149
+#: ui/app.slint:2198
 msgid "Full resync"
 msgstr "Sincronización completa"
 
-#: ui/app.slint:2153
+#: ui/app.slint:2202
 msgid "Sign in again"
 msgstr "Iniciar sesión de nuevo"
 
-#: ui/app.slint:2162
+#: ui/app.slint:2211
 msgid "Reset "
 msgstr "Restablecer "
 
-#: ui/app.slint:2162
+#: ui/app.slint:2211
 msgid " to the default"
 msgstr " al valor predeterminado"
 
-#: ui/app.slint:2167
+#: ui/app.slint:2216
 msgid "↺ Reset to default"
 msgstr "↺ Restablecer al valor predeterminado"
 
-#: ui/app.slint:2225
+#: ui/app.slint:2274
 msgid "No setting matches \""
 msgstr "No hay ningún ajuste que coincida con «"
 
-#: ui/app.slint:2232
+#: ui/app.slint:2281
 msgid "Show all settings in use"
 msgstr "Mostrar todos los ajustes en uso"
 
-#: ui/app.slint:2238
+#: ui/app.slint:2287
 msgid "Open log folder"
 msgstr "Abrir la carpeta de registros"
 
-#: ui/app.slint:2258
+#: ui/app.slint:2307
 msgid "Save"
 msgstr "Guardar"
 
-#: ui/app.slint:2275
+#: ui/app.slint:2324
 msgid "When"
 msgstr "Cuándo"
 
-#: ui/app.slint:2275
+#: ui/app.slint:2324
 msgid "What"
 msgstr "Qué"
 
-#: ui/app.slint:2275
+#: ui/app.slint:2324
 msgid "File"
 msgstr "Archivo"
 
-#: ui/app.slint:2282
+#: ui/app.slint:2331
 msgid "Recent uploads, downloads and deletions from the sync log."
 msgstr "Archivos subidos, descargados y eliminados recientemente, según el registro de sincronización."
 
-#: ui/app.slint:2287
+#: ui/app.slint:2336
 msgid "Show in folder"
 msgstr "Mostrar en la carpeta"
 
-#: ui/app.slint:2294
+#: ui/app.slint:2343
 msgid "Refresh"
 msgstr "Actualizar"
 
-#: ui/app.slint:2311
+#: ui/app.slint:2360
 msgid "Welcome — let's add your OneDrive"
 msgstr "Te damos la bienvenida: añadamos tu OneDrive"
 
-#: ui/app.slint:2311
+#: ui/app.slint:2360
 msgid "Add an account"
 msgstr "Añadir una cuenta"
 
-#: ui/app.slint:2316
+#: ui/app.slint:2365
 msgid "What would you like to sync?"
 msgstr "¿Qué quieres sincronizar?"
 
-#: ui/app.slint:2320 ui/app.slint:3756 ui/app.slint:3845
+#: ui/app.slint:2369 ui/app.slint:3805 ui/app.slint:3894
 msgid "OneDrive"
 msgstr "OneDrive"
 
-#: ui/app.slint:2321
+#: ui/app.slint:2370
 msgid "A personal Microsoft account (Outlook, Hotmail, Live) or a work or school account."
 msgstr "Una cuenta personal de Microsoft (Outlook, Hotmail, Live) o una cuenta de trabajo o escuela."
 
-#: ui/app.slint:2328
+#: ui/app.slint:2377
 msgid "SharePoint library"
 msgstr "Biblioteca de SharePoint"
 
-#: ui/app.slint:2329
+#: ui/app.slint:2378
 msgid "A document library from a SharePoint or Teams site. You'll need a work or school account added first."
 msgstr "Una biblioteca de documentos de un sitio de SharePoint o Teams. Primero tendrás que añadir una cuenta de trabajo o escuela."
 
-#: ui/app.slint:2343
+#: ui/app.slint:2392
 msgid "1. Find the library"
 msgstr "1. Buscar la biblioteca"
 
-#: ui/app.slint:2348
+#: ui/app.slint:2397
 msgid "Using account"
 msgstr "Usar la cuenta"
 
-#: ui/app.slint:2353
+#: ui/app.slint:2402
 msgid "Work or school account for this library"
 msgstr "Cuenta de trabajo o escuela para esta biblioteca"
 
-#: ui/app.slint:2363
+#: ui/app.slint:2412
 msgid "Site"
 msgstr "Sitio"
 
-#: ui/app.slint:2368
+#: ui/app.slint:2417
 msgid "SharePoint site address or name"
 msgstr "Dirección o nombre del sitio de SharePoint"
 
-#: ui/app.slint:2371
+#: ui/app.slint:2420
 msgid "Paste the site's address, or type part of its name"
 msgstr "Pega la dirección del sitio o escribe parte de su nombre"
 
-#: ui/app.slint:2377
+#: ui/app.slint:2426
 msgid "Find"
 msgstr "Buscar"
 
-#: ui/app.slint:2385
+#: ui/app.slint:2434
 msgid "Copy the address from your browser while viewing the SharePoint site or library. Leave it empty to list the sites you belong to — only sites this account can already open appear."
 msgstr "Copia la dirección desde el navegador mientras ves el sitio o la biblioteca de SharePoint. Déjala vacía para ver los sitios a los que perteneces. Solo aparecerán los sitios a los que esta cuenta ya tiene acceso."
 
-#: ui/app.slint:2438
+#: ui/app.slint:2487
 msgid "2. Where to keep it"
 msgstr "2. Dónde guardarla"
 
-#: ui/app.slint:2438
+#: ui/app.slint:2487
 msgid "Name and folder"
 msgstr "Nombre y carpeta"
 
-#: ui/app.slint:2450
+#: ui/app.slint:2499
 msgid "e.g. Personal, Work"
 msgstr "p. ej., Personal, Trabajo"
 
-#: ui/app.slint:2456
+#: ui/app.slint:2505
 msgid "Local folder"
 msgstr "Carpeta local"
 
-#: ui/app.slint:2461
+#: ui/app.slint:2510
 msgid "Local folder for synced files"
 msgstr "Carpeta local para los archivos sincronizados"
 
-#: ui/app.slint:2465
+#: ui/app.slint:2514
 msgid "Browse…"
 msgstr "Examinar…"
 
-#: ui/app.slint:2472
+#: ui/app.slint:2521
 msgid "Best to pick an empty or new folder. Anything already in it will be uploaded."
 msgstr "Es mejor elegir una carpeta vacía o nueva. Todo lo que ya haya dentro se subirá."
 
-#: ui/app.slint:2477 ui/app.slint:2482
+#: ui/app.slint:2526 ui/app.slint:2531
 msgid "Microsoft cloud"
 msgstr "Nube de Microsoft"
 
-#: ui/app.slint:2483
+#: ui/app.slint:2532
 msgid "Worldwide (normal)"
 msgstr "Global (normal)"
 
-#: ui/app.slint:2483
+#: ui/app.slint:2532
 msgid "US Government (GCC High)"
 msgstr "Administración pública de EE. UU. (GCC High)"
 
-#: ui/app.slint:2483
+#: ui/app.slint:2532
 msgid "US Government (DoD)"
 msgstr "Administración pública de EE. UU. (DoD)"
 
-#: ui/app.slint:2483
+#: ui/app.slint:2532
 msgid "Germany"
 msgstr "Alemania"
 
-#: ui/app.slint:2483
+#: ui/app.slint:2532
 msgid "China (21Vianet)"
 msgstr "China (21Vianet)"
 
-#: ui/app.slint:2493
+#: ui/app.slint:2542
 msgid "Tenant"
 msgstr "Inquilino"
 
-#: ui/app.slint:2498
+#: ui/app.slint:2547
 msgid "Organization tenant"
 msgstr "Inquilino de la organización"
 
-#: ui/app.slint:2504
+#: ui/app.slint:2553
 msgid "Only for government and national cloud accounts. Your IT team can tell you the tenant."
 msgstr "Solo para cuentas gubernamentales y de nubes nacionales. El equipo de TI puede indicarte el inquilino."
 
-#: ui/app.slint:2512
+#: ui/app.slint:2561
 msgid "Back"
 msgstr "Atrás"
 
-#: ui/app.slint:2518
+#: ui/app.slint:2567
 msgid "Add library"
 msgstr "Añadir biblioteca"
 
-#: ui/app.slint:2518
+#: ui/app.slint:2567
 msgid "Continue and sign in…"
 msgstr "Continuar e iniciar sesión…"
 
-#: ui/app.slint:2553
+#: ui/app.slint:2602
 msgid "Show the tray icon when I log in"
 msgstr "Mostrar el icono de la bandeja al iniciar sesión"
 
-#: ui/app.slint:2560
+#: ui/app.slint:2609
 msgid "Syncing itself keeps running in the background either way. The tray icon shows status and runs sync schedules."
 msgstr "La sincronización sigue ejecutándose en segundo plano de cualquier manera. El icono de la bandeja muestra el estado y ejecuta las sincronizaciones programadas."
 
-#: ui/app.slint:2563
+#: ui/app.slint:2612
 msgid "Stop syncing when I quit the tray icon"
 msgstr "Detener la sincronización al cerrar el icono de la bandeja"
 
-#: ui/app.slint:2570
+#: ui/app.slint:2619
 msgid "\"Quit\" in the tray icon's menu then stops syncing too. It starts again the next time the app opens or you log in."
 msgstr "La opción «Salir» del menú del icono también detiene la sincronización. Se reanuda la próxima vez que abras la aplicación o inicies sesión."
 
-#: ui/app.slint:2573
+#: ui/app.slint:2622
 msgid "Pause syncing on a metered network"
 msgstr "Pausar la sincronización en una red de uso medido"
 
-#: ui/app.slint:2580
+#: ui/app.slint:2629
 msgid "Saves your data allowance on a phone hotspot or a connection you've marked as metered in your network settings."
 msgstr "Ahorra datos en una zona wifi del teléfono o en una conexión que hayas marcado como de uso medido en los ajustes de red."
 
-#: ui/app.slint:2583
+#: ui/app.slint:2632
 msgid "Pause syncing while power saver is on"
 msgstr "Pausar la sincronización cuando el ahorro de energía esté activado"
 
-#: ui/app.slint:2590
+#: ui/app.slint:2639
 msgid "Syncing carries on by itself afterwards. \"Sync now\" still syncs for an hour if you need it to."
 msgstr "La sincronización se reanuda automáticamente después. «Sincronizar ahora» sigue sincronizando durante una hora si lo necesitas."
 
-#: ui/app.slint:2593
+#: ui/app.slint:2642
 msgid "Save screenshots to OneDrive"
 msgstr "Guardar capturas de pantalla en OneDrive"
 
-#: ui/app.slint:2602
+#: ui/app.slint:2651
 msgid "Save screenshots in"
 msgstr "Guardar capturas de pantalla en"
 
-#: ui/app.slint:2607
+#: ui/app.slint:2656
 msgid "OneDrive account for screenshots"
 msgstr "Cuenta de OneDrive para las capturas de pantalla"
 
-#: ui/app.slint:2616
+#: ui/app.slint:2665
 msgid "Show sync badges on files in Dolphin, Nemo and Caja"
 msgstr "Mostrar indicadores de sincronización en los archivos de Dolphin, Nemo y Caja"
 
-#: ui/app.slint:2623
+#: ui/app.slint:2672
 msgid "A small tick, arrows or warning sign on the files in your OneDrive folders. File manager windows that are already open show them once they're reopened."
 msgstr "Una pequeña marca, flechas o un aviso en los archivos de tus carpetas de OneDrive. Las ventanas del gestor de archivos que ya estén abiertas los mostrarán al volver a abrirlas."
 
-#: ui/app.slint:2628
+#: ui/app.slint:2677
 msgid "Adding…"
 msgstr "Añadiendo…"
 
-#: ui/app.slint:2628
+#: ui/app.slint:2677
 msgid "Add badges to Dolphin…"
 msgstr "Añadir indicadores a Dolphin…"
 
-#: ui/app.slint:2636
+#: ui/app.slint:2685
 msgid "Dolphin needs a small plugin installed for everyone on this computer, so it asks for your password once."
 msgstr "Dolphin necesita un pequeño complemento instalado para todos los usuarios de este equipo, por lo que te pedirá la contraseña una vez."
 
-#: ui/app.slint:2642
+#: ui/app.slint:2691
 msgid "Search OneDrive from KRunner (Alt+Space)"
 msgstr "Buscar en OneDrive desde KRunner (Alt+Espacio)"
 
-#: ui/app.slint:2649
+#: ui/app.slint:2698
 msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
 msgstr "Busca archivos por nombre o contenido, incluidos los que no están en este equipo. Mientras esté activado, lo que escribas en KRunner (tres letras o más) se enviará a Microsoft para buscar coincidencias."
 
-#: ui/app.slint:2652
+#: ui/app.slint:2701
 msgid "Search OneDrive from the GNOME overview"
 msgstr "Buscar en OneDrive desde la vista general de GNOME"
 
-#: ui/app.slint:2659
+#: ui/app.slint:2708
 msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
 msgstr "Al escribir en la vista general se busca en tu OneDrive. Lo que escribas se envía a Microsoft."
 
-#: ui/app.slint:2662
+#: ui/app.slint:2711
 msgid "Tell me when a new version is out"
 msgstr "Avisarme cuando haya una nueva versión"
 
-#: ui/app.slint:2669
+#: ui/app.slint:2718
 msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed until you press Update now."
 msgstr "Consulta la página de esta aplicación en GitHub una vez al día. No se descarga ni se instala nada hasta que pulses Actualizar ahora."
 
-#: ui/app.slint:2675 ui/app.slint:3902
+#: ui/app.slint:2724 ui/app.slint:3951
 msgid "Version "
 msgstr "Versión "
 
-#: ui/app.slint:2675
+#: ui/app.slint:2724
 msgid " is out."
 msgstr " está disponible."
 
-#: ui/app.slint:2680 ui/app.slint:3908
+#: ui/app.slint:2729 ui/app.slint:3957
 msgid "Update now"
 msgstr "Actualizar ahora"
 
-#: ui/app.slint:2691
+#: ui/app.slint:2740
 msgid "Add to my applications menu"
 msgstr "Añadir al menú de aplicaciones"
 
-#: ui/app.slint:2707
+#: ui/app.slint:2756
 msgid "Something not right?"
 msgstr "¿Algo no funciona?"
 
-#: ui/app.slint:2710
+#: ui/app.slint:2759
 msgid "Checks the sync engine, the tray icon and every account in one go. The report is for a bug report: it leaves out your file names, email address, user and computer names and sign-in details, and opens so you can read it before sharing."
 msgstr "Comprueba el motor de sincronización, el icono de la bandeja y todas las cuentas de una vez. El informe sirve para notificar un error: no incluye nombres de archivos, correo electrónico, nombres de usuario o del equipo ni datos de inicio de sesión, y se abre para que puedas leerlo antes de compartirlo."
 
-#: ui/app.slint:2716
+#: ui/app.slint:2765
 msgid "Check for problems"
 msgstr "Buscar problemas"
 
-#: ui/app.slint:2723
+#: ui/app.slint:2772
 msgid "Make a problem report"
 msgstr "Crear un informe de problemas"
 
-#: ui/app.slint:2730
+#: ui/app.slint:2779
 msgid "Report a bug…"
 msgstr "Informar de un error…"
 
-#: ui/app.slint:2745
+#: ui/app.slint:2794
 msgid "Keep my file dates"
 msgstr "Conservar las fechas de mis archivos"
 
-#: ui/app.slint:2759
+#: ui/app.slint:2808
 msgid "Report a bug"
 msgstr "Informar de un error"
 
-#: ui/app.slint:2762
+#: ui/app.slint:2811
 msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
 msgstr "Esto se incluirá en el informe de errores. No se ha enviado nada. Léelo, quita lo que no quieras compartir y elige cómo enviarlo."
 
-#: ui/app.slint:2765
+#: ui/app.slint:2814
 msgid "What were you doing, and what went wrong?"
 msgstr "¿Qué estabas haciendo y qué salió mal?"
 
-#: ui/app.slint:2775
+#: ui/app.slint:2824
 msgid "The report (you can edit or delete anything here)"
 msgstr "El informe (puedes editar o borrar cualquier cosa aquí)"
 
-#: ui/app.slint:2791
+#: ui/app.slint:2840
 msgid "Open GitHub issue"
 msgstr "Abrir incidencia de GitHub"
 
-#: ui/app.slint:2796
+#: ui/app.slint:2845
 msgid "Copy to clipboard"
 msgstr "Copiar al portapapeles"
 
-#: ui/app.slint:2801
+#: ui/app.slint:2850
 msgid "Save as a file"
 msgstr "Guardar como archivo"
 
-#: ui/app.slint:2806 ui/app.slint:2993 ui/app.slint:3049 ui/app.slint:3121
-#: ui/app.slint:3255 ui/app.slint:3353 ui/app.slint:3405 ui/app.slint:4563
+#: ui/app.slint:2855 ui/app.slint:3042 ui/app.slint:3098 ui/app.slint:3170
+#: ui/app.slint:3304 ui/app.slint:3402 ui/app.slint:3454 ui/app.slint:4612
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ui/app.slint:2818
+#: ui/app.slint:2867
 msgid "Appearance"
 msgstr "Apariencia"
 
-#: ui/app.slint:2821
+#: ui/app.slint:2870
 msgid "Colours, light or dark mode, text size and animations follow your desktop's settings."
 msgstr "Los colores, el modo claro u oscuro, el tamaño del texto y las animaciones siguen los ajustes del escritorio."
 
-#: ui/app.slint:2826 ui/app.slint:2831
+#: ui/app.slint:2875 ui/app.slint:2880
 msgid "Glass effect"
 msgstr "Efecto de transparencia"
 
-#: ui/app.slint:2832
+#: ui/app.slint:2881
 msgid "Automatic"
 msgstr "Automático"
 
-#: ui/app.slint:2832
+#: ui/app.slint:2881
 msgid "On"
 msgstr "Activado"
 
-#: ui/app.slint:2832
+#: ui/app.slint:2881
 msgid "Off"
 msgstr "Desactivado"
 
-#: ui/app.slint:2852
+#: ui/app.slint:2901
 msgid "About"
 msgstr "Acerca de"
 
-#: ui/app.slint:2855
+#: ui/app.slint:2904
 msgid "DriveDeck for OneDrive "
 msgstr "DriveDeck para OneDrive "
 
-#: ui/app.slint:2859
+#: ui/app.slint:2908
 msgid "The easiest, most complete way to use OneDrive on Linux."
 msgstr "La forma más sencilla y completa de usar OneDrive en Linux."
 
-#: ui/app.slint:2870
+#: ui/app.slint:2919
 msgid "Choose the client…"
 msgstr "Elegir el cliente…"
 
-#: ui/app.slint:2877
+#: ui/app.slint:2926
 msgid "Find it automatically"
 msgstr "Buscarlo automáticamente"
 
-#: ui/app.slint:2885
+#: ui/app.slint:2934
 msgid "For a client this app didn't find by itself, for example one installed with Homebrew. Sync services this app set up are switched to the one you choose; the client's own settings aren't changed."
 msgstr "Para un cliente que esta aplicación no encontró por sí sola, por ejemplo uno instalado con Homebrew. Los servicios de sincronización que configuró esta aplicación pasan a usar el que elijas; la configuración propia del cliente no se cambia."
 
-#: ui/app.slint:2891
+#: ui/app.slint:2940
 msgid "Free software under the GNU GPL v3. Syncing is done by the OneDrive Client for Linux by abraunegg (GPL v3). Not made by or affiliated with Microsoft. OneDrive is a trademark of Microsoft."
 msgstr "Software libre con licencia GNU GPL v3. La sincronización la realiza OneDrive Client for Linux de abraunegg (GPL v3). No está creado por Microsoft ni está afiliado a esta empresa. OneDrive es una marca comercial de Microsoft."
 
-#: ui/app.slint:2897
+#: ui/app.slint:2946
 msgid "Project page"
 msgstr "Página del proyecto"
 
-#: ui/app.slint:2903
+#: ui/app.slint:2952
 msgid "Sync engine (abraunegg/onedrive)"
 msgstr "Motor de sincronización (abraunegg/onedrive)"
 
-#: ui/app.slint:2916 ui/app.slint:3082 ui/app.slint:3128
+#: ui/app.slint:2965 ui/app.slint:3131 ui/app.slint:3177
 msgid "Uninstall"
 msgstr "Desinstalar"
 
-#: ui/app.slint:2919
+#: ui/app.slint:2968
 msgid "Remove this app, and choose whether to keep your OneDrive setup for the command-line client or remove that too. Your synced files always stay on this computer."
 msgstr "Elimina esta aplicación y elige si quieres conservar o quitar también la configuración de OneDrive para el cliente de línea de comandos. Los archivos sincronizados siempre permanecen en este equipo."
 
-#: ui/app.slint:2924
+#: ui/app.slint:2973
 msgid "Uninstall…"
 msgstr "Desinstalar…"
 
-#: ui/app.slint:2955
+#: ui/app.slint:3004
 msgid "Sign in to Microsoft"
 msgstr "Iniciar sesión en Microsoft"
 
-#: ui/app.slint:2963
+#: ui/app.slint:3012
 msgid "Address from the blank sign-in page"
 msgstr "Dirección de la página de inicio de sesión en blanco"
 
-#: ui/app.slint:2974
+#: ui/app.slint:3023
 msgid "Copy link"
 msgstr "Copiar enlace"
 
-#: ui/app.slint:2980
+#: ui/app.slint:3029
 msgid "Open sign-in page again"
 msgstr "Volver a abrir la página de inicio de sesión"
 
-#: ui/app.slint:2986
+#: ui/app.slint:3035
 msgid "Finish sign-in"
 msgstr "Finalizar inicio de sesión"
 
-#: ui/app.slint:2993 ui/app.slint:3146 ui/app.slint:3312 ui/app.slint:4528
+#: ui/app.slint:3042 ui/app.slint:3195 ui/app.slint:3361 ui/app.slint:4577
 msgid "Close"
 msgstr "Cerrar"
 
-#: ui/app.slint:3055
+#: ui/app.slint:3104
 msgid "Apply"
 msgstr "Aplicar"
 
-#: ui/app.slint:3088
+#: ui/app.slint:3137
 msgid "What should happen to your OneDrive setup (sign-ins, chosen folders and options)? Your synced files stay on this computer either way."
 msgstr "¿Qué debe pasar con la configuración de OneDrive (inicios de sesión, carpetas elegidas y opciones)? Los archivos sincronizados siempre permanecen en este equipo."
 
-#: ui/app.slint:3092
+#: ui/app.slint:3141
 msgid "Keep my OneDrive setup"
 msgstr "Conservar mi configuración de OneDrive"
 
-#: ui/app.slint:3093
+#: ui/app.slint:3142
 msgid "Only this app is removed. Your accounts keep syncing in the background with the OneDrive Client for Linux, which you can keep using from the command line."
 msgstr "Solo se elimina esta aplicación. Tus cuentas siguen sincronizándose en segundo plano con OneDrive Client for Linux, que puedes seguir usando desde la línea de comandos."
 
-#: ui/app.slint:3101
+#: ui/app.slint:3150
 msgid "Remove everything"
 msgstr "Eliminar todo"
 
-#: ui/app.slint:3102
+#: ui/app.slint:3151
 msgid "Also stop all background syncing, sign out, and delete every OneDrive sync configuration on this computer, including ones made with the command-line client."
 msgstr "Detener también toda la sincronización en segundo plano, cerrar sesión y eliminar todas las configuraciones de sincronización de OneDrive de este equipo, incluidas las creadas con el cliente de línea de comandos."
 
-#: ui/app.slint:3173
+#: ui/app.slint:3222
 msgid "Move your OneDrive folder"
 msgstr "Mover la carpeta de OneDrive"
 
-#: ui/app.slint:3177
+#: ui/app.slint:3226
 msgid "This moves the folder that holds this account's files, now "
 msgstr "Esto mueve la carpeta que contiene los archivos de esta cuenta, actualmente en "
 
-#: ui/app.slint:3177
+#: ui/app.slint:3226
 msgid ", to a new place — for example another hard drive with more space. Your files stay in OneDrive the whole time, and nothing is downloaded again."
 msgstr ", a otra ubicación —por ejemplo, a otro disco con más espacio—. Los archivos permanecen en OneDrive durante todo el proceso y no se vuelve a descargar nada."
 
-#: ui/app.slint:3181
+#: ui/app.slint:3230
 msgid "What happens after you choose the new place:"
 msgstr "Qué ocurre después de elegir la nueva ubicación:"
 
-#: ui/app.slint:3186
+#: ui/app.slint:3235
 msgid ""
 "1. Syncing for this account pauses.\n"
 "2. The files go to the new place. On the same drive they're simply moved, which is instant. To another drive they're copied, which can take a while for a big folder.\n"
@@ -1080,287 +1088,287 @@ msgstr ""
 "2. Los archivos se trasladan a la nueva ubicación. Si está en la misma unidad, se mueven al instante. Si está en otra, se copian, lo que puede tardar en carpetas grandes.\n"
 "3. Se comprueba que todo coincida con la versión en línea (una simulación, no cambia nada). Pulsa Aplicar y la sincronización continuará desde la nueva ubicación."
 
-#: ui/app.slint:3190
+#: ui/app.slint:3239
 msgid "Moving to another drive leaves your old folder exactly as it was: nothing is ever deleted for you, so no files can be lost if the copy goes wrong. Once you've checked your files are in the new place, delete the old folder yourself to free up the space. Until then, it isn't synced any more and changes made in it won't reach OneDrive."
 msgstr "Al mover la carpeta a otro disco, la carpeta anterior se conserva tal cual: nunca se elimina nada automáticamente, así que no perderás archivos si falla la copia. Cuando compruebes que los archivos están en la nueva ubicación, elimina tú mismo la carpeta anterior para liberar espacio. Hasta entonces, ya no se sincroniza y los cambios que hagas en ella no llegarán a OneDrive."
 
-#: ui/app.slint:3195
+#: ui/app.slint:3244
 msgid "Pick an empty folder to use it as the new OneDrive folder. Pick a folder that already has things in it (like the top of a drive) and a folder named like the current one is made inside it. Make sure the new drive has enough free space and is always connected (mounted automatically)."
 msgstr "Elige una carpeta vacía para usarla como nueva carpeta de OneDrive. Si eliges una carpeta que ya contiene archivos (como la raíz de un disco), se creará dentro una carpeta con el nombre actual. Asegúrate de que el nuevo disco tenga suficiente espacio y esté siempre conectado (montado automáticamente)."
 
-#: ui/app.slint:3207
+#: ui/app.slint:3256
 msgid "Choose new location…"
 msgstr "Elegir nueva ubicación…"
 
-#: ui/app.slint:3289
+#: ui/app.slint:3338
 msgid "All settings in use"
 msgstr "Todos los ajustes en uso"
 
-#: ui/app.slint:3293
+#: ui/app.slint:3342
 msgid "What the sync engine reads from this account's config file, including the defaults for anything not set."
 msgstr "Lo que el motor de sincronización lee del archivo de configuración de esta cuenta, incluidos los valores predeterminados de las opciones no establecidas."
 
-#: ui/app.slint:3338
+#: ui/app.slint:3387
 msgid "Remove account"
 msgstr "Eliminar cuenta"
 
-#: ui/app.slint:3346
+#: ui/app.slint:3395
 msgid "Also sign out and delete this account's sync settings"
 msgstr "Cerrar sesión y eliminar también los ajustes de sincronización de esta cuenta"
 
-#: ui/app.slint:3359
+#: ui/app.slint:3408
 msgid "Remove"
 msgstr "Eliminar"
 
-#: ui/app.slint:3396
+#: ui/app.slint:3445
 msgid "I'll install it myself"
 msgstr "Lo instalaré yo mismo"
 
-#: ui/app.slint:3437
+#: ui/app.slint:3486
 msgid "Skip developer folders"
 msgstr "Omitir carpetas de desarrollo"
 
-#: ui/app.slint:3441
+#: ui/app.slint:3490
 msgid ".git"
 msgstr ".git"
 
-#: ui/app.slint:3445
+#: ui/app.slint:3494
 msgid "node_modules"
 msgstr "node_modules"
 
-#: ui/app.slint:3449
+#: ui/app.slint:3498
 msgid "target"
 msgstr "target"
 
-#: ui/app.slint:3453
+#: ui/app.slint:3502
 msgid "__pycache__"
 msgstr "__pycache__"
 
-#: ui/app.slint:3457
+#: ui/app.slint:3506
 msgid ".venv"
 msgstr ".venv"
 
-#: ui/app.slint:3461
+#: ui/app.slint:3510
 msgid "venv"
 msgstr "venv"
 
-#: ui/app.slint:3465
+#: ui/app.slint:3514
 msgid ".gradle"
 msgstr ".gradle"
 
-#: ui/app.slint:3469
+#: ui/app.slint:3518
 msgid ".idea"
 msgstr ".idea"
 
-#: ui/app.slint:3473
+#: ui/app.slint:3522
 msgid ".cache"
 msgstr ".cache"
 
-#: ui/app.slint:3477
+#: ui/app.slint:3526
 msgid "build"
 msgstr "build"
 
-#: ui/app.slint:3481
+#: ui/app.slint:3530
 msgid "dist"
 msgstr "dist"
 
-#: ui/app.slint:3485
+#: ui/app.slint:3534
 msgid "build and dist are common folder names too, so select them only if you mean to skip them."
 msgstr "build y dist también son nombres de carpeta habituales; selecciónalos solo si realmente quieres omitirlos."
 
-#: ui/app.slint:3497
+#: ui/app.slint:3546
 msgid "Add"
 msgstr "Añadir"
 
-#: ui/app.slint:3734
+#: ui/app.slint:3783
 msgid "Show "
 msgstr "Mostrar "
 
-#: ui/app.slint:3734
+#: ui/app.slint:3783
 msgid " in its folder"
 msgstr " en su carpeta"
 
-#: ui/app.slint:3878
+#: ui/app.slint:3927
 msgid "Pause syncing"
 msgstr "Pausar sincronización"
 
-#: ui/app.slint:3886
+#: ui/app.slint:3935
 msgid "Settings and accounts"
 msgstr "Ajustes y cuentas"
 
-#: ui/app.slint:3902
+#: ui/app.slint:3951
 msgid " of this app is out."
 msgstr " de esta aplicación está disponible."
 
-#: ui/app.slint:3987
+#: ui/app.slint:4036
 msgid "Not synced ("
 msgstr "No sincronizado ("
 
-#: ui/app.slint:4005
+#: ui/app.slint:4054
 msgid "Syncing now"
 msgstr "Sincronizando ahora"
 
-#: ui/app.slint:4005
+#: ui/app.slint:4054
 msgid "Syncing now ("
 msgstr "Sincronizando ahora ("
 
-#: ui/app.slint:4010
+#: ui/app.slint:4059
 msgid "No large files are transferring right now."
 msgstr "No se están transfiriendo archivos grandes."
 
-#: ui/app.slint:4024
+#: ui/app.slint:4073
 msgid "Recent files"
 msgstr "Archivos recientes"
 
-#: ui/app.slint:4029
+#: ui/app.slint:4078
 msgid "Show recent files for account"
 msgstr "Mostrar archivos recientes de la cuenta"
 
-#: ui/app.slint:4041
+#: ui/app.slint:4090
 msgid "Nothing has synced recently."
 msgstr "No se ha sincronizado nada recientemente."
 
-#: ui/app.slint:4055
+#: ui/app.slint:4104
 msgid "Open folder"
 msgstr "Abrir carpeta"
 
-#: ui/app.slint:4069
+#: ui/app.slint:4118
 msgid "View online"
 msgstr "Ver en línea"
 
-#: ui/app.slint:4086
+#: ui/app.slint:4135
 msgid "Pause for 1 hour"
 msgstr "Pausar durante 1 hora"
 
-#: ui/app.slint:4092
+#: ui/app.slint:4141
 msgid "Pause for 4 hours"
 msgstr "Pausar durante 4 horas"
 
-#: ui/app.slint:4098
+#: ui/app.slint:4147
 msgid "Pause until tomorrow morning"
 msgstr "Pausar hasta mañana por la mañana"
 
-#: ui/app.slint:4105
+#: ui/app.slint:4154
 msgid "Resume syncing"
 msgstr "Reanudar sincronización"
 
-#: ui/app.slint:4194
+#: ui/app.slint:4243
 msgid "Version history — "
 msgstr "Historial de versiones — "
 
-#: ui/app.slint:4194
+#: ui/app.slint:4243
 msgid "Who has access — "
 msgstr "Quién tiene acceso — "
 
-#: ui/app.slint:4194
+#: ui/app.slint:4243
 msgid "Share — "
 msgstr "Compartir — "
 
-#: ui/app.slint:4254
+#: ui/app.slint:4303
 msgid "Version history"
 msgstr "Historial de versiones"
 
-#: ui/app.slint:4254
+#: ui/app.slint:4303
 msgid "Who has access"
 msgstr "Quién tiene acceso"
 
-#: ui/app.slint:4254
+#: ui/app.slint:4303
 msgid "Share with people"
 msgstr "Compartir con personas"
 
-#: ui/app.slint:4280
+#: ui/app.slint:4329
 msgid "Getting the saved versions…"
 msgstr "Obteniendo las versiones guardadas…"
 
-#: ui/app.slint:4329
+#: ui/app.slint:4378
 msgid "Current"
 msgstr "Actual"
 
-#: ui/app.slint:4353 ui/app.slint:4569
+#: ui/app.slint:4402 ui/app.slint:4618
 msgid "Restore"
 msgstr "Restaurar"
 
-#: ui/app.slint:4367
+#: ui/app.slint:4416
 msgid "\"Open\" saves a copy of that version and opens it, without changing anything. \"Restore\" makes it the current version everywhere; the version it replaces is kept here too, so nothing is lost."
 msgstr "«Abrir» guarda una copia de esa versión y la abre sin cambiar nada. «Restaurar» la convierte en la versión actual en todas partes; la versión reemplazada también se conserva aquí, así que no se pierde nada."
 
-#: ui/app.slint:4376
+#: ui/app.slint:4425
 msgid "Invite people by email"
 msgstr "Invitar a personas por correo electrónico"
 
-#: ui/app.slint:4380
+#: ui/app.slint:4429
 msgid "Email addresses to invite"
 msgstr "Direcciones de correo electrónico que invitar"
 
-#: ui/app.slint:4382
+#: ui/app.slint:4431
 msgid "name@example.com, another@example.com"
 msgstr "nombre@ejemplo.com, otro@ejemplo.com"
 
-#: ui/app.slint:4387
+#: ui/app.slint:4436
 msgid "Separate addresses with commas. Each person gets an email and signs in to open it. People outside your organization can only be added if your IT team allows it."
 msgstr "Separa las direcciones con comas. Cada persona recibe un correo y debe iniciar sesión para abrirlo. Solo se puede añadir a personas ajenas a tu organización si el equipo de TI lo permite."
 
-#: ui/app.slint:4387
+#: ui/app.slint:4436
 msgid "Separate addresses with commas. Each person gets an email and signs in with a Microsoft account to open it."
 msgstr "Separa las direcciones con comas. Cada persona recibe un correo y debe iniciar sesión con una cuenta de Microsoft para abrirlo."
 
-#: ui/app.slint:4395 ui/app.slint:4405
+#: ui/app.slint:4444 ui/app.slint:4454
 msgid "Can edit"
 msgstr "Puede editar"
 
-#: ui/app.slint:4399
+#: ui/app.slint:4448
 msgid "They can change it (and add or delete files in a folder)."
 msgstr "Puede modificarlo (y añadir o eliminar archivos en una carpeta)."
 
-#: ui/app.slint:4399
+#: ui/app.slint:4448
 msgid "They can view and download it, but not change it."
 msgstr "Puede verlo y descargarlo, pero no modificarlo."
 
-#: ui/app.slint:4409
+#: ui/app.slint:4458
 msgid "Message (optional)"
 msgstr "Mensaje (opcional)"
 
-#: ui/app.slint:4413
+#: ui/app.slint:4462
 msgid "Invitation message"
 msgstr "Mensaje de invitación"
 
-#: ui/app.slint:4434
+#: ui/app.slint:4483
 msgid "It isn't shared: only you can open it."
 msgstr "No está compartido: solo tú puedes abrirlo."
 
-#: ui/app.slint:4474
+#: ui/app.slint:4523
 msgid "Keep"
 msgstr "Conservar"
 
-#: ui/app.slint:4480
+#: ui/app.slint:4529
 msgid "Stop it"
 msgstr "Detenerlo"
 
-#: ui/app.slint:4480
+#: ui/app.slint:4529
 msgid "Stop sharing"
 msgstr "Dejar de compartir"
 
-#: ui/app.slint:4483
+#: ui/app.slint:4532
 msgid "Stop sharing with "
 msgstr "Dejar de compartir con "
 
-#: ui/app.slint:4501
+#: ui/app.slint:4550
 msgid "Stopping a link makes it stop working for everyone who has it. Stopping a person's access takes the file away from their \"Shared\" list. Access that comes from a folder above can only be changed on that folder."
 msgstr "Al desactivar un enlace, deja de funcionar para todos los que lo tienen. Al revocar el acceso de una persona, el archivo desaparece de su lista «Compartido». El acceso heredado de una carpeta superior solo se puede cambiar desde esa carpeta."
 
-#: ui/app.slint:4520
+#: ui/app.slint:4569
 msgid "Send invitation"
 msgstr "Enviar invitación"
 
-#: ui/app.slint:4552
+#: ui/app.slint:4601
 msgid "Restore this version?"
 msgstr "¿Restaurar esta versión?"
 
-#: ui/app.slint:4556
+#: ui/app.slint:4605
 msgid "The version from "
 msgstr "La versión del "
 
-#: ui/app.slint:4556
+#: ui/app.slint:4605
 msgid " becomes the current one, online and on this computer. The current version is kept in the history, so you can switch back."
 msgstr " pasa a ser la versión actual, tanto en línea como en este equipo. La versión actual se conserva en el historial para que puedas volver a ella."
 
@@ -1430,6 +1438,24 @@ msgstr "Carpeta desconocida."
 msgid "This computer doesn't have a {} folder set up."
 msgstr "Este equipo no tiene configurada una carpeta {}."
 
+msgid "{} can't be backed up."
+msgstr "No se puede hacer copia de seguridad de {}."
+
+msgid "{} is a hidden folder, where apps keep their own data, so it can't be backed up."
+msgstr "{} es una carpeta oculta, donde las aplicaciones guardan sus propios datos, así que no se puede hacer copia de seguridad."
+
+msgid "{} is your {} folder: back it up with its own button."
+msgstr "{} es tu carpeta {}: haz su copia de seguridad con su propio botón."
+
+msgid "{} doesn't exist."
+msgstr "{} no existe."
+
+msgid "{} is a whole drive of its own, which can't be moved into OneDrive. Back up a folder on it instead."
+msgstr "{} es una unidad propia y no se puede mover a OneDrive. Haz copia de seguridad de una carpeta dentro de ella."
+
+msgid "{} is inside, or holds, {}, which is already backed up."
+msgstr "{} está dentro de {} o la contiene, y esa carpeta ya tiene copia de seguridad."
+
 msgid "The OneDrive folder {} isn't available. Connect its drive and try again."
 msgstr "La carpeta de OneDrive {} no está disponible. Conecta su unidad y vuelve a intentarlo."
 
@@ -1438,9 +1464,6 @@ msgstr "La carpeta {} está configurada como {}, que contiene toda tu carpeta pe
 
 msgid "Your {} folder can't be backed up: {}"
 msgstr "No se puede hacer una copia de seguridad de la carpeta {}: {}"
-
-msgid "{} doesn't exist."
-msgstr "{} no existe."
 
 msgid "{} is already a link to somewhere else, so it's left alone."
 msgstr "{} ya es un enlace a otra ubicación, así que se deja tal cual."
@@ -1454,8 +1477,11 @@ msgstr "La carpeta {} se solapa con la carpeta de OneDrive de la cuenta «{}» (
 msgid "This account only downloads, so nothing here would be backed up. Change its direction under Options first."
 msgstr "Esta cuenta solo descarga, por lo que no se respaldaría nada aquí. Primero, cambia su dirección en Opciones."
 
-msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
-msgstr "Esta cuenta solo sincroniza las carpetas que has elegido y «{}» no está entre ellas. Añádela primero en Carpetas (puedes crearla en línea)."
+msgid "\"{}\" can't be backed up into this account ({})."
+msgstr "No se puede hacer copia de seguridad de «{}» en esta cuenta ({})."
+
+msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
+msgstr "Esta cuenta solo sincroniza las carpetas que elegiste, y «{}» no es una de ellas. Crea una carpeta vacía llamada «{}» en {}, márcala en «Carpetas», aplica los cambios y vuelve a hacer la copia de seguridad."
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "Hay un enlace simbólico llamado «{}» en tu carpeta de OneDrive. Resuélvelo o cámbiale el nombre antes de respaldar esta carpeta."
@@ -2110,6 +2136,24 @@ msgstr "Alguien"
 msgid "Couldn't check what kind of account this is, so no link was made: {}"
 msgstr "No se pudo comprobar el tipo de cuenta, así que no se creó ningún enlace: {}"
 
+msgid "won't upload: this account only downloads"
+msgstr "no se subirá: esta cuenta solo descarga"
+
+msgid "won't upload: left out by \"Never sync folders named\" (Options)"
+msgstr "no se subirá: excluida por «No sincronizar carpetas llamadas» (Opciones)"
+
+msgid "won't upload: hidden folders are skipped"
+msgstr "no se subirá: las carpetas ocultas se omiten"
+
+msgid "won't upload: it has a .nosync file"
+msgstr "no se subirá: contiene un archivo .nosync"
+
+msgid "won't upload: it's a link to another place"
+msgstr "no se subirá: es un enlace a otro lugar"
+
+msgid "won't upload: OneDrive doesn't allow this name"
+msgstr "no se subirá: OneDrive no permite este nombre"
+
 msgid "Updated to version {}."
 msgstr "Actualizado a la versión {}."
 
@@ -2252,6 +2296,14 @@ msgstr "No se pudo crear un enlace: {}"
 msgid "Couldn't open it online"
 msgstr "No se pudo abrir en línea"
 
+msgid "only on this computer"
+msgstr "solo en este equipo"
+
+msgid "1 folder on this computer isn't in OneDrive yet (marked \"only on this computer\"). Tick it to upload it, then press \"Apply changes…\"."
+msgid_plural "{n} folders on this computer aren't in OneDrive yet (marked \"only on this computer\"). Tick the ones to upload, then press \"Apply changes…\"."
+msgstr[0] "1 carpeta de este equipo aún no está en OneDrive (marcada como «solo en este equipo»). Márcala para subirla y luego pulsa «Aplicar cambios…»."
+msgstr[1] "{n} carpetas de este equipo aún no están en OneDrive (marcadas como «solo en este equipo»). Marca las que quieras subir y luego pulsa «Aplicar cambios…»."
+
 msgid "{} — {}"
 msgstr "{} — {}"
 
@@ -2368,6 +2420,11 @@ msgstr "Microsoft ya no acepta el inicio de sesión guardado (esto puede ocurrir
 
 msgid "The sync engine is running but has stopped making progress, so changes aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, check your network connection."
 msgstr "El motor de sincronización está en ejecución, pero ha dejado de avanzar, por lo que no se sincronizan los cambios. Pulsa «Sincronizar ahora» para reiniciarlo. Si sigue ocurriendo, comprueba la conexión de red."
+
+msgid "1 folder on this computer isn't in OneDrive yet. With \"Sync everything\" on it uploads at the next sync."
+msgid_plural "{n} folders on this computer aren't in OneDrive yet. With \"Sync everything\" on they upload at the next sync."
+msgstr[0] "1 carpeta de este equipo aún no está en OneDrive. Con «Sincronizar todo» activado, se subirá en la próxima sincronización."
+msgstr[1] "{n} carpetas de este equipo aún no están en OneDrive. Con «Sincronizar todo» activado, se subirán en la próxima sincronización."
 
 msgid "Everything in this account"
 msgstr "Todo el contenido de esta cuenta"
@@ -2767,6 +2824,12 @@ msgstr "No está configurado en este equipo"
 
 msgid "Set to your whole home folder, so it can't be backed up"
 msgstr "Está configurada como toda tu carpeta personal, por lo que no se puede respaldar"
+
+msgid "Choose a folder to back up to OneDrive"
+msgstr "Elige una carpeta para hacer copia de seguridad en OneDrive"
+
+msgid "No folder chooser is available on this desktop."
+msgstr "No hay ningún selector de carpetas disponible en este escritorio."
 
 msgid "Looking at your {} folder…"
 msgstr "Analizando tu carpeta {}…"
@@ -3470,6 +3533,9 @@ msgstr "Imágenes"
 
 msgid "Videos"
 msgstr "Vídeos"
+
+#~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
+#~ msgstr "Esta cuenta solo sincroniza las carpetas que has elegido y «{}» no está entre ellas. Añádela primero en Carpetas (puedes crearla en línea)."
 
 #~ msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed by itself."
 #~ msgstr "Consulta una vez al día la página de esta aplicación en GitHub. No se descarga ni instala nada automáticamente."

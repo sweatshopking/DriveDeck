@@ -176,6 +176,18 @@ pub struct Plan {
     target_dev: u64,
 }
 
+impl Plan {
+    /// The folder's name as shown: the desktop's own folders in the user's language, a chosen
+    /// folder as it is called (it is never looked up as a translation).
+    pub fn shown_label(&self) -> String {
+        if is_custom(&self.key) {
+            self.label.clone()
+        } else {
+            crate::tr!(self.label.clone())
+        }
+    }
+}
+
 /// Counts files and bytes under a folder (not following links).
 fn measure(dir: &Path) -> Result<(u64, u64), String> {
     let (mut files, mut bytes) = (0u64, 0u64);
@@ -323,6 +335,131 @@ pub fn plan(acc: &AccountInfo, all: &[AccountInfo], key: &str) -> Result<Plan, S
     let label = known.label;
     let source = xdg_dir(key)
         .ok_or_else(|| crate::tr!("This computer doesn't have a {} folder set up.", label))?;
+    plan_source(acc, all, key, label, source)
+}
+
+/// The key a folder chosen by the user (not one of the desktop's own) is recorded under.
+pub fn custom_key(source: &Path) -> String {
+    format!("{CUSTOM_PREFIX}{}", source.display())
+}
+
+/// Keys of folders chosen by the user start with this; the desktop's own are "DESKTOP" and so on.
+const CUSTOM_PREFIX: &str = "folder:";
+
+pub fn is_custom(key: &str) -> bool {
+    key.starts_with(CUSTOM_PREFIX)
+}
+
+/// As `plan`, for any folder the user chose (issue #6: a folder other than Desktop, Documents...).
+/// On top of `plan`'s checks: not one of the desktop's own folders (those have their own row), not
+/// hidden (app data lives there), not a drive of its own (a mount point can't be moved or replaced
+/// by a link), and nowhere near another folder that is already backed up.
+pub fn plan_custom(
+    acc: &AccountInfo,
+    all: &[AccountInfo],
+    settings: &AppSettings,
+    source: &Path,
+) -> Result<Plan, String> {
+    let shown = source.display();
+    let name = source
+        .file_name()
+        .map(|n| n.to_string_lossy().to_string())
+        .ok_or_else(|| crate::tr!("{} can't be backed up.", shown))?;
+    if !source.is_absolute()
+        || source
+            .components()
+            .any(|c| c == std::path::Component::ParentDir)
+    {
+        return Err(crate::tr!("{} can't be backed up.", shown));
+    }
+    // hidden itself, or inside a hidden folder (~/.var/app/... holds Flatpak apps' own data)
+    if source.components().any(
+        |c| matches!(c, std::path::Component::Normal(n) if n.to_string_lossy().starts_with('.')),
+    ) {
+        return Err(crate::tr!(
+            "{} is a hidden folder, where apps keep their own data, so it can't be backed up.",
+            shown
+        ));
+    }
+    // the same folder however it is spelled (/home may really be /var/home)
+    let same = |a: &Path| match (fs::canonicalize(a), fs::canonicalize(source)) {
+        (Ok(a), Ok(b)) => a == b,
+        _ => a == source,
+    };
+    for k in FOLDERS.iter() {
+        if xdg_dir(k.key).is_some_and(|p| same(&p)) {
+            return Err(crate::tr!(
+                "{} is your {} folder: back it up with its own button.",
+                shown,
+                crate::tr!(k.label)
+            ));
+        }
+    }
+    let meta = fs::symlink_metadata(source).map_err(|_| crate::tr!("{} doesn't exist.", shown))?;
+    if !meta.file_type().is_symlink()
+        && let Some(parent) = source.parent()
+    {
+        let parent_dev = fs::metadata(parent)
+            .map_err(|e| crate::tr!("Couldn't inspect {}: {}", parent.display(), e))?
+            .dev();
+        if parent_dev != meta.dev() {
+            return Err(crate::tr!(
+                "{} is a whole drive of its own, which can't be moved into OneDrive. Back up a folder on it instead.",
+                shown
+            ));
+        }
+    }
+    for a in all {
+        for b in &settings.prefs(&a.confdir).backups {
+            if core::paths_overlap(source, &b.original) || core::paths_overlap(source, &b.target) {
+                return Err(crate::tr!(
+                    "{} is inside, or holds, {}, which is already backed up.",
+                    shown,
+                    b.original.display()
+                ));
+            }
+        }
+    }
+    plan_source(acc, all, &custom_key(source), &name, source.to_path_buf())
+}
+
+/// Folders directly in the home folder that could be backed up with `plan_custom`, for the list
+/// the Status tab offers: real folders (no links, no other drives), not hidden, not one of the
+/// desktop's own (`skip`), not holding or inside a OneDrive folder (`sync_dirs`), and not backed up
+/// already (`backed_up`: where those were). `plan_custom` still checks the one picked in full.
+pub fn candidates(
+    home: &Path,
+    skip: &[PathBuf],
+    sync_dirs: &[PathBuf],
+    backed_up: &[PathBuf],
+) -> Vec<PathBuf> {
+    let Ok(home_meta) = fs::metadata(home) else {
+        return Vec::new();
+    };
+    let Ok(entries) = fs::read_dir(home) else {
+        return Vec::new();
+    };
+    let mut out: Vec<PathBuf> = entries
+        .flatten()
+        .filter(|e| e.file_type().is_ok_and(|t| t.is_dir()))
+        .filter(|e| !e.file_name().to_string_lossy().starts_with('.'))
+        .map(|e| e.path())
+        .filter(|p| fs::symlink_metadata(p).is_ok_and(|m| m.dev() == home_meta.dev()))
+        .filter(|p| !skip.contains(p) && !backed_up.contains(p))
+        .filter(|p| !sync_dirs.iter().any(|d| core::paths_overlap(p, d)))
+        .collect();
+    out.sort_by_key(|p| p.file_name().map(|n| n.to_string_lossy().to_lowercase()));
+    out
+}
+
+/// The checks and measuring both kinds of folder share.
+fn plan_source(
+    acc: &AccountInfo,
+    all: &[AccountInfo],
+    key: &str,
+    label: &str,
+    source: PathBuf,
+) -> Result<Plan, String> {
     if !acc.sync_dir.is_dir() {
         return Err(crate::tr!(
             "The OneDrive folder {} isn't available. Connect its drive and try again.",
@@ -380,10 +517,22 @@ pub fn plan(acc: &AccountInfo, all: &[AccountInfo], key: &str) -> Result<Plan, S
     let name = source
         .file_name()
         .map_or_else(|| label.to_string(), |n| n.to_string_lossy().to_string());
+    // the sync engine's own rules for what it uploads (a name OneDrive refuses, "Never sync folders
+    // named", a .nosync in the OneDrive folder): moved there, the folder would never upload
+    let rules = crate::localfolders::Rules::load(&acc.confdir);
+    if let Some(b) = crate::localfolders::blocked(&acc.sync_dir, &format!("/{name}"), &rules) {
+        return Err(crate::tr!(
+            "\"{}\" can't be backed up into this account ({}).",
+            name,
+            b.text()
+        ));
+    }
     if excluded_by_sync_list(acc, &name)? {
         return Err(crate::tr!(
-            "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online).",
-            name
+            "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again.",
+            name,
+            name,
+            acc.sync_dir.display()
         ));
     }
     let target = acc.sync_dir.join(&name);
@@ -740,7 +889,7 @@ fn start_files(acc: &AccountInfo, plan: &Plan) -> Result<Done, String> {
                     "Stopped at \"{}\": {}. Your {} folder is still in {}; completed copies are in {}.",
                     name,
                     err,
-                    crate::tr!(plan.label),
+                    plan.shown_label(),
                     plan.source.display(),
                     plan.target.display()
                 )
@@ -803,7 +952,11 @@ fn start_files(acc: &AccountInfo, plan: &Plan) -> Result<Done, String> {
     })?;
     // apps that ask the desktop where the folder is (and sandboxed apps) get the real place;
     // the link at the old place works meanwhile, so a failure here is only a warning
-    let desktop_setting = set_xdg_dir(&plan.key, &plan.target).err();
+    let desktop_setting = if is_custom(&plan.key) {
+        None // not one of the desktop's own folders: nothing to tell it
+    } else {
+        set_xdg_dir(&plan.key, &plan.target).err()
+    };
     Ok(Done {
         renamed,
         kept_original,
@@ -849,7 +1002,9 @@ pub fn stop(acc: &AccountInfo, key: &str) -> Result<Backup, String> {
             ));
         }
     }
-    set_xdg_dir(&b.key, &b.original)?;
+    if !is_custom(&b.key) {
+        set_xdg_dir(&b.key, &b.original)?;
+    }
     s.prefs_mut(&acc.confdir).backups.retain(|x| x.key != key);
     s.save().map_err(|e| e.to_string())?;
     Ok(b)
@@ -943,6 +1098,115 @@ mod tests {
         assert!(excluded("/Documents/Work\n"));
         assert!(excluded("/Pictures\n"));
         let _ = fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn candidates_are_plain_folders_in_home() {
+        let home = std::env::temp_dir().join(format!("drivedeck-cand-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&home);
+        for d in [
+            "Projects",
+            "games",
+            ".config",
+            "OneDrive/Inside",
+            "Documents",
+            "Done",
+        ] {
+            fs::create_dir_all(home.join(d)).unwrap();
+        }
+        fs::write(home.join("notes.txt"), "").unwrap();
+        std::os::unix::fs::symlink(home.join("Projects"), home.join("LinkToProjects")).unwrap();
+        let found = candidates(
+            &home,
+            &[home.join("Documents")],
+            &[home.join("OneDrive")],
+            &[home.join("Done")],
+        );
+        assert_eq!(found, [home.join("games"), home.join("Projects")]);
+        // a OneDrive folder inside a home folder rules that folder out too
+        let found = candidates(&home, &[], &[home.join("Projects/OneDrive")], &[]);
+        assert!(!found.contains(&home.join("Projects")));
+        fs::remove_dir_all(&home).unwrap();
+    }
+
+    #[test]
+    fn chosen_folders_that_are_refused() {
+        // inside the home folder (the system-folder check refuses /tmp): the build's own target folder
+        let base = Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("target")
+            .join(format!("test-custom-backup-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&base);
+        for d in [
+            "home/.secret",
+            "home/Stuff/Inner",
+            "home/OneDrive",
+            "home/Done",
+            "conf",
+        ] {
+            fs::create_dir_all(base.join(d)).unwrap();
+        }
+        let acc = AccountInfo {
+            name: "x".into(),
+            confdir: base.join("conf"),
+            unit: None,
+            managed: false,
+            sync_dir: base.join("home/OneDrive"),
+            drive_id: None,
+            kind: "personal".into(),
+            signed_in: true,
+        };
+        let all = [acc.clone()];
+        let mut settings = AppSettings::default();
+        let refused = |settings: &AppSettings, p: &Path| plan_custom(&acc, &all, settings, p);
+        assert!(
+            refused(&settings, &base.join("home/.secret"))
+                .unwrap_err()
+                .contains("hidden")
+        );
+        fs::create_dir_all(base.join("home/.var/app/x/Stuff")).unwrap();
+        let e = refused(&settings, &base.join("home/.var/app/x/Stuff")).unwrap_err();
+        assert!(e.contains("hidden"), "{e}");
+        assert!(refused(&settings, Path::new("relative/Stuff")).is_err());
+        assert!(refused(&settings, &base.join("home/Stuff/../Stuff")).is_err());
+        assert!(
+            refused(&settings, &base.join("home/Missing"))
+                .unwrap_err()
+                .contains("doesn't exist")
+        );
+        let e = refused(&settings, &base.join("home/OneDrive")).unwrap_err();
+        assert!(e.contains("overlaps"), "{e}");
+        // near a folder that is already backed up
+        settings.prefs_mut(&acc.confdir).backups.push(Backup {
+            key: custom_key(&base.join("home/Stuff/Inner")),
+            original: base.join("home/Stuff/Inner"),
+            target: base.join("home/OneDrive/Inner"),
+        });
+        let e = refused(&settings, &base.join("home/Stuff")).unwrap_err();
+        assert!(e.contains("already backed up"), "{e}");
+        // a name OneDrive refuses, or one the account's "Never sync folders named" leaves out
+        fs::create_dir_all(base.join("home/Trailing.")).unwrap();
+        let e = refused(&settings, &base.join("home/Trailing.")).unwrap_err();
+        assert!(e.contains("doesn't allow this name"), "{e}");
+        fs::write(base.join("conf/config"), "skip_dir = \"Stuff\"\n").unwrap();
+        let e = refused(&AppSettings::default(), &base.join("home/Stuff")).unwrap_err();
+        assert!(e.contains("Never sync folders named"), "{e}");
+        fs::remove_file(base.join("conf/config")).unwrap();
+        // a plain folder is planned under its own key and name
+        let p = refused(&AppSettings::default(), &base.join("home/Stuff")).unwrap();
+        assert_eq!(p.key, custom_key(&base.join("home/Stuff")));
+        assert_eq!(p.label, "Stuff");
+        assert_eq!(p.shown_label(), "Stuff");
+        assert_eq!(p.target, base.join("home/OneDrive/Stuff"));
+        assert!(p.same_drive);
+        fs::remove_dir_all(&base).unwrap();
+    }
+
+    #[test]
+    fn custom_keys() {
+        let k = custom_key(Path::new("/home/a/Stuff"));
+        assert_eq!(k, "folder:/home/a/Stuff");
+        assert!(is_custom(&k));
+        assert!(FOLDERS.iter().all(|f| !is_custom(f.key)));
     }
 
     #[test]

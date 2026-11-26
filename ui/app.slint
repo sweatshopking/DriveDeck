@@ -72,6 +72,12 @@ export struct FolderRow {
     inherited: bool,
     // what's inside it, when OneDrive says ("" if not known)
     size: string,
+    // on this computer, not in OneDrive yet
+    local-only: bool,
+    // the sync engine would skip it, so it can't be ticked (only unticked)
+    blocked: bool,
+    // "only on this computer", or why it won't upload
+    note: string,
 }
 
 // The look, matched to the desktop: light/dark and the accent colour follow the desktop's own
@@ -694,6 +700,11 @@ export component AppWindow inherits Window {
     in property <bool> b-busy;
     callback b-start(int);
     callback b-stop(int);
+    // the card also lists the other folders in the home folder
+    in-out property <bool> b-more;
+    callback b-more-toggled();
+    // back up a folder picked with the desktop's chooser
+    callback b-choose();
     in-out property <bool> bk-visible;
     in property <string> bk-title;
     in property <string> bk-text;
@@ -733,6 +744,8 @@ export component AppWindow inherits Window {
     in property <string> f-msg;
     // newly chosen folders against free space (empty when nothing new is ticked)
     in property <string> f-space;
+    // folders found on this computer that aren't in OneDrive yet ("" when none)
+    in property <string> f-local;
     in property <bool> f-space-warn;
     in property <bool> f-loading;
     in property <bool> f-dirty;
@@ -1650,6 +1663,24 @@ export component AppWindow inherits Window {
                                                 }
                                             }
                                         }
+                                        HorizontalLayout {
+                                            spacing: 8px;
+                                            CheckBox {
+                                                text: @tr("Also list the other folders in my home folder");
+                                                checked <=> root.b-more;
+                                                horizontal-stretch: 1;
+                                                toggled => {
+                                                    root.b-more-toggled();
+                                                }
+                                            }
+                                            Button {
+                                                text: @tr("Choose a folder…");
+                                                enabled: !root.b-busy;
+                                                clicked => {
+                                                    root.b-choose();
+                                                }
+                                            }
+                                        }
                                     }
                                 }
 
@@ -1744,10 +1775,22 @@ export component AppWindow inherits Window {
                                             // row.inherited: some folders inside are ticked differently from this one
                                             text: row.inherited ? @tr("{} (partly)", row.name) : row.name;
                                             checked: row.checked;
+                                            enabled: !row.blocked || row.checked;
+                                            accessible-description: row.note;
                                             horizontal-stretch: 1;
                                             toggled => {
                                                 root.f-check(i);
                                             }
+                                        }
+                                        if row.note != "": Text {
+                                            text: row.note;
+                                            max-width: 280px;
+                                            overflow: elide;
+                                            font-size: 11px;
+                                            font-italic: true;
+                                            color: row.blocked ? Theme.warn : Theme.accent;
+                                            vertical-alignment: center;
+                                            accessible-role: none;
                                         }
                                         Text {
                                             text: row.size;
@@ -1764,6 +1807,12 @@ export component AppWindow inherits Window {
                             }
                             if root.f-sync-all: Rectangle {
                                 vertical-stretch: 1;
+                            }
+                            if root.f-local != "": Text {
+                                text: root.f-local;
+                                color: Theme.accent;
+                                wrap: word-wrap;
+                                font-size: 12px;
                             }
                             if root.f-space != "": Text {
                                 text: root.f-space;

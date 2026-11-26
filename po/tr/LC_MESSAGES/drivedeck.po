@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-21 08:19+0000\n"
+"POT-Creation-Date: 2026-11-25 22:04+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -12,1065 +12,1073 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ui/app.slint:480
+#: ui/app.slint:486
 msgid "This app needs one more free program, the OneDrive Client for Linux (version 2.5 or newer). It does the actual syncing in the background; this app is the window and tray icon for it."
 msgstr "Bu uygulamanın bir ücretsiz programa daha ihtiyacı var: OneDrive Client for Linux (2.5 veya yenisi). Eşitleme işini arka planda bu program yapar; bu uygulama onun penceresi ve sistem tepsisi simgesidir."
 
-#: ui/app.slint:491
+#: ui/app.slint:497
 msgid "Updating…"
 msgstr "Güncelleniyor…"
 
-#: ui/app.slint:491
+#: ui/app.slint:497
 msgid "Installing…"
 msgstr "Yükleniyor…"
 
-#: ui/app.slint:491
+#: ui/app.slint:497
 msgid "Update it for me"
 msgstr "Benim için güncelle"
 
-#: ui/app.slint:491
+#: ui/app.slint:497
 msgid "Install it for me"
 msgstr "Benim için yükle"
 
-#: ui/app.slint:499
+#: ui/app.slint:505
 msgid "Open installation instructions"
 msgstr "Kurulum yönergelerini aç"
 
-#: ui/app.slint:505
+#: ui/app.slint:511
 msgid "Check again"
 msgstr "Yeniden denetle"
 
-#: ui/app.slint:512
+#: ui/app.slint:518
 msgid "Not now"
 msgstr "Şimdi değil"
 
-#: ui/app.slint:527
+#: ui/app.slint:533
 msgid "Installed it another way (for example with Homebrew)?"
 msgstr "Başka bir yolla mı kurdunuz (örneğin Homebrew ile)?"
 
-#: ui/app.slint:532 ui/app.slint:2716 ui/app.slint:2870
+#: ui/app.slint:538 ui/app.slint:2765 ui/app.slint:2919
 msgid "Checking…"
 msgstr "Denetleniyor…"
 
-#: ui/app.slint:532
+#: ui/app.slint:538
 msgid "Choose it…"
 msgstr "Seç…"
 
-#: ui/app.slint:560
+#: ui/app.slint:566
 msgid "Some changes on this computer aren't being noticed"
 msgstr "Bu bilgisayardaki bazı değişiklikler fark edilmiyor"
 
-#: ui/app.slint:573
+#: ui/app.slint:579
 msgid "Raising it…"
 msgstr "Sınır artırılıyor…"
 
-#: ui/app.slint:573
+#: ui/app.slint:579
 msgid "Raise the limit"
 msgstr "Sınırı artır"
 
-#: ui/app.slint:605
+#: ui/app.slint:611
 msgid "Syncing is also set up outside this app"
 msgstr "Eşitleme bu uygulamanın dışında da ayarlanmış"
 
-#: ui/app.slint:618
+#: ui/app.slint:624
 msgid "Turning it off…"
 msgstr "Kapatılıyor…"
 
-#: ui/app.slint:618
+#: ui/app.slint:624
 msgid "Turn it off"
 msgstr "Kapat"
 
-#: ui/app.slint:625
+#: ui/app.slint:631
 msgid "Leave it as it is"
 msgstr "Olduğu gibi bırak"
 
-#: ui/app.slint:644
+#: ui/app.slint:650
 msgid "DriveDeck for OneDrive"
 msgstr "OneDrive için DriveDeck"
 
-#: ui/app.slint:970 ui/app.slint:3925
+#: ui/app.slint:983 ui/app.slint:3974
 msgid "Accounts"
 msgstr "Hesaplar"
 
-#: ui/app.slint:1045
+#: ui/app.slint:1058
 msgid "Add account"
 msgstr "Hesap ekle"
 
-#: ui/app.slint:1057 ui/app.slint:2546
+#: ui/app.slint:1070 ui/app.slint:2595
 msgid "App settings"
 msgstr "Uygulama ayarları"
 
-#: ui/app.slint:1096
+#: ui/app.slint:1109
 msgid "OK"
 msgstr "Tamam"
 
-#: ui/app.slint:1222
+#: ui/app.slint:1235
 msgid "Status"
 msgstr "Durum"
 
-#: ui/app.slint:1222
+#: ui/app.slint:1235
 msgid "Folders"
 msgstr "Klasörler"
 
-#: ui/app.slint:1222
+#: ui/app.slint:1235
 msgid "Options"
 msgstr "Seçenekler"
 
-#: ui/app.slint:1222
+#: ui/app.slint:1235
 msgid "Activity"
 msgstr "Etkinlik"
 
-#: ui/app.slint:1243
+#: ui/app.slint:1256
 msgid "This account isn't signed in"
 msgstr "Bu hesapta oturum açılmamış"
 
-#: ui/app.slint:1246
+#: ui/app.slint:1259
 msgid "Sign in with your Microsoft account. Your browser will open so you can log in, then you'll come back here automatically."
 msgstr "Microsoft hesabınızla oturum açın. Giriş yapmak için tarayıcınız açılacak, ardından otomatik olarak buraya döneceksiniz."
 
-#: ui/app.slint:1251
+#: ui/app.slint:1264
 msgid "Sign in…"
 msgstr "Oturum aç…"
 
-#: ui/app.slint:1268 ui/app.slint:2443
+#: ui/app.slint:1281 ui/app.slint:2492
 msgid "Name"
 msgstr "Ad"
 
-#: ui/app.slint:1273 ui/app.slint:2448
+#: ui/app.slint:1286 ui/app.slint:2497
 msgid "Account name"
 msgstr "Hesap adı"
 
-#: ui/app.slint:1280
+#: ui/app.slint:1293
 msgid "Rename"
 msgstr "Yeniden adlandır"
 
-#: ui/app.slint:1289
+#: ui/app.slint:1302
 msgid "Type"
 msgstr "Tür"
 
-#: ui/app.slint:1301
+#: ui/app.slint:1314
 msgid "Folder"
 msgstr "Klasör"
 
-#: ui/app.slint:1312 ui/app.slint:4346
+#: ui/app.slint:1325 ui/app.slint:4395
 msgid "Open"
 msgstr "Aç"
 
-#: ui/app.slint:1318
+#: ui/app.slint:1331
 msgid "Move…"
 msgstr "Taşı…"
 
-#: ui/app.slint:1325
+#: ui/app.slint:1338
 msgid "Online ▾"
 msgstr "Çevrimiçi ▾"
 
-#: ui/app.slint:1335 ui/app.slint:4128 ui/app.slint:4146
+#: ui/app.slint:1348 ui/app.slint:4177 ui/app.slint:4195
 msgid "OneDrive website"
 msgstr "OneDrive web sitesi"
 
-#: ui/app.slint:1341 ui/app.slint:4134 ui/app.slint:4155
+#: ui/app.slint:1354 ui/app.slint:4183 ui/app.slint:4204
 msgid "Recycle bin"
 msgstr "Geri dönüşüm kutusu"
 
-#: ui/app.slint:1347 ui/app.slint:4140 ui/app.slint:4164
+#: ui/app.slint:1360 ui/app.slint:4189 ui/app.slint:4213
 msgid "Restore your OneDrive"
 msgstr "OneDrive'ınızı geri yükleyin"
 
-#: ui/app.slint:1358
+#: ui/app.slint:1371
 msgid "Last sync"
 msgstr "Son eşitleme"
 
-#: ui/app.slint:1371
+#: ui/app.slint:1384
 msgid "Storage"
 msgstr "Depolama alanı"
 
-#: ui/app.slint:1406
+#: ui/app.slint:1419
 msgid "Delete them online too…"
 msgstr "Çevrimiçi kopyaları da sil…"
 
-#: ui/app.slint:1413
+#: ui/app.slint:1426
 msgid "Download them again…"
 msgstr "Kopyaları yeniden indir…"
 
-#: ui/app.slint:1421
+#: ui/app.slint:1434
 msgid "Downloading them again needs a full resync, which is turned off for this account in Options."
 msgstr "Bunları yeniden indirmek için tam eşitleme gerekir. Bu hesapta tam eşitleme Seçenekler bölümünde kapalı."
 
-#: ui/app.slint:1435 ui/app.slint:1442
+#: ui/app.slint:1448 ui/app.slint:1455
 msgid "Background sync"
 msgstr "Arka planda eşitleme"
 
-#: ui/app.slint:1438
+#: ui/app.slint:1451
 msgid "Keeps this folder in sync all the time, including after you restart."
 msgstr "Bilgisayarınızı yeniden başlattıktan sonra da bu klasörü sürekli eşitler."
 
-#: ui/app.slint:1454 ui/app.slint:3869
+#: ui/app.slint:1467 ui/app.slint:3918
 msgid "Sync now"
 msgstr "Şimdi eşitle"
 
-#: ui/app.slint:1461
+#: ui/app.slint:1474
 msgid "Sign out"
 msgstr "Oturumu kapat"
 
-#: ui/app.slint:1478
+#: ui/app.slint:1491
 msgid "Files changed in two places"
 msgstr "İki yerde değişen dosyalar"
 
-#: ui/app.slint:1489
+#: ui/app.slint:1502
 msgid "These files were changed here and online before they could sync, so both versions were kept. Compare them, then choose which to keep."
 msgstr "Bu dosyalar eşitlenmeden önce hem bilgisayarda hem çevrimiçi olarak değiştirildi. Bu yüzden iki sürüm de korundu. Karşılaştırın, sonra hangisini tutacağınızı seçin."
 
-#: ui/app.slint:1536
+#: ui/app.slint:1549
 msgid "Compare"
 msgstr "Karşılaştır"
 
-#: ui/app.slint:1542
+#: ui/app.slint:1555
 msgid "Keep… ▾"
 msgstr "Tut… ▾"
 
-#: ui/app.slint:1555
+#: ui/app.slint:1568
 msgid "Keep this computer's version"
 msgstr "Bu bilgisayardaki sürümü tut"
 
-#: ui/app.slint:1561
+#: ui/app.slint:1574
 msgid "Keep the OneDrive version"
 msgstr "OneDrive sürümünü tut"
 
-#: ui/app.slint:1567
+#: ui/app.slint:1580
 msgid "Keep both"
 msgstr "İkisini de tut"
 
-#: ui/app.slint:1584
+#: ui/app.slint:1597
 msgid "Back up this computer's folders"
 msgstr "Bu bilgisayardaki klasörleri yedekle"
 
-#: ui/app.slint:1587
+#: ui/app.slint:1600
 msgid "Keep your important folders in OneDrive, so they're backed up and on your other devices. They stay where your apps expect them."
 msgstr "Önemli klasörlerinizi OneDrive'da tutarak yedekleyin ve diğer cihazlarınızda da kullanın. Uygulamalarınızın beklediği yerde kalırlar."
 
-#: ui/app.slint:1623
+#: ui/app.slint:1636
 msgid "✓ Backed up"
 msgstr "✓ Yedeklendi"
 
-#: ui/app.slint:1638
+#: ui/app.slint:1651
 msgid "Back up…"
 msgstr "Yedekle…"
 
-#: ui/app.slint:1645
+#: ui/app.slint:1658
 msgid "Stop…"
 msgstr "Durdur…"
 
-#: ui/app.slint:1660
+#: ui/app.slint:1669
+msgid "Also list the other folders in my home folder"
+msgstr "Ana klasörümdeki diğer klasörleri de listele"
+
+#: ui/app.slint:1677
+msgid "Choose a folder…"
+msgstr "Bir klasör seçin…"
+
+#: ui/app.slint:1691
 msgid "Remove account from this computer…"
 msgstr "Hesabı bu bilgisayardan kaldır…"
 
-#: ui/app.slint:1684
+#: ui/app.slint:1715
 msgid "Sync everything"
 msgstr "Her şeyi eşitle"
 
-#: ui/app.slint:1691
+#: ui/app.slint:1722
 msgid "Every folder in this account is kept on this computer. Untick to choose specific folders."
 msgstr "Bu hesaptaki her klasör bu bilgisayarda tutulur. Belirli klasörleri seçmek için işareti kaldırın."
 
-#: ui/app.slint:1691
+#: ui/app.slint:1722
 msgid "Only the ticked folders (and everything inside them) are kept on this computer."
 msgstr "Yalnızca işaretli klasörler ve içindekiler bu bilgisayarda tutulur."
 
-#: ui/app.slint:1694
+#: ui/app.slint:1725
 msgid "Also sync files that sit at the top level (outside any folder)"
 msgstr "Klasörlerin dışındaki en üst düzey dosyaları da eşitle"
 
-#: ui/app.slint:1712
+#: ui/app.slint:1743
 msgid "Loading subfolders for "
 msgstr "Alt klasörler yükleniyor: "
 
-#: ui/app.slint:1712
+#: ui/app.slint:1743
 msgid "Collapse "
 msgstr "Daralt "
 
-#: ui/app.slint:1712
+#: ui/app.slint:1743
 msgid "Expand "
 msgstr "Genişlet "
 
 #. row.inherited: some folders inside are ticked differently from this one
-#: ui/app.slint:1745
+#: ui/app.slint:1776
 msgid "{} (partly)"
 msgstr "{} (kısmen)"
 
-#: ui/app.slint:1787
+#: ui/app.slint:1836
 msgid "Reload"
 msgstr "Yeniden yükle"
 
-#: ui/app.slint:1793
+#: ui/app.slint:1842
 msgid "Apply changes…"
 msgstr "Değişiklikleri uygula…"
 
-#: ui/app.slint:1816
+#: ui/app.slint:1865
 msgid "When to sync"
 msgstr "Ne zaman eşitlensin"
 
-#: ui/app.slint:1821
+#: ui/app.slint:1870
 msgid "Full check every"
 msgstr "Tam denetim sıklığı"
 
-#: ui/app.slint:1826
+#: ui/app.slint:1875
 msgid "How often to check for changes"
 msgstr "Değişiklikler ne sıklıkla denetlensin"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "5 minutes"
 msgstr "5 dakika"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "10 minutes"
 msgstr "10 dakika"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "15 minutes"
 msgstr "15 dakika"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "30 minutes"
 msgstr "30 dakika"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "1 hour"
 msgstr "1 saat"
 
-#: ui/app.slint:1827
+#: ui/app.slint:1876
 msgid "2 hours"
 msgstr "2 saat"
 
-#: ui/app.slint:1835
+#: ui/app.slint:1884
 msgid "Changes on this computer are sent right away, and personal accounts also get online changes instantly. This sets how often a full check runs as well."
 msgstr "Bu bilgisayardaki değişiklikler hemen gönderilir; kişisel hesaplarda çevrimiçi değişiklikler de hemen alınır. Bu ayar, tam denetimin ne sıklıkla yapılacağını da belirler."
 
-#: ui/app.slint:1840
+#: ui/app.slint:1889
 msgid "Only sync between"
 msgstr "Yalnızca şu saatlerde eşitle"
 
-#: ui/app.slint:1844
+#: ui/app.slint:1893
 msgid "Schedule start time"
 msgstr "Başlangıç saati"
 
-#: ui/app.slint:1851
+#: ui/app.slint:1900
 msgid "and"
 msgstr "ile"
 
-#: ui/app.slint:1855
+#: ui/app.slint:1904
 msgid "Schedule end time"
 msgstr "Bitiş saati"
 
-#: ui/app.slint:1866
+#: ui/app.slint:1915
 msgid "Use 24-hour times. The window can cross midnight (for example 23:00 to 07:00 for overnight only). \"Sync now\" still works outside it for an hour. Needs the tray icon running."
 msgstr "24 saatlik saat biçimini kullanın. Saat aralığı gece yarısını aşabilir (ör. yalnızca gece için 23:00–07:00). “Şimdi eşitle” bu saatlerin dışında da bir saat çalışır. Sistem tepsisi simgesi açık olmalıdır."
 
-#: ui/app.slint:1871
+#: ui/app.slint:1920
 msgid "Speed limit"
 msgstr "Hız sınırı"
 
-#: ui/app.slint:1876
+#: ui/app.slint:1925
 msgid "Sync speed limit"
 msgstr "Eşitleme hız sınırı"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "No limit"
 msgstr "Sınırsız"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "1 MB/s"
 msgstr "1 MB/sn"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "2 MB/s"
 msgstr "2 MB/sn"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "5 MB/s"
 msgstr "5 MB/sn"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "10 MB/s"
 msgstr "10 MB/sn"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "25 MB/s"
 msgstr "25 MB/sn"
 
-#: ui/app.slint:1877
+#: ui/app.slint:1926
 msgid "50 MB/s"
 msgstr "50 MB/sn"
 
-#: ui/app.slint:1885
+#: ui/app.slint:1934
 msgid "Applies to each file being transferred."
 msgstr "Aktarılan her dosyaya ayrı ayrı uygulanır."
 
-#: ui/app.slint:1888
+#: ui/app.slint:1937
 msgid "Connect over IPv4 only"
 msgstr "Yalnızca IPv4 ile bağlan"
 
-#: ui/app.slint:1892
+#: ui/app.slint:1941
 msgid "Can fix syncing that's slow to start or keeps timing out on some networks."
 msgstr "Bazı ağlarda yavaş başlayan veya sık sık zaman aşımına uğrayan eşitlemeyi düzeltebilir."
 
-#: ui/app.slint:1902
+#: ui/app.slint:1951
 msgid "Direction"
 msgstr "Yön"
 
-#: ui/app.slint:1905
+#: ui/app.slint:1954
 msgid "Sync direction"
 msgstr "Eşitleme yönü"
 
-#: ui/app.slint:1906
+#: ui/app.slint:1955
 msgid "Both ways (normal)"
 msgstr "İki yönlü (normal)"
 
-#: ui/app.slint:1906
+#: ui/app.slint:1955
 msgid "Download only"
 msgstr "Yalnızca indir"
 
-#: ui/app.slint:1906
+#: ui/app.slint:1955
 msgid "Upload only"
 msgstr "Yalnızca yükle"
 
-#: ui/app.slint:1917
+#: ui/app.slint:1966
 msgid "Keeps this computer a copy of what's online. Changes you make here aren't sent to OneDrive."
 msgstr "Bu bilgisayarda çevrimiçi dosyaların bir kopyasını tutar. Burada yaptığınız değişiklikler OneDrive'a gönderilmez."
 
-#: ui/app.slint:1917
+#: ui/app.slint:1966
 msgid "Sends what you change here to OneDrive, but doesn't download changes made online. Good for backing up this computer."
 msgstr "Burada yaptığınız değişiklikleri OneDrive'a gönderir, ancak çevrimiçi değişiklikleri indirmez. Bu bilgisayarı yedeklemek için uygundur."
 
-#: ui/app.slint:1917
+#: ui/app.slint:1966
 msgid "Changes made here go to OneDrive, and changes made online come here."
 msgstr "Burada yapılan değişiklikler OneDrive'a gider, çevrimiçi yapılan değişiklikler de buraya gelir."
 
-#: ui/app.slint:1920
+#: ui/app.slint:1969
 msgid "Also delete files here that aren't online"
 msgstr "Burada olmayan dosyaları da sil"
 
-#: ui/app.slint:1924
+#: ui/app.slint:1973
 msgid "This deletes files you put in this folder yourself, since they aren't online. You'll see exactly what would be deleted before anything happens."
 msgstr "Bu klasöre kendiniz koyduğunuz ve çevrimiçi olmayan dosyalar silinir. Hiçbir şey yapılmadan önce silinecekleri tam olarak görebilirsiniz."
 
-#: ui/app.slint:1930
+#: ui/app.slint:1979
 msgid "Keep files online when I delete them here"
 msgstr "Burada sildiğim dosyaları çevrimiçi tut"
 
-#: ui/app.slint:1934
+#: ui/app.slint:1983
 msgid "Changing the direction is checked first with a dry run, so you can see what would happen."
 msgstr "Eşitleme yönü değiştirilmeden önce bir deneme yapılır; neler olacağını görebilirsiniz."
 
-#: ui/app.slint:1944
+#: ui/app.slint:1993
 msgid "Files"
 msgstr "Dosyalar"
 
-#: ui/app.slint:1947
+#: ui/app.slint:1996
 msgid "When a file is deleted online, move it to this computer's Trash instead of deleting it"
 msgstr "Çevrimiçi silinen dosyaları silmek yerine bu bilgisayarın Çöp Kutusu'na taşı"
 
-#: ui/app.slint:1951
+#: ui/app.slint:2000
 msgid "Show desktop notifications for synced files"
 msgstr "Eşitlenen dosyalar için masaüstü bildirimlerini göster"
 
-#: ui/app.slint:1955
+#: ui/app.slint:2004
 msgid "Don't sync hidden files and folders (names starting with a dot) *"
 msgstr "Gizli dosya ve klasörleri eşitleme (adı noktayla başlayanlar) *"
 
-#: ui/app.slint:1961
+#: ui/app.slint:2010
 msgid "Never sync files named *"
 msgstr "Şu adlara sahip dosyaları eşitleme *"
 
-#: ui/app.slint:1965
+#: ui/app.slint:2014
 msgid "File name patterns to skip"
 msgstr "Atlanacak dosya adı kalıpları"
 
-#: ui/app.slint:1971
+#: ui/app.slint:2020
 msgid "Separate patterns with | — for example  *.tmp|~*|Thumbs.db"
 msgstr "Kalıpları | ile ayırın — örneğin  *.tmp|~*|Thumbs.db"
 
-#: ui/app.slint:1976
+#: ui/app.slint:2025
 msgid "Never sync folders named *"
 msgstr "Şu adlara sahip klasörleri eşitleme *"
 
-#: ui/app.slint:1980
+#: ui/app.slint:2029
 msgid "Folder names or paths to skip"
 msgstr "Atlanacak klasör adları veya yolları"
 
-#: ui/app.slint:1985
+#: ui/app.slint:2034
 msgid "Add developer folders…"
 msgstr "Geliştirici klasörlerini ekle…"
 
-#: ui/app.slint:1992
+#: ui/app.slint:2041
 msgid "A name skips every folder called that; a path like Projects/Old skips that folder."
 msgstr "Bir ad, bu ada sahip tüm klasörleri atlar; Projects/Old gibi bir yol yalnızca o klasörü atlar."
 
-#: ui/app.slint:1995
+#: ui/app.slint:2044
 msgid "Don't sync symbolic links *"
 msgstr "Sembolik bağlantıları eşitleme *"
 
-#: ui/app.slint:1999
+#: ui/app.slint:2048
 msgid "Skip any folder that holds a file named .nosync *"
 msgstr "Adında .nosync olan bir dosya içeren klasörleri eşitleme *"
 
-#: ui/app.slint:2003
+#: ui/app.slint:2052
 msgid "Sync shared folders I've added to My files *"
 msgstr "Dosyalarım'a eklediğim paylaşılan klasörleri eşitle *"
 
-#: ui/app.slint:2014
+#: ui/app.slint:2063
 msgid "Safety"
 msgstr "Güvenlik"
 
-#: ui/app.slint:2017
+#: ui/app.slint:2066
 msgid "Allow full resyncs for this account"
 msgstr "Bu hesap için tam eşitlemeye izin ver"
 
-#: ui/app.slint:2021
+#: ui/app.slint:2070
 msgid "Changing which folders sync, or the settings marked *, makes the sync engine rebuild its view of everything (a full resync). You always get a preview of what would be downloaded, uploaded or deleted before anything happens. Turn this off to lock those settings."
 msgstr "Eşitlenecek klasörleri veya * ile işaretli ayarları değiştirmek, eşitleme motorunun her şeyi yeniden taramasını gerektirir (tam eşitleme). Herhangi bir işlem yapılmadan önce nelerin indirileceğini, yükleneceğini veya silineceğini her zaman görebilirsiniz. Bu ayarları kilitlemek için bunu kapatın."
 
-#: ui/app.slint:2026
+#: ui/app.slint:2075
 msgid "Stop and ask when more than"
 msgstr "Şu sayıdan fazla öğe silinirse dur ve sor"
 
-#: ui/app.slint:2030
+#: ui/app.slint:2079
 msgid "Number of deleted items that stops syncing"
 msgstr "Eşitlemeyi durduran silinen öğe sayısı"
 
-#: ui/app.slint:2037
+#: ui/app.slint:2086
 msgid "items are deleted at once"
 msgstr "öğe bir defada silinir"
 
-#: ui/app.slint:2045
+#: ui/app.slint:2094
 msgid "Protects against deleting a lot online by accident, for example when a folder is moved out of OneDrive or a drive goes missing. Items inside deleted folders count too. The client's default is 1000."
 msgstr "Bir klasör OneDrive dışına taşındığında veya sürücü kaybolduğunda olduğu gibi, çevrimiçi çok sayıda öğenin yanlışlıkla silinmesini önler. Silinen klasörlerin içindeki öğeler de sayılır. İstemcinin varsayılanı 1000'dir."
 
-#: ui/app.slint:2060
+#: ui/app.slint:2109
 msgid "Advanced"
 msgstr "Gelişmiş"
 
-#: ui/app.slint:2063
+#: ui/app.slint:2112
 msgid "Fine-tune the sync engine. Most people never need these."
 msgstr "Eşitleme motorunun ayarlarını ince ayarlayın. Çoğu kişinin bunlara ihtiyacı olmaz."
 
-#: ui/app.slint:2067
+#: ui/app.slint:2116
 msgid "Shown"
 msgstr "Gösterilen"
 
-#: ui/app.slint:2067
+#: ui/app.slint:2116
 msgid "Hidden"
 msgstr "Gizli"
 
-#: ui/app.slint:2068
+#: ui/app.slint:2117
 msgid "Show advanced settings"
 msgstr "Gelişmiş ayarları göster"
 
-#: ui/app.slint:2077
+#: ui/app.slint:2126
 msgid "Search advanced settings"
 msgstr "Gelişmiş ayarlarda ara"
 
-#: ui/app.slint:2078
+#: ui/app.slint:2127
 msgid "Search settings (threads, timeout, log…)"
 msgstr "Ayarları ara (iş parçacıkları, zaman aşımı, günlük…)"
 
-#: ui/app.slint:2145
+#: ui/app.slint:2194
 msgid "⚠ Can lose data"
 msgstr "⚠ Veri kaybı olabilir"
 
-#: ui/app.slint:2149
+#: ui/app.slint:2198
 msgid "Full resync"
 msgstr "Tam eşitleme"
 
-#: ui/app.slint:2153
+#: ui/app.slint:2202
 msgid "Sign in again"
 msgstr "Yeniden oturum aç"
 
-#: ui/app.slint:2162
+#: ui/app.slint:2211
 msgid "Reset "
 msgstr "Sıfırla "
 
-#: ui/app.slint:2162
+#: ui/app.slint:2211
 msgid " to the default"
 msgstr " varsayılana"
 
-#: ui/app.slint:2167
+#: ui/app.slint:2216
 msgid "↺ Reset to default"
 msgstr "↺ Varsayılana sıfırla"
 
-#: ui/app.slint:2225
+#: ui/app.slint:2274
 msgid "No setting matches \""
 msgstr "Şu ayarla eşleşen sonuç yok: \""
 
-#: ui/app.slint:2232
+#: ui/app.slint:2281
 msgid "Show all settings in use"
 msgstr "Kullanılan tüm ayarları göster"
 
-#: ui/app.slint:2238
+#: ui/app.slint:2287
 msgid "Open log folder"
 msgstr "Günlük klasörünü aç"
 
-#: ui/app.slint:2258
+#: ui/app.slint:2307
 msgid "Save"
 msgstr "Kaydet"
 
-#: ui/app.slint:2275
+#: ui/app.slint:2324
 msgid "When"
 msgstr "Ne zaman"
 
-#: ui/app.slint:2275
+#: ui/app.slint:2324
 msgid "What"
 msgstr "Ne"
 
-#: ui/app.slint:2275
+#: ui/app.slint:2324
 msgid "File"
 msgstr "Dosya"
 
-#: ui/app.slint:2282
+#: ui/app.slint:2331
 msgid "Recent uploads, downloads and deletions from the sync log."
 msgstr "Eşitleme günlüğündeki son yüklemeler, indirmeler ve silmeler."
 
-#: ui/app.slint:2287
+#: ui/app.slint:2336
 msgid "Show in folder"
 msgstr "Klasörde göster"
 
-#: ui/app.slint:2294
+#: ui/app.slint:2343
 msgid "Refresh"
 msgstr "Yenile"
 
-#: ui/app.slint:2311
+#: ui/app.slint:2360
 msgid "Welcome — let's add your OneDrive"
 msgstr "Hoş geldiniz — OneDrive'ınızı ekleyelim"
 
-#: ui/app.slint:2311
+#: ui/app.slint:2360
 msgid "Add an account"
 msgstr "Hesap ekle"
 
-#: ui/app.slint:2316
+#: ui/app.slint:2365
 msgid "What would you like to sync?"
 msgstr "Neleri eşitlemek istiyorsunuz?"
 
-#: ui/app.slint:2320 ui/app.slint:3756 ui/app.slint:3845
+#: ui/app.slint:2369 ui/app.slint:3805 ui/app.slint:3894
 msgid "OneDrive"
 msgstr "OneDrive"
 
-#: ui/app.slint:2321
+#: ui/app.slint:2370
 msgid "A personal Microsoft account (Outlook, Hotmail, Live) or a work or school account."
 msgstr "Kişisel Microsoft hesabı (Outlook, Hotmail, Live) veya iş ya da okul hesabı."
 
-#: ui/app.slint:2328
+#: ui/app.slint:2377
 msgid "SharePoint library"
 msgstr "SharePoint kitaplığı"
 
-#: ui/app.slint:2329
+#: ui/app.slint:2378
 msgid "A document library from a SharePoint or Teams site. You'll need a work or school account added first."
 msgstr "SharePoint veya Teams sitesindeki belge kitaplığı. Önce bir iş ya da okul hesabı eklemeniz gerekir."
 
-#: ui/app.slint:2343
+#: ui/app.slint:2392
 msgid "1. Find the library"
 msgstr "1. Kitaplığı bulun"
 
-#: ui/app.slint:2348
+#: ui/app.slint:2397
 msgid "Using account"
 msgstr "Hesap"
 
-#: ui/app.slint:2353
+#: ui/app.slint:2402
 msgid "Work or school account for this library"
 msgstr "Bu kitaplık için iş veya okul hesabı"
 
-#: ui/app.slint:2363
+#: ui/app.slint:2412
 msgid "Site"
 msgstr "Site"
 
-#: ui/app.slint:2368
+#: ui/app.slint:2417
 msgid "SharePoint site address or name"
 msgstr "SharePoint site adresi veya adı"
 
-#: ui/app.slint:2371
+#: ui/app.slint:2420
 msgid "Paste the site's address, or type part of its name"
 msgstr "Sitenin adresini yapıştırın veya adının bir kısmını yazın"
 
-#: ui/app.slint:2377
+#: ui/app.slint:2426
 msgid "Find"
 msgstr "Bul"
 
-#: ui/app.slint:2385
+#: ui/app.slint:2434
 msgid "Copy the address from your browser while viewing the SharePoint site or library. Leave it empty to list the sites you belong to — only sites this account can already open appear."
 msgstr "SharePoint sitesini veya kitaplığını görüntülerken adresi tarayıcınızdan kopyalayın. Boş bırakırsanız üyesi olduğunuz siteler listelenir — yalnızca bu hesabın zaten açabildiği siteler görünür."
 
-#: ui/app.slint:2438
+#: ui/app.slint:2487
 msgid "2. Where to keep it"
 msgstr "2. Saklanacağı yer"
 
-#: ui/app.slint:2438
+#: ui/app.slint:2487
 msgid "Name and folder"
 msgstr "Ad ve klasör"
 
-#: ui/app.slint:2450
+#: ui/app.slint:2499
 msgid "e.g. Personal, Work"
 msgstr "ör. Kişisel, İş"
 
-#: ui/app.slint:2456
+#: ui/app.slint:2505
 msgid "Local folder"
 msgstr "Yerel klasör"
 
-#: ui/app.slint:2461
+#: ui/app.slint:2510
 msgid "Local folder for synced files"
 msgstr "Eşitlenen dosyalar için yerel klasör"
 
-#: ui/app.slint:2465
+#: ui/app.slint:2514
 msgid "Browse…"
 msgstr "Göz at…"
 
-#: ui/app.slint:2472
+#: ui/app.slint:2521
 msgid "Best to pick an empty or new folder. Anything already in it will be uploaded."
 msgstr "Boş veya yeni bir klasör seçmeniz iyi olur. İçinde bulunan her şey yüklenir."
 
-#: ui/app.slint:2477 ui/app.slint:2482
+#: ui/app.slint:2526 ui/app.slint:2531
 msgid "Microsoft cloud"
 msgstr "Microsoft bulutu"
 
-#: ui/app.slint:2483
+#: ui/app.slint:2532
 msgid "Worldwide (normal)"
 msgstr "Dünya geneli (normal)"
 
-#: ui/app.slint:2483
+#: ui/app.slint:2532
 msgid "US Government (GCC High)"
 msgstr "ABD Kamu Kurumu (GCC High)"
 
-#: ui/app.slint:2483
+#: ui/app.slint:2532
 msgid "US Government (DoD)"
 msgstr "ABD Kamu Kurumu (DoD)"
 
-#: ui/app.slint:2483
+#: ui/app.slint:2532
 msgid "Germany"
 msgstr "Almanya"
 
-#: ui/app.slint:2483
+#: ui/app.slint:2532
 msgid "China (21Vianet)"
 msgstr "Çin (21Vianet)"
 
-#: ui/app.slint:2493
+#: ui/app.slint:2542
 msgid "Tenant"
 msgstr "Kiracı"
 
-#: ui/app.slint:2498
+#: ui/app.slint:2547
 msgid "Organization tenant"
 msgstr "Kuruluş kiracısı"
 
-#: ui/app.slint:2504
+#: ui/app.slint:2553
 msgid "Only for government and national cloud accounts. Your IT team can tell you the tenant."
 msgstr "Yalnızca kamu kurumu ve ulusal bulut hesapları içindir. Kiracıyı bilgi işlem ekibinize sorabilirsiniz."
 
-#: ui/app.slint:2512
+#: ui/app.slint:2561
 msgid "Back"
 msgstr "Geri"
 
-#: ui/app.slint:2518
+#: ui/app.slint:2567
 msgid "Add library"
 msgstr "Kitaplık ekle"
 
-#: ui/app.slint:2518
+#: ui/app.slint:2567
 msgid "Continue and sign in…"
 msgstr "Devam et ve oturum aç…"
 
-#: ui/app.slint:2553
+#: ui/app.slint:2602
 msgid "Show the tray icon when I log in"
 msgstr "Oturum açtığımda sistem tepsisi simgesini göster"
 
-#: ui/app.slint:2560
+#: ui/app.slint:2609
 msgid "Syncing itself keeps running in the background either way. The tray icon shows status and runs sync schedules."
 msgstr "Eşitleme her durumda arka planda sürer. Sistem tepsisi simgesi durumu gösterir ve eşitleme zamanlamalarını çalıştırır."
 
-#: ui/app.slint:2563
+#: ui/app.slint:2612
 msgid "Stop syncing when I quit the tray icon"
 msgstr "Sistem tepsisi simgesinden çıkınca eşitlemeyi durdur"
 
-#: ui/app.slint:2570
+#: ui/app.slint:2619
 msgid "\"Quit\" in the tray icon's menu then stops syncing too. It starts again the next time the app opens or you log in."
 msgstr "Sistem tepsisi menüsündeki “Çık” seçeneği eşitlemeyi de durdurur. Uygulama yeniden açıldığında veya oturum açtığınızda tekrar başlar."
 
-#: ui/app.slint:2573
+#: ui/app.slint:2622
 msgid "Pause syncing on a metered network"
 msgstr "Ölçülü ağda eşitlemeyi duraklat"
 
-#: ui/app.slint:2580
+#: ui/app.slint:2629
 msgid "Saves your data allowance on a phone hotspot or a connection you've marked as metered in your network settings."
 msgstr "Telefon erişim noktası veya ağ ayarlarınızda ölçülü olarak işaretlediğiniz bağlantıda veri kotanızı korur."
 
-#: ui/app.slint:2583
+#: ui/app.slint:2632
 msgid "Pause syncing while power saver is on"
 msgstr "Güç tasarrufu açıkken eşitlemeyi duraklat"
 
-#: ui/app.slint:2590
+#: ui/app.slint:2639
 msgid "Syncing carries on by itself afterwards. \"Sync now\" still syncs for an hour if you need it to."
 msgstr "Ardından eşitleme kendiliğinden sürer. Gerekirse “Şimdi eşitle” seçeneği bir saat eşitler."
 
-#: ui/app.slint:2593
+#: ui/app.slint:2642
 msgid "Save screenshots to OneDrive"
 msgstr "Ekran görüntülerini OneDrive'a kaydet"
 
-#: ui/app.slint:2602
+#: ui/app.slint:2651
 msgid "Save screenshots in"
 msgstr "Ekran görüntülerini şuraya kaydet"
 
-#: ui/app.slint:2607
+#: ui/app.slint:2656
 msgid "OneDrive account for screenshots"
 msgstr "Ekran görüntüleri için OneDrive hesabı"
 
-#: ui/app.slint:2616
+#: ui/app.slint:2665
 msgid "Show sync badges on files in Dolphin, Nemo and Caja"
 msgstr "Dolphin, Nemo ve Caja'da dosya eşitleme rozetlerini göster"
 
-#: ui/app.slint:2623
+#: ui/app.slint:2672
 msgid "A small tick, arrows or warning sign on the files in your OneDrive folders. File manager windows that are already open show them once they're reopened."
 msgstr "OneDrive klasörlerinizdeki dosyalarda küçük bir onay işareti, oklar veya uyarı görünür. Açık dosya yöneticisi pencerelerinde görmek için pencereyi yeniden açın."
 
-#: ui/app.slint:2628
+#: ui/app.slint:2677
 msgid "Adding…"
 msgstr "Ekleniyor…"
 
-#: ui/app.slint:2628
+#: ui/app.slint:2677
 msgid "Add badges to Dolphin…"
 msgstr "Dolphin'e ekle…"
 
-#: ui/app.slint:2636
+#: ui/app.slint:2685
 msgid "Dolphin needs a small plugin installed for everyone on this computer, so it asks for your password once."
 msgstr "Dolphin için bu bilgisayardaki herkesin kullanabileceği küçük bir eklenti yüklenmeli. Parolanız bir kez sorulur."
 
-#: ui/app.slint:2642
+#: ui/app.slint:2691
 msgid "Search OneDrive from KRunner (Alt+Space)"
 msgstr "KRunner'dan OneDrive'da ara (Alt+Space)"
 
-#: ui/app.slint:2649
+#: ui/app.slint:2698
 msgid "Finds files by name or content, including ones that aren't on this computer. While this is on, what you type in KRunner (three letters or more) is sent to Microsoft to look for matches."
 msgstr "Bu bilgisayarda olmayanlar da dahil dosyaları ada veya içeriğe göre bulur. Açıkken KRunner'a yazdıklarınız (en az üç harf) eşleşmeleri bulması için Microsoft'a gönderilir."
 
-#: ui/app.slint:2652
+#: ui/app.slint:2701
 msgid "Search OneDrive from the GNOME overview"
 msgstr "GNOME genel bakışından OneDrive'da ara"
 
-#: ui/app.slint:2659
+#: ui/app.slint:2708
 msgid "Typing in the overview searches your OneDrive. What you type is sent to Microsoft."
 msgstr "Genel bakışta yazdıklarınız OneDrive'da aranır. Yazdıklarınız Microsoft'a gönderilir."
 
-#: ui/app.slint:2662
+#: ui/app.slint:2711
 msgid "Tell me when a new version is out"
 msgstr "Yeni bir sürüm çıktığında bana bildir"
 
-#: ui/app.slint:2669
+#: ui/app.slint:2718
 msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed until you press Update now."
 msgstr "Bu uygulamanın GitHub sayfasına günde bir kez bakar. Şimdi güncelle'ye basana kadar hiçbir şey indirilmez veya kurulmaz."
 
-#: ui/app.slint:2675 ui/app.slint:3902
+#: ui/app.slint:2724 ui/app.slint:3951
 msgid "Version "
 msgstr "Sürüm "
 
-#: ui/app.slint:2675
+#: ui/app.slint:2724
 msgid " is out."
 msgstr " yayımlandı."
 
-#: ui/app.slint:2680 ui/app.slint:3908
+#: ui/app.slint:2729 ui/app.slint:3957
 msgid "Update now"
 msgstr "Şimdi güncelle"
 
-#: ui/app.slint:2691
+#: ui/app.slint:2740
 msgid "Add to my applications menu"
 msgstr "Uygulamalar menüme ekle"
 
-#: ui/app.slint:2707
+#: ui/app.slint:2756
 msgid "Something not right?"
 msgstr "Bir sorun mu var?"
 
-#: ui/app.slint:2710
+#: ui/app.slint:2759
 msgid "Checks the sync engine, the tray icon and every account in one go. The report is for a bug report: it leaves out your file names, email address, user and computer names and sign-in details, and opens so you can read it before sharing."
 msgstr "Eşitleme motorunu, sistem tepsisi simgesini ve tüm hesapları tek seferde denetler. Hata raporu için hazırlanan raporda dosya adlarınız, e-posta adresiniz, kullanıcı ve bilgisayar adlarınız ya da oturum açma bilgileriniz bulunmaz. Paylaşmadan önce okuyabilmeniz için açılır."
 
-#: ui/app.slint:2716
+#: ui/app.slint:2765
 msgid "Check for problems"
 msgstr "Sorunları denetle"
 
-#: ui/app.slint:2723
+#: ui/app.slint:2772
 msgid "Make a problem report"
 msgstr "Sorun raporu oluştur"
 
-#: ui/app.slint:2730
+#: ui/app.slint:2779
 msgid "Report a bug…"
 msgstr "Hata bildir…"
 
-#: ui/app.slint:2745
+#: ui/app.slint:2794
 msgid "Keep my file dates"
 msgstr "Dosya tarihlerimi koru"
 
-#: ui/app.slint:2759
+#: ui/app.slint:2808
 msgid "Report a bug"
 msgstr "Hata bildir"
 
-#: ui/app.slint:2762
+#: ui/app.slint:2811
 msgid "This is what will be put in the bug report. Nothing has been sent. Read it, take out anything you don't want to share, then choose how to send it."
 msgstr "Hata raporuna konulacaklar bunlardır. Hiçbir şey gönderilmedi. Okuyun, paylaşmak istemediklerinizi çıkarın ve nasıl göndereceğinizi seçin."
 
-#: ui/app.slint:2765
+#: ui/app.slint:2814
 msgid "What were you doing, and what went wrong?"
 msgstr "Ne yapıyordunuz ve ne ters gitti?"
 
-#: ui/app.slint:2775
+#: ui/app.slint:2824
 msgid "The report (you can edit or delete anything here)"
 msgstr "Rapor (burada her şeyi düzenleyebilir veya silebilirsiniz)"
 
-#: ui/app.slint:2791
+#: ui/app.slint:2840
 msgid "Open GitHub issue"
 msgstr "GitHub sorununu aç"
 
-#: ui/app.slint:2796
+#: ui/app.slint:2845
 msgid "Copy to clipboard"
 msgstr "Panoya kopyala"
 
-#: ui/app.slint:2801
+#: ui/app.slint:2850
 msgid "Save as a file"
 msgstr "Dosya olarak kaydet"
 
-#: ui/app.slint:2806 ui/app.slint:2993 ui/app.slint:3049 ui/app.slint:3121
-#: ui/app.slint:3255 ui/app.slint:3353 ui/app.slint:3405 ui/app.slint:4563
+#: ui/app.slint:2855 ui/app.slint:3042 ui/app.slint:3098 ui/app.slint:3170
+#: ui/app.slint:3304 ui/app.slint:3402 ui/app.slint:3454 ui/app.slint:4612
 msgid "Cancel"
 msgstr "Vazgeç"
 
-#: ui/app.slint:2818
+#: ui/app.slint:2867
 msgid "Appearance"
 msgstr "Görünüm"
 
-#: ui/app.slint:2821
+#: ui/app.slint:2870
 msgid "Colours, light or dark mode, text size and animations follow your desktop's settings."
 msgstr "Renkler, açık veya koyu görünüm, yazı boyutu ve animasyonlar masaüstü ayarlarınızı izler."
 
-#: ui/app.slint:2826 ui/app.slint:2831
+#: ui/app.slint:2875 ui/app.slint:2880
 msgid "Glass effect"
 msgstr "Cam efekti"
 
-#: ui/app.slint:2832
+#: ui/app.slint:2881
 msgid "Automatic"
 msgstr "Otomatik"
 
-#: ui/app.slint:2832
+#: ui/app.slint:2881
 msgid "On"
 msgstr "Açık"
 
-#: ui/app.slint:2832
+#: ui/app.slint:2881
 msgid "Off"
 msgstr "Kapalı"
 
-#: ui/app.slint:2852
+#: ui/app.slint:2901
 msgid "About"
 msgstr "Hakkında"
 
-#: ui/app.slint:2855
+#: ui/app.slint:2904
 msgid "DriveDeck for OneDrive "
 msgstr "OneDrive için DriveDeck "
 
-#: ui/app.slint:2859
+#: ui/app.slint:2908
 msgid "The easiest, most complete way to use OneDrive on Linux."
 msgstr "Linux'ta OneDrive kullanmanın en kolay ve eksiksiz yolu."
 
-#: ui/app.slint:2870
+#: ui/app.slint:2919
 msgid "Choose the client…"
 msgstr "İstemciyi seç…"
 
-#: ui/app.slint:2877
+#: ui/app.slint:2926
 msgid "Find it automatically"
 msgstr "Otomatik bul"
 
-#: ui/app.slint:2885
+#: ui/app.slint:2934
 msgid "For a client this app didn't find by itself, for example one installed with Homebrew. Sync services this app set up are switched to the one you choose; the client's own settings aren't changed."
 msgstr "Bu uygulamanın kendi başına bulamadığı bir istemci için; örneğin Homebrew ile kurulmuş bir istemci. Bu uygulamanın kurduğu eşitleme hizmetleri seçtiğiniz istemciye geçirilir; istemcinin kendi ayarları değiştirilmez."
 
-#: ui/app.slint:2891
+#: ui/app.slint:2940
 msgid "Free software under the GNU GPL v3. Syncing is done by the OneDrive Client for Linux by abraunegg (GPL v3). Not made by or affiliated with Microsoft. OneDrive is a trademark of Microsoft."
 msgstr "GNU GPL v3 lisanslı özgür yazılım. Eşitlemeyi abraunegg tarafından geliştirilen OneDrive Client for Linux (GPL v3) yapar. Microsoft tarafından yapılmamıştır ve Microsoft ile bağlantısı yoktur. OneDrive, Microsoft'un ticari markasıdır."
 
-#: ui/app.slint:2897
+#: ui/app.slint:2946
 msgid "Project page"
 msgstr "Proje sayfası"
 
-#: ui/app.slint:2903
+#: ui/app.slint:2952
 msgid "Sync engine (abraunegg/onedrive)"
 msgstr "Eşitleme motoru (abraunegg/onedrive)"
 
-#: ui/app.slint:2916 ui/app.slint:3082 ui/app.slint:3128
+#: ui/app.slint:2965 ui/app.slint:3131 ui/app.slint:3177
 msgid "Uninstall"
 msgstr "Kaldır"
 
-#: ui/app.slint:2919
+#: ui/app.slint:2968
 msgid "Remove this app, and choose whether to keep your OneDrive setup for the command-line client or remove that too. Your synced files always stay on this computer."
 msgstr "Bu uygulamayı kaldırın; komut satırı istemcisi için OneDrive ayarlarınızı tutmayı veya onları da kaldırmayı seçin. Eşitlenen dosyalarınız bu bilgisayarda kalır."
 
-#: ui/app.slint:2924
+#: ui/app.slint:2973
 msgid "Uninstall…"
 msgstr "Kaldır…"
 
-#: ui/app.slint:2955
+#: ui/app.slint:3004
 msgid "Sign in to Microsoft"
 msgstr "Microsoft'ta oturum açın"
 
-#: ui/app.slint:2963
+#: ui/app.slint:3012
 msgid "Address from the blank sign-in page"
 msgstr "Boş oturum açma sayfasındaki adres"
 
-#: ui/app.slint:2974
+#: ui/app.slint:3023
 msgid "Copy link"
 msgstr "Bağlantıyı kopyala"
 
-#: ui/app.slint:2980
+#: ui/app.slint:3029
 msgid "Open sign-in page again"
 msgstr "Oturum açma sayfasını yeniden aç"
 
-#: ui/app.slint:2986
+#: ui/app.slint:3035
 msgid "Finish sign-in"
 msgstr "Oturum açmayı tamamla"
 
-#: ui/app.slint:2993 ui/app.slint:3146 ui/app.slint:3312 ui/app.slint:4528
+#: ui/app.slint:3042 ui/app.slint:3195 ui/app.slint:3361 ui/app.slint:4577
 msgid "Close"
 msgstr "Kapat"
 
-#: ui/app.slint:3055
+#: ui/app.slint:3104
 msgid "Apply"
 msgstr "Uygula"
 
-#: ui/app.slint:3088
+#: ui/app.slint:3137
 msgid "What should happen to your OneDrive setup (sign-ins, chosen folders and options)? Your synced files stay on this computer either way."
 msgstr "OneDrive ayarlarınızla (oturumlar, seçilen klasörler ve seçenekler) ne yapılsın? Eşitlenen dosyalarınız her durumda bu bilgisayarda kalır."
 
-#: ui/app.slint:3092
+#: ui/app.slint:3141
 msgid "Keep my OneDrive setup"
 msgstr "OneDrive ayarlarımı tut"
 
-#: ui/app.slint:3093
+#: ui/app.slint:3142
 msgid "Only this app is removed. Your accounts keep syncing in the background with the OneDrive Client for Linux, which you can keep using from the command line."
 msgstr "Yalnızca bu uygulama kaldırılır. Hesaplarınız, komut satırından kullanmaya devam edebileceğiniz OneDrive Client for Linux ile arka planda eşitlenir."
 
-#: ui/app.slint:3101
+#: ui/app.slint:3150
 msgid "Remove everything"
 msgstr "Her şeyi kaldır"
 
-#: ui/app.slint:3102
+#: ui/app.slint:3151
 msgid "Also stop all background syncing, sign out, and delete every OneDrive sync configuration on this computer, including ones made with the command-line client."
 msgstr "Arka planda eşitlemeyi de durdur, oturumu kapat ve bu bilgisayardaki komut satırı istemcisiyle oluşturulanlar dahil tüm OneDrive eşitleme ayarlarını sil."
 
-#: ui/app.slint:3173
+#: ui/app.slint:3222
 msgid "Move your OneDrive folder"
 msgstr "OneDrive klasörünüzü taşıyın"
 
-#: ui/app.slint:3177
+#: ui/app.slint:3226
 msgid "This moves the folder that holds this account's files, now "
 msgstr "Bu, bu hesabın dosyalarını tutan klasörü yeni bir yere taşır. Şimdiki konum: "
 
-#: ui/app.slint:3177
+#: ui/app.slint:3226
 msgid ", to a new place — for example another hard drive with more space. Your files stay in OneDrive the whole time, and nothing is downloaded again."
 msgstr ". Örneğin daha fazla alanı olan başka bir diske taşıyabilirsiniz. Dosyalarınız OneDrive'da kalır ve yeniden indirilmez."
 
-#: ui/app.slint:3181
+#: ui/app.slint:3230
 msgid "What happens after you choose the new place:"
 msgstr "Yeni konumu seçtikten sonra şunlar olur:"
 
-#: ui/app.slint:3186
+#: ui/app.slint:3235
 msgid ""
 "1. Syncing for this account pauses.\n"
 "2. The files go to the new place. On the same drive they're simply moved, which is instant. To another drive they're copied, which can take a while for a big folder.\n"
@@ -1080,287 +1088,287 @@ msgstr ""
 "2. Dosyalar yeni konuma gider. Aynı diskteyse anında taşınır. Başka bir diske kopyalanır; büyük bir klasörde bu biraz sürebilir.\n"
 "3. Her şeyin çevrimiçiyle eşleştiği denetlenir (deneme yapılır, hiçbir şey değişmez). Uygula'ya basınca eşitleme yeni konumdan sürer."
 
-#: ui/app.slint:3190
+#: ui/app.slint:3239
 msgid "Moving to another drive leaves your old folder exactly as it was: nothing is ever deleted for you, so no files can be lost if the copy goes wrong. Once you've checked your files are in the new place, delete the old folder yourself to free up the space. Until then, it isn't synced any more and changes made in it won't reach OneDrive."
 msgstr "Başka bir diske taşırken eski klasörünüz aynen kalır: hiçbir şey sizin için silinmez. Böylece kopyalama başarısız olsa bile dosyalarınız kaybolmaz. Dosyalarınızı yeni konumda denetledikten sonra yer açmak için eski klasörü kendiniz silin. O zamana kadar eşitlenmez ve içindeki değişiklikler OneDrive'a gönderilmez."
 
-#: ui/app.slint:3195
+#: ui/app.slint:3244
 msgid "Pick an empty folder to use it as the new OneDrive folder. Pick a folder that already has things in it (like the top of a drive) and a folder named like the current one is made inside it. Make sure the new drive has enough free space and is always connected (mounted automatically)."
 msgstr "Yeni OneDrive klasörü olarak boş bir klasör seçin. İçinde zaten dosyalar olan bir klasör (örneğin diskin en üst klasörü) seçerseniz, içine geçerli klasörünüzle aynı adda bir klasör oluşturulur. Yeni diskte yeterli boş alan olduğundan ve diskin her zaman bağlı (otomatik bağlanır) olduğundan emin olun."
 
-#: ui/app.slint:3207
+#: ui/app.slint:3256
 msgid "Choose new location…"
 msgstr "Yeni konum seç…"
 
-#: ui/app.slint:3289
+#: ui/app.slint:3338
 msgid "All settings in use"
 msgstr "Kullanılan tüm ayarlar"
 
-#: ui/app.slint:3293
+#: ui/app.slint:3342
 msgid "What the sync engine reads from this account's config file, including the defaults for anything not set."
 msgstr "Bu hesabın yapılandırma dosyasında eşitleme motorunun okuduğu ayarlar ve ayarlanmamış seçeneklerin varsayılanları."
 
-#: ui/app.slint:3338
+#: ui/app.slint:3387
 msgid "Remove account"
 msgstr "Hesabı kaldır"
 
-#: ui/app.slint:3346
+#: ui/app.slint:3395
 msgid "Also sign out and delete this account's sync settings"
 msgstr "Ayrıca oturumu kapat ve bu hesabın eşitleme ayarlarını sil"
 
-#: ui/app.slint:3359
+#: ui/app.slint:3408
 msgid "Remove"
 msgstr "Kaldır"
 
-#: ui/app.slint:3396
+#: ui/app.slint:3445
 msgid "I'll install it myself"
 msgstr "Kendim yükleyeceğim"
 
-#: ui/app.slint:3437
+#: ui/app.slint:3486
 msgid "Skip developer folders"
 msgstr "Geliştirici klasörlerini atla"
 
-#: ui/app.slint:3441
+#: ui/app.slint:3490
 msgid ".git"
 msgstr ".git"
 
-#: ui/app.slint:3445
+#: ui/app.slint:3494
 msgid "node_modules"
 msgstr "node_modules"
 
-#: ui/app.slint:3449
+#: ui/app.slint:3498
 msgid "target"
 msgstr "target"
 
-#: ui/app.slint:3453
+#: ui/app.slint:3502
 msgid "__pycache__"
 msgstr "__pycache__"
 
-#: ui/app.slint:3457
+#: ui/app.slint:3506
 msgid ".venv"
 msgstr ".venv"
 
-#: ui/app.slint:3461
+#: ui/app.slint:3510
 msgid "venv"
 msgstr "venv"
 
-#: ui/app.slint:3465
+#: ui/app.slint:3514
 msgid ".gradle"
 msgstr ".gradle"
 
-#: ui/app.slint:3469
+#: ui/app.slint:3518
 msgid ".idea"
 msgstr ".idea"
 
-#: ui/app.slint:3473
+#: ui/app.slint:3522
 msgid ".cache"
 msgstr ".cache"
 
-#: ui/app.slint:3477
+#: ui/app.slint:3526
 msgid "build"
 msgstr "build"
 
-#: ui/app.slint:3481
+#: ui/app.slint:3530
 msgid "dist"
 msgstr "dist"
 
-#: ui/app.slint:3485
+#: ui/app.slint:3534
 msgid "build and dist are common folder names too, so select them only if you mean to skip them."
 msgstr "build ve dist sık kullanılan klasör adlarıdır; yalnızca atlamak istiyorsanız bunları seçin."
 
-#: ui/app.slint:3497
+#: ui/app.slint:3546
 msgid "Add"
 msgstr "Ekle"
 
-#: ui/app.slint:3734
+#: ui/app.slint:3783
 msgid "Show "
 msgstr "Göster "
 
-#: ui/app.slint:3734
+#: ui/app.slint:3783
 msgid " in its folder"
 msgstr " klasöründe göster"
 
-#: ui/app.slint:3878
+#: ui/app.slint:3927
 msgid "Pause syncing"
 msgstr "Eşitlemeyi duraklat"
 
-#: ui/app.slint:3886
+#: ui/app.slint:3935
 msgid "Settings and accounts"
 msgstr "Ayarlar ve hesaplar"
 
-#: ui/app.slint:3902
+#: ui/app.slint:3951
 msgid " of this app is out."
 msgstr "Bu uygulamanın "
 
-#: ui/app.slint:3987
+#: ui/app.slint:4036
 msgid "Not synced ("
 msgstr "Eşitlenmiyor ("
 
-#: ui/app.slint:4005
+#: ui/app.slint:4054
 msgid "Syncing now"
 msgstr "Şimdi eşitleniyor"
 
-#: ui/app.slint:4005
+#: ui/app.slint:4054
 msgid "Syncing now ("
 msgstr "Şimdi eşitleniyor ("
 
-#: ui/app.slint:4010
+#: ui/app.slint:4059
 msgid "No large files are transferring right now."
 msgstr "Şu anda büyük dosya aktarılmıyor."
 
-#: ui/app.slint:4024
+#: ui/app.slint:4073
 msgid "Recent files"
 msgstr "Son dosyalar"
 
-#: ui/app.slint:4029
+#: ui/app.slint:4078
 msgid "Show recent files for account"
 msgstr "Hesabın son dosyalarını göster"
 
-#: ui/app.slint:4041
+#: ui/app.slint:4090
 msgid "Nothing has synced recently."
 msgstr "Yakın zamanda hiçbir şey eşitlenmedi."
 
-#: ui/app.slint:4055
+#: ui/app.slint:4104
 msgid "Open folder"
 msgstr "Klasörü aç"
 
-#: ui/app.slint:4069
+#: ui/app.slint:4118
 msgid "View online"
 msgstr "Çevrimiçi görüntüle"
 
-#: ui/app.slint:4086
+#: ui/app.slint:4135
 msgid "Pause for 1 hour"
 msgstr "1 saat duraklat"
 
-#: ui/app.slint:4092
+#: ui/app.slint:4141
 msgid "Pause for 4 hours"
 msgstr "4 saat duraklat"
 
-#: ui/app.slint:4098
+#: ui/app.slint:4147
 msgid "Pause until tomorrow morning"
 msgstr "Yarın sabaha kadar duraklat"
 
-#: ui/app.slint:4105
+#: ui/app.slint:4154
 msgid "Resume syncing"
 msgstr "Eşitlemeye devam et"
 
-#: ui/app.slint:4194
+#: ui/app.slint:4243
 msgid "Version history — "
 msgstr "Sürüm geçmişi — "
 
-#: ui/app.slint:4194
+#: ui/app.slint:4243
 msgid "Who has access — "
 msgstr "Kimlerin erişimi var — "
 
-#: ui/app.slint:4194
+#: ui/app.slint:4243
 msgid "Share — "
 msgstr "Paylaş — "
 
-#: ui/app.slint:4254
+#: ui/app.slint:4303
 msgid "Version history"
 msgstr "Sürüm geçmişi"
 
-#: ui/app.slint:4254
+#: ui/app.slint:4303
 msgid "Who has access"
 msgstr "Kimlerin erişimi var"
 
-#: ui/app.slint:4254
+#: ui/app.slint:4303
 msgid "Share with people"
 msgstr "Kişilerle paylaş"
 
-#: ui/app.slint:4280
+#: ui/app.slint:4329
 msgid "Getting the saved versions…"
 msgstr "Kaydedilen sürümler alınıyor…"
 
-#: ui/app.slint:4329
+#: ui/app.slint:4378
 msgid "Current"
 msgstr "Geçerli"
 
-#: ui/app.slint:4353 ui/app.slint:4569
+#: ui/app.slint:4402 ui/app.slint:4618
 msgid "Restore"
 msgstr "Geri yükle"
 
-#: ui/app.slint:4367
+#: ui/app.slint:4416
 msgid "\"Open\" saves a copy of that version and opens it, without changing anything. \"Restore\" makes it the current version everywhere; the version it replaces is kept here too, so nothing is lost."
 msgstr "“Aç” seçeneği, o sürümün bir kopyasını kaydeder ve hiçbir şeyi değiştirmeden açar. “Geri yükle” seçeneği onu her yerde geçerli sürüm yapar; yerine geçtiği sürüm de burada tutulur, böylece hiçbir şey kaybolmaz."
 
-#: ui/app.slint:4376
+#: ui/app.slint:4425
 msgid "Invite people by email"
 msgstr "E-postayla kişi davet et"
 
-#: ui/app.slint:4380
+#: ui/app.slint:4429
 msgid "Email addresses to invite"
 msgstr "Davet edilecek e-posta adresleri"
 
-#: ui/app.slint:4382
+#: ui/app.slint:4431
 msgid "name@example.com, another@example.com"
 msgstr "name@example.com, another@example.com"
 
-#: ui/app.slint:4387
+#: ui/app.slint:4436
 msgid "Separate addresses with commas. Each person gets an email and signs in to open it. People outside your organization can only be added if your IT team allows it."
 msgstr "Adresleri virgülle ayırın. Her kişiye bir e-posta gönderilir; açmak için oturum açmaları gerekir. Kuruluş dışındaki kişiler yalnızca bilgi işlem ekibiniz izin veriyorsa eklenebilir."
 
-#: ui/app.slint:4387
+#: ui/app.slint:4436
 msgid "Separate addresses with commas. Each person gets an email and signs in with a Microsoft account to open it."
 msgstr "Adresleri virgülle ayırın. Her kişiye bir e-posta gönderilir; açmak için Microsoft hesabıyla oturum açmaları gerekir."
 
-#: ui/app.slint:4395 ui/app.slint:4405
+#: ui/app.slint:4444 ui/app.slint:4454
 msgid "Can edit"
 msgstr "Düzenleyebilir"
 
-#: ui/app.slint:4399
+#: ui/app.slint:4448
 msgid "They can change it (and add or delete files in a folder)."
 msgstr "Değişiklik yapabilir (klasörde dosya ekleyebilir veya silebilir)."
 
-#: ui/app.slint:4399
+#: ui/app.slint:4448
 msgid "They can view and download it, but not change it."
 msgstr "Görüntüleyip indirebilir, ancak değiştiremez."
 
-#: ui/app.slint:4409
+#: ui/app.slint:4458
 msgid "Message (optional)"
 msgstr "İleti (isteğe bağlı)"
 
-#: ui/app.slint:4413
+#: ui/app.slint:4462
 msgid "Invitation message"
 msgstr "Davet iletisi"
 
-#: ui/app.slint:4434
+#: ui/app.slint:4483
 msgid "It isn't shared: only you can open it."
 msgstr "Paylaşılmıyor: yalnızca siz açabilirsiniz."
 
-#: ui/app.slint:4474
+#: ui/app.slint:4523
 msgid "Keep"
 msgstr "Tut"
 
-#: ui/app.slint:4480
+#: ui/app.slint:4529
 msgid "Stop it"
 msgstr "Durdur"
 
-#: ui/app.slint:4480
+#: ui/app.slint:4529
 msgid "Stop sharing"
 msgstr "Paylaşımı durdur"
 
-#: ui/app.slint:4483
+#: ui/app.slint:4532
 msgid "Stop sharing with "
 msgstr "Şununla paylaşmayı durdur: "
 
-#: ui/app.slint:4501
+#: ui/app.slint:4550
 msgid "Stopping a link makes it stop working for everyone who has it. Stopping a person's access takes the file away from their \"Shared\" list. Access that comes from a folder above can only be changed on that folder."
 msgstr "Bir bağlantıyı durdurmak, bağlantıya sahip herkes için bağlantıyı çalışmaz hâle getirir. Bir kişinin erişimini durdurmak dosyayı o kişinin “Paylaşılanlar” listesinden kaldırır. Üst klasörden gelen erişim yalnızca o klasörde değiştirilebilir."
 
-#: ui/app.slint:4520
+#: ui/app.slint:4569
 msgid "Send invitation"
 msgstr "Davet gönder"
 
-#: ui/app.slint:4552
+#: ui/app.slint:4601
 msgid "Restore this version?"
 msgstr "Bu sürüm geri yüklensin mi?"
 
-#: ui/app.slint:4556
+#: ui/app.slint:4605
 msgid "The version from "
 msgstr "Şu tarihteki sürüm: "
 
-#: ui/app.slint:4556
+#: ui/app.slint:4605
 msgid " becomes the current one, online and on this computer. The current version is kept in the history, so you can switch back."
 msgstr " varsayılan sürüm olur; hem çevrimiçi hem bu bilgisayarda. Geçerli sürüm geçmişte tutulur, böylece ona geri dönebilirsiniz."
 
@@ -1430,6 +1438,24 @@ msgstr "Bilinmeyen klasör."
 msgid "This computer doesn't have a {} folder set up."
 msgstr "Bu bilgisayarda {} klasörü ayarlanmamış."
 
+msgid "{} can't be backed up."
+msgstr "{} yedeklenemez."
+
+msgid "{} is a hidden folder, where apps keep their own data, so it can't be backed up."
+msgstr "{} gizli bir klasör; uygulamalar kendi verilerini burada tutar, bu yüzden yedeklenemez."
+
+msgid "{} is your {} folder: back it up with its own button."
+msgstr "{} sizin {} klasörünüz: kendi düğmesiyle yedekleyin."
+
+msgid "{} doesn't exist."
+msgstr "{} mevcut değil."
+
+msgid "{} is a whole drive of its own, which can't be moved into OneDrive. Back up a folder on it instead."
+msgstr "{} başlı başına bir sürücü, OneDrive'a taşınamaz. Bunun yerine üzerindeki bir klasörü yedekleyin."
+
+msgid "{} is inside, or holds, {}, which is already backed up."
+msgstr "{}, {} içinde veya onu içeriyor ve o klasör zaten yedekleniyor."
+
 msgid "The OneDrive folder {} isn't available. Connect its drive and try again."
 msgstr "{} OneDrive klasörü kullanılamıyor. Sürücüsünü bağlayıp yeniden deneyin."
 
@@ -1438,9 +1464,6 @@ msgstr "{} klasörünüz {}, yani ana klasörünüzün tamamı olarak ayarlanmı
 
 msgid "Your {} folder can't be backed up: {}"
 msgstr "{} klasörünüz yedeklenemiyor: {}"
-
-msgid "{} doesn't exist."
-msgstr "{} mevcut değil."
 
 msgid "{} is already a link to somewhere else, so it's left alone."
 msgstr "{} başka bir yere sembolik bağlantı olduğundan olduğu gibi bırakıldı."
@@ -1454,8 +1477,11 @@ msgstr "{} klasörünüz, “{}” hesabının OneDrive klasörüyle ({} konumun
 msgid "This account only downloads, so nothing here would be backed up. Change its direction under Options first."
 msgstr "Bu hesap yalnızca indiriyor; buradaki hiçbir şey yedeklenmez. Önce Seçenekler bölümünde yönü değiştirin."
 
-msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
-msgstr "Bu hesap yalnızca seçtiğiniz klasörleri eşitliyor; “{}” bunlardan biri değil. Önce Klasörler bölümünde ekleyin (çevrimiçi oluşturabilirsiniz)."
+msgid "\"{}\" can't be backed up into this account ({})."
+msgstr "“{}” bu hesaba yedeklenemez ({})."
+
+msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Make an empty folder called \"{}\" in {}, tick it under Folders and apply, then back up again."
+msgstr "Bu hesap yalnızca seçtiğiniz klasörleri eşitler ve “{}” bunlardan biri değil. “{}” adlı boş bir klasörü şu konumda oluşturun: {}. Ardından “Klasörler” altında seçip uygulayın ve yeniden yedekleyin."
 
 msgid "There's a symbolic link called \"{}\" in your OneDrive folder. Resolve or rename it before backing up this folder."
 msgstr "OneDrive klasörünüzde “{}” adlı bir sembolik bağlantı var. Bu klasörü yedeklemeden önce bağlantıyı çözün veya yeniden adlandırın."
@@ -2108,6 +2134,24 @@ msgstr "Birisi"
 msgid "Couldn't check what kind of account this is, so no link was made: {}"
 msgstr "Hesap türü denetlenemediği için bağlantı oluşturulmadı: {}"
 
+msgid "won't upload: this account only downloads"
+msgstr "yüklenmeyecek: bu hesap yalnızca indirir"
+
+msgid "won't upload: left out by \"Never sync folders named\" (Options)"
+msgstr "yüklenmeyecek: “Şu adlara sahip klasörleri eşitleme” ile dışarıda bırakıldı (Seçenekler)"
+
+msgid "won't upload: hidden folders are skipped"
+msgstr "yüklenmeyecek: gizli klasörler atlanır"
+
+msgid "won't upload: it has a .nosync file"
+msgstr "yüklenmeyecek: içinde .nosync dosyası var"
+
+msgid "won't upload: it's a link to another place"
+msgstr "yüklenmeyecek: başka bir yere giden bir bağlantı"
+
+msgid "won't upload: OneDrive doesn't allow this name"
+msgstr "yüklenmeyecek: OneDrive bu ada izin vermiyor"
+
 msgid "Updated to version {}."
 msgstr "{} sürümüne güncellendi."
 
@@ -2248,6 +2292,14 @@ msgstr "Bağlantı oluşturulamadı: {}"
 msgid "Couldn't open it online"
 msgstr "Çevrimiçi açılamadı"
 
+msgid "only on this computer"
+msgstr "yalnızca bu bilgisayarda"
+
+msgid "1 folder on this computer isn't in OneDrive yet (marked \"only on this computer\"). Tick it to upload it, then press \"Apply changes…\"."
+msgid_plural "{n} folders on this computer aren't in OneDrive yet (marked \"only on this computer\"). Tick the ones to upload, then press \"Apply changes…\"."
+msgstr[0] "Bu bilgisayardaki 1 klasör henüz OneDrive'da değil (“yalnızca bu bilgisayarda” olarak işaretli). Yüklemek için seçin, ardından “Değişiklikleri uygula…” düğmesine basın."
+msgstr[1] "Bu bilgisayardaki {n} klasör henüz OneDrive'da değil (“yalnızca bu bilgisayarda” olarak işaretli). Yüklenecek olanları seçin, ardından “Değişiklikleri uygula…” düğmesine basın."
+
 msgid "{} — {}"
 msgstr "{} — {}"
 
@@ -2364,6 +2416,11 @@ msgstr "Microsoft kayıtlı oturum açma bilgisini artık kabul etmiyor (parola 
 
 msgid "The sync engine is running but has stopped making progress, so changes aren't syncing. Press \"Sync now\" to restart it. If this keeps happening, check your network connection."
 msgstr "Eşitleme motoru çalışıyor ancak ilerlemediği için değişiklikler eşitlenmiyor. Yeniden başlatmak için “Şimdi eşitle”ye basın. Sorun sürerse ağ bağlantınızı denetleyin."
+
+msgid "1 folder on this computer isn't in OneDrive yet. With \"Sync everything\" on it uploads at the next sync."
+msgid_plural "{n} folders on this computer aren't in OneDrive yet. With \"Sync everything\" on they upload at the next sync."
+msgstr[0] "Bu bilgisayardaki 1 klasör henüz OneDrive'da değil. “Her şeyi eşitle” açıkken bir sonraki eşitlemede yüklenir."
+msgstr[1] "Bu bilgisayardaki {n} klasör henüz OneDrive'da değil. “Her şeyi eşitle” açıkken bir sonraki eşitlemede yüklenirler."
 
 msgid "Everything in this account"
 msgstr "Bu hesaptaki her şey"
@@ -2754,6 +2811,12 @@ msgstr "Bu bilgisayarda ayarlanmamış"
 
 msgid "Set to your whole home folder, so it can't be backed up"
 msgstr "Tüm ana klasörünüz seçilmiş; bu nedenle yedeklenemez"
+
+msgid "Choose a folder to back up to OneDrive"
+msgstr "OneDrive'a yedeklenecek bir klasör seçin"
+
+msgid "No folder chooser is available on this desktop."
+msgstr "Bu masaüstünde klasör seçici yok."
 
 msgid "Looking at your {} folder…"
 msgstr "{} klasörünüz inceleniyor…"
@@ -3457,6 +3520,9 @@ msgstr "Resimler"
 
 msgid "Videos"
 msgstr "Videolar"
+
+#~ msgid "This account only syncs the folders you chose, and \"{}\" isn't one of them. Add it under Folders first (you can create it online)."
+#~ msgstr "Bu hesap yalnızca seçtiğiniz klasörleri eşitliyor; “{}” bunlardan biri değil. Önce Klasörler bölümünde ekleyin (çevrimiçi oluşturabilirsiniz)."
 
 #~ msgid "Looks at this app's page on GitHub once a day. Nothing is downloaded or installed by itself."
 #~ msgstr "Bu uygulamanın GitHub sayfasını günde bir kez denetler. Kendiliğinden hiçbir şey indirilmez veya yüklenmez."
