@@ -71,8 +71,8 @@ impl BadgeIndex {
         match a.phase {
             Phase::Paused | Phase::Off | Phase::Stopped => "paused",
             Phase::Error | Phase::SignedOut | Phase::NeedsResync | Phase::BigDelete => "error",
-            // before the first log line, or while the client is stuck, don't claim anything
-            Phase::Unknown | Phase::Stalled => "",
+            // before the first log line, while the client is stuck, or while it can't reach Microsoft, don't claim anything
+            Phase::Unknown | Phase::Stalled | Phase::Offline => "",
             Phase::Syncing | Phase::Resyncing | Phase::UpToDate => "synced",
         }
     }

@@ -246,10 +246,13 @@ fn ensure_user_mount_available(path: &Path) -> Result<(), String> {
             e
         )
     })?;
+    // (/var/mnt: where /mnt really is on Fedora Atomic, which the path resolves to; an unmounted share there is
+    // answered by /var's own mount, so it's caught like any other)
     let roots = [
         Path::new("/run/media"),
         Path::new("/media"),
         Path::new("/mnt"),
+        Path::new("/var/mnt"),
     ];
     let Some(root) = roots
         .iter()

@@ -1881,6 +1881,9 @@ msgstr "Reageert niet"
 msgid "Waiting for first sync"
 msgstr "Wachten op de eerste synchronisatie"
 
+msgid "Waiting for the network"
+msgstr "Wachten op het netwerk"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "Kan het wachtwoord niet opvragen: {}"
 

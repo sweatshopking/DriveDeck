@@ -1877,6 +1877,9 @@ msgstr "応答がありません"
 msgid "Waiting for first sync"
 msgstr "初回同期を待っています"
 
+msgid "Waiting for the network"
+msgstr "ネットワークを待っています"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "パスワードを要求できませんでした：{}"
 

@@ -1879,6 +1879,9 @@ msgstr "无响应"
 msgid "Waiting for first sync"
 msgstr "等待首次同步"
 
+msgid "Waiting for the network"
+msgstr "等待网络连接"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "无法请求密码：{}"
 

@@ -1879,6 +1879,9 @@ msgstr "응답하지 않음"
 msgid "Waiting for first sync"
 msgstr "첫 동기화 대기 중"
 
+msgid "Waiting for the network"
+msgstr "네트워크 대기 중"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "암호를 요청할 수 없습니다: {}"
 

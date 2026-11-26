@@ -1883,6 +1883,9 @@ msgstr "Не отвечает"
 msgid "Waiting for first sync"
 msgstr "Ожидание первой синхронизации"
 
+msgid "Waiting for the network"
+msgstr "Ожидание сети"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "Не удалось запросить пароль: {}"
 
