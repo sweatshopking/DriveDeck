@@ -1942,8 +1942,8 @@ msgstr "{}: {}"
 msgid "{}: ran out of folder watches; some changes aren't noticed."
 msgstr "{}: o limite de pastas monitoradas acabou; algumas alterações não são detectadas."
 
-msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
-msgstr "{}: o arquivo de serviço (configurado fora deste aplicativo) não lista o status de saída 78 em RestartPreventExitStatus, então o cliente é iniciado repetidamente após solicitar uma ressincronização completa. Adicione “RestartPreventExitStatus=78” a esse arquivo ou deixe este aplicativo gerenciar o serviço."
+msgid "{}: its service file (set up outside this app) doesn't list exit status {} in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus={}\" to that file, or let this app manage the service."
+msgstr "{}: o arquivo de serviço (configurado fora deste aplicativo) não lista o status de saída {} em RestartPreventExitStatus, então o cliente é iniciado repetidamente após solicitar uma ressincronização completa. Adicione “RestartPreventExitStatus={}” a esse arquivo ou deixe este aplicativo gerenciar o serviço."
 
 msgid "{}: only {} free on its drive."
 msgstr "{}: restam apenas {} no disco."

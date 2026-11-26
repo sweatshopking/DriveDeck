@@ -355,6 +355,15 @@ pub fn parse_client_version(text: &str) -> Option<((u32, u32, u32), String)> {
     })
 }
 
+/// The exit status the client ends with when it needs a full resync: 126 before client 2.5.12, 78 from it
+/// (an unknown version gets the newer one). Units made by this app list both.
+pub fn resync_exit_code(client: Option<(u32, u32, u32)>) -> u32 {
+    match client {
+        Some(v) if v < (2, 5, 12) => 126,
+        _ => 78,
+    }
+}
+
 // ---------------------------------------------------------------- app settings
 
 #[derive(Serialize, Deserialize, Clone, Debug, Default, PartialEq)]
@@ -4176,6 +4185,19 @@ mod tests {
                 .contains("v2.5.9")
         );
         fs::remove_dir_all(&dir).unwrap();
+    }
+
+    #[test]
+    fn the_resync_exit_status_depends_on_the_client_version() {
+        // 126 before client 2.5.12, 78 from it; no known version gets the newer one
+        assert_eq!(resync_exit_code(Some((2, 4, 25))), 126);
+        assert_eq!(resync_exit_code(Some((2, 5, 11))), 126);
+        assert_eq!(resync_exit_code(Some((2, 5, 12))), 78);
+        assert_eq!(resync_exit_code(Some((2, 6, 0))), 78);
+        assert_eq!(resync_exit_code(None), 78);
+        let n = |t: &str| parse_client_version(t).map(|(n, _)| n);
+        assert_eq!(resync_exit_code(n("onedrive v2.5.11")), 126);
+        assert_eq!(resync_exit_code(n("onedrive v2.5.12-1-gabc")), 78);
     }
 
     #[test]

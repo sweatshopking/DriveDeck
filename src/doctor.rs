@@ -93,7 +93,14 @@ pub fn checks_and_dates() -> (Vec<Check>, bool) {
 /// As `checks_and_dates`; `names` false leaves out names of folders inside OneDrive (for a report)
 fn checks_named(names: bool) -> (Vec<Check>, bool) {
     let mut out = Vec::new();
-    match core::check_client() {
+    let client_check = core::check_client();
+    let resync_code = core::resync_exit_code(match &client_check {
+        core::ClientCheck::Ok { version, .. } | core::ClientCheck::TooOld { version, .. } => {
+            core::parse_client_version(version).map(|(numbers, _)| numbers)
+        }
+        core::ClientCheck::Missing => None,
+    });
+    match client_check {
         core::ClientCheck::Ok { version, .. } => match crate::update::client_news() {
             Some((_, latest)) => out.push(Check::warn(crate::tr!(
                 "OneDrive Client for Linux {} is installed; {} is out.",
@@ -173,10 +180,12 @@ fn checks_named(names: bool) -> (Vec<Check>, bool) {
             let value = core::unit_props(u, "RestartPreventExitStatus")
                 .remove("RestartPreventExitStatus")
                 .unwrap_or_default();
-            if !exit_status_listed(&value, 78) {
+            if !exit_status_listed(&value, resync_code) {
                 out.push(Check::warn(crate::tr!(
-                    "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service.",
-                    info.name
+                    "{}: its service file (set up outside this app) doesn't list exit status {} in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus={}\" to that file, or let this app manage the service.",
+                    info.name,
+                    resync_code,
+                    resync_code
                 )));
             }
         }

@@ -2038,7 +2038,7 @@ msgstr ""
 msgid "{}: ran out of folder watches; some changes aren't noticed."
 msgstr ""
 
-msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
+msgid "{}: its service file (set up outside this app) doesn't list exit status {} in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus={}\" to that file, or let this app manage the service."
 msgstr ""
 
 msgid "{}: only {} free on its drive."

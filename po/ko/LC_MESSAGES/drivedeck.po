@@ -1942,8 +1942,8 @@ msgstr "{}: {}"
 msgid "{}: ran out of folder watches; some changes aren't noticed."
 msgstr "{}: 폴더 감시 한도가 부족하여 일부 변경 사항을 감지하지 못합니다."
 
-msgid "{}: its service file (set up outside this app) doesn't list exit status 78 in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus=78\" to that file, or let this app manage the service."
-msgstr "{}: 앱 외부에서 설정한 서비스 파일의 RestartPreventExitStatus에 종료 코드 78이 없어 클라이언트가 전체 재동기화를 요청한 뒤 계속 다시 시작됩니다. 해당 파일에 “RestartPreventExitStatus=78”을 추가하거나 앱에서 서비스를 관리하도록 하세요."
+msgid "{}: its service file (set up outside this app) doesn't list exit status {} in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus={}\" to that file, or let this app manage the service."
+msgstr "{}: 앱 외부에서 설정한 서비스 파일의 RestartPreventExitStatus에 종료 코드 {}이 없어 클라이언트가 전체 재동기화를 요청한 뒤 계속 다시 시작됩니다. 해당 파일에 “RestartPreventExitStatus={}”을 추가하거나 앱에서 서비스를 관리하도록 하세요."
 
 msgid "{}: only {} free on its drive."
 msgstr "{}: 드라이브에 {}만 남았습니다."
