@@ -94,6 +94,28 @@ sync client, syncing issues should go to the original app, which is linked above
   </tr>
 </table>
 
+## New in 1.7.5
+
+- **New folders on this computer can be ticked.** The *Folders* tab now also lists folders that are
+  only on this computer, inside your OneDrive folder, so a folder you just made can be chosen and
+  uploaded like any other. Folders the sync engine would never upload (hidden ones, names you've
+  told it to skip, names OneDrive doesn't allow) are shown greyed out, with the reason.
+- **Back up any folder**, not just Desktop, Documents, Pictures, Music and Videos: pick another
+  folder in your home folder, or choose one. It works the same way: your apps keep finding it in
+  the same place, and nothing is ever deleted.
+- **Safe with USB drives and network shares.** If your OneDrive folder is on another drive and that
+  drive isn't there (unplugged, or a share that didn't connect), syncing stops at once and waits,
+  showing *Waiting for the drive*, instead of seeing an empty folder and deleting your files online.
+  It carries on by itself when the drive is back.
+- **Waiting for the network** is shown when the sync engine can't reach Microsoft (after waking up,
+  say), instead of an error.
+- **Keep my file dates** is on from the start for new accounts, so LibreOffice no longer warns that
+  someone else changed your document after it uploads.
+- **Check for problems** warns before a big first sync if the sync engine's own notifications are
+  on (stopped partway, it could show thousands of them), and gives the right advice for each
+  version of the sync engine.
+- **Fedora Atomic (Silverblue, Kinoite)**: folders under `/var/mnt` are accepted.
+
 ## New in 1.6.0
 
 - **Report a bug, built in.** *App settings → Something not right? → Report a bug…* collects what
@@ -241,7 +263,8 @@ It covers what the OneDrive app on Windows does, and then some. In short:
 ### Choosing what syncs, and when
 
 - **Choosing folders.** Browse everything in your OneDrive, including folders that aren't on this computer
-  yet, and tick the ones you want. Rules you've written into `sync_list` yourself are kept.
+  yet, and folders that so far are only on this computer, and tick the ones you want. Rules you've written
+  into `sync_list` yourself are kept.
 - **Choose the direction.** Sync both ways, download only (keep this computer a copy of what's online),
   or upload only (back this computer up to OneDrive).
 - **Skip what you don't want synced:** hidden files, files and folders by name, symbolic links, and
@@ -272,6 +295,9 @@ It covers what the OneDrive app on Windows does, and then some. In short:
   put in place once they're complete.
 - **One thing at a time.** While the app is changing an account (signing in, a preview, moving its
   folder, a backup), nothing else can start syncing it, so two sync engines never touch one account.
+- **Safe with USB drives and network shares.** When your OneDrive folder is on another drive, syncing
+  stops the moment that drive goes and doesn't start while it's away, so the sync engine never mistakes
+  an unplugged drive for an empty folder and deletes your files online. It carries on when it's back.
 - **Won't sync the wrong folder.** Your home folder, system folders, the app's own settings and other
   accounts' folders are refused, even when reached through a link or on an unplugged drive.
 - **Settings are never lost.** A settings file that can't be read is never written over, and a damaged
@@ -290,8 +316,8 @@ It covers what the OneDrive app on Windows does, and then some. In short:
 ### The extras from Windows
 
 - **Back up this computer's folders.** Keep Desktop, Documents, Pictures, Music and Videos in OneDrive,
-  as on Windows. They stay where your apps expect them, and nothing is ever deleted: stopping leaves
-  the files in OneDrive.
+  as on Windows, or any other folder in your home folder. They stay where your apps expect them, and
+  nothing is ever deleted: stopping leaves the files in OneDrive.
 - **Sync badges on your files**, as in Windows File Explorer: a tick when a file is synced, arrows
   while it's syncing, a warning sign when it couldn't sync, a pause sign while syncing is paused.
   They show in Dolphin (Plasma 6), Nemo and Caja, and can be switched off in *App settings*. The
@@ -421,7 +447,8 @@ the upload time, so LibreOffice thinks the file changed under it. To fix it:
 Or, in *App settings > Something not right?*, press **Check for problems**: if LibreOffice is
 installed, it lists the accounts that have this off and offers a **Keep my file dates** button that
 turns it on for all of them. Syncing restarts by itself. Uploads then go up in pieces, which can be a little slower for many small
-files; nothing else changes. It's off by default because most people never see the message.
+files; nothing else changes. Accounts added with DriveDeck 1.7.5 or later have it on from the start
+(it needs version 2.5.6 or newer of the sync engine).
 
 ### Requirements
 
