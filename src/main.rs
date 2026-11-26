@@ -15,6 +15,7 @@ mod conflict;
 mod core;
 mod dbus;
 mod doctor;
+mod driveguard;
 mod filewin;
 mod folderchecks;
 mod glass;

@@ -556,7 +556,7 @@ pub(crate) fn tone(s: &Status) -> i32 {
         | Phase::BigDelete
         | Phase::Stalled => 2,
         // waiting for the network: nothing wrong with the account, nothing moving either
-        Phase::Off | Phase::Stopped | Phase::Paused | Phase::Offline => 3,
+        Phase::Off | Phase::Stopped | Phase::Paused | Phase::Offline | Phase::NoDrive => 3,
     }
 }
 
@@ -1119,9 +1119,11 @@ fn load_options(ctx: &Shared, acc: &AccountInfo) {
 
 /// The advanced options shown for an account: those that apply to its kind.
 fn adv_specs(acc: &AccountInfo) -> Vec<&'static advanced::Spec> {
+    // an option the installed client doesn't know would stop it from starting: not offered
+    let client = core::client_numbers();
     advanced::SPECS
         .iter()
-        .filter(|s| advanced::applies(s, &acc.kind))
+        .filter(|s| advanced::applies(s, &acc.kind) && core::client_knows(s.key, client))
         .collect()
 }
 
@@ -5292,7 +5294,9 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
                 };
                 let mut cfg = ClientConfig::load(&confdir);
                 cfg.set("sync_dir", Some(&dest.to_string_lossy()));
-                if core::needs_disable_permission_set(&dest) {
+                if core::needs_disable_permission_set(&dest)
+                    && core::client_knows("disable_permission_set", core::client_numbers())
+                {
                     cfg.set("disable_permission_set", Some("true"));
                 }
                 if let Err(e) = cfg.save() {
@@ -5315,6 +5319,11 @@ fn move_folder_to(ctx: &Shared, acc: &AccountInfo, picked: &Path) {
                 }
                 Ok(how)
             })();
+            // the folder may now be on another drive (or no longer on one): the units wait for the
+            // right one before anything starts again (it is stopped now, so nothing restarts here)
+            if operation.is_ok() {
+                core::repair_managed_units();
+            }
             let restarted = if was_active {
                 let u = unit.as_deref().unwrap();
                 let (ok, err) = core::systemctl(&["start", u]);
@@ -5587,8 +5596,16 @@ fn add_create_ready(ctx: &Shared) {
         core::create_private_dir(&confdir).map_err(|e| e.to_string())?;
         let mut cfg = ClientConfig::load(&confdir);
         cfg.set("sync_dir", Some(&folder.to_string_lossy()));
-        if core::needs_disable_permission_set(&folder) {
+        let client = core::client_numbers();
+        if core::needs_disable_permission_set(&folder)
+            && core::client_knows("disable_permission_set", client)
+        {
             cfg.set("disable_permission_set", Some("true"));
+        }
+        // "Keep my file dates" on from the start: editors such as LibreOffice otherwise warn that
+        // someone else changed a document after each upload (only accounts this app sets up)
+        if core::client_knows("force_session_upload", client) {
+            cfg.set("force_session_upload", Some("true"));
         }
         if !cloud.is_empty() {
             cfg.set("azure_ad_endpoint", Some(cloud));

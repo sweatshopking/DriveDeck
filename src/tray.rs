@@ -287,6 +287,9 @@ fn overall_of(ps: &[Phase], client_problem: bool) -> Phase {
     } else if ps.contains(&Phase::Offline) {
         // can't reach Microsoft (issue #5): not "up to date", not an error either
         Phase::Offline
+    } else if ps.contains(&Phase::NoDrive) {
+        // the drive with the OneDrive folder is unplugged: waiting, not wrong
+        Phase::NoDrive
     } else if ps.is_empty()
         || ps
             .iter()
@@ -1129,6 +1132,12 @@ fn follow(handle: ksni::blocking::Handle<Tray>, unit: String, control: Arc<Follo
     }
 }
 
+fn set_drive_held(confdir: &std::path::Path, held: bool) {
+    let mut s = AppSettings::load();
+    s.prefs_mut(confdir).drive_held = held;
+    let _ = s.save();
+}
+
 fn set_device_held(confdir: &std::path::Path, held: bool) {
     let mut s = AppSettings::load();
     s.prefs_mut(confdir).device_held = held;
@@ -1227,11 +1236,40 @@ fn poll(handle: ksni::blocking::Handle<Tray>) {
             })
             .collect();
 
+        // the drive holding a OneDrive folder: systemd stops the sync when it goes and won't start it
+        // while it's away (driveguard); started again here when it's back, if nothing else holds it
+        for (info, (st, resyncing)) in infos.iter().zip(&states) {
+            let prefs = settings.prefs(&info.confdir);
+            let Some(unit) = &info.unit else { continue };
+            if !st.enabled {
+                continue;
+            }
+            if core::drive_missing(info).is_some() {
+                if !prefs.drive_held {
+                    set_drive_held(&info.confdir, true);
+                }
+            } else if prefs.drive_held {
+                set_drive_held(&info.confdir, false);
+                if !st.active
+                    && !*resyncing
+                    && info.signed_in
+                    && !core::account_busy(&info.confdir)
+                    && !core::unit_held(unit)
+                    && prefs.sync_allowed()
+                {
+                    core::run_detached("systemctl", &["--user", "start", unit]);
+                }
+            }
+        }
+
         // schedules and pauses: start or stop enabled services to match
         let mut expired_pause = false;
         for (info, (st, resyncing)) in infos.iter().zip(&states) {
             let prefs = settings.prefs(&info.confdir);
             let Some(unit) = &info.unit else { continue };
+            if core::drive_missing(info).is_some() {
+                continue; // waiting for its drive (above); a start now would only fail
+            }
             let managed_by_time = prefs.schedule.enabled
                 || prefs.pause_until > 0
                 || hold.is_some()

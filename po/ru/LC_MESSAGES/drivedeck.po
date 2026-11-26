@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-25 22:04+0000\n"
+"POT-Creation-Date: 2026-11-26 23:11+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1886,6 +1886,9 @@ msgstr "Ожидание первой синхронизации"
 msgid "Waiting for the network"
 msgstr "Ожидание сети"
 
+msgid "Waiting for the drive"
+msgstr "Ожидание диска"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "Не удалось запросить пароль: {}"
 
@@ -1900,6 +1903,9 @@ msgstr "Не удалось выполнить действие: {}"
 
 msgid "This account is busy with another task. Try again when it has finished."
 msgstr "Эта учётная запись занята другой задачей. Повторите попытку, когда она завершится."
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Syncing starts again by itself when it is back."
+msgstr "Диск с папкой OneDrive этой учётной записи ({}) не подключён. Синхронизация возобновится сама, когда он вернётся."
 
 msgid "Couldn't save the sync override: {}"
 msgstr "Не удалось сохранить переопределение синхронизации: {}"
@@ -1943,8 +1949,14 @@ msgstr "LibreOffice установлен, а параметр «Сохранят
 msgid "{}: {}"
 msgstr "{}: {}"
 
+msgid "{}: its first sync hasn't finished and the client's own notifications are on. If syncing stops partway, the client can show a notification for every file it hadn't downloaded yet (thousands, for a big OneDrive). Turn off \"Show desktop notifications for synced files\" in Options until the first sync is done."
+msgstr "{}: первая синхронизация ещё не завершена, а собственные уведомления клиента включены. Если синхронизация прервётся на полпути, клиент может показать уведомление о каждом ещё не загруженном файле (тысячи для большого OneDrive). Отключите «Показывать уведомления рабочего стола о синхронизированных файлах» в параметрах, пока первая синхронизация не завершится."
+
 msgid "{}: ran out of folder watches; some changes aren't noticed."
 msgstr "{}: закончились доступные наблюдатели за папками, поэтому некоторые изменения не обнаруживаются."
+
+msgid "{}: its OneDrive folder is on another drive ({}), and its service (set up outside this app) doesn't wait for that drive. If the drive isn't there, the client sees an empty folder and may delete your files online. Add \"BindsTo={}\" and \"After={}\" to the [Unit] part of that file, or let this app manage the service."
+msgstr "{}: папка OneDrive находится на другом диске ({}), а служба (настроенная вне приложения) не ждёт этот диск. Если диска нет, клиент видит пустую папку и может удалить ваши файлы в сети. Добавьте \"BindsTo={}\" и \"After={}\" в раздел [Unit] этого файла или разрешите приложению управлять службой."
 
 msgid "{}: its service file (set up outside this app) doesn't list exit status {} in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus={}\" to that file, or let this app manage the service."
 msgstr "{}: в файле службы (настроенной вне приложения) не указан код завершения {} в RestartPreventExitStatus, поэтому после запроса полной повторной синхронизации клиент запускается снова и снова. Добавьте в этот файл «RestartPreventExitStatus={}» или разрешите приложению управлять службой."

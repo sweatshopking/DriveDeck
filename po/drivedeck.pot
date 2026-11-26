@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-25 22:04+0000\n"
+"POT-Creation-Date: 2026-11-26 23:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1978,6 +1978,9 @@ msgstr ""
 msgid "Waiting for the network"
 msgstr ""
 
+msgid "Waiting for the drive"
+msgstr ""
+
 msgid "Couldn't ask for the password: {}"
 msgstr ""
 
@@ -1991,6 +1994,9 @@ msgid "That didn't work: {}"
 msgstr ""
 
 msgid "This account is busy with another task. Try again when it has finished."
+msgstr ""
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Syncing starts again by itself when it is back."
 msgstr ""
 
 msgid "Couldn't save the sync override: {}"
@@ -2035,7 +2041,13 @@ msgstr ""
 msgid "{}: {}"
 msgstr ""
 
+msgid "{}: its first sync hasn't finished and the client's own notifications are on. If syncing stops partway, the client can show a notification for every file it hadn't downloaded yet (thousands, for a big OneDrive). Turn off \"Show desktop notifications for synced files\" in Options until the first sync is done."
+msgstr ""
+
 msgid "{}: ran out of folder watches; some changes aren't noticed."
+msgstr ""
+
+msgid "{}: its OneDrive folder is on another drive ({}), and its service (set up outside this app) doesn't wait for that drive. If the drive isn't there, the client sees an empty folder and may delete your files online. Add \"BindsTo={}\" and \"After={}\" to the [Unit] part of that file, or let this app manage the service."
 msgstr ""
 
 msgid "{}: its service file (set up outside this app) doesn't list exit status {} in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus={}\" to that file, or let this app manage the service."

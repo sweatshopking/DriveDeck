@@ -42,6 +42,10 @@ fn libreoffice_installed() -> bool {
 /// LibreOffice is installed (whose "changed by someone else" warning this causes). Signed-out
 /// accounts don't upload, so they are left out.
 pub fn dates_off(infos: &[core::AccountInfo]) -> Vec<core::AccountInfo> {
+    // a client older than 2.5.6 doesn't know the option and wouldn't start with it
+    if !core::client_knows("force_session_upload", core::client_numbers()) {
+        return Vec::new();
+    }
     dates_off_with(infos, libreoffice_installed())
 }
 
@@ -149,6 +153,7 @@ fn checks_named(names: bool) -> (Vec<Check>, bool) {
         )));
     }
     let mut dirs = 0usize;
+    let mounts = crate::driveguard::mounts();
     for (info, status) in snap.infos.iter().zip(&snap.statuses) {
         let prefs = snap.settings.prefs(&info.confdir);
         let text = crate::tr!("{}: {}", info.name, status.text(&prefs));
@@ -164,6 +169,12 @@ fn checks_named(names: bool) -> (Vec<Check>, bool) {
         if let Some(e) = &status.last_error {
             out.push(Check::warn(crate::tr!("{}: {}", info.name, e)));
         }
+        if first_sync_with_notices(&info.confdir, status) {
+            out.push(Check::warn(crate::tr!(
+                "{}: its first sync hasn't finished and the client's own notifications are on. If syncing stops partway, the client can show a notification for every file it hadn't downloaded yet (thousands, for a big OneDrive). Turn off \"Show desktop notifications for synced files\" in Options until the first sync is done.",
+                info.name
+            )));
+        }
         if let Some(u) = &info.unit
             && core::watch_limit_hit(u)
         {
@@ -177,6 +188,24 @@ fn checks_named(names: bool) -> (Vec<Check>, bool) {
         if let Some(u) = &info.unit
             && !info.managed
         {
+            // its folder on another drive (a USB drive, a share): does the service wait for it?
+            if let Some(point) =
+                crate::driveguard::guard_mount(&info.sync_dir, &core::home(), &mounts, None)
+            {
+                let binds = core::unit_props(u, "BindsTo")
+                    .remove("BindsTo")
+                    .unwrap_or_default();
+                let wanted = crate::driveguard::mount_unit(&point);
+                if !binds.split_whitespace().any(|b| b == wanted) {
+                    out.push(Check::warn(crate::tr!(
+                        "{}: its OneDrive folder is on another drive ({}), and its service (set up outside this app) doesn't wait for that drive. If the drive isn't there, the client sees an empty folder and may delete your files online. Add \"BindsTo={}\" and \"After={}\" to the [Unit] part of that file, or let this app manage the service.",
+                        info.name,
+                        point.display(),
+                        wanted,
+                        wanted
+                    )));
+                }
+            }
             let value = core::unit_props(u, "RestartPreventExitStatus")
                 .remove("RestartPreventExitStatus")
                 .unwrap_or_default();
@@ -226,6 +255,23 @@ fn checks_named(names: bool) -> (Vec<Check>, bool) {
         }));
     }
     (out, !dates.is_empty())
+}
+
+/// The first sync of an account hasn't finished (no sync database yet, or one being built by a sync
+/// that has never completed) while the client's own desktop notifications are on: stopped partway, the
+/// client sent one "Not downloaded" notification per file still to come (5,485 seen on 2026-11-17).
+/// Only reported: the setting is the user's.
+fn first_sync_with_notices(confdir: &Path, status: &core::Status) -> bool {
+    if core::ClientConfig::load(confdir).get_bool("disable_notifications") {
+        return false;
+    }
+    let no_database = !confdir.join("items.sqlite3").exists();
+    let never_finished = status.last_complete.is_none()
+        && matches!(
+            status.phase,
+            Phase::Syncing | Phase::Unknown | Phase::Resyncing
+        );
+    no_database || never_finished
 }
 
 /// Whether a RestartPreventExitStatus value ("78 126", "SIGTERM 78") names this exit status
@@ -668,6 +714,50 @@ mod tests {
     use super::*;
     use std::fs;
     use std::os::unix::fs::PermissionsExt;
+
+    #[test]
+    fn a_first_sync_with_the_clients_notifications_on_is_reported() {
+        let confdir = std::env::temp_dir().join(format!("lodg-firstsync-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&confdir);
+        fs::create_dir_all(&confdir).unwrap();
+        let status = |phase, done: bool| core::Status {
+            phase,
+            last_complete: done.then(chrono::Local::now),
+            stalled_since: None,
+            last_error: None,
+            blocked: vec![],
+            big_delete: None,
+            unit: core::UnitState::default(),
+        };
+        // no database yet: the first sync hasn't even started
+        assert!(first_sync_with_notices(
+            &confdir,
+            &status(Phase::Stopped, false)
+        ));
+        // a database, a sync under way that never finished
+        fs::write(confdir.join("items.sqlite3"), b"x").unwrap();
+        assert!(first_sync_with_notices(
+            &confdir,
+            &status(Phase::Syncing, false)
+        ));
+        // finished once, or not syncing now: nothing to say
+        assert!(!first_sync_with_notices(
+            &confdir,
+            &status(Phase::Syncing, true)
+        ));
+        assert!(!first_sync_with_notices(
+            &confdir,
+            &status(Phase::UpToDate, false)
+        ));
+        // the client's notifications off: nothing to say either
+        fs::remove_file(confdir.join("items.sqlite3")).unwrap();
+        fs::write(confdir.join("config"), "disable_notifications = \"true\"\n").unwrap();
+        assert!(!first_sync_with_notices(
+            &confdir,
+            &status(Phase::Stopped, false)
+        ));
+        let _ = fs::remove_dir_all(&confdir);
+    }
 
     #[test]
     fn keep_my_file_dates_is_offered_and_turned_on() {

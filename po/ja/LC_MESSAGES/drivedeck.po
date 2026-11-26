@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-25 22:04+0000\n"
+"POT-Creation-Date: 2026-11-26 23:11+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1880,6 +1880,9 @@ msgstr "初回同期を待っています"
 msgid "Waiting for the network"
 msgstr "ネットワークを待っています"
 
+msgid "Waiting for the drive"
+msgstr "ドライブを待っています"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "パスワードを要求できませんでした：{}"
 
@@ -1894,6 +1897,9 @@ msgstr "うまくいきませんでした：{}"
 
 msgid "This account is busy with another task. Try again when it has finished."
 msgstr "このアカウントは別の処理で使用中です。完了してから、もう一度お試しください。"
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Syncing starts again by itself when it is back."
+msgstr "このアカウントの OneDrive フォルダーがあるドライブ ({}) が接続されていません。戻ってくると同期は自動で再開します。"
 
 msgid "Couldn't save the sync override: {}"
 msgstr "同期の上書き設定を保存できませんでした：{}"
@@ -1937,8 +1943,14 @@ msgstr "LibreOffice がインストールされていますが、{} では「フ
 msgid "{}: {}"
 msgstr "{}：{}"
 
+msgid "{}: its first sync hasn't finished and the client's own notifications are on. If syncing stops partway, the client can show a notification for every file it hadn't downloaded yet (thousands, for a big OneDrive). Turn off \"Show desktop notifications for synced files\" in Options until the first sync is done."
+msgstr "{}: 最初の同期がまだ終わっておらず、クライアント自身の通知がオンになっています。同期が途中で止まると、まだダウンロードしていないファイルごとに通知が出ることがあります (大きな OneDrive では数千件)。最初の同期が終わるまで、オプションの「同期したファイルのデスクトップ通知を表示」をオフにしてください。"
+
 msgid "{}: ran out of folder watches; some changes aren't noticed."
 msgstr "{}：フォルダー監視数の上限に達したため、一部の変更が検知されません。"
+
+msgid "{}: its OneDrive folder is on another drive ({}), and its service (set up outside this app) doesn't wait for that drive. If the drive isn't there, the client sees an empty folder and may delete your files online. Add \"BindsTo={}\" and \"After={}\" to the [Unit] part of that file, or let this app manage the service."
+msgstr "{}: OneDrive フォルダーが別のドライブ ({}) にありますが、このアプリ以外で設定されたサービスはそのドライブを待ちません。ドライブがないとクライアントは空のフォルダーを見て、オンラインのファイルを削除するおそれがあります。そのファイルの [Unit] に \"BindsTo={}\" と \"After={}\" を追加するか、このアプリにサービスを管理させてください。"
 
 msgid "{}: its service file (set up outside this app) doesn't list exit status {} in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus={}\" to that file, or let this app manage the service."
 msgstr "{}: このアプリ以外で設定されたサービスファイルの RestartPreventExitStatus に終了コード {} が含まれていません。そのため、クライアントが完全な再同期を求めた後も何度も起動されます。ファイルに \"RestartPreventExitStatus={}\" を追加するか、このアプリにサービスを管理させてください。"

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-25 22:04+0000\n"
+"POT-Creation-Date: 2026-11-26 23:11+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1884,6 +1884,9 @@ msgstr "Esperando la primera sincronización"
 msgid "Waiting for the network"
 msgstr "Esperando la red"
 
+msgid "Waiting for the drive"
+msgstr "Esperando la unidad"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "No se pudo solicitar la contraseña: {}"
 
@@ -1898,6 +1901,9 @@ msgstr "No ha funcionado: {}"
 
 msgid "This account is busy with another task. Try again when it has finished."
 msgstr "Esta cuenta está ocupada con otra tarea. Vuelve a intentarlo cuando termine."
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Syncing starts again by itself when it is back."
+msgstr "La unidad con la carpeta de OneDrive de esta cuenta ({}) no está conectada. La sincronización se reanudará sola cuando vuelva."
 
 msgid "Couldn't save the sync override: {}"
 msgstr "No se pudo guardar la sustitución de sincronización: {}"
@@ -1941,8 +1947,14 @@ msgstr "LibreOffice está instalado y «Conservar las fechas de mis archivos» e
 msgid "{}: {}"
 msgstr "{}: {}"
 
+msgid "{}: its first sync hasn't finished and the client's own notifications are on. If syncing stops partway, the client can show a notification for every file it hadn't downloaded yet (thousands, for a big OneDrive). Turn off \"Show desktop notifications for synced files\" in Options until the first sync is done."
+msgstr "{}: su primera sincronización no ha terminado y los avisos propios del cliente están activados. Si la sincronización se detiene a medias, el cliente puede mostrar un aviso por cada archivo que aún no ha descargado (miles, en un OneDrive grande). Desactiva «Mostrar avisos del escritorio para los archivos sincronizados» en Opciones hasta que termine la primera sincronización."
+
 msgid "{}: ran out of folder watches; some changes aren't noticed."
 msgstr "{}: se agotó el límite de vigilancia de carpetas; no se detectan algunos cambios."
+
+msgid "{}: its OneDrive folder is on another drive ({}), and its service (set up outside this app) doesn't wait for that drive. If the drive isn't there, the client sees an empty folder and may delete your files online. Add \"BindsTo={}\" and \"After={}\" to the [Unit] part of that file, or let this app manage the service."
+msgstr "{}: su carpeta de OneDrive está en otra unidad ({}) y su servicio (configurado fuera de esta aplicación) no espera a esa unidad. Si la unidad no está, el cliente ve una carpeta vacía y podría eliminar tus archivos en línea. Añade \"BindsTo={}\" y \"After={}\" a la sección [Unit] de ese archivo o deja que esta aplicación gestione el servicio."
 
 msgid "{}: its service file (set up outside this app) doesn't list exit status {} in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus={}\" to that file, or let this app manage the service."
 msgstr "{}: su archivo de servicio (configurado fuera de esta aplicación) no incluye el estado de salida {} en RestartPreventExitStatus, así que el cliente se vuelve a iniciar una y otra vez después de solicitar una resincronización completa. Añade «RestartPreventExitStatus={}» a ese archivo o deja que esta aplicación gestione el servicio."

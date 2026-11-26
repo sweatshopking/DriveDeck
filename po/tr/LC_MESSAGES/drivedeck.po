@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-25 22:04+0000\n"
+"POT-Creation-Date: 2026-11-26 23:11+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1882,6 +1882,9 @@ msgstr "İlk eşitleme bekleniyor"
 msgid "Waiting for the network"
 msgstr "Ağ bekleniyor"
 
+msgid "Waiting for the drive"
+msgstr "Sürücü bekleniyor"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "Parola istenemedi: {}"
 
@@ -1896,6 +1899,9 @@ msgstr "İşlem başarısız oldu: {}"
 
 msgid "This account is busy with another task. Try again when it has finished."
 msgstr "Bu hesap başka bir görevle meşgul. Görev tamamlanınca yeniden deneyin."
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Syncing starts again by itself when it is back."
+msgstr "Bu hesabın OneDrive klasörünün bulunduğu sürücü ({}) bağlı değil. Geri geldiğinde eşitleme kendiliğinden yeniden başlar."
 
 msgid "Couldn't save the sync override: {}"
 msgstr "Eşitleme geçersiz kılma ayarı kaydedilemedi: {}"
@@ -1939,8 +1945,14 @@ msgstr "LibreOffice kurulu ve {} için \"Dosya tarihlerimi koru\" kapalı: bir b
 msgid "{}: {}"
 msgstr "{}: {}"
 
+msgid "{}: its first sync hasn't finished and the client's own notifications are on. If syncing stops partway, the client can show a notification for every file it hadn't downloaded yet (thousands, for a big OneDrive). Turn off \"Show desktop notifications for synced files\" in Options until the first sync is done."
+msgstr "{}: İlk eşitleme henüz bitmedi ve istemcinin kendi bildirimleri açık. Eşitleme yarıda durursa istemci henüz indirmediği her dosya için bir bildirim gösterebilir (büyük bir OneDrive için binlerce). İlk eşitleme bitene kadar Seçenekler'de \"Eşitlenen dosyalar için masaüstü bildirimlerini göster\" ayarını kapatın."
+
 msgid "{}: ran out of folder watches; some changes aren't noticed."
 msgstr "{}: klasör izleme sınırı doldu; bazı değişiklikler fark edilmiyor."
+
+msgid "{}: its OneDrive folder is on another drive ({}), and its service (set up outside this app) doesn't wait for that drive. If the drive isn't there, the client sees an empty folder and may delete your files online. Add \"BindsTo={}\" and \"After={}\" to the [Unit] part of that file, or let this app manage the service."
+msgstr "{}: OneDrive klasörü başka bir sürücüde ({}) ve bu uygulamanın dışında ayarlanan hizmet o sürücüyü beklemiyor. Sürücü yoksa istemci boş bir klasör görür ve çevrimiçi dosyalarınızı silebilir. O dosyanın [Unit] bölümüne \"BindsTo={}\" ve \"After={}\" ekleyin veya hizmeti bu uygulamanın yönetmesine izin verin."
 
 msgid "{}: its service file (set up outside this app) doesn't list exit status {} in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus={}\" to that file, or let this app manage the service."
 msgstr "{}: Bu uygulamanın dışında ayarlanan hizmet dosyasında RestartPreventExitStatus içinde {} çıkış durumu listelenmiyor. Bu nedenle istemci tam eşitleme istediğinde tekrar tekrar başlatılıyor. Dosyaya \"RestartPreventExitStatus={}\" ekleyin veya hizmeti bu uygulamanın yönetmesine izin verin."

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-11-25 22:04+0000\n"
+"POT-Creation-Date: 2026-11-26 23:11+0000\n"
 "PO-Revision-Date: 2026-10-30 06:36+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1882,6 +1882,9 @@ msgstr "等待首次同步"
 msgid "Waiting for the network"
 msgstr "等待网络连接"
 
+msgid "Waiting for the drive"
+msgstr "等待驱动器"
+
 msgid "Couldn't ask for the password: {}"
 msgstr "无法请求密码：{}"
 
@@ -1896,6 +1899,9 @@ msgstr "操作失败：{}"
 
 msgid "This account is busy with another task. Try again when it has finished."
 msgstr "此账户正忙于其他任务。请等其完成后重试。"
+
+msgid "The drive with this account's OneDrive folder ({}) isn't connected. Syncing starts again by itself when it is back."
+msgstr "此账户的 OneDrive 文件夹所在的驱动器（{}）未连接。连接回来后会自动重新开始同步。"
 
 msgid "Couldn't save the sync override: {}"
 msgstr "无法保存同步覆盖设置：{}"
@@ -1939,8 +1945,14 @@ msgstr "已安装 LibreOffice，但 {} 的“保留我的文件日期”已关�
 msgid "{}: {}"
 msgstr "{}：{}"
 
+msgid "{}: its first sync hasn't finished and the client's own notifications are on. If syncing stops partway, the client can show a notification for every file it hadn't downloaded yet (thousands, for a big OneDrive). Turn off \"Show desktop notifications for synced files\" in Options until the first sync is done."
+msgstr "{}：首次同步尚未完成，且客户端自己的通知已开启。如果同步中途停止，客户端可能会为每个尚未下载的文件显示一条通知（大型 OneDrive 可达数千条）。在首次同步完成之前，请在“选项”中关闭“显示已同步文件的桌面通知”。"
+
 msgid "{}: ran out of folder watches; some changes aren't noticed."
 msgstr "{}：文件夹监视额度已用完，部分更改无法被发现。"
+
+msgid "{}: its OneDrive folder is on another drive ({}), and its service (set up outside this app) doesn't wait for that drive. If the drive isn't there, the client sees an empty folder and may delete your files online. Add \"BindsTo={}\" and \"After={}\" to the [Unit] part of that file, or let this app manage the service."
+msgstr "{}：其 OneDrive 文件夹位于另一个驱动器（{}）上，而其服务（在此应用之外设置）不会等待该驱动器。如果驱动器不在，客户端会看到一个空文件夹，并可能删除你在线的文件。请在该文件的 [Unit] 部分添加 \"BindsTo={}\" 和 \"After={}\"，或让此应用管理该服务。"
 
 msgid "{}: its service file (set up outside this app) doesn't list exit status {} in RestartPreventExitStatus, so after the client asks for a full resync it is started again and again. Add \"RestartPreventExitStatus={}\" to that file, or let this app manage the service."
 msgstr "{}：在此应用之外设置的服务文件未在 RestartPreventExitStatus 中列出退出状态 {}，因此客户端请求完全重新同步后会不断重新启动。请在该文件中添加 \"RestartPreventExitStatus={}\"，或让此应用管理该服务。"

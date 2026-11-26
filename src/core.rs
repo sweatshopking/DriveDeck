@@ -355,6 +355,64 @@ pub fn parse_client_version(text: &str) -> Option<((u32, u32, u32), String)> {
     })
 }
 
+/// Config keys added after client 2.5.0, with the version that first knows each. The client refuses to
+/// start on a key it doesn't know ("Unknown key in config file"), so none is written for an older one.
+/// From each release's src/config.d (v2.5.0 to v2.5.12).
+pub const KEY_SINCE: &[(&str, (u32, u32, u32))] = &[
+    ("max_curl_idle", (2, 5, 3)),
+    ("create_new_file_version", (2, 5, 4)),
+    ("display_transfer_metrics", (2, 5, 4)),
+    ("permanent_delete", (2, 5, 4)),
+    ("disable_permission_set", (2, 5, 5)),
+    ("write_xattr_data", (2, 5, 5)),
+    ("delay_inotify_processing", (2, 5, 6)),
+    ("force_session_upload", (2, 5, 6)),
+    ("inotify_delay", (2, 5, 6)),
+    ("disable_websocket_support", (2, 5, 8)),
+    ("display_manager_integration", (2, 5, 8)),
+    ("remove_source_folders", (2, 5, 8)),
+    ("disable_version_check", (2, 5, 10)),
+    ("mirror_local_state", (2, 5, 11)),
+];
+
+/// Whether a client of this version accepts `key` in its config. An unknown version (no client, or it
+/// didn't say) is taken to be a current one.
+pub fn client_knows(key: &str, client: Option<(u32, u32, u32)>) -> bool {
+    match (client, KEY_SINCE.iter().find(|(k, _)| *k == key)) {
+        (Some(version), Some((_, since))) => version >= *since,
+        _ => true,
+    }
+}
+
+/// The installed client's version numbers, asked once per client program (path and change time),
+/// since asking runs it.
+pub fn client_numbers() -> Option<(u32, u32, u32)> {
+    use std::sync::Mutex;
+    type Seen = Option<(
+        PathBuf,
+        Option<std::time::SystemTime>,
+        Option<(u32, u32, u32)>,
+    )>;
+    static SEEN: Mutex<Seen> = Mutex::new(None);
+    let path = client_binary()?;
+    let changed = fs::metadata(&path).and_then(|m| m.modified()).ok();
+    if let Ok(seen) = SEEN.lock()
+        && let Some((p, c, v)) = seen.as_ref()
+        && *p == path
+        && *c == changed
+    {
+        return *v;
+    }
+    let numbers = client_version_of(&path, CLIENT_VERSION_LIMIT)
+        .ok()
+        .and_then(|t| parse_client_version(&t))
+        .map(|(n, _)| n);
+    if let Ok(mut seen) = SEEN.lock() {
+        *seen = Some((path, changed, numbers));
+    }
+    numbers
+}
+
 /// The exit status the client ends with when it needs a full resync: 126 before client 2.5.12, 78 from it
 /// (an unknown version gets the newer one). Units made by this app list both.
 pub fn resync_exit_code(client: Option<(u32, u32, u32)>) -> u32 {
@@ -428,6 +486,10 @@ pub struct AccountPrefs {
     /// The tray stopped it for a metered network or battery saver, so it starts it again after.
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub device_held: bool,
+    /// The drive holding the OneDrive folder went (systemd stopped the sync, see driveguard): the
+    /// tray starts it again when the drive is back.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub drive_held: bool,
     /// Desktop folders (Documents, Pictures…) backed up into this account
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub backups: Vec<crate::backup::Backup>,
@@ -1195,6 +1257,7 @@ pub fn write_managed_unit(unit: &str, name: &str, confdir: &Path) -> std::io::Re
     })?;
     fs::create_dir_all(user_unit_dir())?;
     let path = user_unit_dir().join(unit);
+    let mut previous_guard = None;
     match fs::symlink_metadata(&path) {
         Ok(meta) if !meta.file_type().is_file() => {
             return Err(std::io::Error::new(
@@ -1213,6 +1276,7 @@ pub fn write_managed_unit(unit: &str, name: &str, confdir: &Path) -> std::io::Re
                     ),
                 ));
             }
+            previous_guard = crate::driveguard::from_unit(&text);
         }
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
         Err(e) => return Err(e),
@@ -1224,7 +1288,7 @@ pub fn write_managed_unit(unit: &str, name: &str, confdir: &Path) -> std::io::Re
          After=network-online.target\n\
          Wants=network-online.target\n\
          {}\n\
-         {MANAGED_MARK}\n\
+         {}{MANAGED_MARK}\n\
          \n\
          [Service]\n\
          ExecStart={} --monitor --confdir {}\n\
@@ -1237,6 +1301,7 @@ pub fn write_managed_unit(unit: &str, name: &str, confdir: &Path) -> std::io::Re
          WantedBy=default.target\n",
         unit_text(name),
         condition_line(&client),
+        drive_guard_lines(confdir, previous_guard.as_deref()),
         systemd_quote(&client.to_string_lossy()),
         systemd_quote(&confdir.to_string_lossy()),
     );
@@ -1438,6 +1503,7 @@ pub fn start_idle_units(settings: &AppSettings) {
             && acc.signed_in
             && !unit_held(u)
             && settings.prefs(&acc.confdir).sync_allowed()
+            && drive_missing(&acc).is_none()
         {
             systemctl(&["start", u]);
         }
@@ -1597,6 +1663,17 @@ pub fn paths_overlap(a: &Path, b: &Path) -> bool {
 }
 
 /// Makes a unit skip quietly, instead of failing every few seconds, if the client is uninstalled.
+/// The lines that keep an account's unit off its OneDrive folder while the drive holding it is
+/// absent (see driveguard), each ending in a newline; empty when it lives on the root or home drive.
+fn drive_guard_lines(confdir: &Path, previous: Option<&Path>) -> String {
+    let sync_dir = ClientConfig::load(confdir).sync_dir();
+    match crate::driveguard::guard_mount(&sync_dir, &home(), &crate::driveguard::mounts(), previous)
+    {
+        Some(point) => crate::driveguard::unit_lines(&point) + "\n",
+        None => String::new(),
+    }
+}
+
 fn condition_line(program: &Path) -> String {
     format!(
         "ConditionPathExists={}",
@@ -1631,13 +1708,18 @@ pub fn repair_managed_units() -> Vec<String> {
             systemd_quote(&client.to_string_lossy()),
             systemd_quote(&confdir.to_string_lossy())
         );
+        let previous = crate::driveguard::from_unit(&text);
+        let guard = drive_guard_lines(&confdir, previous.as_deref());
         let mut new = Vec::new();
         for l in text.lines() {
-            if l.starts_with("ConditionPathExists=") {
+            if l.starts_with("ConditionPathExists=")
+                || crate::driveguard::is_guard_line(l, previous.as_deref())
+            {
                 continue; // rewritten below
             }
             if l == MANAGED_MARK || l == OLD_MANAGED_MARK {
                 new.push(condition_line(&client));
+                new.extend(guard.lines().map(str::to_string));
                 new.push(MANAGED_MARK.to_string());
                 continue;
             }
@@ -3000,6 +3082,9 @@ pub enum Phase {
     /// The client couldn't reach Microsoft and is waiting to try again (issue #5): no network yet after waking
     /// from sleep, Wi-Fi gone. Not an error: it carries on by itself once it gets through.
     Offline,
+    /// The drive holding the OneDrive folder (a USB drive, a network share) isn't there: the service
+    /// waits for it (driveguard) and starts again when it is back.
+    NoDrive,
 }
 
 impl Phase {
@@ -3013,7 +3098,9 @@ impl Phase {
             | Phase::SignedOut
             | Phase::BigDelete
             | Phase::Stalled => "drivedeck-error",
-            Phase::Stopped | Phase::Off | Phase::Paused | Phase::Offline => "drivedeck-off",
+            Phase::Stopped | Phase::Off | Phase::Paused | Phase::Offline | Phase::NoDrive => {
+                "drivedeck-off"
+            }
         }
     }
 }
@@ -3088,6 +3175,7 @@ impl Status {
             },
             Phase::Unknown => crate::tr!("Waiting for first sync"),
             Phase::Offline => crate::tr!("Waiting for the network"),
+            Phase::NoDrive => crate::tr!("Waiting for the drive"),
         }
     }
 }
@@ -3297,6 +3385,9 @@ fn compose_phase_with_cache(
         ) {
             return log_phase;
         }
+        if unit.enabled && drive_missing(acc).is_some() {
+            return Phase::NoDrive;
+        }
         if unit.enabled
             && !(if cached {
                 prefs.sync_allowed_cached()
@@ -3316,6 +3407,13 @@ fn compose_phase_with_cache(
         };
     }
     log_phase
+}
+
+/// The drive an account's (managed) unit waits for, when it isn't there now
+pub fn drive_missing(acc: &AccountInfo) -> Option<PathBuf> {
+    let unit = acc.unit.as_ref()?;
+    let text = fs::read_to_string(user_unit_dir().join(unit)).ok()?;
+    crate::driveguard::missing_drive(&text, &crate::driveguard::mounts())
 }
 
 /// systemctl calls `unit_action` has started and not finished yet
@@ -3381,6 +3479,12 @@ pub fn sync_now(info: &AccountInfo) -> Result<String, String> {
     if account_busy(&info.confdir) {
         return Err(crate::tr!(
             "This account is busy with another task. Try again when it has finished."
+        ));
+    }
+    if let Some(drive) = drive_missing(info) {
+        return Err(crate::tr!(
+            "The drive with this account's OneDrive folder ({}) isn't connected. Syncing starts again by itself when it is back.",
+            drive.display()
         ));
     }
     let mut s = AppSettings::load();
@@ -4185,6 +4289,26 @@ mod tests {
                 .contains("v2.5.9")
         );
         fs::remove_dir_all(&dir).unwrap();
+    }
+
+    #[test]
+    fn keys_newer_than_the_client_are_not_accepted() {
+        assert!(!client_knows("force_session_upload", Some((2, 5, 5))));
+        assert!(client_knows("force_session_upload", Some((2, 5, 6))));
+        assert!(!client_knows("disable_permission_set", Some((2, 5, 4))));
+        assert!(client_knows("disable_permission_set", Some((2, 5, 5))));
+        assert!(!client_knows("mirror_local_state", Some((2, 5, 10))));
+        // keys every 2.5 client knows, and an unknown version
+        assert!(client_knows("sync_dir", Some((2, 5, 0))));
+        assert!(client_knows("force_session_upload", None));
+        // every key in the table is one the Advanced section or this app writes
+        for (k, _) in KEY_SINCE {
+            assert!(
+                crate::advanced::SPECS.iter().any(|s| s.key == *k)
+                    || *k == "disable_permission_set",
+                "{k}"
+            );
+        }
     }
 
     #[test]
